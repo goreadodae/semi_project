@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -18,14 +17,14 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<!-- ÃÊ±âÈ­ -->
+<!-- ì´ˆê¸°í™” -->
 <link rel="stylesheet" href="/WebContent/css/reset.css">
 <link rel="stylesheet" href="/WebContent/css/main-style.css">
 
-<title>¼ö»óÇÑ ·¹½ÃÇÇ</title>
+<title>ìˆ˜ìƒí•œ ë ˆì‹œí”¼</title>
 
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
 		$("#header").load("/views/mainpage-header/main-header.html");
 		$("#footer").load("/views/mainpage-footer/main-footer.html");
@@ -42,27 +41,27 @@
 
 </head>
 <body>
-	<!-- <a href="/views/ranking_page/ranking_main.jsp">ï¿½ï¿½Å·</a> -->
+	<!-- <a href="/views/ranking_page/ranking_main.jsp">å ì™ì˜™í‚¹</a> -->
 	<div class="container-fluid">
 
 		<!-- Header -->
 		<div id="header">
-			<!-- ÇØ´õ -->
+			<!-- í•´ë” -->
 		</div>
 
-		<!-- ÄÁÅÙÃ÷ -->
+		<!-- ì»¨í…ì¸  -->
 		<div id="" class="contents">
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12 col-sm-12" style="padding: 0px;">
 						<img
 							src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/74e51d1f685eef277b3f8bcc4f46a6e6.jpg"
-							alt="ÀÌ¹ÌÁö" class="col-md-12 col-sm-12" height="350"
+							alt="ì´ë¯¸ì§€" class="col-md-12 col-sm-12" height="350"
 							style="padding: 0px;">
 					</div>
 
 					<!--      <div class="col-md-3 col-sm-3 text-center text-white bg-primary text-white">
-                    <h1>·©Å·</h1>
+                    <h1>ë­í‚¹</h1>
                     <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's
                         most interesting in this post's contents.</p>
                 </div> -->
@@ -75,7 +74,7 @@
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
-					<h1>°¡Àå ÇÖ ÇÑ ·¹½ÃÇÇ</h1>
+					<h1>ê°€ì¥ í•« í•œ ë ˆì‹œí”¼</h1>
 				</div>
 
 				<div class="col-md-12" style="padding: 0px;">
@@ -84,11 +83,11 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325"
+									src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325"
 									class="img-thumbnail">
 								<div class="col-md-12">
-									<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-									<p class="display-6">By Á¤Áã¼ö</p>
+									<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+									<p class="display-6">By ì •ì¥ìˆ˜</p>
 								</div>
 							</div>
 						</div>
@@ -97,10 +96,10 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+									src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 								<div class="col-md-12">
-									<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-									<p class="display-6">By Á¤Áã¼ö</p>
+									<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+									<p class="display-6">By ì •ì¥ìˆ˜</p>
 								</div>
 							</div>
 						</div>
@@ -109,10 +108,10 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+									src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 								<div class="col-md-12">
-									<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-									<p class="display-6">By Á¤Áã¼ö</p>
+									<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+									<p class="display-6">By ì •ì¥ìˆ˜</p>
 								</div>
 							</div>
 						</div>
@@ -121,10 +120,10 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+									src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 								<div class="col-md-12">
-									<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-									<p class="display-6">By Á¤Áã¼ö</p>
+									<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+									<p class="display-6">By ì •ì¥ìˆ˜</p>
 								</div>
 							</div>
 						</div>
@@ -136,7 +135,7 @@
 			<div class="col-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
-					<h1>½¦ÇÁµéÀÇ ·¹½ÃÇÇ</h1>
+					<h1>ì‰í”„ë“¤ì˜ ë ˆì‹œí”¼</h1>
 				</div>
 				<br>
 				<div class="row">
@@ -144,10 +143,10 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+								src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 							<div class="col-md-12">
-								<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-								<p class="display-6">By Á¤Áã¼ö</p>
+								<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+								<p class="display-6">By ì •ì¥ìˆ˜</p>
 							</div>
 						</div>
 					</div>
@@ -156,10 +155,10 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+								src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 							<div class="col-md-12">
-								<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-								<p class="display-6">By Á¤Áã¼ö</p>
+								<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+								<p class="display-6">By ì •ì¥ìˆ˜</p>
 							</div>
 						</div>
 					</div>
@@ -168,10 +167,10 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+								src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 							<div class="col-md-12">
-								<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-								<p class="display-6">By Á¤Áã¼ö</p>
+								<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+								<p class="display-6">By ì •ì¥ìˆ˜</p>
 							</div>
 						</div>
 					</div>
@@ -180,10 +179,10 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/ÇÇÀÚ.jpg" alt="ÀÌ¹ÌÁö" height="325" class="img-thumbnail">
+								src="/imgs/main-img/í”¼ì.jpg" alt="ì´ë¯¸ì§€" height="325" class="img-thumbnail">
 							<div class="col-md-12">
-								<p class="lead my-1">¿À´Ã ¸Ş´º´Â ÇÇÀÚ</p>
-								<p class="display-6">By Á¤Áã¼ö</p>
+								<p class="lead my-1">ì˜¤ëŠ˜ ë©”ë‰´ëŠ” í”¼ì</p>
+								<p class="display-6">By ì •ì¥ìˆ˜</p>
 							</div>
 						</div>
 					</div>

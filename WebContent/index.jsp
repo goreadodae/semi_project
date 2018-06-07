@@ -7,7 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>잘 될거야!</h1>
-<h3>제발</h3>
 </body>
 </html>

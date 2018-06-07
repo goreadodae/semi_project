@@ -18,7 +18,7 @@
 	https://www.ovzect.kr/shop?productListFilter=117035 -->
 
 	<!-- header -->
-	<jsp:include page="/views/mainpage-header/main-header.html" />
+	<jsp:include page="/views/mainpage-header/Main-Header.html" />
 
 	<!-- 랭킹 상단 부분 url -->
 	<!-- <div id="line">
@@ -152,7 +152,7 @@
 	<br>
 
 	<!-- footer -->
-	<jsp:include page="/views/mainpage-footer/main-footer.html" />
+	<jsp:include page="/views/mainpage-footer/Main-Footer.html" />
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.js"></script>

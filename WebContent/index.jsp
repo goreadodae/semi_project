@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<a href="/views/ranking_page/ranking_main.jsp">·©Å·</a>
-
+<a href="/views/ranking_page/ranking_main.jsp">ï¿½ï¿½Å·</a>
 </body>
 </html>

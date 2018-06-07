@@ -26,8 +26,8 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/mainpage-header/main-header.html");
-		$("#footer").load("/views/mainpage-footer/main-footer.html");
+		$("#header").load("/views/mainpage-header/Main-Header.html");
+		$("#footer").load("/views/mainpage-footer/Main-Footer.html");
 	});
 </script>
 

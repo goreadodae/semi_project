@@ -14,6 +14,7 @@
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 <style>
+
 /* 상단 여백 10px */
 #footer_link ul li {
 	display: inline;

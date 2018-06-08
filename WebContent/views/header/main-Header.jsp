@@ -115,7 +115,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="#" style="line-height: 50px;">레시피</a>
+						<a class="nav-category" href="/recipeList" style="line-height: 50px;">레시피</a>
 					</div>
 
 					<div class="col-md-2">

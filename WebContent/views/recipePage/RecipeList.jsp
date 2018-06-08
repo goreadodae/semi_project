@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,12 +24,28 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/Main-Header.html");
-		$("#footer").load("/views/footer/Main-Footer.html");
+		$("#header").load("/views/header/main-Header.jsp");
+		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
 </head>
-<body>
 
+<body>
+	<div class="container-fluid">
+
+		<!-- Header -->
+		<div id="header">
+			<!-- 해더 -->
+		</div>
+		
+
+
+		<!-- Footer -->
+		<div id="footer"
+			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding: 10px;">
+			<!-- footer -->
+		</div>
+	</div>
 </body>
 </html>

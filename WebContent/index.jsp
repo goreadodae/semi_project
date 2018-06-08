@@ -66,6 +66,7 @@
 			<div class="col-md-1"
 				style="background-color: red; height: 180px; display: inline-block; position: absolute; right: 140px;">
 			</div>
+			
 			<!-- Image 5 views  -->
 			<div class="col-md-8 mx-auto">
 				<div class="row">

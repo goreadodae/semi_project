@@ -18,6 +18,7 @@
 <!-- 초기화 -->
 <link rel="stylesheet" href="/WebContent/css/reset.css">
 <link rel="stylesheet" href="/WebContent/css/main-style.css">
+<link rel="stylesheet" href="/css/recipeList_css/recipeList.css">
 
 <title>수상한 레시피</title>
 
@@ -37,7 +38,98 @@
 		<div id="header">
 			<!-- 해더 -->
 		</div>
-		
+		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="padding: 10px;">
+			<div class="row" style="margin-bottom: 30px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10" id="category">
+					<div class="row" id="cate_class" style="margin-top: 15px;">
+						<div class="col-md-12">
+							<span class="category">종류별</span>
+							<ul id="cate_list" class="nav">
+								<li class="nav-item"><a class="nav-link active" href="#">Active</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Disabled</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row" id="cate_situation" style="margin-top: 10px;">
+						<div class="col-md-12">
+							<span class="category">상황별</span>
+							<ul id="cate_list" class="nav">
+								<li class="nav-item"><a class="nav-link active" href="#">Active</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Disabled</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row" id="cate_ingredient" style="margin-top: 10px;">
+						<div class="col-md-12">
+							<span class="category">재료별</span>
+							<ul id="cate_list" class="nav">
+								<li class="nav-item"><a class="nav-link active" href="#">Active</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Disabled</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row" id="cate_method"
+						style="margin-top: 10px; margin-bottom: 15px">
+						<div class="col-md-12">
+							<span class="category">방법별</span>
+							<ul id="cate_list" class="nav">
+								<li class="nav-item"><a class="nav-link active" href="#">Active</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">Disabled</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="shadow p-3 mb-5 bg-white rounded">
+						<div class="thumbnail">
+							<img class="recipe_img" src="/imgs/recipe_img/pi1.jpg"
+								height="100%" width="100%">
+							<div class="caption">
+								<h3>고소한 고등어살 파니니</h3>
+								<p>by 이승재</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="shadow p-3 mb-5 bg-white rounded"></div>
+				</div>
+				<div class="col-md-4">
+					<div class="shadow p-3 mb-5 bg-white rounded"></div>
+				</div>
+			</div>
+		</div>
 
 
 		<!-- Footer -->

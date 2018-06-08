@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+.category {
+	border: 2px solid #512772;
+	border-radius: 20px;
+	width: 55px;
+	height: 30px;
+	display: inline-block;
+	text-align: center;
+	line-height: 25px;
+	color: #512772;
+	font-weight: bolder;
+}
+
+#category {
+	border: 1px solid black;
+}
+
+#cate_list {
+	display: inline-block;
+}
+
+#cate_list>li {
+	display: inline-block;
+}
+
+.nav-link {
+	color: black;
+}
+
+#cate_list>li>a:hover {
+	color: #512772;
+	text-decoration: underline;
+	font-weight: bolder;
+}
+
+.nav-link.active {
+	text-decoration: underline;
+	color: #512772;
+}
+
+.recipe_img {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.middle {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.shadow.p-3.mb-5.bg-white.rounded:hover {
+	cursor: pointer;
+}
+
+.shadow.p-3.mb-5.bg-white.rounded:hover .recipe_img {
+	opacity: 0.3;
+}

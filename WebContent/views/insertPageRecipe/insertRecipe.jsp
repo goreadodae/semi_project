@@ -153,7 +153,6 @@ div {
 		</form>
 	</div> -->
 
-
 			<div class="container-fluid" id="all">
 				<div class="row">레시피 등록</div>
 				<div class="row">

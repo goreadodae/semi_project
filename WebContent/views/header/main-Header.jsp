@@ -137,8 +137,7 @@
 
 					<div class="col-md-2">
 						<a class="nav-category"
-							href="/views/ranking_page/ranking_main.jsp"
-							style="line-height: 50px;">랭킹</a>
+
 					</div>
 
 					<div class="col-md-2">

@@ -120,7 +120,7 @@
 
 					<div class="col-md-2">
 						<a class="nav-category"
-							href="/views/ranking_page/ranking_main.jsp"
+							href="/views/rankingPage/rankingPage.jsp"
 							style="line-height: 50px;">·©Å·</a>
 					</div>
 

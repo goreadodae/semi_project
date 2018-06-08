@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-
 <!-- 초기화 -->
 <link rel="stylesheet" href="/WebContent/css/reset.css">
+
+
+<link rel="stylesheet" href="/WebContent/js/bootstrap.js">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/WebContent/css/bootstrap.css">
 <link rel="stylesheet" href="/WebContent/css/main-style.css">
 
 <title>수상한 레시피</title>
@@ -46,10 +45,11 @@
 
 		<!-- Header -->
 		<div id="header">
-			<!-- 해더 -->
+			<!-- load -->
 		</div>
 
-		<!-- 컨텐츠 -->
+		<!-- Contents -->
+		<!-- Image -->
 		<div id="" class="contents">
 			<div class="col-md-12">
 				<div class="row">
@@ -59,24 +59,22 @@
 							alt="이미지" class="col-md-12 col-sm-12" height="350"
 							style="padding: 0px;">
 					</div>
-
-					<!--      <div class="col-md-3 col-sm-3 text-center text-white bg-primary text-white">
-                    <h1>랭킹</h1>
-                    <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's
-                        most interesting in this post's contents.</p>
-                </div> -->
 				</div>
 			</div>
 
 			<br> <br>
-
-
+			<div class="col-md-1"
+				style="background-color: red; height: 180px; display: inline-block; position: absolute; right: 140px;">
+			</div>
+			<!-- Image 5 views  -->
 			<div class="col-md-8 mx-auto">
 				<div class="row">
+
 					<div class="col-md-4 col-sm-4" style="padding: 0px;">
 						<img src="/imgs/main-img/main_page_1.jpg" height="426"
 							style="width: 100%; border: 1px solid #dadada;">
 					</div>
+
 					<div class="col-md-4 col-sm-4" style="padding: 0px;">
 						<div>
 							<img src="/imgs/main-img/main_page_2.jpg"
@@ -88,6 +86,7 @@
 								style="width: 100%; border: 1px solid #dadada;" height="213">
 						</div>
 					</div>
+
 					<div class="col-md-4 col-sm-4" style="padding: 0px;">
 						<div>
 							<img src="/imgs/main-img/main_page_2.jpg"
@@ -98,9 +97,12 @@
 								style="width: 100%; border: 1px solid #dadada;" height="213">
 						</div>
 					</div>
+
 				</div>
 			</div>
 
+
+			<br> <br>
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
@@ -234,6 +236,7 @@
 			style="border: 1px solid black; padding: 10px;">
 			<!-- footer -->
 		</div>
+		<br> <br>
 	</div>
 </body>
 </html>

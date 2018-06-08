@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/noticePage_css/notice.css">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -13,80 +15,123 @@
 	crossorigin="anonymous"></script>
 
 <script>
-/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
-$(document).ready(function() {
-	$("#header").load("/views/header/Main-Header.html");
-	$("#footer").load("/views/footer/Main-Footer.html");
-});
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
+	$(document).ready(function() {
+		$("#header").load("/views/header/main-Header.jsp");
+		$("#footer").load("/views/footer/main-Footer.jsp");
+	});
 </script>
 
-<style>
-*{
-	margin 0;
-	padding 0;
-}
-
-#contents{
-
-background-color:white;
-}
-
-#customCenter{
-
-
-}
-#cclist{
-
-
-}
-
-#cclist>li{
-	border: 1px solid black;
-	height:50px;
-	
-
-}
-
-
-</style>
 
 </head>
 <body>
 
-<div id="header">
-</div>
+	<div class="container-fluid">
 
-<div class="container-fluid" id= "contents">
-<br><h2>°í°´¼¾ÅÍ</h2><br>
-<br>
-<div id="customCenter" class="col-md-2">
+		<div id="header"></div>
 
-	<table class="table table-bordered table-hover" >
-		<tr><td><a href="#">°øÁö»çÇ×</a></td></tr>
-		<tr><td><a href="#">FAQ</a></td></tr>
-		<tr><td><a href="#">»óÇ°±¸¸Å¹®ÀÇ</a></td></tr>
-		<tr><td><a href="#">°³¼±¹æ¾È</a></td></tr>
-	</table>
+		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding: 10px;"contents">
+			<div class="row">
+				<div class="col-md-2">
+					<!--ê³ ê°ì„¼í„° ëª©ë¡  -->
+					<br>
+					<h2>ê³ ê°ì„¼í„°</h2>
+					<br>
+				</div>
+				<div class="col-md-8">
+					<br>
+					<h2>
+						ê³µì§€ì‚¬í•­&nbsp;<span id="notice_sub_tit">ìƒˆë¡œìš´ ì†Œì‹ê³¼ ìœ ìš©í•œ ì •ë³´ë“¤ì„ í•œê³³ì—ì„œ í™•ì¸í•˜ì„¸ìš”</span>
+					</h2>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div id="customCenter" class="col-md-2">
+					<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸” -->
+
+					<table class="table table-bordered table-hover">
+						<tr>
+							<td><a href="#" style="color:black">ê³µì§€ì‚¬í•­</a></td>
+						</tr>
+						<tr>
+							<td><a href="#" style="color:black">FAQ</a></td>
+						</tr>
+						<tr>
+							<td><a href="#" style="color:black">ìƒí’ˆêµ¬ë§¤ë¬¸ì˜</a></td>
+						</tr>
+						<tr>
+							<td><a href="#" style="color:black">ê°œì„ ë°©ì•ˆ</a></td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="col-md-10" id="test-div">
+					<!--ê³µì§€ì‚¬í•­ í…Œì´ë¸” -->
+					<!--ê³µì§€ì‚¬í•­ í…Œì´ë¸” -->
+					<table class="table" id="noticeTable">
+						<caption>List of notice</caption>
+						<thead>
+							<tr>
+								<th scope="col">ë²ˆí˜¸</th>
+								<th scope="col">ì œëª©</th>
+								<th scope="col">ì‘ì„±ì</th>
+								<th scope="col">ì‘ì„±ì¼</th>
+								<th scope="col">ì¡°íšŒ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td><a href="/views/managerPage/noticeContentsPage.jsp">
+								ê·¤ì´ì‹ ê°€ìš” ë‹¨ê°€ìš”</a>
+								</td>
+								<td>í† ê²Œí”¼</td>
+								<td>2018-06-04</td>
+								<td>15</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>ë¯¸êµ­ì‚°ì²™ì•„ì´ë¡¤ì„ ì´ìš©í•œ ìš”ë¦¬</td>
+								<td>ë§ˆììš©</td>
+								<td>2018-06-04</td>
+								<td>11</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>ë°°ì†¡ì¤‘ì§€ ì•ˆë‚´</td>
+								<td>ê´€ë¦¬ì</td>
+								<td>2018-06-04</td>
+								<td>12</td>
+							</tr>
+						</tbody>
+					</table>
 
 
-</div>
-
-</div>
+				</div>
 
 
 
 
 
 
+			</div>
+		</div>
 
 
 
-<div id="footer"></div>
+		<div id="footer"
+			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding: 10px;">
+			<!-- footer -->
+		</div>
 
-
-    <!-- jQuery (ºÎÆ®½ºÆ®·¦ÀÇ ÀÚ¹Ù½ºÅ©¸³Æ® ÇÃ·¯±×ÀÎÀ» À§ÇØ ÇÊ¿äÇÕ´Ï´Ù) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- ¸ğµç ÄÄÆÄÀÏµÈ ÇÃ·¯±×ÀÎÀ» Æ÷ÇÔÇÕ´Ï´Ù (¾Æ·¡), ¿øÇÏÁö ¾Ê´Â´Ù¸é ÇÊ¿äÇÑ °¢°¢ÀÇ ÆÄÀÏÀ» Æ÷ÇÔÇÏ¼¼¿ä -->
-    <script src="/js/bootstrap.min.js"></script>
+	</div>
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

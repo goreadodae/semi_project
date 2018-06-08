@@ -158,7 +158,7 @@
 					</a>
 				</div>
 			</div>
-
+			<!-- Image 5 views  -->
 			<!-- 컨텐츠 이미지 5개 뷰  -->
 			<div class="col-md-8 mx-auto">
 				<div class="row">

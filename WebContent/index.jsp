@@ -26,8 +26,8 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/Main-Header.html");
-		$("#footer").load("/views/footer/Main-Footer.html");
+		$("#header").load("/views/header/Main-Header.jsp");
+		$("#footer").load("/views/footer/Main-Footer.jsp");
 	});
 </script>
 
@@ -68,8 +68,38 @@
 				</div>
 			</div>
 
-			<br>
-			<br>
+			<br> <br>
+
+
+			<div class="col-md-8 mx-auto">
+				<div class="row">
+					<div class="col-md-4 col-sm-4" style="padding: 0px;">
+						<img src="/imgs/main-img/main_page_1.jpg" height="426"
+							style="width: 100%; border: 1px solid #dadada;">
+					</div>
+					<div class="col-md-4 col-sm-4" style="padding: 0px;">
+						<div>
+							<img src="/imgs/main-img/main_page_2.jpg"
+								style="width: 100%; border: 1px solid #dadada;" height="213"
+								border="1px solid black;">
+						</div>
+						<div>
+							<img src="/imgs/main-img/main_page_2.jpg"
+								style="width: 100%; border: 1px solid #dadada;" height="213">
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4" style="padding: 0px;">
+						<div>
+							<img src="/imgs/main-img/main_page_2.jpg"
+								style="width: 100%; border: 1px solid #dadada;" height="213">
+						</div>
+						<div>
+							<img src="/imgs/main-img/main_page_2.jpg"
+								style="width: 100%; border: 1px solid #dadada;" height="213">
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
@@ -96,7 +126,8 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+									src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+									class="img-thumbnail">
 								<div class="col-md-12">
 									<p class="lead my-1">오늘 메뉴는 피자</p>
 									<p class="display-6">By 정쥐수</p>
@@ -108,7 +139,8 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+									src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+									class="img-thumbnail">
 								<div class="col-md-12">
 									<p class="lead my-1">오늘 메뉴는 피자</p>
 									<p class="display-6">By 정쥐수</p>
@@ -120,7 +152,8 @@
 							<div class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
 								<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+									src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+									class="img-thumbnail">
 								<div class="col-md-12">
 									<p class="lead my-1">오늘 메뉴는 피자</p>
 									<p class="display-6">By 정쥐수</p>
@@ -143,7 +176,8 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+								src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+								class="img-thumbnail">
 							<div class="col-md-12">
 								<p class="lead my-1">오늘 메뉴는 피자</p>
 								<p class="display-6">By 정쥐수</p>
@@ -155,7 +189,8 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+								src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+								class="img-thumbnail">
 							<div class="col-md-12">
 								<p class="lead my-1">오늘 메뉴는 피자</p>
 								<p class="display-6">By 정쥐수</p>
@@ -167,7 +202,8 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+								src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+								class="img-thumbnail">
 							<div class="col-md-12">
 								<p class="lead my-1">오늘 메뉴는 피자</p>
 								<p class="display-6">By 정쥐수</p>
@@ -179,7 +215,8 @@
 						<div class="col-md-12 col-sm-12"
 							style="border: 1px solid #dadada; padding: 0px;">
 							<img class="col-md-12 col-sm-12" style="padding: 0px;"
-								src="/imgs/main-img/피자.jpg" alt="이미지" height="325" class="img-thumbnail">
+								src="/imgs/main-img/피자.jpg" alt="이미지" height="325"
+								class="img-thumbnail">
 							<div class="col-md-12">
 								<p class="lead my-1">오늘 메뉴는 피자</p>
 								<p class="display-6">By 정쥐수</p>

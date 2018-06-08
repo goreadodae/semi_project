@@ -26,8 +26,8 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/Main-Header.jsp");
-		$("#footer").load("/views/footer/Main-Footer.jsp");
+		$("#header").load("/views/header/main-Header.jsp");
+		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
 
@@ -170,7 +170,6 @@
 					style="padding: 0px;">
 					<h1>쉐프들의 레시피</h1>
 				</div>
-				<br>
 				<div class="row">
 					<div class="col-md-3 col-sm-3">
 						<div class="col-md-12 col-sm-12"

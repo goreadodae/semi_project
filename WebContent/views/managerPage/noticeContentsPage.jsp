@@ -21,6 +21,12 @@
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
+<style>
+td a{
+	text-color:black;
+}
+
+</style>
 
 </head>
 <body>
@@ -73,50 +79,48 @@
 					<table class="table table-bordered" id="notice_infoTbl">
 						<thead>
 							<tr>
-								<th style="width:100px; background-color:lightgray;" >제목</th>
+								<th style="width: 100px; background-color: lightgray;">제목</th>
 								<td colspan="4">귤이 단가요 신가요....</td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th style="background-color:lightgray">작성자</th>
+								<th style="background-color: lightgray">작성자</th>
 								<td colspan="4">토게피</td>
 
-								
-							
-							</tr>
-							<tr>
-								<th style="background-color:lightgray">작성일</th>
-								<td colspan="4">2018-06-08</td>
-					
-								
 
-								
+
 							</tr>
 							<tr>
-								<td  style="background-color:lightgray">3</td>
+								<th style="background-color: lightgray">작성일</th>
+								<td colspan="4">2018-06-08</td>
+
+
+
+
+							</tr>
+							<tr>
+								<td style="background-color: lightgray">3</td>
 								<td>Larry</td>
 								<td>First</td>
 								<td>First</td>
 								<td>First</td>
-								
+
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				
-				<div class="row">
-					<div style="height:200px; boder:1px solid black;">
+			</div>
+			<div class="row">
+					<div class=" offset-md-2 col-md-10" id="test" style="height:300px; border:1px solid black;">
+					귤이 단가요 신가요 ??? 
+					
 					
 					
 					</div>
-				
-				</div>
-				
-
-
-
 			</div>
+			
+			<br>
 
 
 
@@ -125,6 +129,7 @@
 				style="border: 1px solid black; padding: 10px;">
 				<!-- footer -->
 			</div>
+	
 
 		</div>
 		<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

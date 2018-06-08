@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+
+* {
+margin: 0;
+padding: 0;
+	
+}
+
+#contents {	/*컨텐츠(공지사항)  */
+	background-color: white;
+}
+
+#noticeTable{ /*공지사항 테이블  css */
+	text-align:center;
+
+}
+#noticeTable>thead>tr{/*공지사항 테이블 보더 css*/
+ 	border-top-color:purple;
+
+}
+#notice_sub_tit{
+	font-size:15px;
+	
+	
+}
+a{
+	color:red;
+	text-decoration:none;
+	
+}
+

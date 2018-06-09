@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/noticePage_css/noticeContents.css">
 
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -17,14 +18,11 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		/* $("#header").load("/views/header/main-Header.jsp"); */
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
 <style>
-td a{
-	text-color:black;
-}
 
 </style>
 
@@ -35,7 +33,7 @@ td a{
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;"contents">
+			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row">
 				<div class="col-md-2">
 					<!--고객센터 목록  -->
@@ -101,7 +99,7 @@ td a{
 							</tr>
 							<tr>
 								<td style="background-color: lightgray">3</td>
-								<td>Larry</td>
+								<td>하하</td>
 								<td>First</td>
 								<td>First</td>
 								<td>First</td>

@@ -17,10 +17,16 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		/* $("#header").load("/views/header/main-Header.jsp"); */
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
+
+
+<style>
+
+
+</style>
 
 
 </head>
@@ -31,7 +37,7 @@
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;"contents">
+			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row">
 				<div class="col-md-2">
 					<!--고객센터 목록  -->

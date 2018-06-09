@@ -30,6 +30,7 @@
 		$("#header").load("/views/mainpage-header/main-header.html");
 		$("#footer").load("/views/mainpage-footer/main-footer.html");
 	});
+	$(div).style('border: 1px solid black');
 </script>
 
 <style>

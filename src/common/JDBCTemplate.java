@@ -1,5 +1,6 @@
 package common;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,8 +18,11 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		Properties prop = new Properties();
 		Connection conn = null;
+		File file = new File("resource");
+		String path = file.getAbsolutePath();  
+		System.out.println(path);
 		try {
-			prop.load(new FileReader("/resource/driver.properties"));
+			prop.load(new FileReader(path+"/driver.properties"));
 			String driver = prop.getProperty("driver");
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("user");

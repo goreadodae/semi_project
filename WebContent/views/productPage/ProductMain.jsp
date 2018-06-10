@@ -56,7 +56,7 @@
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<!-- <div id="header"></div> -->
+		<div id="header"></div>
 		
 		<!-- <div id="banner"></div> -->
 

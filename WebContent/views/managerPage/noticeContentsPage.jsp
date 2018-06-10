@@ -18,7 +18,7 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		/* $("#header").load("/views/header/main-Header.jsp"); */
+		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	

@@ -1,163 +1,158 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<title>main-footer</title>
+
+<!-- ëª¨ë°”ì¼ -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>main-footer</title>
-<link rel="stylesheet" href="/WebContent/css/reset.css">
-<link rel="stylesheet" href="/WebContent/css/bootstrap.css">
+<!-- ë¶€íŠ¸ìŠ¤íŠ¸ëž© -->
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+<!-- ì´ˆê¸°í™” -->
+<link rel="stylesheet" href="/css/reset.css">
+
+<!-- í‘¸í„° ìŠ¤íƒ€ì¼ -->
+<link rel="stylesheet" href="/css/mainPage_css/footer.css">
+
+<!-- ì œì´ì¿¼ë¦¬ -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
-<style>
-
-/* »ó´Ü ¿©¹é 10px */
-#footer_link ul li {
-	display: inline;
-	/* ¼¼·Î³ª¿­À» °¡·Î³ª¿­·Î º¯°æ */
-	border-left: 1px solid #999;
-	/* °¢ ¸Þ´ºÀÇ ¿ÞÂÊ¿¡ "|" Ç¥½Ã(ºÐ·ù Ç¥½Ã) */
-	font: bold 9px Dotum;
-	/* ÆùÆ® ¼³Á¤ - 12pxÀÇ µ¸¿òÃ¼ ±½Àº ±Û¾¾·Î Ç¥½Ã */
-	padding: 0 10px;
-	/* °¢ ¸Þ´º °£°Ý */
-}
-
-#footer_link ul li:first-child {
-	border-left: none;
-}
-</style>
 </head>
 
+
 <body>
-	<!-- °í°´ ¼¾ÅÍ -->
+	<!-- ê³ ê° ì„¼í„° -->
 	<div id="footer_cc" class="com-md-4">
-		<h3 style="padding-bottom: 9px;">°í°´¼¾ÅÍ</h3>
+		<h3 style="padding-bottom: 9px;">ê³ ê°ì„¼í„°</h3>
+		<br>
 		<div class="row">
 
-			<!-- ÀüÈ­¹®ÀÇ -->
+			<!-- ì „í™”ë¬¸ì˜ -->
 			<div class="col-md-4 cc-call-view" style="padding-left: 15px;">
 				<h6>
-					<span>ÀüÈ­¹®ÀÇ(010-4844-5132)</span>
+					<span>ì „í™”ë¬¸ì˜(010-4844-5132)</span>
 				</h6>
 				<dl class="list" style="margin-bottom: 0px;">
 					<dt
-						style="float: left; font: bold; padding-right: 8px; margin-bottom: 0px;">ÆòÀÏ</dt>
+						style="float: left; font: bold; padding-right: 8px; margin-bottom: 0px;">í‰ì¼</dt>
 					<dd style="margin-bottom: 0px;">
-						¿ÀÀü 8½Ã - ¿ÀÈÄ 4½Ã <span style="font-size: 13px;">(Á¡½É½Ã°£ ¿ÀÈÄ
-							12½Ã-¿ÀÈÄ1½Ã)</span>
+						ì˜¤ì „ 8ì‹œ - ì˜¤í›„ 4ì‹œ <span style="font-size: 13px;">(ì ì‹¬ì‹œê°„ ì˜¤í›„
+							12ì‹œ-ì˜¤í›„1ì‹œ)</span>
 					</dd>
 				</dl>
 				<dl class="list">
-					<dt style="float: left; font: bold; padding-right: 8px;">Åä¿äÀÏ,ÀÏ¿äÀÏ
-						& °øÈÞÀÏ</dt>
+					<dt style="float: left; font: bold; padding-right: 8px;">í† ìš”ì¼,ì¼ìš”ì¼ & ê³µíœ´ì¼</dt>
 					<dd>
-						<span style="font-size: 13px;">¿ÀÀü 10½Ã - ¿ÀÈÄ 8½Ã</span>
+						<span style="font-size: 13px;">ì˜¤ì „ 10ì‹œ - ì˜¤í›„ 8ì‹œ</span>
 					</dd>
 				</dl>
 			</div>
 
-			<!-- Ä«Ä«¿ÀÅå ¹®ÀÇ -->
+			<!-- ì¹´ì¹´ì˜¤í†¡ ë¬¸ì˜ -->
 			<div class="col-md-4 cc-kakao-view" style="padding-left: 15px;">
 				<h6>
-					<span> <a href="#">Ä«Ä«¿ÀÅå ¹®ÀÇ</a>
+					<span> <a href="#">ì¹´ì¹´ì˜¤í†¡ ë¬¸ì˜</a>
 					</span>
 				</h6>
 
 				<dl class="list" style="margin-bottom: 0px;">
 					<dt
-						style="float: left; font: bold; padding-right: 8px; margin-bottom: 0px;">ÆòÀÏ</dt>
+						style="float: left; font: bold; padding-right: 8px; margin-bottom: 0px;">í‰ì¼</dt>
 					<dd style="margin-bottom: 0px;">
-						¿ÀÀü 8½Ã - ¿ÀÈÄ 4½Ã <span style="font-size: 13px;">(Á¡½É½Ã°£ ¿ÀÈÄ
-							12½Ã-¿ÀÈÄ1½Ã)</span>
+						ì˜¤ì „ 8ì‹œ - ì˜¤í›„ 4ì‹œ <span style="font-size: 13px;">(ì ì‹¬ì‹œê°„ ì˜¤í›„
+							12ì‹œ-ì˜¤í›„1ì‹œ)</span>
 					</dd>
 				</dl>
 
 				<dl class="list">
-					<dt style="float: left; font: bold; padding-right: 8px;">Åä¿äÀÏ,ÀÏ¿äÀÏ
-						& °øÈÞÀÏ</dt>
+					<dt style="float: left; font: bold; padding-right: 8px;">í† ìš”ì¼,ì¼ìš”ì¼
+						& ê³µíœ´ì¼</dt>
 					<dd>
-						<span style="font-size: 13px;">¿ÀÀü 10½Ã - ¿ÀÈÄ 8½Ã</span>
+						<span style="font-size: 13px;">ì˜¤ì „ 10ì‹œ - ì˜¤í›„ 8ì‹œ</span>
 					</dd>
 				</dl>
 
 			</div>
 
-			<!-- 1:1 ¹®ÀÇ -->
+			<!-- 1:1 ë¬¸ì˜ -->
 			<div class="col-md-4 cc-qna-view" style="padding-left: 15px;">
 				<h6>
-					<span> <a href="#">1:1 ¹®ÀÇ</a>
+					<span> <a href="#">1:1 ë¬¸ì˜</a>
 					</span>
 				</h6>
 				<p>
-					±Ã±ÝÇÑ Á¡ÀÌ ÀÖÀ¸½Å°¡¿ä? <br> 1:1 ¹®ÀÇ¿¡ ³²°ÜÁÖ½Ã¸é Ä£ÀýÈ÷ ´äº¯ µå¸®°Ú½À´Ï´Ù.
+					ê¶ê¸ˆí•œ ì ì´ ìžˆìœ¼ì‹ ê°€ìš”? <br> 1:1 ë¬¸ì˜ì— ë‚¨ê²¨ì£¼ì‹œë©´ ì¹œì ˆížˆ ë‹µë³€ ë“œë¦¬ê² ìŠµë‹ˆë‹¤.
 				</p>
 			</div>
 		</div>
 	</div>
+	<br>
 
-	<!-- ¸µÅ© -->
+	<!-- ë§í¬ -->
 	<div id="footer_link" class="col-md-12" style="padding: 0px;">
 		<ul style="padding: 0px;">
-			<li style="padding-left: 0px; font-size: 15px;"><a href="#">¼ö»óÇÑ
-					·¹½ÃÇÇ ¼Ò°³</a></li>
-			<li style="font-size: 15px;"><a href="#">ÀÌ¿ë¾È³»</a></li>
-			<li style="font-size: 15px;"><a href="#">ÀÌ¿ë¾à°ü</a></li>
-			<li style="font-size: 15px;"><a href="#">±¤°í¹®ÀÇ</a></li>
-			<li style="font-size: 15px;"><a href="#">°³ÀÎÁ¤º¸ Ã³¸®¹æÄ§</a></li>
+			<li style="padding-left: 0px; font-size: 15px;"><a href="#">ìˆ˜ìƒí•œ
+					ë ˆì‹œí”¼ ì†Œê°œ</a></li>
+			<li style="font-size: 15px;"><a href="#">ì´ìš©ì•ˆë‚´</a></li>
+			<li style="font-size: 15px;"><a href="#">ì´ìš©ì•½ê´€</a></li>
+			<li style="font-size: 15px;"><a href="#">ê´‘ê³ ë¬¸ì˜</a></li>
+			<li style="font-size: 15px;"><a href="#">ê°œì¸ì •ë³´ ì²˜ë¦¬ë°©ì¹¨</a></li>
 		</ul>
 	</div>
-
-	<!-- Á¤º¸ -->
+	<br>
+	
+	<!-- ì •ë³´ -->
 	<div id="footer_info" class="col-md-12" style="padding: 0px;">
 		<div class="row">
 
-			<!-- È¸»çÁ¤º¸ -->
+			<!-- íšŒì‚¬ì •ë³´ -->
 			<div id="info_company" class="col-md-4" style="padding-left: 15px;">
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">¹ýÀÎ¸í(»óÈ£) :</dt>
-					<dd>(ÁÖ) ¼ö»óÇÑ ·¹½ÃÇÇ</dd>
+					<dt style="padding-right: 2px; float: left;">ë²•ì¸ëª…(ìƒí˜¸) :</dt>
+					<dd>(ì£¼) ìˆ˜ìƒí•œ ë ˆì‹œí”¼</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">´ëÇ¥ÀÚ(¼º¸í) :</dt>
-					<dd>Á¤Áö¼ö</dd>
+					<dt style="padding-right: 2px; float: left;">ëŒ€í‘œìž(ì„±ëª…) :</dt>
+					<dd>ì •ì§€ìˆ˜</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="float: left; padding-right: 2px;">°³ÀÎÁ¤º¸º¸È£Ã¥ÀÓÀÚ :</dt>
-					<dd>È²ÁöÇö(hjh930302@hanmail.net)</dd>
+					<dt style="float: left; padding-right: 2px;">ê°œì¸ì •ë³´ë³´í˜¸ì±…ìž„ìž :</dt>
+					<dd>í™©ì§€í˜„(hjh930302@hanmail.net)</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="float: left; padding-right: 2px;">»ç¾÷ÀÚ¹øÈ£ :</dt>
+					<dt style="float: left; padding-right: 2px;">ì‚¬ì—…ìžë²ˆí˜¸ :</dt>
 					<dd>111-03242-223</dd>
 				</dl>
 			</div>
 
-			<!-- È¸»çÁ¤º¸ -->
+			<!-- íšŒì‚¬ì •ë³´ -->
 			<div id="info_company" class="col-md-4" style="padding-left: 15px;">
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">¸¶ÄÉÆÃÁ¦ÈÞ :</dt>
+					<dt style="padding-right: 2px; float: left;">ë§ˆì¼€íŒ…ì œíœ´ :</dt>
 					<dd>jong920224@naver.com</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">Ã¤¿ë¹®ÀÇ :</dt>
+					<dt style="padding-right: 2px; float: left;">ì±„ìš©ë¬¸ì˜ :</dt>
 					<dd>jong920224@naver.com</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">ÆÑ½º :</dt>
+					<dt style="padding-right: 2px; float: left;">íŒ©ìŠ¤ :</dt>
 					<dd>070-7500-6098</dd>
 				</dl>
 				<dl style="font-size: 12px; margin-bottom: 0px;">
-					<dt style="padding-right: 2px; float: left;">ÁÖ¼Ò :</dt>
-					<dd>¼­¿ï ¿µµîÆ÷±¸ ¼±À¯µ¿2·Î 57 ÀÌ·¹ºôµù</dd>
+					<dt style="padding-right: 2px; float: left;">ì£¼ì†Œ :</dt>
+					<dd>ì„œìš¸ ì˜ë“±í¬êµ¬ ì„ ìœ ë™2ë¡œ 57 ì´ë ˆë¹Œë”©</dd>
 				</dl>
 			</div>
 
-			<!-- ºê·£µå ·Î°í -->
+			<!-- ë¸Œëžœë“œ ë¡œê³  -->
 			<div></div>
+			
 		</div>
 	</div>
 </body>

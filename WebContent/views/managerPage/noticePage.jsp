@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>Notice Page</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/noticePage_css/notice.css">
@@ -17,10 +17,33 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		/* $("#header").load("/views/header/main-Header.jsp"); */
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
+	
+
+	
 </script>
+
+
+<style>
+#noticeTable>a{
+
+color:black;
+
+}
+#notice-color{
+
+background-color:#dcdbde;
+
+}
+.list-arrow{
+float:right;
+
+}
+
+
+</style>
 
 
 </head>
@@ -31,7 +54,7 @@
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;"contents">
+			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row">
 				<div class="col-md-2">
 					<!--고객센터 목록  -->
@@ -50,21 +73,24 @@
 			<div class="row">
 				<div id="customCenter" class="col-md-2">
 					<!-- 고객센터 목록 테이블 -->
+					
+					
 
 					<table class="table table-bordered table-hover">
-						<tr>
-							<td><a href="#" style="color:black">공지사항</a></td>
+						<tr id="notice-color">
+							<td><a href="/views/managerPage/noticePage.jsp" style="color:black">공지사항<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="#" style="color:black">FAQ</a></td>
+							<td><a href="/views/managerPage/faqPage.jsp" style="color:black">FAQ<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="#" style="color:black">상품구매문의</a></td>
+							<td><a href="/views/managerPage/oneToOneQNAPage.jsp" style="color:black">1:1문의<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="#" style="color:black">개선방안</a></td>
+							<td><a href="#" style="color:black">상품구매문의<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 					</table>
+					
 				</div>
 
 				<div class="col-md-10" id="test-div">
@@ -116,6 +142,21 @@
 
 
 
+			</div>
+			
+			<div class="row">
+				<div class="offset-md-5 col-md-4">
+					<nav aria-label="Page navigation example">
+						  <ul class="pagination">
+						    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						    <li class="page-item"><a class="page-link" href="#">1</a></li>
+						    <li class="page-item"><a class="page-link" href="#">2</a></li>
+						    <li class="page-item"><a class="page-link" href="#">3</a></li>
+						    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+						  </ul>
+					</nav>
+				</div>
+			
 			</div>
 		</div>
 

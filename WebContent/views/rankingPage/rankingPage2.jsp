@@ -50,7 +50,9 @@
 <a href="#">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
-  <img class="card-img rounded" src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="Card image">
+  <div id="imgWrap">
+  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+</div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
   	<div id="cardContents">
@@ -82,7 +84,9 @@
 <a href="#">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
-  <img class="card-img rounded" src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="Card image">
+    <div id="imgWrap">
+  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+</div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
     <div id="cardContents">
@@ -112,7 +116,9 @@
 <a href="#">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
-  <img class="card-img rounded" src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="Card image">
+    <div id="imgWrap">
+  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+</div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
     <div id="cardContents">
@@ -132,7 +138,7 @@
 
 
  <!-- 4위 -->
-  <table class="table table-hover">
+ <table class="table table-hover">
     <tbody>
     <tr>
       <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">4위</h3></th>
@@ -143,7 +149,9 @@
 <a href="#">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
-  <img class="card-img rounded" src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="Card image">
+    <div id="imgWrap">
+  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+</div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
     <div id="cardContents">
@@ -174,7 +182,9 @@
 <a href="#">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
-  <img class="card-img rounded" src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="Card image">
+    <div id="imgWrap">
+  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+</div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
     <div id="cardContents">

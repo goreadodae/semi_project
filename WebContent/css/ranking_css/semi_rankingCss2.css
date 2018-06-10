@@ -1,20 +1,28 @@
 /*랭킹 메인 페이지 - 오늘의 레시피, 이달의 레시피, 이달의 쉐프 1~5위까지 순위 css*/
 
-
-
-img{
-	width: 600px;
+/*이미지*/
+#imgWrap{
+	width: 1050px;
 	height: 400px;
+	
 }
+
+#cardImgs{
+	width: 100%;
+	height: 100%;
+	
+}
+
 
 
 /*카드-이미지 담은 div*/
 #rankingList{
-	width: 1200px;
+	width: 1050px;
 	height: 400px;
 	color: black;
 	background-color: black;
 	border:none;
+	overflow: hidden;
 }
 
 /*카드 이미지 담은 div hover*/
@@ -22,20 +30,21 @@ img{
 	background-color: #AAABD3;
 	opacity: 0.8;
 	color: black;
+	overflow: hidden;
 }
 
 
 /*container 전체 overflow 설정*/
 .container{
 	overflow: hidden;
-	padding: 0px;
+	
 }
 
 /*카드에서 오버레이 - 글자 감싸고 있는 부분 -> padding으로 글자 아래로*/
 #cardOverlay{
 	padding-top: 280px;
 	padding-left: 0px;
-	padding-right: 0px;
+	padding-right: 25px;
 	overflow: hidden;
 	
 }
@@ -45,9 +54,10 @@ img{
 	background-color: #F8FAFF;
 	opacity: 0.8;
 	height : 121px; 
-	width: 1225px;
+	width: 1075px;
 	/*width: 1142px;*/
 	overflow: auto;
+
 }
 
 /*글자들 좌우 조절*/
@@ -65,7 +75,7 @@ img{
 
 #rankingNickName{
 	display: inline-block; 
-	margin-right: 25px; 
+	margin-right: 20px; 
 	margin-top: 5px;
 	color: #353866;
 }

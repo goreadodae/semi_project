@@ -12,6 +12,7 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss.css">
+<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss2.css">
 
 <!-- 부트스트랩 css -->
 
@@ -21,25 +22,45 @@
 	crossorigin="anonymous">
 
 
-
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+<!-- jquery -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+	/* 해더 불러오는 제이쿼리 */
+	$(document).ready(function() {
+		$("#header").load("/views/header/main-Header.jsp");
+		$("#footer").load("/views/footer/main-Footer.jsp");
+		$("#rankng2").load("rankingPage2.jsp");
+		$("#rankingPage2_1").load("rankingPage2_1(date).jsp");
+	});
+</script>
+
 </head>
 
 <body>
+
+
+
 
 	<!-- ☆ 디자인 참고 홈페이지
 	https://www.ovzect.kr/shop?productListFilter=117035 -->
 
 	<!-- header -->
- 	<jsp:include page="/views/header/main-Header.jsp" />
-
+	<div id="headWrap">
+ 	<div id="header">
+ 	</div>
 
 	<!-- 랭킹 상단 부분 url -->
 	<br><br>
+	<div id="bodyWrap">
 	<div class="center-block" id="line">
 		<a id="rankingURL" href="#"><h2 id="rankingTopName">Ranking</h2></a>
 	</div>
@@ -105,7 +126,7 @@
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">오늘의 레시피</h5>
+					<h5 style="margin: 0;">오늘의 1위 레시피</h5>
 				</div>
 			</div>
 
@@ -126,7 +147,7 @@
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">이달의 레시피</h5>
+					<h5 style="margin: 0;">이달의 1위 레시피</h5>
 				</div>
 			</div>
 
@@ -150,7 +171,7 @@
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">이달의 회원</h5>
+					<h5 style="margin: 0;">이달의 1위 회원</h5>
 				</div>
 			</div>
 
@@ -159,19 +180,19 @@
 
 
 
-	<br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br>
 
 
 
 	<!-- 하단 메뉴 -->
 
-	<br><br><br><br><br>
+	
 
 	<!-- 하단 그레이 색들어간 부분! -->
 	<!--<div style="background-color: #F6F6F6;"> -->
 	<div style="background-color: #F8FAFF;">
 		<!-- ranking 중간 구분 선 -->
-		<br><br><br><br>
+		<br><br><br><br><br><br><br><br>
 		<hr style="width: 400px; border: 2px solid #353866;">
 		<!-- 	<div class="container" id="middle_Division_Line">
 		<div class="row  mx-auto">
@@ -196,14 +217,22 @@
 <!-- 리스트 만들기 -->
 
 <h1>날짜 선택이 들어가야 하는 ㅂ부분 </h1><br>
+<div class="container">
+	<div id="rankingPage2_1"></div>
+	
+</div>
+<!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
 
-<!-- 오늘의 레시피 랭킹 불러오기 -->
-	<jsp:include page="rankingPage2.jsp" />
-
-	<br><br><br><br><br><br><br><br>	
+	<div id="ranking2Warp">
+		<div id="rankng2"></div>
 	</div>
 
 
+	<br><br><br><br><br><br><br><br>	
+	</div>
+	
+<!-- 바디 랩 끝! -->
+</div>
 
 	<!-- 아래 알림 바  -->
 	<div class="alert alert-info alert-dismissible" role="alert">
@@ -216,7 +245,13 @@
 	</div>
 
 	<!-- footer -->
-	<jsp:include page="/views/footer/main-Footer.jsp" />
+	<div id="footerWrap">
+	<div id="footer"
+			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding: 10px;">
+			<!-- 푸터 로드 -->
+	</div>
+	</div>
 
 </body>
 </html>

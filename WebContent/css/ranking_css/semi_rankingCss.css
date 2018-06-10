@@ -28,6 +28,7 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
@@ -40,6 +41,7 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
@@ -52,6 +54,7 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
@@ -99,7 +102,7 @@ border: 1px solid #EAEAEA;*/
 }
 
 #aText:hover{
-	color : #D5D5D5;
+	color : #F8FAFF;
 	font-size: 18px;
 	text-decoration: none;
 }
@@ -135,6 +138,5 @@ border: 1px solid #EAEAEA;*/
 }
 
 #cardA:hover{
-	color:#EAEAEA;;
+	color:#F8FAFF;
 }
-

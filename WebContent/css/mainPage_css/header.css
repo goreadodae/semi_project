@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+/* 네비게이션 고정 */
+.jbTitle {
+	text-align: center;
+}
+
+#fixed_layer {
+	z-index: 1000;
+	text-align: center;
+	background: -webkit-gradient(linear, center bottom, center top, from(#fff),
+		to(#fff));
+	padding: 0px;
+	left: 5px;
+	width: 100%;
+	transition-timing-function: linear;
+}
+
+.jbContent {
+	height: 2000px;
+}
+
+.jbFixed {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+}
+
+.nav-category {
+	text-decoration: none;
+	color: black;
+}
+
+/* 카테고리 */
+#t_category_list {
+	left: 8px;
+	z-index: 6;
+}
+
+#category_list {
+	background-color: white;
+	overflow: hidden;
+	padding: 10px;
+	border: 1px solid #512772;
+	padding-botton: 15px;
+}
+
+#category_list>ul {
+	float: left;
+	width: 192px;
+}
+
+#data_list>ul>li {
+	heigth: 13px;
+	margin-top: 5px;
+	padding: 3px 5px;
+	color: #F3F3F3;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#data_list>ul>li.header {
+	padding-left: 15px;
+}
+
+#data_list>ul>li.header>p {
+	font-weight: bold;
+	color: #48C5FF;
+}
+
+#top-message>#top-message-text {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 8;
+}
+
+#top-message>#top-message-close {
+	top: 0;
+	left: -35px;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 7;
+}

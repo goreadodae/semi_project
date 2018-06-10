@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.side_menu_text {
+	text-decoration: none;
+	color: black;
+	font-size: 12px;
+}
+
+#aside {
+	margin-top: 0;
+	position: fixed;
+	float: left;
+	right: 0;
+	bottom: -2;
+	padding: 3;
+	z-index: 100;
+}
+
+#carouselExampleIndicators {
+	position: relative;
+	z-index: 1;
+}
+
+@media ( max-width :768px) {
+	#aside {
+		visibility: hidden;
+	}
+	#navi {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@media ( max-width :575px) {
+	#navi {
+		margin: 0;
+		padding: 0;
+	}
+	#plus #banner2 {
+		width: 33%;
+		float: left;
+	}
+	#plus #banner3 {
+		width: 33%;
+		float: left;
+	}
+}
+

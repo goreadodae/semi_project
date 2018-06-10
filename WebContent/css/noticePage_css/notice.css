@@ -7,9 +7,9 @@ padding: 0;
 	
 }
 
-#contents {/* 	컨텐츠(공지사항)  */
+#/* contents {	컨텐츠(공지사항) 
 	background-color: black;
-} 
+}  */
 
 #noticeTable{ /*공지사항 테이블  css */
 	text-align:center;
@@ -18,6 +18,6 @@ padding: 0;
 
 #notice_sub_tit{
 	font-size:15px;
-}
+} 
 
 

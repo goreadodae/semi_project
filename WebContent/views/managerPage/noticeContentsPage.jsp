@@ -21,8 +21,35 @@
 		/* $("#header").load("/views/header/main-Header.jsp"); */
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
+	
+	
+	function listBack()
+	{
+		history.go(-1);
+	}
+	
+	
 </script>
 <style>
+
+#noti-contents{
+	border-bottom-style:solid;
+	border-bottom-color:#56297a;
+}
+
+hr{
+	display:block;
+	border-style: solid;
+	border-color:#56297a;
+
+}
+#test{
+	border-right-color:white;
+}
+#listBtn{
+	float:right;
+	
+}
 
 </style>
 
@@ -30,18 +57,13 @@
 <body>
 	<div class="container-fluid">
 
-		<div id="header"></div>
+		<div id="header"></div><!--메인헤더 가지고 옴   -->
 
+<!--여기서부터 컨텐츠 영역(공지사항 내용)  -->
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;" id="contents">
-			<div class="row">
-				<div class="col-md-2">
-					<!--고객센터 목록  -->
-					<br>
-					<h2>고객센터</h2>
-					<br>
-				</div>
-				<div class="col-md-10">
+			style="border: 1px solid black;padding: 10px;" id="contents">
+			<div class="row"><!--공지사항 타이틀  -->
+				<div class="col-md-12">
 					<br>
 					<h5>
 						공지사항&nbsp;<span id="notice_sub_tit">새로운 소식과 유용한 정보들을 한곳에서
@@ -53,31 +75,13 @@
 
 			</div>
 			<br>
-			<div class="row">
-				<div id="customCenter" class="col-md-2">
-					<!-- 고객센터 목록 테이블 -->
+			<div class="row" style="padding:0;"><!--공지사항 정보와 상세내용   -->
 
-					<table class="table table-bordered table-hover" id="custom_listTlb">
-						<tr>
-							<td><a href="#" style="color: black">공지사항</a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">FAQ</a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">상품구매문의</a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">개선방안</a></td>
-						</tr>
-					</table>
-				</div>
-
-				<div class="col-md-10">
-					<table class="table table-bordered" id="notice_infoTbl">
+				<div class="col-md-12">
+					<table class="table table-bordered" style="text-align:left;" cellpadding="0" cellspacing="0">	
 						<thead>
 							<tr>
-								<th style="width: 100px; background-color: lightgray;">제목</th>
+								<th style="width:100px; background-color: lightgray;">제목</th>
 								<td colspan="4">귤이 단가요 신가요....</td>
 							</tr>
 						</thead>
@@ -85,51 +89,56 @@
 							<tr>
 								<th style="background-color: lightgray">작성자</th>
 								<td colspan="4">토게피</td>
-
-
-
 							</tr>
 							<tr>
-								<th style="background-color: lightgray">작성일</th>
-								<td colspan="4">2018-06-08</td>
-
-
-
-
+								<th style="background-color: lightgray;">작성일</th>
+								<td width="150px">하하</td>
+								<th style="background-color: lightgray;" width="100px">조회수</th>
+								<td><span id="viewCount">1</span></td><!--jquery로 카운트 해야함  -->
 							</tr>
-							<tr>
-								<td style="background-color: lightgray">3</td>
-								<td>하하</td>
-								<td>First</td>
-								<td>First</td>
-								<td>First</td>
 
+							<tr>
+							
+							
+							
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div class="row">
-					<div class=" offset-md-2 col-md-10" id="test" style="height:300px; border:1px solid black;">
-					귤이 단가요 신가요 ??? 
-					
-					
-					
+			 공지사항 컨텐츠 영역  
+ 			<div class="row">
+					<div class="col-md-12" style="height:300px;">
+					귤은 달달합니다.
+					데헷					
 					</div>
+					
+					<hr>
+			</div> 
+
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="button" onclick="listBack();" class="btn btn-outline-primary" id="listBtn">목록</button>
+				</div>
+			
+			
 			</div>
 			
-			<br>
 
+			
+			
+			</div>
 
-
+<!--풋터임  -->
 			<div id="footer"
 				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding: 10px;">
 				<!-- footer -->
 			</div>
-	
 
-		</div>
+</div>
+
 		<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

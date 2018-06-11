@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,14 +14,13 @@
 <!-- 부트스트랩 css -->
 
 <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-    crossorigin="anonymous">
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+  crossorigin="anonymous">
 
 
 <!-- jquery -->
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
+<script src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 
@@ -29,44 +28,51 @@
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss3.css">
 
 <!-- jquery ui 불러오는 css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+  href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-<script>
 
 
- $(document).ready(function(){
+  <script>
 
-$.datepicker.setDefaults({
-      dateFormat : 'yy년 mm월 dd일',
-      prevText : '이전 달',
-      nextText : '다음 달',
-      monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-      monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-      dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-      dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-      dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-      showMonthAfterYear : true,
-      yearSuffix : '년',
-      changeMonth : true,
-      changeYear : true,
-      maxDate : new Date(),
-      defaultDate : new Date(),
-      onSelect: function (date) {
-              document.getElementById("rankingDateToday").innerHTML = date;
-          }    
-   });
-       
+  $(document).ready( function(){
 
-   });
+      $("#datepicker").datepicker(
+            {
+              dateFormat : 'yy년 mm월 dd일',
+               prevText : '이전 달',
+               nextText : '다음 달',
+               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+                     '8월', '9월', '10월', '11월', '12월' ],
+               monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+                     '7월', '8월', '9월', '10월', '11월', '12월' ],
+               dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+               dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+               showMonthAfterYear : true,
+               yearSuffix : '년',
+               changeMonth : true,
+               changeYear : true,
+               defaultDate : new Date(),
+               maxDate : new Date()
+            });
 
+ });
 
+   
   $(function() {
-      $("#datepicker").datepicker();
+   $('#datepicker').on('change', function() {
+      $('#rankingDateToday').html($('#datepicker').val());
    });
 
 
+
+   $('.date').on('click', function() {
+      $('#datepicker').datepicker("show");
+   });
+   
 
     var x = new Date();
     var Tyear = x.getFullYear().toString();
@@ -76,32 +82,38 @@ $.datepicker.setDefaults({
     (Tmonth.length == 1) && (Tmonth = '0' + Tmonth);
     var today = Tyear + "년 " + Tmonth+ "월 " + Tday + "일";
 
-
+   
     /*오늘 날짜 가져오기*/
    /*    $("#datepicker").datepicker('setDate', new Date());*/
-    document.getElementById("rankingDateToday").innerHTML =  today;
+/*   document.getElementById("rankingDateToday").innerHTML =  today;
+   console.log(document.getElementById("rankingDateToday"));*/
+   
+   document.getElementById("rankingDateToday").innerHTML =  new Date();
+ });
+
+
 
 
 </script>
 
 <style>
-/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-  *{font-family: 'Noto Sans KR', sans-serif;}*/
-
-  @import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
-  *{font-family: 'Yeon Sung', cursive;}
+.date:hover {
+  cursor: pointer;
+}
 </style>
 
 </head>
 <body>
 
-<div class="container">
-<!-- <input type="text" id="datepicker" placeholder="날짜선택"> -->
-<input type="text" id="datepicker" placeholder="날짜선택" readonly="readonly">
+  <div class="container">
 
+    <input type="text" id="datepicker" style="visibility: hidden">
+    <div class="date">
+      <h2 id="rankingDateToday"></h2>
+    </div>
 
-<h2 id="rankingDateToday"></h2>
-</div>
+  </div>
+
 
 
 </body>

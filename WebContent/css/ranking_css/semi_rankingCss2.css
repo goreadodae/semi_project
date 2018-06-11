@@ -2,10 +2,10 @@
 
 /*이미지*/
 #imgWrap{
-/*	width: 1050px;
-	height: 400px;*/
-	width: 100%;
-	height: 100%;
+	width: 950px;
+	height: 350px;
+	/*width: 100%;
+	height: 100%;*/
 	
 }
 
@@ -16,12 +16,16 @@
 	height: 100%;
 }
 
+#rankingListWrap{
+	width: 950px;
+	height: 350px;	
+}
 
 
 /*카드-이미지 담은 div*/
 #rankingList{
-	width: 1050px;
-	height: 400px;
+	width: 950px;
+	height: 350px;
 	color: black;
 	background-color: black;
 	border:none;
@@ -45,7 +49,7 @@
 
 /*카드에서 오버레이 - 글자 감싸고 있는 부분 -> padding으로 글자 아래로*/
 #cardOverlay{
-	padding-top: 280px;
+	padding-top: 230px;
 	padding-left: 0px;
 	padding-right: 25px;
 	overflow: hidden;
@@ -57,7 +61,7 @@
 	background-color: #F8FAFF;
 	opacity: 0.8;
 	height : 121px; 
-	width: 1075px;
+	width: 975px;
 	/*width: 1142px;*/
 	overflow: auto;
 
@@ -89,6 +93,6 @@
 }
 
 #tableWrap{
-	width: 1050px;
+	width: 950px;
 	overflow: hidden;
 }

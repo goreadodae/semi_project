@@ -43,7 +43,7 @@
 
 <!-- 가운데로 보내는 컨테이너 -->
 <div class="container" id="tableContainer">
-
+<h3>이달의 레시피</h3>
   <!-- 1위 -->
   <div id="tableWrap">
  <table class="table table-hover">
@@ -57,10 +57,11 @@
 
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+<div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -78,6 +79,7 @@
   </div>
 </div>
 
+</div>
 </div>
 </a>
 <br><br><br>
@@ -97,10 +99,11 @@
 
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -116,6 +119,7 @@
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>
@@ -134,10 +138,11 @@
   </div>
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+<div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -154,8 +159,9 @@
   </div>
   </div>
 </div>
-
 </div>
+</div>
+
 </a>
 <br><br><br>
 
@@ -173,10 +179,11 @@
 
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -192,6 +199,7 @@
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>
@@ -212,10 +220,11 @@
 
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -231,6 +240,7 @@
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>

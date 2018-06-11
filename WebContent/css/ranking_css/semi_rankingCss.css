@@ -93,18 +93,21 @@ border: 1px solid #EAEAEA;*/
 
 #aTextDiv{
 	text-align: center;
+
 }
 
 #aText{
 	color : #030066;
 	font-size: 18px;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 #aText:hover{
 	color : #AAABD3;
 	font-size: 18px;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 
@@ -144,7 +147,7 @@ border: 1px solid #EAEAEA;*/
 
 
 #borderWrap{
-	border: 25px double #F8FAFF;
+	border: 80px double #F8FAFF;
 	padding: : 40px;
 	border-radius: 25px;
 	width: 85%;

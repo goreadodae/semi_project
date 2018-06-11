@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,8 +48,10 @@
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
-		$("#ranking2").load("rankingPage2.jsp");
-		$("#rankingPage2_1").load("rankingPage2_1(date)2.jsp");
+		$("#ranking2_TRecipe").load("rankingPage2_TRecipe.jsp");
+		$("#ranking2_MRecipe").load("rankingPage2_MRecipe.jsp");
+		$("#ranking2_MChef").load("rankingPage2_MChef.jsp");
+		
 	});
 
 
@@ -101,7 +104,7 @@
 	<br><br>
 	<div id="bodyWrap">
 	<div class="center-block" id="line">
-		<a id="rankingURL" href="#"><h2 id="rankingTopName">Ranking</h2></a>
+		<a id="rankingURL" href="#gray_line"><h2 id="rankingTopName">Ranking</h2></a>
 	</div>
 	<!-- 상단 구분선 -->
 	<hr style="width: 500px; border: 2px solid #EAEAEA;">
@@ -219,7 +222,7 @@
 
 
 
-	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br>
 
 
 
@@ -229,10 +232,10 @@
 
 	<!-- 하단 그레이 색들어간 부분! -->
 	<!--<div style="background-color: #F6F6F6;"> -->
-	<div style="background-color: #F8FAFF;">
+	<div style="background-color: #F8FAFF;" id="gray">
 		<!-- ranking 중간 구분 선 -->
 		<br><br><br><br><br><br>
-		<hr style="width: 400px; border: 2px solid #353866;">
+		<hr style="width: 400px; border: 2px solid #353866;" id="gray_line">
 		<!-- 	<div class="container" id="middle_Division_Line">
 		<div class="row  mx-auto">
 			<div id="ranking_Division_Line"></div>
@@ -242,36 +245,47 @@
 
 <!-- 하단 메뉴 -->
 
+<script>
+$(document).ready(function(e) {
+/* a요소를 클릭 했을 시 */
+    $('#aTextDiv>#aText').click(function(){
+/* iframe 요소의 src 속성값을 a 요소의 data-url 속성값으로 변경 */ 
+        $('#iframe').attr('src',$(this).attr('data-url'));
+        })
+});
+</script>
+
+
 
 		<div class="container" id="aTextDiv">
 
-			<a href="rankingPage3.jsp" id="aText">오늘의 레시피</a> &emsp;&emsp; 
-			<a href="#" id="aText">이달의 레시피</a> &emsp;&emsp; 
-			<a href="#" id="aText">이달의 회원</a>
+			<a data-url="rankingPage2_TRecipe.jsp" id="aText">오늘의 레시피</a> &emsp;&emsp; 
+			<a data-url="rankingPage2_MRecipe.jsp" id="aText">이달의 레시피</a> &emsp;&emsp; 
+			<a data-url="rankingPage2_MChef.jsp" id="aText">이달의 회원</a>
 
 		</div>
 
-		<br><br><br><br><br><br>
+		<br><br><br><br>
 
 <!-- 랭킹 리스트 만들기(1-5) -->
 
 
 <div class="container-fluid" id="rankingListDownWrap">
 	<div class="row justify-content-center">
-  <div id="borderWrap"><br><br><br><br><br><br>
+  <div id="borderWrap">
 
   	<div class="container">
-	<div id="rankingPage2_1Wrap">
-	<div id="rankingPage2_1"></div>
-	</div>	
 
 <!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
-
 	<div id="ranking2Wrap">
-		<div>
-		<div id="ranking2"></div>
+		<div class="container" style="width: 1100px; height: 2700px;">
+			<!-- iframe으로 페이지 내에서 바꾸기! -->
+		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0"></iframe>
+		<!-- frameborder="0" -->
+		<!-- <div id="ranking2_TRecipe"></div> -->
 		</div>
 	</div>
+
 	</div>
 
   <br><br><br>

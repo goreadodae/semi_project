@@ -12,14 +12,13 @@
 	crossorigin="anonymous"></script>
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 
 <!-- 초기화 -->
-<link rel="stylesheet" href="/WebContent/css/reset.css">
-<link rel="stylesheet" href="/WebContent/css/main-style.css">
+<link rel="stylesheet" href="/css/reset.css">
 
 <title>재료 패키지 구매</title>
 
@@ -29,6 +28,25 @@
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		$("#banner").load("/views/productPage/test2.jsp");
+	});
+	
+	$(document).ready(function() {
+
+		var jbOffset = $('#start').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+
 	});
 </script>
 
@@ -75,7 +93,7 @@
 			<br> <br>
 
 			<!-- 내용1. 이달의 패키지 -->
-			<div class="col-md-8 mx-auto" style="padding: 0px;">
+			<div id="start" class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
 					<img src="/imgs/product_img/title1.JPG" alt="이미지"
@@ -92,15 +110,16 @@
 
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<a href="/views/productPage/ProductDetail.jsp"><img
-									class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product1.jpg" alt="제품이미지" height="300"
-									class="img-thumbnail"></a>
+									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">오징어볶음 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 
@@ -111,14 +130,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product2.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">부대찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -127,14 +148,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product3.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">순두부찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -161,14 +184,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product1.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">오징어볶음 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -178,14 +203,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product2.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">부대찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -194,14 +221,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product3.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">순두부찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -219,14 +248,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product1.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">오징어볶음 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -236,14 +267,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product2.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">부대찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>
@@ -252,14 +285,16 @@
 						<div class="col-md-4 col-sm-12">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-								<img class="col-md-12 col-sm-12" style="padding: 0px;"
+									<a href="/views/productPage/ProductDetail.jsp">
+									<img class="col-md-12 col-sm-12" style="padding: 0px;"
 									src="/imgs/product_img/product3.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
+									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">순두부찌개 양념</p>
 									<hr>
-									<p class="price">5000원</p>
+									<p class="price">5000원</p><br>
 								</div>
 							</div>
 						</div>

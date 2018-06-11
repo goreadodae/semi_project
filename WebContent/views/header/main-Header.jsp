@@ -9,6 +9,48 @@
 
 	var inCategory = false;
 
+
+	$(document).ready(function() {
+
+		/* 웹 실행 시 카테고리 숨김 */
+		$('#category_list').css('display', 'none');
+
+		$('#div-category').hover(function(e) {
+			if ($(e.target).is("#div-category")
+				|| $(e.target).is("#a-category")) {
+				$('#category_list').css('display', 'block');
+				inCategory = true; // 카테고리 오픈
+			}
+
+			// 카테고리 오픈되어 있을 때
+			if (inCategory) {
+				$('#category_list').hover(function(e) {
+					if ($(e.target).is('.category-text')
+						|| $(e.target).is('.header')
+						|| $(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'block');
+					}
+				});
+
+				$('#category_list').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
+
+				$('#div-category').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
+			}
+		});
+	});
+
 	/* 팝업 div 삭제 */
 	function delete_info(obj) {
 		// 삭제할 ID 정보 찾기
@@ -101,7 +143,8 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0"
+						<a class="nav-category"
+							href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0"
 							style="line-height: 50px;">레시피</a>
 					</div>
 
@@ -132,72 +175,96 @@
 			style="padding: 0px;">
 			<div class="col-md-8 mx-auto" id="category_list">
 				<ul class="colum_1">
-					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+					<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+					<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>

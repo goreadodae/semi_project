@@ -34,6 +34,24 @@
 				stat = true;
 			}
 		});
+	});
+
+	$(document).ready(function() {
+
+		var jbOffset = $('#content-main').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
 
 	});
 </script>
@@ -43,9 +61,10 @@
 	margin: 0;
 	padding: 0;
 }
-#notice_sub_tit{
-	font-size:15px;
-} 
+
+#notice_sub_tit {
+	font-size: 15px;
+}
 
 #faq-color {
 	background-color: #dcdbde;
@@ -69,8 +88,8 @@
 		<div id="contents"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;">
-			<div class="row">
-				<div class="col-md-2">
+			<div class="row" style="padding: 0;">
+				<div class="col-md-2" style="padding: 0;">
 					<!--고객센터 목록  -->
 					<br>
 					<h2>고객센터</h2>
@@ -79,15 +98,14 @@
 				<div class="col-md-8">
 					<br>
 					<h2>
-						FAQ&nbsp;<span id="notice_sub_tit">
-						고객님들이 자주 묻는 질문들을 모두 모았습니다.
-						</span>
+						FAQ&nbsp;<span id="notice_sub_tit"> 고객님들이 자주 묻는 질문들을 모두
+							모았습니다. </span>
 					</h2>
 				</div>
 			</div>
 			<br>
-			<div class="row">
-				<div id="customCenter" class="col-md-2">
+			<div class="row" style="padding: 0;">
+				<div id="customCenter" class="col-md-2" style="padding: 0;">
 					<!-- 고객센터 목록 테이블 -->
 
 					<table class="table table-bordered table-hover">
@@ -104,7 +122,8 @@
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/oneToOneQNAPage.jsp" style="color: black">1:1문의<img
+							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
+								style="color: black">1:1문의<img
 									src="/imgs/notice-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
@@ -117,7 +136,7 @@
 
 				</div>
 				<div class="col-md-10">
-				<!-- for문 사용?????  -->
+					<!-- for문 사용?????  -->
 					<table class="table" id="faqTable" style="text-align: center">
 						<tr>
 							<th scope="col" width="50px">번호</th>

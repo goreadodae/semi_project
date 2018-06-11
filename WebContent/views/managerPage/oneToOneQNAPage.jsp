@@ -30,6 +30,12 @@
 	background-color:#dcdbde;
 
 }
+#noHasList{
+	position:relative;
+	text-align:center;
+	top:40%;
+
+}
 
 </style>
 
@@ -51,14 +57,14 @@
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;" id="contents">
-			<div class="row">
-				<div class="col-md-2">
+			<div class="row" style="padding:0;">
+				<div class="col-md-2" style="padding:0;">
 					<!--고객센터 목록  -->
 					<br>
 					<h2>고객센터</h2>
 					<br>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8" >
 					<br>
 					<h4 style="line-height:35px">
 						1:1문의사항&nbsp;
@@ -66,12 +72,9 @@
 				</div>
 			</div>
 			<br>
-			<div class="row">
-				<div id="customCenter" class="col-md-2">
+			<div class="row" style="padding:0;">
+				<div id="customCenter" class="col-md-2" style="padding:0;">
 					<!-- 고객센터 목록 테이블 -->
-
-
-
 					<table class="table table-bordered table-hover">
 						<tr>
 							<td><a href="/views/managerPage/noticePage.jsp"
@@ -100,9 +103,41 @@
 
 				</div>
 
+			<div class="col-md-10">
+			<!-- <a href="/views/managerPage/writeQNAPage.jsp">작성하기(임시링크)</a> -->
+			
+			<table class="table">
+			<tr>
+			<th>번호</th>
+			<th>카테고리</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			</tr>
+
+			</table>
+			<!-- 사용자가 문의 한 내역이 없을때  -->
+			<div class="cols-md-10" style=" height:300px">
+				
+				<div id="noHasList">
+					<h6>1:1문의내역이 존재하지 않습니다.</h6>
+				
+				</div>
+			
+			</div>
+			<div class="offset-md-11 cols-md-1">
+			
+			
+			<button type="button" class="btn btn-success" onclick="location.href='/views/managerPage/writeQNAPage.jsp'">작성하기</button>
+			</div>
 
 
-
+			</div>
+			
+			
+			
+			
+			
 			</div>
 		</div>
 

@@ -41,6 +41,12 @@ background-color:#dcdbde;
 float:right;
 
 }
+#noticePage{
+	position:relative;
+	left:43%;
+
+
+}
 
 
 </style>
@@ -56,7 +62,7 @@ float:right;
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-2" style="padding:0;">
 					<!--고객센터 목록  -->
 					<br>
 					<h2>고객센터</h2>
@@ -71,7 +77,7 @@ float:right;
 			</div>
 			<br>
 			<div class="row">
-				<div id="customCenter" class="col-md-2">
+				<div id="customCenter" class="col-md-2" style="padding:0;">
 					<!-- 고객센터 목록 테이블 -->
 					
 					
@@ -145,7 +151,7 @@ float:right;
 			</div>
 			
 			<div class="row">
-				<div class="offset-md-5 col-md-4">
+				<div class="col-md-3"  id="noticePage" >
 					<nav aria-label="Page navigation example">
 						  <ul class="pagination">
 						    <li class="page-item"><a class="page-link" href="#">Previous</a></li>

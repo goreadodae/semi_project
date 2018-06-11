@@ -40,7 +40,6 @@ public class RecipeListServlet extends HttpServlet {
 				!categorySituationList.isEmpty()&&
 				!categoryMethodList.isEmpty()&&
 				!categoryIngreList.isEmpty()) {
-			
 			request.setAttribute("classList", categoryClassList);
 			request.setAttribute("situationList", categorySituationList);
 			request.setAttribute("methodList", categoryMethodList);
@@ -49,17 +48,17 @@ public class RecipeListServlet extends HttpServlet {
 			String cate2 = request.getParameter("cate2");//상황별
 			String cate3 = request.getParameter("cate3");//방법별
 			String cate4 = request.getParameter("cate4");//재료별
+			request.setAttribute("cate1", cate1);
+			request.setAttribute("cate2", cate2);
+			request.setAttribute("cate3", cate3);
+			request.setAttribute("cate4", cate4);
 			if(cate1!=null&&cate2!=null&&cate3!=null&&cate4!=null) {
 				
 			}
-			else {//카테고리에 첫 방문인 경우
-				request.setAttribute("cate1", 0);
-				request.setAttribute("cate2", 0);
-				request.setAttribute("cate3", 0);
-				request.setAttribute("cate4", 0);
+			else {
+
 			}
-			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp?cate1="
-			+cate1+"&cate2="+cate2+"&cate3="+cate3+"&cate4"+cate4);
+			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp");
 			view.forward(request, response);
 		}
 		else {

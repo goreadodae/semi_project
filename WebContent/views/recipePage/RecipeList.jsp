@@ -5,35 +5,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- jQuery -->
+<link rel="stylesheet" href="/css/recipeList_css/recipeList.css">
+<!-- 모바일  -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 리셋 -->
+<link rel="stylesheet" href="/css/reset.css">
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet" href="/css/bootstrap.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
-<!-- 초기화 -->
-<link rel="stylesheet" href="/css/reset.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
 
-<!-- Bootstrap CSS/JS -->
-<link rel="stylesheet" href="/js/bootstrap.js">
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link rel="stylesheet" href="/css/main-style.css">
-<link rel="stylesheet" href="/css/recipeList_css/recipeList.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 
-<!-- Header JS -->
-<link rel="stylesheet" href="/js/headerpage/header.js">
-
-<title>수상한 레시피</title>
-
-<!-- 해더 불러오는 제이쿼리  -->
 <script>
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		/*$("#header").load("/views/header/main-Header.jsp");*/
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 </script>
 
-<!-- 영역 설정 -->
 <script>
+	var scrollUpDelay = 1;
+	var scrollUpSpeed = 30;
+
+	/* 영역 설정 */
 	$(document).ready(function() {
 
 		var $info = $("#info");
@@ -42,42 +49,28 @@
 			$info.html(window.innerWidth);
 		}
 	});
+
+	/* 위로 올라가기 */
+	function scrollUp() {
+		if (document.body.scrollTop < 1) {
+			return;
+		}
+		document.body.scrollTop = document.body.scrollTop - scrollUpSpeed;
+		setTimeout('scrollUp()', scrollUpDelay);
+	}
 </script>
 
+
+<title>수상한 레시피</title>
+
 <!-- 스타일 값 설정 -->
-<style>
-.side_menu_text {
-	text-decoration: none;
-	color: black;
-	font-size: 13px;
-}
 
-#aside {
-	margin-top: 0;
-	position: fixed;
-	float: left;
-	right: 0;
-	bottom: -2;
-	padding: 3;
-	z-index: 100;
-}
-
-@media ( max-width :768px) {
-	#aside {
-		visibility: hidden;
-	}
-	#navi {
-		margin: 0;
-		padding: 0;
-	}
-}
-</style>
 </head>
 
-<body>
+<body style="overflow-x:hidden; overflow-y:auto;">
 	<div class="container-fluid">
 		<!-- Header -->
-		<div id="header">
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 			<!-- 해더 -->
 		</div>
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
@@ -88,24 +81,21 @@
 						<div class="col-md-12">
 							<span class="category">종류별</span>
 							<ul id="cate_list" class="nav">
-
 								<c:forEach items="${requestScope.classList}" var="list">
 									<c:set var="keyVal" value="${list.key}" />
 									<c:choose>
-										<c:when test="${list.key==pram.cate1}">
+										<c:when test="${keyVal==requestScope.cate1}">
 											<li class="nav-item"><a class="nav-link active"
-												href="/recipeList?cate1=${pram.cate1}
-										&cate2=${pram.cate2}&cate3=${pram.cate3}&cate4=${pram.cate4}">
+												href="/recipeList?cate1=${keyVal}
+										&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}">
 													${requestScope.classList[keyVal]}</a></li>
 										</c:when>
 										<c:otherwise>
 											<li class="nav-item"><a class="nav-link nonactive"
 												href="/recipeList?cate1=${keyVal}
-										&cate2=${pram.cate2}&cate3=${pram.cate3}&cate4=${pram.cate4}">${requestScope.classList[keyVal]}</a>
+										&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}">${requestScope.classList[keyVal]}</a>
 										</c:otherwise>
 									</c:choose>
-
-
 								</c:forEach>
 							</ul>
 						</div>
@@ -116,11 +106,20 @@
 							<ul id="cate_list" class="nav">
 								<c:forEach items="${requestScope.situationList}" var="list">
 									<c:set var="keyVal" value="${list.key}" />
-									<li class="nav-item"><a class="nav-link active" href="#">
-											${requestScope.situationList[keyVal]}</a></li>
+									<c:choose>
+										<c:when test="${keyVal==requestScope.cate2}">
+											<li class="nav-item"><a class="nav-link active"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${keyVal}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}">
+													${requestScope.situationList[keyVal]}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="nav-item"><a class="nav-link nonactive"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${keyVal}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}">${requestScope.situationList[keyVal]}</a>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
-								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -130,11 +129,20 @@
 							<ul id="cate_list" class="nav">
 								<c:forEach items="${requestScope.ingredientList}" var="list">
 									<c:set var="keyVal" value="${list.key}" />
-									<li class="nav-item"><a class="nav-link active" href="#">
-											${requestScope.ingredientList[keyVal]}</a></li>
+									<c:choose>
+										<c:when test="${keyVal==requestScope.cate4}">
+											<li class="nav-item"><a class="nav-link active"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${keyVal}">
+													${requestScope.ingredientList[keyVal]}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="nav-item"><a class="nav-link nonactive"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${keyVal}">${requestScope.ingredientList[keyVal]}</a>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
-								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
-								</li>
 							</ul>
 						</div>
 					</div>
@@ -145,11 +153,20 @@
 							<ul id="cate_list" class="nav">
 								<c:forEach items="${requestScope.methodList}" var="list">
 									<c:set var="keyVal" value="${list.key}" />
-									<li class="nav-item"><a class="nav-link active" href="#">
-											${requestScope.methodList[keyVal]}</a></li>
+									<c:choose>
+										<c:when test="${keyVal==requestScope.cate3}">
+											<li class="nav-item"><a class="nav-link active"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${requestScope.cate2}&cate3=${keyVal}&cate4=${requestScope.cate4}">
+													${requestScope.methodList[keyVal]}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="nav-item"><a class="nav-link nonactive"
+												href="/recipeList?cate1=${requestScope.cate1}
+										&cate2=${requestScope.cate2}&cate3=${keyVal}&cate4=${requestScope.cate4}">${requestScope.methodList[keyVal]}</a>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
-								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
-								</li>
 							</ul>
 						</div>
 					</div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -88,10 +88,25 @@
 						<div class="col-md-12">
 							<span class="category">종류별</span>
 							<ul id="cate_list" class="nav">
-								<c:forEach begin="0" items="${requestScope.classList}" var="m" varStatus="i">
-									<li class="nav-item"><a class="nav-link active" href="#">
-									${requestScope.classList[i.count-1]}</a>
-								</c:forEach> 
+
+								<c:forEach items="${requestScope.classList}" var="list">
+									<c:set var="keyVal" value="${list.key}" />
+									<c:choose>
+										<c:when test="${list.key==pram.cate1}">
+											<li class="nav-item"><a class="nav-link active"
+												href="/recipeList?cate1=${pram.cate1}
+										&cate2=${pram.cate2}&cate3=${pram.cate3}&cate4=${pram.cate4}">
+													${requestScope.classList[keyVal]}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li class="nav-item"><a class="nav-link nonactive"
+												href="/recipeList?cate1=${keyVal}
+										&cate2=${pram.cate2}&cate3=${pram.cate3}&cate4=${pram.cate4}">${requestScope.classList[keyVal]}</a>
+										</c:otherwise>
+									</c:choose>
+
+
+								</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -99,10 +114,11 @@
 						<div class="col-md-12">
 							<span class="category">상황별</span>
 							<ul id="cate_list" class="nav">
-								<c:forEach begin="0" items="${requestScope.situationList}" var="m" varStatus="i">
+								<c:forEach items="${requestScope.situationList}" var="list">
+									<c:set var="keyVal" value="${list.key}" />
 									<li class="nav-item"><a class="nav-link active" href="#">
-									${requestScope.situationList[i.count-1]}</a>
-								</c:forEach> 
+											${requestScope.situationList[keyVal]}</a></li>
+								</c:forEach>
 								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
 								</li>
 							</ul>
@@ -112,10 +128,11 @@
 						<div class="col-md-12">
 							<span class="category">재료별</span>
 							<ul id="cate_list" class="nav">
-								<c:forEach begin="0" items="${requestScope.ingredientList}" var="m" varStatus="i">
+								<c:forEach items="${requestScope.ingredientList}" var="list">
+									<c:set var="keyVal" value="${list.key}" />
 									<li class="nav-item"><a class="nav-link active" href="#">
-									${requestScope.ingredientList[i.count-1]}</a>
-								</c:forEach> 
+											${requestScope.ingredientList[keyVal]}</a></li>
+								</c:forEach>
 								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
 								</li>
 							</ul>
@@ -126,10 +143,11 @@
 						<div class="col-md-12">
 							<span class="category">방법별</span>
 							<ul id="cate_list" class="nav">
-								<c:forEach begin="0" items="${requestScope.methodList}" var="m" varStatus="i">
+								<c:forEach items="${requestScope.methodList}" var="list">
+									<c:set var="keyVal" value="${list.key}" />
 									<li class="nav-item"><a class="nav-link active" href="#">
-									${requestScope.methodList[i.count-1]}</a>
-								</c:forEach> 
+											${requestScope.methodList[keyVal]}</a></li>
+								</c:forEach>
 								<li class="nav-item"><a class="nav-link nonactive" href="#">Disabled</a>
 								</li>
 							</ul>
@@ -137,6 +155,9 @@
 					</div>
 				</div>
 			</div>
+
+
+
 
 
 			<div class="row">

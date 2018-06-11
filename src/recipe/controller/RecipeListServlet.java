@@ -32,20 +32,38 @@ public class RecipeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HashMap <String,ArrayList<String>> categoryList = new RecipeService().getCategory();
-		if(categoryList.containsKey("class")&&
-				categoryList.containsKey("situation")&&
-				categoryList.containsKey("method")&&
-				categoryList.containsKey("ingredient")) {
-			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp");
-			request.setAttribute("classList", categoryList.get("class"));
-			request.setAttribute("situationList", categoryList.get("situation"));
-			request.setAttribute("methodList", categoryList.get("method"));
-			request.setAttribute("ingredientList", categoryList.get("ingredient"));
+		HashMap <Integer,String> categoryClassList = new RecipeService().getClassCategory();
+		HashMap <Integer,String> categorySituationList = new RecipeService().getSituationCategory();
+		HashMap <Integer,String> categoryMethodList = new RecipeService().getMethodCategory();
+		HashMap <Integer,String> categoryIngreList = new RecipeService().getIngreCategory();
+		if(!categoryClassList.isEmpty()&&
+				!categorySituationList.isEmpty()&&
+				!categoryMethodList.isEmpty()&&
+				!categoryIngreList.isEmpty()) {
+			
+			request.setAttribute("classList", categoryClassList);
+			request.setAttribute("situationList", categorySituationList);
+			request.setAttribute("methodList", categoryMethodList);
+			request.setAttribute("ingredientList", categoryIngreList);
+			String cate1 = request.getParameter("cate1");//종류별
+			String cate2 = request.getParameter("cate2");//상황별
+			String cate3 = request.getParameter("cate3");//방법별
+			String cate4 = request.getParameter("cate4");//재료별
+			if(cate1!=null&&cate2!=null&&cate3!=null&&cate4!=null) {
+				
+			}
+			else {//카테고리에 첫 방문인 경우
+				request.setAttribute("cate1", 0);
+				request.setAttribute("cate2", 0);
+				request.setAttribute("cate3", 0);
+				request.setAttribute("cate4", 0);
+			}
+			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp?cate1="
+			+cate1+"&cate2="+cate2+"&cate3="+cate3+"&cate4"+cate4);
 			view.forward(request, response);
 		}
 		else {
-
+			
 		}
 	}
 

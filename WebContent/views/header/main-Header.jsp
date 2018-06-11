@@ -36,29 +36,6 @@
 <script>
 	var inCategory = false;
 
-	/* 내비게이션 고정 */
-	$(document).ready(function() {
-
-		/* 카테고리 */
-		$('#category_list').hide();
-
-		var jbOffset = $('#content-main').offset();
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
-
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
-
-	});
-
 	/* 팝업 div 삭제 */
 	function delete_info(obj) {
 		// 삭제할 ID 정보 찾기
@@ -70,10 +47,6 @@
 		document.getElementById('top-message').remove();
 
 	}
-
-	$("#div-category").mouseover(function() {
-		$('#category_list').show();
-	});
 </script>
 
 </head>

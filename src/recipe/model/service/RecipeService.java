@@ -9,19 +9,32 @@ import recipe.model.dao.RecipeDao;
 
 public class RecipeService {
 
-	public HashMap<String, ArrayList<String>> getCategory() {
+	public HashMap<Integer, String> getClassCategory() {
 		Connection conn = JDBCTemplate.getConnection();
-		HashMap<String, ArrayList<String>> categoryList = new HashMap<String, ArrayList<String>>();
-		ArrayList<String> classList = new RecipeDao().getCategoryClass(conn);
-		ArrayList<String> situationList = new RecipeDao().getCategorySituation(conn);
-		ArrayList<String> methodList = new RecipeDao().getCategoryMethod(conn);
-		ArrayList<String> ingredientList = new RecipeDao().getCategoryIngredient(conn);
-		categoryList.put("class", classList);
-		categoryList.put("situation", situationList);
-		categoryList.put("method", methodList);
-		categoryList.put("ingredient", ingredientList);
+		HashMap<Integer, String> classList = new RecipeDao().getCategoryClass(conn);
 		JDBCTemplate.close(conn);
-		return categoryList;
+		return classList;
+	}
+
+	public HashMap<Integer, String> getSituationCategory() {
+		Connection conn = JDBCTemplate.getConnection();
+		HashMap<Integer, String> situationList = new RecipeDao().getCategorySituation(conn);
+		JDBCTemplate.close(conn);
+		return situationList;
+	}
+
+	public HashMap<Integer, String> getMethodCategory() {
+		Connection conn = JDBCTemplate.getConnection();
+		HashMap<Integer, String> methodList = new RecipeDao().getCategoryMethod(conn);
+		JDBCTemplate.close(conn);
+		return methodList;
+	}
+
+	public HashMap<Integer, String> getIngreCategory() {
+		Connection conn = JDBCTemplate.getConnection();
+		HashMap<Integer, String> ingredientList = new RecipeDao().getCategoryIngredient(conn);
+		JDBCTemplate.close(conn);
+		return ingredientList;
 	}
 	
 }

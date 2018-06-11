@@ -3,6 +3,7 @@ package common;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,8 +18,9 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		Properties prop = new Properties();
 		Connection conn = null;
+		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
-			prop.load(new FileReader("/resource/driver.properties"));
+			prop.load(new FileReader(path+"resources/driver.properties"));
 			String driver = prop.getProperty("driver");
 			String url = prop.getProperty("url");
 			String user = prop.getProperty("user");

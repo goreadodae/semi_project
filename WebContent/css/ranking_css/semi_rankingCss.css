@@ -7,14 +7,6 @@ display: inline-block;
 }
 
 
-
-#ranking_Top_Division_Line{
-	border-bottom: 1px solid #EAEAEA; /*#EAEAEA*/
-	width: 100px;
-	height: 20px;
-	margin-left: 30%;
-}
-
 #rankingTopName{/*랭킹 페이지 상단부 이름*/
 	color: #353866;
 }
@@ -36,10 +28,12 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
-border-left: 1px solid #EAEAEA;*/
+border-left: 1px solid #EAEAEA;
+border: 1px solid #EAEAEA;*/
 }
 
 #monthRecipe{	/*이달의 레시피 div*/
@@ -47,10 +41,12 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
-border-left: 1px solid #EAEAEA;*/
+border-left: 1px solid #EAEAEA;
+border: 1px solid #EAEAEA;*/
 }
 
 #monthUserRecipe{	/*이달의 회원 div*/
@@ -58,10 +54,12 @@ height: 400px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
+overflow: hidden;
 /*background-color: yellow;
 border-top: 1px solid #EAEAEA;
 border-right: 1px solid #EAEAEA;
-border-left: 1px solid #EAEAEA;*/
+border-left: 1px solid #EAEAEA;
+border: 1px solid #EAEAEA;*/
 }
 
 #rankingLine{ /*오늘의 레시피, 이달의 레시피, 이달의 회원 상단에 있는 라인(div)*/
@@ -93,8 +91,52 @@ border-left: 1px solid #EAEAEA;*/
 }
 
 
-#pre{
-	padding: 0px;
-	margin-bottom: 0px;
-	
+#aTextDiv{
+	text-align: center;
+}
+
+#aText{
+	color : #030066;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+#aText:hover{
+	color : #F8FAFF;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+
+.card{
+	width: 360px; 
+	height: 800px;
+}
+
+.card .first{
+	width: 1200px; 
+	height: 800px;
+}
+
+.card-img-top{
+	height: 600px;
+}
+
+.card-img-top .first{
+	height: 600px;
+	width: 1200px;
+}
+
+/*.card-body .first{
+	width: 1200px;
+}
+
+*/
+/*슬라이드 카드 a 태그*/
+#cardA{
+	color: black;
+}
+
+#cardA:hover{
+	color:#F8FAFF;
 }

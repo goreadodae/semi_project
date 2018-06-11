@@ -136,7 +136,6 @@ div{
 				<br><br>
 				<div id="detail" class="col-md-12" style="padding: 0px;">
 				<img src = "/imgs/product_img/detail.png" width=100%>
-				
 				</div>
 		</div>
 		</div>

@@ -102,7 +102,7 @@ border: 1px solid #EAEAEA;*/
 }
 
 #aText:hover{
-	color : #F8FAFF;
+	color : #AAABD3;
 	font-size: 18px;
 	text-decoration: none;
 }
@@ -140,3 +140,15 @@ border: 1px solid #EAEAEA;*/
 #cardA:hover{
 	color:#F8FAFF;
 }
+
+
+
+#borderWrap{
+	border: 25px double #F8FAFF;
+	padding: : 40px;
+	border-radius: 25px;
+	width: 85%;
+	background-color: white;
+}
+
+ 

@@ -54,18 +54,23 @@ $.datepicker.setDefaults({
       maxDate : new Date(),
       defaultDate : new Date(),
       onSelect: function (date) {
-              document.getElementById("rankingDateToday").innerHTML = date;
+              document.getElementById("prtDateTrigger").innerHTML = date;
           }    
    });
        
+       $('#prtDateTrigger').click(function(){
+          $(function() {
+      $("#prtDateTrigger").datepicker();
+   });
+       })
 
    });
 
 
-  $(function() {
-      $("#datepicker").datepicker();
+/*  $(function() {
+      $("#prtDateTrigger").datepicker();
    });
-
+*/
 
 
     var x = new Date();
@@ -84,23 +89,26 @@ $.datepicker.setDefaults({
 
 </script>
 
-<style>
-/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-  *{font-family: 'Noto Sans KR', sans-serif;}*/
 
-  @import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
-  *{font-family: 'Yeon Sung', cursive;}
-</style>
 
 </head>
 <body>
 
 <div class="container">
 <!-- <input type="text" id="datepicker" placeholder="날짜선택"> -->
-<input type="text" id="datepicker" placeholder="날짜선택" readonly="readonly">
+<!-- <input type="text" id="datepicker" placeholder="날짜선택" readonly="readonly">
 
 
-<h2 id="rankingDateToday"></h2>
+<h2 id="rankingDateToday"></h2> -->
+
+<input type="hidden" id="datepicker" placeholder="날짜선택" readonly="readonly">
+
+<!-- <a href="javascript:void(0);" id="prtDateTrigger"><h2 id="rankingDateToday"></h2></a> -->
+
+<div id="prtDateTrigger"><h2 id="rankingDateToday"></h2></div>
+
+
+
 </div>
 
 

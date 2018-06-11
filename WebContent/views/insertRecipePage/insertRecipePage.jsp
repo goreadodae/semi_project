@@ -35,12 +35,12 @@
 	});
 	
 	/* 요리순서-추가기능 넣는 곳  */
-	function materPlus(){
+	/* function materPlus(){
 		document.getElementById("materPlus").style="display:inline";
 		/* $('#plusFunc').append('<form id="materPlus"><div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 					'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>'+
 					'<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>'); */
-	}
+	/* }
 	function toolPlus(){
 		document.getElementById("toolPlus").style="display:inline";
 	}
@@ -55,11 +55,13 @@
 		document.getElementById("toolPlus").style="display:inline";
 		document.getElementById("firePlus").style="display:inline";
 		document.getElementById("tipPlus").style="display:inline";
-	}
+	} */ 
+	
+		
 	
 	/* 요리순서-step 추가 넣는 곳  */
 	
-	 function stepPlus(){
+	  function stepPlus(){
 		$('.test').append('<div class="row"><div class="col-md-2"><h3>Step1</h3></div>'+
 				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;"></textarea></div>'+
 				'<div class="col-md-3"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150"></button></div></div>'+
@@ -78,24 +80,24 @@
 				'<div class="col-md-1">　　</div></div></div></div></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
-					'<form id="materPlus" style="display:none;">'+
+					'<form class="materPlus" style="display:none;">'+
 					'<div class="row">'+
 					'<div class="col-md-6 mx-auto">'+
 					'<div class="row"><div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>'+
 						'<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>'+
-					'<form id="toolPlus" style="display:none;">'+
+					'<form class="materPlus" style="display:none;">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tool.png"></div>'+
 						'<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></form>'+
-					'<form id="firePlus" style="display:none;">'+
+					'<form class="materPlus" style="display:none;">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_fire.png"></div>'+
 						'<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></form>'+
-					'<form id="tipPlus" style="display:none;">'+
+					'<form class="materPlus" style="display:none;">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tip2.png"></div>'+
 						'<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></form>'+
-					'<div class="row"><div class="col-md-12">　　</div></div>'); }
+					'<div class="row"><div class="col-md-12">　　</div></div>'); } 
 	
 	/* 네비게이션부분  */
 	
@@ -117,6 +119,191 @@
 			});
 
 		});
+	
+	/* 그림추가부분-메인  */
+	 $(document).ready(function() {
+	        $("#fileUpload").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Main = $("#imgFile_Main");
+	          var imgFile_Suc_One = $('#imgFile_Suc_One');
+	          imgFile_Main.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Main.attr('src',e.target.result);	
+	                	imgFile_Suc_One.attr('src',e.target.result);
+	                }
+	                imgFile_Main.show();
+	                imgFile_Suc_One.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+	
+		/* 그림추가부분-요리완성1  */
+	 $(document).ready(function() {
+	        $("#fileSucOne").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_One = $('#imgFile_Suc_One');
+	          imgFile_Suc_One.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Suc_One.attr('src',e.target.result);
+	                }
+	                imgFile_Suc_One.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+		
+		/* 그림추가부분-요리완성2  */
+	 $(document).ready(function() {
+	        $("#fileSucTwo").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_Two = $('#imgFile_Suc_Two');
+	          imgFile_Suc_Two.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Suc_Two.attr('src',e.target.result);
+	                }
+	                imgFile_Suc_Two.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+		
+	 /* 그림추가부분-요리완성3  */
+	 $(document).ready(function() {
+	        $("#fileSucThrid").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_Thrid = $('#imgFile_Suc_Thrid');
+	          imgFile_Suc_Thrid.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Suc_Thrid.attr('src',e.target.result);
+	                }
+	                imgFile_Suc_Thrid.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+	 
+	 /* 그림추가부분-요리완성4  */
+	 $(document).ready(function() {
+	        $("#fileSucFour").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_Four = $('#imgFile_Suc_Four');
+	          imgFile_Suc_Four.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Suc_Four.attr('src',e.target.result);
+	                }
+	                imgFile_Suc_Four.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+	 
+	 /* 그림추가부분-요리완성5  */
+	 $(document).ready(function() {
+	        $("#fileSucFive").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          var imgPath = $(this)[0].value;
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_Five = $('#imgFile_Suc_Five');
+	          imgFile_Suc_Five.empty();
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                	imgFile_Suc_Five.attr('src',e.target.result);
+	                }
+	                imgFile_Suc_Five.show();
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }
+	        });
+	      });
+	 
+	 
 </script>
 
 
@@ -287,8 +474,12 @@
 					</div>
 					</div><!-- 요리정보 닫기 -->
 				</div>
-				<div class="col-md-3" id="photo">
-					<button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none4.jpg" width="225" height="225"></button>
+				<div class="col-md-3"> <!-- 메인 사진 넣는 곳  -->
+					<div class="row">
+					<div class="col-md-12" id="wrapper">
+					<input id="fileUpload" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none4.jpg" width="230" height="230" id="imgFile_Main" onclick="document.all.fileUpload.click();"> 
+					</div></div>
 					</div>			
 			</div>
 			</div><!-- 레시피 기본정보 col값 줌 -->
@@ -395,28 +586,28 @@
 					
 					
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<form id="materPlus" style="display:none;">
+					<form class="materPlus" style="display:none;">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>
 						<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>
 						
-					<form id="toolPlus" style="display:none;">
+					<form class="materPlus" style="display:none;">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tool.png"></div>
 						<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></form>
 						
-					<form id="firePlus" style="display:none;">
+					<form class="materPlus" style="display:none;">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_fire.png"></div>
 						<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></form>
 						
-					<form id="tipPlus" style="display:none;">
+					<form class="materPlus" style="display:none;">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
@@ -429,14 +620,24 @@
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12"><button onclick="stepPlus();">+순서추가</button></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h4>요리완성사진</h4></div></div>
+					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-12"><button>+사진 한번에 넣기</button></div></div></div>
-					<div class="col-md-2"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130"></button></div>
-					<div class="col-md-2"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130"></button></div>
-					<div class="col-md-2"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130"></button></div>
-					<div class="col-md-2"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130"></button></div>
-					<div class="col-md-2"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130"></button></div>
+					<div class="row"><div class="col-md-12"><button><input id="fileSucAll" multiple="multiple" type="file" style="display:none"/>+사진 한번에 넣기</button></div></div></div>
+					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
+					<input id="fileSucOne" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_One" onclick="document.all.fileSucOne.click();"></div></div></div>
+					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgTwo">
+					<input id="fileSucTwo" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Two" onclick="document.all.fileSucTwo.click();"></div></div></div>
+					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgThrid">
+					<input id="fileSucThrid" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Thrid" onclick="document.all.fileSucThrid.click();"></div></div></div>
+					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFour">
+					<input id="fileSucFour" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Four" onclick="document.all.fileSucFour.click();"></div></div></div>
+					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFive">
+					<input id="fileSucFive" multiple="multiple" type="file" style="display:none"/>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Five" onclick="document.all.fileSucFive.click();"></div></div></div>
 					</div>
 				</div><!--요리순서 전체 틀 잡음  -->
 			</div> <!--요리순서 넣는곳-->

@@ -22,3 +22,9 @@ div {
 	border:0 ;
 	outline:0;
 }
+
+.thumb-image{
+ float:left;width:100px;
+ position:relative;
+ padding:5px;
+}

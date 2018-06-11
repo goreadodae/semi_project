@@ -8,16 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
 
 public class RecipeDao {
 
-	public ArrayList<String> getCategoryClass(Connection conn) {
+	public HashMap<Integer, String> getCategoryClass(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<String> list = new ArrayList<String>();
+		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
@@ -26,7 +27,7 @@ public class RecipeDao {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			while(rset.next()) {
-				list.add(rset.getString("CLASS_NAME"));
+				list.put(rset.getInt("CLASS_NO"), rset.getString("CLASS_NAME"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -44,10 +45,10 @@ public class RecipeDao {
 		return list;
 	}
 
-	public ArrayList<String> getCategorySituation(Connection conn) {
+	public HashMap<Integer, String> getCategorySituation(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<String> list = new ArrayList<String>();
+		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
@@ -56,7 +57,7 @@ public class RecipeDao {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			while(rset.next()) {
-				list.add(rset.getString("situation_name"));
+				list.put(rset.getInt("situation_NO"),rset.getString("situation_name"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -74,10 +75,10 @@ public class RecipeDao {
 		return list;
 	}
 
-	public ArrayList<String> getCategoryMethod(Connection conn) {
+	public HashMap<Integer, String> getCategoryMethod(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<String> list = new ArrayList<String>();
+		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
@@ -86,7 +87,7 @@ public class RecipeDao {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			while(rset.next()) {
-				list.add(rset.getString("method_name"));
+				list.put(rset.getInt("method_no"), rset.getString("method_name"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -104,10 +105,10 @@ public class RecipeDao {
 		return list;
 	}
 
-	public ArrayList<String> getCategoryIngredient(Connection conn) {
+	public HashMap<Integer, String> getCategoryIngredient(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
-		ArrayList<String> list = new ArrayList<String>();
+		HashMap<Integer, String> list = new HashMap<Integer, String>();
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
@@ -116,7 +117,7 @@ public class RecipeDao {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			while(rset.next()) {
-				list.add(rset.getString("ingre_name"));
+				list.put(rset.getInt("ingre_no"), rset.getString("ingre_name"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

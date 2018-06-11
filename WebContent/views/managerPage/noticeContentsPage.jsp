@@ -18,7 +18,7 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		/* $("#header").load("/views/header/main-Header.jsp"); */
+		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	
@@ -62,8 +62,8 @@ hr{
 <!--여기서부터 컨텐츠 영역(공지사항 내용)  -->
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black;padding: 10px;" id="contents">
-			<div class="row"><!--공지사항 타이틀  -->
-				<div class="col-md-12">
+			<div class="row" style="padding:0;"><!--공지사항 타이틀  -->
+				<div class="col-md-12" style="padding:0;">
 					<br>
 					<h5>
 						공지사항&nbsp;<span id="notice_sub_tit">새로운 소식과 유용한 정보들을 한곳에서
@@ -77,7 +77,7 @@ hr{
 			<br>
 			<div class="row" style="padding:0;"><!--공지사항 정보와 상세내용   -->
 
-				<div class="col-md-12">
+				<div class="col-md-12" style="padding:0;">
 					<table class="table table-bordered" style="text-align:left;" cellpadding="0" cellspacing="0">	
 						<thead>
 							<tr>
@@ -94,7 +94,8 @@ hr{
 								<th style="background-color: lightgray;">작성일</th>
 								<td width="150px">하하</td>
 								<th style="background-color: lightgray;" width="100px">조회수</th>
-								<td><span id="viewCount">1</span></td><!--jquery로 카운트 해야함  -->
+								<td><span id="viewCount">1</span></td>
+								<!-- 카운트 해야함  -->
 							</tr>
 
 							<tr>
@@ -106,9 +107,8 @@ hr{
 					</table>
 				</div>
 			</div>
-			 공지사항 컨텐츠 영역  
- 			<div class="row">
-					<div class="col-md-12" style="height:300px;">
+ 			<div class="row" style="padding:0;">
+					<div class="col-md-12" style="height:300px; padding:0;">
 					귤은 달달합니다.
 					데헷					
 					</div>
@@ -116,8 +116,8 @@ hr{
 					<hr>
 			</div> 
 
-			<hr>
-			<div class="row">
+			<hr style="padding:0;">
+			<div class="row" style="padding:0;">
 				<div class="col-md-12">
 					<button type="button" onclick="listBack();" class="btn btn-outline-primary" id="listBtn">목록</button>
 				</div>

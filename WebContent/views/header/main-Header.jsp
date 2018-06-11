@@ -5,59 +5,52 @@
 
 <head>
 <title>main-Header</title>
-
-<!-- 모바일  -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-<!-- 리셋 -->
-<link rel="stylesheet" href="/css/reset.css">
-
-<!-- 부트스트랩 -->
-<link rel="stylesheet" href="/css/bootstrap.css">
-
-<!-- 해더 스타일 -->
-<link rel="stylesheet" href="/css/mainPage_css/header.css">
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-
 <script>
+
 	var inCategory = false;
 
 	/* 내비게이션 고정 */
 	$(document).ready(function() {
 
-		/* 카테고리 */
-		$('#category_list').hide();
+		/* 웹 실행 시 카테고리 숨김 */
+		$('#category_list').css('display', 'none');
 
-		var jbOffset = $('#content-main').offset();
+		$('#div-category').hover(function(e) {
+			if ($(e.target).is("#div-category")
+				|| $(e.target).is("#a-category")) {
+				$('#category_list').css('display', 'block');
+				inCategory = true; // 카테고리 오픈
+			}
 
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
+			// 카테고리 오픈되어 있을 때
+			if (inCategory) {
+				$('#category_list').hover(function(e) {
+					if ($(e.target).is('.category-text')
+						|| $(e.target).is('.header')
+						|| $(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'block');
+					}
+				});
 
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
+				$('#category_list').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
 
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
+				$('#div-category').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
 			}
 		});
-
 	});
+
 
 	/* 팝업 div 삭제 */
 	function delete_info(obj) {
@@ -70,10 +63,6 @@
 		document.getElementById('top-message').remove();
 
 	}
-
-	$("#div-category").mouseover(function() {
-		$('#category_list').show();
-	});
 </script>
 
 </head>
@@ -155,7 +144,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/recipeList"
+						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0"
 							style="line-height: 50px;">레시피</a>
 					</div>
 
@@ -181,109 +170,81 @@
 			</div>
 		</div>
 
-		<div class="position-absolute col-12" id="t_category_list"
+		<!-- 전체 카테고리 -->
+		<div class="position-absolute col-md-12" id="t_category_list"
 			style="padding: 0px;">
 			<div class="col-md-8 mx-auto" id="category_list">
 				<ul class="colum_1">
-					<li calss="header"><a href="#">타이틀 1</a></li>
-					<br>
-					<li>오늘의 레시피</li>
-					<li>이달의 레시피</li>
-					<li>쌀/잡곡</li>
-					<li>견과류</li>
-					<br>
-					<br>
-					<li class="header">
-						<p>치즈/델리/베이커리 1</p>
-					</li>
-					<hr>
-					<li>빵/잼</li>
-					<li>디저트/케이크</li>
-					<li>치즈/버터</li>
-					<li>델리만쥬</li>
-					<li>델리만쥬</li>
-					<li>델리만쥬</li>
-					<li>델리만쥬</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
 				</ul>
-				<ul class="colum_2">
-					<li calss="header">
-						<p>타이틀 2</p>
-					</li>
-					<br>
-					<li>오늘의 레시피</li>
-					<li>이달의 레시피</li>
-					<li>쌀/잡곡</li>
-					<li>견과류</li>
-					<br>
-					<br>
-					<li class="header">
-						<p>치즈/델리/베이커리 2</p>
-					</li>
-					<hr>
-					<li>빵/잼</li>
-					<li>디저트/케이크</li>
-					<li>치즈/버터</li>
-					<li>델리만쥬</li>
+				<ul class="colum_1">
+						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
 				</ul>
-				<ul class="colum_2">
-					<li calss="header">
-						<p>타이틀 3</p>
-					</li>
-					<br>
-					<li>오늘의 레시피</li>
-					<li>이달의 레시피</li>
-					<li>쌀/잡곡</li>
-					<li>견과류</li>
-					<br>
-					<br>
-					<li class="header">
-						<p>치즈/델리/베이커리 2</p>
-					</li>
-					<hr>
-					<li>빵/잼</li>
-					<li>디저트/케이크</li>
-					<li>치즈/버터</li>
-					<li>델리만쥬</li>
+				<ul class="colum_1">
+						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
 				</ul>
-				<ul class="colum_2">
-					<li calss="header">
-						<p>타이틀 4</p>
-					</li>
-					<br>
-					<li>오늘의 레시피</li>
-					<li>이달의 레시피</li>
-					<li>쌀/잡곡</li>
-					<li>견과류</li>
-					<br>
-					<br>
-					<li class="header">
-						<p>치즈/델리/베이커리 2</p>
-					</li>
-					<hr>
-					<li>빵/잼</li>
-					<li>디저트/케이크</li>
-					<li>치즈/버터</li>
-					<li>델리만쥬</li>
+				<ul class="colum_1">
+					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
 				</ul>
-				<ul class="colum_2">
-					<li calss="header">
-						<p>타이틀 5</p>
-					</li>
-					<br>
-					<li>오늘의 레시피</li>
-					<li>이달의 레시피</li>
-					<li>쌀/잡곡</li>
-					<li>견과류</li>
-					<br>
-					<br>
-					<li class="header">
-						<p>치즈/델리/베이커리 2</p>
-					</li>
-					<hr>
-					<li>빵/잼</li>
-					<li>디저트/케이크</li>
-					<li>치즈/버터</li>
-					<li>델리만쥬</li>
+				<ul class="colum_1">
+						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+				</ul>
+				<ul class="colum_1">
+						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
 				</ul>
 			</div>
 		</div>

@@ -46,3 +46,38 @@
 	}
 }
 
+#main_div_1 #main_img_1:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+#main_div_1 #main_img_2:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+#main_div_1 #main_img_3:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+#main_div_1 #main_img_4:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+#main_div_2 #main_img_2_1:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+#main_div_2 #main_img_2_2:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+#main_div_2 #main_img_2_3:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}
+#main_div_2 #main_img_2_4:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}

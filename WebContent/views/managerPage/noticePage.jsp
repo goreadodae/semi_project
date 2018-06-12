@@ -84,16 +84,16 @@ float:right;
 
 					<table class="table table-bordered table-hover">
 						<tr id="notice-color">
-							<td><a href="/views/managerPage/noticePage.jsp" style="color:black">공지사항<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="/views/managerPage/noticePage.jsp" style="color:black">공지사항<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/faqPage.jsp" style="color:black">FAQ<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="/views/managerPage/faqPage.jsp" style="color:black">FAQ<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/oneToOneQNAPage.jsp" style="color:black">1:1문의<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="/views/managerPage/oneToOneQNAPage.jsp" style="color:black">1:1문의<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="#" style="color:black">상품구매문의<img src="/imgs/notice-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="#" style="color:black">상품구매문의<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 					</table>
 					

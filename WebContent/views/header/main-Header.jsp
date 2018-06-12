@@ -58,6 +58,8 @@ $(document).ready(function() {
 		var field = document.getElementById(target);
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
+	}
+	</script>
 </head>
 
 
@@ -264,6 +266,7 @@ $(document).ready(function() {
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
+					</ul>
 			</div>
 		</div>
 		<!-- 전체 카테고리 끝 -->

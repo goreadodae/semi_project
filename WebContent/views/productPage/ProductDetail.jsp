@@ -1,21 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<!-- 초기화 -->
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>SS
 
 <!-- 글씨체 -->
 <link href="https://fonts.googleapis.com/css?family=Jua|Nanum+Myeongjo|Song+Myung" rel="stylesheet">
@@ -26,6 +18,43 @@
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
+		
+		/* 웹 실행 시 카테고리 숨김 */
+		   $('#category_list').css('display', 'none');
+
+		   $('#div-category').hover(function(e) {
+		      if ($(e.target).is("#div-category")
+		         || $(e.target).is("#a-category")) {
+		         $('#category_list').css('display', 'block');
+		         inCategory = true; // 카테고리 오픈
+		      }
+
+		      // 카테고리 오픈되어 있을 때
+		      if (inCategory) {
+		         $('#category_list').hover(function(e) {
+		            if ($(e.target).is('.category-text')
+		               || $(e.target).is('.header')
+		               || $(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'block');
+		            }
+		         });
+
+		         $('#category_list').mouseleave(function(e) {
+		            if (!$(e.target).is('.category-text')
+		               || !$(e.target).is('.header')
+		               || !$(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'none');
+		            }
+		         });
+
+		         $('#div-category').mouseleave(function(e) {
+		            if (!$(e.target).is('.category-text')
+		               || !$(e.target).is('.header')
+		               || !$(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'none');
+		            }
+		         });
+		      }
 	});
 </script>
 
@@ -147,8 +176,12 @@ a{
 </style>
 
 <script>
-	//+,- 버튼을 눌렀을때 수량 변화하는 함수
+	
 	 $(document).ready(function(){
+		 
+		 
+		 
+		//+,- 버튼을 눌렀을때 수량 변화하는 함수
          $('#minus').click(function(){
          	var value   = Number($('#qty').val());
          	if(value>1){
@@ -189,7 +222,7 @@ a{
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<!-- <div id="header"></div> -->
+		<div id="header"></div>
 
 		<!-- 전체 컨텐츠 -->
 		<br>
@@ -215,15 +248,15 @@ a{
 							
 								<div class="row" id="info">
 									<div class="col-md-4">
-										<p>가격</p><br>
-										<p>배송종류</p><br>
-										<p>남은 수량</p><br>
+										<p>가격</p>
+										<p>배송종류</p>
+										<p>남은 수량</p>
 										<p>수량선택</p>
 									</div>
 									<div class="col-md-8">
-										<p id="price">5000</p><br>
-										<p>묶음배송 (4만원 이상 무료배송)</p><br>
-										<p>50</p><br>
+										<p id="price">5000</p>
+										<p>묶음배송 (4만원 이상 무료배송)</p>
+										<p>50</p>
 										<button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
 									</div>
 								</div>
@@ -245,10 +278,11 @@ a{
 								<button type="button" class="btn btn-info" 
 								onclick="window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');">장바구니</button>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-success">구매하기</button>
+								<button type="button" class="btn btn-success" onclick="location.href='/views/productPage/Purchase.jsp'">구매하기</button>
 							</center>
+						
+							
 						</div>
-
 					</div>
 				</div>
 				

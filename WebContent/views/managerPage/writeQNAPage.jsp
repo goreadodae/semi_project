@@ -59,6 +59,21 @@
 		});
 	});
 	
+	$(document).ready(function(){
+		var addRow = $('#tblRow').val();
+		var addRow = $('#tblRow').text();
+		""
+		console.log(addRow);
+		console.log()
+		
+		$('#addImg').click(function(){
+			
+			
+			
+			
+		});
+	});
+	
 	
 	
 	
@@ -68,6 +83,10 @@
 * {
 	margin: 0;
 	padding: 0;
+}
+
+.list-arrow{
+	float:right;
 }
 
 #notice_sub_tit {
@@ -98,10 +117,8 @@
 	float: right;
 }
 
-td{
-
-	valign:middle;
-
+td {
+	vertical-align: middle;
 }
 </style>
 
@@ -134,24 +151,24 @@ td{
 						<tr>
 							<td><a href="/views/managerPage/noticePage.jsp"
 								style="color: black">공지사항<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td><a href="/views/managerPage/faqPage.jsp"
 								style="color: black">FAQ<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr id="notice-color">
 							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
 								style="color: black">1:1문의<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td><a href="#" style="color: black">상품구매문의<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 					</table>
@@ -160,19 +177,17 @@ td{
 				<div class="col-md-10">
 					<table class="table table-bordered" id="writeQNAFormTbl">
 						<tr height="70px">
-							<td width="100px" style="background-color:#dcdbde; valign:middle;">제목</td>
+							<td width="100px" style="background-color: #dcdbde;">제목</td>
 							<td><br> <input type="text" size="100%" /></td>
 
 
 						</tr>
 						<tr height="70px">
-						
-							<td style="background-color: #dcdbde">주문번호</td>
-						
-							<td>
-							<input type="text" style="width: 25%" readonly />
-						 	<button id="orderInquiry">주문조회</button>
 
+							<td style="background-color: #dcdbde">주문번호</td>
+
+							<td><input type="text" style="width: 25%" readonly />
+								<button id="orderInquiry">주문조회</button>
 								<div class="col-md-8" style="border: 1px solid; height: 300px"
 									id="hidingInquiry">
 									문의하실 주문번호를 선택하세요<br>
@@ -228,7 +243,7 @@ td{
 								<h6>배송</h6> -주문 완료 후 배송 방법(택배)은 변경이 불가능합니다.<br> -배송일 및 배송시간
 								지정은 불가능합니다.(예약배송 포함)<br> <br> *주문취소 외 평일 오후 5시(주말 공휴일
 								12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전 8시 부터 순차적으로 답변해드립니다. <br>
-								<!-- 1:1문의 내용  --> <textarea
+							<br> <!-- 1:1문의 내용  --> <textarea
 									style="width: 100%; height: 300px; resize: none;">
 						 
 						 
@@ -241,7 +256,32 @@ td{
 
 						<tr>
 							<td style="background-color: #dcdbde">이미지</td>
-							<td>6</td>
+							<td>
+
+
+
+								<div id="refImage">
+									<table class="table">
+										<tr id="tblRow">
+											<td><span><span id="num">1</span>
+													<button>파일 선택</button>
+													<label>선택된 파일 없음</label>
+													<img src="/imgs/manager-img/add.png" id="addImg"/>
+											</span></td>
+										</tr>
+
+									</table>
+
+
+
+								</div>
+
+
+
+
+
+
+							</td>
 						</tr>
 
 					</table>

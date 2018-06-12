@@ -59,7 +59,7 @@ $(document).ready(function() {
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
 	}
-	</script>
+	</script>	
 </head>
 
 

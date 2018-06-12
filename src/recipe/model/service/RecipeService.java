@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import common.JDBCTemplate;
 import recipe.model.dao.RecipeDao;
+import recipe.model.vo.Recipe;
+import recipe.model.vo.RecipePageData;
 
 public class RecipeService {
 
@@ -35,6 +37,22 @@ public class RecipeService {
 		HashMap<Integer, String> ingredientList = new RecipeDao().getCategoryIngredient(conn);
 		JDBCTemplate.close(conn);
 		return ingredientList;
+	}
+
+	public RecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order) {
+		Connection conn = JDBCTemplate.getConnection();
+		int recordCountPerPage = 10;
+		int naviCountPerPage = 5;
+		ArrayList<Recipe> list = new RecipeDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order);
+		String pageNavi = new RecipeDao().getPageNavi(conn, page, recordCountPerPage, naviCountPerPage, cate1, cate2, cate3, cate4, order);
+		JDBCTemplate.close(conn);
+		RecipePageData rpd = null;
+		if(!list.isEmpty() && !pageNavi.isEmpty()) {
+			rpd = new RecipePageData();
+			rpd.setDataList(list);
+			rpd.setPageNavi(pageNavi);
+		}
+		return rpd;
 	}
 	
 }

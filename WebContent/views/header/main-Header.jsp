@@ -59,35 +59,6 @@
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
 	}
-</script>
-
-<!-- 페이지 네비게이션 고정 -->
-<script>
-	$(document).ready(function() {
-		var jbOffset = $('#fixed_layer').offset();
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
-
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		var $info = $("#info");
-		window.onresize = function() {
-			$info.html(window.innerWidth);
-		}
-	});
-</script>
 </head>
 
 

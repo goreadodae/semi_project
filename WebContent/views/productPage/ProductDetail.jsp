@@ -1,3 +1,4 @@
+<!-- 상품 상세 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- 초기화 -->
-<jsp:include page="/views/main/default_layout.jsp"></jsp:include>SS
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <!-- 글씨체 -->
 <link href="https://fonts.googleapis.com/css?family=Jua|Nanum+Myeongjo|Song+Myung" rel="stylesheet">
@@ -65,8 +66,7 @@
 
 .font{
 	font-family: 'Song Myung', serif;
-	font-weight: bold;
-	
+	font-weight: bold;	
 }
 
 .sum{
@@ -124,7 +124,7 @@
 
 
 
-#nav1,#nav2,#nav3{
+#nav1,#nav2{
 	text-align : center;
 	line-height : 50px;
 	padding:0px;
@@ -141,16 +141,14 @@
 }
 
 #nav1{
-	background-color : #522075;
+	background-color : #AAABD3;
 }
 
 #nav2{
-	background-color : #CEBEE1;
+	background-color : #FAFAFA;
+	color:#AAABD3;
 }
 
-#nav3{
-	background-color : #CEBEE1;
-}
 
 a{
 	padding : 0px;
@@ -225,7 +223,7 @@ a{
 		<div id="header"></div>
 
 		<!-- 전체 컨텐츠 -->
-		<br>
+		<br><br>
 
 		<div id="total" class="contents">
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
@@ -235,13 +233,13 @@ a{
 					<div class="row">
 						<div class="col-md-6 col-sm-12"  id="title_img">
 							<center>
-								<img src="/imgs/product_img/product1.jpg">
+								<img src="/imgs/product_img/product01.jpg" width=80%>
 							</center>
 						</div>
 
 						<div class="col-md-6 col-sm-12">
 							<br>
-							<h2 class="font">오징어볶음</h2>
+							<h2 class="font">콩국수 (2인분)</h2>
 							<hr>
 							<div class="col-md-12">
 							
@@ -254,7 +252,7 @@ a{
 										<p>수량선택</p>
 									</div>
 									<div class="col-md-8">
-										<p id="price">5000</p>
+										<p id="price">9900</p>
 										<p>묶음배송 (4만원 이상 무료배송)</p>
 										<p>50</p>
 										<button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
@@ -300,7 +298,7 @@ a{
   						
   						<div class="col-md-4" id="nav1" onclick="location.href='#detailnav'">상품상세정보</div>
   						<div class="col-md-4" id="nav2" onclick="location.href='#reviewnav'">구매후기</div>
-  						<div class="col-md-4" id="nav3" onclick="location.href='#inquirynav'">상품문의</div>
+  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">상품문의</div>
 					</div>
 				</div>
 				
@@ -309,8 +307,8 @@ a{
 				<!-- 상세정보 (이미지로 대체) -->
 				<div id="detail" class="col-md-12" style="padding: 0px;">
 
-				
-					<img src="/imgs/product_img/detail.JPG" width=100%>
+				<center>
+					<img src="/imgs/product_img/detail1.jpg" height=100%></center>
 				</div>
 				
 
@@ -323,7 +321,7 @@ a{
 				<div class="row">
   						<div class="col-md-4" id="nav2" onclick="location.href='#detailnav'">상품상세정보</div>
   						<div class="col-md-4" id="nav1" onclick="location.href='#reviewnav'">구매후기</div>
-  						<div class="col-md-4" id="nav3" onclick="location.href='#inquirynav'">상품문의</div>
+  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">상품문의</div>
 					</div>
 				</div>
 				<!-- 구매후기 -->
@@ -372,7 +370,7 @@ a{
 				<div class="col-md-12" id="inquirynav">
 				<div class="row">
   						<div class="col-md-4" id="nav2" onclick="location.href='#detailnav'">상품상세정보</div>
-  						<div class="col-md-4" id="nav3" onclick="location.href='#reviewnav'">구매후기</div>
+  						<div class="col-md-4" id="nav2" onclick="location.href='#reviewnav'">구매후기</div>
   						<div class="col-md-4" id="nav1" onclick="location.href='#inquirynav'">상품문의</div>
 					</div>
 				</div>

@@ -112,24 +112,24 @@
 						<tr id="notice-color">
 							<td><a href="/views/managerPage/noticePage.jsp"
 								style="color: black">공지사항<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td id="faq-color"><a href="/views/managerPage/faqPage.jsp"
 								style="color: black">FAQ<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
 								style="color: black">1:1문의<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td><a href="#" style="color: black">상품구매문의<img
-									src="/imgs/notice-img/right-arrow.png" height="9px"
+									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 					</table>
@@ -151,7 +151,7 @@
 					</table>
 					<div class="row">
 						<div class="col-md-10" id="hidingContens">
-							<img src="/imgs/notice-img/faq.png" height="15px">&nbsp;
+							<img src="/imgs/manager-img/faq.png" height="15px">&nbsp;
 							아무것도 없습니다 고객님^^
 							<!-- faq 이미지, faq답변 내용  -->
 

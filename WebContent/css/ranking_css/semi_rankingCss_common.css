@@ -1,0 +1,11 @@
+/*랭킹 css 공통으로 들어가는 부분*/
+
+
+/*폰트*/
+@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
+body{
+ 	font-family: 'Yeon Sung', cursive;
+}
+
+
+ 

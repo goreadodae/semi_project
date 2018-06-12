@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,22 +14,22 @@
 <!-- 부트스트랩 css -->
 
 <link rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-  crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
 
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss3.css">
 
 <!-- jquery ui 불러오는 css -->
 <link rel="stylesheet"
-  href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
@@ -87,34 +87,62 @@
    /*    $("#datepicker").datepicker('setDate', new Date());*/
 /*   document.getElementById("rankingDateToday").innerHTML =  today;
    console.log(document.getElementById("rankingDateToday"));*/
-   
-   document.getElementById("rankingDateToday").innerHTML =  new Date();
+   document.getElementById("rankingDateToday").innerHTML =  today;
  });
-
-
 
 
 </script>
 
 <style>
 .date:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 </style>
 
 </head>
 <body>
+<!-- 
+	<div class="container">
 
-  <div class="container">
+		<input type="text" id="datepicker" style="visibility: hidden">
+		<div class="date">
+			<h2 id="rankingDateToday">날짜선택</h2>
+		</div>
 
-    <input type="text" id="datepicker" style="visibility: hidden">
-    <div class="date">
-      <h2 id="rankingDateToday"></h2>
-    </div>
+	</div> -->
 
-  </div>
+<select class="custom-select" id="yearSelect">
+  <option selected>년</option>
+  <option value="1월">1월</option>
+  <option value="2월">2월</option>
+  <option value="3월">3월</option>
+  <option value="4월">4월</option>
+  <option value="5월">5월</option>
+  <option value="6월">6월</option>
+  <option value="7월">7월</option>
+  <option value="8월">8월</option>
+  <option value="9월">9월</option>
+  <option value="10월">10월</option>
+  <option value="11월">11월</option>
+  <option value="2018년">12월</option>
+</select>
 
 
+<select class="custom-select" id="monthSelect">
+  <option selected>월</option>
+  <option value="1월">1월</option>
+  <option value="2월">2월</option>
+  <option value="3월">3월</option>
+  <option value="4월">4월</option>
+  <option value="5월">5월</option>
+  <option value="6월">6월</option>
+  <option value="7월">7월</option>
+  <option value="8월">8월</option>
+  <option value="9월">9월</option>
+  <option value="10월">10월</option>
+  <option value="11월">11월</option>
+  <option value="12월">12월</option>
+</select>
 
 </body>
 </html>

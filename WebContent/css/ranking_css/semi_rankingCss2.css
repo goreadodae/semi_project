@@ -2,29 +2,29 @@
 
 /*이미지*/
 #imgWrap{
-	width: 950px;
-	height: 350px;
-	/*width: 100%;
-	height: 100%;*/
+	/*width: 950px;
+	height: 350px;*/
+	width: 100%;
+	height: 100%;
 	
 }
 
 #cardImgs{
-/*	width: 100%;
+	/*width: 100%;
 	height: 100%;*/
-	width: 100%;
-	height: 100%;
+	width: 950px;
+	height: 350px;
 }
 
 #rankingListWrap{
-	width: 950px;
+	width: 1000px;
 	height: 350px;	
 }
 
 
 /*카드-이미지 담은 div*/
 #rankingList{
-	width: 950px;
+	width: 1000px;
 	height: 350px;
 	color: black;
 	background-color: black;
@@ -61,7 +61,7 @@
 	background-color: #F8FAFF;
 	opacity: 0.8;
 	height : 121px; 
-	width: 975px;
+	width: 1050px;
 	/*width: 1142px;*/
 	overflow: auto;
 
@@ -82,7 +82,7 @@
 
 #rankingNickName{
 	display: inline-block; 
-	margin-right: 150px; 
+	margin-right: 100px; 
 	margin-top: 5px;
 	color: #353866;
 }
@@ -96,3 +96,30 @@
 	width: 950px;
 	overflow: hidden;
 }
+
+
+/*날짜 누르면 포인터로!(div)*/
+.date:hover {
+  cursor: pointer;
+}
+
+
+/*날짜 나오는 h태그*/
+#rankingDateToday{
+	margin-right: 160px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+	text-shadow: 2px 2px 2px #F8FAFF;
+}
+
+ #dateWrap{
+ 	border: 5px solid #EAEAEA;
+ 	border-radius: 10px;
+ 	height: 100%;
+ 	padding-top: 15px;
+ }
+
+ #dateTop{
+ 	height: 90px;
+ 	
+ }

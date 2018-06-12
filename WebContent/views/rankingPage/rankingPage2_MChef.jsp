@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>세미_랭킹 페이지 - 중간</title>
 
 
@@ -12,6 +13,7 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss2.css">
+<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
 
 <!-- 부트스트랩 css -->
 
@@ -30,13 +32,7 @@
 
 <!-- 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<style>
-/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-  *{font-family: 'Noto Sans KR', sans-serif;}*/
 
-  @import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
-  h3{font-family: 'Yeon Sung', cursive;}
-</style>
 </head>
 <body>
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,10 +13,10 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss.css">
+<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
 
 
 <!-- 부트스트랩 css -->
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -33,13 +33,6 @@
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
-
-
-<!-- jquery ui 불러오는 css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
 
 
 
@@ -79,18 +72,10 @@
 	});
 </script>
 
-<style>
-/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-  *{font-family: 'Noto Sans KR', sans-serif;}*/
-
-	@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
-	*{font-family: 'Yeon Sung', cursive;}
-</style>
 
 </head>
 
 <body>
-
 
 	<!-- ☆ 디자인 참고 홈페이지
 	https://www.ovzect.kr/shop?productListFilter=117035 -->
@@ -108,41 +93,6 @@
 	</div>
 	<!-- 상단 구분선 -->
 	<hr style="width: 500px; border: 2px solid #EAEAEA;">
-
-
-
-
-<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="/imgs/ranking_img/recipe.jpg" alt="First slide" id="Firstslide" style="height: 700px;">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/imgs/ranking_img/recipe.jpg" alt="Second slide" id="Secondslide" style="height: 700px;">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/imgs/ranking_img/recipe.jpg" alt="Third slide" id="Thirdslide" style="height: 700px;">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
- -->
-
-
-
-
 
 
 <br><br><br>
@@ -220,9 +170,15 @@
 		</div>
 	</div>
 
+<br><br>
 
-
-	<br><br><br><br><br><br><br>
+<!-- 동영상 div -->
+	<div class="container">
+	<div class="embed-responsive embed-responsive-16by9" style="width: 100%; height: 40%;">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/F5ESmoCh77k" allowfullscreen></iframe>
+	</div>
+	</div>
+	<br><br><br><br>
 
 
 
@@ -245,16 +201,6 @@
 
 <!-- 하단 메뉴 -->
 
-<script>
-$(document).ready(function(e) {
-/* a요소를 클릭 했을 시 */
-    $('#aTextDiv>#aText').click(function(){
-/* iframe 요소의 src 속성값을 a 요소의 data-url 속성값으로 변경 */ 
-        $('#iframe').attr('src',$(this).attr('data-url'));
-        })
-});
-</script>
-
 
 
 		<div class="container" id="aTextDiv">
@@ -268,17 +214,27 @@ $(document).ready(function(e) {
 		<br><br><br><br>
 
 <!-- 랭킹 리스트 만들기(1-5) -->
+<script>
+$(document).ready(function(e) {
+/* a요소를 클릭 했을 시 */
+    $('#aTextDiv>#aText').click(function(){
+/* iframe 요소의 src 속성값을 a 요소의 data-url 속성값으로 변경 */ 
+        $('#iframe').attr('src',$(this).attr('data-url'));
+        })
+});
+</script>
+
 
 
 <div class="container-fluid" id="rankingListDownWrap">
 	<div class="row justify-content-center">
-  <div id="borderWrap">
+  <div id="borderWrap" class="rounded">
 
   	<div class="container">
 
 <!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
 	<div id="ranking2Wrap">
-		<div class="container" style="width: 1100px; height: 2700px;">
+		<div class="container" style="width: 1100px; height: 2800px;" id="iframeWrap">
 			<!-- iframe으로 페이지 내에서 바꾸기! -->
 		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0"></iframe>
 		<!-- frameborder="0" -->

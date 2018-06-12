@@ -1,37 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
-<!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous"> -->
 
 <!-- 초기화 -->
-<link rel="stylesheet" href="/css/reset.css">
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <title>수상한 레시피</title>
 
 <script>
-	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
+		/* 해더 불러오는 제이쿼리 */
 		$("#header").load("/views/header/main-Header.jsp");
-		$("#footer").load("/views/footer/main-Footer.jsp");ㄴ
-	});
-	
-	$(document).ready(function() {
+		$("#footer").load("/views/footer/main-Footer.jsp");
+		
+		
+		 /* 웹 실행 시 카테고리 숨김 */
+		   $('#category_list').css('display', 'none');
 
-		var jbOffset = $('#ddd').offset();
+		   $('#div-category').hover(function(e) {
+		      if ($(e.target).is("#div-category")
+		         || $(e.target).is("#a-category")) {
+		         $('#category_list').css('display', 'block');
+		         inCategory = true; // 카테고리 오픈
+		      }
+
+		      // 카테고리 오픈되어 있을 때
+		      if (inCategory) {
+		         $('#category_list').hover(function(e) {
+		            if ($(e.target).is('.category-text')
+		               || $(e.target).is('.header')
+		               || $(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'block');
+		            }
+		         });
+
+		         $('#category_list').mouseleave(function(e) {
+		            if (!$(e.target).is('.category-text')
+		               || !$(e.target).is('.header')
+		               || !$(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'none');
+		            }
+		         });
+
+		         $('#div-category').mouseleave(function(e) {
+		            if (!$(e.target).is('.category-text')
+		               || !$(e.target).is('.header')
+		               || !$(e.target).is('#category_list')) {
+		               $('#category_list').css('display', 'none');
+		            }
+		         });
+		      }
+		   });
+		
+
+		var jbOffset = $('#start').offset();
 
 		$(window).scroll(function() {
 			if ($(document).scrollTop() >= jbOffset.top) {
@@ -50,22 +74,7 @@
 </script>
 
 <style>
-.price {
-	text-align: right;
-}
 
-#total {
-	background-color: oldlace;
-}
-
-#content1 {
-	background-color: white;
-}
-
-#desc {
-	/*padding : 20px;  */
-	
-}
 </style>
 
 </head>
@@ -73,10 +82,11 @@
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<!-- <div id="header"></div> -->
+		<div id="header"></div>
 
 
 		<!-- contents -->
+		<br><br>
 		<div id="">
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" style="padding: 0px;">

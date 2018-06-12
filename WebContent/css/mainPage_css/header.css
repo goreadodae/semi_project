@@ -41,13 +41,13 @@
 	background-color: white;
 	overflow: hidden;
 	padding-top: 15px;
-	padding-left: 20px;
 	padding-botton: 15px;
 	border: 0.5px solid #512772;
 }
 
 #category_list>ul {
 	float: left;
+	padding-left: 35px;
 	width: 195px;
 }
 
@@ -63,12 +63,23 @@
 
 
 #category_list>ul>li.header {
+	padding-top: 5px;
 	padding-left: 5px;
 	font-size:20px;
 	font-weight: bold;
 	color: #48C5FF;
 }
 
+#category_list>ul>li.header2 {
+	padding-top: 20px;
+	padding-left: 5px;
+	font-size:20px;
+	font-weight: bold;
+	color: #48C5FF;
+}
+#category_list>ul>li a {
+	text-decoration:none;
+}
 
 #top-message>#top-message-text {
 	top: 0;

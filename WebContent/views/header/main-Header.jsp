@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <title>main-Header</title>
 <script>
@@ -63,15 +62,18 @@
 
 	}
 </script>
-
 </head>
-<body>
-	<!-- Header -->
-	<div class="header">
 
+
+<body>
+	<!-- 해더 시작 -->
+	<div class="header">
+		<!-- 화면 너비 계산 -->
+		<div id="info" style="text-align: center;">info</div>
+
+		<!-- 팝업창 -->
 		<div id="top-message" class="col-md-12"
 			style="background-color: #512772; height: 40px; padding: 0px;">
-
 			<div id="top-message-text" class="col-md-6">
 				<a href="#">
 					<div>
@@ -90,9 +92,11 @@
 					<span aria-hidden="true" style="color: white;">&times;</span>
 				</button>
 			</div>
-
 		</div>
+		<!-- 팝업창 끝-->
 
+
+		<!-- 최상단 -->
 		<div class="col-md-8 mx-auto">
 			<ul class="nav justify-content-end">
 
@@ -117,16 +121,22 @@
 					</div></li>
 			</ul>
 		</div>
+		<!-- 최상단 끝 -->
 
 		<!-- 해더 브랜드 이미지-->
 		<div class="col-8 mx-auto">
-			<div class="jumbotron text-center" style="background-color: white;">
-				<div></div>
-				<div>
-					<h1 class="display-3" id="brandLogo">수상한레시피</h1>
+			<div class="text-center" style="background-color: white;">
+				<div class="row">
+					<div class="col-md-2" style="padding: 0px;">
+						<img src="https://res.kurly.com/pc/img/1805/delivery_180524_2.gif">
+					</div>
+					<div class="col-md-8">
+						<h1 class="display-6" id="brandLogo" style="line-height: 117px;">수상한레시피</h1>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- 해더 브랜드 이미지 끝-->
 
 		<!-- 네비게이션 -->
 		<div class="nav-scroller border-right-0 border-left-0"
@@ -137,13 +147,14 @@
 					<div class="col-md-2" id="div-category"
 						style="background-color: #512772">
 						<a class="nav-category" id="a-category" href="#"
-							style="line-height: 50px; color: white;"> <img
-							src="/imgs/main-img/ico_gnb_all.jpg" height="14px">&nbsp;&nbsp;&nbsp;카테고리
+							style="line-height: 50px; color: white; text-decoration: none;">
+							<img src="/imgs/main-img/ico_gnb_all.jpg" height="14px">&nbsp;&nbsp;&nbsp;카테고리
 						</a>
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0"
+						<a class="nav-category"
+							href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0"
 							style="line-height: 50px;">레시피</a>
 					</div>
 
@@ -168,85 +179,98 @@
 				</div>
 			</div>
 		</div>
+		<!-- 네비게이션 끝 -->
 
 		<!-- 전체 카테고리 -->
 		<div class="position-absolute col-md-12" id="t_category_list"
 			style="padding: 0px;">
 			<div class="col-md-8 mx-auto" id="category_list">
+				<!-- 1번 칼럼  -->
 				<ul class="colum_1">
-					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
+					<li class="header2"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+						<hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+				</ul>
+
+				<!-- 2번 칼럼  -->
+				<ul class="colum_1">
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header2"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+						<hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+				</ul>
+
+				<ul class="colum_1">
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header2"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+						<hr></li>
+					<li class="category-text">오늘의 레시피</li>
+					<li class="category-text">이달의 레시피</li>
+					<li class="category-text">쌀/잡곡</li>
+				</ul>
+				<ul class="colum_1">
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
+					<li class="category-text">채소</li>
+					<li class="category-text">과일</li>
+					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text">견과류</li>
+					<li class="header2"><a href="#" id="title-1"
+						class="category-text">채소/과일/곡류</a>
+						<hr></li>
 					<li class="category-text">오늘의 레시피</li>
 					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>
 				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
+					<li class="header"><a href="#" id="title-1"
+						class="category-text">종류별</a>
+						<hr></li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-				</ul>
-				<ul class="colum_1">
-					<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-				</ul>
-				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-				</ul>
-				<ul class="colum_1">
-						<li class="header"><a href="#" id="title-1" class="category-text">종류별</a><hr></li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header"><a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr></li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-				</ul>
 			</div>
 		</div>
+		<!-- 전체 카테고리 끝 -->
 	</div>
 </body>
 

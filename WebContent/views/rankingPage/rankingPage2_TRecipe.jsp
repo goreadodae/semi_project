@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>세미_랭킹 페이지 - 중간</title>
 
 
@@ -12,6 +13,7 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss2.css">
+<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
 
 <!-- 부트스트랩 css -->
 
@@ -27,37 +29,100 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 
+<!-- jquery ui 불러오는 css -->
+<link rel="stylesheet"
+  href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-<!-- 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<style>
-/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-  *{font-family: 'Noto Sans KR', sans-serif;}*/
 
-  @import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
-  h3{font-family: 'Yeon Sung', cursive;}
-</style>
 
-<script>
-  /* 해더 불러오는 제이쿼리 */
-  $(document).ready(function() {
-    $("#rankingPage2_date").load("rankingPage2_1(date).jsp");
-  });
-  </script>
+ <script>
+/*datepicker script*/
+  $(document).ready( function(){
+
+      $("#datepicker").datepicker(
+            {
+              dateFormat : 'yy년 mm월 dd일',
+               prevText : '이전달',
+               nextText : '다음달',
+               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+                     '8월', '9월', '10월', '11월', '12월' ],
+               monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+                     '7월', '8월', '9월', '10월', '11월', '12월' ],
+               dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+               dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+               showMonthAfterYear : true,
+               yearSuffix : '년',
+               changeMonth : true,
+               changeYear : true,
+               defaultDate : new Date(),
+               maxDate : new Date()
+            });
+
+ });
+
+   
+  $(function() {
+   $('#datepicker').on('change', function() {
+      $('#rankingDateToday').html($('#datepicker').val());
+   });
+
+
+
+   $('.date').on('click', function() {
+      $('#datepicker').datepicker("show");
+   });
+   
+
+    var x = new Date();
+    var Tyear = x.getFullYear().toString();
+    var Tmonth = (x.getMonth() + 1).toString();
+    var Tday = x.getDate().toString();
+    (Tday.length == 1) && (Tday = '0' + Tday);
+    (Tmonth.length == 1) && (Tmonth = '0' + Tmonth);
+    var today = Tyear + "년 " + Tmonth+ "월 " + Tday + "일";
+
+   
+    /*오늘 날짜 가져오기*/
+   /*    $("#datepicker").datepicker('setDate', new Date());*/
+/*   document.getElementById("rankingDateToday").innerHTML =  today;
+   console.log(document.getElementById("rankingDateToday"));*/
+   
+   document.getElementById("rankingDateToday").innerHTML =  today;
+ });
+
+/*datepicker script end*/
+</script>
+
+
 </head>
 <body>
+<br><br>
+<!-- datepicker 날짜 불러오기-->
+<div id="dateTop">
+  <div class="container" id="dateWrap">
+    <div class="row justify-content-center" id="rankingPage2_1Wrap" >
 
-<!-- datepicker 불러오는 제이쿼리 -->
-<div class="container">
-  <div class="row justify-content-center" id="rankingPage2_1Wrap" >
-  <div id="rankingPage2_date"></div>
+    <a href="javascript:void(0)" type="submit" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" id="preBtn">이전날</a>
+
+    <input type="text" id="datepicker" style="visibility: hidden">
+    <div class="date">
+      <h2 id="rankingDateToday"></h2>
+    </div>
+
+    <a href="javascript:void(0)" type="submit" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" id="nextBtn">다음날</a>
+
+    </div>
   </div>
-</div>
-<br>
+  </div>
+<br><br><br><br>
+
 
 <!-- 가운데로 보내는 컨테이너 -->
 <div class="container" id="tableContainer">
-<h4>오늘의 레시피</h4>
+<h3>오늘의 레시피</h3>
   <!-- 1위 -->
   <div id="tableWrap">
  <table class="table table-hover">

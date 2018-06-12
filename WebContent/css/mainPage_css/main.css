@@ -28,6 +28,12 @@ body{
 	z-index: 1;
 }
 
+@media ( max-width :1021px) {
+	#count_wrap{
+		display: none;
+	}
+}
+
 @media ( max-width :768px) {
 	#aside {
 		visibility: hidden;

@@ -1,3 +1,4 @@
+<!-- 상품 리스트 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -113,7 +114,7 @@
 
 			<br> <br>
 
-			<!-- 내용1. 이달의 패키지 -->
+			<!-- 내용1. 이달의 쿠킹박스 -->
 			<div id="start" class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
@@ -133,14 +134,14 @@
 								style="border: 1px solid #dadada; padding: 0px;">
 									<a href="/views/productPage/ProductDetail.jsp">
 									<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/product_img/product1.jpg" alt="제품이미지" height="300"
+									src="/imgs/product_img/product01.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
-									<p class="p_title">오징어볶음 양념</p>
+									<p class="p_title">콩국수 (2인분)</p>
 									<hr>
-									<p class="price">5000원</p><br>
+									<p class="price">9900원</p><br>
 								</div>
 							</div>
 
@@ -153,14 +154,14 @@
 								style="border: 1px solid #dadada; padding: 0px;">
 									<a href="/views/productPage/ProductDetail.jsp">
 									<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/product_img/product2.jpg" alt="제품이미지" height="300"
+									src="/imgs/product_img/product02.jpg" alt="제품이미지" height="300"
 									class="img-thumbnail">
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
-									<p class="p_title">부대찌개 양념</p>
+									<p class="p_title">소고기 찹스테이크 (2인분)</p>
 									<hr>
-									<p class="price">5000원</p><br>
+									<p class="price">15900원</p><br>
 								</div>
 							</div>
 						</div>

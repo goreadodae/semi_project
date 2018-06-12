@@ -27,7 +27,6 @@
 <!-- bootstrap js -->
 <script src="/js/bootstrap.js"></script>
 
-
 <!-- footer header css -->
 <link rel="stylesheet" href="/css/mainPage_css/footer.css">
 <link rel="stylesheet" href="/css/mainPage_css/header.css">

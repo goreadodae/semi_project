@@ -8,46 +8,46 @@
 
 	var inCategory = false;
 
-$(document).ready(function() {
+	$(document).ready(function() {
 
-   /* 웹 실행 시 카테고리 숨김 */
-   $('#category_list').css('display', 'none');
+		/* 웹 실행 시 카테고리 숨김 */
+		$('#category_list').css('display', 'none');
 
-   $('#div-category').hover(function(e) {
-      if ($(e.target).is("#div-category")
-         || $(e.target).is("#a-category")) {
-         $('#category_list').css('display', 'block');
-         inCategory = true; // 카테고리 오픈
-      }
+		$('#div-category').hover(function(e) {
+			if ($(e.target).is("#div-category")
+				|| $(e.target).is("#a-category")) {
+				$('#category_list').css('display', 'block');
+				inCategory = true; // 카테고리 오픈
+			}
 
-      // 카테고리 오픈되어 있을 때
-      if (inCategory) {
-         $('#category_list').hover(function(e) {
-            if ($(e.target).is('.category-text')
-               || $(e.target).is('.header')
-               || $(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'block');
-            }
-         });
+			// 카테고리 오픈되어 있을 때
+			if (inCategory) {
+				$('#category_list').hover(function(e) {
+					if ($(e.target).is('.category-text')
+						|| $(e.target).is('.header')
+						|| $(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'block');
+					}
+				});
 
-         $('#category_list').mouseleave(function(e) {
-            if (!$(e.target).is('.category-text')
-               || !$(e.target).is('.header')
-               || !$(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'none');
-            }
-         });
+				$('#category_list').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
 
-         $('#div-category').mouseleave(function(e) {
-            if (!$(e.target).is('.category-text')
-               || !$(e.target).is('.header')
-               || !$(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'none');
-            }
-         });
-      }
-   });
-});
+				$('#div-category').mouseleave(function(e) {
+					if (!$(e.target).is('.category-text')
+						|| !$(e.target).is('.header')
+						|| !$(e.target).is('#category_list')) {
+						$('#category_list').css('display', 'none');
+					}
+				});
+			}
+		});
+	});
 
 	/* 팝업 div 삭제 */
 	function delete_info(obj) {
@@ -58,6 +58,36 @@ $(document).ready(function() {
 		var field = document.getElementById(target);
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
+	}
+</script>
+
+<!-- 페이지 네비게이션 고정 -->
+<script>
+	$(document).ready(function() {
+		var jbOffset = $('#fixed_layer').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		var $info = $("#info");
+		window.onresize = function() {
+			$info.html(window.innerWidth);
+		}
+	});
+</script>
 </head>
 
 
@@ -102,7 +132,8 @@ $(document).ready(function() {
 				<li class="nav-item"><a class="nav-link" href="#"
 					style="color: black; font-size: 12px;">로그인</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="/views/insertRecipePage/insertRecipePage.jsp"
+				<li class="nav-item"><a class="nav-link"
+					href="/views/insertRecipePage/insertRecipePage.jsp"
 					style="color: black; font-size: 12px;">레시피 등록</a></li>
 
 				<li class="nav-item dropdown"><a
@@ -111,14 +142,13 @@ $(document).ready(function() {
 					style="color: black; font-size: 12px;">고객센터</a>
 
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">공지사항</a> <a
-							class="dropdown-item" href="#">자주하는 질문</a> <a
-							class="dropdown-item" href="#">1:1 문의</a>
+						<a class="dropdown-item" href="/views/managerPage/noticePage.jsp">공지사항</a> 
+						<a class="dropdown-item" href="/views/managerPage/noticePage.jsp">자주하는 질문</a>
+						<a class="dropdown-item" href="/views/managerPage/oneToOneQNAPage.jsp">1:1 문의</a>
 					</div></li>
 			</ul>
 		</div>
 		<!-- 최상단 끝 -->
-
 		<!-- 해더 브랜드 이미지-->
 		<div class="col-8 mx-auto">
 			<div class="text-center" style="background-color: white;">
@@ -176,6 +206,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<!-- 네비게이션 끝 -->
+
 
 		<!-- 전체 카테고리 -->
 		<div class="position-absolute col-md-12" id="t_category_list"
@@ -264,6 +295,7 @@ $(document).ready(function() {
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
+				</ul>
 			</div>
 		</div>
 		<!-- 전체 카테고리 끝 -->

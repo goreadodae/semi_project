@@ -58,6 +58,8 @@ $(document).ready(function() {
 		var field = document.getElementById(target);
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
+	}
+	</script>	
 </head>
 
 

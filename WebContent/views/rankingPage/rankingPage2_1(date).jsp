@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
 
 <!-- 스타일시트 초기화 -->
@@ -26,6 +26,7 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss3.css">
+<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
 
 <!-- jquery ui 불러오는 css -->
 <link rel="stylesheet"
@@ -106,14 +107,13 @@
 <body>
 
   <div class="container">
-
+    <div class="row justify-content-center" id="rankingPage2_1Wrap" >
     <input type="text" id="datepicker" style="visibility: hidden">
     <div class="date">
       <h2 id="rankingDateToday"></h2>
     </div>
-
+    </div>
   </div>
-
 
 
 </body>

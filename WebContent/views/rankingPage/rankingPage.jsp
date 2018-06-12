@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss.css">
-<link rel="stylesheet" href="/css/ranking_css/semi_rankingCss2.css">
+
 
 <!-- 부트스트랩 css -->
 
@@ -33,21 +34,62 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 
+
+<!-- jquery ui 불러오는 css -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+
+
+
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
-		$("#rankng2").load("rankingPage2.jsp");
-		$("#rankingPage2_1").load("rankingPage2_1(date).jsp");
+		$("#ranking2_TRecipe").load("rankingPage2_TRecipe.jsp");
+		$("#ranking2_MRecipe").load("rankingPage2_MRecipe.jsp");
+		$("#ranking2_MChef").load("rankingPage2_MChef.jsp");
+		
+	});
+
+
+
+
+
+		/* 내비게이션 고정 */
+	$(document).ready(function() {
+
+		var jbOffset = $('#bodyWrap').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+
 	});
 </script>
+
+<style>
+/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+  *{font-family: 'Noto Sans KR', sans-serif;}*/
+
+	@import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
+	*{font-family: 'Yeon Sung', cursive;}
+</style>
 
 </head>
 
 <body>
-
-
 
 
 	<!-- ☆ 디자인 참고 홈페이지
@@ -62,7 +104,7 @@
 	<br><br>
 	<div id="bodyWrap">
 	<div class="center-block" id="line">
-		<a id="rankingURL" href="#"><h2 id="rankingTopName">Ranking</h2></a>
+		<a id="rankingURL" href="#gray_line"><h2 id="rankingTopName">Ranking</h2></a>
 	</div>
 	<!-- 상단 구분선 -->
 	<hr style="width: 500px; border: 2px solid #EAEAEA;">
@@ -70,7 +112,7 @@
 
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -96,7 +138,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
+ -->
 
 
 
@@ -180,7 +222,7 @@
 
 
 
-	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br>
 
 
 
@@ -190,10 +232,10 @@
 
 	<!-- 하단 그레이 색들어간 부분! -->
 	<!--<div style="background-color: #F6F6F6;"> -->
-	<div style="background-color: #F8FAFF;">
+	<div style="background-color: #F8FAFF;" id="gray">
 		<!-- ranking 중간 구분 선 -->
-		<br><br><br><br><br><br><br><br>
-		<hr style="width: 400px; border: 2px solid #353866;">
+		<br><br><br><br><br><br>
+		<hr style="width: 400px; border: 2px solid #353866;" id="gray_line">
 		<!-- 	<div class="container" id="middle_Division_Line">
 		<div class="row  mx-auto">
 			<div id="ranking_Division_Line"></div>
@@ -203,32 +245,56 @@
 
 <!-- 하단 메뉴 -->
 
+<script>
+$(document).ready(function(e) {
+/* a요소를 클릭 했을 시 */
+    $('#aTextDiv>#aText').click(function(){
+/* iframe 요소의 src 속성값을 a 요소의 data-url 속성값으로 변경 */ 
+        $('#iframe').attr('src',$(this).attr('data-url'));
+        })
+});
+</script>
+
+
 
 		<div class="container" id="aTextDiv">
 
-			<a href="rankingPage3.jsp" id="aText">오늘의 레시피</a> &emsp;&emsp; 
-			<a href="#" id="aText">이달의 레시피</a> &emsp;&emsp; 
-			<a href="#" id="aText">이달의 회원</a>
+			<a data-url="rankingPage2_TRecipe.jsp" id="aText">오늘의 레시피</a> &emsp;&emsp; 
+			<a data-url="rankingPage2_MRecipe.jsp" id="aText">이달의 레시피</a> &emsp;&emsp; 
+			<a data-url="rankingPage2_MChef.jsp" id="aText">이달의 회원</a>
 
 		</div>
 
 		<br><br><br><br>
 
-<!-- 리스트 만들기 -->
+<!-- 랭킹 리스트 만들기(1-5) -->
 
-<h1>날짜 선택이 들어가야 하는 ㅂ부분 </h1><br>
-<div class="container">
-	<div id="rankingPage2_1"></div>
-	
-</div>
+
+<div class="container-fluid" id="rankingListDownWrap">
+	<div class="row justify-content-center">
+  <div id="borderWrap">
+
+  	<div class="container">
+
 <!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
-
-	<div id="ranking2Warp">
-		<div id="rankng2"></div>
+	<div id="ranking2Wrap">
+		<div class="container" style="width: 1100px; height: 2700px;">
+			<!-- iframe으로 페이지 내에서 바꾸기! -->
+		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0"></iframe>
+		<!-- frameborder="0" -->
+		<!-- <div id="ranking2_TRecipe"></div> -->
+		</div>
 	</div>
 
+	</div>
 
-	<br><br><br><br><br><br><br><br>	
+  <br><br><br>
+  </div>
+  </div>
+</div>
+	<br><br><br><br><br><br><br><br>
+
+	<!-- 회색 바탕 끝! -->	
 	</div>
 	
 <!-- 바디 랩 끝! -->

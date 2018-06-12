@@ -33,40 +33,52 @@
 
 /* 카테고리 */
 #t_category_list {
-	left: 8px;
+	left: -1;
 	z-index: 6;
 }
 
 #category_list {
 	background-color: white;
 	overflow: hidden;
-	padding: 10px;
-	border: 1px solid #512772;
+	padding-top: 15px;
 	padding-botton: 15px;
+	border: 0.5px solid #512772;
 }
 
 #category_list>ul {
 	float: left;
-	width: 192px;
+	padding-left: 35px;
+	width: 195px;
 }
 
-#data_list>ul>li {
+#category_list>ul>li {
 	heigth: 13px;
 	margin-top: 5px;
 	padding: 3px 5px;
-	color: #F3F3F3;
 	white-space: nowrap;
 	overflow: hidden;
+	font-size:12px;
 	text-overflow: ellipsis;
 }
 
-#data_list>ul>li.header {
-	padding-left: 15px;
-}
 
-#data_list>ul>li.header>p {
+#category_list>ul>li.header {
+	padding-top: 5px;
+	padding-left: 5px;
+	font-size:20px;
 	font-weight: bold;
 	color: #48C5FF;
+}
+
+#category_list>ul>li.header2 {
+	padding-top: 20px;
+	padding-left: 5px;
+	font-size:20px;
+	font-weight: bold;
+	color: #48C5FF;
+}
+#category_list>ul>li a {
+	text-decoration:none;
 }
 
 #top-message>#top-message-text {

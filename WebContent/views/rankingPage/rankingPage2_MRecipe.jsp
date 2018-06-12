@@ -30,28 +30,38 @@
 
 <!-- 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<style>
+/*  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+  *{font-family: 'Noto Sans KR', sans-serif;}*/
 
+  @import url('https://fonts.googleapis.com/css?family=Yeon+Sung');
+  h3{font-family: 'Yeon Sung', cursive;}
+</style>
 </head>
 <body>
 
 
 <!-- 가운데로 보내는 컨테이너 -->
-<div class="container">
-
+<div class="container" id="tableContainer">
+<h3>이달의 레시피</h3>
   <!-- 1위 -->
-   <table class="table table-hover">
+  <div id="tableWrap">
+ <table class="table table-hover">
     <tbody>
     <tr>
-      <th scope="row"><h3 class="pull-left">1위</h3></th>
+      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">1위</h3></th>
     </tr>
   </tbody>
   </table>
+</div>
+
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+<div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -60,6 +70,9 @@
     <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
     <p class="float-right" id="rankingNickName">닉네임 들어가는곳~~~</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
@@ -67,11 +80,13 @@
 </div>
 
 </div>
+</div>
 </a>
 <br><br><br>
 
 
    <!-- 2위 -->
+   <div id="tableWrap">
    <table class="table table-hover">
     <tbody>
     <tr>
@@ -79,13 +94,16 @@
     </tr>
   </tbody>
   </table>
-  
+  </div>
+
+
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -94,10 +112,14 @@
     <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
     <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>
@@ -105,6 +127,7 @@
 <br><br><br>
 
   <!-- 3위 -->
+  <div id="tableWrap">
   <table class="table table-hover">
     <tbody>
     <tr>
@@ -112,12 +135,14 @@
     </tr>
   </tbody>
   </table>
+  </div>
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+<div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -126,18 +151,23 @@
     <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
     <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
 </div>
-
 </div>
+</div>
+
 </a>
 <br><br><br>
 
 
  <!-- 4위 -->
+ <div id="tableWrap">
  <table class="table table-hover">
     <tbody>
     <tr>
@@ -145,12 +175,15 @@
     </tr>
   </tbody>
   </table>
+</div>
+
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -159,10 +192,14 @@
     <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
     <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>
@@ -171,6 +208,7 @@
 
 
  <!-- 5위 -->
+ <div id="tableWrap">
  <table class="table table-hover">
     <tbody>
     <tr>
@@ -178,12 +216,15 @@
     </tr>
   </tbody>
   </table>
+</div>
+
   <!-- a태그로 해당 레시피 이동 -->
 <a href="#">
+  <div class="container" id="rankingListWrap">
 <div class="card rounded shadow-sm"  id="rankingList">
   <!-- 레시피 이미지 -->
     <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/chef1200_400.png" alt="Card image" id="cardImgs">
+  <img class="card-img rounded" src="/imgs/ranking_img/recipe.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
@@ -192,10 +233,14 @@
     <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
     <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
      <p class="card-text">Last updated 3 mins ago</p>
   </div>
   </div>
+</div>
 </div>
 
 </div>

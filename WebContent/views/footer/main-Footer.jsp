@@ -4,27 +4,7 @@
 <html>
 <head>
 <title>main-footer</title>
-
-<!-- 모바일 -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-<!-- 부트스트랩 -->
-<link rel="stylesheet" href="/css/bootstrap.css">
-
-<!-- 초기화 -->
-<link rel="stylesheet" href="/css/reset.css">
-
-<!-- 푸터 스타일 -->
-<link rel="stylesheet" href="/css/mainPage_css/footer.css">
-
-<!-- 제이쿼리 -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
 </head>
-
-
 <body>
 	<!-- 고객 센터 -->
 	<div id="footer_cc" class="com-md-4">
@@ -46,7 +26,8 @@
 					</dd>
 				</dl>
 				<dl class="list">
-					<dt style="float: left; font: bold; padding-right: 8px;">토요일,일요일 & 공휴일</dt>
+					<dt style="float: left; font: bold; padding-right: 8px;">토요일,일요일
+						& 공휴일</dt>
 					<dd>
 						<span style="font-size: 13px;">오전 10시 - 오후 8시</span>
 					</dd>
@@ -105,7 +86,7 @@
 		</ul>
 	</div>
 	<br>
-	
+
 	<!-- 정보 -->
 	<div id="footer_info" class="col-md-12" style="padding: 0px;">
 		<div class="row">
@@ -152,7 +133,7 @@
 
 			<!-- 브랜드 로고 -->
 			<div></div>
-			
+
 		</div>
 	</div>
 </body>

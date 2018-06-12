@@ -48,61 +48,6 @@
 		      }
 		   });
 		});
-	
-	/* 팝업 div 삭제 */
-	
-	$(document).ready(function() {
-
-   /* 웹 실행 시 카테고리 숨김 */
-   $('#category_list').css('display', 'none');
-
-   $('#div-category').hover(function(e) {
-      if ($(e.target).is("#div-category")
-         || $(e.target).is("#a-category")) {
-         $('#category_list').css('display', 'block');
-         inCategory = true; // 카테고리 오픈
-      }
-
-      // 카테고리 오픈되어 있을 때
-      if (inCategory) {
-         $('#category_list').hover(function(e) {
-            if ($(e.target).is('.category-text')
-               || $(e.target).is('.header')
-               || $(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'block');
-            }
-         });
-
-         $('#category_list').mouseleave(function(e) {
-            if (!$(e.target).is('.category-text')
-               || !$(e.target).is('.header')
-               || !$(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'none');
-            }
-         });
-
-         $('#div-category').mouseleave(function(e) {
-            if (!$(e.target).is('.category-text')
-               || !$(e.target).is('.header')
-               || !$(e.target).is('#category_list')) {
-               $('#category_list').css('display', 'none');
-            }
-         });
-      }
-   });
-});
-	
-	function delete_info(obj) {
-		// 삭제할 ID 정보 찾기
-		var target = obj.parentNode.getAttribute('div');
-		console.log(target);
-		// 삭제할 element 찾기
-		var field = document.getElementById(target);
-		// #field 에서 삭제할 element 제거하기
-		document.getElementById('top-message').remove();
-
-	}
-</script>
 </head>
 
 
@@ -147,7 +92,7 @@
 				<li class="nav-item"><a class="nav-link" href="#"
 					style="color: black; font-size: 12px;">로그인</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#"
+				<li class="nav-item"><a class="nav-link" href="/views/insertRecipePage/insertRecipePage.jsp"
 					style="color: black; font-size: 12px;">레시피 등록</a></li>
 
 				<li class="nav-item dropdown"><a

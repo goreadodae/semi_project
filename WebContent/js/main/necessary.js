@@ -13,6 +13,5 @@ function delete_info(obj) {
 	var field = document.getElementById(target);
 	// #field 에서 삭제할 element 제거하기
 	document.getElementById('top-message').remove();
-
 }
 

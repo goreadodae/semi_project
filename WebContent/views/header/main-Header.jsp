@@ -8,56 +8,59 @@
 
 	var inCategory = false;
 
+	/* 팝업 div 삭제 */
+	
 	$(document).ready(function() {
 
-		/* 웹 실행 시 카테고리 숨김 */
-		$('#category_list').css('display', 'none');
+   /* 웹 실행 시 카테고리 숨김 */
+   $('#category_list').css('display', 'none');
 
-		$('#div-category').hover(function(e) {
-			if ($(e.target).is("#div-category")
-				|| $(e.target).is("#a-category")) {
-				$('#category_list').css('display', 'block');
-				inCategory = true; // 카테고리 오픈
-			}
+   $('#div-category').hover(function(e) {
+      if ($(e.target).is("#div-category")
+         || $(e.target).is("#a-category")) {
+         $('#category_list').css('display', 'block');
+         inCategory = true; // 카테고리 오픈
+      }
 
-			// 카테고리 오픈되어 있을 때
-			if (inCategory) {
-				$('#category_list').hover(function(e) {
-					if ($(e.target).is('.category-text')
-						|| $(e.target).is('.header')
-						|| $(e.target).is('#category_list')) {
-						$('#category_list').css('display', 'block');
-					}
-				});
+      // 카테고리 오픈되어 있을 때
+      if (inCategory) {
+         $('#category_list').hover(function(e) {
+            if ($(e.target).is('.category-text')
+               || $(e.target).is('.header')
+               || $(e.target).is('#category_list')) {
+               $('#category_list').css('display', 'block');
+            }
+         });
 
-				$('#category_list').mouseleave(function(e) {
-					if (!$(e.target).is('.category-text')
-						|| !$(e.target).is('.header')
-						|| !$(e.target).is('#category_list')) {
-						$('#category_list').css('display', 'none');
-					}
-				});
+         $('#category_list').mouseleave(function(e) {
+            if (!$(e.target).is('.category-text')
+               || !$(e.target).is('.header')
+               || !$(e.target).is('#category_list')) {
+               $('#category_list').css('display', 'none');
+            }
+         });
 
-				$('#div-category').mouseleave(function(e) {
-					if (!$(e.target).is('.category-text')
-						|| !$(e.target).is('.header')
-						|| !$(e.target).is('#category_list')) {
-						$('#category_list').css('display', 'none');
-					}
-				});
-			}
-		});
-	});
+         $('#div-category').mouseleave(function(e) {
+            if (!$(e.target).is('.category-text')
+               || !$(e.target).is('.header')
+               || !$(e.target).is('#category_list')) {
+               $('#category_list').css('display', 'none');
+            }
+         });
+      }
+   });
+});
+	
+	function delete_info(obj) {
+		// 삭제할 ID 정보 찾기
+		var target = obj.parentNode.getAttribute('div');
+		console.log(target);
+		// 삭제할 element 찾기
+		var field = document.getElementById(target);
+		// #field 에서 삭제할 element 제거하기
+		document.getElementById('top-message').remove();
 
-	/* 영역 설정 */
-	$(document).ready(function() {
-
-		var $info = $("#info");
-
-		window.onresize = function() {
-			$info.html(window.innerWidth);
-		}
-	});
+	}
 </script>
 </head>
 

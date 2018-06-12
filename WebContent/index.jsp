@@ -56,6 +56,7 @@ strong {
 	padding: 0 15px;
 }
 </style>
+
 <body style="overflow-x: hidden; overflow-y: auto;">
 
 	<!-- 전체 컨테이너  -->

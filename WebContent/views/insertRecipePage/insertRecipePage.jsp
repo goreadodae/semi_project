@@ -60,9 +60,10 @@
 		
 	
 	/* 요리순서-step 추가 넣는 곳  */
-	
+	 var count = 2;
 	  function stepPlus(){
-		$('.test').append('<div class="row"><div class="col-md-2"><h3>Step1</h3></div>'+
+		  
+		$('.test').append('<div class="row"><div class="col-md-2"><h3>Step'+count+'</h3></div>'+
 				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;"></textarea></div>'+
 				'<div class="col-md-3"><button type="button" class="photoBtn"><img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150"></button></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
@@ -97,7 +98,9 @@
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tip2.png"></div>'+
 						'<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></form>'+
-					'<div class="row"><div class="col-md-12">　　</div></div>'); } 
+					'<div class="row"><div class="col-md-12">　　</div></div>'); count++;
+					
+		} 
 	
 	/* 네비게이션부분  */
 	
@@ -119,6 +122,8 @@
 			});
 
 		});
+	
+
 	
 	/* 그림추가부분-메인  */
 	 $(document).ready(function() {
@@ -303,6 +308,59 @@
 	        });
 	      });
 	 
+	 
+	 /* 그림추가부분-요리완성-전체  */
+	 $(document).ready(function() {
+	        $("#fileSucAll").on('change', function() {
+	          //Get count of selected files
+	          var countFiles = $(this)[0].files.length;
+	          console.log(countFiles); /* 파일의 개수  */
+	          var imgPath = $(this)[0].value;
+	          console.log(imgPath); /* 값? 선택된 파일의 값? */
+	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+	          var imgFile_Suc_One = $('#imgFile_Suc_One'); var imgFile_Suc_Two = $('#imgFile_Suc_Two'); 
+	          var imgFile_Suc_Thrid = $('#imgFile_Suc_Thrid');  var imgFile_Suc_Four = $('#imgFile_Suc_Four'); var imgFile_Suc_Five = $('#imgFile_Suc_Five');
+	          /* imgFile_Suc_One.empty(); */
+	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	            if (typeof(FileReader) != "undefined") {
+	              //loop for each file selected for uploaded.
+	              for (var i = 0; i < countFiles; i++) 
+	              {
+	            	  var reader = new FileReader();
+	            	  if(i==0){
+	                reader.onload = function(e) {
+	                	imgFile_Suc_One.attr('src',e.target.result);}
+	                }else if(i==1){
+	                	reader.onload = function(e) {
+	                		imgFile_Suc_Two.attr('src',e.target.result);
+		                }
+	                }else if(i==2){
+	                	reader.onload = function(e) {
+	                		imgFile_Suc_Thrid.attr('src',e.target.result);
+		                }
+	                }else if(i==3){
+	                	reader.onload = function(e) {
+	                		imgFile_Suc_Four.attr('src',e.target.result);
+		                }
+	                }else if(i==4){
+	                	reader.onload = function(e) {
+	                		imgFile_Suc_Five.attr('src',e.target.result);
+		                }
+	                }
+	            	  /* imgFile_Suc_One.show();  imgFile_Suc_Two.show();  imgFile_Suc_Third.show();  imgFile_Suc_Four.show();  imgFile_Suc_Five.show(); */
+	            	  /* 아 너무너무너무 힘드렁 ㅠㅠ */
+	                reader.readAsDataURL($(this)[0].files[i]);
+	              }
+	            } else {
+	              alert("This browser does not support FileReader.");
+	            }
+	          } else {
+	            alert("Pls select only images");
+	          }	          
+	        });
+	      });
+	 
+	
 	 
 </script>
 
@@ -622,7 +680,8 @@
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-12"><button><input id="fileSucAll" multiple="multiple" type="file" style="display:none"/>+사진 한번에 넣기</button></div></div></div>
+					<div class="row"><div class="col-md-12" id="successImgAll"><input id="fileSucAll" multiple="multiple" type="file" file_gubun="work" style="display:none"/>
+					<button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
 					<input id="fileSucOne" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_One" onclick="document.all.fileSucOne.click();"></div></div></div>

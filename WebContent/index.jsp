@@ -11,51 +11,9 @@
 
 <!-- 메인 전용 css -->
 <link rel="stylesheet" href="/css/mainPage_css/main.css">
-
-<style>
-#count_div {
-	top: 80px;
-	height: 70px;
-	background-color: #272727;
-	padding: 0px;
-	float: left;
-}
-
-#count_wrap {
-	bottom: 30px;
-}
-
-#application_wrap {
-	bottom: 180px;
-	left: 0px;
-	text-align: right;
-}
-/* 카운트 수 */
-strong {
-	line-height: 65px;
-	color: white;
-	font-size: 50px;
-}
-
-#title-header {
-	display: table;
-	text-align: center;
-}
-
-#title-header:before, #title-header:after {
-	content: '';
-	display: table-cell;
-	background: #512772;
-	width: 50%;
-	-webkit-transform: scaleY(0.05);
-	transform: scaleY(0.05);
-}
-
-#title-header>h1 {
-	white-space: pre;
-	padding: 0 15px;
-}
-</style>
+<script>
+	$("html").easeScroll();
+</script>
 
 <body style="overflow-x: hidden; overflow-y: auto;">
 
@@ -64,31 +22,27 @@ strong {
 
 		<!-- 해더 영역 -->
 		<div id="header"></div>
-
+		<!-- 헤더 영역 끝 -->
+		
 		<!-- 컨텐츠 영역 -->
 		<div id="content-main" class="contents">
 
 			<!-- 메인 이미지  -->
-			<div class="col-md-12 col-sm-12" style="height: 530px; padding: 0px;">
+			<div class="col-md-12 col-sm-12" id="main-img-wrap">
 				<img src="/imgs/main-img/main_img.jpg" width="100%" height="500px">
 				<!-- 레시피 카운트 -->
-				<div class="col-md-8 mx-auto">
-					<div class="col-md-3 mx-auto" style="height: 70px;" id="count_wrap">
-						<div class="text-center rounded" id="count_div"
-							style="margin-left: 5px; width: 60px;">
+				<div class="col-md-8 mx-auto" id="recipe-count">
+					<div class="col-md-3 mx-auto" id="count_wrap">
+						<div class="text-center rounded" id="count_div1">
 							<strong>0</strong>
 						</div>
-						<div class="text-center rounded" id="count_div"
-							style="margin-left: 5px; width: 60px;">
+						<div class="text-center rounded" id="count_div2">
+							<strong>0</strong>
+						</div>
+						<div class="text-center rounded" id="count_div3">
 							<strong>5</strong>
 						</div>
-						<div class="text-center rounded" id="count_div"
-							style="margin-left: 5px; width: 60px;">
-							<strong>1</strong>
-						</div>
-
-						<div class="text-center rounded" id="count_div"
-							style="margin-left: 5px; width: 60px;">
+						<div class="text-center rounded" id="count_div4">
 							<strong>0</strong>
 						</div>
 					</div>
@@ -99,44 +53,55 @@ strong {
 			<!-- 어플리케이션 다운로드  -->
 			<div class="col-md-12" id="application_wrap">
 				<div class="col-md-8 mx-auto" style="padding: 0px;">
-					<!-- 구글 -->
-					<a href="#"> <img class="rounded"
-						src="/imgs/main-img/google.png">
+					<!-- google-->
+					<a href="#"> 
+						<img class="rounded" src="/imgs/main-img/google.png">
 					</a>
-					<!-- 이미지 -->
-					<a href="#"> <img class="rounded" src="/imgs/main-img/app.png">
+					<!-- apple -->
+					<a href="#"> 
+						<img class="rounded" src="/imgs/main-img/app.png">
 					</a>
 				</div>
 			</div>
 			<!-- 어플리케이션 다운로드 끝  -->
-
+			
+			<!-- 인트로 -->			
 			<div class="col-md-12 col-sm-12">
-				<div class="col-md-8 mx-auto text-center">
+				<div class="col-md-8 mx-auto text-center" id="intro-wrap">
 					<h3>상품화된 누적 레시피</h3>
 					<h1>수상한 레시피로 레시피올리고 수익올리자</h1>
-					<div class="col-md-8 mx-auto" style="border: 2px solid black; height: 200px; padding:0px;">
-						<div class="col-md-4" style="border:2px solid black; height:200px; float:left;">
-							<div style="border:2px solid black; height:150px;"></div>
-							<p style="padding-top:10px;">레시피 등록하고</p>
+					<div class="col-md-8 mx-auto" id="intro-step">
+						<div class="col-md-4" id="intro-step-wrap">
+							<div>
+								이미지 올림
+							</div>
+							<p>레시피 등록하고</p>
 						</div>
-						<div class="col-md-4" style="border:2px solid black; height:200px; float:left;">
-							<div style="border:2px solid black; height:150px;"></div>
-							<p style="padding-top:10px;">랭킹에 올리고</p>
+						
+						<div class="col-md-4" id="intro-step-wrap">
+							<div>
+								이미지 올림
+							</div>
+							<p>랭킹에 올리고</p>
 						</div>
-						<div class="col-md-4" style="border:2px solid black; height:200px; float:left;">
-							<div style="border:2px solid black; height:150px;"></div>
-							<p style="padding-top:10px;">수익 얻자</p>
+						
+						<div class="col-md-4" id="intro-step-wrap">
+							<div>
+								이미지 올림
+							</div>
+							<p>수익 얻자</p>
 						</div>
 					</div>
 					<br><br>
-					<button type="button" class="col-md-4 btn btn btn-lg" style="background-color:#512772; color:white;">시작하기</button>
+					<button type="button" class="col-md-3 btn btn btn-lg">시작하기</button>
 					<br><br>
 				</div>
 			</div>
-
+			<!-- 인트로 끝 -->
+			
+			
 			<!-- 사이드 메뉴 -->
-			<!-- <div id="aside"
-				style="height: 135px; display: inline-block; padding-right: 15px;">
+			<!-- <div id="aside" style="height: 135px; display: inline-block; padding-right: 15px;">
 				<div class="col-md-12 col-sm-12 text-center"
 					style="height: 29px; background-color: #f5f5f5; border: 0.5px solid #dddddd">
 					<a class="side_menu_text" href="#" style="line-height: 29px;">배송안내</a>
@@ -163,29 +128,35 @@ strong {
 			</div> -->
 			<!-- 사이드 메뉴 끝 -->
 
+
 			<!-- 네비  -->
 			<div id="point">
-				<br> <br> <br>
+				<br><br><br>
 
-				<!-- 추천 이벤트 / 신상품  -->
+				<!-- 추천 이벤트 / 신상품 이미지 슬라이드-->
 				<div class="col-md-8 mx-auto">
 					<div class="row">
-						<!-- 이미지 슬라이드 -->
-						<div class="col-md-6" style="padding: 6px; padding-left: 0px;">
+					
+						<!-- 추천 이벤트 이미지 슬라이드 -->
+						<div class="col-md-6" id="recommendEvent">
 							<h1>추천 이벤트</h1>
-							<div id="carouselExampleControls1" class="carousel slide"
-								data-ride="carousel">
+							<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
+									<!-- 첫 번째 이미지 슬라이드  -->
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
 											alt="First slide">
 									</div>
+									
+									<!-- 두 번째 이미지 슬라이드  -->
 									<div class="carousel-item">
 										<img class="d-block w-100"
 											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
 											alt="Second slide">
 									</div>
+									
+									<!-- 세 번째 이미지 슬라이드  -->
 									<div class="carousel-item">
 										<img class="d-block w-100"
 											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
@@ -204,22 +175,29 @@ strong {
 								</a>
 							</div>
 						</div>
-
-						<div class="col-md-6" style="padding: 6px; padding-right: 0px;">
+						<!-- 추천 이벤트 이미지 슬라이드 끝 -->
+						
+						<!-- 신상품 이미지 슬라이드 -->
+						<div class="col-md-6" id="newFoods">
 							<h1>신상품</h1>
 							<div id="carouselExampleControls2" class="carousel slide"
 								data-ride="carousel">
 								<div class="carousel-inner">
+									<!-- 신상품 첫 번째 이미지  -->
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
 											alt="First slide">
 									</div>
+									
+									<!-- 신상품 두 번째 이미지  -->
 									<div class="carousel-item">
 										<img class="d-block w-100"
 											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
 											alt="Second slide">
 									</div>
+									
+									<!-- 신상품 세 번째 이미지  -->
 									<div class="carousel-item">
 										<img class="d-block w-100"
 											src="//img-cf.kurly.com/shop/data/skin/designgj/img/banner/74dcada7e33c67299be3b5a4233bc37d.jpg"
@@ -241,82 +219,109 @@ strong {
 					</div>
 				</div>
 				<!-- 추천 이벤트 끝  -->
-				<br> <br> <br> <br> <br>
-
-				<!-- MD 추천 -->
+				
+				<br><br><br><br><br>
+				
+				<!-- 레시피 검색 -->
+				<div id="search" class="col-md-12"
+					style="background-color: #f6f7f7; padding: 0px;">
+					<div class="col-md-8 mx-auto text-center">
+						<br> <br>
+						<h3>냉장고를 부탁해!</h3>
+						<h1 style="color: #512772;">내가 가진 재료로 레시피 추천받기</h1>
+						<br>
+						<form action="/" method="get">
+							<fieldset>
+								<div class="col-md-8 input-group mb-3 mx-auto">
+									<input type="text" class="form-control"
+										placeholder="재료명으로 검색하세요."
+										aria-label="Recipient's username"
+										aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button">
+										<img src="/imgs/icons/search.svg"></button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+				<!-- 레시피 검색 끝 -->
+				
+				<br><br><br><br><br>
+				
+					<!-- MD 추천 -->
 				<div class="col-md-8 mx-auto" style="padding: 0px;">
 
-					<div class="col-md-12" id="main-contents-header"
-						style="padding: 0px; padding-bottom: 10px;">
+					<div class="col-md-12" id="md-wrap">
 						<div id="title-header">
-							<h1>레시피</h1>
+							<h1>MD 추천</h1>
 						</div>
-						<!-- 폰트! -->
 					</div>
 
 					<div id="main_div_1" class="col-md-12" style="padding: 0px;">
+						
 						<div class="row">
-
-							<!-- 메인 사진 1 DB 사진-->
+							<!-- MD 추천  1 - 상품 -->
 							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
+								<div class="col-md-12 col-sm-12" style="border: 1px solid #dadada; padding: 0px;">
+									
 									<img id="main_img_1" class="img col-md-12 col-sm-12"
 										style="padding: 0px;" src="/imgs/main-img/main_stake.jpg"
 										alt="이미지" height="325" class="img-thumbnail">
+										
 									<div class="col-md-12">
 										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우
 											(냉동)</p>
 										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
 									</div>
+									
 								</div>
 							</div>
 
-
-							<!-- 메인 사진 2 DB 사진-->
+							<!-- MD 추천  2 - 상품 -->
 							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
+								<div class="col-md-12 col-sm-12" style="border: 1px solid #dadada; padding: 0px;">
+									
+									<!-- 상품 이미지 -->
 									<img id="main_img_2" class="img col-md-12 col-sm-12"
 										style="padding: 0px;" src="/imgs/main-img/main_rice.jpg"
 										alt="이미지" height="325" class="img-thumbnail">
+									
+									<!-- 상품 이름, 가격  -->
 									<div class="col-md-12">
-										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우
-											(냉동)</p>
+										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우(냉동)</p>
 										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
 									</div>
+									
 								</div>
 							</div>
 
-							<!-- 메인 사진 3 DB 사진-->
+							<!-- MD 추천  3 - 상품 -->
 							<div class="col-md-3 col-sm-3 col-6">
 								<div class="col-md-12 col-sm-12"
 									style="border: 1px solid #dadada; padding: 0px;">
 
-									<img id="main_img_3" class="img col-md-12 col-sm-12"
+									<img class="img col-md-12 col-sm-12" id="main_img_3"
 										style="padding: 0px;" src="/imgs/main-img/main_pancake.jpg"
 										alt="이미지" height="325" class="img-thumbnail">
 									<div class="col-md-12">
-										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우
-											(냉동)</p>
+										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우(냉동)</p>
 										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
 									</div>
 								</div>
 							</div>
-
+			
+							<!-- MD 추천  4 - 상품 -->
 							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
-									<!-- 메인 사진 4 DB 사진-->
-									<img id="main_img_4" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src="/imgs/main-img/main_cake.jpg"
+								<div class="col-md-12 col-sm-12" style="border: 1px solid #dadada; padding: 0px;">
+								
+									<img class="img col-md-12 col-sm-12" id="main_img_4"
+										style="padding: 0px;" src="/imgs/main-img/main_pancake.jpg"
 										alt="이미지" height="325" class="img-thumbnail">
+										
 									<div class="col-md-12">
-										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우
-											(냉동)</p>
+										<p class="lead my-1" style="font-weight: 600;">블랙 타이거새우(냉동)</p>
 										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
 									</div>
 								</div>
@@ -325,69 +330,25 @@ strong {
 					</div>
 				</div>
 				<!-- MD 추천 끝  -->
-				<br> <br> <br> <br> <br>
-
-				<!-- 수상한 레시피 혜택 -->
-				<div id="plus" class="col-md-12"
-					style="background-color: #f6f7f7; padding: 0px;">
-					<div class="col-md-8 mx-auto" style="padding: 0px;">
-
-						<div class="row" style="padding: 0px; background-color: #f6f7f7;">
-							<div class="col-md-6 col-sm-6" id="banner1"
-								style="line-height: 260px;">
-								<a> <img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/banner.jpg" alt="이미지" height="180"
-									class="img-thumbnail">
-								</a>
-							</div>
-
-							<div class="col-md-2 col-sm-2" id="banner2"
-								style="line-height: 260px;">
-								<a> <img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/banner2.jpg" alt="이미지" height="180"
-									class="img-thumbnail">
-								</a>
-							</div>
-
-							<div class="col-md-2 col-sm-2" id="banner3"
-								style="line-height: 260px;">
-								<a> <img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/banner3.jpg" alt="이미지" height="180"
-									class="img-thumbnail">
-								</a>
-							</div>
-
-							<div class="col-md-2 col-sm-2" id="banner3"
-								style="line-height: 260px;">
-								<a> <img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/main-img/banner3.jpg" alt="이미지" height="180"
-									class="img-thumbnail">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 수상한 레시피 혜택 끝 -->
-				<br> <br> <br> <br>
+				
+				<br><br><br><br>
 
 				<!-- 컨텐츠 이미지 뷰  -->
 				<div id="main_div_2" class="col-md-8 mx-auto" style="padding: 0px;">
-					<div class="col-md-12" id="main-contents-header"
-						style="padding: 0px;">
+					<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
 						<div id="title-header">
-							<h1>레시피</h1>
+							<h1>오늘의 레시피</h1>
 						</div>
 					</div>
 
 					<div class="col-md-12" style="padding: 0px;">
-						<div class="row">
 
+						<div class="row">
 							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-									<img id="main_img_2_1" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src="/imgs/main-img/main_pork.jpg"
-										alt="이미지" height="325" class="img-thumbnail">
+								<div class="col-md-12 col-sm-12" style="border: 1px solid #dadada; padding: 0px;">
+									<img class="img col-md-12 col-sm-12" id="main_img_2_1" 
+										 style="padding: 0px;" src="/imgs/main-img/main_pork.jpg"
+										   alt="이미지" height="325" class="img-thumbnail">
 									<div class="col-md-12">
 										<p class="lead my-1">오늘 메뉴는 피자</p>
 										<p class="display-6">By 정쥐수</p>
@@ -437,44 +398,59 @@ strong {
 					</div>
 				</div>
 				<!-- 컨텐츠 이미지 뷰  끝 -->
-				<br> <br> <br>
+				<br><br><br>
+				
+				<!-- 수상한 레시피 혜택 -->
+				<div id="plus" class="col-md-12">
+					<div class="col-md-8 mx-auto" style="padding: 0px;">
 
-				<!-- 레시피 검색 -->
-				<div id="search" class="col-md-12"
-					style="background-color: #f6f7f7; padding: 0px;">
-					<div class="col-md-8 mx-auto text-center">
-						<br> <br>
-						<h3>냉장고를 부탁해!</h3>
-						<h1 style="color: #512772;">내가 가진 재료로 레시피 추천받기</h1>
-						<br>
-						<form action="/" method="get">
-							<fieldset>
-								<div class="col-md-8 input-group mb-3 mx-auto">
-									<input type="text" class="form-control"
-										placeholder="재료명으로 검색하세요."
-										aria-label="Recipient's username"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button">
-										<img src="/icons/png/magnifying-glass.png"></button>
-									</div>
-								</div>
-							</fieldset>
-						</form>
+						<div class="row" id="plus-background" style="padding: 0px; background-color: #f6f7f7;">
+							
+							<div class="col-md-6 col-sm-6" id="banner1" style="line-height: 260px;">
+								<a> 
+									<img class="col-md-12 col-sm-12" class="img-thumbnail" style="padding: 0px;"
+										   src="/imgs/main-img/banner.jpg" alt="이미지" height="180">
+								</a>
+							</div>
+
+							<div class="col-md-2 col-sm-2" id="banner2" style="line-height: 260px;">
+								<a> 
+									<img class="col-md-12 col-sm-12" class="img-thumbnail" style="padding: 0px;"
+									   	   src="/imgs/main-img/banner2.jpg" alt="이미지" height="180">
+								</a>
+							</div>
+
+							<div class="col-md-2 col-sm-2" id="banner3" style="line-height: 260px;">
+								<a> 
+									<img class="col-md-12 col-sm-12" class="img-thumbnail" style="padding: 0px;"
+									 	   src="/imgs/main-img/banner3.jpg" alt="이미지" height="180">
+								</a>
+							</div>
+
+							<div class="col-md-2 col-sm-2" id="banner3" style="line-height: 260px;">
+								<a> 
+									<img class="col-md-12 col-sm-12" class="img-thumbnail" style="padding: 0px;"
+										   src="/imgs/main-img/banner3.jpg" alt="이미지" height="180">
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- 레시피 검색 끝 -->
-				<br> <br> <br>
-
+				<!-- 수상한 레시피 혜택 끝 -->
+				
+				<br><br><br>
 
 				<!-- 푸터 -->
 				<div id="footer"
 					class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
-					style="border: 1px solid black; padding: 10px;"></div>
+					style="border: 1px solid black; padding: 10px;">
+				</div>
 				<!-- 푸터 끝 -->
-				<br> <br>
+				
+				<br><br>
+				
 			</div>
 		</div>
-		</div>
+	</div>
 </body>
 </html>

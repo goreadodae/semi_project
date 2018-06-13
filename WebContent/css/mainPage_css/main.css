@@ -1,31 +1,31 @@
 @charset "UTF-8";
+
 /* 폰트 */
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-/* 폰트 적용 */
-body{
-	font-family: "Nanum Gothic";
+@font-face {
+    font-family: IropkeBatang; // 사용할 폰트명
+    src: url('/fonts/IropkeBatangM.eot'); // eot 포맷
+    src: local(※), url('/fonts/IropkeBatangM.woff') format('woff'); // ie9이상은 woff 포맷 적용
 }
 
-.side_menu_text {
-	text-decoration: none;
-	color: black;
-	font-size: 12px;
+/* 미디어 쿼리 */
+/*622*/
+
+@media ( max-width :1802px) {
+	#count_div1{
+		display: none;
+	}
 }
 
-#aside {
-	margin-top: 0;
-	position: fixed;
-	float: left;
-	right: 0;
-	bottom: 2;
-	padding: 3;
-	z-index: 100;
+@media ( max-width :1198px) {
+	#category-text{
+		display: none;
+	}
 }
 
-#carouselExampleIndicators {
-	position: relative;
-	z-index: 1;
+@media ( max-width :1150px) {
+	#header-ani{
+		display: none;
+	}
 }
 
 @media ( max-width :1021px) {
@@ -33,6 +33,7 @@ body{
 		display: none;
 	}
 }
+
 
 @media ( max-width :768px) {
 	#aside {
@@ -57,8 +58,44 @@ body{
 		width: 33%;
 		float: left;
 	}
+	
+}
+/* 미디어 쿼리 끝  */
+
+/* 전체 폰트 적용 */
+body{
+	font-family: 'IropkeBatang';
+}
+/* 폰트 적용 끝 */
+
+
+.contents #main-img-wrap{
+	height: 530px; 
+	padding: 0px;
 }
 
+.side_menu_text {
+	text-decoration: none;
+	color: black;
+	font-size: 12px;
+}
+
+#aside {
+	margin-top: 0;
+	position: fixed;
+	float: left;
+	right: 0;
+	bottom: 2;
+	padding: 3;
+	z-index: 100;
+}
+
+#carouselExampleIndicators {
+	position: relative;
+	z-index: 1;
+}
+
+/* 호버 - 사진 클릭 효과 */
 #main_div_1 #main_img_1:hover{
 	cursor: pointer;
 	opacity: 0.8;
@@ -68,10 +105,12 @@ body{
 	cursor: pointer;
 	opacity: 0.8;
 }
+
 #main_div_1 #main_img_3:hover{
 	cursor: pointer;
 	opacity: 0.8;
 }
+
 #main_div_1 #main_img_4:hover{
 	cursor: pointer;
 	opacity: 0.8;
@@ -86,11 +125,117 @@ body{
 	cursor: pointer;
 	opacity: 0.8;
 }
+
 #main_div_2 #main_img_2_3:hover{
 	cursor: pointer;
 	opacity: 0.8;
 }
+
 #main_div_2 #main_img_2_4:hover{
 	cursor: pointer;
 	opacity: 0.8;
 }
+/* - 사진 클릭 효과 끝 */
+
+/* 레시피 카운트 */
+#count_wrap div {
+	top: 80px;
+	height: 70px;
+	background-color: #272727;
+	padding: 0px;
+	float: left;
+	margin-left: 5px; 
+	width: 60px;
+}
+
+#count_wrap {
+	height: 70px;
+	bottom: 30px;
+}
+
+strong {
+	line-height: 65px;
+	color: white;
+	font-size: 50px;
+}
+
+#application_wrap {
+	bottom: 180px;
+	left: 0px;
+	text-align: right;
+}
+/* - 카운트 끝 */
+
+
+/* 인트로 부분 */
+#intro-wrap #intro-step{
+	border: 2px solid black; 
+	height: 200px; 
+	padding:0px;
+}
+
+#intro-wrap #intro-step #intro-step-wrap{
+	border:2px solid black; 
+	height:200px; 
+	float:left;
+}
+
+#intro-wrap #intro-step #intro-step-wrap div{
+	border:2px solid black; 
+	height:150px;
+}
+
+#intro-wrap #intro-step #intro-step-wrap p{
+	padding-top:10px;
+}
+
+#intro-wrap button{
+	background-color:#512772; 
+	color:white;
+}
+/* - 인트로 끝 */
+
+
+/* 타이틀 바 가운데 줄 */
+#title-header {
+	display: table;
+	text-align: center;
+}
+
+#title-header:before, #title-header:after {
+	content: '';
+	display: table-cell;
+	background: #512772;
+	width: 50%;
+	-webkit-transform: scaleY(0.05);
+	transform: scaleY(0.05);
+}
+
+#title-header>h1 {
+	white-space: pre;
+	padding: 0 15px;
+}
+/* - 끝 */
+
+/* 추천 이벤트 이미지 */
+#recommendEvent, #newFoods{
+	padding: 6px; 
+	padding-left: 0px;
+}
+/* - 추천 이벤트 이미지 끝 */
+
+/* MD 추천 */
+#md-wrap{
+	padding: 0px; 
+	padding-bottom: 10px;
+}
+/* - MD 추천 끝 */
+
+/* 혜택 */
+#plus{
+	background-color: #f6f7f7; 
+	padding: 0px;
+}
+
+
+

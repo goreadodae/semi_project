@@ -21,9 +21,7 @@
 
 	$(document).ready(function() { /*주문번호 테이블  jquery  */
 		var stat = true;
-
 		$('#orderInquiry').click(function() {
-
 			if (stat == true) {
 				$('#hidingInquiry').css("display", "block");
 				stat = false;
@@ -34,36 +32,35 @@
 		});
 
 	});
-
+	
+	$(document).ready(function(){
+		$('#close').click(function(){
+			$('#hidingInquiry').hide();
+		});
+	});
+	
 	$(document).ready(function() { /*주문번호 테이블  닫기  */
 		$('#addrow>tr').click(function() {
 			$('#hidingInquiry').css("display", "none");
 		});
-
 	});
 
-	$(document).ready(function() {
-
-		$('#qnaSubmit').click(function() {
-
-			if (!$('#agreeRdo').checked && !$('#disAgreeRdo').checked) {
-				console.log("앙");
-				alert("개인정보 수집에 대해 동의해주세요 ");
-			}
-		});
-	});
 	/* 1:1문의 이미지 추가  jQuery  */
 	$(document).ready(function(){
 		cnt2 = 1;
 		cnt = $('#rowCount').length + 1;
 		$('#addImg').click(function() {
-			if (cnt <= 5) {$('#addRow').append('<tr class="rowTr" id="rowTr_'+cnt2+'"><td><span>'+ cnt
-												+ ' '+ '<button>파일 선택</button>'	+ ' '+ '<label>선택된 파일 없음</label>'
-												+ ' '+ '<img src="/imgs/manager-img/minus.png" onclick="removeRow('
-												+ cnt2+ ');"/></span></td></tr>');
-												cnt++;
-												cnt2++;
-			} else {alert("이미지는 5개까지 업로드가 가능합니다.");}
+			if (cnt <= 5) 
+			{
+				$('#addRow').append('<tr class="rowTr" id="rowTr_'+cnt2+'"><td><span>'+ cnt
+									+ ' '+ '<button>파일 선택</button>'+ ' '+ '<label>선택된 파일 없음</label>'
+									+ ' '+ '<img src="/imgs/manager-img/minus.png" class="minus-cursor"'
+									+ 'onclick="removeRow('+ cnt2+ ');"/></span></td></tr>');
+					cnt++;
+					cnt2++;
+					
+					
+			} else {alert("이미지는 최대 5개까지 업로드가 가능합니다.");}
 		});
 			
 	});
@@ -71,12 +68,25 @@
 	function removeRow(cnt2) {/* 이미지추가 행 삭제   */
 		if ($('#rowTr_' + cnt2).remove()) {
 			cnt--;	/* 삭제할때마다 감소 */
-			cnt2--; /* 삭제할때마다 감소 */
+			/* cnt2--; /* 삭제할때마다 감소 */
 		}
 	}
+	
+	
+	$(document).ready(function(){
+		$('.selectRdo').click(function(){
+			$('.selectRdo').prop("checked",false);
+			$(this).prop("checked",true);
+
+			});
+		});
+
+
+	
 </script>
 
 <style>
+
 * {
 	margin: 0;
 	padding: 0;
@@ -103,6 +113,7 @@
 }
 
 #close {
+	cursor:pointer;
 	float: right;
 }
 
@@ -114,10 +125,6 @@
 	float: right;
 }
 
-td {
-	vertical-align: middle;
-}
-
 #writeQNAFormTbl tr>td:first-child {
 	vertical-align: middle;
 	text-align: center;
@@ -126,12 +133,18 @@ td {
 #addRow tr td {
 	text-align: left !important;
 }
+
+#addRow img{
+	cursor:pointer;
+}
+
+
 </style>
 
 
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0px">
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
@@ -193,7 +206,7 @@ td {
 							<td style="background-color: #dcdbde">주문번호</td>
 
 							<td><input type="text" style="width: 25%" readonly />
-								<button id="orderInquiry">주문조회</button>
+							<button type="button" class="btn btn-info" id="orderInquiry" style="height:2em">주문조회</button>
 								<div class="col-md-8" style="border: 1px solid; height: 300px"
 									id="hidingInquiry">
 									문의하실 주문번호를 선택하세요<br>
@@ -214,7 +227,15 @@ td {
 											<td>토게피</td>
 											<td>1</td>
 											<td>2000</td>
-											<td><input type="radio"></td>
+											<td><input type="radio" class="selectRdo"></td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>2017-08-09</td>
+											<td>토게피</td>
+											<td>1</td>
+											<td>2000</td>
+											<td><input type="radio" class="selectRdo"></td>
 										</tr>
 
 
@@ -244,8 +265,8 @@ td {
 								하자 혹은 이상으로 반품(환불)이 필요한 경우 사진과 함께 구체적인 내용을 남겨주세요.<br> <br>
 								<b style="font-size: 15px">주문취소</b><br> -주문취소 신청은 배송일 전날 오후
 								6시까지 가능합니다. 오후 6시 이후에는 생산이 시작되어 취소가 불가능합니다.<br> -주문상품의 부분
-								취소는 불가능합니다. 전체 주문취소 후 재구매 해주세요. <br> <br> <b
-								style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
+								취소는 불가능합니다. 전체 주문취소 후 재구매 해주세요. <br> <br> 
+								<b style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
 								불가능합니다.<br> -배송일 및 배송시간 지정은 불가능합니다.(예약배송 포함)<br> <br>
 								*주문취소 외 평일 오후 5시(주말 공휴일 12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전
 								8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea
@@ -283,9 +304,9 @@ td {
 						<div class="row">
 							<div class="col-md-10 row" style="border: 1px soild">
 								<div class="col-md-10" style="text-align: center">
-									<br> <input type="radio" id="agreeRdo" name="agree"
+									<br> <input type="radio" id="agreeRdo" name="whetherAgree"
 										value="agree"><label>동의</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" id="disAgreeRdo" name="disAgree"
+									<input type="radio" id="disAgreeRdo" name="whetherAgree"
 										value="disAgree" /><label>동의하지 않습니다</label>
 
 								</div>
@@ -296,7 +317,6 @@ td {
 					<div class="row">
 
 						<div class="offset-md-11 col-md-1">
-
 							<button type="button" class="btn btn-success" id="qnaSubmit"
 								onclick="save()">저장</button>
 

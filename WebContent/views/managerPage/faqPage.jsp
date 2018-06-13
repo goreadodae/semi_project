@@ -78,11 +78,15 @@
 	display: none;
 	text-align: center;
 }
+#whenClick{
+	cursor:pointer;
+
+}
 </style>
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0px">
 		<div id="header"></div>
 
 		<div id="contents"

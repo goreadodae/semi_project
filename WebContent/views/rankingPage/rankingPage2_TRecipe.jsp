@@ -9,9 +9,6 @@
 <title>세미_랭킹 페이지 - 중간</title>
 
 
-<!-- 스타일시트 초기화 -->
-<link rel="stylesheet" href="/css/reset.css">
-
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss2.css">
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
@@ -63,6 +60,7 @@
                defaultDate : new Date(),
                maxDate : new Date(),
                onSelect: function(dateText, inst){
+
                    /* location.href='rankingPage2_TRecipe.jsp?type=hot&ymd='+dateText; */
                    /*data-url="rankingPage2_TRecipe.jsp"*/
                    console.log(dateText);
@@ -73,16 +71,55 @@
                 	data : {datepicker : datepicker},
                    	type : "post",
                    	success : function(data){
-                   		console.log("성공");	
-                   		console.log(data+"data값");
-                   		for(var i=0; i<data.length; i++){
-                   			/* $('#cardImgs').attr("src","data"); */
-                   			console.log(data[i]);
-                   			$('#cardImgs').attr("src",data[i].completePic);
-                   			$('#rankingTodayTitle').html(data[i].recipeTitle);
-                   			$('#rankingNickName').html(data[i].recipeTodayViews);
-                   			$('#rankingTag').html(data[i].recipeTag);
-                   		}
+                      console.log(data);  
+        var tableWrap = $('#tableWrap');//table 감싸는 div
+        tableWrap.html("");
+
+        var tableHover = "<table class='table'>"; //table 
+
+        var rankinListIMG = $('#rankinListIMG');  //랭킹 감싸는 a 태그
+        var rankingList = $('#rankingList'); //이미지, 텍스트 감싸는 전체 div wrap
+        var cardImgs = $('#cardImgsBabo')
+
+
+
+ 
+
+        for(var i=0; i<data.length; i++){
+          /* $('#cardImgs').attr("src","data"); */
+          console.log("  "+i+"번째 "+data[i]);
+/*          $('#cardImgs').attr("src",data[i].completePic);
+          $('#rankingTodayTitle').html(data[i].recipeTitle);
+          $('#rankingNickName').html(data[i].recipeTodayViews);
+          $('#rankingTag').html(data[i].recipeTag);*/
+          tableHover += "<tbody>" + " <tr>" + "<th class='row'>" + 
+          "<h3 class='pull-left' style='margin-left: 20px;'>" + Number(i+1) +"위"
+          + "</h3>"
+          + "<div class='float-right' id='viewDiv' >" 
+          + " <img src='/imgs/recipe_img/view_icon.png' class='views-icon' id='viewIcon'>"
+          + "<div id='rankingViews'>" + data[i].recipeTodayViews
+          + "</div>" + "</div>" 
+          + "</th>" + "</tr>" //랭킹 순위 테이블 
+           //이미지 들어가는 부분
+          + "<tr class='border-bottom-0'>" + "<th class='border-bottom-0'><br>"
+          + "<a href='#' id='rankinListIMG'>" + "<div class='card rounded shadow-sm'  id='rankingList'>" 
+          + "<div id='imgWrap'>"
+          /*이미지 부분*/
+          + "<img class='card-img rounded' src='"+data[i].completePic+"' alt='Card image' id='cardImgs'>"
+          +"</div>" + "<div class='container'>" 
+          + "<div class='card-img-overlay' id='cardOverlay'>"
+          + "<div id='cardContents'>" 
+          + " <h3 class='card-title' id='rankingTodayTitle'>"
+          + data[i].recipeTitle + "</h3>"
+          + " <p class='card-text' id='rankingTag'>"
+          + data[i].recipeTag + "</p>" 
+          + "<p class='card-text'>" + data[i].recipeIntro +"</p>"
+          + "</div></div></div></div>"
+          + "</a><br><br><br><br>"
+          + "</th>" + "</tr>" + "</tbody>" ;
+        }
+        tableHover += "</table>";
+        tableWrap.append(tableHover);
                    		
                    	},
                    	error : function(){
@@ -106,15 +143,55 @@ window.onload = function(){
      	type : "post",
      	success : function(data){
      		console.log("성공");	
-     		console.log(data+"data값");
+     		console.log(data);  
+
+        var tableWrap = $('#tableWrap');//table 감싸는 div
+        tableWrap.html("");
+
+        var tableHover = "<table class='table'>"; //table 
+
+        var rankinListIMG = $('#rankinListIMG');  //랭킹 감싸는 a 태그
+        var rankingList = $('#rankingList'); //이미지, 텍스트 감싸는 전체 div wrap
+        var cardImgs = $('#cardImgsBabo')
+
+
+
+ 
+
      		for(var i=0; i<data.length; i++){
      			/* $('#cardImgs').attr("src","data"); */
-     			console.log(i+"번째 "+data[i]);
-     			$('#cardImgs').attr("src",data[i].completePic);
+     			console.log("  "+i+"번째 "+data[i]);
+/*     			$('#cardImgs').attr("src",data[i].completePic);
      			$('#rankingTodayTitle').html(data[i].recipeTitle);
      			$('#rankingNickName').html(data[i].recipeTodayViews);
-     			$('#rankingTag').html(data[i].recipeTag);
+     			$('#rankingTag').html(data[i].recipeTag);*/
+          tableHover += "<tbody>" + " <tr>" + "<th class='row'>" + "<h3 class='pull-left' style='margin-left: 20px;'>" + Number(i+1) +"위"
+          + "</h3>"
+          + "<div class='float-right' id='viewDiv' >" 
+          + " <img src='/imgs/recipe_img/view_icon.png' class='views-icon' id='viewIcon'>"
+          + "<div id='rankingViews'>" + data[i].recipeTodayViews
+          + "</div>" + "</div>" 
+          + "</th>" + "</tr>" //랭킹 순위 테이블 
+           //이미지 들어가는 부분
+          + "<tr class='border-bottom-0'>" + "<th class='border-bottom-0'><br>"
+          + "<a href='#' id='rankinListIMG'>" + "<div class='card rounded shadow-sm'  id='rankingList'>" 
+          + "<div id='imgWrap'>"
+          /*이미지 부분*/
+          + "<img class='card-img rounded' src='"+data[i].completePic+"' alt='Card image' id='cardImgs'>"
+          +"</div>" + "<div class='container'>" 
+          + "<div class='card-img-overlay' id='cardOverlay'>"
+          + "<div id='cardContents'>" 
+          + " <h3 class='card-title' id='rankingTodayTitle'>"
+          + data[i].recipeTitle + "</h3>"
+          + " <p class='card-text' id='rankingTag'>"
+          + data[i].recipeTag + "</p>" 
+          + "<p class='card-text'>" + data[i].recipeIntro +"</p>"
+          + "</div></div></div></div>"
+          + "</a><br><br><br><br>"
+          + "</th>" + "</tr>" + "</tbody>" ;
      		}
+        tableHover += "</table>";
+        tableWrap.append(tableHover);
      		
      	},
      	error : function(){
@@ -129,7 +206,6 @@ window.onload = function(){
    $('#datepicker').on('change', function() {
       $('#rankingDateToday').html($('#datepicker').val());
    });
-
 
 
    $('.date').on('click', function() {
@@ -203,37 +279,32 @@ window.onload = function(){
 
   <!-- 1위 -->
   
-  
-<%-- <c:forEach begin="0" items="${todayList}" var="todayList" varStatus="i"> --%>
-
-<!-- <c:forEach begin="0" end="4" var="i">
-<c:out value="${datepicker[i].recipeTitle}"></c:out> -->
-  <div id="tableWrap">
- <table class="table table-hover">
+   <div id="tableWrap">
+<!-- <table class="table table-hover" id="tableHover">
     <tbody>
     <tr>
       <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">1위</h3></th>
     </tr>
   </tbody>
-  </table>
+  </table> -->
 </div>
 
   <!-- a태그로 해당 레시피 이동 -->
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
+<!-- <a href="#" id="rankinListIMG">
+<div class="card rounded shadow-sm"  id="rankingList"> -->
   <!-- 레시피 이미지 -->
-  <div id="imgWrap">
+<!--   <div id="imgWrap">
   <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
 </div>
   <div class="container">
   <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
+    <div id="cardContents"> -->
       <!-- 랭킹 등록 관련 레시피 내용 -->
-    <h3 class="card-title" id="rankingTodayTitle">레시피의 제목이 들어가는 곳!</h3>
+<!--     <h3 class="card-title" id="rankingTodayTitle">레시피의 제목이 들어가는 곳!</h3>
     <div class="float-right">
     <img src="/imgs/recipe_img/view_icon.png" class="views-icon ">
     
-    <div id="rankingNickName">views 수</div>
+    <div id="rankingViews">views 수</div>
     </div>
     <p class="card-text" id="rankingTag">레시피 태그</p>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -244,214 +315,10 @@ window.onload = function(){
   </div>
   </div>
 </div>
-
-<!-- </c:forEach> -->
-<%-- </c:forEach> --%>
-
-
-</div>
-</a>
-<br><br><br>
-
-
-
-
-
-
-
-
-  <!-- 1위 -->
- <!--  <div id="tableWrap">
- <table class="table table-hover">
-    <tbody>
-    <tr>
-      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">1위</h3></th>
-    </tr>
-  </tbody>
-  </table>
-</div>
-
-  a태그로 해당 레시피 이동
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
-  레시피 이미지
-  <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
-</div>
-  <div class="container">
-  <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
-      랭킹 등록 관련 레시피 내용
-    <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
-    <p class="float-right" id="rankingNickName">닉네임 들어가는곳~~~</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-     <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-  </div>
-</div>
-
-</div>
+ </div>
 </a>
 <br><br><br>
  -->
-
-   2위
-   <div id="tableWrap">
-   <table class="table table-hover">
-    <tbody>
-    <tr>
-      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">2위</h3></th>
-    </tr>
-  </tbody>
-  </table>
-  </div>
-
-
-  a태그로 해당 레시피 이동
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
-  레시피 이미지
-    <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
-</div>
-  <div class="container">
-  <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
-      랭킹 등록 관련 레시피 내용
-    <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
-    <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-     <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-  </div>
-</div>
-
-</div>
-</a>
-<br><br><br>
-
-  3위
-  <div id="tableWrap">
-  <table class="table table-hover">
-    <tbody>
-    <tr>
-      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">3위</h3></th>
-    </tr>
-  </tbody>
-  </table>
-  </div>
-  a태그로 해당 레시피 이동
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
-  레시피 이미지
-    <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
-</div>
-  <div class="container">
-  <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
-      랭킹 등록 관련 레시피 내용
-    <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
-    <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-     <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-  </div>
-</div>
-
-</div>
-</a>
-<br><br><br>
-
-
- 4위
- <div id="tableWrap">
- <table class="table table-hover">
-    <tbody>
-    <tr>
-      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">4위</h3></th>
-    </tr>
-  </tbody>
-  </table>
-</div>
-
-  a태그로 해당 레시피 이동
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
-  레시피 이미지
-    <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
-</div>
-  <div class="container">
-  <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
-      랭킹 등록 관련 레시피 내용
-    <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
-    <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-     <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-  </div>
-</div>
-
-</div>
-</a>
-<br><br><br>
-
-
- 5위
- <div id="tableWrap">
- <table class="table table-hover">
-    <tbody>
-    <tr>
-      <th scope="row" style="margin-bottom: 0px;"><h3 class="pull-left">5위</h3></th>
-    </tr>
-  </tbody>
-  </table>
-</div>
-
-  a태그로 해당 레시피 이동
-<a href="#">
-<div class="card rounded shadow-sm"  id="rankingList">
-  레시피 이미지
-    <div id="imgWrap">
-  <img class="card-img rounded" src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs">
-</div>
-  <div class="container">
-  <div class="card-img-overlay" id="cardOverlay">
-    <div id="cardContents">
-      랭킹 등록 관련 레시피 내용
-    <h3 class="card-title">레시피의 제목이 들어가는 곳!</h3>
-    <p class="float-right" id="rankingNickName">닉네임 들어가눈곳~~~</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
-     <p class="card-text">Last updated 3 mins ago</p>
-  </div>
-  </div>
-</div>
-
-</div>
-</a>
-<br><br><br>
 
 <!-- 가운데로 보내는 컨테이너 끝! -->
 </div>

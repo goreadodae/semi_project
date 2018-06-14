@@ -30,8 +30,7 @@
   crossorigin="anonymous"></script>
 
 
-<!-- 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+
 
 </head>
 <body>

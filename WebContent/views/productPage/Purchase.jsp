@@ -102,6 +102,7 @@ IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 			$(this).addClass('mybutton2');
 		});
 		
+		
 		//결제 api 실행
 		$('#pay').click(function(){
 			IMP.request_pay({
@@ -356,12 +357,22 @@ IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					<hr>
 					<br><br>
 					
+					
+					<!-- 참고사항 -->
 					<div id="notice" width=100%>
 					<center><img src="/imgs/product_img/notice.png" alt="참고메시지"></center>
 					</div>
 					<br><br>
 					
-					<center><button class="mybutton1" id="pay">결제하기</button> <button class="mybutton2">취소하기</button></center>
+					
+					<!-- 개인정보 수집 동의
+					<span id="pinfo">개인정보 수집/제공*</span>
+					
+					<hr style="border:1px solid #522075;"> -->
+					
+					
+					
+					<center><button class="mybutton1" id="pay">결제하기</button> <button class="mybutton2" onclick="location.href='/views/productPage/Basket.jsp'">취소하기</button></center>
 					<br><br>
 				
 					<div class="row">

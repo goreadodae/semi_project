@@ -1,6 +1,8 @@
 <!-- 상품 상세 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,13 +235,13 @@ a{
 					<div class="row">
 						<div class="col-md-6 col-sm-12"  id="title_img">
 							<center>
-								<img src="/imgs/product_img/product01.jpg" width=80%>
+								<img src="${productInfo.product_1st_pic}" width=80%>
 							</center>
 						</div>
 
 						<div class="col-md-6 col-sm-12">
 							<br>
-							<h2 class="font">콩국수 (2인분)</h2>
+							<h2 class="font">${productInfo.product_name}</h2>
 							<hr>
 							<div class="col-md-12">
 							
@@ -252,9 +254,9 @@ a{
 										<p>수량선택</p>
 									</div>
 									<div class="col-md-8">
-										<p id="price">9900</p>
+										<p id="price">${productInfo.product_price}</p>
 										<p>묶음배송 (4만원 이상 무료배송)</p>
-										<p>50</p>
+										<p>${productInfo.product_quantity}</p>
 										<button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
 									</div>
 								</div>
@@ -267,7 +269,7 @@ a{
 									</div>
 									<div class="col-md-3"><p id="sumqty" class="sum">수량 1개</p></div>
 									<div class="col-md-5" >
-										<p id="sumprice" class="sum">5000원</p>
+										<p id="sumprice" class="sum">${productInfo.product_price}</p>
 									</div>
 								</div>
 							</div>
@@ -308,7 +310,7 @@ a{
 				<div id="detail" class="col-md-12" style="padding: 0px;">
 
 				<center>
-					<img src="/imgs/product_img/detail1.jpg" height=100%></center>
+					<img src="${productInfo.product_spec_pic}" height=100%></center>
 				</div>
 				
 

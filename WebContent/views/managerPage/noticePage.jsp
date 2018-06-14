@@ -142,12 +142,6 @@ float:right;
 
 
 				</div>
-
-
-
-
-
-
 			</div>
 			
 			<div class="row">

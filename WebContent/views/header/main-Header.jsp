@@ -23,18 +23,16 @@
 			if ($(document).scrollTop() >= jbOffset.top) {
 				/* 상단 고정하고 */
 				$('#fixed_layer').addClass('jbFixed');
-				
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
+				$('#category_list').addClass('clFixed');			
 
 			} else {
 				$('#fixed_layer').removeClass('jbFixed');
+				$('#category_list').removeClass('clFixed');	
 			}
 		});
 
 		/* 웹 실행 시 카테고리 숨김 */
-		$('#category_list').css('display', 'none');
+		$('#category_list').css('display', 'none'); 
 
 		$('#div-category').hover(function(e) {
 			if ($(e.target).is("#div-category")

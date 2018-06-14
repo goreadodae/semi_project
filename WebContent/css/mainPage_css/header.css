@@ -1,19 +1,9 @@
 @charset "UTF-8";
 
 /* 네비게이션 고정 */
+
 .jbTitle {
 	text-align: center;
-}
-
-#fixed_layer {
-	z-index: 1000;
-	text-align: center;
-	background: -webkit-gradient(linear, center bottom, center top, from(#fff),
-		to(#fff));
-	padding: 0px;
-	right: 0;
-	width: 100%;
-	transition-timing-function: linear;
 }
 
 .jbContent {
@@ -26,15 +16,53 @@
 	top: 0px;
 }
 
+.categoryFixed{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	margin:0 auto;
+}
+
+#fixed_layer {
+	z-index: 1000;
+	text-align: center;
+	background: -webkit-gradient(linear, center bottom, center top, from(#fff), to(#fff));
+	padding: 0px;
+	right: 0;
+	width: 100%;
+	transition-timing-function: linear;
+	border: 1px solid #dadada;
+}
+
+#fixed_layer div > #a-category{
+	color: white; 
+	text-decoration: none;
+}
+
+#fixed_layer div > #a-category img{
+	height :13px;
+}
+
+#fixed_layer div a{
+	line-height: 50px;
+}
+
+#div-category{
+	background-color: #512772;
+}
+
+
 .nav-category {
 	text-decoration: none;
 	color: black;
 }
 
+
+
 /* 카테고리 */
 #t_category_list {
 	left: -1;
-	z-index: 6;
+	z-index: 999;
 }
 
 #category_list {
@@ -57,15 +85,14 @@
 	padding: 3px 5px;
 	white-space: nowrap;
 	overflow: hidden;
-	font-size:12px;
+	font-size: 12px;
 	text-overflow: ellipsis;
 }
-
 
 #category_list>ul>li.header {
 	padding-top: 5px;
 	padding-left: 5px;
-	font-size:20px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #48C5FF;
 }
@@ -73,12 +100,36 @@
 #category_list>ul>li.header2 {
 	padding-top: 20px;
 	padding-left: 5px;
-	font-size:20px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #48C5FF;
 }
+
 #category_list>ul>li a {
-	text-decoration:none;
+	text-decoration: none;
+}
+
+/* 광고 */
+#top-message{
+	background-color: #512772; 
+	height: 40px; 
+	padding: 0px;
+}
+
+#top-message-notice{
+	color: white; 
+	text-align: center; 
+	line-height: 40px; 
+	font-size: 16px;
+}
+
+#top-message-close-btn{
+	color: white; 
+	padding-bottom: 8px;
+}
+
+#top-message-close-btn span{
+	color: white;
 }
 
 #top-message>#top-message-text {
@@ -100,3 +151,12 @@
 	position: absolute;
 	z-index: 7;
 }
+
+
+/* 유저메뉴 */
+#userMenu .nav-item a{
+	color: black; 
+	font-size: 12px
+}
+
+

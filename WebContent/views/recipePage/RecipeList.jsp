@@ -176,22 +176,19 @@
 		<div class="row" style="margin-bottom: 2%;">
 			<div class="offset-md-10 col-md-1" style="padding: 0px;">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					
+
 					<c:choose>
 						<c:when test="${requestScope.order=='recipe_views' }">
-							<label class="btn btn-secondary"
-								onclick="order(posted_date);" id="posted_date">최신순
-							</label>
-							<label class="btn btn-secondary active" onclick="order(recipe_views);" id="recipe_views">
-								 조회순
-							</label>
+							<label class="btn btn-secondary" onclick="order(posted_date);"
+								id="posted_date">최신순 </label>
+							<label class="btn btn-secondary active"
+								onclick="order(recipe_views);" id="recipe_views"> 조회순 </label>
 						</c:when>
 						<c:otherwise>
 							<label class="btn btn-secondary active"
-								onclick="order(posted_date);" id="posted_date">최신순
-							</label>
-							<label class="btn btn-secondary" onclick="order(recipe_views);" id="recipe_views"> 조회순
-							</label>
+								onclick="order(posted_date);" id="posted_date">최신순 </label>
+							<label class="btn btn-secondary" onclick="order(recipe_views);"
+								id="recipe_views"> 조회순 </label>
 						</c:otherwise>
 					</c:choose>
 
@@ -201,28 +198,34 @@
 		</div>
 
 		<div class="row">
-			<c:forEach begin="0" items="${requestScope.pageData.dataList}" var="list" varStatus="i">
-				
-				<div class="col-md-4">
-				<div class="recipe-list list1">
-					<img
-						src="${requestScope.pageData.dataList[i.count].recipePic}"
-						class="rounded">
-					<div class="recipe-title">
-						${requestScope.pageData.dataList[i.count].recipeTitle}<img src="/imgs/recipe_img/new-tag.png"
-							class="img-new" />
-					</div>
-					<div class="recipe-intro">${requestScope.pageData.dataList[i.count].recipeIntro}</div>
+			<c:forEach begin="0" items="${requestScope.pageData.dataList}"
+				var="list" varStatus="i">
+				<div class="col-md-4" style="margin-bottom: 3%;">
+					<div class="recipe-list list1">
+						<div class="recipe-pic">
+							<img src="${requestScope.pageData.dataList[i.count-1].recipePic}"
+								class="rounded">
+						</div>
+						<div class="recipe-title">
+							${requestScope.pageData.dataList[i.count-1].recipeTitle}<img
+								src="/imgs/recipe_img/new-tag.png" class="img-new" />
+						</div>
+						<div class="recipe-intro">${requestScope.pageData.dataList[i.count-1].recipeIntro}</div>
 
-					<img src="/imgs/recipe_img/view_icon.png" class="views-icon">
-					<div class="views">${requestScope.pageData.dataList[i.count].recipeViews}</div>
+						<img src="/imgs/recipe_img/view_icon.png" class="views-icon">
+						<div class="views">${requestScope.pageData.dataList[i.count-1].recipeViews}</div>
+					</div>
 				</div>
-			</div>
 
 				<div class="row"></div>
 			</c:forEach>
 		</div>
-		${requestScope.pageData.pageNavi }
+		<div class="row">
+			<ul id="pageNavi" class="pagination">
+				${requestScope.pageData.pageNavi }
+			</ul>
+		</div>
+
 	</div>
 
 

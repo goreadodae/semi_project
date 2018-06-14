@@ -186,7 +186,6 @@ public class RecipeDao {
 				r.setPostedDate(rset.getDate("posted_date"));
 				r.setRecipePic(rset.getString("recipe_pic"));
 				list.add(r);
-				System.out.println(r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -277,22 +276,22 @@ public class RecipeDao {
 			order="posted_date";
 		}
 		if(needPrev) {
-			sb.append("<li><a href='/recipeList?cate1="+cate1
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(startNavi-1)+"'> < </a></li>");
 			
 		}
 		for(int i=startNavi;i<=endNavi;i++) {
 			if(i==page) {
-				sb.append("<li><a href='/recipeList?cate1="+cate1
+				sb.append("<li class=\"page-item active\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'><B>"+i+"</B></a></li>");
 			}
 			else {
-				sb.append("<li><a href='/recipeList?cate1="+cate1
+				sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'>"+i+"</a></li>");
 			}
 		}
 		if(needNext) {
-			sb.append("<li><a href='/recipeList?cate1="+cate1
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi-1)+"'> < </a></li>");
 		}
 		return sb.toString();

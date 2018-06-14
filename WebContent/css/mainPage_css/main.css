@@ -3,34 +3,13 @@
 /* 폰트 */
 @font-face {
 	font-family: IropkeBatang;
-	//
-	사용할
-	폰트명
-	src
-	:
-	url('/fonts/IropkeBatangM.eot');
-	//
-	eot
-	포맷
-	src
-	:
-	local(
-	※
-	)
-	,
-	url('/fonts/IropkeBatangM.woff')
-	format(
-	'woff'
-	);
-	//
-	ie9이상은
-	woff
-	포맷
-	적용
+	//사용할 폰트명
+	src:url('/fonts/IropkeBatangM.eot');
+	//eot포맷
+	src:local(※), url('/fonts/IropkeBatangM.woff') format('woff');
 }
 
 /* 미디어 쿼리 */
-/*622*/
 @media ( max-width :1802px) {
 	#count_div1 {
 		display: none;
@@ -81,11 +60,15 @@
 }
 /* 미디어 쿼리 끝  */
 
+
 /* 전체 폰트 적용 */
 body {
 	font-family: 'IropkeBatang';
 }
 /* 폰트 적용 끝 */
+
+
+
 .contents #main-img-wrap {
 	height: 530px;
 	padding: 0px;
@@ -112,47 +95,14 @@ body {
 	z-index: 1;
 }
 
+
 /* 호버 - 사진 클릭 효과 */
-#main_div_1 #main_img_1:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_1 #main_img_2:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_1 #main_img_3:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_1 #main_img_4:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_2 #main_img_2_1:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_2 #main_img_2_2:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_2 #main_img_2_3:hover {
-	cursor: pointer;
-	opacity: 0.8;
-}
-
-#main_div_2 #main_img_2_4:hover {
+#slide_week img:hover{
 	cursor: pointer;
 	opacity: 0.8;
 }
 /* - 사진 클릭 효과 끝 */
+
 
 /* 레시피 카운트 */
 #count_wrap div {
@@ -183,6 +133,7 @@ strong {
 }
 /* - 카운트 끝 */
 
+
 /* 인트로 부분 */
 #intro-wrap #intro-step {
 	border: 2px solid black;
@@ -211,6 +162,7 @@ strong {
 }
 /* - 인트로 끝 */
 
+
 /* 타이틀 바 가운데 줄 */
 #title-header {
 	display: table;
@@ -232,12 +184,14 @@ strong {
 }
 /* - 끝 */
 
+
 /* 추천 이벤트 이미지 */
 #recommendEvent, #newFoods {
 	padding: 6px;
 	padding-left: 0px;
 }
 /* - 추천 이벤트 이미지 끝 */
+
 
 /* MD 추천 */
 #md-wrap {
@@ -246,17 +200,15 @@ strong {
 }
 /* - MD 추천 끝 */
 
+
 /* 혜택 */
 #plus {
 	background-color: #f6f7f7;
 	padding: 0px;
 }
+/* - 혜택 끝 */
 
-/*	소스		*/
-/* .box {
-	width: 960px
-} */
-
+/* 가로 슬라이드  */
 .height_auto {
 	height: auto;
 	overflow: hidden;
@@ -314,5 +266,17 @@ strong {
 
 .vertical_motion2 .sp_box {
 	width: 685px;
+}
+
+.vm_list 
+
+.vm_list a{
+	text-decoration:none;
+}
+
+.vm_list p{
+	color:black;
+	font-size:13px;
+	font-weight: 600;
 }
 /* --- */

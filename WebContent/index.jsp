@@ -15,9 +15,8 @@
 
 <!-- 스크롤 부드럽게 -->
 <script>
-	/* $("html").easeScroll(); */
+	$("html").easeScroll();
 </script>
-
 
 <body style="overflow-x: hidden; overflow-y: auto;">
 
@@ -41,12 +40,10 @@
 						<div class="text-center rounded" id="count_div1">
 							<strong>0</strong>
 						</div>
-
 						<!-- 100자리 -->
 						<div class="text-center rounded" id="count_div2">
 							<strong id="digits100"></strong>
 						</div>
-
 						<!-- 10자리 -->
 						<div class="text-center rounded" id="count_div3">
 							<strong id="digits10"></strong>
@@ -58,14 +55,13 @@
 					</div>
 				</div>
 				<!-- 레시피 카운트 끝 -->
-				<!-- 레시피 받아오기 -->
+				
+				<!-- ajax 레시피 수 받아오기 -->
 				<script>
 					$(document).ready(function() {
-				
 						$.ajax({
 							url : "/mainServlet",
 							type : "get",
-				
 							success : function(data) {
 								var data = Number(data);
 				
@@ -76,7 +72,6 @@
 								$('#digits100').html(digits100);
 								$('#digits10').html(digits10);
 								$('#digits1').html(digits1);
-				
 							},
 							error : function() {
 								console.log("실패");
@@ -84,7 +79,9 @@
 						});
 					});
 				</script>
+				<!-- ajax 레시피 수 받아오기 끝 -->
 			</div>
+			<!-- 메인이미지 끝  -->
 
 			<!-- 어플리케이션 다운로드  -->
 			<div class="col-md-12" id="application_wrap">
@@ -110,22 +107,18 @@
 							<div>이미지 올림</div>
 							<p>레시피 등록하고</p>
 						</div>
-
 						<div class="col-md-4" id="intro-step-wrap">
 							<div>이미지 올림</div>
 							<p>랭킹에 올리고</p>
 						</div>
-
 						<div class="col-md-4" id="intro-step-wrap">
 							<div>이미지 올림</div>
 							<p>수익 얻자</p>
 						</div>
 					</div>
-					<br>
-					<br>
+					<br><br>
 					<button type="button" class="col-md-3 btn btn btn-lg">시작하기</button>
-					<br>
-					<br>
+					<br><br>
 				</div>
 			</div>
 			<!-- 인트로 끝 -->
@@ -162,9 +155,7 @@
 
 			<!-- 네비  -->
 			<div id="point">
-				<br>
-				<br>
-				<br>
+				<br><br><br>
 
 				<!-- 추천 이벤트 / 신상품 이미지 슬라이드-->
 				<div class="col-md-8 mx-auto">
@@ -254,11 +245,7 @@
 				</div>
 				
 				<!-- 추천 이벤트 끝  -->
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br><br>
 
 				<!-- 레시피 검색 -->
 				<div id="search" class="col-md-12"
@@ -287,11 +274,7 @@
 				</div>
 				<!-- 레시피 검색 끝 -->
 
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br><br>
 
 				<!-- 오늘의 레시피 뷰 -->
 				<div class="col-md-8 mx-auto height_auto" style="padding:0px;">
@@ -302,79 +285,116 @@
 						</div>
 					</div>
 					
-					<ul class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" 
+					<ul id="slide_week" class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" 
 						data-speed="200" style="paiddng:0px;">
 						
 						<li class="vm_list">
-							<a href="http://daum.net">
+							<a href="#" id="week_link_1">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
-									<img id="main_img_1" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src=""
-										alt="이미지" height="280" class="img-thumbnail">
+									<img id="week_img_1" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
 
 									<div class="col-md-12">
-										<p id="main_title_1" class="lead my-1" style="font-weight: 600;"></p>
-										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
+										<p id="week_title_1" class="lead my-1"></p>
+										<span id="week_view_1" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
 									</div>
 								</div>
 							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="http://daum.net">
+							<a href="#" id="week_link_2">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
-									<img id="main_img_2" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src=""
-										alt="이미지" height="280" class="img-thumbnail">
+									<img id="week_img_2" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
 
 									<div class="col-md-12">
-										<p id="main_title_2" class="lead my-1" style="font-weight: 600;"></p>
-										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
+										<p id="week_title_2" class="lead my-1"></p>
+										<span id="week_view_2" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
 									</div>
 								</div>
 							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="http://daum.net">
+							<a href="#" id="week_link_3">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
-									<img id="main_img_3" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src=""
-										alt="이미지" height="280" class="img-thumbnail">
+									<img id="week_img_3" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
 
 									<div class="col-md-12">
-										<p id="main_title_3" class="lead my-1" style="font-weight: 600;"></p>
-										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
+										<p id="week_title_3" class="lead my-1"></p>
+										<span id="week_view_3" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
 									</div>
 								</div>
 							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="http://daum.net">
+							<a href="#" id="week_link_4">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
-									<img id="main_img_4" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src=""
-										alt="이미지" height="280" class="img-thumbnail">
+									<img id="week_img_4" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
 
 									<div class="col-md-12">
-										<p id="main_title_4" class="lead my-1" style="font-weight: 600;"></p>
-										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
+										<p id="week_title_4" class="lead my-1"></p>
+										<span id="week_view_4" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
 									</div>
 								</div>
 							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="http://daum.net">
+							<a href="#" id="week_link_5">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
-									<img id="main_img_5" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src=""
-										alt="이미지" height="280" class="img-thumbnail">
+									<img id="week_img_5" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
 
 									<div class="col-md-12">
-										<p id="main_title_5" class="lead my-1" style="font-weight: 600;"></p>
-										<p class="display-6" style="padding-bottom: 15px;">16,500원</p>
+										<p id="week_title_5" class="lead my-1"></p>
+										<span id="week_view_5" class="display-5" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="week_link_6">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+									<img id="week_img_6" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="week_title_6" class="lead my-1"></p>
+										<span id="week_view_6" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="week_link_7">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+									<img id="week_img_7" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="week_title_7" class="lead my-1"></p>
+										<span id="week_view_7" class="display-7" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
 									</div>
 								</div>
 							</a>
@@ -386,22 +406,21 @@
 				<script>
 					
 					$(document).ready(function() {
-						
 						$.ajax({
 							url : "/recipeServlet",
 							type : "post",
-				
 							success : function(data) {
 								
 								var keys = Object.keys(data);
-								// JSON에서 MAP형태로 꺼내오려면
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									 $('#main_img_'+(i+1)).attr("src",data[i].recipe_pic);
-									 $('#main_title_'+(i+1)).html(data[i].recipe_title);
+									 $('#week_link_'+(i+1)).attr("href","http://localhost/recipe?recipeNo="+data[i].recipe_no);
+									 $('#week_img_'+(i+1)).attr("src",data[i].recipe_pic);
+									 $('#week_title_'+(i+1)).html(data[i].recipe_title);
+									 $('#week_view_'+(i+1)).append(data[i].recipe_today_views);
 								} 
-								
 							},
+							
 							error : function() {
 								console.log("실패");
 							}
@@ -409,11 +428,7 @@
 					});
 				</script>
 				
-				
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br>
 
 				<!-- 이달의 레시피 뷰  -->
 				<div id="main_div_2" class="col-md-8 mx-auto" style="padding: 0px;">

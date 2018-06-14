@@ -114,19 +114,19 @@
 
 					<table class="table table-bordered table-hover">
 						<tr id="notice-color">
-							<td><a href="/views/managerPage/noticePage.jsp"
+							<td><a href="/views/customerCenterPage/noticePage.jsp"
 								style="color: black">공지사항<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td id="faq-color"><a href="/views/managerPage/faqPage.jsp"
+							<td id="faq-color"><a href="/views/customerCenterPage/faqPage.jsp"
 								style="color: black">FAQ<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
+							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
 								style="color: black">1:1문의<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>

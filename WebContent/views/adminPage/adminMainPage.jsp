@@ -72,9 +72,9 @@
 				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; left-padding: 14px;">
 				<div class="row">
-					<div class="col-md-12" style="text-align: center">
+					<div class="offset-md-2 col-md-10" style="text-align: center">
 						<br>
-						<h3>관리자님 어서오세요!</h3>
+						<h2>관리자님 어서오세요!</h2>
 						<br> <br>
 
 					</div>
@@ -177,10 +177,10 @@
 						<table id="adminList" class="table table-bordered table-hover"
 							style="background-color: white" style="width: 100%;">
 							<tr style="background-color: #dcdbde">
-								<th><a href="/views/managerPage/adminMainPage.jsp">Home</a></th>
+								<th><a href="/views/adminPage/adminMainPage.jsp">Home</a></th>
 							</tr>
 							<tr>
-								<th><a href="/views/managerPage/memberMgtPage.jsp">회원관리</a></th>
+								<th><a href="/views/adminPage/memberMgtPage.jsp">회원관리</a></th>
 							</tr>
 							<tr>
 								<th>게시물관리</th>
@@ -198,7 +198,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3>오늘 가입한 회원정보입니다.</h3>
+								<h3><a href="/views/managerPage/memberMgtPage.jsp">오늘 가입한 회원정보입니다.</a></h3>
 								<br> <br>
 
 
@@ -210,6 +210,7 @@
 									<tr>
 										<th>회원번호</th>
 										<th>아이디</th>
+										<th>비밀번호</th>
 										<th>이름</th>
 										<th>생년월일</th>
 										<th>연락처</th>
@@ -221,6 +222,7 @@
 									<tr>
 										<td>59</td>
 										<td>han5631</td>
+										<td>saf*****</td>										
 										<td>한영진</td>
 										<td>930505</td>
 										<td>010454546</td>
@@ -238,7 +240,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3>미답변 문의사항이 있습니다.</h3>
+								<h3><a href="/views/managerPage/qnaMgtPage.jsp">미답변 문의사항이 있습니다.</a></h3>
 							</div>
 							<br><br><br><br>
 						</div>

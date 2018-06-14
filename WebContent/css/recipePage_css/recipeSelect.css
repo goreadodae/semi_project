@@ -1,0 +1,31 @@
+@charset "UTF-8";
+#recipe-pic{
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: 450px;
+	transition: .5s ease;
+	backface-visibility: hidden;
+    margin-left: auto;
+    margin-right: 0%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-clip: content-box;
+}
+#recipe-pic-parent{
+	padding-right: 0%;
+}
+#recipe-title{
+	height: 25%;
+}
+#recipe-info{	
+	height: 35%;
+}
+#recipe-intro{
+	height: 40%;
+}
+#recipe-title>div>h4{
+	margin-top: 5%;
+	text-align: center;
+}

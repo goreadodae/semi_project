@@ -41,7 +41,7 @@ public class RecipeService {
 
 	public RecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order) {
 		Connection conn = JDBCTemplate.getConnection();
-		int recordCountPerPage = 10;
+		int recordCountPerPage = 12;
 		int naviCountPerPage = 5;
 		ArrayList<Recipe> list = new RecipeDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order);
 		String pageNavi = new RecipeDao().getPageNavi(conn, page, recordCountPerPage, naviCountPerPage, cate1, cate2, cate3, cate4, order);
@@ -53,6 +53,13 @@ public class RecipeService {
 			rpd.setPageNavi(pageNavi);
 		}
 		return rpd;
+	}
+
+	public Recipe recipeSelect(int recipeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Recipe recipe = new RecipeDao().recipeSelect(conn, recipeNo);
+		JDBCTemplate.close(conn);
+		return recipe;
 	}
 	
 }

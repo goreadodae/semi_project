@@ -292,9 +292,61 @@ public class RecipeDao {
 		}
 		if(needNext) {
 			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi-1)+"'> < </a></li>");
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi+1)+"'> > </a></li>");
 		}
 		return sb.toString();
+	}
+
+	public Recipe recipeSelect(Connection conn, int recipeNo) {
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		Recipe r = null;
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("recipeSelect");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				r = new Recipe();
+				r.setRecipeNo(rset.getInt("RECIPE_NO"));
+				r.setRecipeTitle(rset.getString("RECIPE_TITLE"));
+				r.setRecipeIntro(rset.getString("RECIPE_INTRO"));
+				r.setRecipePic(rset.getString("RECIPE_PIC"));
+				r.setCookServing(rset.getString("COOK_SERVING"));
+				r.setCookTime(rset.getString("COOK_TIME"));
+				r.setCookLevel(rset.getString("COOK_LEVEL"));
+				r.setIngredient(rset.getString("INGREDIENT"));
+				r.setTip(rset.getString("TIP"));
+				r.setCompletePic(rset.getString("COMPLETE_PIC"));
+				r.setRecipeViews(rset.getInt("RECIPE_VIEWS"));
+				r.setRecipeMonthViews(rset.getInt("RECIPE_MONTH_VIEWS"));
+				r.setRecipeTodayViews(rset.getInt("RECIPE_TODAY_VIEWS"));
+				r.setRecipeTag(rset.getString("RECIPE_TAG"));
+				r.setVideo(rset.getString("VIDEO"));
+				r.setPostedDate(rset.getDate("POSTED_DATE"));
+				r.setClassNo(rset.getInt("CLASS_NO"));
+				r.setMethodNo(rset.getInt("METHOD_NO"));
+				r.setIngreNo(rset.getInt("INGRE_NO"));
+				r.setMemberNo(rset.getInt("MEMBER_NO"));
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return r;
 	}
 
 }

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/css/recipeList_css/recipeList.css">
+<link rel="stylesheet" href="/css/recipePage_css/recipeList.css">
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <style>
@@ -59,6 +59,9 @@
 		location.href = "/recipeList?cate1=${requestScope.cate1}"
 				+ "&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}&order="
 				+ sel.getAttribute('id') + "&search=";
+	}
+	function selectRecipe() {
+		location.href = "/recipe" + recipeId;
 	}
 </script>
 <title>수상한 레시피</title>
@@ -201,7 +204,11 @@
 			<c:forEach begin="0" items="${requestScope.pageData.dataList}"
 				var="list" varStatus="i">
 				<div class="col-md-4" style="margin-bottom: 3%;">
-					<div class="recipe-list list1">
+						<c:url var="url" value="/recipe">
+							<c:param name="recipeNo" value="${requestScope.pageData.dataList[i.count-1].recipeNo}" />
+						</c:url>
+					<div class="recipe-list list1" onclick="location.href='${url}'">
+						
 						<div class="recipe-pic">
 							<img src="${requestScope.pageData.dataList[i.count-1].recipePic}"
 								class="rounded">

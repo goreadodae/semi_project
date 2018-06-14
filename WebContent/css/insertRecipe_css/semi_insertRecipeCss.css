@@ -8,10 +8,10 @@
 	}
 }
 
-/* div {
+div {
 	border: 1px solid black;
 }
- */
+
 *{
 	margin:0;
 	padding:0;
@@ -28,3 +28,12 @@
  position:relative;
  padding:5px;
 }
+
+/* 폰트 */
+@font-face {
+    font-family: IropkeBatang; // 사용할 폰트명
+    src: url('/fonts/IropkeBatangM.eot'); // eot 포맷
+    src: local(※), url('/fonts/IropkeBatangM.woff') format('woff'); // ie9이상은 woff 포맷 적용
+}
+
+body{font-family:IropkeBatang;}

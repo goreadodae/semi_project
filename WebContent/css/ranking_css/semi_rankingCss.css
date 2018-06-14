@@ -1,11 +1,6 @@
 /*랭킹 메인 페이지*/
 
 
-/*a 태그 inline-block*/
-a{
-display: inline-block;
-}
-
 
 #rankingTopName{/*랭킹 페이지 상단부 이름*/
 	color: #353866;
@@ -81,6 +76,7 @@ border: 1px solid #EAEAEA;*/
 	display: inline-block;
 	text-decoration: none;
 	cursor: pointer;
+	display: inline-block;
 }
 
 #ranking_Division_Line{

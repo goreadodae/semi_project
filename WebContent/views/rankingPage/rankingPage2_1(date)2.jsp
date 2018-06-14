@@ -67,18 +67,76 @@
     
     document.getElementById("yearClick").innerHTML = strYear;
     document.getElementById("monthClick").innerHTML = strMonth;
+
+
+/*현재 선택된 셀렉트 값 가져오기*/
+/*console.log($("#yearClick option:selected").val());*/
+/*console.log($("select[name=yearClickName]").val());*/
+
+
+/*바뀐 셀렉트 값 가져오기*/
+$("#yearClick").change(function(){
+  $("#monthClick").change(function(){
+
+/*alert($(this).children("option:selected").text());*/
+
+ var yearClick = $("select[name=yearClickName]").val();
+ var monthClick = $("select[name=monthClickName]").val();
+
+  console.log("선택한 년도 : "+yearClick);
+  console.log("선택한 달 : "+monthClick);
+
+    $.ajax({
+      url : "/rankingMonthlyRecipe",
+      data : {year : yearClick, month : monthClick},
+      type : "post",
+      success : function(data){
+        console.log("성공");
+
+      },
+      error : function(){
+        console.log("실패");
+      }
+    });
+
+    });
+});
+
   }
+
+
+/* window.onload=function(){
+    var yearClick = $("yearClick").val()
+
+    var monthClick = $("monthClick").val();
+
+    $.ajax({
+      url : "/rankingMonthlyRecipe",
+      data : {year : yearClick, month : monthClick},
+      type : "post",
+      success : function(data){
+        console.log("성공");
+
+      },
+      error : function(){
+        console.log("실패");
+      }
+    });
+
+  }*/
+
+
 </script>
 <div class="container">
 <div class="row justify-content-end">
 
 <div style="width: 150px;">
-<select class="custom-select" id="yearClick">
+<select class="custom-select" id="yearClick" name="yearClickName">
 </select>
 </div>
 &emsp;
 <div style="width: 150px;">
-<select class="custom-select" id="monthClick">
+<select class="custom-select" id="monthClick" name="monthClickName">
 </select>
 </div>
 

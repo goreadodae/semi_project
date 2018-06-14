@@ -16,12 +16,14 @@ public class Ranking {
 	private String video;
 	private Date postedDate;
 	private int memberNo;
+	private String memberName;
+	private String memberId;
 	
 	public Ranking() {}
 
 	public Ranking(int recipeNo, String recipeTitle, String recipeIntro, String recipePic, String completePic,
 			int recipeViews, int recipeMonthViews, int recipeTodayViews, String recipeTag, String video,
-			Date postedDate, int memberNo) {
+			Date postedDate, int memberNo, String memberName, String memberId) {
 		super();
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
@@ -35,6 +37,8 @@ public class Ranking {
 		this.video = video;
 		this.postedDate = postedDate;
 		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberId = memberId;
 	}
 
 	public int getRecipeNo() {
@@ -133,15 +137,32 @@ public class Ranking {
 		this.memberNo = memberNo;
 	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
 	@Override
 	public String toString() {
 		return "Ranking [recipeNo=" + recipeNo + ", recipeTitle=" + recipeTitle + ", recipeIntro=" + recipeIntro
 				+ ", recipePic=" + recipePic + ", completePic=" + completePic + ", recipeViews=" + recipeViews
 				+ ", recipeMonthViews=" + recipeMonthViews + ", recipeTodayViews=" + recipeTodayViews + ", recipeTag="
-				+ recipeTag + ", video=" + video + ", postedDate=" + postedDate + ", memberNo=" + memberNo + "]";
+				+ recipeTag + ", video=" + video + ", postedDate=" + postedDate + ", memberNo=" + memberNo
+				+ ", memberName=" + memberName + ", memberId=" + memberId + "]";
 	}
-	
-	
+
+
 	
 	
 	

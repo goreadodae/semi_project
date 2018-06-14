@@ -48,13 +48,15 @@ public class RankingDao {
 				r.setVideo(rset.getString("video"));
 				r.setPostedDate(rset.getDate("posted_date"));
 				r.setMemberNo(rset.getInt("member_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");
+				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));*/
 				
 				todayList.add(r);
 				
 			}
 			
-			
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) { 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -66,8 +68,13 @@ public class RankingDao {
 		}finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
-		}
+		}	
 		return todayList;		
+	}
+
+	public void monthRecipeRanking(Connection conn, String year, String month) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

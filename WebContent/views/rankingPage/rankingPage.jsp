@@ -235,7 +235,7 @@ $(document).ready(function(e) {
 <!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
 	<div id="ranking2Wrap">
 		<br><br><br><br>
-		<div class="container" style="width: 1100px; height: 2800px;" id="iframeWrap">
+		<div class="container" style="width: 1200px; height: 3000px;" id="iframeWrap">
 			<!-- iframe으로 페이지 내에서 바꾸기! -->
 		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0"></iframe>
 		<!-- frameborder="0" -->

@@ -17,19 +17,19 @@
 #cardImgs{
 	/*width: 100%;
 	height: 100%;*/
-	width: 950px;
+	width: 880px;
 	height: 350px;
 }
 
 #rankingListWrap{
-	width: 1000px;
+	width: 880px;
 	height: 350px;	
 }
 
 
 /*카드-이미지 담은 div*/
 #rankingList{
-	width: 1000px;
+	width: 880px;
 	height: 350px;
 	color: black;
 	background-color: black;
@@ -54,8 +54,10 @@
 
 /*카드에서 오버레이 - 글자 감싸고 있는 부분 -> padding으로 글자 아래로*/
 #cardOverlay{
+	width: 905px;
+	height: 350px;
 	padding-top: 230px;
-	padding-left: 0px;
+	padding-left: 0px;  
 	padding-right: 25px;
 	overflow: hidden;
 	
@@ -66,10 +68,10 @@
 	background-color: #F8FAFF;
 	opacity: 0.8;
 	height : 121px; 
-	width: 1050px;
+	width: 930px;
 	/*width: 1142px;*/
 	overflow: auto;
-
+	padding-right: 20px;
 }
 
 /*글자들 좌우 조절*/
@@ -82,23 +84,33 @@
 
 .card-text{
 	padding-left: 20px; 
-	padding-right: 20px;
+	padding-right: 40px;
 }
 
-#rankingNickName{
+#viewDiv{
+	margin-left: 10px;
+}
+
+#viewIcon{
+	width: 20px;
+	height: 20px;
+}
+
+#rankingViews{
 	display: inline-block; 
-	margin-right: 150px; 
-	margin-top: 5px;
+	margin-left: 5px; 
+	margin-top: 14px;
 	color: #353866;
 }
 
 
 #tableContainer{
 	overflow: hidden;
+	padding: 0px;
 }
 
 #tableWrap{
-	width: 950px;
+	width: 900px;
 	overflow: hidden;
 }
 

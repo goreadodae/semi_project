@@ -11,6 +11,7 @@
 
 <!-- 메인 전용 css -->
 <link rel="stylesheet" href="/css/mainPage_css/main.css">
+
 <script>
 	$("html").easeScroll();
 </script>

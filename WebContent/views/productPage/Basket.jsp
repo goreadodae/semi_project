@@ -201,6 +201,11 @@ table{
 	line-height : 130px;
 }
 
+#notice{
+	background-color : #FAFAFA;
+	border : 1px solid #dcdcdc;
+}
+
 
 
 </style>
@@ -290,10 +295,18 @@ table{
 					</div>
 
 					<br><br><br>
+					
+					<!-- 주문하기 버튼 -->
 					<center>
 					<button class="mybutton" onclick="location.href='/views/productPage/Purchase.jsp'">주문하기</button>
-					<br><br><br><img src="/imgs/product_img/basket_bottom.png" alt="bottom">
 					</center>
+					<br><br><br>
+					
+					
+					<!-- 참고사항 -->
+					<div id="notice" width=100%>
+					<center><img src="/imgs/product_img/basket_bottom.png" alt="참고메시지"></center>
+					</div>
 
 				</div>
 			</div>

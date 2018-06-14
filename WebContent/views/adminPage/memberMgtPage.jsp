@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,6 +66,7 @@
 
 </head>
 <body>
+
 	<div class="container-fluid" style="padding: 0px">
 		<div id="header"></div>
 
@@ -98,11 +100,11 @@
 						<table id="adminList" class="table table-bordered table-hover"
 							style="background-color: white" style="width: 100%;">
 							<tr>
-								<th><a href="/views/managerPage/adminMainPage.jsp">Home</a></th>
+								<th><a href="/views/adminPage/adminMainPage.jsp">Home</a></th>
 							</tr>
 							<tr>
 								<th style="background-color: #dcdbde"><a
-									href="/views/managerPage/memberMgtPage.jsp">회원관리</a></th>
+									href="/views/adminPage/memberMgtPage.jsp">회원관리</a></th>
 							</tr>
 							<tr>
 								<th>게시물관리</th>
@@ -121,6 +123,7 @@
 							<tr>
 								<th>회원번호</th>
 								<th>아이디</th>
+								<th>비밀번호</th>
 								<th>이름</th>
 								<th>생일</th>
 								<th>연락처</th>
@@ -128,97 +131,21 @@
 								<th>email</th>
 								<th>가입일자</th>
 							</tr>
+							
+							<c:forEach begin="0" items="${requestScope.memberList}" var="m" varStatus="status">
 							<tr>
-								<td>1</td>
-								<td>kerorozzzz</td>
-								<td>한찐따</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
+							<td>${m.memberNo}</td>
+							<td>${m.memberId}</td>
+							<td>${m.memberPwd}</td>
+							<td>${m.memberName}</td>
+							<td>${m.birthDate }</td>
+							<td>${m.phone}</td>
+							<td>${m.gender}</td>
+							<td>${m.email}</td>
+							<td>${m.enrollDate}</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-
-
-
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-
-
-
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-
-
-
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>kerorozzzz</td>
-								<td>한일진</td>
-								<td>0427</td>
-								<td>01045564839</td>
-								<td>남</td>
-								<td>kerororzzzz@naver.com</td>
-								<td>2018-06-13</td>
-							</tr>
+							</c:forEach>
+						
 
 
 						</table>

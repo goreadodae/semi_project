@@ -3,6 +3,7 @@ package member.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +34,15 @@ public class MemberMgtServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<Member> list =new MemberService().viewAllMember();
+		ArrayList<Member> memberList =new MemberService().viewAllMember();
+		System.out.println(memberList);
 		
-		if(!list.isEmpty())
+		if(!memberList.isEmpty())
 		{
-			
+			request.setAttribute("memberList","memberList");
+			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/memberMgtPage.jsp");
+			view.forward(request, response);
+			System.out.println("비어있지않지");
 		}
 		else
 		{

@@ -20,7 +20,6 @@ public class MemberDao {
 		ResultSet rset = null;
 		Member m = null;
 		ArrayList<Member> list = new ArrayList<Member>();
-		
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		
@@ -33,7 +32,7 @@ public class MemberDao {
 			{
 				m = new Member();
 				m.setMemberNo(rset.getInt("member_no"));
-				m.setMemberId(rset.getString("Member_id"));
+				m.setMemberId(rset.getString("member_id"));
 				m.setMemberPwd(rset.getString("member_pwd"));
 				m.setMemberName(rset.getString("member_name"));
 				m.setBirthDate(rset.getDate("birth_date"));

@@ -13,11 +13,9 @@ public class MemberService {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Member> list = new MemberDao().viewAllMember(conn);
 		JDBCTemplate.close(conn);
+		
+		
 		return list;
-		
-		
-		
-		
 	}
 
 }

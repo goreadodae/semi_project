@@ -74,7 +74,8 @@
 				<div class="row">
 					<div class="offset-md-2 col-md-10" style="text-align: center">
 						<br>
-						<h2>관리자님 어서오세요!</h2>
+						<h2>환영합니다!! 관리자님!</h2>
+						
 						<br> <br>
 
 					</div>
@@ -189,7 +190,7 @@
 								<th>공지사항관리</th>
 							</tr>
 							<tr>
-								<th><a href="/views/managerPage/qnaMgtPage.jsp"></a>문의관리</th>
+								<th><a href="/views/adminPage/qnaMgtPage.jsp"></a>문의관리</th>
 							</tr>
 						</table>
 
@@ -198,7 +199,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/managerPage/memberMgtPage.jsp">오늘 가입한 회원정보입니다.</a></h3>
+								<h3><a href="/views/adminPage/memberMgtPage.jsp">오늘 가입한 회원정보입니다.</a></h3>
 								<br> <br>
 
 
@@ -240,7 +241,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/managerPage/qnaMgtPage.jsp">미답변 문의사항이 있습니다.</a></h3>
+								<h3><a href="/views/adminPage/qnaMgtPage.jsp">미답변 문의사항이 있습니다.</a></h3>
 							</div>
 							<br><br><br><br>
 						</div>

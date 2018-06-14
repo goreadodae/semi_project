@@ -70,7 +70,7 @@
   }
 </script>
 <div class="container">
-<div class="row">
+<div class="row justify-content-end">
 
 <div style="width: 150px;">
 <select class="custom-select" id="yearClick">
@@ -84,6 +84,7 @@
 
 </div>
 </div>
+<br><br><br><br>
 
 </body>
 </html>

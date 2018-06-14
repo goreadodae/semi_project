@@ -1,5 +1,10 @@
 /*랭킹 메인 페이지 - 오늘의 레시피, 이달의 레시피, 이달의 쉐프 1~5위까지 순위 css*/
 
+/*데이트피커*/
+#datepicker{
+	z-index: 9999;
+}
+
 /*이미지*/
 #imgWrap{
 	/*width: 950px;
@@ -82,7 +87,7 @@
 
 #rankingNickName{
 	display: inline-block; 
-	margin-right: 100px; 
+	margin-right: 150px; 
 	margin-top: 5px;
 	color: #353866;
 }
@@ -98,6 +103,11 @@
 }
 
 
+.date{
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
 /*날짜 누르면 포인터로!(div)*/
 .date:hover {
   cursor: pointer;
@@ -106,20 +116,35 @@
 
 /*날짜 나오는 h태그*/
 #rankingDateToday{
-	margin-right: 160px;
+	/*margin-right: 160px;
 	margin-bottom: 0px;
-	margin-top: 10px;
+	margin-top: 10px;*/
 	text-shadow: 2px 2px 2px #F8FAFF;
 }
 
  #dateWrap{
- 	border: 5px solid #EAEAEA;
- 	border-radius: 10px;
- 	height: 100%;
- 	padding-top: 15px;
+ 	margin-bottom: 30px;
  }
 
- #dateTop{
- 	height: 90px;
- 	
- }
+
+.dateButton{
+	display: inline-block;
+    padding: 6px 20px;
+    margin: 0 2px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#rankingDateToday{
+	font-size: 36px;
+    font-weight: bold;
+    text-decoration: none;
+	cursor: pointer;
+	color: #353866;
+}

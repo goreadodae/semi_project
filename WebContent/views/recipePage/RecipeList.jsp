@@ -101,7 +101,7 @@
 								</c:choose>
 							</c:forEach>
 						</ul>
-					</div>
+					</div>	
 				</div>
 				<div class="row" id="cate_situation" style="margin-top: 10px;">
 					<div class="col-md-12">

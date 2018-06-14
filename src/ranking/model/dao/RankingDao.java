@@ -23,7 +23,6 @@ public class RankingDao {
 		
 		Properties prop = new Properties();
 		String path = RankingDao.class.getResource("").getPath();
-			
 		
 		try {
 			prop.load(new FileReader(path+"rankingQuery.properties"));

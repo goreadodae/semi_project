@@ -16,6 +16,13 @@
 	top: 0px;
 }
 
+.clFixed{
+	position: fixed;
+	top:50px;
+	left:318px;
+	
+}
+
 .categoryFixed{
 	position: fixed;
 	left: 0px;

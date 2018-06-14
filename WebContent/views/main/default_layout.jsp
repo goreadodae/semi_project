@@ -7,7 +7,6 @@
 <meta name="author" content="수상한레시피">
 <meta name="description" content="레시피를 공유해 수익을 얻을 수 있는 사이트입니다.">
 <meta name="keywords" content="레시피, 요리, 수상한레시피, 음식, 재료">
-<meta http-equiv="refresh" content="30">
 
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -35,4 +34,7 @@
 
 <!-- load header footer  -->
 <script src="/js/main/necessary.js"></script>
-<script src="/js/main/jquery.easeScroll.js"></script>
+<!-- <script src="/js/main/jquery.easeScroll.js"></script> -->
+
+<!-- jstl  -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

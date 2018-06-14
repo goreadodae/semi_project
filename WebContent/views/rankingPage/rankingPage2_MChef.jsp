@@ -36,6 +36,12 @@
 </head>
 <body>
 
+<!-- 월별 selected option -->
+<br>
+<div class="container">
+  <jsp:include page="rankingPage2_1(date)2.jsp" />
+</div>
+<br>
 
 <!-- 가운데로 보내는 컨테이너 -->
 <div class="container" id="tableContainer">

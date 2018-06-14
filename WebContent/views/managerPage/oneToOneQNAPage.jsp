@@ -55,7 +55,7 @@
 			6. 글쓰기 버튼 클릭시 새 페이지로 작성 공간으로 ㄱㄱ
 			7. 흑흑흑
 		  -->
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0px">
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"

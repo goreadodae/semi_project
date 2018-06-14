@@ -55,7 +55,7 @@ float:right;
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding:0px">
 
 		<div id="header"></div>
 

@@ -10,7 +10,7 @@
     margin-right: 0%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: 80% 80%;
     background-clip: content-box;
 }
 #recipe-pic-parent{
@@ -20,12 +20,29 @@
 	height: 25%;
 }
 #recipe-info{	
-	height: 35%;
+	height: 30%;
 }
 #recipe-intro{
-	height: 40%;
+	height: 45%;
 }
 #recipe-title>div>h4{
-	margin-top: 5%;
+	margin-top: 8%;
 	text-align: center;
+}
+#complete-pic-div{
+	width: 70%;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.d-block.w-100{
+	height: 500px;
+	width: 100%;
+}
+#recipe-infoes{
+	background-color: white;
+}
+.row{
+	background-color: white;
+	margin-bottom: 3%;
 }

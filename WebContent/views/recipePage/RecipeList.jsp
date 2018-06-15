@@ -208,7 +208,6 @@
 							<c:param name="recipeNo" value="${requestScope.pageData.dataList[i.count-1].recipeNo}" />
 						</c:url>
 					<div class="recipe-list list1" onclick="location.href='${url}'">
-						
 						<div class="recipe-pic">
 							<img src="${requestScope.pageData.dataList[i.count-1].recipePic}"
 								class="rounded">

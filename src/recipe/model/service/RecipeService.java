@@ -8,6 +8,7 @@ import common.JDBCTemplate;
 import recipe.model.dao.RecipeDao;
 import recipe.model.vo.Recipe;
 import recipe.model.vo.RecipePageData;
+import recipe.model.vo.Process;
 
 public class RecipeService {
 
@@ -60,6 +61,13 @@ public class RecipeService {
 		Recipe recipe = new RecipeDao().recipeSelect(conn, recipeNo);
 		JDBCTemplate.close(conn);
 		return recipe;
+	}
+
+	public ArrayList<Process> processSelect(int recipeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Process> list = new RecipeDao().processSelect(conn, recipeNo);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 	
 }

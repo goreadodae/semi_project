@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import common.JDBCTemplate;
 import recipe.model.vo.Recipe;
+import recipe.model.vo.Process;
 
 public class RecipeDao {
 
@@ -347,6 +348,48 @@ public class RecipeDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return r;
+	}
+
+	public ArrayList<Process> processSelect(Connection conn, int recipeNo) {
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		ArrayList <Process> list = new ArrayList<Process>();
+		Process p = null;
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("processSelect");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				p = new Process();
+				p.setProcessNo(rset.getInt("PROCESS_NO"));
+				p.setProcessOrder(rset.getInt("PROCESS_ORDER"));
+				p.setProcessExplain(rset.getString("PROCESS_EXPLAIN"));
+				p.setProcessPic(rset.getString("PROCESS_PIC"));
+				p.setIngre(rset.getString("INGRE"));
+				p.setTools(rset.getString("TOOLS"));
+				p.setFireLevel(rset.getString("FIRE_LEVEL"));
+				p.setTip(rset.getString("TIP"));
+				p.setRecipeNo(rset.getInt("RECIPE_NO"));
+				list.add(p);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 
 }

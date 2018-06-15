@@ -1,6 +1,7 @@
 package recipe.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import recipe.model.service.RecipeService;
 import recipe.model.vo.Recipe;
+import recipe.model.vo.Process;
 
 /**
  * Servlet implementation class RecipeServlet
@@ -33,8 +35,10 @@ public class RecipeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
 		Recipe recipe = new RecipeService().recipeSelect(recipeNo);
+		ArrayList <Process> processList = new RecipeService().processSelect(recipeNo);
 		if(recipe!=null) {
 			request.setAttribute("recipe", recipe);
+			request.setAttribute("processList", processList);
 			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/recipeSelect.jsp");
 			view.forward(request, response);
 		}else {

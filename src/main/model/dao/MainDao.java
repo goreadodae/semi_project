@@ -65,7 +65,6 @@ public class MainDao {
 			prop.load(new FileReader(path+"resources/mainQuery.properties"));
 			
 			String query = prop.getProperty("selectWeek");
-			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			

@@ -418,18 +418,62 @@
 	 
 	 /* 그림추가부분-step  */
 	 
+	 /* function updateImg(inputTag,imgBox)
+	 {
+		 var inputs = document.getElementsByClassName("stepImgClass");
+         
+         for (var i =0; i<inputs.length ; i++){
+       	  console.log("인풋 태그" + inputs[i].id);
+         }
+         var countFiles = inputTag.files.length;
+         var imgPath = inputTag.value;
+         console.log(inputTag);
+         var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+         console.log(extn);
+         console.log(plusNum);
+         var imgFile_Step = $('#'+imgBox.id);
+        /*  imgFile_Step.empty(); */
+         /* if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+           if (typeof(FileReader) != "undefined") {
+             //loop for each file selected for uploaded.
+             for (var i = 0; i < countFiles; i++) 
+             {
+               var reader = new FileReader();
+               reader.onload = function(e) {
+              	/*  imgFile_Step.attr('src',e.target.result);*/
+               	/* console.log(e.target.result);
+               	imgBox.src = e.target.result;
+               }
+               reader.readAsDataURL(inputTag.files[i]);
+             }
+           } else {
+             alert("This browser does not support FileReader.");
+           }
+         } else {
+           alert("Pls select only images");
+         }
+	 } */ 
 	 
-	$(document).ready(function() {
-	        $('.stepImgClass').on('change', function() {
+	/* $(document).ready(function() { */
+		
+	        /* $('.stepImgClass').on('change', function () {
 	          //Get count of selected files
+	          
+	          var inputs = document.getElementsByClassName("stepImgClass");
+	          
+	          for (var i =0; i<inputs.length ; i++){
+	        	  console.log("인풋 태그" + inputs[i].id);
+	          }
+	      
+	          console.log($(this).siblings('img').attr('id'));
 	          
 	          var countFiles = $(this)[0].files.length;
 	          var imgPath = $(this)[0].value;
 	          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
 	          console.log(plusNum);
-	          var imgFile_Step = $('#imgFile_Step_'+plusNum); alter(num);
-	          imgFile_Step.empty();
-	          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+	          var imgFile_Step = $('#'+$(this).siblings('img').attr('id'));
+	         /*  imgFile_Step.empty(); */
+	          /* if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
 	            if (typeof(FileReader) != "undefined") {
 	              //loop for each file selected for uploaded.
 	              for (var i = 0; i < countFiles; i++) 
@@ -446,8 +490,8 @@
 	          } else {
 	            alert("Pls select only images");
 	          }
-	        });
-	      });
+	        }); */
+	      /* }); */
 	 
 	/* function testFileALL(num) {
 		 var countFiles = $(this)[0].files.length;
@@ -475,13 +519,34 @@
 		
 	}; */
 	 
+	/* 그림추가부분-step 쉽게변경  */
+	
+	function uploadStepFile(){
+		
+
+		var imgFile_Step_0 = document.getElementById("imgFile_Step_0");
+
+		
+		 var filePath=$('.stepImgClass').val();
+		 
+	
+		 
+		 $('#imgFile_Step_0').attr('src',filePath);
+		
+	};
 	
 	 /* 동영상-썸네일  */
 	
 	   function changeVideo(){
 		 
-		 var videoAddr = document.getElementId('recipeVideoTa').value();
-		 alert(videoAddr);
+		 var videoAddr = document.getElementById("recipeVideoTa").value; 
+		 
+		 var result  = videoAddr.substr(-11, 11);
+		 
+		var videoAddr = "http://img.youtube.com/vi/"+result+"/0.jpg";
+		 
+		$('#videoImg').attr('src',videoAddr);
+		 
 	 };
 	 
 </script>
@@ -519,9 +584,8 @@
 					<div class="row" id="navClose"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">					
 					<div class="col-md-3"><label for="recipeVideo"><h4>동영상</h4></label></div>
-					<div class="col-md-6"><textarea class="form-control" rows="5" id="recipeVideoTa" placeholder="예)동영상이 있으면 주소를 입력하세요.(Youtube만 가능)예)http://youtu.be/l=|AOBxo3IZmM" style="resize: none;" onchange="changeVideo()"></textarea></div>
-					<div class="col-md-3"><button type="button" class="photoBtn">
-					<img src="https://img.youtube.com/vi/LEkmieyZzj0/0.jpg" width="170" height="125"></button></div>
+					<div class="col-md-6"><textarea class="form-control" rows="5" id="recipeVideoTa" placeholder="예)동영상이 있으면 주소를 입력하세요.(Youtube만 가능)예)http://youtu.be/l=|AOBxo3IZmM" style="resize: none;" onchange="changeVideo();"></textarea></div>
+					<div class="col-md-3"><img src="/imgs/insertRecipe_img/pic_none5.jpg" width="170" height="125" id="videoImg"></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">					
@@ -760,7 +824,8 @@
 					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;"></textarea></div>
 					<div class="col-md-3">
 					<div class="row"><div class="col-md-12" id="stepImg0"> <!--onchange="testFileALL(0)"  -->
-					<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" class="stepImgClass"/>
+					<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" class="stepImgClass" onchange="uploadStepFile();" />
+					<!-- <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();"> -->
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();"></div></div></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->

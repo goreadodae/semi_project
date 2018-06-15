@@ -32,7 +32,6 @@
 		<div id="contents"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; left-padding: 14px;">
-			ddd
 			
 
 

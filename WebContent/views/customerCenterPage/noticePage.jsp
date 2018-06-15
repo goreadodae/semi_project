@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,10 +85,10 @@ float:right;
 
 					<table class="table table-bordered table-hover">
 						<tr id="notice-color">
-							<td><a href="/views/customerCenterPage/noticePage.jsp" style="color:black">공지사항<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="/noticeList" style="color:black">공지사항<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/customerCenterPage/faqPage.jsp" style="color:black">FAQ<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
+							<td><a href="/faqList" style="color:black">FAQ<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
 						</tr>
 						<tr>
 							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp" style="color:black">1:1문의<img src="/imgs/manager-img/right-arrow.png" height="9px" class="list-arrow"></a></td>
@@ -114,29 +115,25 @@ float:right;
 							</tr>
 						</thead>
 						<tbody>
+						
+							<c:forEach items="${requestScope.noticeList}" var="n" varStatus="i">
+							<c:url var ="url" value="/noticeDetail">
+								<c:param name="noticeNo" value="${n.noticeNo}"></c:param>
+							</c:url>
 							<tr>
-								<th scope="row">1</th>
-								<td><a href="/views/customerCenterPage/noticeContentsPage.jsp">
-								귤이신가요 단가요</a>
+							
+								<th scope="row">${n.noticeNo}</th>
+								<td>
+								<a href="${url}">
+								${n.noticeTitle}
+								</a>
 								</td>
-								<td>토게피</td>
-								<td>2018-06-04</td>
-								<td>15</td>
+								<td>${n.noticeWriter}</td>
+								<td>${n.reportingDate}</td>
+								<td>${n.noticeViews}</td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>미국산척아이롤을 이용한 요리</td>
-								<td>마자용</td>
-								<td>2018-06-04</td>
-								<td>11</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>배송중지 안내</td>
-								<td>관리자</td>
-								<td>2018-06-04</td>
-								<td>12</td>
-							</tr>
+							</c:forEach>
+							
 						</tbody>
 					</table>
 

@@ -52,6 +52,7 @@ public class RecipeListServlet extends HttpServlet {
 		String cate3 = request.getParameter("cate3");//방법별
 		String cate4 = request.getParameter("cate4");//재료별
 		String order = request.getParameter("order");
+		
 		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order);
 		request.setAttribute("classList", categoryClassList);
 		request.setAttribute("situationList", categorySituationList);
@@ -62,6 +63,7 @@ public class RecipeListServlet extends HttpServlet {
 		request.setAttribute("cate3", cate3);
 		request.setAttribute("cate4", cate4);
 		request.setAttribute("order", order	);
+		
 		request.setAttribute("pageData", rpd);
 		RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp");
 		view.forward(request, response);

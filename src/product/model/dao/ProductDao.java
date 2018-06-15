@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
+import product.model.vo.Basket;
 import product.model.vo.Product;
 
 public class ProductDao {
@@ -106,5 +107,146 @@ public class ProductDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<Basket> getMyBasket(Connection conn, int member_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Basket> bList = new ArrayList<Basket>();
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("basketSelect");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, member_no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Basket b = new Basket();
+				b.setBasket_no(rset.getInt("bascket_no"));
+				b.setProduct_name(rset.getString("product_name"));
+				b.setProduct_1st_pic(rset.getString("product_1st_pic"));
+				b.setBasket_quantity(rset.getInt("bascket_quantity"));
+				b.setProduct_price(rset.getInt("product_price"));
+				bList.add(b);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return bList;
+	}
+
+	public int deleteBasket(Connection conn, int basket_no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+	
+		try {
+			prop.load(new FileReader(path + "resources/productQuery.properties"));
+			String query = prop.getProperty("basketDelete");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, basket_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertBasket(Connection conn, int basket_quantity,int member_no,int product_no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+	
+		try {
+			prop.load(new FileReader(path + "resources/productQuery.properties"));
+			String query = prop.getProperty("basketInsert");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, basket_quantity);
+			pstmt.setInt(2, member_no);
+			pstmt.setInt(3, product_no);
+			result = pstmt.executeUpdate();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBasket(Connection conn, int basket_quantity, int basket_no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+	
+		try {
+			prop.load(new FileReader(path + "resources/productQuery.properties"));
+			String query = prop.getProperty("basketUpdate");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, basket_quantity);
+			pstmt.setInt(2, basket_no);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 }

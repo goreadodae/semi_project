@@ -1,4 +1,4 @@
-package member.model.dao;
+package admin.model.dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import admin.model.vo.Member;
 import common.JDBCTemplate;
-import member.model.vo.Member;
 
 public class MemberDao {
 
@@ -33,7 +33,7 @@ public class MemberDao {
 				m = new Member();
 				m.setMemberNo(rset.getInt("member_no"));
 				m.setMemberId(rset.getString("member_id"));
-				m.setMemberPwd(rset.getString("member_pwd"));
+				m.setMemberPwd(rset.getString("tempPwd"));
 				m.setMemberName(rset.getString("member_name"));
 				m.setBirthDate(rset.getDate("birth_date"));
 				m.setPhone(rset.getString("phone"));

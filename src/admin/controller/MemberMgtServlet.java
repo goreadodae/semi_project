@@ -1,4 +1,4 @@
-package member.controller;
+package admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
+import admin.model.service.MemberService;
+import admin.model.vo.Member;
 
 /**
  * Servlet implementation class MemberMgtServlet
@@ -35,14 +35,13 @@ public class MemberMgtServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		ArrayList<Member> memberList =new MemberService().viewAllMember();
-		System.out.println(memberList);
 		
 		if(!memberList.isEmpty())
 		{
-			request.setAttribute("memberList","memberList");
+			request.setAttribute("memberList",memberList);
 			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/memberMgtPage.jsp");
 			view.forward(request, response);
-			System.out.println("비어있지않지");
+			
 		}
 		else
 		{

@@ -15,3 +15,8 @@
 #footer_link ul li:first-child {
 	border-left: none;
 }
+
+#footer_link ul li a{
+	text-decoration:none;
+	color:black;
+}

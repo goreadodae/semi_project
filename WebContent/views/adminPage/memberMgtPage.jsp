@@ -132,17 +132,17 @@
 								<th>가입일자</th>
 							</tr>
 							
-							<c:forEach begin="0" items="${requestScope.memberList}" var="m" varStatus="status">
+							<c:forEach begin="0" items="${requestScope.memberList}" var="m" varStatus="i">
 							<tr>
-							<td>${m.memberNo}</td>
-							<td>${m.memberId}</td>
-							<td>${m.memberPwd}</td>
-							<td>${m.memberName}</td>
-							<td>${m.birthDate }</td>
-							<td>${m.phone}</td>
-							<td>${m.gender}</td>
-							<td>${m.email}</td>
-							<td>${m.enrollDate}</td>
+							<td>${requestScope.memberList[i.count-1].memberNo}</td>
+							<td>${requestScope.memberList[i.count-1].memberId}</td>
+							<td>${requestScope.memberList[i.count-1].memberPwd}</td>
+							<td>${requestScope.memberList[i.count-1].memberName}</td>
+							<td>${requestScope.memberList[i.count-1].birthDate}</td>
+							<td>${requestScope.memberList[i.count-1].phone}</td>
+							<td>${requestScope.memberList[i.count-1].gender}</td>
+							<td>${requestScope.memberList[i.count-1].email}</td>
+							<td>${requestScope.memberList[i.count-1].enrollDate}</td>
 							</tr>
 							</c:forEach>
 						

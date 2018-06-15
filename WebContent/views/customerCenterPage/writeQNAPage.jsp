@@ -49,6 +49,8 @@
 	$(document).ready(function(){
 		cnt2 = 1;
 		cnt = $('#rowCount').length + 1;
+		cnt3 = 5;
+		
 		$('#addImg').click(function() {
 			if (cnt <= 5) 
 			{
@@ -58,8 +60,7 @@
 									+ 'onclick="removeRow('+ cnt2+ ');"/></span></td></tr>');
 					cnt++;
 					cnt2++;
-					
-					
+					console.log(cnt2);
 			} else {alert("이미지는 최대 5개까지 업로드가 가능합니다.");}
 		});
 			
@@ -68,7 +69,9 @@
 	function removeRow(cnt2) {/* 이미지추가 행 삭제   */
 		if ($('#rowTr_' + cnt2).remove()) {
 			cnt--;	/* 삭제할때마다 감소 */
-			/* cnt2--; /* 삭제할때마다 감소 */
+			cnt2--; /* 삭제할때마다 감소 */
+			console.log(cnt);
+			console.log(cnt2);
 		}
 	}
 	

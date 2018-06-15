@@ -1,6 +1,8 @@
 <!-- 구매 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +16,6 @@
 
 <title>수상한 레시피</title>
 
-
-<script>
-var IMP = window.IMP; // 생략가능
-IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-</script>
 
 <script>
 	$(document).ready(function() {
@@ -103,7 +100,12 @@ IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 		});
 		
 		
+		
+		
 		//결제 api 실행
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		
 		$('#pay').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
@@ -271,24 +273,16 @@ IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 							
 						</tr>
 						
+						<c:forEach begin="0" items="${basket}" var="b" varStatus="i">
+						<c:set var="sumprice" value="${sumprice + b.product_price*b.basket_quantity}"/>
 						<tr class="line1">
-							<td>1</td>
-							<td><center><img src="/imgs/product_img/product01.jpg" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">콩국수 (2인분)</td>
-							<td>2</td>
-							<td>19800</td>
-							
+							<td>${i.count}</td>
+							<td><center><img src="${b.product_1st_pic}" alt="제품이미지" class="inbasket"></center></td>
+							<td class="prod">${b.product_name}</td>
+							<td>${b.basket_quantity}</td>
+							<td>${b.product_price*b.basket_quantity}</td>
 						</tr>
-						
-						<tr class="line1">
-							<td>2</td>
-							<td><img src="/imgs/product_img/product02.jpg" alt="제품이미지" class="inbasket"></td>
-							<td class="prod">소고기 찹스테이크 (2인분)</td>
-							<td>1</td>
-							<td>15900</td>
-							
-						</tr>
-						
+						</c:forEach>
 					</table>
 					<br><br><br>
 					
@@ -372,7 +366,7 @@ IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코�
 					
 					
 					
-					<center><button class="mybutton1" id="pay">결제하기</button> <button class="mybutton2" onclick="location.href='/views/productPage/Basket.jsp'">취소하기</button></center>
+					<center><button class="mybutton1" id="pay">결제하기</button> <button class="mybutton2" onclick="location.href='/basketSelect'">취소하기</button></center>
 					<br><br>
 				
 					<div class="row">

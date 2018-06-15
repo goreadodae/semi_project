@@ -187,6 +187,7 @@ a{
          	if(value>1){
          		value--;
          		$('#qty').val(value);
+         		$('#basket_quantity').val(value);
          		$('#sumqty').html("수량 " + value +"개");
          		$('#sumprice').html($('#price').html()*value + "원");
          	}
@@ -198,6 +199,7 @@ a{
           	if(value<50){
           		value++;
           		$('#qty').val(value);
+          		$('#basket_quantity').val(value);
           		$('#sumqty').html("수량 " + value +"개");
           		$('#sumprice').html($('#price').html()*value +"원");
           	}
@@ -275,8 +277,12 @@ a{
 							</div>
 							<br>
 							<center>
-								<button type="button" class="btn btn-info" 
-								onclick="window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');">장바구니</button>
+								<form action="/basketInsert" method="post" style="display:inline;">
+									<input type="hidden" id="basket_quantity" name="basket_quantity" value="1" >
+									<input type="hidden" name="product_no" value="${productInfo.product_no}" >
+									<button class="btn btn-info" onclick="window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');">장바구니</button>
+								</form>
+								
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button type="button" class="btn btn-success" onclick="location.href='/views/productPage/Purchase.jsp'">구매하기</button>
 							</center>

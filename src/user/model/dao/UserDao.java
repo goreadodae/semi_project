@@ -14,12 +14,11 @@ import javax.mail.internet.MimeMessage;
 
 public class UserDao {
 
-	public int emailCheck(String email, String code, Connection conn) {
-		PreparedStatement pstmt = null;`
+	public int emailCheck(String email, Connection conn) {
+		PreparedStatement pstmt = null;
+		int result=0;
 		
-		if(result>0) {
-			new UserDao().sendEmail(email, code);
-		}
+		
 		
 		
 		

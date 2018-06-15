@@ -7,10 +7,16 @@ import user.model.dao.UserDao;
 
 public class UserService {
 
-	public void sendEmail(String email, String code) {
+	public int sendEmail(String email, String code) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new UserDao().emailCheck(email, code, conn);
+		int result = new UserDao().emailCheck(email, conn);
+		
+		if(result>0) {
+			new UserDao().sendEmail(email, code);
+		}
+		
+		return result;
 		
 	}
 

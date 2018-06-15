@@ -46,7 +46,7 @@ public class EmailCheckServlet extends HttpServlet {
             buf.append(characterTable[random.nextInt(tablelength)]);
         }
 		
-		new UserService().sendEmail(email, buf.toString());
+		int result = new UserService().sendEmail(email, buf.toString());
 		
 		response.getWriter().print(buf.toString());
 		response.getWriter().close();

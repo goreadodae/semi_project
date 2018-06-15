@@ -181,7 +181,7 @@
 								<th><a href="/views/adminPage/adminMainPage.jsp">Home</a></th>
 							</tr>
 							<tr>
-								<th><a href="/views/adminPage/memberMgtPage.jsp">회원관리</a></th>
+								<th><a href="/memberMgt">회원관리</a></th>
 							</tr>
 							<tr>
 								<th>게시물관리</th>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,15 +79,15 @@
 	display: none;
 	text-align: center;
 }
-#whenClick{
-	cursor:pointer;
 
+#whenClick {
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
 
-	<div class="container-fluid" style="padding:0px">
+	<div class="container-fluid" style="padding: 0px">
 		<div id="header"></div>
 
 		<div id="contents"
@@ -114,13 +115,13 @@
 
 					<table class="table table-bordered table-hover">
 						<tr id="notice-color">
-							<td><a href="/views/customerCenterPage/noticePage.jsp"
-								style="color: black">공지사항<img
+							<td><a href="/noticeList" style="color: black">공지사항<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td id="faq-color"><a href="/views/customerCenterPage/faqPage.jsp"
+							<td id="faq-color"><a
+								href="/views/customerCenterPage/faqPage.jsp"
 								style="color: black">FAQ<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
@@ -142,26 +143,36 @@
 				<div class="col-md-10">
 					<!-- for문 사용?????  -->
 					<table class="table" id="faqTable" style="text-align: center">
+
+
 						<tr>
 							<th scope="col" width="50px">번호</th>
 							<th scope="col" width="100px">카테고리</th>
 							<th scope="col">제목</th>
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>회원관련</td>
-							<td id="whenClick">회원가입시 주어지는 혜택이 무엇이있나요??</td>
-						</tr>
+
+
+						<c:forEach items="${requestScope.faqList}" var="list">
+							<tr>
+								<td>${list.faqNo}</td>
+								<td>${list.faqCategory}</td>
+								<td id="whenClick">${list.faqTitle}</td>
+							</tr>
+							<tr id="hidingContens">
+								<td colspan=3>
+								<img src="/imgs/manager-img/faq.png" height="15px">&nbsp;
+									${list.faqContents} <!-- faq 이미지, faq답변 내용  -->
+									</td>
+
+							
+							</tr>
+	
+
+							
+						</c:forEach>
 					</table>
-					<div class="row">
-						<div class="col-md-10" id="hidingContens">
-							<img src="/imgs/manager-img/faq.png" height="15px">&nbsp;
-							아무것도 없습니다 고객님^^
-							<!-- faq 이미지, faq답변 내용  -->
 
-						</div>
 
-					</div>
 
 				</div>
 

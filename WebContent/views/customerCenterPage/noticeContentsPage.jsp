@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,19 +83,19 @@ hr{
 						<thead>
 							<tr>
 								<th style="width:100px; background-color: lightgray;">제목</th>
-								<td colspan="4">귤이 단가요 신가요....</td>
+								<td colspan="4">${requestScope.notice.noticeTitle}</td>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<th style="background-color: lightgray">작성자</th>
-								<td colspan="4">토게피</td>
+								<td colspan="4">${requestScope.notice.noticeWriter}</td>
 							</tr>
 							<tr>
 								<th style="background-color: lightgray;">작성일</th>
-								<td width="150px">하하</td>
+								<td width="150px">${requestScope.notice.reportingDate}</td>
 								<th style="background-color: lightgray;" width="100px">조회수</th>
-								<td><span id="viewCount">1</span></td>
+								<td><span id="viewCount">${requestScope.notice.noticeViews}</span></td>
 								<!-- 카운트 해야함  -->
 							</tr>
 
@@ -109,8 +110,7 @@ hr{
 			</div>
  			<div class="row" style="padding:0;">
 					<div class="col-md-12" style="height:300px; padding:0;">
-					귤은 달달합니다.
-					데헷					
+							${requestScope.notice.noticeContents}			
 					</div>
 					
 					<hr>

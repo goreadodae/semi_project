@@ -48,12 +48,14 @@ public class MainDao {
 		return totalRecipe;
 	}
 
+	
 	public ArrayList<MainRecipe> getRecipe(Connection conn) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		MainRecipe mr = null;
 		ArrayList<MainRecipe> list = new ArrayList<MainRecipe>();
+		
 		Properties prop = new Properties();
 		
 		String path = MainDao.class.getResource("../../..").getPath();
@@ -63,6 +65,7 @@ public class MainDao {
 			prop.load(new FileReader(path+"resources/mainQuery.properties"));
 			
 			String query = prop.getProperty("selectWeek");
+			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			

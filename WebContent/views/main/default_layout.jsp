@@ -34,7 +34,7 @@
 
 <!-- load header footer  -->
 <script src="/js/main/necessary.js"></script>
-<!-- <script src="/js/main/jquery.easeScroll.js"></script> -->
+<script src="/js/main/jquery.easeScroll.js"></script>
 
 <!-- jstl  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

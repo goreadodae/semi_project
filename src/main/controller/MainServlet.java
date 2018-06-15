@@ -2,7 +2,6 @@ package main.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +34,6 @@ public class MainServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 
-		// 1. 상품화 된 레시피 수 받아오기
 		String totalRecipe = new MainService().getTotalRecipe();
 		
 		response.getWriter().print(totalRecipe);

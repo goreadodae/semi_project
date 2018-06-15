@@ -16,9 +16,6 @@
 		
 		
 		$(window).scroll(function() {
-			console.log("스크롤 : "+$(document).scrollTop());
-			console.log("네비 위치 : " + jbOffset.top);
-			
 			
 			if ($(document).scrollTop() >= jbOffset.top) {
 				/* 상단 고정하고 */
@@ -43,6 +40,7 @@
 
 			// 카테고리 오픈되어 있을 때
 			if (inCategory) {
+				/* 카테고리 호버일 때 */
 				$('#category_list').hover(function(e) {
 					if ($(e.target).is('.category-text')
 						|| $(e.target).is('.header')
@@ -50,7 +48,7 @@
 						$('#category_list').css('display', 'block');
 					}
 				});
-
+				/* 마우스가 떠날 때 */
 				$('#category_list').mouseleave(function(e) {
 					if (!$(e.target).is('.category-text')
 						|| !$(e.target).is('.header')
@@ -58,7 +56,7 @@
 						$('#category_list').css('display', 'none');
 					}
 				});
-
+				/* 마우스가 떠날 때 */
 				$('#div-category').mouseleave(function(e) {
 					if (!$(e.target).is('.category-text')
 						|| !$(e.target).is('.header')
@@ -79,27 +77,13 @@
 		var field = document.getElementById(target);
 		// #field 에서 삭제할 element 제거하기
 		document.getElementById('top-message').remove();
-		console.log("ㅇ");
 	}
-</script>
-
-<!-- 화면 너비 계산 -->
-<script>
-	$(document).ready(function() {
-		var $info = $("#info");
-		window.onresize = function() {
-			$info.html(window.innerWidth);
-		}
-	});
 </script>
 </head>
 
 <body>
 	<!-- 해더 시작 -->
 	<div class="header">
-	
-		<!-- 화면 너비 삭제 예정 -->
-		<div id="info" style="text-align: center;">info</div>
 
 		<!-- 팝업창 -->
 		<div id="top-message" class="col-md-12">
@@ -171,7 +155,9 @@
 					
 					<!-- 브랜드 로고  -->
 					<div class="col-md-8">
-						<h1 id="brandLogo" style="line-height: 117px;">수상한레시피</h1>
+						<a id="brand-logo-link" href="http://localhost/index.jsp">
+							<h1 id="brandLogo">수상한레시피</h1>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -194,7 +180,7 @@
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="/views/ranking_page/ranking_main.jsp">랭킹</a>
+						<a class="nav-category" href="/views/rankingPage/rankingPage.jsp">랭킹</a>
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">

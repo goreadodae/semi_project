@@ -1,4 +1,4 @@
-   (function($){
+(function($){
             /*
                 - 가로로 움직이는 갤러리
                 @params : 옵션이며 없다면 기본값으로 적용됨
@@ -29,44 +29,37 @@
                     <li class="vm_list">4번째 박스</li>
                 </ul>
             */
-            function verticalMotion(target, mover){
-                if(!(this instanceof verticalMotion)) return new verticalMotion();
+	   
+	function verticalMotion(target, mover){
+          if(!(this instanceof verticalMotion)) return new verticalMotion();
     
-                this.target = target||".vertical_motion";
-                this.$target = null;
-                this.mover = mover||".vm_list";
-                this.$mover = null;
+          this.target = target||".vertical_motion";
+          this.$target = null;
+          this.mover = mover||".vm_list";
+          this.$mover = null;
     
-                this.vars={
-                    rmargin:0
-                    ,fwidth:null
-                    ,min:130
-                    ,mauto:true
-                    ,delay:1
-                    ,speed:100
-                    ,index:0
-                    ,si:{}
+          this.vars={
+        		  	rmargin:0, fwidth:null, min:130, mauto:true, delay:1, speed:100, index:0,si:{}
                 };
-    
                 return this;
-            }
+           }
     
-            verticalMotion.prototype={
-                // 스크립트로 옵션설정
-                set:function(key, val){
-                    this.vars[key] = val;
-                    return this;
-                }
+           verticalMotion.prototype={
+           // 스크립트로 옵션설정
+              set:function(key, val){
+                  this.vars[key] = val;
+                  return this;
+              }
     
-                // 타겟 새로 세팅
-                ,setTarget:function(target, mover){
-                    if(!target) return this;
-                    this.target = target;
+           // 타겟 새로 세팅
+              ,setTarget:function(target, mover){
+                   if(!target) return this;
+                   this.target = target;
     
-                    if(mover) this.mover = mover;
+                   if(mover) this.mover = mover;
     
-                    return this.exe();
-                }
+                   return this.exe();
+              }
     
                 // 움직임
                 ,motion:function(opts, current){
@@ -159,4 +152,4 @@
     
                 vm.setTarget(".vertical_motion2", ".vm_list2");		// 실행 2
             });
-        })(jQuery);
+})(jQuery);

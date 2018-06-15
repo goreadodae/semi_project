@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 /* 네비게이션 고정 */
-
 .jbTitle {
 	text-align: center;
 }
@@ -64,7 +63,14 @@
 	color: black;
 }
 
-
+/* 브랜드 로고 */
+#brand-logo-link{
+	text-decoration:none;
+	color:black;
+}
+#brandLogo{
+	line-height: 117px;
+}
 
 /* 카테고리 */
 #t_category_list {

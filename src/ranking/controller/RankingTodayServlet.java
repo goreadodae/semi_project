@@ -44,6 +44,7 @@ public class RankingTodayServlet extends HttpServlet {
 		request.setAttribute("todayList", todayList);
 		view.forward(request, response);*/
 		
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(todayList,response.getWriter());

@@ -18,10 +18,11 @@
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <!-- 부트스트랩 css -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 <!-- js -->
@@ -184,7 +185,11 @@
 
 
 	<!-- 하단 메뉴 -->
-
+<!-- 		<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="rankingPage2_TRecipe.jsp">오늘의 레시피</a></li>
+  <li role="presentation"><a href="rankingPage2_MRecipe.jsp">이달의 레시피<</a></li>
+  <li role="presentation"><a href="rankingPage2_MChef.jsp">이달의 회원</a></li>
+</ul> -->
 	
 
 	<!-- 하단 그레이 색들어간 부분! -->
@@ -223,9 +228,19 @@ $(document).ready(function(e) {
         $('#iframe').attr('src',$(this).attr('data-url'));
         })
 });
+
+
+function resizeIframe(h){
+	if(h == null){
+		return false;
+	}
+
+	(h).height = "0px";
+	var iframeHeight = (h).contentWindow.document.body.scrollHeight;
+	(h).height=iframeHeight+15;
+}
+
 </script>
-
-
 
 <div class="container-fluid" id="rankingListDownWrap">
 	<div class="row justify-content-center">
@@ -235,10 +250,11 @@ $(document).ready(function(e) {
 
 <!-- 오늘의 레시피 랭킹 리스트 불러오기 -->
 	<div id="ranking2Wrap">
+
 		<br><br><br><br>
-		<div class="container" style="width: 1200px; height: 3000px;" id="iframeWrap">
+		<div class="container" id="iframeWrap">
 			<!-- iframe으로 페이지 내에서 바꾸기! -->
-		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0"></iframe>
+		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0" onload="resizeIframe(this)" scrolling="no"></iframe>
 		<!-- frameborder="0" -->
 		<!-- <div id="ranking2_TRecipe"></div> -->
 		</div>

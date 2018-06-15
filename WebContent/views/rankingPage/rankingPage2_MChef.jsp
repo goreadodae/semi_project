@@ -92,22 +92,19 @@
 					type : "post",
 					success : function(data) {
 						console.log("성공");
-						console.log(data[0]);
-
+            console.log("선택 안한 기본 날 : "+data);
+						/*console.log(data[0].memberId);*/
+              console.log(data);
 						for (var i = 0; i < data.length; i++) {
-							console.log($('#rankNum' + (i + 1)).html(
-									(i + 1) + "위"));
+							/*console.log($('#rankNum' + (i + 1)).html((i + 1) + "위"));*/
 
+              $('#rankingMemberID'+(i+1)).html(data[i].memberId);
 							$('#rankNum' + (i + 1)).html((i + 1) + "위");
-							$('#cardImgs' + (i + 1)).attr('src',
-									data[i].completePic);
-							$('#rankingMonthTitle' + (i + 1)).html(
-									data[i].recipeTitle);
-							$('#rankingViews' + (i + 1)).html(
-									data[i].recipeViews);
+							$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+							$('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
+							$('#rankingViews' + (i + 1)).html(data[i].recipeViews);
 							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
-							$('#rankingContents' + (i + 1)).html(
-									data[i].recipeIntro);
+							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
 						}
 
 					},
@@ -121,7 +118,7 @@
 				function() {
 					/*alert($(this).children("option:selected").text());*/
 
-					console.log("선택한 년도 : "
+					console.log("year에서 선택한 년도 : "
 							+ $("select[name=yearClickName]").val()
 									.substr(2, 4));
 					console.log("year에서 선택한 달 : "
@@ -136,19 +133,17 @@
 						type : "post",
 						success : function(data) {
 							console.log("성공");
+              console.log(data);
 							for (var i = 0; i < data.length; i++) {
-								console.log(i + "번째" + data[i]);
-								$('#rankNum' + (i + 1)).html((i + 1) + "위");
-								$('#cardImgs' + (i + 1)).attr('src',
-										data[i].completePic);
-								$('#rankingMonthTitle' + (i + 1)).html(
-										data[i].recipeTitle);
-								$('#rankingViews' + (i + 1)).html(
-										data[i].recipeViews);
-								$('#rankingTag' + (i + 1)).html(
-										data[i].recipeTag);
-								$('#rankingContents' + (i + 1)).html(
-										data[i].recipeIntro);
+								console.log("선택한 년도 : "+ i + "번째" + data[i]);
+
+              $('#rankingMemberID'+(i+1)).html(data[i].memberId);
+              $('#rankNum' + (i + 1)).html((i + 1) + "위");
+              $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+              $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
+              $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
+              $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+              $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
 							}
 
 						},
@@ -161,8 +156,10 @@
 
 		$("#monthClick").change(
 				function() {
-
-					console.log("선택한 달 : "
+					console.log("month에서 선택한 년도 : "
+							+ $("select[name=yearClickName]").val()
+									.substr(2, 4));
+					console.log("month에서 선택한 달 : "
 							+ $("select[name=monthClickName]").val());
 
 					$.ajax({
@@ -174,19 +171,18 @@
 						type : "post",
 						success : function(data) {
 							console.log("성공");
+              console.log(data);
+
 							for (var i = 0; i < data.length; i++) {
-								console.log(i + "번째" + data[i]);
-								$('#rankNum' + (i + 1)).html((i + 1) + "위");
-								$('#cardImgs' + (i + 1)).attr('src',
-										data[i].completePic);
-								$('#rankingMonthTitle' + (i + 1)).html(
-										data[i].recipeTitle);
-								$('#rankingViews' + (i + 1)).html(
-										data[i].recipeViews);
-								$('#rankingTag' + (i + 1)).html(
-										data[i].recipeTag);
-								$('#rankingContents' + (i + 1)).html(
-										data[i].recipeIntro);
+								console.log("선택한 달 : "+ i + "번째" + data[i]);
+
+              $('#rankingMemberID'+(i+1)).html(data[i].memberId);
+              $('#rankNum' + (i + 1)).html((i + 1) + "위");
+              $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+              $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
+              $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
+              $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+              $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
 							}
 
 						},
@@ -195,7 +191,7 @@
 						}
 					});
 				});
-
+    
 	}
 </script>
 
@@ -230,286 +226,83 @@
 		<br>
 	</div>
 	<br>
+<style>
+  *{
+    border : 1px solid black;
+  }
+</style>
+<div id="wholeWrap" class="container">
+        <div class="col-lg-12">
+          <h2 class="my-4">이달의 쉐프</h2>
+          <hr style="border: 0.5px solid #EAEAEA;">
+        </div>
+      <!-- Team Members Row -->
+      <div class="row">
+<br><br><br>
 
-<div id="wholeWrap">
-	<div class="container" id="tableContainer">
-		<h3>이달의 레시피</h3>
-		<!-- 1위 -->
-
-		<div id="tableWrap">
-			<table class="table table-hover" id="tableHover">
-				<tbody>
-					<tr>
-						<th class='row'>
-							<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
-							<div class="float-right" id="viewDiv">
-								<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
-									id="viewIcon">
-								<div id="rankingViews1">views 수</div>
-							</div>
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
-			<div class="card rounded shadow-sm" id="rankingList">
-				<!-- 레시피 이미지 -->
-				<div id="imgWrap">
-					<img class="card-img rounded"
-						src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
-						id="cardImgs1">
-				</div>
-				<div class="container">
-					<div class="card-img-overlay" id="cardOverlay">
-						<div id="cardContents">
-							<!-- 랭킹 등록 관련 레시피 내용 -->
-							<h3 class="card-title" id="rankingMonthTitle1">레시피의 제목이 들어가는
-								곳!</h3>
-							<p class="card-text" id="rankingTag1">레시피 태그</p>
-							<p class="card-text" id="rankingContents1">This is a wider
-								card with supporting text below as a natural lead-in to
-								additional content. This content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a> <br>
-		<br>
-		<br>
-
-
-
-		<!-- 2위 -->
-
-		<div id="tableWrap">
-			<table class="table table-hover" id="tableHover">
-				<tbody>
-					<tr>
-						<th class='row'>
-							<h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
-							<div class="float-right" id="viewDiv">
-								<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
-									id="viewIcon">
-								<div id="rankingViews2">views 수</div>
-							</div>
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
-			<div class="card rounded shadow-sm" id="rankingList">
-				<!-- 레시피 이미지 -->
-				<div id="imgWrap">
-					<img class="card-img rounded"
-						src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
-						id="cardImgs2">
-				</div>
-				<div class="container">
-					<div class="card-img-overlay" id="cardOverlay">
-						<div id="cardContents">
-							<!-- 랭킹 등록 관련 레시피 내용 -->
-							<h3 class="card-title" id="rankingMonthTitle2">레시피의 제목이 들어가는
-								곳!</h3>
-							<p class="card-text" id="rankingTag2">레시피 태그</p>
-							<p class="card-text" id="rankingContents2">This is a wider
-								card with supporting text below as a natural lead-in to
-								additional content. This content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a> <br>
-		<br>
-		<br>
-
-		<!-- 3위 -->
-
-		<div id="tableWrap">
-			<table class="table table-hover" id="tableHover">
-				<tbody>
-					<tr>
-						<th class='row'>
-							<h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
-							<div class="float-right" id="viewDiv">
-								<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
-									id="viewIcon">
-								<div id="rankingViews3">views 수</div>
-							</div>
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
-			<div class="card rounded shadow-sm" id="rankingList">
-				<!-- 레시피 이미지 -->
-				<div id="imgWrap">
-					<img class="card-img rounded"
-						src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
-						id="cardImgs3">
-				</div>
-				<div class="container">
-					<div class="card-img-overlay" id="cardOverlay">
-						<div id="cardContents">
-							<!-- 랭킹 등록 관련 레시피 내용 -->
-							<h3 class="card-title" id="rankingMonthTitle3">레시피의 제목이 들어가는
-								곳!</h3>
-							<p class="card-text" id="rankingTag3">레시피 태그</p>
-							<p class="card-text" id="rankingContents3">This is a wider
-								card with supporting text below as a natural lead-in to
-								additional content. This content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a> <br>
-		<br>
-		<br>
+        <div class="col-lg-6 col-sm-6 text-center mb-4">
+          <div class="pull-left"><h3 id="rankNum1">순위</h3></div>
+          <img id="cardImgs1" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+          <h3 id="rankingMemberID1">John Smith
+            <small>Job Title</small>
+          </h3>
+            <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+          <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews1">
+          
+          What does this team member to? Keep it short! This is also a great spot for social links!
+        </p>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center mb-4">
+          <div class="pull-left"><h3 id="rankNum2">순위</h3></div>
+          <img id="cardImgs2"  class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+          <h3 id="rankingMemberID2">John Smith
+            <small>Job Title</small>
+          </h3>
+          <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+          <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews2">
+          What does this team member to? Keep it short! This is also a great spot for social links!
+        </p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <div class="pull-left"><h3 id="rankNum3">순위</h3></div>
+          <img id="cardImgs3" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+          <h3 id="rankingMemberID3">John Smith
+            <small>Job Title</small>
+          </h3>
+          <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+          <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews3">
+            
+          What does this team member to? Keep it short! This is also a great spot for social links!
+        </p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <div class="pull-left"><h3 id="rankNum4">순위</h3></div>
+          <img id="cardImgs4" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+          <h3 id="rankingMemberID4">John Smith
+            <small>Job Title</small>
+          </h3>
+           <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+          <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews4">
+           
+          What does this team member to? Keep it short! This is also a great spot for social links!
+        </p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <div class="pull-left"><h3 id="rankNum5">순위</h3></div>
+          <img id="cardImgs5" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+          <h3 id="rankingMemberID5">John Smith
+            <small>Job Title</small>
+          </h3>
+            <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+          <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews5">
+          
+          What does this team member to? Keep it short! This is also a great spot for social links!
+        </p>
+        </div>
+      </div>
 
 
-		<!-- 4위 -->
 
-		<div id="tableWrap">
-			<table class="table table-hover" id="tableHover">
-				<tbody>
-					<tr>
-						<th class='row'>
-							<h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
-							<div class="float-right" id="viewDiv">
-								<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
-									id="viewIcon">
-								<div id="rankingViews4">views 수</div>
-							</div>
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
-			<div class="card rounded shadow-sm" id="rankingList">
-				<!-- 레시피 이미지 -->
-				<div id="imgWrap">
-					<img class="card-img rounded"
-						src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
-						id="cardImgs4">
-				</div>
-				<div class="container">
-					<div class="card-img-overlay" id="cardOverlay">
-						<div id="cardContents">
-							<!-- 랭킹 등록 관련 레시피 내용 -->
-							<h3 class="card-title" id="rankingMonthTitle4">레시피의 제목이 들어가는
-								곳!</h3>
-							<p class="card-text" id="rankingTag4">레시피 태그</p>
-							<p class="card-text" id="rankingContents4">This is a wider
-								card with supporting text below as a natural lead-in to
-								additional content. This content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a> <br>
-		<br>
-		<br>
-
-
-		<!-- 5위 -->
-
-		<div id="tableWrap">
-			<table class="table table-hover" id="tableHover">
-				<tbody>
-					<tr>
-						<th class='row'>
-							<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
-							<div class="float-right" id="viewDiv">
-								<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
-									id="viewIcon">
-								<div id="rankingViews5">views 수</div>
-							</div>
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
-			<div class="card rounded shadow-sm" id="rankingList">
-				<!-- 레시피 이미지 -->
-				<div id="imgWrap">
-					<img class="card-img rounded"
-						src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
-						id="cardImgs5">
-				</div>
-				<div class="container">
-					<div class="card-img-overlay" id="cardOverlay">
-						<div id="cardContents">
-							<!-- 랭킹 등록 관련 레시피 내용 -->
-							<h3 class="card-title" id="rankingMonthTitle5">레시피의 제목이 들어가는
-								곳!</h3>
-							<p class="card-text" id="rankingTag5">레시피 태그</p>
-							<p class="card-text" id="rankingContents5">This is a wider
-								card with supporting text below as a natural lead-in to
-								additional content. This content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-							<p class="card-text">Last updated 3 mins ago</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</a> <br>
-		<br>
-		<br>
-
-		<!-- 가운데로 보내는 컨테이너 끝! -->
-	</div>
 </div>
 
 </body>

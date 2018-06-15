@@ -71,9 +71,115 @@ public class RankingDao {
 		return todayList;		
 	}
 
-	public void monthRecipeRanking(Connection conn, String year, String month) {
-		// TODO Auto-generated method stub
+	public ArrayList<Ranking> monthRecipeRanking(Connection conn, String year, String month) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> monthRecipeList = new ArrayList<Ranking>();
 		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("rankingTodayRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, '%'+year+"/"+month+'%');
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setMemberNo(rset.getInt("member_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");
+				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));*/
+				
+				monthRecipeList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return monthRecipeList;		
+		
+	}
+
+	public ArrayList<Ranking> monthChefRanking(Connection conn, String year, String month) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> monthChefList = new ArrayList<Ranking>();
+		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("rankingTodayRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, '%'+year+"/"+month+'%');
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setMemberNo(rset.getInt("member_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");
+				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));*/
+				
+				monthChefList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return monthChefList;		
 	}
 
 }

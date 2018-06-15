@@ -91,12 +91,12 @@
 	margin-left: 10px;
 }
 
-#viewIcon{
+#viewIcon,#viewIcon1,#viewIcon2,#viewIcon3,#viewIcon4,#viewIcon5{
 	width: 20px;
 	height: 20px;
 }
 
-#rankingViews{
+#rankingViews,#rankingViews1,#rankingViews2,#rankingViews3,#rankingViews4,#rankingViews5{
 	display: inline-block; 
 	margin-left: 5px; 
 	margin-top: 14px;
@@ -126,13 +126,7 @@
 }
 
 
-/*날짜 나오는 h태그*/
-#rankingDateToday{
-	/*margin-right: 160px;
-	margin-bottom: 0px;
-	margin-top: 10px;*/
-	text-shadow: 2px 2px 2px #F8FAFF;
-}
+
 
  #dateWrap{
  	margin-bottom: 30px;
@@ -153,10 +147,13 @@
     border-radius: 3px;
 }
 
+
+/*날짜 나오는 h태그*/
 #rankingDateToday{
 	font-size: 36px;
     font-weight: bold;
     text-decoration: none;
 	cursor: pointer;
 	color: #353866;
+	text-shadow: 2px 2px 2px #F8FAFF;
 }

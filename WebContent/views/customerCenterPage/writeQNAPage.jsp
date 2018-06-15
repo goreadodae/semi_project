@@ -168,19 +168,19 @@
 
 					<table class="table table-bordered table-hover" id="forWriting">
 						<tr>
-							<td><a href="/views/managerPage/noticePage.jsp"
+							<td><a href="/views/customerCenterPage/noticePage.jsp"
 								style="color: black">공지사항<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/faqPage.jsp"
+							<td><a href="/views/customerCenterPage/faqPage.jsp"
 								style="color: black">FAQ<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr id="notice-color">
-							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
+							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
 								style="color: black">1:1문의<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
@@ -244,17 +244,8 @@
 
 								</div></td>
 						</tr>
-						<tr>
-							<td height="70px" style="background-color: #dcdbde">이메일</td>
-							<td><input type="text" /> <!-- 타입은 이메일로 바꿔  --></td>
 
-						</tr>
-						<tr>
-							<td height="70px" style="background-color: #dcdbde">문자메시지</td>
-							<td><input type="text" size="10" maxLength="4" />&nbsp;- <input
-								type="text" size="10" maxLength="4" />&nbsp;- <input
-								type="text" size="10" maxLength="4" /></td>
-						</tr>
+
 						<tr>
 							<td style="background-color: #dcdbde;">내용</td>
 							<td>

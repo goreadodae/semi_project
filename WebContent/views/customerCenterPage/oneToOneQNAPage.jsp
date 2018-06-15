@@ -80,19 +80,19 @@
 					<!-- 고객센터 목록 테이블 -->
 					<table class="table table-bordered table-hover">
 						<tr>
-							<td><a href="/views/managerPage/noticePage.jsp"
+							<td><a href="/views/customerCenterPage/noticePage.jsp"
 								style="color: black">공지사항<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr>
-							<td><a href="/views/managerPage/faqPage.jsp"
+							<td><a href="/views/customerCenterPage/faqPage.jsp"
 								style="color: black">FAQ<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
 						<tr id="notice-color">
-							<td><a href="/views/managerPage/oneToOneQNAPage.jsp"
+							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
 								style="color: black">1:1문의<img
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
@@ -131,7 +131,7 @@
 			<div class="offset-md-11 cols-md-1">
 			
 			
-			<button type="button" class="btn btn-success" onclick="location.href='/views/managerPage/writeQNAPage.jsp'">작성하기</button>
+			<button type="button" class="btn btn-success" onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">작성하기</button>
 			</div>
 
 

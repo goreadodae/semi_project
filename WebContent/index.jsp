@@ -246,7 +246,7 @@
 				
 				<!-- 추천 이벤트 끝  -->
 				<br><br><br><br><br>
-
+				
 				<!-- 레시피 검색 -->
 				<div id="search" class="col-md-12"
 					style="background-color: #f6f7f7; padding: 0px;">
@@ -255,28 +255,31 @@
 						<h3>냉장고를 부탁해!</h3>
 						<h1 style="color: #512772;">내가 가진 재료로 레시피 추천받기</h1>
 						<br>
-
-						<form action="/" method="get">
-							<fieldset>
-								<div class="col-md-8 input-group mb-3 mx-auto">
-									<input type="text" class="form-control" id="material"
-										placeholder="재료명으로 검색하세요." aria-label="Recipient's username"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-outline-secondary" type="button">
-											<img src="/imgs/icons/search.svg">
-										</button>
-									</div>
+						<fieldset>
+							<div class="col-md-8 input-group mb-3 mx-auto">
+								<input type="text" class="form-control" id="material" name="userValue"
+									placeholder="재료명으로 검색하세요." aria-label="Recipient's username"
+									aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-outline-secondary" type="button" onclick="search();">
+										<img src="/imgs/icons/search.svg">
+									</button>
 								</div>
-							</fieldset>
-						</form>
+							</div>
+						</fieldset>
 					</div>
 				</div>
+				<script>
+					function search(){
+					var userVal = $('#material').val();
+						location.href="/recipeList?userVal="+userVal;
+					}
+				</script>
 				<!-- 레시피 검색 끝 -->
 
 				<br><br><br><br><br>
 
-				<!-- 오늘의 레시피 뷰 -->
+				<!-- 이주의 레시피 뷰 -->
 				<div class="col-md-8 mx-auto height_auto" style="padding:0px;">
 					
 					<div class="col-md-12" id="md-wrap">
@@ -286,13 +289,13 @@
 					</div>
 					
 					<ul id="slide_week" class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" 
-						data-speed="200" style="paiddng:0px;">
-						
+						data-speed="100" style="paiddng:0px;">
+
 						<li class="vm_list">
 							<a href="#" id="week_link_1">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_1" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_1" class="lead my-1"></p>
@@ -306,9 +309,9 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_2">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_2" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_2" class="lead my-1"></p>
@@ -322,9 +325,9 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_3">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_3" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_3" class="lead my-1"></p>
@@ -338,9 +341,9 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_4">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_4" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_4" class="lead my-1"></p>
@@ -354,9 +357,9 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_5">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_5" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_5" class="lead my-1"></p>
@@ -370,9 +373,9 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_6">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_6" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_6" class="lead my-1"></p>
@@ -386,13 +389,220 @@
 						
 						<li class="vm_list">
 							<a href="#" id="week_link_7">
-								<div class="sp_box b1" style="border:1px solid #dadada; height:350px;">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
 									<img id="week_img_7" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="280" class="img-thumbnail">
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
 
 									<div class="col-md-12">
 										<p id="week_title_7" class="lead my-1"></p>
 										<span id="week_view_7" class="display-7" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="week_link_8">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="week_img_8" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
+
+									<div class="col-md-12">
+										<p id="week_title_8" class="lead my-1"></p>
+										<span id="week_view_8" class="display-7" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+			
+				<script>
+					/* 조회수 증가 */
+					/* 레시피 받아오기 */
+					$(document).ready(function() {
+						var recipeImgArr = [];
+						var recipeNoArr = [];
+						$.ajax({
+							url : "/recipeServlet",
+							type : "post",
+							success : function(data) {
+								var keys = Object.keys(data);
+								
+								// data[키] 형태로 사용해야 함
+								for (var i = 0; i < keys.length; i++) {
+									 /* $('#week_link_'+(i+1)).attr("href","/recipe?recipeNo="+data[i].recipe_no); */
+									 $('#week_img_'+(i+1)).attr("src",data[i].recipe_pic);
+									 $('#week_title_'+(i+1)).html(data[i].recipe_title);
+									 $('#week_view_'+(i+1)).append(data[i].recipe_today_views);
+									 
+									 recipeImgArr.push(data[i].recipe_pic);
+									 recipeNoArr.push(data[i].recipe_no);
+								} 
+								
+								var imgs = $('[name=week_img]');
+								
+								$('[name=week_img]').each(function(index){
+									
+									var index2 = index;
+									
+									$(this).click(function(){
+										if($(this).attr("src")==recipeImgArr[index2])
+										{
+											var recipeNo = recipeNoArr[index2];
+											location.href="/upView?recipe_no="+recipeNo;
+										}
+									});
+									
+								})
+							},
+							
+							error : function() {
+								console.log("실패");
+							}
+						});
+					});
+				</script>
+				
+				<br><br><br><br>
+				<!-- 이달의 레시피 뷰  -->
+					<div class="col-md-8 mx-auto height_auto" style="padding:0px;">
+					
+					<div class="col-md-12" id="md-wrap">
+						<div id="title-header">
+							<h1>이달의 레시피</h1>
+						</div>
+					</div>
+					
+					<ul id="slide_week" class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" 
+						data-speed="100" style="paiddng:0px;">
+
+						<li class="vm_list">
+							<a href="#" id="month_link_1">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_1" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_1" class="lead my-1"></p>
+										<span id="month_view_1" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_2">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_2" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_2" class="lead my-1"></p>
+										<span id="month_view_2" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_3">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_3" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_3" class="lead my-1"></p>
+										<span id="month_view_3" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_4">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_4" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_4" class="lead my-1"></p>
+										<span id="month_view_4" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_5">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_5" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_5" class="lead my-1"></p>
+										<span id="month_view_5" class="display-5" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_6">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_6" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_6" class="lead my-1"></p>
+										<span id="month_view_6" class="display-6" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_7">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_7" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_7" class="lead my-1"></p>
+										<span id="month_view_7" class="display-7" style="padding-bottom: 15px;">
+											<img src="/imgs/recipe_img/view_icon.png">
+										</span>
+									</div>
+								</div>
+							</a>
+						</li>
+						
+						<li class="vm_list">
+							<a href="#" id="month_link_8">
+								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
+									<img id="month_img_8" class="img col-md-12 col-sm-12"
+										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
+
+									<div class="col-md-12">
+										<p id="month_title_8" class="lead my-1"></p>
+										<span id="month_view_8" class="display-7" style="padding-bottom: 15px;">
 											<img src="/imgs/recipe_img/view_icon.png">
 										</span>
 									</div>
@@ -404,114 +614,28 @@
 				
 				<!-- 레시피 받아오기 -->
 				<script>
-					
 					$(document).ready(function() {
 						$.ajax({
-							url : "/recipeServlet",
+							url : "/monthlyRecipe",
 							type : "post",
 							success : function(data) {
-								
 								var keys = Object.keys(data);
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									 $('#week_link_'+(i+1)).attr("href","http://localhost/recipe?recipeNo="+data[i].recipe_no);
-									 $('#week_img_'+(i+1)).attr("src",data[i].recipe_pic);
-									 $('#week_title_'+(i+1)).html(data[i].recipe_title);
-									 $('#week_view_'+(i+1)).append(data[i].recipe_today_views);
+									 $('#month_link_'+(i+1)).attr("href","http://localhost/recipe?recipeNo="+data[i].recipe_no);
+									 $('#month_img_'+(i+1)).attr("src",data[i].recipe_pic);
+									 $('#month_title_'+(i+1)).html(data[i].recipe_title);
+									 $('#month_view_'+(i+1)).append(data[i].recipe_month_views);
 								} 
 							},
-							
 							error : function() {
 								console.log("실패");
 							}
 						});
 					});
 				</script>
-				
-				<br><br><br><br>
-
-				<!-- 이달의 레시피 뷰  -->
-				<div id="main_div_2" class="col-md-8 mx-auto" style="padding: 0px;">
-					<div class="col-md-12" id="main-contents-header"
-						style="padding: 0px;">
-						<div id="title-header">
-							<h1>이달의 레시피</h1>
-						</div>
-					</div>
-
-					<div class="col-md-12" style="padding: 0px;">
-
-						<div class="row">
-							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
-									<!-- 상품 이미지 -->
-									<!-- DB에서 값 받아오기 -->
-									<img class="img col-md-12 col-sm-12" id="main_img_2_1"
-										style="padding: 0px;" src="/imgs/main-img/main_pork.jpg"
-										alt="이미지" height="325" class="img-thumbnail">
-									<div class="col-md-12">
-										<p class="lead my-1">오늘 메뉴는 피자</p>
-										<p class="display-6">By 정쥐수</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
-									<!-- 상품 이미지 -->
-									<!-- DB에서 값 받아오기 -->
-									<img id="main_img_2_2" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src="/imgs/main-img/main_noodle.jpg"
-										alt="이미지" height="325" class="img-thumbnail">
-									<div class="col-md-12">
-										<p class="lead my-1">오늘 메뉴는 피자</p>
-										<p class="display-6">By 정쥐수</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
-									<!-- 상품 이미지 -->
-									<!-- DB에서 값 받아오기 -->
-									<img id="main_img_2_3" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src="/imgs/main-img/main_strawberry.jpg"
-										alt="이미지" height="325" class="img-thumbnail">
-									<div class="col-md-12">
-										<p class="lead my-1">오늘 메뉴는 피자</p>
-										<p class="display-6">By 정쥐수</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-3 col-sm-3 col-6">
-								<div class="col-md-12 col-sm-12"
-									style="border: 1px solid #dadada; padding: 0px;">
-
-									<!-- 상품 이미지 -->
-									<!-- DB에서 값 받아오기 -->
-									<img id="main_img_2_4" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" src="/imgs/main-img/main_tarte.jpg"
-										alt="이미지" height="325" class="img-thumbnail">
-									<div class="col-md-12">
-										<p class="lead my-1">오늘 메뉴는 피자</p>
-										<p class="display-6">By 정쥐수</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- 이달의 레시피 끝 -->
-				<br>
-				<br>
-				<br>
+				<br><br><br>
 
 				<!-- 수상한 레시피 혜택 -->
 				<div id="plus" class="col-md-12">
@@ -556,9 +680,7 @@
 				</div>
 				<!-- 수상한 레시피 혜택 끝 -->
 
-				<br>
-				<br>
-				<br>
+				<br><br><br>
 
 				<!-- 푸터 -->
 				<div id="footer"
@@ -566,9 +688,7 @@
 					style="border: 1px solid black; padding: 10px;"></div>
 				<!-- 푸터 끝 -->
 
-				<br>
-				<br>
-
+				<br><br>
 			</div>
 		</div>
 	</div>

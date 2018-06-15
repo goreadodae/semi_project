@@ -23,4 +23,31 @@ public class MainService {
 		return list;
 	}
 
+	public ArrayList<MainRecipe> getMonthlyRecipe() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MainRecipe> list = new MainDao().getMonthlyRecipe(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public void searchRecipe(String userValue) {
+		Connection conn = JDBCTemplate.getConnection();
+		new MainDao().searchRecipe(userValue);
+		
+	}
+
+	public int upViews(int num) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MainDao().upViews(conn, num);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 }

@@ -1,28 +1,26 @@
-package recipe.controller;
+package main.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import recipe.model.service.RecipeService;
-import recipe.model.vo.Recipe;
+import main.model.service.MainService;
 
 /**
- * Servlet implementation class RecipeServlet
+ * Servlet implementation class upViewServlet
  */
-@WebServlet(name = "Recipe", urlPatterns = { "/recipe" })
-public class RecipeServlet extends HttpServlet {
+@WebServlet("/upView")
+public class upViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RecipeServlet() {
+    public upViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +30,15 @@ public class RecipeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
-		Recipe recipe = new RecipeService().recipeSelect(recipeNo);
+		request.setCharacterEncoding("utf-8");
 		
-		
-		if(recipe!=null) {
-			request.setAttribute("recipe", recipe);
-			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/recipeSelect.jsp");
-			view.forward(request, response);
-		}else {
-			response.sendRedirect("/views/recipePage/recipeError.html");
-		}
+		String num = request.getParameter("recipe_no");
+		System.out.println(num);
 		
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpS	ervletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

@@ -2,6 +2,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +80,7 @@
 
 <script>
 	
-	 $(document).ready(function(){
+	/*  $(document).ready(function(){
 		 
 		 
 		 
@@ -104,7 +106,7 @@
           	}
           });
      });
-
+ */
 </script>
 
 <style>
@@ -207,7 +209,10 @@ table{
 }
 
 
-
+#basketDeleteButton{
+	border : 0px;
+	cursor : pointer;
+}
 </style>
 
 </head>
@@ -237,25 +242,33 @@ table{
 							<th width=7%>삭제</th>
 						</tr>
 						
-						<tr class="line1">
-							<td>1</td>
-							<td><center><img src="/imgs/product_img/product01.jpg" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">콩국수 (2인분)</td>
-							<td><button id="minus">-</button><input type="text" value="2" size="4" class="qtytext"><button id="plus">+</button></td>
-							
-							
-							<td>19800</td>
-							<td><img src="/imgs/product_img/delete.png" alt="x"></td>
-						</tr>
+						<c:set var="sumprice" value="0"/>	<!-- 장바구니 품목 총 가격 -->
 						
+						<c:forEach begin="0" items="${basket}" var="b" varStatus="i">
+						<c:set var="sumprice" value="${sumprice + b.product_price*b.basket_quantity}"/>
 						<tr class="line1">
-							<td>2</td>
-							<td><img src="/imgs/product_img/product02.jpg" alt="제품이미지" class="inbasket"></td>
-							<td class="prod">소고기 찹스테이크 (2인분)</td>
-							<td><button id="minus">-</button><input type="text" value="1" size="4" class="qtytext"><button id="plus">+</button></td>
-							<td>15900</td>
-							<td><img src="/imgs/product_img/delete.png" alt="x"></td>
+							<td>${i.count}</td>
+							<td><center><img src="${b.product_1st_pic}" alt="제품이미지" class="inbasket"></center></td>
+							<td class="prod">${b.product_name}</td>
+							<!-- 수량 변경시 update 서블릿 실행 -->
+							<td><form action="/basketUpdate" method="post" style="display:inline;">
+									<input type="hidden" name="basket_quantity" value="${b.basket_quantity-1}">
+									<input type="hidden" name="basket_no" value="${b.basket_no}">
+									<button id="minus">-</button>
+								</form>
+								<input type="text" value="${b.basket_quantity}" size="4" class="qtytext">
+								<form action="/basketUpdate" method="post" style="display:inline;">
+									<input type="hidden" name="basket_quantity" value="${b.basket_quantity+1}">
+									<input type="hidden" name="basket_no" value="${b.basket_no}">
+									<button id="plus">+</button>
+								</form>
+								</td>
+							<td>${b.product_price*b.basket_quantity}</td>
+							
+							<!-- 삭제버튼 누를시 delete서블릿 실행 -->
+							<td><button type="button" id="basketDeleteButton" onclick="location.href='/basketDelete?basket_no=${b.basket_no}'"><img src="/imgs/product_img/delete.png" alt="x"></button></td>
 						</tr>
+						</c:forEach>
 						
 					</table>
 					<br><br><br>
@@ -265,7 +278,7 @@ table{
 						<div class="col-md-2" id="suminfo1">
 							<br><span class="sumtitle">상품금액</span>
   							<hr>
-  							35700원
+  							<span id="payment1"><c:out value="${sumprice}" /></span>원
 						</div>
 						
 						<div class="col-md-2" id="suminfo2">
@@ -277,20 +290,20 @@ table{
 						<div class="col-md-2" id="suminfo3">
 							<br><span class="sumtitle">주문금액</span>
   							<hr>
-  							35700원
+  							<span id="payment2"><c:out value="${sumprice}" /></span>원
 						</div>
 						
 						<div class="col-md-1"><center><span class="oper">+</span></center></div>
  						<div class="col-md-2" id="suminfo">
   								<br><span class="sumtitle">배송비</span>
   								<hr>
-  								0원
+  								<span id="deliverfee">0</span>원
 						</div>
 						<div class="col-md-1"><center><span class="oper">=</span></center></div>
   						<div class="col-md-2" id="suminfo">
   								<br><span class="sumtitle">결제예약금액</span>
   								<hr>
-  								35700원
+  								<span id="totalpayment"><c:out value="${sumprice}" /></span>원
   						</div>
 					</div>
 
@@ -298,7 +311,7 @@ table{
 					
 					<!-- 주문하기 버튼 -->
 					<center>
-					<button class="mybutton" onclick="location.href='/views/productPage/Purchase.jsp'">주문하기</button>
+					<button class="mybutton" onclick="location.href='/forPurchaseSelect'">주문하기</button>
 					</center>
 					<br><br><br>
 					

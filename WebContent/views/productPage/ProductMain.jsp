@@ -81,7 +81,7 @@
 }
 
 #total {
-	background-color: oldlace;
+	background-color: #E7E3D7;
 }
 
 #content1 {

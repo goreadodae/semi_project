@@ -33,7 +33,7 @@ $(document).ready(function(){
 });
 
 function pageChange(){
-	window.opener.location.href="/views/productPage/Basket.jsp";
+	window.opener.location.href="/basketSelect";
 	window.close();
 }
 </script>

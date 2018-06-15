@@ -14,16 +14,24 @@ public class RankingService {
 		
 		ArrayList<Ranking> todayList = new RankingDao().todayRecipeRanking(conn, datepicker);
 
-		System.out.println(todayList+"12221111");
 		JDBCTemplate.close(conn);
 		return todayList;
 	}
 
-	public void monthRecipeRanking(String year, String month) {
+	public ArrayList<Ranking> monthRecipeRanking(String year, String month) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		new RankingDao().monthRecipeRanking(conn,year,month);
+		ArrayList<Ranking> monthRecipeList = new RankingDao().monthRecipeRanking(conn,year,month);
+		JDBCTemplate.close(conn);
+		return monthRecipeList;
+	}
+
+	public ArrayList<Ranking> monthChefRanking(String year, String month) {
+		Connection conn = JDBCTemplate.getConnection();
 		
+		ArrayList<Ranking> monthChefList = new RankingDao().monthChefRanking(conn,year,month);
+		JDBCTemplate.close(conn);
+		return monthChefList;
 	}
 
 }

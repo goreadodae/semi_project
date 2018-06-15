@@ -15,16 +15,16 @@ import ranking.model.service.RankingService;
 import ranking.model.vo.Ranking;
 
 /**
- * Servlet implementation class RankingMonthlyRecipeServlet
+ * Servlet implementation class RankingMonthlyChefServlet
  */
-@WebServlet(name = "RankingMonthlyRecipe", urlPatterns = { "/rankingMonthlyRecipe" })
-public class RankingMonthlyRecipeServlet extends HttpServlet {
+@WebServlet(name = "RankingMonthlyChef", urlPatterns = { "/rankingMonthlyChef" })
+public class RankingMonthlyChefServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RankingMonthlyRecipeServlet() {
+    public RankingMonthlyChefServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +36,12 @@ public class RankingMonthlyRecipeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
-		ArrayList<Ranking> monthRecipeList = new RankingService().monthRecipeRanking(year,month);
+		ArrayList<Ranking> monthChefList = new RankingService().monthChefRanking(year,month);
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		new Gson().toJson(monthRecipeList,response.getWriter());
-		//Gson을 만들어서 JSON에게 보내준다!
+		new Gson().toJson(monthChefList,response.getWriter());
+		//Gson을 만들어서 JSON에게 보내준다!	
 	}
 
 	/**

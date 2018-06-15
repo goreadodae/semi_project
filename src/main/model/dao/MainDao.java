@@ -12,8 +12,8 @@ import java.util.Properties;
 import common.JDBCTemplate;
 import main.model.vo.MainRecipe;
 
-public class MainDao {
-
+public class MainDao 
+{
 	public String getTotalRecipe(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -48,7 +48,6 @@ public class MainDao {
 		return totalRecipe;
 	}
 
-	
 	public ArrayList<MainRecipe> getRecipe(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -65,7 +64,6 @@ public class MainDao {
 			prop.load(new FileReader(path+"resources/mainQuery.properties"));
 			
 			String query = prop.getProperty("selectWeek");
-			System.out.println(query);
 			
 			pstmt = conn.prepareStatement(query);
 			
@@ -95,4 +93,86 @@ public class MainDao {
 		return list;
 	}
 
+	public ArrayList<MainRecipe> getMonthlyRecipe(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MainRecipe mr = null;
+		ArrayList<MainRecipe> list = new ArrayList<MainRecipe>();
+		
+		Properties prop = new Properties();
+		
+		String path = MainDao.class.getResource("../../..").getPath();
+		
+		try {
+			
+			prop.load(new FileReader(path+"resources/mainQuery.properties"));
+			
+			String query = prop.getProperty("selectMonth");
+
+			pstmt = conn.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mr = new MainRecipe();
+				
+				mr.setRecipeNo(rset.getInt("recipe_no"));
+				mr.setRecipeTitle(rset.getString("recipe_title"));
+				mr.setRecipePic(rset.getString("recipe_pic"));
+				mr.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				mr.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				
+				list.add(mr);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public void searchRecipe(String userValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int upViews(Connection conn, int num) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+	
+		Properties prop = new Properties();
+		
+		String path = MainDao.class.getResource("../../..").getPath();
+		
+		try {
+			
+			prop.load(new FileReader(path+"resources/mainQuery.properties"));
+			String query = prop.getProperty("addView");
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+			pstmt.setInt(3, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+	}
 }

@@ -92,7 +92,8 @@ public class MainDao
 
 		return list;
 	}
-
+	
+	// 이달의 레시피 사진 받아오는 메소드
 	public ArrayList<MainRecipe> getMonthlyRecipe(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -137,12 +138,15 @@ public class MainDao
 		
 		return list;
 	}
-
+	
+	// 메인 검색창에서 검색하면 레시피 받아오는 메소드
 	public void searchRecipe(String userValue) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	// 사진 클릭 시 뷰가 증가하는 메소드
 	public int upViews(Connection conn, int num) {
 		
 		PreparedStatement pstmt = null;
@@ -151,17 +155,15 @@ public class MainDao
 		Properties prop = new Properties();
 		
 		String path = MainDao.class.getResource("../../..").getPath();
-		
 		try {
 			
 			prop.load(new FileReader(path+"resources/mainQuery.properties"));
-			String query = prop.getProperty("addView");
-			System.out.println(query);
+			
+			String query = prop.getProperty("upView");
+			
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, num);
-			pstmt.setInt(3, num);
 			
 			result = pstmt.executeUpdate();
 			
@@ -170,7 +172,7 @@ public class MainDao
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(conn);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;

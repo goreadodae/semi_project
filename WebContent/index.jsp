@@ -56,7 +56,7 @@
 				</div>
 				<!-- 레시피 카운트 끝 -->
 				
-				<!-- ajax 레시피 수 받아오기 -->
+				<!-- ajax 이미지 카운트 받아오기 -->
 				<script>
 					$(document).ready(function() {
 						$.ajax({
@@ -87,42 +87,52 @@
 			<div class="col-md-12" id="application_wrap">
 				<div class="col-md-8 mx-auto" style="padding: 0px;">
 					<!-- google-->
-					<a href="#"> <img class="rounded"
-						src="/imgs/main-img/google.png">
+					<a href="#"> 
+						<img class="rounded" src="/imgs/main-img/google.png">
 					</a>
 					<!-- apple -->
-					<a href="#"> <img class="rounded" src="/imgs/main-img/app.png">
+					<a href="#"> 
+						<img class="rounded" src="/imgs/main-img/app.png">
 					</a>
 				</div>
 			</div>
 			<!-- 어플리케이션 다운로드 끝  -->
+			<!--  -->
+			
 
-			<!-- 인트로 -->
+			<!-- 인트로 이미지 -->
 			<div class="col-md-12 col-sm-12">
 				<div class="col-md-8 mx-auto text-center" id="intro-wrap">
-					<h3>상품화된 누적 레시피</h3>
-					<h1>수상한 레시피로 레시피올리고 수익올리자</h1>
-					<div class="col-md-8 mx-auto" id="intro-step">
-						<div class="col-md-4" id="intro-step-wrap" style="top-padding:10px;">
-							<div>
-								<img id="intro_cook_img" src="/imgs/main-img/cook2.png">
-							</div>
+					<h3 style="font-family: 'Black Han Sans', sans-serif; font-weight:200;">상품화된 누적 레시피</h3>
+					<h1 style="font-family: 'Black Han Sans', sans-serif; font-weight:800;">수상한 레시피에 레시피 올리고 수익올리자</h1><br>
+					<div class="col-md-8 mx-auto" id="intro-step" style="border:none;">
+					
+						<div class="col-md-4" id="intro-step-wrap" style="padding-top:15px; border:none;">
+							<img id="intro_cook_img" src="/imgs/main-img/cook2.png">
 							<p>요리하고</p>
 						</div>
-						<div class="col-md-4" id="intro-step-wrap">
-							<div><img id="intro_recipe_img" src="/imgs/main-img/recipe.png"></div>
+						
+						<div class="col-md-4" id="intro-step-wrap" style="padding-top:15px; border:none;">
+							<img id="intro_recipe_img" src="/imgs/main-img/recipe.png">
 							<p>레시피 올리고</p>
 						</div>
-						<div class="col-md-4" id="intro-step-wrap">
-							<div><img id="intro_money_img" src="/imgs/main-img/money.png"></div>
+						
+						<div class="col-md-4" id="intro-step-wrap" style="padding-top:15px; border:none;">
+							<img id="intro_money_img" src="/imgs/main-img/money.png">
 							<p>돈 벌자</p>
 						</div>
 					</div>
 					<br><br>
-					<button type="button" class="col-md-3 btn btn btn-lg">시작하기</button>
+					<button type="button" class="col-md-3 btn btn btn-lg" onclick="startClick();">시작하기</button>
 					<br><br>
 				</div>
 			</div>
+			
+			<script>
+				function startClick(){
+					location.href="/views/userPage/Login.html";
+				}
+			</script>
 			<!-- 인트로 끝 -->
 
 
@@ -153,7 +163,6 @@
 				</div>
 			</div> -->
 			<!-- 사이드 메뉴 끝 -->
-
 
 			<!-- 네비  -->
 			<div id="point">
@@ -259,9 +268,9 @@
 						<br>
 						<fieldset>
 							<div class="col-md-8 input-group mb-3 mx-auto">
-								<input type="text" class="form-control" id="material" name="userValue"
-									placeholder="재료명으로 검색하세요." aria-label="Recipient's username"
-									aria-describedby="basic-addon2">
+								<input type="text" class="form-control" id="material" name="searchVal"
+									placeholder="재료명으로 검색하세요." aria-label="Recipient's username" 
+									aria-describedby="basic-addon2" style="width:150px;">
 								<div class="input-group-append">
 									<button class="btn btn-outline-secondary" type="button" onclick="search();">
 										<img src="/imgs/icons/search.svg">
@@ -269,12 +278,13 @@
 								</div>
 							</div>
 						</fieldset>
-					</div>
+					</div><br><br>
 				</div>
+				
 				<script>
 					function search(){
-					var userVal = $('#material').val();
-						location.href="/recipeList?userVal="+userVal;
+						var searchVal = $('#material').val();
+						location.href="/searchRecipeList?searchVal="+searchVal;
 					}
 				</script>
 				<!-- 레시피 검색 끝 -->
@@ -286,7 +296,7 @@
 					
 					<div class="col-md-12" id="md-wrap">
 						<div id="title-header">
-							<h1>이주의 레시피</h1>
+							<h1 style="font-weight:800">이주의 레시피</h1>
 						</div>
 					</div>
 					
@@ -470,12 +480,13 @@
 				</script>
 				
 				<br><br><br><br>
+				
 				<!-- 이달의 레시피 뷰  -->
 					<div class="col-md-8 mx-auto height_auto" style="padding:0px;">
 					
 					<div class="col-md-12" id="md-wrap">
 						<div id="title-header">
-							<h1>이달의 레시피</h1>
+							<h1 style="font-weight:800">이달의 레시피</h1>
 						</div>
 					</div>
 					

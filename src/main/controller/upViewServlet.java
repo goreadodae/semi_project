@@ -36,7 +36,6 @@ public class upViewServlet extends HttpServlet {
 		int result = new MainService().upViews(num);
 		
 		if(result>0) {
-			System.out.println("업!");
 			response.sendRedirect("/recipe?recipeNo="+num);
 		} else {
 			System.out.println("에러");

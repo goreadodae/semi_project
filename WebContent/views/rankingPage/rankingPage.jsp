@@ -50,9 +50,6 @@
 	});
 
 
-
-
-
 		/* 내비게이션 고정 */
 	$(document).ready(function() {
 
@@ -72,6 +69,86 @@
 		});
 
 	});
+
+
+		window.onload = function() {
+	var d = new Date().toISOString().slice(0, 10);
+
+     var x = new Date();
+     var Tyear = x.getFullYear().toString().substr(2);
+     var Tmonth = (x.getMonth() + 1).toString();
+     var Tday = x.getDate().toString();
+     (Tday.length == 1) && (Tday = '0' + Tday);
+     (Tmonth.length == 1) && (Tmonth = '0' + Tmonth);
+     var today = Tyear + "/" + Tmonth + "/" + Tday;
+			console.log(today);
+
+	/*상단 오늘의 레시피*/
+ $.ajax({
+     	url : "/rankingToday",
+     	data : {datepicker : today},
+     	type : "post",
+     	success : function(data) {
+     		console.log("성공");
+     		console.log(data);
+     		$('#todayRecipeImage').attr('src',data[0].recipePic);
+     		$('#todayRecipe1st').html(data[0].recipeTitle);
+     		$('#todayRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");
+
+
+     	},
+     	error : function() {
+     		console.log("실패");
+     	}
+
+     });
+
+
+/*상단 이달의 레시피*/
+$
+.ajax({
+ url : "/rankingMonthlyRecipe",
+ data : {
+  year : Tyear,
+  month : Tmonth
+},
+type : "post",
+success : function(data) {
+
+  console.log("성공");
+  $('#montylyRecipeImage').attr('src',data[0].recipePic);
+  $('#monthRecipe1st').html(data[0].recipeTitle);
+  $('#monthRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");
+
+
+
+},
+error : function() {
+  console.log("실패");
+}
+});
+
+
+/*상단 이달의 회원*/
+				$.ajax({
+					url : "/rankingMonthlyChef",
+					data : {
+						year : Tyear,
+						month : Tmonth
+					},
+					type : "post",
+					success : function(data) {
+						$('#monthlyUserImage').attr('src',data[0].recipePic);
+  						$('#monthmember1st').html(data[0].memberId);
+  						$('#monthUserRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");
+
+					},
+					error : function() {
+						console.log("실패");
+					}
+				});
+
+	}	
 </script>
 
 
@@ -105,7 +182,7 @@
 
 			<!-- 오늘의 레시피 -->
 
-			<div class="col-md" id="todayRecipe">
+			<div class="col-md" id="todayRecipe" style="cursor: pointer;">
 				<br> <br>
 				<div id="rankingLine">
 					<!-- 오늘의 레시피 텍스트 url -->
@@ -114,19 +191,20 @@
 					<!-- <h5 style="margin:0;">오늘의 레시피</h5> -->
 					<br> <br>
 					<div class="media-image">
-						<a href="#"> <img class="media-object"
+						<a href="#"> 
+							<img class="media-object"
 							src="/imgs/ranking_img/recipe.jpg" alt="오늘의 레시피" id="todayRecipeImage" 
 							style="width: 349px; height: 223px">
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">오늘의 1위 레시피</h5>
+					<h5 style="margin: 0;" id="todayRecipe1st">오늘의 1위 레시피</h5>
 				</div>
 			</div>
 
 			<!-- <div class="clearfix visible-xs-block"></div> -->
 			<!-- 이달의 레시피 -->
-			<div class="col-md" id="monthRecipe">
+			<div class="col-md" id="monthRecipe" style="cursor: pointer;">
 				<br> <br>
 				<div id="rankingLine">
 					<!-- 이달의 레시피 텍스트 url -->
@@ -141,14 +219,14 @@
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">이달의 1위 레시피</h5>
+					<h5 style="margin: 0;"  id="monthRecipe1st">이달의 1위 레시피</h5>
 				</div>
 			</div>
 
 			<!-- Optional: clear the XS cols if their content doesn't match in height -->
 			<div class="clearfix visible-xs-block"></div>
 			<!-- 이달의 회원 -->
-			<div class="col-md" id="monthUserRecipe">
+			<div class="col-md" id="monthUserRecipe" style="cursor: pointer;">
 				<br>
 				<br>
 				<div id="rankingLine">
@@ -165,7 +243,7 @@
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;">이달의 1위 회원</h5>
+					<h5 style="margin: 0;" id="monthmember1st">이달의 1위 회원</h5>
 				</div>
 			</div>
 

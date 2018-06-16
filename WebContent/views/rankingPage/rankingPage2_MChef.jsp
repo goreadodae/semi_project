@@ -105,6 +105,7 @@
 							$('#rankingViews' + (i + 1)).html(data[i].recipeViews);
 							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
 							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+              $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 						}
 
 					},
@@ -114,8 +115,9 @@
 				});
 
 		/*year 클릭시에  값 가져오기*/
-		$("#yearClick").change(
-				function() {
+		$("#yearClick").change(function() {
+          var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
+           var monthClick = $("select[name=monthClickName]").val();
 					/*alert($(this).children("option:selected").text());*/
 
 					console.log("year에서 선택한 년도 : "
@@ -144,6 +146,7 @@
               $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
               $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
               $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+              $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 							}
 
 						},
@@ -154,8 +157,10 @@
 
 				});
 
-		$("#monthClick").change(
-				function() {
+		$("#monthClick").change(function() {
+          var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
+          var monthClick = $("select[name=monthClickName]").val();
+
 					console.log("month에서 선택한 년도 : "
 							+ $("select[name=yearClickName]").val()
 									.substr(2, 4));
@@ -183,6 +188,7 @@
               $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
               $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
               $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+              $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 							}
 
 						},
@@ -197,7 +203,11 @@
 
 </head>
 <body>
-
+<!-- <style>
+  *{
+    border : 1px solid black;
+  }
+</style> -->
 
 	<!-- 가운데로 보내는 컨테이너 -->
 
@@ -226,11 +236,7 @@
 		<br>
 	</div>
 	<br>
-<style>
-  *{
-    border : 1px solid black;
-  }
-</style>
+
 <div id="wholeWrap" class="container">
         <div class="col-lg-12">
           <h2 class="my-4">이달의 쉐프</h2>
@@ -239,10 +245,12 @@
       <!-- Team Members Row -->
       <div class="row">
 <br><br><br>
-
+        
         <div class="col-lg-6 col-sm-6 text-center mb-4">
-          <div class="pull-left"><h3 id="rankNum1">순위</h3></div>
-          <img id="cardImgs1" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+          <div class="pull-left"><h3 id="rankNum1">1위</h3></div>
+          <a href="#" id="rankinListIMG1">
+          <img id="cardImgs1" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" data-toggle="collapse" data-target="#collapseExample" >
+        </a>
           <h3 id="rankingMemberID1">John Smith
             <small>Job Title</small>
           </h3>
@@ -252,9 +260,13 @@
           What does this team member to? Keep it short! This is also a great spot for social links!
         </p>
         </div>
+
+
         <div class="col-lg-6 col-sm-6 text-center mb-4">
-          <div class="pull-left"><h3 id="rankNum2">순위</h3></div>
+          <div class="pull-left"><h3 id="rankNum2">2위</h3></div>
+          <a href="#" id="rankinListIMG2">
           <img id="cardImgs2"  class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+        </a>
           <h3 id="rankingMemberID2">John Smith
             <small>Job Title</small>
           </h3>
@@ -263,9 +275,13 @@
           What does this team member to? Keep it short! This is also a great spot for social links!
         </p>
         </div>
+
+
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <div class="pull-left"><h3 id="rankNum3">순위</h3></div>
+          <div class="pull-left"><h3 id="rankNum3">3위</h3></div>
+          <a href="#" id="rankinListIMG3">
           <img id="cardImgs3" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+        </a>
           <h3 id="rankingMemberID3">John Smith
             <small>Job Title</small>
           </h3>
@@ -275,9 +291,13 @@
           What does this team member to? Keep it short! This is also a great spot for social links!
         </p>
         </div>
+
+
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <div class="pull-left"><h3 id="rankNum4">순위</h3></div>
+          <div class="pull-left"><h3 id="rankNum4">4위</h3></div>
+          <a href="#" id="rankinListIMG4">
           <img id="cardImgs4" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+        </a>
           <h3 id="rankingMemberID4">John Smith
             <small>Job Title</small>
           </h3>
@@ -287,9 +307,13 @@
           What does this team member to? Keep it short! This is also a great spot for social links!
         </p>
         </div>
+
+
         <div class="col-lg-4 col-sm-6 text-center mb-4">
-          <div class="pull-left"><h3 id="rankNum5">순위</h3></div>
+          <div class="pull-left"><h3 id="rankNum5">5위</h3></div>
+          <a href="#" id="rankinListIMG5">
           <img id="cardImgs5" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+        </a>
           <h3 id="rankingMemberID5">John Smith
             <small>Job Title</small>
           </h3>
@@ -299,11 +323,29 @@
           What does this team member to? Keep it short! This is also a great spot for social links!
         </p>
         </div>
+
+<script type="text/javascript">
+  $('#myCollapsible').on('hidden.bs.collapse', function () {
+  // do something…
+})
+</script>
+
+        <p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  </div>
+</div>
       </div>
 
 
-
-</div>
 
 </body>
 </html>

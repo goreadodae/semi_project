@@ -49,20 +49,11 @@
 											dateFormat : 'y/mm/dd',
 											prevText : '이전달',
 											nextText : '다음달',
-											monthNames : [ '1월', '2월', '3월',
-													'4월', '5월', '6월', '7월',
-													'8월', '9월', '10월', '11월',
-													'12월' ],
-											monthNamesShort : [ '1월', '2월',
-													'3월', '4월', '5월', '6월',
-													'7월', '8월', '9월', '10월',
-													'11월', '12월' ],
-											dayNames : [ '일', '월', '화', '수',
-													'목', '금', '토' ],
-											dayNamesShort : [ '일', '월', '화',
-													'수', '목', '금', '토' ],
-											dayNamesMin : [ '일', '월', '화', '수',
-													'목', '금', '토' ],
+											monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+											monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+											dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+											dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+											dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
 											showMonthAfterYear : true,
 											yearSuffix : '년',
 											changeMonth : true,
@@ -84,59 +75,26 @@
 																datepicker : datepicker
 															},
 															type : "post",
-															success : function(
-																	data) {
-                                $("#wholeWrap").html("");
-																console
-																		.log("성공");
-																console
-																		.log(data);
+                              success : function(data) {
+                              console.log("성공");
+                              console.log(data);
 
 																for (var i = 0; i < data.length; i++) {
+                                   console.log(data[i]);
 																	/* $('#cardImgs').attr("src","data"); */
-																	console
-																			.log("  "
-																					+ i
-																					+ "번째 "
-																					+ data[i]);
-																	$(
-																			'#rankNum'
-																					+ (i + 1))
-																			.html(
-																					(i + 1)
-																							+ "위");
-																	$(
-																			'#cardImgs'
-																					+ (i + 1))
-																			.attr(
-																					'src',
-																					data[i].completePic);
-																	$(
-																			'#rankingTodayTitle'
-																					+ (i + 1))
-																			.html(
-																					data[i].recipeTitle);
-																	$(
-																			'#rankingViews'
-																					+ (i + 1))
-																			.html(
-																					data[i].recipeTodayViews);
-																	$(
-																			'#rankingTag'
-																					+ (i + 1))
-																			.html(
-																					data[i].recipeTag);
-																	$(
-																			'#rankingContents'
-																					+ (i + 1))
-																			.html(
-																					data[i].recipeIntro);
+	                                console.log("  " + i + "번째 " + data[i]);
+                                   $('#rankNum' + (i + 1)).html((i + 1) + "위");
+                                   $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+                                   $('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+                                  $('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+                                  $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+                                  $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+                                  $('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);
 																}
 
 															},
 															error : function() {
-																console
-																		.log("실패");
+																 console.log("실패");
 															}
 
 														});
@@ -163,10 +121,11 @@
 
 						for (var i = 0; i < data.length; i++) {
 							/* $('#cardImgs').attr("src","data"); */
+              console.log(data[i].recipeNo);
 							console.log("  " + i + "번째 " + data[i]);
 							$('#rankNum' + (i + 1)).html((i + 1) + "위");
 							$('#cardImgs' + (i + 1)).attr('src',
-									data[i].completePic);
+									data[i].recipePic);
 							$('#rankingTodayTitle' + (i + 1)).html(
 									data[i].recipeTitle);
 							$('#rankingViews' + (i + 1)).html(
@@ -174,6 +133,10 @@
 							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
 							$('#rankingContents' + (i + 1)).html(
 									data[i].recipeIntro);
+            $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+            /*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
+           /* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
+
 						}
 
 					},
@@ -253,7 +216,10 @@
 
 <div id="wholeWrap">
 	<div class="container" id="tableContainer">
-		<h3>이달의 레시피</h3>
+		  <div class="col-lg-12">
+          <h2 class="my-4">오늘의 레시피</h2>
+        </div>
+
 		<!-- 1위 -->
 
 		<div id="tableWrap">
@@ -274,7 +240,7 @@
 		</div>
 
 		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
+		<a href="#" id="rankinListIMG1" onclick="window.top.location.href ='/recipe?recipeNo=2'">
 			<div class="card rounded shadow-sm" id="rankingList">
 				<!-- 레시피 이미지 -->
 				<div id="imgWrap">
@@ -330,7 +296,7 @@
 		</div>
 
 		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
+		<a href="#" id="rankinListIMG2">
 			<div class="card rounded shadow-sm" id="rankingList">
 				<!-- 레시피 이미지 -->
 				<div id="imgWrap">
@@ -360,7 +326,8 @@
 					</div>
 				</div>
 			</div>
-		</a> <br>
+		</a> 
+    <br>
 		<br>
 		<br>
 
@@ -384,7 +351,7 @@
 		</div>
 
 		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
+		<a href="#" id="rankinListIMG3">
 			<div class="card rounded shadow-sm" id="rankingList">
 				<!-- 레시피 이미지 -->
 				<div id="imgWrap">
@@ -439,7 +406,7 @@
 		</div>
 
 		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
+		<a href="#" id="rankinListIMG4">
 			<div class="card rounded shadow-sm" id="rankingList">
 				<!-- 레시피 이미지 -->
 				<div id="imgWrap">
@@ -494,7 +461,7 @@
 		</div>
 
 		<!-- a태그로 해당 레시피 이동 -->
-		<a href="#" id="rankinListIMG">
+		<a href="#" id="rankinListIMG5">
 			<div class="card rounded shadow-sm" id="rankingList">
 				<!-- 레시피 이미지 -->
 				<div id="imgWrap">

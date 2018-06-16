@@ -28,7 +28,7 @@ public class RankingDao {
 			prop.load(new FileReader(path+"rankingQuery.properties"));
 			String query = prop.getProperty("rankingTodayRecipe");
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, '%'+datepicker+'%');
+			pstmt.setString(1, "%"+datepicker+"%");
 			
 			rset = pstmt.executeQuery();
 			
@@ -36,9 +36,14 @@ public class RankingDao {
 			{
 				Ranking r = new Ranking();
 				r.setRecipeNo(rset.getInt("recipe_no"));
+				System.out.println(rset.getInt("recipe_no"));
 				r.setRecipeTitle(rset.getString("recipe_title"));
 				r.setRecipeIntro(rset.getString("recipe_intro"));
 				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
 				r.setCompletePic(rset.getString("complete_pic"));
 				r.setRecipeViews(rset.getInt("recipe_views"));
 				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
@@ -46,11 +51,14 @@ public class RankingDao {
 				r.setRecipeTag(rset.getString("recipe_tag"));
 				r.setVideo(rset.getString("video"));
 				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
 				r.setMemberNo(rset.getInt("member_no"));
-				/*System.out.println(rset.getString(19)+"5654564564654");
-				r.setMemberName(rset.getString("member_name"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");*/
+/*				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));*/
-				
+				r.setRanking(rset.getInt("ranking"));
 				todayList.add(r);
 				
 			}
@@ -69,6 +77,7 @@ public class RankingDao {
 			JDBCTemplate.close(pstmt);
 		}	
 		return todayList;		
+		
 	}
 
 	public ArrayList<Ranking> monthRecipeRanking(Connection conn, String year, String month) {
@@ -81,7 +90,7 @@ public class RankingDao {
 		
 		try {
 			prop.load(new FileReader(path+"rankingQuery.properties"));
-			String query = prop.getProperty("rankingTodayRecipe");
+			String query = prop.getProperty("rankingMonthRecipe");
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, '%'+year+"/"+month+'%');
 			
@@ -94,6 +103,10 @@ public class RankingDao {
 				r.setRecipeTitle(rset.getString("recipe_title"));
 				r.setRecipeIntro(rset.getString("recipe_intro"));
 				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
 				r.setCompletePic(rset.getString("complete_pic"));
 				r.setRecipeViews(rset.getInt("recipe_views"));
 				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
@@ -101,12 +114,16 @@ public class RankingDao {
 				r.setRecipeTag(rset.getString("recipe_tag"));
 				r.setVideo(rset.getString("video"));
 				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
 				r.setMemberNo(rset.getInt("member_no"));
-				/*System.out.println(rset.getString(19)+"5654564564654");
-				r.setMemberName(rset.getString("member_name"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");*/
+/*				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));*/
-				
+				r.setRanking(rset.getInt("ranking"));
 				monthRecipeList.add(r);
+
 				
 			}
 			
@@ -137,7 +154,7 @@ public class RankingDao {
 		
 		try {
 			prop.load(new FileReader(path+"rankingQuery.properties"));
-			String query = prop.getProperty("rankingTodayRecipe");
+			String query = prop.getProperty("rankingMonthChef");
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, '%'+year+"/"+month+'%');
 			
@@ -150,6 +167,10 @@ public class RankingDao {
 				r.setRecipeTitle(rset.getString("recipe_title"));
 				r.setRecipeIntro(rset.getString("recipe_intro"));
 				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
 				r.setCompletePic(rset.getString("complete_pic"));
 				r.setRecipeViews(rset.getInt("recipe_views"));
 				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
@@ -157,12 +178,16 @@ public class RankingDao {
 				r.setRecipeTag(rset.getString("recipe_tag"));
 				r.setVideo(rset.getString("video"));
 				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
 				r.setMemberNo(rset.getInt("member_no"));
-				/*System.out.println(rset.getString(19)+"5654564564654");
-				r.setMemberName(rset.getString("member_name"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+				/*System.out.println(rset.getString(19)+"5654564564654");*/
+/*				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));*/
-				
+				r.setRanking(rset.getInt("ranking"));
 				monthChefList.add(r);
+
 				
 			}
 			

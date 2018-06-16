@@ -103,7 +103,7 @@
 
 							$('#rankNum' + (i + 1)).html((i + 1) + "위");
 							$('#cardImgs' + (i + 1)).attr('src',
-									data[i].completePic);
+									data[i].recipePic);
 							$('#rankingMonthTitle' + (i + 1)).html(
 									data[i].recipeTitle);
 							$('#rankingViews' + (i + 1)).html(
@@ -144,7 +144,7 @@
 								console.log(i + "번째" + data[i]);
 								$('#rankNum' + (i + 1)).html((i + 1) + "위");
 								$('#cardImgs' + (i + 1)).attr('src',
-										data[i].completePic);
+										data[i].recipePic);
 								$('#rankingMonthTitle' + (i + 1)).html(
 										data[i].recipeTitle);
 								$('#rankingViews' + (i + 1)).html(
@@ -182,7 +182,7 @@
 								console.log(i + "번째" + data[i]);
 								$('#rankNum' + (i + 1)).html((i + 1) + "위");
 								$('#cardImgs' + (i + 1)).attr('src',
-										data[i].completePic);
+										data[i].recipePic);
 								$('#rankingMonthTitle' + (i + 1)).html(
 										data[i].recipeTitle);
 								$('#rankingViews' + (i + 1)).html(
@@ -237,8 +237,12 @@
 
 <div id="wholeWrap">
 	<div class="container" id="tableContainer">
-		<h3>이달의 레시피</h3>
+		  <div class="col-lg-12">
+          <h2 class="my-4">이달의 레시피</h2>
+        </div>
+
 		<!-- 1위 -->
+
 
 		<div id="tableWrap">
 			<table class="table table-hover" id="tableHover">

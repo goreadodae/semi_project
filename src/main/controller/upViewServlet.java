@@ -32,9 +32,15 @@ public class upViewServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String num = request.getParameter("recipe_no");
-		System.out.println(num);
+		int num = Integer.parseInt(request.getParameter("recipe_no"));
+		int result = new MainService().upViews(num);
 		
+		if(result>0) {
+			System.out.println("업!");
+			response.sendRedirect("/recipe?recipeNo="+num);
+		} else {
+			System.out.println("에러");
+		}
 	}
 
 	/**

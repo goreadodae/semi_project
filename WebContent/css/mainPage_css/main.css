@@ -136,19 +136,17 @@ strong {
 
 /* 인트로 부분 */
 #intro-wrap #intro-step {
-	border: 2px solid black;
 	height: 200px;
 	padding: 0px;
 }
 
 #intro-wrap #intro-step #intro-step-wrap {
-	border: 2px solid black;
 	height: 200px;
 	float: left;
 }
 
 #intro-wrap #intro-step #intro-step-wrap div {
-	border: 2px solid black;
+	background-color:gray;
 	height: 150px;
 }
 

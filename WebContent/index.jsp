@@ -103,17 +103,19 @@
 					<h3>상품화된 누적 레시피</h3>
 					<h1>수상한 레시피로 레시피올리고 수익올리자</h1>
 					<div class="col-md-8 mx-auto" id="intro-step">
-						<div class="col-md-4" id="intro-step-wrap">
-							<div>이미지 올림</div>
-							<p>레시피 등록하고</p>
+						<div class="col-md-4" id="intro-step-wrap" style="top-padding:10px;">
+							<div>
+								<img id="intro_cook_img" src="/imgs/main-img/cook2.png">
+							</div>
+							<p>요리하고</p>
 						</div>
 						<div class="col-md-4" id="intro-step-wrap">
-							<div>이미지 올림</div>
-							<p>랭킹에 올리고</p>
+							<div><img id="intro_recipe_img" src="/imgs/main-img/recipe.png"></div>
+							<p>레시피 올리고</p>
 						</div>
 						<div class="col-md-4" id="intro-step-wrap">
-							<div>이미지 올림</div>
-							<p>수익 얻자</p>
+							<div><img id="intro_money_img" src="/imgs/main-img/money.png"></div>
+							<p>돈 벌자</p>
 						</div>
 					</div>
 					<br><br>
@@ -436,7 +438,6 @@
 								
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									 /* $('#week_link_'+(i+1)).attr("href","/recipe?recipeNo="+data[i].recipe_no); */
 									 $('#week_img_'+(i+1)).attr("src",data[i].recipe_pic);
 									 $('#week_title_'+(i+1)).html(data[i].recipe_title);
 									 $('#week_view_'+(i+1)).append(data[i].recipe_today_views);
@@ -461,7 +462,6 @@
 									
 								})
 							},
-							
 							error : function() {
 								console.log("실패");
 							}
@@ -485,7 +485,7 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_1">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_1" class="img col-md-12 col-sm-12"
+									<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
 
 									<div class="col-md-12">
@@ -501,7 +501,7 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_2">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_2" class="img col-md-12 col-sm-12"
+									<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
 
 									<div class="col-md-12">
@@ -517,7 +517,7 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_3">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_3" class="img col-md-12 col-sm-12"
+									<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
 
 									<div class="col-md-12">
@@ -533,7 +533,7 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_4">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_4" class="img col-md-12 col-sm-12"
+									<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
 
 									<div class="col-md-12">
@@ -549,9 +549,8 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_5">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_5" class="img col-md-12 col-sm-12"
+									<img id="month_img_5" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
 									<div class="col-md-12">
 										<p id="month_title_5" class="lead my-1"></p>
 										<span id="month_view_5" class="display-5" style="padding-bottom: 15px;">
@@ -565,9 +564,8 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_6">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_6" class="img col-md-12 col-sm-12"
+									<img id="month_img_6" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
 									<div class="col-md-12">
 										<p id="month_title_6" class="lead my-1"></p>
 										<span id="month_view_6" class="display-6" style="padding-bottom: 15px;">
@@ -581,9 +579,8 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_7">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_7" class="img col-md-12 col-sm-12"
+									<img id="month_img_7" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
 									<div class="col-md-12">
 										<p id="month_title_7" class="lead my-1"></p>
 										<span id="month_view_7" class="display-7" style="padding-bottom: 15px;">
@@ -597,9 +594,8 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_8">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_8" class="img col-md-12 col-sm-12"
+									<img id="month_img_8" class="img col-md-12 col-sm-12" name="month_img"
 										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
 									<div class="col-md-12">
 										<p id="month_title_8" class="lead my-1"></p>
 										<span id="month_view_8" class="display-7" style="padding-bottom: 15px;">
@@ -615,6 +611,9 @@
 				<!-- 레시피 받아오기 -->
 				<script>
 					$(document).ready(function() {
+						var recipeImgArr = [];
+						var recipeNoArr = [];
+						
 						$.ajax({
 							url : "/monthlyRecipe",
 							type : "post",
@@ -622,11 +621,27 @@
 								var keys = Object.keys(data);
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									 $('#month_link_'+(i+1)).attr("href","http://localhost/recipe?recipeNo="+data[i].recipe_no);
 									 $('#month_img_'+(i+1)).attr("src",data[i].recipe_pic);
 									 $('#month_title_'+(i+1)).html(data[i].recipe_title);
 									 $('#month_view_'+(i+1)).append(data[i].recipe_month_views);
+									 
+									 recipeImgArr.push(data[i].recipe_pic);
+									 recipeNoArr.push(data[i].recipe_no);	
 								} 
+								
+								$('[name=month_img]').each(function(index){
+									
+									var index2 = index;
+									
+									$(this).click(function(){
+										if($(this).attr("src")==recipeImgArr[index2])
+										{
+											var recipeNo = recipeNoArr[index2];
+											location.href="/upView?recipe_no="+recipeNo;
+										}
+									});
+									
+								})
 							},
 							error : function() {
 								console.log("실패");

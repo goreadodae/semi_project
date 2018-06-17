@@ -166,105 +166,106 @@
 
 			<!-- 네비  -->
 			<div id="point">
-				<br><br><br>
 
 				<!-- 추천 이벤트 / 신상품 이미지 슬라이드-->
-				<div class="col-md-8 mx-auto">
-					<div class="row">
+				<div class="col-md-12 mx-auto" style="background-color:#f6f1ed; margin:0px;">
+					<br><br><br>
+					<div class="col-md-8 mx-auto">
+						<div class="row">
 
 						<!-- 추천 이벤트 이미지 슬라이드 -->
-						<div class="col-md-6" id="recommendEvent">
-							<h1>추천 이벤트</h1>
-							<div id="carouselExampleControls1" class="carousel slide"
-								data-ride="carousel">
-								<div class="carousel-inner">
-									<!-- 첫 번째 이미지 슬라이드  -->
-									<div class="carousel-item active">
-										<img class="d-block w-100"
-											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
-											alt="First slide">
+							<div class="col-md-6" id="recommendEvent">
+								<h1>추천 이벤트</h1>
+								<div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
+									<div class="carousel-inner">
+										<!-- 첫 번째 이미지 슬라이드  -->
+										<div class="carousel-item active">
+											<img class="d-block w-100"
+												src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
+												alt="First slide">
+										</div>
+
+										<!-- 두 번째 이미지 슬라이드  -->
+										<div class="carousel-item">
+											<img class="d-block w-100"
+												src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
+												alt="Second slide">
+										</div>
+
+										<!-- 세 번째 이미지 슬라이드  -->
+										<div class="carousel-item">
+											<img class="d-block w-100"
+												src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
+												alt="Third slide">
+										</div>
 									</div>
 
-									<!-- 두 번째 이미지 슬라이드  -->
-									<div class="carousel-item">
-										<img class="d-block w-100"
-											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
-											alt="Second slide">
-									</div>
-
-									<!-- 세 번째 이미지 슬라이드  -->
-									<div class="carousel-item">
-										<img class="d-block w-100"
-											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
-											alt="Third slide">
-									</div>
+									<a class="carousel-control-prev"
+										href="#carouselExampleControls1" role="button"
+										data-slide="prev"> <span class="carousel-control-prev-icon"
+										aria-hidden="true"></span> <span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next"
+										href="#carouselExampleControls1" role="button"
+										data-slide="next"> <span class="carousel-control-next-icon"
+										aria-hidden="true"></span> <span class="sr-only">Next</span>
+									</a>
 								</div>
-
-								<a class="carousel-control-prev"
-									href="#carouselExampleControls1" role="button"
-									data-slide="prev"> <span class="carousel-control-prev-icon"
-									aria-hidden="true"></span> <span class="sr-only">Previous</span>
-								</a> <a class="carousel-control-next"
-									href="#carouselExampleControls1" role="button"
-									data-slide="next"> <span class="carousel-control-next-icon"
-									aria-hidden="true"></span> <span class="sr-only">Next</span>
-								</a>
 							</div>
-						</div>
-						<!-- 추천 이벤트 이미지 슬라이드 끝 -->
+							<!-- 추천 이벤트 이미지 슬라이드 끝 -->
 
-						<!-- 신상품 이미지 슬라이드 -->
-						<div class="col-md-6" id="newFoods">
-							<h1>신상품</h1>
-							<div id="carouselExampleControls2" class="carousel slide"
-								data-ride="carousel">
-								<div class="carousel-inner">
-									<!-- 신상품 첫 번째 이미지  -->
-									<div class="carousel-item active">
-										<img class="d-block w-100"
-											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
-											alt="First slide">
+							<!-- 신상품 이미지 슬라이드 -->
+							<div class="col-md-6" id="newFoods">
+								<h1>신상품</h1>
+								<div id="carouselExampleControls2" class="carousel slide"
+									data-ride="carousel">
+									<div class="carousel-inner">
+										<!-- 신상품 첫 번째 이미지  -->
+										<div class="carousel-item active">
+											<img class="d-block w-100"
+												src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
+												alt="First slide">
+										</div>
+
+										<!-- 신상품 두 번째 이미지  -->
+										<div class="carousel-item">
+											<img class="d-block w-100"
+												src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
+												alt="Second slide">
+										</div>
+
+										<!-- 신상품 세 번째 이미지  -->
+										<div class="carousel-item">
+											<img class="d-block w-100"
+												src="//img-cf.kurly.com/shop/data/skin/designgj/img/banner/74dcada7e33c67299be3b5a4233bc37d.jpg"
+												alt="Third slide">
+										</div>
 									</div>
 
-									<!-- 신상품 두 번째 이미지  -->
-									<div class="carousel-item">
-										<img class="d-block w-100"
-											src="http://img-cf.kurly.com/shop/data/skin/designgj/img/banner/1725b1124209de547c33afc17d474e65.jpg"
-											alt="Second slide">
-									</div>
-
-									<!-- 신상품 세 번째 이미지  -->
-									<div class="carousel-item">
-										<img class="d-block w-100"
-											src="//img-cf.kurly.com/shop/data/skin/designgj/img/banner/74dcada7e33c67299be3b5a4233bc37d.jpg"
-											alt="Third slide">
-									</div>
+									<a class="carousel-control-prev"
+										href="#carouselExampleControls2" role="button"
+										data-slide="prev"> <span class="carousel-control-prev-icon"
+										aria-hidden="true"></span> <span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next"
+										href="#carouselExampleControls2" role="button"
+										data-slide="next"> <span class="carousel-control-next-icon"
+										aria-hidden="true"></span> <span class="sr-only">Next</span>
+									</a>
 								</div>
-
-								<a class="carousel-control-prev"
-									href="#carouselExampleControls2" role="button"
-									data-slide="prev"> <span class="carousel-control-prev-icon"
-									aria-hidden="true"></span> <span class="sr-only">Previous</span>
-								</a> <a class="carousel-control-next"
-									href="#carouselExampleControls2" role="button"
-									data-slide="next"> <span class="carousel-control-next-icon"
-									aria-hidden="true"></span> <span class="sr-only">Next</span>
-								</a>
 							</div>
 						</div>
 					</div>
+					<br><br><br><br><br>
 				</div>
 				
 				<!-- 추천 이벤트 끝  -->
-				<br><br><br><br><br>
 				
 				<!-- 레시피 검색 -->
 				<div id="search" class="col-md-12"
-					style="background-color: #f6f7f7; padding: 0px;">
+					style="background-color: #e66768; padding: 0px;">
 					<div class="col-md-8 mx-auto text-center">
-						<br> <br>
-						<h3>냉장고를 부탁해!</h3>
-						<h1 style="color: #512772;">내가 가진 재료로 레시피 추천받기</h1>
+						<br><br><br>
+						<h3 style="color:white;">냉장고를 부탁해!</h3>
+						<h1 style="color: yellow; font-weight:800">내가 가진 재료로 레시피 추천받기</h1>
 						<br>
 						<fieldset>
 							<div class="col-md-8 input-group mb-3 mx-auto">
@@ -278,7 +279,7 @@
 								</div>
 							</div>
 						</fieldset>
-					</div><br><br>
+					</div><br><br><br>
 				</div>
 				
 				<script>
@@ -300,135 +301,272 @@
 						</div>
 					</div>
 					
-					<ul id="slide_week" class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" 
-						data-speed="100" style="paiddng:0px;">
-
+					<!-- 첫 번째 사진 -->
+					<ul id="slide_week" class="height_auto vertical_motion" data-min="130" data-motion-auto="true" data-delay="3" data-speed="100" style="paiddng:0px;">
 						<li class="vm_list">
-							<a href="#" id="week_link_1">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_1" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_1" class="lead my-1"></p>
-										<span id="week_view_1" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_1">			
+										<img id="week_img_1" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_1" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_1" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_2">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_2" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_2" class="lead my-1"></p>
-										<span id="week_view_2" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_2">
+										<img id="week_img_2" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_2" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="padding:0px; padding-top:2px;">
+											<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_2" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_3">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_3" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_3" class="lead my-1"></p>
-										<span id="week_view_3" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_3">			
+										<img id="week_img_3" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_3" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_3" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_4">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_4" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_4" class="lead my-1"></p>
-										<span id="week_view_4" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_4">			
+										<img id="week_img_4" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_4" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_4" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_5">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_5" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_5" class="lead my-1"></p>
-										<span id="week_view_5" class="display-5" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_5">			
+										<img id="week_img_5" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_5" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_5" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_6">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_6" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_6" class="lead my-1"></p>
-										<span id="week_view_6" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_6">			
+										<img id="week_img_6" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_6" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_6" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_7">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_7" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_7" class="lead my-1"></p>
-										<span id="week_view_7" class="display-7" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_7">			
+										<img id="week_img_7" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_7" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_7" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
-							<a href="#" id="week_link_8">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="week_img_8" class="img col-md-12 col-sm-12"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail" name="week_img">
-
-									<div class="col-md-12">
-										<p id="week_title_8" class="lead my-1"></p>
-										<span id="week_view_8" class="display-7" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="week_link_8">			
+										<img id="week_img_8" class="img col-md-12 col-sm-12"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail" name="week_img">
+									</a>
+									<div class="col-md-12" style="padding:0px;">
+										<p id="week_title_8" class="lead my-1" style="padding:5px;"></p>
+										
+										<div class="col-md-12" style="height:450px; padding:0px; padding-top:16px;">
+											<div class="row" style="margin:0px;">
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="week_view_8" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png" style="padding-bottom:5px;">
+													</p>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 					</ul>
 				</div>
@@ -494,32 +632,72 @@
 						data-speed="100" style="paiddng:0px;">
 
 						<li class="vm_list">
-							<a href="#" id="month_link_1">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
-									<div class="col-md-12">
-										<p id="month_title_1" class="lead my-1"></p>
-										<span id="month_view_1" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_1">
+										<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_1" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_1" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
-							</a>
 						</li>
 						
 						<li class="vm_list">
 							<a href="#" id="month_link_2">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
-									<div class="col-md-12">
-										<p id="month_title_2" class="lead my-1"></p>
-										<span id="month_view_2" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_2">
+										<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_2" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_2" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -528,14 +706,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_3">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
-									<div class="col-md-12">
-										<p id="month_title_3" class="lead my-1"></p>
-										<span id="month_view_3" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_3">
+										<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_3" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_3" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -544,14 +743,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_4">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-
-									<div class="col-md-12">
-										<p id="month_title_4" class="lead my-1"></p>
-										<span id="month_view_4" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_4">
+										<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_4" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_4" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -560,13 +780,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_5">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_5" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-									<div class="col-md-12">
-										<p id="month_title_5" class="lead my-1"></p>
-										<span id="month_view_5" class="display-5" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_5">
+										<img id="month_img_5" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_5" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_5" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -575,13 +817,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_6">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_6" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-									<div class="col-md-12">
-										<p id="month_title_6" class="lead my-1"></p>
-										<span id="month_view_6" class="display-6" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_6">
+										<img id="month_img_6" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_6" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_6" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -590,13 +854,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_7">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_7" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-									<div class="col-md-12">
-										<p id="month_title_7" class="lead my-1"></p>
-										<span id="month_view_7" class="display-7" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_7">
+										<img id="month_img_7" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_7" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_7" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -605,13 +891,35 @@
 						<li class="vm_list">
 							<a href="#" id="month_link_8">
 								<div class="sp_box b1" style="border:1px solid #dadada; height:450px;">
-									<img id="month_img_8" class="img col-md-12 col-sm-12" name="month_img"
-										style="padding: 0px;" alt="이미지" height="350" class="img-thumbnail">
-									<div class="col-md-12">
-										<p id="month_title_8" class="lead my-1"></p>
-										<span id="month_view_8" class="display-7" style="padding-bottom: 15px;">
-											<img src="/imgs/recipe_img/view_icon.png">
-										</span>
+									<a href="#" id="month_link_8">
+										<img id="month_img_8" class="img col-md-12 col-sm-12" name="month_img"
+											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+									</a>
+									
+									<div class="col-md-12" style="padding:0px;">
+										<p id="month_title_8" style="padding:5px;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding:0px; padding-top:16px;">
+												<div class="row" style="margin:0px;">
+											
+												<!-- 시간 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black; padding:0px;">
+													<p style="line-height:40px; text-align:center;">시간</p>
+												</div>
+												
+												<!-- 레벨 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p style="line-height:40px; text-align:center;">레벨</p>
+												</div>
+												
+												<!-- 요리 양 -->
+												<div class="col-md-4" style="height:40px; border:1px solid black;">
+													<p id="month_view_8" style="padding-left:5px; line-height:40px; text-align:center;">
+														<img src="/imgs/recipe_img/view_icon.png">
+													</p>
+												</div>
+												
+											</div>
+										</div>
 									</div>
 								</div>
 							</a>

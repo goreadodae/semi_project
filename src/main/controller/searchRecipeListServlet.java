@@ -67,6 +67,7 @@ public class searchRecipeListServlet extends HttpServlet {
 		request.setAttribute("cate3", cate3);
 		request.setAttribute("cate4", cate4);
 		request.setAttribute("order", order	);
+		request.setAttribute("searchVal", searchVal);
 		
 		// 페이지 정보
 		request.setAttribute("pageData", sRPD);

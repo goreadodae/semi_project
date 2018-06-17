@@ -218,6 +218,25 @@ a{
      });
 
 </script>
+<script>
+	function inputBasket(){
+		var basket_quantity = $('#qty').val();
+		var product_no = $('#product_no').val();
+		
+		$.ajax({
+			url : "/basketInsert",
+			data : {basket_quantity:basket_quantity,product_no:product_no},
+			type : "get",
+			success:function(data){
+				window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+				console.log("성공");
+			},
+			error:function(){
+				console.log("실패");
+			}
+		});
+	}
+</script>
 
 </head>
 <body>
@@ -277,11 +296,10 @@ a{
 							</div>
 							<br>
 							<center>
-								<form action="/basketInsert" method="post" style="display:inline;">
-									<input type="hidden" id="basket_quantity" name="basket_quantity" value="1" >
-									<input type="hidden" name="product_no" value="${productInfo.product_no}" >
-									<button class="btn btn-info" onclick="window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');">장바구니</button>
-								</form>
+								<input type="hidden" id="basket_quantity" name="basket_quantity" value="1" >
+								<input type="hidden" id="product_no" value="${productInfo.product_no}" >
+								<button class="btn btn-info" onclick="inputBasket();">장바구니</button>
+								
 								
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button type="button" class="btn btn-success" onclick="location.href='/views/productPage/Purchase.jsp'">구매하기</button>

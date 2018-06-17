@@ -33,13 +33,13 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//1. 한글이 있을 경우 인코딩
+		//1. �븳湲��씠 �엳�쓣 寃쎌슦 �씤肄붾뵫
 		request.setCharacterEncoding("utf-8");
 
-		//2. 변수에서 값 꺼내서 저장
+		//2. 蹂��닔�뿉�꽌 媛� 爰쇰궡�꽌 ���옣
 		int product_no = Integer.parseInt(request.getParameter("product_no"));
 
-		//3. 비즈니스 로직 처리
+		//3. 鍮꾩쫰�땲�뒪 濡쒖쭅 泥섎━
 		Product productInfo = new Product();
 		productInfo = new ProductService().getProduct(product_no);
 		

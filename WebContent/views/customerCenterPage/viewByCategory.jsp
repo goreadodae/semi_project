@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	pageContext.setAttribute("newLineChar", "\n");
 %>
@@ -12,7 +12,7 @@
 <title>FAQ 페이지 입니다.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -24,8 +24,8 @@
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
-	
- 		var stat = true;
+	/*faq제목 클릭시 답변 보이게 하는 js  */
+		var stat = true;
 	function showFaq(id){
 		console.log(id);
 		var showNhide = document.getElementById(id+"_hidingContens");
@@ -33,6 +33,7 @@
 		if(stat==true)
 			{
 				showNhide.style.display="table-row";
+				/* tr은 display가 기본적으로 table-row형임  block으로 하면 colspan 안 먹힘  */
 				stat = false;
 			}
 		else
@@ -41,6 +42,8 @@
 				stat = true;
 			}
 	};	
+
+
 	$(document).ready(function() {
 
 		var jbOffset = $('#content-main').offset();
@@ -57,16 +60,15 @@
 				
 				$('#fixed_layer').removeClass('jbFixed');
 			}
+			
 		});
 
 	});
-	
-	/*해당 페이지 표시 스크립트  */
+	/*해당 페이지 표시 */
 	$(document).ready(function(){
 		$('#list-color tr').eq(1).addClass('on');
 		
 	});
-	
 	
 	
 </script>
@@ -93,12 +95,19 @@
 select:active {
 	border-color: black;;
 }
+body{
+   
+font-family: 'Nanum Gothic', sans-serif;
+}
 </style>
 </head>
 <body>
 
+
 	<div class="container-fluid" style="padding: 0px">
 		<div id="header"></div>
+
+
 
 		<div id="contents"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
@@ -130,49 +139,53 @@ select:active {
 
 				<div class="col-md-10">
 					<form action="/byFaqCategory" method="get">
-						<select name="category" size="1" style="height: 30px"
-							onChange="if(this.options[this.selectedIndex].text)this.form.submit();">
-							<option>선택</option>
-							<option value="회원관련">회원관련</option>
-							<option value="사이트이용">사이트이용</option>
-							<option value="주문결제">주문결제</option>
-							<option value="기타">기타</option>
-
-
+						<select id="selectedCtg" name="category" size="1"
+							style="height: 30px" onChange="if(this.value)this.form.submit();">
+							<!-- value있을때만 넘겨줌  -->
+							<option value=>선택</option>
+							<!-- 해당된 카테고리 selected 작업  -->
+							<option value="회원관련"
+								<c:if test="${param.category eq '회원관련'}">selected</c:if>>회원관련</option>
+							<option value="사이트이용"
+								<c:if test="${param.category eq '사이트이용'}">selected</c:if>>사이트이용</option>
+							<option value="주문결제"
+								<c:if test="${param.category eq '주문결제'}">selected</c:if>>주문결제</option>
+							<option value="기타"
+								<c:if test="${param.category eq '기타'}">select
+					ed</c:if>>기타</option>
 						</select>
 					</form>
 					<br>
-
-
 					<table class="table" id="faqTable" style="text-align: center">
-
-
 						<tr>
 							<th scope="col" width="50px">번호</th>
 							<th scope="col" width="100px">카테고리</th>
 							<th scope="col">제목</th>
 						</tr>
 
-
+						<!-- 선택카테고리만  출력  -->
 						<c:forEach items="${requestScope.faqList}" var="list">
 							<tr>
 								<td>${list.faqNo}</td>
 								<td>${list.faqCategory}</td>
-								<td id="${list.faqNo}" onclick="showFaq(${list.faqNo});"
-									style="cursor: pointer; text-align: left;">
-									${list.faqTitle}</td>
+								<td id="${list.faqNo}" onclick="showFaq(${list.faqNo})"
+									style="cursor: pointer">${list.faqTitle}</td>
 							</tr>
+							<!-- 초기 display none -->
 							<tr id="${list.faqNo}_hidingContens" style="display: none;">
-								<td colspan="3" style="text-align: left;">
-									<div class="col-md-12" style="padding: 30px;">
+								<td colspan="3" style="text-align: left">
+									<div class="col-md-12" style="padding:30px">
 										<img src="/imgs/manager-img/question.png">&nbsp;&nbsp;&nbsp;
 										${fn:replace(list.faqContents,newLineChar,"<br>")}
-										<!-- faq 이미지, faq답변 내용  -->
+
 									</div>
 								</td>
 							</tr>
 						</c:forEach>
 					</table>
+
+
+
 				</div>
 
 			</div>

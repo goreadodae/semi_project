@@ -36,7 +36,7 @@ public class FaqListServlet extends HttpServlet {
 		
 		ArrayList<Faq> faqList = new FaqService().viewfaqList();
 		
-		System.out.println(faqList);
+		
 		
 		if(!faqList.isEmpty())
 		{

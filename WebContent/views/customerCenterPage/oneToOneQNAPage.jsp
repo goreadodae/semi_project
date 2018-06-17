@@ -19,6 +19,11 @@
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
+	$(document).ready(function(){
+		$('#list-color tr').eq(2).addClass('on');
+	});
+	
+	
 </script>
 
 <style>
@@ -26,10 +31,7 @@
 	margin: 0;
 	padding: 0;
 }
-#notice-color{
-	background-color:#dcdbde;
 
-}
 #noHasList{
 	position:relative;
 	text-align:center;
@@ -77,39 +79,14 @@
 			<br>
 			<div class="row" style="padding:0;">
 				<div id="customCenter" class="col-md-2" style="padding:0;">
-					<!-- 고객센터 목록 테이블 -->
-					<table class="table table-bordered table-hover">
-						<tr>
-							<td><a href="/views/customerCenterPage/noticePage.jsp"
-								style="color: black">공지사항<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="/views/customerCenterPage/faqPage.jsp"
-								style="color: black">FAQ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr id="notice-color">
-							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
-								style="color: black">1:1문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">상품구매문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-					</table>
-
+					<!-- 고객센터 목록 테이블  include-->
+					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp" flush="false"/>
 				</div>
 
 			<div class="col-md-10">
 			<!-- <a href="/views/managerPage/writeQNAPage.jsp">작성하기(임시링크)</a> -->
 			
-			<table class="table">
+			<table class='table'>
 			<tr>
 			<th>번호</th>
 			<th>카테고리</th>

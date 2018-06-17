@@ -133,7 +133,7 @@
  }
 
 
-.dateButton{
+.btn .btn-secondary .btn-lg .active{
 	display: inline-block;
     padding: 6px 20px;
     margin: 0 2px;

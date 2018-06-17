@@ -56,13 +56,10 @@ pageEncoding="UTF-8"%>
 				yearSuffix : '년',
 				changeMonth : true,
 				changeYear : true,
+				showButtonPanel: true,
 				defaultDate : new Date(),
 				maxDate : new Date(),
 				onSelect : function(dateText, inst) {
-
-					/* location.href='rankingPage2_TRecipe.jsp?type=hot&ymd='+dateText; */
-					/*data-url="rankingPage2_TRecipe.jsp"*/
-					console.log(dateText + "1111");
 												var datepicker = document.getElementById("datepicker").value; //입력값
 
 												/*데이터 피커 선택 날짜로 값 집어 넣어서 보여주기!*/
@@ -88,6 +85,7 @@ pageEncoding="UTF-8"%>
 															$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
 															$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
 															$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+
 														}
 
 													},
@@ -101,17 +99,16 @@ pageEncoding="UTF-8"%>
 
 										});
 
-
+/*
 			$("#preBtn").click(function(event){
-				//event.preventDefault();
-				alert($('#datepicker').datepicker("setDate", new Date())-1);
-				/*$('#datepicker').datepicker("setDate", new Date()-1);*/
+				event.preventDefault();
+				location.href="/rankingToday?datepicker="+'18/06/16';
 			});
-
+*/
 
 				$("#nextBtn").click(function(event){
-				//event.preventDefault();
-				alert("dfsf");
+				event.preventDefault();
+				location.href="/rankingToday?datepicker="+'18/06/16'
 			});
 
 
@@ -186,7 +183,11 @@ pageEncoding="UTF-8"%>
 
      /*오늘 날짜 가져오기*/
      document.getElementById("rankingDateToday").innerHTML = today;
-
+     /*alert(Tyear + "/" + Tmonth + "/" + (Tday-1));*/
+     			$("#preBtn").click(function(event){
+				event.preventDefault();
+				location.href="/rankingToday?datepicker="+Tyear + "/" + Tmonth + "/" + (Tday-1);
+			});
 		/* 
 		 $('#preBtn').click(function(){
 		 $('#rankingDateToday').html(d-=1);
@@ -232,8 +233,8 @@ pageEncoding="UTF-8"%>
 		<br>
 		<br>
 
-		<div id="wholeWrap">
-			<div class="container" id="tableContainer">
+		<div id="wholeWrap" style="padding-left: 50px;">
+			<div class="container justify-content-center" id="tableContainer">
 				<div class="col-lg-12">
 					<h2 class="my-4">오늘의 레시피</h2>
 				</div>
@@ -246,7 +247,7 @@ pageEncoding="UTF-8"%>
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
-									<div class="float-right" id="viewDiv">
+									<div class="center-block" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews1"></div>

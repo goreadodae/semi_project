@@ -167,14 +167,21 @@ error : function() {
 	<!-- 랭킹 상단 부분 url -->
 	<br><br>
 	<div id="bodyWrap">
+
+<div id="warpgradient">
 	<div class="center-block" id="line">
-		<a id="rankingURL" href="#gray_line"><h2 id="rankingTopName">Ranking</h2></a>
+		<a id="rankingURL" href="#gray"><h2 id="rankingTopName">Ranking</h2></a>
 	</div>
 	<!-- 상단 구분선 -->
-	<hr style="width: 500px; border: 2px solid #EAEAEA;">
+<!-- 	<hr style="width: 500px; border: 2px solid #EAEAEA;">
+	<br> -->
+	<!-- 타이포그래피 -->
+
+	<jsp:include page="/views/rankingPage/rankingTtypography.jsp" />
+
+</div>
 
 
-<br><br><br>
 	<!-- 오늘의 레시피, 이달의 레시피, 이달의 회원 상단 -->
 	<div id="wrap" class="container">
 
@@ -182,7 +189,7 @@ error : function() {
 
 			<!-- 오늘의 레시피 -->
 
-			<div class="col-md" id="todayRecipe" style="cursor: pointer;">
+			<div class="col-md container" id="todayRecipe" style="cursor: pointer;">
 				<br> <br>
 				<div id="rankingLine">
 					<!-- 오늘의 레시피 텍스트 url -->
@@ -198,7 +205,7 @@ error : function() {
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;" id="todayRecipe1st">오늘의 1위 레시피</h5>
+					<h6 style="margin: 0;" id="todayRecipe1st">오늘의 1위 레시피</h6>
 				</div>
 			</div>
 
@@ -219,7 +226,7 @@ error : function() {
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;"  id="monthRecipe1st">이달의 1위 레시피</h5>
+					<h6 style="margin: 0;"  id="monthRecipe1st">이달의 1위 레시피</h6>
 				</div>
 			</div>
 
@@ -243,7 +250,7 @@ error : function() {
 						</a>
 					</div>
 					<br>
-					<h5 style="margin: 0;" id="monthmember1st">이달의 1위 회원</h5>
+					<h6 style="margin: 0;" id="monthmember1st">이달의 1위 회원</h6>
 				</div>
 			</div>
 
@@ -253,13 +260,13 @@ error : function() {
 <br><br>
 
 <!-- 동영상 div -->
-	<div class="container">
+<!-- 	<div class="container">
 	<div class="embed-responsive embed-responsive-16by9" style="width: 100%; height: 40%;">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/F5ESmoCh77k" allowfullscreen></iframe>
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/F5ESmoCh77k" allowfullscreen id="iframeVideo"></iframe>
 	</div>
 	</div>
 	<br><br><br><br>
-
+ -->
 
 
 	<!-- 하단 메뉴 -->
@@ -275,6 +282,9 @@ error : function() {
 	<div style="background-color: #F8FAFF;" id="gray">
 		<!-- ranking 중간 구분 선 -->
 		<br><br><br><br><br><br>
+
+
+
 		<hr style="width: 400px; border: 2px solid #353866;" id="gray_line">
 		<!-- 	<div class="container" id="middle_Division_Line">
 		<div class="row  mx-auto">
@@ -330,11 +340,13 @@ function resizeIframe(h){
 	<div id="ranking2Wrap">
 
 		<br><br><br><br>
-		<div class="container" id="iframeWrap">
+		<div class="container center-block" id="iframeWrap">
+			<div class="row">
 			<!-- iframe으로 페이지 내에서 바꾸기! -->
 		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0" onload="resizeIframe(this)" scrolling="no"></iframe>
 		<!-- frameborder="0" -->
 		<!-- <div id="ranking2_TRecipe"></div> -->
+		</div>
 		</div>
 	</div>
 

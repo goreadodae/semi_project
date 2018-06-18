@@ -1,4 +1,4 @@
-package notice.controller;
+package faq.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-import notice.model.vo.PageData;
+import faq.model.service.FaqService;
+import faq.model.vo.Faq;
 
 /**
- * Servlet implementation class viewAllNoticeServlet
+ * Servlet implementation class ByFaqCategoryServlet
  */
-@WebServlet(name = "NoticeList", urlPatterns = { "/noticeList" })
-public class viewAllNoticeServlet extends HttpServlet {
+@WebServlet(name = "ByFaqCategory", urlPatterns = { "/byFaqCategory" })
+public class ByFaqCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllNoticeServlet() {
+    public ByFaqCategoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,38 +32,27 @@ public class viewAllNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding("utf-8");
 			
-			int currentPage;
-			if(request.getParameter("currentPage")==null)
-			{
-				currentPage=1;
-			}
-			else
-			{
-				currentPage=Integer.parseInt(request.getParameter("currentPage"));
-			}
-			PageData pd = new NoticeService().noticeAll(currentPage);
+			String category = request.getParameter("category");
+
 			
-			if(pd!=null)
+			ArrayList<Faq> faqList = new FaqService().viewByCategory(category);
+			
+			if(!faqList.isEmpty())
 			{
-				RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/noticePage.jsp");
-				request.setAttribute("pageData", pd);
-				view.forward(request, response);
+				request.setAttribute("faqList",faqList);
+				RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/viewByCategory.jsp");
+				view.forward(request,response);
 			}
 			else
 			{
 				
 			}
-
-			
-			
-			
-			
 			
 		
-		
-		
+			
+			
 	}
 
 	/**

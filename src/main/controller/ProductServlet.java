@@ -13,19 +13,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import main.model.service.MainService;
-import main.model.vo.MainRecipe;
+import main.model.vo.MainProduct;
 
 /**
- * Servlet implementation class RecipeServlet
+ * Servlet implementation class ProductServlet
  */
-@WebServlet("/recipeServlet")
-public class RecipeServlet extends HttpServlet {
+@WebServlet("/productServlet")
+public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RecipeServlet() {
+	public ProductServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,31 +36,31 @@ public class RecipeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		request.setCharacterEncoding("utf-8");
 
-		ArrayList<MainRecipe> list = new MainService().getRecipe();
+		ArrayList<MainProduct> list = new MainService().getProduct();
+
 		JSONArray resultArray = new JSONArray();
-		
-		for (MainRecipe mr : list) {
-			
+		for (MainProduct mp : list) {
+
 			JSONObject result = new JSONObject();
-			
-			result.put("recipe_no", mr.getRecipeNo());
-			result.put("recipe_title", mr.getRecipeTitle());
-			result.put("recipe_pic", mr.getRecipePic());
-			result.put("recipe_today_views", mr.getRecipeTodayViews());
-			result.put("recipe_month_views", mr.getRecipeMonthViews());
-			result.put("cook_time", mr.getCookTime());
-			result.put("cook_level", mr.getCookLevel());
-			
+
+			result.put("product_no", mp.getProduct_no());
+			result.put("product_quantity", mp.getProduct_quantity());
+			result.put("product_name", mp.getProduct_name());
+			result.put("product_price", mp.getProduct_price());
+			result.put("product_1st_pic", mp.getProduct_1st_pic());
+
 			resultArray.add(result);
 
 		}
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().print(resultArray);
 		response.getWriter().close();
+
 	}
 
 	/**

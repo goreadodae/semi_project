@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
+import main.model.vo.MainProduct;
 import main.model.vo.MainRecipe;
 import main.model.vo.searchRecipe;
 
@@ -81,6 +82,8 @@ public class MainDao {
 				mr.setRecipePic(rset.getString("recipe_pic"));
 				mr.setRecipeTodayViews(rset.getInt("recipe_today_views"));
 				mr.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				mr.setCookLevel(rset.getString("cook_level"));
+				mr.setCookTime(rset.getString("cook_time"));
 
 				list.add(mr);
 			}
@@ -127,7 +130,9 @@ public class MainDao {
 				mr.setRecipePic(rset.getString("recipe_pic"));
 				mr.setRecipeTodayViews(rset.getInt("recipe_today_views"));
 				mr.setRecipeMonthViews(rset.getInt("recipe_month_views"));
-
+				mr.setCookLevel(rset.getString("cook_level"));
+				mr.setCookTime(rset.getString("cook_time"));
+					
 				list.add(mr);
 			}
 
@@ -587,5 +592,197 @@ public class MainDao {
 		}
 		
 		return sb.toString();
+	}
+
+	// 초특가 상품
+	public ArrayList<MainProduct> getProduct(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MainProduct mp = null;
+		
+		ArrayList<MainProduct> list = new ArrayList<MainProduct>();
+
+		Properties prop = new Properties();
+
+		String path = MainDao.class.getResource("../../..").getPath();
+
+		try {
+
+			prop.load(new FileReader(path + "resources/mainQuery.properties"));
+
+			String query = prop.getProperty("selectProduct");
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				mp = new MainProduct();
+
+				mp.setProduct_no(rset.getInt("product_no"));
+				mp.setProduct_quantity(rset.getInt("product_quantity"));
+				mp.setProduct_name(rset.getString("product_name"));
+				mp.setProduct_price(rset.getInt("product_price"));
+				mp.setProduct_1st_pic(rset.getString("product_1st_pic"));
+				mp.setEnroll_date(rset.getDate("enroll_date"));
+				
+				list.add(mp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+	// 새 상품 
+	public ArrayList<MainProduct> getNewProduct(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MainProduct mp = null;
+		
+		ArrayList<MainProduct> list = new ArrayList<MainProduct>();
+
+		Properties prop = new Properties();
+
+		String path = MainDao.class.getResource("../../..").getPath();
+
+		try {
+
+			prop.load(new FileReader(path + "resources/mainQuery.properties"));
+
+			String query = prop.getProperty("selectNewProduct");
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				mp = new MainProduct();
+
+				mp.setProduct_no(rset.getInt("product_no"));
+				mp.setProduct_quantity(rset.getInt("product_quantity"));
+				mp.setProduct_name(rset.getString("product_name"));
+				mp.setProduct_price(rset.getInt("product_price"));
+				mp.setProduct_1st_pic(rset.getString("product_1st_pic"));
+				mp.setEnroll_date(rset.getDate("enroll_date"));
+				
+				list.add(mp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+	
+	// 매진임박
+	public ArrayList<MainProduct> getImminentProduct(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MainProduct mp = null;
+		
+		ArrayList<MainProduct> list = new ArrayList<MainProduct>();
+
+		Properties prop = new Properties();
+
+		String path = MainDao.class.getResource("../../..").getPath();
+
+		try {
+
+			prop.load(new FileReader(path + "resources/mainQuery.properties"));
+
+			String query = prop.getProperty("selectImminentSoldOut");
+
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				mp = new MainProduct();
+
+				mp.setProduct_no(rset.getInt("product_no"));
+				mp.setProduct_quantity(rset.getInt("product_quantity"));
+				mp.setProduct_name(rset.getString("product_name"));
+				mp.setProduct_price(rset.getInt("product_price"));
+				mp.setProduct_1st_pic(rset.getString("product_1st_pic"));
+				mp.setEnroll_date(rset.getDate("enroll_date"));
+				
+				list.add(mp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+	// 시즌상품
+	public ArrayList<MainProduct> getSeasonProduct(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MainProduct mp = null;
+		
+		ArrayList<MainProduct> list = new ArrayList<MainProduct>();
+
+		Properties prop = new Properties();
+
+		String path = MainDao.class.getResource("../../..").getPath();
+
+		try {
+			prop.load(new FileReader(path + "resources/mainQuery.properties"));
+
+			String query = prop.getProperty("selectSeasonProduct");
+
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, "SUMMER");
+
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				mp = new MainProduct();
+
+				mp.setProduct_no(rset.getInt("product_no"));
+				mp.setProduct_quantity(rset.getInt("product_quantity"));
+				mp.setProduct_name(rset.getString("product_name"));
+				mp.setProduct_price(rset.getInt("product_price"));
+				mp.setProduct_1st_pic(rset.getString("product_1st_pic"));
+				mp.setEnroll_date(rset.getDate("enroll_date"));
+
+				list.add(mp);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
 	}
 }

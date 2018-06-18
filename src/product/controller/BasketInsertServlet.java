@@ -30,7 +30,6 @@ public class BasketInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		
 		int basket_quantity = Integer.parseInt(request.getParameter("basket_quantity"));
@@ -38,11 +37,11 @@ public class BasketInsertServlet extends HttpServlet {
 		int member_no = 1;
 		int product_no = Integer.parseInt(request.getParameter("product_no"));
 		
+		
+		
 		int result = new ProductService().insertBasket(basket_quantity, member_no, product_no);
 		if(result>0) {
-			RequestDispatcher view = request.getRequestDispatcher("/productDetail");
-			request.setAttribute("product_no", product_no);
-			view.forward(request, response);
+			System.out.println("¼º°ø");
 		}
 		else {
 			response.sendRedirect("/views/productPage/error.jsp");

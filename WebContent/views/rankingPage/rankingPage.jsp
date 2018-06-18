@@ -178,7 +178,7 @@ error : function() {
 	<!-- 타이포그래피 -->
 
 	<jsp:include page="/views/rankingPage/rankingTtypography.jsp" />
-
+    
 </div>
 
 

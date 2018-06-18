@@ -34,4 +34,41 @@ public class RankingService {
 		return monthChefList;
 	}
 
+	public ArrayList<Ranking> todayMoveRecipeRanking(String datepicker) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Ranking> todayList = new RankingDao().todayMoveRecipeRanking(conn, datepicker);
+ 
+		JDBCTemplate.close(conn);
+		return todayList;
+	}
+
+	public ArrayList<Ranking> todayMoveNextRecipeRanking(String datepicker) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Ranking> todayList = new RankingDao().todayMoveNextRecipeRanking(conn, datepicker);
+ 
+		JDBCTemplate.close(conn);
+		return todayList;
+	}
+
+	public ArrayList<Ranking> monthChefRankingRecipeList(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Ranking> userIdList = new RankingDao().monthChefRankingRecipeList(conn, userId);
+ 
+		JDBCTemplate.close(conn);
+		return userIdList;
+		
+	}
+
+	public ArrayList<Ranking> recipeList() {
+Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Ranking> recipeList = new RankingDao().monthChefRankingRecipeList(conn);
+ 
+		JDBCTemplate.close(conn);
+		return recipeList;
+	}
+
 }

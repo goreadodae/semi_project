@@ -36,23 +36,16 @@ public class RankingTodayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//인코딩
 		request.setCharacterEncoding("utf-8");
-		
 		String datepicker = request.getParameter("datepicker"); 
-		System.out.println(datepicker+" 값 가져오기 성공");
 		ArrayList<Ranking> todayList = new RankingService().todayRecipeRanking(datepicker);
-/*		RequestDispatcher view = request.getRequestDispatcher("/views/rankingPage/rankingPage2_TRecipe.jsp");
-		request.setAttribute("todayList", todayList);
-		view.forward(request, response);*/
+
 		
-		if(todayList !=null)
-		{
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(todayList,response.getWriter());
+		
 		//Gson을 만들어서 JSON에게 보내준다!
-		}else{
-			
-		}
+
 		
 	}
 

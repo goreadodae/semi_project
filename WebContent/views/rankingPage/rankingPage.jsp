@@ -343,7 +343,7 @@ function resizeIframe(h){
 		<div class="container center-block" id="iframeWrap">
 			<div class="row">
 			<!-- iframe으로 페이지 내에서 바꾸기! -->
-		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0" onload="resizeIframe(this)" scrolling="no"></iframe>
+		<iframe id="iframe" width="100%" height="100%" src="rankingPage2_TRecipe.jsp" frameborder="0" onload="resizeIframe(this)" ></iframe>
 		<!-- frameborder="0" -->
 		<!-- <div id="ranking2_TRecipe"></div> -->
 		</div>

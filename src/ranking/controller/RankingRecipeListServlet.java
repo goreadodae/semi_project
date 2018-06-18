@@ -3,6 +3,7 @@ package ranking.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +16,16 @@ import ranking.model.service.RankingService;
 import ranking.model.vo.Ranking;
 
 /**
- * Servlet implementation class RankingMonthlyRecipeServlet
+ * Servlet implementation class RankingTodayServlet
  */
-@WebServlet(name = "RankingMonthlyRecipe", urlPatterns = { "/rankingMonthlyRecipe" })
-public class RankingMonthlyRecipeServlet extends HttpServlet {
+@WebServlet(name = "RankingRecipeList", urlPatterns = { "/rankingRecipeList" })
+public class RankingRecipeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RankingMonthlyRecipeServlet() {
+    public RankingRecipeListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +34,18 @@ public class RankingMonthlyRecipeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//인코딩
 		request.setCharacterEncoding("utf-8");
-		String year = request.getParameter("year");
-		String month = request.getParameter("month");
-		ArrayList<Ranking> monthRecipeList = new RankingService().monthRecipeRanking(year,month);
-		
-		System.out.println(monthRecipeList);
-		
+		ArrayList<Ranking> recipeList = new RankingService().recipeList();
+
+		System.out.println(recipeList);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		new Gson().toJson(monthRecipeList,response.getWriter());
+		new Gson().toJson(recipeList,response.getWriter());
+		
 		//Gson을 만들어서 JSON에게 보내준다!
+
+		
 	}
 
 	/**

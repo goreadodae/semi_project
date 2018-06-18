@@ -38,6 +38,14 @@ pageEncoding="UTF-8"%>
 
 
 	<script>
+
+		var prevDay;
+		var preDayYear;
+		var preDayMonth;
+		var nextDayYear;
+		var nextDayMonth;
+		var nextDay;
+
 		/*datepicker script*/
 		/*클릭 했을 때*/
 		$(document).ready(function() {
@@ -60,22 +68,35 @@ pageEncoding="UTF-8"%>
 				defaultDate : new Date(),
 				maxDate : new Date(),
 				onSelect : function(dateText, inst) {
-												var datepicker = document.getElementById("datepicker").value; //입력값
+				var datepicker = document.getElementById("datepicker").value; //입력값
+
+/*현재 날짜에서 이전날 다음날로 이동하는 변수*/
+			var prevDay1 = datepicker.split('/');
+			preDayYear = prevDay1[0];	/*년*/
+			preDayMonth = prevDay1[1]; /*월*/
+			prevDay = prevDay1[2]; /*일*/
+/*			if(prevDay<1)
+			{
+				preDayMonth-1;
+				
+			}*/
+
+			var prevDay2 = datepicker.split('/');
+			nextDayYear = prevDay1[0];	/*년*/
+			nextDayMonth = prevDay1[1]; /*월*/
+			nextDay = prevDay1[2]; /*일*/
 
 												/*데이터 피커 선택 날짜로 값 집어 넣어서 보여주기!*/
-
 												$('#rankingDateToday').html($('#datepicker').val());
+
 
 												$.ajax({
 													url : "/rankingToday",
-													data : {datepicker : datepicker},
+													data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +prevDay)},
 													type : "post",
 													success : function(data) {
-														console.log("성공");
-														console.log(data);
 
 														for (var i = 0; i < data.length; i++) {
-															console.log(data[i]);
 															/* $('#cardImgs').attr("src","data"); */
 															console.log("  " + i + "번째 " + data[i]);
 															$('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -99,17 +120,78 @@ pageEncoding="UTF-8"%>
 
 										});
 
-/*
-			$("#preBtn").click(function(event){
-				event.preventDefault();
-				location.href="/rankingToday?datepicker="+'18/06/16';
-			});
-*/
 
-				$("#nextBtn").click(function(event){
-				event.preventDefault();
-				location.href="/rankingToday?datepicker="+'18/06/16'
-			});
+
+     /*이전날 버튼*/
+     $("#preBtn").click(function(event){
+     	$('#rankingDateToday').html((preDayYear+"/"+preDayMonth+"/" +(prevDay-1)));
+    	/*alert(prevDay-1);*/
+ /*     	location.href="/rankingTodayMove?datepicker="+Tyear + "/" + Tmonth + "/" + (Tday-1);*/
+     	 $.ajax({
+     	url : "/rankingTodayMove",
+     	data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +(prevDay-=1))},
+     	type : "post",
+     	success : function(data) {
+
+     		for (var i = 0; i < data.length; i++) {
+     			/* $('#cardImgs').attr("src","data"); */
+     			console.log("  " + i + "번째 " + data[i]);
+     			$('#rankNum' + (i + 1)).html((i + 1) + "위");
+     			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+     			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+     			$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+     			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+     			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+     			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+     			/*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
+     			/* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
+
+     		}
+
+     	},
+     	error : function() {
+     		console.log("실패");
+     	}
+
+     });
+
+
+     });
+
+
+/*다음날 버튼*/
+     $("#nextBtn").click(function(event){
+     	$('#rankingDateToday').html((preDayYear+"/"+preDayMonth+"/" +(prevDay+1)));
+     		 $.ajax({
+     	url : "/rankingTodayMoveNext",
+     	data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +(prevDay+=1))},
+     	type : "post",
+     	success : function(data) {
+
+     		for (var i = 0; i < data.length; i++) {
+     			/* $('#cardImgs').attr("src","data"); */
+     			console.log("  " + i + "번째 " + data[i]);
+     			$('#rankNum' + (i + 1)).html((i + 1) + "위");
+     			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+     			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+     			$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+     			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+     			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+     			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+     			/*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
+     			/* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
+
+     		}
+
+     	},
+     	error : function() {
+     		console.log("실패");
+     	}
+
+     });
+
+     });
+
 
 
 		});
@@ -117,24 +199,28 @@ pageEncoding="UTF-8"%>
 
 		/*클릭 하지 않았을 때 */
 		window.onload = function() {
+
+
 			$("#datepicker").datepicker().datepicker("setDate", new Date());
 			var datepicker = document.getElementById("datepicker").value;
 
+			var prevDay1 = datepicker.split('/');
+			preDayYear = prevDay1[0];
+			preDayMonth = prevDay1[1];
 
+			prevDay = prevDay1[2];
+			
      //입력값
      console.log("오늘 날짜는 ?"+datepicker);
 
      $.ajax({
      	url : "/rankingToday",
-     	data : {datepicker : datepicker},
+     	data : {datepicker : preDayYear+"/"+preDayMonth+"/" +prevDay},
      	type : "post",
      	success : function(data) {
-     		console.log("성공");
-     		console.log(data);
 
      		for (var i = 0; i < data.length; i++) {
      			/* $('#cardImgs').attr("src","data"); */
-     			console.log(data[i].recipeNo);
      			console.log("  " + i + "번째 " + data[i]);
      			$('#rankNum' + (i + 1)).html((i + 1) + "위");
      			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
@@ -161,13 +247,12 @@ pageEncoding="UTF-8"%>
      	// $('#rankingDateToday').html($('#datepicker').val());
      });*/
 
-     	/*데이터 피커를 눌렀을 때  보여주세요*/
+     /*데이터 피커를 눌렀을 때  보여주세요*/
      $('.date').on('click', function() {
      	$('#datepicker').datepicker("show");
      });
 
-
-
+    
 
      /*오늘 날짜 구하기*/
      /*yyyy-mm-dd 형태 단일 코드*/
@@ -184,10 +269,7 @@ pageEncoding="UTF-8"%>
      /*오늘 날짜 가져오기*/
      document.getElementById("rankingDateToday").innerHTML = today;
      /*alert(Tyear + "/" + Tmonth + "/" + (Tday-1));*/
-     			$("#preBtn").click(function(event){
-				event.preventDefault();
-				location.href="/rankingToday?datepicker="+Tyear + "/" + Tmonth + "/" + (Tday-1);
-			});
+
 		/* 
 		 $('#preBtn').click(function(){
 		 $('#rankingDateToday').html(d-=1);
@@ -222,6 +304,7 @@ pageEncoding="UTF-8"%>
 					<a href="javascript:void(0)" id="rankingDateToday"></a>
 
 				</div>
+
 
 				<a href="javascript:void(0)" class="btn btn-secondary btn-lg active" role="button"
 				aria-pressed="true" id="nextBtn" class="dateButton">다음날</a>

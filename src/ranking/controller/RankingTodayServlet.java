@@ -44,11 +44,15 @@ public class RankingTodayServlet extends HttpServlet {
 		request.setAttribute("todayList", todayList);
 		view.forward(request, response);*/
 		
-		
+		if(todayList !=null)
+		{
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(todayList,response.getWriter());
 		//Gson을 만들어서 JSON에게 보내준다!
+		}else{
+			
+		}
 		
 	}
 

@@ -97,8 +97,6 @@ pageEncoding="UTF-8"%>
 													success : function(data) {
 
 														for (var i = 0; i < data.length; i++) {
-															/* $('#cardImgs').attr("src","data"); */
-															console.log("  " + i + "번째 " + data[i]);
 															$('#rankNum' + (i + 1)).html((i + 1) + "위");
 															$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
 															$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -134,8 +132,6 @@ pageEncoding="UTF-8"%>
      	success : function(data) {
 
      		for (var i = 0; i < data.length; i++) {
-     			/* $('#cardImgs').attr("src","data"); */
-     			console.log("  " + i + "번째 " + data[i]);
      			$('#rankNum' + (i + 1)).html((i + 1) + "위");
      			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
      			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -143,9 +139,6 @@ pageEncoding="UTF-8"%>
      			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
      			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
      			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-     			/*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
-     			/* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
-
      		}
 
      	},
@@ -169,8 +162,6 @@ pageEncoding="UTF-8"%>
      	success : function(data) {
 
      		for (var i = 0; i < data.length; i++) {
-     			/* $('#cardImgs').attr("src","data"); */
-     			console.log("  " + i + "번째 " + data[i]);
      			$('#rankNum' + (i + 1)).html((i + 1) + "위");
      			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
      			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -178,8 +169,6 @@ pageEncoding="UTF-8"%>
      			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
      			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
      			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-     			/*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
-     			/* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
 
      		}
 
@@ -220,8 +209,6 @@ pageEncoding="UTF-8"%>
      	success : function(data) {
 
      		for (var i = 0; i < data.length; i++) {
-     			/* $('#cardImgs').attr("src","data"); */
-     			console.log("  " + i + "번째 " + data[i]);
      			$('#rankNum' + (i + 1)).html((i + 1) + "위");
      			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
      			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -229,8 +216,6 @@ pageEncoding="UTF-8"%>
      			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
      			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
      			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-     			/*window.top.location.href =$('#rankinListIMG'+(i+1)).attr('href','http://localhost/recipe?recipeNo='+data[i].recipeNo);*/
-     			/* window.top.location.href ="http://localhost/recipe?recipeNo="+data[i].recipeNo;*/
 
      		}
 

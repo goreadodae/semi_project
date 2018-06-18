@@ -325,7 +325,7 @@ function resizeIframe(h){
 
 	(h).height = "0px";
 	var iframeHeight = (h).contentWindow.document.body.scrollHeight;
-	(h).height=iframeHeight+15;
+	(h).height=iframeHeight+40;
 }
 
 </script>

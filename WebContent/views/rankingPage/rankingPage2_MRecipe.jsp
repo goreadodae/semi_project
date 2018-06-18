@@ -69,18 +69,11 @@ pageEncoding="UTF-8"%>
 
 document.getElementById("yearClick").innerHTML = strYear;
 document.getElementById("monthClick").innerHTML = strMonth;
-
 /*현재 선택된 셀렉트 값 가져오기*/
-/*console.log($("#yearClick option:selected").val());*/
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=yearClickName]").val().substr(2, 4));
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=monthClickName]").val());
+
 /* 선택되어지지 않는 상태 */
 var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
 var monthClick = $("select[name=monthClickName]").val();
-
-/*   console.log("선택 되어져 있는 년도 : "+$("select[name=yearClickName]").val().substr(2,4)); */
 
 /* 기존 선택하지 않은 상태  */
 $
@@ -92,12 +85,7 @@ $
 },
 type : "post",
 success : function(data) {
-
-  console.log("성공");
-
   for (var i = 0; i < data.length; i++) {
-   console.log($('#rankNum' + (i + 1)).html((i + 1) + "위"));
-
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -117,10 +105,6 @@ error : function() {
 $("#yearClick").change(function() {
     var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
     var monthClick = $("select[name=monthClickName]").val();
-   /*alert($(this).children("option:selected").text());*/
- 
-   console.log("선택한 년도 : "+ $("select[name=yearClickName]").val().substr(2, 4));
-   console.log("year에서 선택한 달 : "+ $("select[name=monthClickName]").val());
 
    $.ajax({
     url : "/rankingMonthlyRecipe",
@@ -132,7 +116,6 @@ $("#yearClick").change(function() {
    success : function(data) {
      console.log("성공");
      for (var i = 0; i < data.length; i++) {
-      console.log(i + "번째" + data[i]);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
@@ -155,8 +138,6 @@ $("#monthClick").change(
      var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
      var monthClick = $("select[name=monthClickName]").val();
 
-   console.log("선택한 달 : "+ $("select[name=monthClickName]").val());
-
    $.ajax({
     url : "/rankingMonthlyRecipe",
     data : {
@@ -165,9 +146,7 @@ $("#monthClick").change(
    },
    type : "post",
    success : function(data) {
-     console.log("성공");
      for (var i = 0; i < data.length; i++) {
-      console.log(i + "번째" + data[i]);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);

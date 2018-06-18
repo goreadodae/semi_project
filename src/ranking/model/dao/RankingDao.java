@@ -393,7 +393,7 @@ public class RankingDao {
 		return userIdList;	
 	}
 
-	public ArrayList<Ranking> monthChefRankingRecipeList(Connection conn) {
+	public ArrayList<Ranking> recipeList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Ranking> recipeList = new ArrayList<Ranking>();

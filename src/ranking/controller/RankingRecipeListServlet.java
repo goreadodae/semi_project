@@ -38,7 +38,6 @@ public class RankingRecipeListServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		ArrayList<Ranking> recipeList = new RankingService().recipeList();
 
-		System.out.println(recipeList);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(recipeList,response.getWriter());

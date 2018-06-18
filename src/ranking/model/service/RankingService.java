@@ -65,7 +65,7 @@ public class RankingService {
 	public ArrayList<Ranking> recipeList() {
 Connection conn = JDBCTemplate.getConnection();
 		
-		ArrayList<Ranking> recipeList = new RankingDao().monthChefRankingRecipeList(conn);
+		ArrayList<Ranking> recipeList = new RankingDao().recipeList(conn);
  
 		JDBCTemplate.close(conn);
 		return recipeList;

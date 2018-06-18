@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -91,17 +92,16 @@ document.getElementById("yearClick").innerHTML = strYear;
 document.getElementById("monthClick").innerHTML = strMonth;
 
 /*현재 선택된 셀렉트 값 가져오기*/
-/*console.log($("#yearClick option:selected").val());*/
 console.log("선택하지 않은 상태의 년도 : "
   + $("select[name=yearClickName]").val().substr(2, 4));
 console.log("선택하지 않은 상태의 년도 : "
   + $("select[name=monthClickName]").val());
+
+
 /* 선택되어지지 않는 상태 */
 var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
 var monthClick = $("select[name=monthClickName]").val();
 
-
-/*   console.log("선택 되어져 있는 년도 : "+$("select[name=yearClickName]").val().substr(2,4)); */
 
 
 /* 기존 선택하지 않은 상태  */
@@ -117,11 +117,7 @@ type : "post",
 success : function(data) {
   console.log("성공");
   console.log("선택 안한 기본 날 : "+data);
-  /*console.log(data[0].memberId);*/
-  console.log(data);
   for (var i = 0; i < data.length; i++) {
-   console.log($('#rankingTag' + (i + 1)).html(data[i].recipeTag));
-
    $('#rankingMemberID'+(i+1)).html(data[i].memberId);
    $('#rankNum' + (i + 1)).html((i + 1) + "위");
    $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
@@ -135,37 +131,34 @@ success : function(data) {
  }
 
 
-/*1위 랭킹 리스트*/
-   $('#cardImgs1').click(function(){
-    var rankingUserId = $('#rankingMemberID1').html();
-    $.ajax({
+ /*1위 랭킹 리스트*/
+ $('#cardImgs1').click(function(){
+  var rankingUserId = $('#rankingMemberID1').html();
+  $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("이주 아작스 성공!"+data.length);
+      console.log("리스트 아작스 성공!"+data.length);
       $('#RecipeListTbody1').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody1').append("<tr>"+"<a id='recipeLink"+(i+1)+"'>"+"<th scope='row'>"+ (i+1) +"</th>"+
-          "<td>"+data[i].memberId+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>");
+        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 
-        /*$('#recipeLink'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");*/
-
-        $('#recipeLink1').click(function(){
-          alert(1);
-        })
       }
     },
     error : function(){
-      console.log("이주 아작스 실패!");
+      console.log("리스트 아작스 실패!");
     }
   });
-   })
+})
 
-/*2위 랭킹 리스트*/
-$('#cardImgs2').click(function(){
-    var rankingUserId = $('#rankingMemberID2').html();
-    $.ajax({
+ /*2위 랭킹 리스트*/
+ $('#cardImgs2').click(function(){
+  var rankingUserId = $('#rankingMemberID2').html();
+  $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
@@ -173,20 +166,22 @@ $('#cardImgs2').click(function(){
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody2').html("");
       for (var i = 0; i < data.length; i++) {
-        console.log("2222"+data[i].recipeTitle);
-        $('#RecipeListTbody2').append("<tr>"+"<th scope='row'>"+ (i+1) +"</th>"+"<td>"+data[i].memberId+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</tr>");
+        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-   })
+})
 
-/*3위 랭킹 리스트*/
-$('#cardImgs3').click(function(){
-    var rankingUserId = $('#rankingMemberID3').html();
-    $.ajax({
+ /*3위 랭킹 리스트*/
+ $('#cardImgs3').click(function(){
+  var rankingUserId = $('#rankingMemberID3').html();
+  $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
@@ -194,20 +189,22 @@ $('#cardImgs3').click(function(){
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody3').html("");
       for (var i = 0; i < data.length; i++) {
-        console.log("3333"+data[i].recipeTitle);
-        $('#RecipeListTbody3').append("<tr>"+"<th scope='row'>"+ (i+1) +"</th>"+"<td>"+data[i].memberId+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</tr>");
+        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-   })
+})
 
-/*4위 랭킹 리스트*/
-$('#cardImgs4').click(function(){
-    var rankingUserId = $('#rankingMemberID4').html();
-    $.ajax({
+ /*4위 랭킹 리스트*/
+ $('#cardImgs4').click(function(){
+  var rankingUserId = $('#rankingMemberID4').html();
+  $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
@@ -215,20 +212,22 @@ $('#cardImgs4').click(function(){
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody4').html("");
       for (var i = 0; i < data.length; i++) {
-        console.log("444"+data[i].recipeTitle);
-        $('#RecipeListTbody4').append("<tr>"+"<th scope='row'>"+ (i+1) +"</th>"+"<td>"+data[i].memberId+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</tr>");
+        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-   })
+})
 
-/*5위 랭킹 리스트*/
-$('#cardImgs5').click(function(){
-    var rankingUserId = $('#rankingMemberID5').html();
-    $.ajax({
+ /*5위 랭킹 리스트*/
+ $('#cardImgs5').click(function(){
+  var rankingUserId = $('#rankingMemberID5').html();
+  $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
@@ -236,15 +235,17 @@ $('#cardImgs5').click(function(){
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody5').html("");
       for (var i = 0; i < data.length; i++) {
-        console.log("555"+data[i].recipeTitle);
-        $('#RecipeListTbody5').append("<tr>"+"<th scope='row'>"+ (i+1) +"</th>"+"<td>"+data[i].memberId+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</tr>");
+        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-   })
+})
 
 },
 error : function() {
@@ -387,193 +388,123 @@ $("#monthClick").change(function() {
   <div class="row">
     <br><br><br>
 
-    <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking1" role="button" aria-expanded="false" aria-controls="userRanking1">
-      <div class="pull-left"><h3 id="rankNum1">1위</h3></div>
-      <a href="javascript:void(0)" id="rankinListIMG1">
-        <img id="cardImgs1" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
-      </a>
-      <h3 id="rankingMemberID1">John Smith </h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews1">
 
-        What does this team member to? Keep it short! This is also a great spot for social links!
-      </p>
+    <c:forEach var="i" begin="1" end="2"  step="1" varStatus="status">
+    <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count}" role="button" aria-expanded="false" aria-controls="userRanking${status.count}">
+      <div class="pull-left"><h3 id="rankNum${status.count}">${status.count}위</h3></div>
+      <a href="javascript:void(0)" id="rankinListIMG${status.count}">
+        <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
+      </a>
+      <h3 id="rankingMemberID${status.count}">Strange Recipes</h3>
+      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count}"></p>
 
     </div>
-
-
-    <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking2" role="button" aria-expanded="false" aria-controls="userRanking2">
-      <div class="pull-left"><h3 id="rankNum2">2위</h3></div>
-      <a href="javascript:void(0)" id="rankinListIMG2">
-        <img id="cardImgs2"  class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+  </c:forEach>
+<br><br><br>
+    <c:forEach var="i" begin="3" end="5"  step="1" varStatus="status">
+    <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count+2}" role="button" aria-expanded="false" aria-controls="userRanking${status.count+2}">
+      <div class="pull-left"><h3 id="rankNum${status.count+2}">${status.count+2}위</h3></div>
+      <a href="javascript:void(0)" id="rankinListIMG${status.count+2}">
+        <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;" >
       </a>
-      <h3 id="rankingMemberID2">John Smith </h3>
+      <h3 id="rankingMemberID${status.count+2}">Strange Recipes</h3>
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews2">
-        What does this team member to? Keep it short! This is also a great spot for social links!
-      </p>
+      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count+2}"></p>
+
     </div>
+  </c:forEach>
+
+<!-- 
+  <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking1" role="button" aria-expanded="false" aria-controls="userRanking1">
+    <div class="pull-left"><h3 id="rankNum1">1위</h3></div>
+    <a href="javascript:void(0)" id="rankinListIMG1">
+      <img id="cardImgs1" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
+    </a>
+    <h3 id="rankingMemberID1">Strange Recipes</h3>
+    <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+    <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews1"></p>
+
+  </div>
 
 
-    <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking3" role="button" aria-expanded="false" aria-controls="userRanking3">
-      <div class="pull-left"><h3 id="rankNum3">3위</h3></div>
-      <a href="javascript:void(0)" id="rankinListIMG3">
-        <img id="cardImgs3" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
-      </a>
-      <h3 id="rankingMemberID3">John Smith</h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews3">
-
-        What does this team member to? Keep it short! This is also a great spot for social links!
-      </p>
-    </div>
+  <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking2" role="button" aria-expanded="false" aria-controls="userRanking2">
+    <div class="pull-left"><h3 id="rankNum2">2위</h3></div>
+    <a href="javascript:void(0)" id="rankinListIMG2">
+      <img id="cardImgs2"  class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;">
+    </a>
+    <h3 id="rankingMemberID2">Strange Recipes</h3>
+    <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+    <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews2"> </p>
+  </div>
 
 
-    <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking4" role="button" aria-expanded="false" aria-controls="userRanking4">
-      <div class="pull-left"><h3 id="rankNum4">4위</h3></div>
-      <a href="javascript:void(0)" id="rankinListIMG4">
-        <img id="cardImgs4" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
-      </a>
-      <h3 id="rankingMemberID4">John Smith </h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews4">
-
-        What does this team member to? Keep it short! This is also a great spot for social links!
-      </p>
-    </div>
+  <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking3" role="button" aria-expanded="false" aria-controls="userRanking3">
+    <div class="pull-left"><h3 id="rankNum3">3위</h3></div>
+    <a href="javascript:void(0)" id="rankinListIMG3">
+      <img id="cardImgs3" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+    </a>
+    <h3 id="rankingMemberID3">Strange Recipes</h3>
+    <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+    <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews3"></p>
+  </div>
 
 
-    <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking5" role="button" aria-expanded="false" aria-controls="userRanking5">
-      <div class="pull-left"><h3 id="rankNum5">5위</h3></div>
-      <a href="javascript:void(0)" id="rankinListIMG5">
-        <img id="cardImgs5" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
-      </a>
-      <h3 id="rankingMemberID5">John Smith </h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews5">
+  <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking4" role="button" aria-expanded="false" aria-controls="userRanking4">
+    <div class="pull-left"><h3 id="rankNum4">4위</h3></div>
+    <a href="javascript:void(0)" id="rankinListIMG4">
+      <img id="cardImgs4" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+    </a>
+    <h3 id="rankingMemberID4">Strange Recipes</h3>
+    <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+    <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews4"></p>
+  </div>
 
-        What does this team member to? Keep it short! This is also a great spot for social links!
-      </p>
-    </div>
 
-    <br><br><br>
-    <!-- 1위 레시피 리스트 -->
-    <div >
-      <div class="row">
+  <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking5" role="button" aria-expanded="false" aria-controls="userRanking5">
+    <div class="pull-left"><h3 id="rankNum5">5위</h3></div>
+    <a href="javascript:void(0)" id="rankinListIMG5">
+      <img id="cardImgs5" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;">
+    </a>
+    <h3 id="rankingMemberID5">Strange Recipes</h3>
+    <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+    <p style="padding-left: 15px;padding-right: 10px;" id="rankingViews5"></p>
+  </div>
+ -->
+  <br><br><br>
 
-        <!-- 1위 -->
-       <div class="collapse" id="userRanking1" style="width: 780px; margin-left: 100px;">
+
+  <!--유저별 레시피 리스트 -->
+  <div >
+    <div class="row">
+      <c:forEach var="i" begin="1" end="5"  step="1" varStatus="status">
+      <div class="collapse" id="userRanking${status.count}" style="width: 780px; margin-left: 100px;">
 
         <div >
-          <table class="table" style="width: 750px;">
+          <table class="table" style="width: 750px; text-align: center;">
             <thead>
               <tr>
-                <th scope="col">리스트</th>
                 <th scope="col">ID</th>
+                <th scope="col">레시피 번호</th>
                 <th scope="col">제목</th>
                 <th scope="col">View</th>
               </tr>
             </thead>
-            <tbody id="RecipeListTbody1">
+            <tbody id="RecipeListTbody${status.count}" style="cursor: pointer;">
 
             </tbody >
           </table>
         </div>
       </div>
+    </c:forEach>
 
-      <!-- 2위 -->
-      <div class="collapse" id="userRanking2" style="width: 780px; margin-left: 100px;">
-
-        <div>
-          <table class="table" style="width: 750px;">
-            <thead>
-              <tr>
-                <th scope="col">리스트</th>
-                <th scope="col">ID</th>
-                <th scope="col">제목</th>
-                <th scope="col">View</th>
-              </tr>
-            </thead>
-            <tbody id="RecipeListTbody2">
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-      <!-- 3위 -->
-      <div class="collapse" id="userRanking3" style="width: 780px; margin-left: 100px;">
-
-        <div>
-          <table class="table" style="width: 750px;">
-            <thead>
-              <tr>
-                <th scope="col">리스트</th>
-                <th scope="col">ID</th>
-                <th scope="col">제목</th>
-                <th scope="col">View</th>
-              </tr>
-            </thead>
-            <tbody id="RecipeListTbody3">
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-      <!-- 4위 -->
-      <div class="collapse" id="userRanking4" style="width: 780px; margin-left: 100px;">
-
-        <div>
-          <table class="table" style="width: 750px;">
-            <thead>
-              <tr>
-                <th scope="col">리스트</th>
-                <th scope="col">ID</th>
-                <th scope="col">제목</th>
-                <th scope="col">View</th>
-              </tr>
-            </thead>
-            <tbody id="RecipeListTbody4">
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-      <!-- 5위 -->
-        <div class="collapse" id="userRanking5" style="width: 780px; margin-left: 100px;">
-
-        <div>
-          <table class="table" style="width: 750px;">
-            <thead>
-              <tr>
-                <th scope="col">리스트</th>
-                <th scope="col">ID</th>
-                <th scope="col">제목</th>
-                <th scope="col">View</th>
-              </tr>
-            </thead>
-            <tbody id="RecipeListTbody5">
-
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-
-
-    </div>
   </div>
+</div>
 
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 
-
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 </body>
 </html>

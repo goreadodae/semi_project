@@ -40,9 +40,6 @@ public class RankingTodayMoveServlet extends HttpServlet {
 		String datepicker = request.getParameter("datepicker"); 
 		System.out.println(datepicker + " 값 가져오기 성공 날짜이동");
 		ArrayList<Ranking> todayList = new RankingService().todayMoveRecipeRanking(datepicker);
-/*		RequestDispatcher view = request.getRequestDispatcher("/views/rankingPage/rankingPage2_TRecipe.jsp");
-		request.setAttribute("todayList", todayList);
-		view.forward(request, response);*/
 		
 		System.out.println("날짜이동서블릿"+todayList);
 		response.setContentType("application/json");

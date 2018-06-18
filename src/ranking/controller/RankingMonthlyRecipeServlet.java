@@ -37,9 +37,7 @@ public class RankingMonthlyRecipeServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		ArrayList<Ranking> monthRecipeList = new RankingService().monthRecipeRanking(year,month);
-		
-		System.out.println(monthRecipeList);
-		
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(monthRecipeList,response.getWriter());

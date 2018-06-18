@@ -48,6 +48,8 @@
 	/* 재료양념-전체 추가부분 */
 	var materNum = 3; 
 	var materAllDel =1;
+	var materDivA = 7; var materDivB = 101; var materDivC = 201; var materDivD = 301; 
+	var materDivE = 401; var materDivF = 501; var materDivG = 601;
 
 	function materComPlus(){
 		
@@ -55,7 +57,8 @@
 				'<div class="col-md-4 id="materLeft">'+
 				'<div class="row">'+
 				'<div class="col-md-12">'+
-				'<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료"></div></div>'+
+				'<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료" id="textMater'+materDivA+'" onchange="materListPlusName('+materDivA+')">'+
+				'<input type="hidden" id="materListId'+materDivA+'" name="materList" value=""></div></div>'+
 				'</div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
 				'<div class="row">'+
@@ -64,26 +67,33 @@
 			'<div class="col-md-8 id="materRight" id="materPlus'+materNum+'">'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row">'+	
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivB+'" onchange="materListPlus('+materDivB+')">'+
+				'<input type="hidden" id="materListId'+materDivB+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivC+'" onchange="materListPlus('+materDivC+')">'+
+				'<input type="hidden" id="materListId'+materDivC+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row">'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivD+'" onchange="materListPlus('+materDivD+')">'+
+				'<input type="hidden" id="materListId'+materDivD+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivE+'" onchange="materListPlus('+materDivE+')">'+
+				'<input type="hidden" id="materListId'+materDivE+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row" id="materPlusRow2">'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivF+'" onchange="materListPlus('+materDivF+')">'+
+				'<input type="hidden" id="materListId'+materDivF+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivG+'" onchange="materListPlus('+materDivG+')">'+
+				'<input type="hidden" id="materListId'+materDivG+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div>'+
 					'<div class="row"><div class="col-md-8 mx-auto">'+
 					'<div class="row"><div class="col-md-2 mx-auto"><button type="button" class="btn btn-default" onclick="materPlus('+materNum+');">추가</button></div></div></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'); materNum++; materAllDel++;
+				materDivA++; materDivB++; materDivC++; materDivD++; materDivE++; materDivF++; materDivG++;
 				
 	}
 	
@@ -97,12 +107,17 @@
 	
 	
 	/* 재료 추가 부분  */	
-		 
+		 var materDivH = 801; var materDivAlp = "A";
+		var materDivI = 901; var materDivAlp = "B";
 	function materPlus(materNum){
 		
-		$('#materPlus'+materNum).append('<div id="materPlusRow'+materNum+'" style="resize: none;"><div class="row"><div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
-		materNum++;
+		$('#materPlus'+materNum).append('<div id="materPlusRow'+materNum+'" style="resize: none;"><div class="row"><div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivH+'" onchange="materListPlus('+materDivH+')">'+
+		'<input type="hidden" id="materListId'+materDivH+'" name="materList" value=""></div>'+
+		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivI+'" onchange="materListPlus('+materDivI+')">'+
+		'<input type="hidden" id="materListId'+materDivI+'" name="materList" value="">'+
+		'</div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
+		materNum++; materDivH++; materDivI++;
+		
 	}  
 	
 	
@@ -230,7 +245,7 @@
 	
 	
 	
-		/* 그림추가부분-요리완성1  */ sendPicSucOne
+		/* 그림추가부분-요리완성1  */
 	 $(document).ready(function() {
 	        $("#fileSucOne").on('change', function() {
 	          //Get count of selected files
@@ -248,9 +263,8 @@
 	                reader.onload = function(e) {
 	                	imgFile_Suc_One.attr('src',e.target.result);
 	                	
-	                	 var imgAddr = $('#imgFile_Suc_One').attr('src');
-	                       $('#sendPicSucOne').attr('value',imgAddr); 
-	                }
+	                var imgAddr = $('#imgFile_Suc_One').attr('src');
+	                $('#sendPicSucOne').attr('value',imgAddr);}
 	                imgFile_Suc_One.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
 	              }
@@ -262,6 +276,8 @@
 	          }
 	        });
 	      });
+		
+		
 		
 		/* 그림추가부분-요리완성2  */
 	 $(document).ready(function() {
@@ -281,7 +297,9 @@
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Two.attr('src',e.target.result);
 	         
-	                	console.log(e.target.result);
+	                	 var imgAddr = $('#imgFile_Suc_Two').attr('src');
+		 	                $('#sendPicSucTwo').attr('value',imgAddr);
+		 	                
 	                }
 	                imgFile_Suc_Two.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -312,6 +330,9 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Thrid.attr('src',e.target.result);
+	                	
+	                	var imgAddr = $('#imgFile_Suc_Thrid').attr('src');
+	 	                $('#sendPicSucThrid').attr('value',imgAddr);
 	                }
 	                imgFile_Suc_Thrid.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -342,6 +363,9 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Four.attr('src',e.target.result);
+	                	
+	                	 var imgAddr = $('#imgFile_Suc_Four').attr('src');
+		 	                $('#sendPicSucFour').attr('value',imgAddr);
 	                }
 	                imgFile_Suc_Four.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -372,6 +396,10 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Five.attr('src',e.target.result);
+	                
+	                	 var imgAddr = $('#imgFile_Suc_Five').attr('src');
+		 	                $('#sendPicSucFive').attr('value',imgAddr);
+	                	
 	                }
 	                imgFile_Suc_Five.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -404,22 +432,38 @@
 	            	  var reader = new FileReader();
 	            	  if(i==0){
 	                reader.onload = function(e) {
-	                	imgFile_Suc_One.attr('src',e.target.result);}
+	                	imgFile_Suc_One.attr('src',e.target.result);
+	                
+	                	var imgAddr = $('#imgFile_Suc_One').attr('src');
+		                $('#sendPicSucOne').attr('value',imgAddr); }
 	                }else if(i==1){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Two.attr('src',e.target.result);
+	                		
+	                		var imgAddr = $('#imgFile_Suc_Two').attr('src');
+		 	                $('#sendPicSucTwo').attr('value',imgAddr);
 		                }
 	                }else if(i==2){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Thrid.attr('src',e.target.result);
+	                		
+	                		var imgAddr = $('#imgFile_Suc_Thrid').attr('src');
+		 	                $('#sendPicSucThrid').attr('value',imgAddr);
+	                	
 		                }
 	                }else if(i==3){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Four.attr('src',e.target.result);
+	                		
+	                		 var imgAddr = $('#imgFile_Suc_Four').attr('src');
+			 	                $('#sendPicSucFour').attr('value',imgAddr);
 		                }
 	                }else if(i==4){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Five.attr('src',e.target.result);
+	                		
+	                		 var imgAddr = $('#imgFile_Suc_Five').attr('src');
+			 	                $('#sendPicSucFive').attr('value',imgAddr);
 		                }
 	                }
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -463,6 +507,25 @@
 		$('#videoImg').attr('src',videoAddr);
 		 
 	 };
+	 
+	 /*재료-text값 hidden값에 value 넣어주기 */
+	 
+	 function materListPlus(num) {
+		
+		 var textVal = document.getElementById('textMater'+num).value;
+         $('#materListId'+num).attr('value',textVal);
+		 
+	 }
+	 
+	 function materListPlusName(num) {
+			
+		 var textVal = document.getElementById('textMater'+num).value;
+		 var textValChg = "-/"+textVal
+         $('#materListId'+num).attr('value',textValChg);
+		 
+	 }
+	 
+
 	 
 </script>
 
@@ -664,12 +727,13 @@
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div id="materComPlus">
 				<div id="materComPlusAllDel0">
-				<div class="row">
+				<div class="row"> 
 					<div class="col-md-4 id="materLeft">
 						<div class="row"> 
 						<div class="col-md-12">
-						<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료"></div></div>
-						</div></div>
+						<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료" id="textMater0" onchange="materListPlusName(0)">
+						<!-- textMater0_0은 onchange 함수를 실행시킬시 구분을위한 id값 여기서 1번째 0은 재료의 전체 row번호 // 뒷자리 2번째 0은 재료row의 메인 text를 0번시작으로 추가가 될수록 값이 증가-->
+						<input type="hidden" id="materListId0" name="materList" value=""></div></div></div></div>
 						<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 						<div class="row">
 						<div class="col-md-12"><button type="button" onclick="materAllDelBtn(0);">삭제</button></div>
@@ -679,22 +743,28 @@
 					<div class="col-md-8 id="materRight" id="materPlus0">
 					<div id="materPlusRow0">
 					<div class="row">				
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater1" onchange="materListPlus(1)">
+						<input type="hidden" id="materListId1" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater2" onchange="materListPlus(2)">
+						<input type="hidden" id="materListId2" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(0);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
 					<div id="materPlusRow1">
 					<div class="row">
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater3" onchange="materListPlus(3)">
+						<input type="hidden" id="materListId3" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater4" onchange="materListPlus(4)">
+						<input type="hidden" id="materListId4" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(1);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
 					<div id="materPlusRow2">
 					<div class="row" id="materPlusRow2">
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater5" onchange="materListPlus(5)">
+						<input type="hidden" id="materListId5" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater6" onchange="materListPlus(6)">
+						<input type="hidden" id="materListId6" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(2);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
@@ -767,33 +837,33 @@
 									
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 
-					<form class="mater" style="display:none;" id="materOrderPlus0">
+					<div class="mater" style="display:none;" id="materOrderPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="toolPlus0">
+					<div class="mater" style="display:none;" id="toolPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tool.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="firePlus0">
+					<div class="mater" style="display:none;" id="firePlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_fire.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="tipPlus0">
+					<div class="mater" style="display:none;" id="tipPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tip2.png"></div>
-						<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></form>
+						<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></div>
 						
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->	
 					</div><!-- jquery 사용할 div -->

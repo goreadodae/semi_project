@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import insertRecipe.model.service.InsertRecipeService;
 import insertRecipe.model.vo.InsertRecipe;
 
 /**
@@ -35,19 +36,34 @@ public class InsertRecipeServlet extends HttpServlet {
 		//2.View에서 전송한 데이터를 받아 변수에 저장
 		InsertRecipe ir = new InsertRecipe();
 				
-		ir.setRecipeTitle(request.getParameter("recipeTitle"));
-		ir.setRecipeIntro(request.getParameter("recipeIntro"));
-		ir.setRecipePic(request.getParameter("mainRPic"));
-		ir.setCookServing(request.getParameter("cookServing"));
-		ir.setCookTime(request.getParameter("CookTime"));
-		ir.setCookLevel(request.getParameter("CookLevel"));
-		//ir.setIngredient(request.getParameter(""));
-		ir.setTip(request.getParameter("recipeTip"));
-		//ir.setCompletePic(request.getParameter(""));
-		ir.setRecipeTag(request.getParameter("recipeTag"));
-		ir.setVideo(request.getParameter("recipeVideo"));
+		ir.setRecipeTitle(request.getParameter("recipeTitle")); //제목
+		ir.setRecipeIntro(request.getParameter("recipeIntro")); //소개
+		ir.setRecipePic(request.getParameter("mainRPic")); //메인사진
+		ir.setCookServing(request.getParameter("cookServing")); //인분
+		ir.setCookTime(request.getParameter("CookTime")); //시간
+		ir.setCookLevel(request.getParameter("CookLevel")); //난이도
+		//재료
+		String [] materList = request.getParameterValues("materList");
+		String materListAll = "";
+		for(int i=0; i<materList.length ;i++) {
+			materListAll += materList[i];
+		}
+		ir.setIngredient(materListAll); //재료
 		
-		String classNo = request.getParameter("class_no");
+		
+		ir.setTip(request.getParameter("recipeTip")); //팁
+		//완성사진 값 불러오기
+		String sendPicSucOne = request.getParameter("sendPicSucOne");
+		String sendPicSucTwo = request.getParameter("sendPicSucTwo");
+		String sendPicSucThrid = request.getParameter("sendPicSucThrid");
+		String sendPicSucFour = request.getParameter("sendPicSucFour");
+		String sendPicSucFive = request.getParameter("sendPicSucFive");
+		String sendPicSucAll = sendPicSucOne+"@"+sendPicSucTwo+"@"+sendPicSucThrid+"@"+sendPicSucFour+"@"+sendPicSucFive;	
+		ir.setCompletePic(sendPicSucAll); //완성사진 
+		ir.setRecipeTag(request.getParameter("recipeTag")); //태그
+		ir.setVideo(request.getParameter("recipeVideo")); //동영상
+		
+		String classNo = request.getParameter("class_no"); //종류별
 		int classNoChg = 0;
 		switch(classNo) {
 		case "밑반찬" : classNoChg=63; break; 
@@ -70,7 +86,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setClassNo(classNoChg);
 		
-		String situationNo = request.getParameter("situation_no");
+		String situationNo = request.getParameter("situation_no"); //상황별
 		int situationNoChg = 0;
 		switch(situationNo) {
 		case "일상": situationNoChg=12; break;
@@ -90,7 +106,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setSituationNo(situationNoChg);
 		
-		String methodNo = request.getParameter("method_no");
+		String methodNo = request.getParameter("method_no"); //방법별
 		int methodNoChg = 0;
 		switch(methodNo) {
 		case "볶음" : methodNoChg=6; break;
@@ -110,7 +126,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setMethodNo(methodNoChg);
 		
-		String ingredient = request.getParameter("ingredient_no");
+		String ingredient = request.getParameter("ingredient_no"); //재료별
 		int ingredientNoChg = 0;
 		switch(ingredient) {
 		case "소고기" : ingredientNoChg=70; break;
@@ -132,10 +148,10 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setIngreNo(ingredientNoChg);
 		
+		int result = new InsertRecipeService().insertRecipe(ir);
 		
+		System.out.println(result);
 		
-		
-		System.out.println(ir);
 		
 	}
 

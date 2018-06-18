@@ -112,7 +112,7 @@ hr {
 			</div>
 			<div class="row" style="padding: 0;">
 
-				<div class="col-md-12" style=" padding: 10px; border-bottom-color:red;">
+				<div class="col-md-12" style="text-align:justify; padding: 10px; border-bottom-color:red;">
 					${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}
 					<br><br>
 				</div>

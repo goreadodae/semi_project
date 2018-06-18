@@ -34,9 +34,9 @@ public class SearchNoticeServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		
-		String searchByName  = request.getParameter("searchByName");
-		String searchByTitle  = request.getParameter("searchByTitle");
-		String searchByContents  = request.getParameter("searchByContents");
+		String searchByName  = request.getParameter("searchByName")==null?"":request.getParameter("searchByName");
+		String searchByTitle  = request.getParameter("searchByTitle")==null?"":request.getParameter("searchByTitle");
+		String searchByContents  = request.getParameter("searchByContents")==null?"":request.getParameter("searchByContents");
 		String inputWord = request.getParameter("inputWord");
 		
 		

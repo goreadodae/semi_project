@@ -210,7 +210,7 @@ public class NoticeDao {
 		int end = currentPage * recordCountPerPage;
 		
 		
-		System.out.println(searchByName+"다오");
+		System.out.println(searchByName);
 		System.out.println(searchByTitle);
 		System.out.println(searchByContents);
 		System.out.println(inputWord);
@@ -219,7 +219,7 @@ public class NoticeDao {
 
 		try {
 			
-			if(searchByName==null && searchByTitle==null && searchByContents==null)
+			if(searchByName.equals("") && searchByTitle.equals("") && searchByContents.equals(""))
 			{
 				query.append( "select*from");
 				query.append("(select notice.*,row_number() ");
@@ -231,7 +231,7 @@ public class NoticeDao {
 				
 				query.delete(0, query.toString().length());
 			}
-			else if(searchByName.equals("searchName")&&searchByTitle==null&&searchByContents==null)
+			else if(searchByName.equals("searchName")&&searchByTitle.equals("")&&searchByContents.equals(""))
 			{ 
 				
 				
@@ -248,7 +248,7 @@ public class NoticeDao {
 	
 			} 
 			
-			else if(searchByContents.equals("searchContents")&&searchByName==null&&searchByTitle==null)
+			else if(searchByContents.equals("searchContents")&& searchByName.equals("")&&  searchByTitle.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*,row_number() ");
@@ -261,7 +261,7 @@ public class NoticeDao {
 				
 				query.delete(0,query.toString().length());
 			}
-			else if(searchByName.equals("searchName")&&searchByTitle==null&&searchByContents==null)
+			else if(searchByTitle.equals("searchTitle")&&searchByName.equals("")&&searchByContents.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*,row_number() ");
@@ -276,7 +276,7 @@ public class NoticeDao {
 				query.delete(0,query.toString().length());
 	
 			}
-			else if(searchByName.equals("searchName")&&searchByContents.equals("searchContents")&&searchByTitle==null)
+			else if(searchByName.equals("searchName")&&searchByContents.equals("searchContents")&&searchByTitle.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*, row_number() ");
@@ -291,7 +291,7 @@ public class NoticeDao {
 				query.delete(0, toString().length());
 				
 			}
-			else if(searchByTitle.equals("searchTitle")&&searchByName.equals("searchName")&&searchByContents==null)
+			else if(searchByTitle.equals("searchTitle")&&searchByName.equals("searchName")&&searchByContents.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*, row_number() ");
@@ -306,11 +306,12 @@ public class NoticeDao {
 				query.delete(0, toString().length());
 				
 			}
-			else if(searchByContents.equals("searchContents")&&searchByTitle.equals("searchTitle")&&searchByName==null)
+			else if(searchByContents.equals("searchContents")&&searchByTitle.equals("searchTitle")&&searchByName.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*,row_number() ");
 				query.append("over(order by notice_no desc) as num from notice where notice_title like ? or notice_Contents like ? )");
+				query.append("where num between ? and ?");
 				pstmt = conn.prepareStatement(query.toString());
 				pstmt.setString(1, '%'+inputWord+'%');
 				pstmt.setString(2, '%'+inputWord+'%');
@@ -320,11 +321,12 @@ public class NoticeDao {
 				query.delete(0, toString().length());
 				
 			}
-			else if(searchByContents.equals("searchContents")&&searchByName.equals("searchName")&&searchByTitle==null)
+			else if(searchByContents.equals("searchContents")&&searchByName.equals("searchName")&&searchByTitle.equals(""))
 			{
 				query.append("select*from");
 				query.append("(select notice.*,row_number() ");
 				query.append("over(order by notice_no desc as num from notice where notice_contents like ? or notice_writer like ? )");
+				query.append("where num between ? and ?");
 				pstmt = conn.prepareStatement(query.toString());
 				pstmt.setString(1,'%'+inputWord+'%');
 				pstmt.setString(2, '%'+inputWord+'%');
@@ -338,6 +340,7 @@ public class NoticeDao {
 				query.append("select*from");
 				query.append("(select notice.*,row_number() ");
 				query.append("over(order by notice_no desc as num from notice where notice_writer like ? or notice_title like ? or notice_contents like ? )");
+				query.append("where num between ? and ?");
 				pstmt = conn.prepareStatement(query.toString());
 				pstmt.setString(1,'%'+inputWord+'%');
 				pstmt.setString(2, '%'+inputWord+'%');
@@ -390,15 +393,17 @@ public class NoticeDao {
 
 		try {
 			
-				if(searchByName==null && searchByTitle==null && searchByContents == null)
+				if(searchByName.equals("") && searchByTitle.equals("") && searchByContents.equals(""))
 				{
 					
 					pstmt = conn.prepareStatement(query);
-					System.out.println("성공");
+					
 					
 				}
 				else if(searchByName.equals("searchName"))
 				{
+					
+					System.out.println("이름이 같을때 페이징처리");
 					query+=" where notice_writer like ? ";
 					
 					pstmt= conn.prepareStatement(query);
@@ -428,9 +433,7 @@ public class NoticeDao {
 					pstmt.setString(1, '%'+inputWord+'%');
 					pstmt.setString(2, '%'+inputWord+'%');
 					
-					
-					
-					
+				
 				}
 				else if(searchByName.equals("searchName")&&searchByContents.equals("searchContents"))
 				{

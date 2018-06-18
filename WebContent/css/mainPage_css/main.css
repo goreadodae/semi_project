@@ -1,4 +1,4 @@
-@charset "UTF-8";
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Hi+Melody" rel="stylesheet">
 
 /* 폰트 */
 @font-face {
@@ -8,6 +8,8 @@
 	//eot포맷
 	src:local(※), url('/fonts/IropkeBatangM.woff') format('woff');
 }
+
+
 
 /* 미디어 쿼리 */
 @media ( max-width :1802px) {
@@ -145,13 +147,13 @@ strong {
 	float: left;
 }
 
-#intro-wrap #intro-step #intro-step-wrap div {
-	background-color:gray;
+#intro-wrap #intro-step #intro-step-wrap {
 	height: 150px;
 }
 
 #intro-wrap #intro-step #intro-step-wrap p {
 	padding-top: 10px;
+	font-family: 'Hi Melody';
 }
 
 #intro-wrap button {

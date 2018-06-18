@@ -32,14 +32,14 @@ public class ProductDao {
 			rset = stmt.executeQuery(query);
 			while(rset.next()) {
 				Product pro = new Product();
-				pro.setProduct_no(rset.getInt("product_no"));
-				pro.setProduct_quantity(rset.getInt("product_quantity"));
-				pro.setProduct_name(rset.getString("product_name"));
-				pro.setProduct_price(rset.getInt("product_price"));
-				pro.setProduct_1st_pic(rset.getString("product_1st_pic"));
-				pro.setProduct_spec_pic(rset.getString("product_spec_pic"));
-				pro.setProduct_intro(rset.getString("product_intro"));
-				pro.setProduct_info(rset.getString("product_info"));
+				pro.setProductNo(rset.getInt("product_no"));
+				pro.setProductQuantity(rset.getInt("product_quantity"));
+				pro.setProductName(rset.getString("product_name"));
+				pro.setProductPrice(rset.getInt("product_price"));
+				pro.setProduct1stPic(rset.getString("product_1st_pic"));
+				pro.setProductSpecPic(rset.getString("product_spec_pic"));
+				pro.setProductIntro(rset.getString("product_intro"));
+				pro.setProductInfo(rset.getString("product_info"));
 				list.add(pro);
 			}
 		} catch (FileNotFoundException e) {
@@ -59,7 +59,7 @@ public class ProductDao {
 		return list;
 	}
 
-	public Product getProduct(Connection conn, int product_no) {
+	public Product getProduct(Connection conn, int productNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Product productInfo = null;
@@ -72,19 +72,19 @@ public class ProductDao {
 			String query = prop.getProperty("productSelectOne");
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, product_no);
+			pstmt.setInt(1, productNo);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				productInfo = new Product();
-				productInfo.setProduct_no(rset.getInt("product_no"));
-				productInfo.setProduct_quantity(rset.getInt("product_quantity"));
-				productInfo.setProduct_name(rset.getString("product_name"));
-				productInfo.setProduct_price(rset.getInt("product_price"));
-				productInfo.setProduct_1st_pic(rset.getString("product_1st_pic"));
-				productInfo.setProduct_spec_pic(rset.getString("product_spec_pic"));
-				productInfo.setProduct_intro(rset.getString("product_intro"));
-				productInfo.setProduct_info(rset.getString("product_info"));
+				productInfo.setProductNo(rset.getInt("product_no"));
+				productInfo.setProductQuantity(rset.getInt("product_quantity"));
+				productInfo.setProductName(rset.getString("product_name"));
+				productInfo.setProductPrice(rset.getInt("product_price"));
+				productInfo.setProduct1stPic(rset.getString("product_1st_pic"));
+				productInfo.setProductSpecPic(rset.getString("product_spec_pic"));
+				productInfo.setProductIntro(rset.getString("product_intro"));
+				productInfo.setProductInfo(rset.getString("product_info"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -108,7 +108,7 @@ public class ProductDao {
 		return null;
 	}
 	
-	public ArrayList<Basket> getMyBasket(Connection conn, int member_no) {
+	public ArrayList<Basket> getMyBasket(Connection conn, int memberNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Basket> bList = new ArrayList<Basket>();
@@ -121,16 +121,16 @@ public class ProductDao {
 			String query = prop.getProperty("basketSelect");
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, member_no);
+			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				Basket b = new Basket();
-				b.setBasket_no(rset.getInt("bascket_no"));
-				b.setProduct_name(rset.getString("product_name"));
-				b.setProduct_1st_pic(rset.getString("product_1st_pic"));
-				b.setBasket_quantity(rset.getInt("bascket_quantity"));
-				b.setProduct_price(rset.getInt("product_price"));
+				b.setBasketNo(rset.getInt("bascket_no"));
+				b.setProductName(rset.getString("product_name"));
+				b.setProduct1stPic(rset.getString("product_1st_pic"));
+				b.setBasketQuantity(rset.getInt("bascket_quantity"));
+				b.setProductPrice(rset.getInt("product_price"));
 				bList.add(b);
 			}
 
@@ -151,7 +151,7 @@ public class ProductDao {
 		return bList;
 	}
 
-	public int deleteBasket(Connection conn, int basket_no) {
+	public int deleteBasket(Connection conn, int basketNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -163,7 +163,7 @@ public class ProductDao {
 			String query = prop.getProperty("basketDelete");
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, basket_no);
+			pstmt.setInt(1, basketNo);
 			result = pstmt.executeUpdate();
 			
 		} catch (FileNotFoundException e) {
@@ -182,7 +182,7 @@ public class ProductDao {
 		return result;
 	}
 	
-	public int insertBasket(Connection conn, int basket_quantity,int member_no,int product_no) {
+	public int insertBasket(Connection conn, int basketQuantity,int memberNo,int productNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -194,9 +194,9 @@ public class ProductDao {
 			String query = prop.getProperty("basketInsert");
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, basket_quantity);
-			pstmt.setInt(2, member_no);
-			pstmt.setInt(3, product_no);
+			pstmt.setInt(1, basketQuantity);
+			pstmt.setInt(2, memberNo);
+			pstmt.setInt(3, productNo);
 			result = pstmt.executeUpdate();
 			
 		} catch (FileNotFoundException e) {
@@ -215,7 +215,7 @@ public class ProductDao {
 		return result;
 	}
 
-	public int updateBasket(Connection conn, int basket_quantity, int basket_no) {
+	public int updateBasket(Connection conn, int basketQuantity, int basketNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -227,8 +227,8 @@ public class ProductDao {
 			String query = prop.getProperty("basketUpdate");
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, basket_quantity);
-			pstmt.setInt(2, basket_no);
+			pstmt.setInt(1, basketQuantity);
+			pstmt.setInt(2, basketNo);
 
 			result = pstmt.executeUpdate();
 			
@@ -247,6 +247,43 @@ public class ProductDao {
 		
 		return result;
 	}
+	
+	
+	public int insertBuying(Connection conn, int basketNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+	
+		try {
+			prop.load(new FileReader(path + "resources/productQuery.properties"));
+			String query = prop.getProperty("buyingInsert");
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, basketNo);
+			pstmt.setInt(2, basketNo);
+			pstmt.setInt(3, basketNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
 	
 
 }

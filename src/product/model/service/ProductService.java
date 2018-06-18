@@ -20,9 +20,9 @@ public class ProductService {
 	}
 
 	//프로젝트 상세 정보
-	public Product getProduct(int product_no) {
+	public Product getProduct(int productNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		Product productInfo = new ProductDao().getProduct(conn,product_no);
+		Product productInfo = new ProductDao().getProduct(conn,productNo);
 		JDBCTemplate.close(conn);
 		return productInfo;
 	} 
@@ -36,18 +36,18 @@ public class ProductService {
 	}
 	
 	//로그인계정의 장바구니 정보
-	public ArrayList<Basket> getMyBasket(int member_no){
+	public ArrayList<Basket> getMyBasket(int memberNo){
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Basket> list = new ProductDao().getMyBasket(conn, member_no);
+		ArrayList<Basket> list = new ProductDao().getMyBasket(conn, memberNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}
 	
 	
 	//장바구니 삭제
-	public int deleteBasket(int basket_no) {
+	public int deleteBasket(int basketNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ProductDao().deleteBasket(conn,basket_no);
+		int result = new ProductDao().deleteBasket(conn,basketNo);
 		if(result>0)
 			JDBCTemplate.commit(conn);
 		else
@@ -58,9 +58,9 @@ public class ProductService {
 	
 	
 	//장바구니 추가
-	public int insertBasket(int basket_quantity,int member_no,int product_no) {
+	public int insertBasket(int basketQuantity,int memberNo,int productNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ProductDao().insertBasket(conn, basket_quantity, member_no, product_no);
+		int result = new ProductDao().insertBasket(conn, basketQuantity, memberNo, productNo);
 		if(result>0)
 			JDBCTemplate.commit(conn);
 		else
@@ -70,9 +70,9 @@ public class ProductService {
 	}
 	
 	//장바구니 수량 변경
-	public int updateBasket(int basket_quantity, int basket_no) {
+	public int updateBasket(int basketQuantity, int basketNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ProductDao().updateBasket(conn, basket_quantity, basket_no);
+		int result = new ProductDao().updateBasket(conn, basketQuantity, basketNo);
 		if(result>0)
 			JDBCTemplate.commit(conn);
 		else
@@ -81,6 +81,15 @@ public class ProductService {
 		return result;
 	}
 	
-	
+	public int insertBuying(int basketNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ProductDao().insertBuying(conn, basketNo);
+		if(result>0)
+			JDBCTemplate.commit(conn);
+		else
+			JDBCTemplate.rollback(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }

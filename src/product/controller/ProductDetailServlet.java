@@ -33,15 +33,11 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//1. �븳湲��씠 �엳�쓣 寃쎌슦 �씤肄붾뵫
 		request.setCharacterEncoding("utf-8");
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
 
-		//2. 蹂��닔�뿉�꽌 媛� 爰쇰궡�꽌 ���옣
-		int product_no = Integer.parseInt(request.getParameter("product_no"));
-
-		//3. 鍮꾩쫰�땲�뒪 濡쒖쭅 泥섎━
 		Product productInfo = new Product();
-		productInfo = new ProductService().getProduct(product_no);
+		productInfo = new ProductService().getProduct(productNo);
 		
 		if(productInfo!=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductDetail.jsp");

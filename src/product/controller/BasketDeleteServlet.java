@@ -36,10 +36,10 @@ public class BasketDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		//2. 변수에서 값 꺼내서 저장
-		int basket_no = Integer.parseInt(request.getParameter("basket_no"));
+		int basketNo = Integer.parseInt(request.getParameter("basketNo"));
 
 		//3. 비즈니스 로직 처리
-		int result = new ProductService().deleteBasket(basket_no);
+		int result = new ProductService().deleteBasket(basketNo);
 		
 		if(result>0) {
 			response.sendRedirect("/basketSelect");
@@ -47,7 +47,7 @@ public class BasketDeleteServlet extends HttpServlet {
 		else {
 			response.sendRedirect("/views/productPage/ProductMain.jsp");
 		}	
-		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

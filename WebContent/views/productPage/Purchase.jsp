@@ -99,6 +99,29 @@
 			$(this).addClass('mybutton2');
 		});
 		
+		$('#pay').click(function(){
+			var basketNoTag = $('[name="basketNo1"]');
+			var basketNoArr = new Array();
+			
+			for(var i=0; i<basketNoTag.length ; i++){
+				basketNoArr[i] = basketNoTag[i].value;
+				console.log("basket : "+basketNoArr);
+			}
+			
+			jQuery.ajaxSettings.traditional=true;
+			 $.ajax({
+					url : "/buyingInsert",
+					data : {basketNo:basketNoArr},
+					type : "get",
+					success:function(data){
+						console.log("성공");
+					},
+					error:function(){
+						console.log("실패");
+					}
+			});
+		});
+		
 		
 		
 		
@@ -106,13 +129,13 @@
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		
-		$('#pay').click(function(){
+		$('#pay11').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '주문명:결제테스트',
-			    amount : 14000,
+			    amount : 14000,	///////////////////////////////////////////////가격
 			    buyer_email : 'iamport@siot.do',
 			    buyer_name : '구매자이름',
 			    buyer_tel : '010-1234-5678',
@@ -126,6 +149,20 @@
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			        
+			       
+			        $.ajax({
+						url : "/buyingInsert",
+						data : {basketQuantity:basketQuantity,productNo:productNo},
+						type : "get",
+						success:function(data){
+							console.log("성공");
+						},
+						error:function(){
+							console.log("실패");
+						}
+					});
+			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -274,14 +311,15 @@
 						</tr>
 						
 						<c:forEach begin="0" items="${basket}" var="b" varStatus="i">
-						<c:set var="sumprice" value="${sumprice + b.product_price*b.basket_quantity}"/>
+						<c:set var="sumprice" value="${sumprice + b.productPrice*b.basketQuantity}"/>
 						<tr class="line1">
 							<td>${i.count}</td>
-							<td><center><img src="${b.product_1st_pic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">${b.product_name}</td>
-							<td>${b.basket_quantity}</td>
-							<td>${b.product_price*b.basket_quantity}</td>
+							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
+							<td class="prod">${b.productName}</td>
+							<td>${b.basketQuantity}</td>
+							<td>${b.productPrice*b.basketQuantity}</td>
 						</tr>
+						<input type="hidden" id="basketNo" name="basketNo1" value="${b.basketNo}">
 						</c:forEach>
 					</table>
 					<br><br><br>
@@ -366,7 +404,10 @@
 					
 					
 					
-					<center><button class="mybutton1" id="pay">결제하기</button> <button class="mybutton2" onclick="location.href='/basketSelect'">취소하기</button></center>
+					<center>
+					<!-- 결제하기 버튼(BuyingInsert서블릿으로 이동) -->
+					<button class="mybutton1" id="pay">결제하기</button>
+					<button class="mybutton2" onclick="location.href='/basketSelect'">취소하기</button></center>
 					<br><br>
 				
 					<div class="row">

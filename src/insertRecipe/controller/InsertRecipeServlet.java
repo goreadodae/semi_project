@@ -1,10 +1,7 @@
 package insertRecipe.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import insertRecipe.model.service.InsertRecipeService;
+import insertRecipe.model.vo.InsertRecipe;
 
 /**
  * Servlet implementation class InsertRecipeServlet
@@ -35,45 +35,58 @@ public class InsertRecipeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//1.전송값 한글이 있을경우 처리할 수 있도록 인코딩 처리
-		request.setCharacterEncoding("utf-8");
+				// 파일 저장
+				//파일 업로드 사이즈(설정) 현재 byte단위 (5MB)
+				int FileSizeLimit = 1024*1024*5; 
+				
+				//파일이 업로드 될 경로 (※중요)
+				String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile";  
+				//->WebContent폴더 밑에있는 uploadfile을 지칭
+				
+				//인코딩타입(파일인코딩타입)
+			    String encType = "UTF-8";
+			      
+			    //위에 정보를 바탕으로 MultipartRequest 객체를 생성 
+			    MultipartRequest multi = new MultipartRequest(request, uploadFilePath,FileSizeLimit,
+			            encType, new DefaultFileRenamePolicy());
+			    
+			    //마지막 인자값인 DeFaultFileRenamePolicy 객체를 생성하여
+			    //넣어줌으로써 파일 중복 처리를 자동으로 해결함
+			    //ex) a.bmp가 중복으로 업로드 되면 a1.bmp, a2.bmp, a3.bmp ...
+			    //MultipartRequest 객체가 생성되면 자동으로 파일은 해당경로로 업로드됨
+			    
+			    
 		
 		//2.View에서 전송한 데이터를 받아 변수에 저장
 		
 		//recipe내용 받는 곳
-		/*InsertRecipe ir = new InsertRecipe();
+		InsertRecipe ir = new InsertRecipe();
 				
-		ir.setRecipeTitle(request.getParameter("recipeTitle")); //제목
-		ir.setRecipeIntro(request.getParameter("recipeIntro")); //소개
-		ir.setRecipePic(request.getParameter("mainRPic")); //메인사진
-		ir.setCookServing(request.getParameter("cookServing")); //인분
-		ir.setCookTime(request.getParameter("CookTime")); //시간
-		ir.setCookLevel(request.getParameter("CookLevel")); //난이도
-*/		//재료
-//		String [] materList = request.getParameterValues("materList");
-//		String materListAll = "";
-//		for(int i=0; i<materList.length ;i++) {
-//			materListAll += materList[i];
-//		}
+		ir.setRecipeTitle(multi.getParameter("recipeTitle")); //제목
+		ir.setRecipeIntro(multi.getParameter("recipeIntro")); //소개
+		ir.setRecipePic(multi.getParameter("mainRPic")); //메인사진
+		ir.setCookServing(multi.getParameter("cookServing")); //인분
+		ir.setCookTime(multi.getParameter("CookTime")); //시간
+		ir.setCookLevel(multi.getParameter("CookLevel")); //난이도
 		
+		//재료
+		String materList [] = multi.getParameterValues("materList");
+	
+		String materListAll = "";
 		
-		/*ir.setIngredient(materListAll); //재료
+		for(int i=0; i<materList.length;i++) {
+			if(materList[i]!=null) {
+			materListAll += materList[i];
+			}
+		}
+		ir.setIngredient(materListAll); //재료
 		 
 		
+		ir.setTip(multi.getParameter("recipeTip")); //팁		
+		ir.setRecipeTag(multi.getParameter("recipeTag")); //태그
+		ir.setVideo(multi.getParameter("recipeVideo")); //동영상
 		
-		ir.setTip(request.getParameter("recipeTip")); //팁
-		//완성사진 값 불러오기
-		String sendPicSucOne = request.getParameter("sendPicSucOne");
-		String sendPicSucTwo = request.getParameter("sendPicSucTwo");
-		String sendPicSucThrid = request.getParameter("sendPicSucThrid");
-		String sendPicSucFour = request.getParameter("sendPicSucFour");
-		String sendPicSucFive = request.getParameter("sendPicSucFive");
-		String sendPicSucAll = sendPicSucOne+"@"+sendPicSucTwo+"@"+sendPicSucThrid+"@"+sendPicSucFour+"@"+sendPicSucFive;	
-		ir.setCompletePic(sendPicSucAll); //완성사진 
-		ir.setRecipeTag(request.getParameter("recipeTag")); //태그
-		ir.setVideo(request.getParameter("recipeVideo")); //동영상
-		
-		String classNo = request.getParameter("class_no"); //종류별
+		String classNo = multi.getParameter("class_no"); //종류별
 		int classNoChg = 0;
 		switch(classNo) {
 		case "밑반찬" : classNoChg=63; break; 
@@ -96,7 +109,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setClassNo(classNoChg);
 		
-		String situationNo = request.getParameter("situation_no"); //상황별
+		String situationNo = multi.getParameter("situation_no"); //상황별
 		int situationNoChg = 0;
 		switch(situationNo) {
 		case "일상": situationNoChg=12; break;
@@ -116,7 +129,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setSituationNo(situationNoChg);
 		
-		String methodNo = request.getParameter("method_no"); //방법별
+		String methodNo = multi.getParameter("method_no"); //방법별
 		int methodNoChg = 0;
 		switch(methodNo) {
 		case "볶음" : methodNoChg=6; break;
@@ -136,7 +149,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setMethodNo(methodNoChg);
 		
-		String ingredient = request.getParameter("ingredient_no"); //재료별
+		String ingredient = multi.getParameter("ingredient_no"); //재료별
 		int ingredientNoChg = 0;
 		switch(ingredient) {
 		case "소고기" : ingredientNoChg=70; break;
@@ -158,82 +171,66 @@ public class InsertRecipeServlet extends HttpServlet {
 		}
 		ir.setIngreNo(ingredientNoChg);
 		
-		int result = new InsertRecipeService().insertRecipe(ir);
 		
-		System.out.println(result);
 		
 		//recipeProcess받는곳
 		
-		int stepBtnCount = Integer.parseInt(request.getParameter("stepBtnCount")); //step개수 받아오기
-		
-		for(int i=0;i<stepBtnCount;i++) {
-			String [] materList = request.getParameterValues("materList");
-		}*/
-		
-		//String[] stepArrayList = request.getParameterValues("stepArrayList");
-		//System.out.println(stepArrayList[0]);
-//		for(int i=0; i<stepArrayList.length ;i++) {
-//			System.out.println(stepArrayList[i]);
-//		}
-		
-		
-		// 파일 저장
-		//파일 업로드 사이즈(설정) 현재 byte단위 (5MB)
-		int FileSizeLimit = 1024*1024*5; 
-		
-		//파일이 업로드 될 경로 (※중요)
-		String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile";  
-		//->WebContent폴더 밑에있는 uploadfile을 지칭
-		
-		//인코딩타입(파일인코딩타입)
-	    String encType = "UTF-8";
-	      
-	    //위에 정보를 바탕으로 MultipartRequest 객체를 생성
-	    MultipartRequest multi = new MultipartRequest(request, uploadFilePath,FileSizeLimit,
-	            encType, new DefaultFileRenamePolicy());
-	    
-	    //마지막 인자값인 DeFaultFileRenamePolicy 객체를 생성하여
-	      //넣어줌으로써 파일 중복 처리를 자동으로 해결함
-	      //ex) a.bmp가 중복으로 업로드 되면 a1.bmp, a2.bmp, a3.bmp ...
-	      //MultipartRequest 객체가 생성되면 자동으로 파일은 해당경로로 업로드됨
+		String[] stepArrayList = multi.getParameterValues("stepArrayList");
 
-	    
+		
+		for(int i=0; i<stepArrayList.length ;i++) {
+			System.out.println(stepArrayList[i]);
+		}
+		
+		
+
+	    //사진정보 받아오는곳
 	    //업로드된 파일의 정보를 DB에 기록하여야 함
-	      
+	    Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴
 	      //1.파일 이름 (fileName)
 	      //getFilesystemName("view의 파라미터이름"); 을 하게되면
 	      //해당 업로드 될때의 파일 이름을 가져옴
-	      String fileSucAll = multi.getFilesystemName("fileSucAll"); //원본 파일이름-메인
-	      String fileUpload = multi.getFilesystemName("fileUpload"); //바뀐파일이름-메인
-			String fileSucOne = multi.getFilesystemName("fileSucOne"); //바뀐파일이름-완성사진-1
-			String fileSucTwo = multi.getFilesystemName("fileSucTwo"); //바뀐파일이름-완성사진-2
-			String fileSucThrid = multi.getFilesystemName("fileSucThrid"); //바뀐파일이름-완성사진-3
-			String fileSucFour = multi.getFilesystemName("fileSucFour"); //바뀐파일이름-완성사진-4
-			String fileSucFive = multi.getFilesystemName("fileSucFive"); //바뀐파일이름-완성사진-5
-	      //2. 업로드 파일의 실제 총 경로(filePath)
+
+	    	String fileUpload = multi.getFilesystemName("fileUpload"); //바뀐파일이름-메인
+	    	String fileSuc [] = new String [5];
+	    	fileSuc[0] = multi.getFilesystemName("fileSucOne"); //바뀐파일이름-완성사진-1
+	    	fileSuc[1] = multi.getFilesystemName("fileSucTwo"); //바뀐파일이름-완성사진-2
+	    	fileSuc[2] = multi.getFilesystemName("fileSucThrid"); //바뀐파일이름-완성사진-3
+	    	fileSuc[3] = multi.getFilesystemName("fileSucFour"); //바뀐파일이름-완성사진-4
+	    	fileSuc[4] = multi.getFilesystemName("fileSucFive"); //바뀐파일이름-완성사진-5	
+			
+
+		//2. 업로드 파일의 실제 총 경로(filePath)
 	      //총 경로: filePath+파일이름
 	      //ex) 업로드한 파일이 a.txt 라면?
 	      //총 경로 : c:\webworkspace2\web2\WebContent\\uploadfile\a.txt
 	      
+	   
 	      String fullFileMainPath = uploadFilePath+"\\"+fileUpload;
-	      String fullFileSucOnePath = uploadFilePath+"\\"+fileSucOne;
-	      String fullFileSucTwoPath = uploadFilePath+"\\"+fileSucTwo;
-	      String fullFileSucThridPath = uploadFilePath+"\\"+fileSucThrid;
-	      String fullFileSucFourPath = uploadFilePath+"\\"+fileSucFour;
-	      String fullFileSucFivePath = uploadFilePath+"\\"+fileSucFive;
-	      String fileSucAllPath = uploadFilePath+"\\"+fileSucAll;
-	      
-	      System.out.println(fullFileMainPath);
-	      System.out.println(fullFileSucOnePath);
-	      System.out.println(fullFileSucTwoPath);
-	      System.out.println(fullFileSucThridPath);
-	      System.out.println(fullFileSucFourPath);
-	      System.out.println(fullFileSucFivePath);
-	      System.out.println(fileSucAllPath);
-	      
-	     
+	      String fileSucPath [] = new String [5];
+	      fileSucPath[0] = uploadFilePath+"\\"+fileSuc[0];
+	      fileSucPath[1] = uploadFilePath+"\\"+fileSuc[1];
+	      fileSucPath[2] = uploadFilePath+"\\"+fileSuc[2];
+	      fileSucPath[3] = uploadFilePath+"\\"+fileSuc[3];
+	      fileSucPath[4] = uploadFilePath+"\\"+fileSuc[4];
+	      //String fileSucAllPath = uploadFilePath+"\\"+fileSucAll;
 
+	     
+	      String fileSucAll ="";
+			
+			for(int i=0;i<5;i++) {
+				if(fileSuc[i]!=null) {
+				fileSucAll +=  fileSucPath[i]+"@";
+				}
+			}
 		
+		System.out.println(fileSucAll);
+			
+		ir.setRecipePic(fullFileMainPath);
+		ir.setCompletePic(fileSucAll);
+		
+		/*System.out.println(ir);*/
+		/*int result = new InsertRecipeService().insertRecipe(ir);*/
 		
 	}
 

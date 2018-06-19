@@ -52,7 +52,7 @@
 	var materDivE = 401; var materDivF = 501; var materDivG = 601;
 
 	function materComPlus(){
-		
+			
 		$('#materComPlus').append('<div id="materComPlusAllDel'+materAllDel+'"><div class="row">'+
 				'<div class="col-md-4 id="materLeft">'+
 				'<div class="row">'+
@@ -434,21 +434,25 @@
 	              {
 	            	  var reader = new FileReader();
 	            	  if(i==0){
-	                reader.onload = function(e) {
+	                reader.onload = function(e) { fileSucOne
 	                	imgFile_Suc_One.attr('src',e.target.result);
+	                $('#fileSucOne').attr('value',e.target.result);
 	                
 	                	var imgAddr = $('#imgFile_Suc_One').attr('src');
 		                $('#sendPicSucOne').attr('value',imgAddr); }
+	                
 	                }else if(i==1){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Two.attr('src',e.target.result);
-	                		
+	                		  $('#fileSucTwo').attr('value',e.target.result);
+	                		  
 	                		var imgAddr = $('#imgFile_Suc_Two').attr('src');
 		 	                $('#sendPicSucTwo').attr('value',imgAddr);
 		                }
 	                }else if(i==2){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Thrid.attr('src',e.target.result);
+	                		$('#fileSucThrid').attr('value',e.target.result);
 	                		
 	                		var imgAddr = $('#imgFile_Suc_Thrid').attr('src');
 		 	                $('#sendPicSucThrid').attr('value',imgAddr);
@@ -457,6 +461,7 @@
 	                }else if(i==3){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Four.attr('src',e.target.result);
+	                		$('#fileSucFour').attr('value',e.target.result);
 	                		
 	                		 var imgAddr = $('#imgFile_Suc_Four').attr('src');
 			 	                $('#sendPicSucFour').attr('value',imgAddr);
@@ -464,6 +469,7 @@
 	                }else if(i==4){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Five.attr('src',e.target.result);
+	                		$('#fileSucFive').attr('value',e.target.result);
 	                		
 	                		 var imgAddr = $('#imgFile_Suc_Five').attr('src');
 			 	                $('#sendPicSucFive').attr('value',imgAddr);
@@ -520,8 +526,9 @@
 	 function materListPlusOne(num) {
 		
 		 var textVal = document.getElementById('textMater'+num).value;
-		 var textValChg = textVal+" ";
+		 var textValChg = textVal+" "; 
          $('#materListId'+num).attr('value',textValChg);
+         alert(textValChg);
 		 
 	 }
 	 
@@ -530,6 +537,7 @@
 		 var textVal = document.getElementById('textMater'+num).value;
 		 var textValChg = textVal+"-";
          $('#materListId'+num).attr('value',textValChg);
+         alert(textValChg);
 		 
 	 }
 	 
@@ -539,6 +547,7 @@
 		 var textVal = document.getElementById('textMater'+num).value;
 		 var textValChg = "["+textVal+"]"
          $('#materListId'+num).attr('value',textValChg);
+		 alert(textValChg);
 		 
 	 }
 	 
@@ -559,20 +568,36 @@
 		
 		var sa;
 		for(var i=0;i<stepBtnCount;i++){
-				
+	
 				sa = document.createElement("input");
 
 				sa.type = "hidden";
 
 				sa.name = "stepArrayList";
-						var processOrder = i+1;
+					var stepElement = new Array(); 
+						/* var processOrder = i+1;
 						var processExplain = document.getElementById('stepTA'+i).value;
 						var processPic = $('#imgFile_Step_'+i).attr('src');
 						var ingre = document.getElementById('textIngre'+i).value;
 						var tools = document.getElementById('textTools'+i).value;
 						var fireLevel = document.getElementById('textFireLvl'+i).value;
-				  		var tip = document.getElementById('textTip'+i).value;
-				sa.value = processOrder+"|"+processExplain+"|"+processPic+"|"+ingre+"|"+tools+"|"+fireLevel+"|"+tip;
+				  		var tip = document.getElementById('textTip'+i).value; */
+				  		stepElement[0] = i+1;
+						stepElement[1] = document.getElementById('stepTA'+i).value;
+						stepElement[2] = $('#imgFile_Step_'+i).attr('src');
+						stepElement[3] = document.getElementById('textIngre'+i).value;
+						stepElement[4] = document.getElementById('textTools'+i).value;
+						stepElement[5] = document.getElementById('textFireLvl'+i).value;
+				  		stepElement[6] = document.getElementById('textTip'+i).value;
+				  		
+		
+				  		var valueAll ="";
+				  		/* var valueAll = processOrder+"|"+processExplain+"|"+processPic+"|"+ingre+"|"+tools+"|"+fireLevel+"|"+tip; */
+				  		for(var j=0;j<7;j++){
+				  		if(stepElement[j]!=null){valueAll += stepElement[j]+"|";}
+						}
+				  		
+				  		sa.value = valueAll;
 						
 			    $('.stepPlusCount').append(sa);
 			    
@@ -586,12 +611,11 @@
 </head>
 <body>
 
-
 	<div class="container-fluid" id="maindiv"> 
 		<!--헤더예용! -->
 		<div id="header"></div>
 		<br><br>
-		<!-- 컨테츠예용! -->
+		<!-- 컨테츠예용! --> <!--enctype="multipart/form-data"  -->
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
 		<div class="row" id="inRecipe">
 		
@@ -795,7 +819,7 @@
 					</div>					
 					<div class="col-md-8 id="materRight" id="materPlus0">
 					<div id="materPlusRow0">
-					<div class="row">				
+					<div class="row">				                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater1" onchange="materListPlusOne(1)">
 						<input type="hidden" id="materListId1" name="materList" value=""></div>
 						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater2" onchange="materListPlusTwo(2)">
@@ -933,7 +957,12 @@
 					
 					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-12" id="successImgAll"><input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" file_gubun="work" style="display:none"/>
+					<div class="row"><div class="col-md-12" id="successImgAll">
+					<input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" style="display:none"/>
+					<!-- <input id="fileSucAll2" name="fileSucAll2" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucAll3" name="fileSucAll3" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucAll4" name="fileSucAll4" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucAll5" name="fileSucAll5" multiple="multiple" type="file" style="display:none"/> -->
 					<button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
 					<input id="fileSucOne" name="fileSucOne" multiple="multiple" type="file" style="display:none"/>
@@ -1000,7 +1029,7 @@
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();"/><!-- <button type="button" onclick="stepList();" >확인</button> --></div>
+				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();"/></div>
 				<div class="col-md-4"><button type="button" onclick="back();">취소</button></div>
 				<div class="col-md-2">　</div>
 				</div>

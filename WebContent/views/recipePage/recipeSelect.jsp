@@ -143,14 +143,14 @@
 				<div class="col-md-12" style="margin-bottom: 4%;">
 					<c:set var="string">
 						<c:forTokens var="ingredient"
-							items="[재료]${requestScope.recipe.ingredient }" delims="[]">
+							items="${requestScope.recipe.ingredient }" delims="[]">
 				${ingredient},
 			</c:forTokens>
 					</c:set>
 					<c:forEach begin="0" items="${string}" var="list" varStatus="i">
 						<c:choose>
 							<c:when test="${i.count%2!=0 }">
-								<h5>[${list}]</h5>
+								<h5 style="font-weight: bold;">[${list}]</h5>
 							</c:when>
 							<c:otherwise>
 								<c:forTokens var="ingre" items="${list}" delims="-">
@@ -234,7 +234,7 @@
 					</div>
 					<div class="col-md-1"></div>
 				</c:forEach>
-				<c:if test="${requestScope.recipe.completePic!='undefined' }">
+				<c:if test="${requestScope.recipe.completePic!='undefined' && requestScope.recipe.completePic!=null}">
 					<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
 					<img src="/imgs/recipe_img/complete_pic.png" style="margin-bottom: 10px;">
 					<h3
@@ -243,7 +243,7 @@
 					<div class="col-md-12" style="margin-bottom: 3%;">
 						<c:set var="picList">
 							<c:forTokens var="list"
-								items="${requestScope.recipe.completePic }" delims="">
+								items="${requestScope.recipe.completePic }" delims="@">
 						${list},
 					</c:forTokens>
 						</c:set>
@@ -260,10 +260,20 @@
 								<div class="carousel-inner">
 									<c:forEach begin="0" items="${picList }" varStatus="i"
 										var="picListNavi">
+										<c:choose>
+										<c:when test="${i.count==1 }">
 										<div class="carousel-item active">
 											<img class="d-block w-100" src="${picListNavi }"
 												alt="First slide">
 										</div>
+										</c:when>
+										<c:otherwise>
+										<div class="carousel-item">
+											<img class="d-block w-100" src="${picListNavi }"
+												alt="First slide">
+										</div>
+										</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</div>
 								<a class="carousel-control-prev"

@@ -258,6 +258,14 @@ $(document).ready(function(){
         	
           });
          
+         $('.showDetail,.inbasket').click(function(){
+        	 var productNo = $(this).parent().next('.productNo').val();
+        	 console.log(productNo);
+        	 /* location.href="/productDetail?productNo="; */
+         });
+         
+         
+         
      });
 
 </script>
@@ -299,7 +307,10 @@ $(document).ready(function(){
 						<tr class="line1">
 							<td>${i.count}</td>
 							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod"><a href="/productDetail?">${b.productName}</a></td>
+							<td class="prod">
+								<span class="showDetail">${b.productName}</span>
+							</td>
+							
 							<!-- 수량 변경시 update 서블릿 실행 -->
 							<td>
 	

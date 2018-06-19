@@ -240,7 +240,7 @@
 					<h3
 						style="display: inline-block; margin-top: 10px; margin-bottom: 0">완성사진</h3>
 					</div>
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom: 3%;">
 						<c:set var="picList">
 							<c:forTokens var="list"
 								items="${requestScope.recipe.completePic }" delims="">
@@ -279,6 +279,9 @@
 						</div>
 					</div>
 				</c:if>
+				
+				<c:if test="${requestScope.recipe.tip!=null }">
+				
 				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
 					<img src="/imgs/recipe_img/tip&warning.png" style="margin-bottom: 10px;">
 					<h3
@@ -290,6 +293,9 @@
 						<span style="font-size: 20px;">${requestScope.recipe.tip }</span><br>
 				</div>
 				<div class="col-md-2"></div>
+				</c:if>
+				
+				<c:if test="${requestScope.recipe.recipeTag!=null }">
 				<div class="col-md-12">
 					<!-- 태그 -->
 					<div class="row" style="border-top: 1px solid black; padding-top: 2%; margin-bottom: 3%;">
@@ -299,19 +305,20 @@
 						<c:forTokens var="recipeTag"
 							items="${requestScope.recipe.recipeTag }" delims="#">
 							<span style="display: inline-block;">
-							<a href="#" style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
+							<a href="searchRecipeList?searchVal=${recipeTag }" style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
 							</span>&nbsp;&nbsp;
 						</c:forTokens>
 						</div>
 						<div class="col-md-1"></div>
 					</div>
 				</div>
+				</c:if>
 			</div>
 			<div class="row" id="recipe-body"><!-- 댓글 -->
-			ㄴㅁㅇㄹ
+				<jsp:include page="/views/recipePage/recipeComment.jsp"></jsp:include>
 			</div>
 		</div>
-	</div>
+		
 	<div id="footer"
 		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="border: 1px solid black; padding: 10px;">

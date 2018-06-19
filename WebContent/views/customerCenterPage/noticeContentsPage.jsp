@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% pageContext.setAttribute("newLineChar","\n"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,13 +29,12 @@
 	
 	function listBack()
 	{
-		history.go(-1);
+		location.href="/views/customerCenterPage/noticePage.jsp";
 	}
 	
 	
 </script>
 <style>
-
 hr {
 	display: block;
 	border-style: solid;
@@ -47,6 +47,14 @@ hr {
 
 #listBtn {
 	float: right;
+}
+
+#historyTbl td {
+	padding-top: 20px;
+}
+#historyTbl{
+border-collapse:collapse;
+
 }
 </style>
 
@@ -61,7 +69,7 @@ hr {
 
 		<!--여기서부터 컨텐츠 영역(공지사항 내용)  -->
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style=" padding: 10px;" id="contents">
+			style="padding: 10px;" id="contents">
 			<div class="row" style="padding: 0;">
 				<!--공지사항 타이틀  -->
 				<div class="col-md-12" style="padding: 0;">
@@ -72,8 +80,6 @@ hr {
 					</h5>
 					<hr>
 				</div>
-
-
 			</div>
 			<br>
 			<div class="row" style="padding: 0;">
@@ -102,29 +108,67 @@ hr {
 							</tr>
 
 							<tr>
-
-
-
 							</tr>
 						</tbody>
 					</table>
+
+
+
 				</div>
 			</div>
 			<div class="row" style="padding: 0;">
 
-				<div class="col-md-12" style="text-align:justify; padding: 10px; border-bottom-color:red;">
+				<div class="col-md-12"
+					style="text-align: justify; padding: 10px; border-bottom-color: red;">
 					${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}
-					<br><br>
+					<br> <br>
 				</div>
 
-				
+
 			</div>
-			
-				<div class="row" style="padding: 0;">
-					<div class="col-md-12">
-						<button type="button" onclick="listBack();"
-							class="btn btn-outline-primary" id="listBtn">목록</button>
-					</div>
+
+			<div class="row" style="padding: 0;">
+				<div class="col-md-12">
+					<button type="button" onclick="listBack();"
+						class="btn btn-outline-primary" id="listBtn">목록</button>
+				</div>
+
+			</div>
+			<br> <br>
+			<div class="row" style="padding: 0;">
+
+
+
+				<div class="col-md-12" style="padding: 0">
+					<table class="table "
+						style="width: 100%; border-top: 2px solid #795b8f; border-bottom: 2px solid #795b8f;"
+						id="historyTbl">
+						<tr>
+							<c:if test="${!empty requestScope.preNotice}">
+							<td style="width:5%; border-right:1px solid #dcdcdc; !important">이전글</td>
+							<td colspan="2"><a href="/noticeDetail?noticeNo=${requestScope.notice.noticeNo-1}">${requestScope.preNotice}</a></td>
+							</c:if>
+							<c:if test="${empty requestScope.preNotice}">
+							<td colspan="2">
+							　<!--공백이 숨어있어요  -->
+							</td>
+							</c:if>
+						</tr>
+						<tr>
+							<c:if test="${!empty requestScope.nexNotice}">
+							<td style="border-right:1px solid #dcdcdc; !important">다음글</td>
+							<td><a href="/noticeDetail?noticeNo=${requestScope.notice.noticeNo+1}">${requestScope.nexNotice}</a></td>
+							</c:if>
+							<c:if test="${empty requestScope.nexNotice}">
+							<td colspan="2">
+							　<!--공백이 숨어있어요  -->
+							</td>
+							
+							</c:if>
+					
+						</tr>
+
+					</table>
 
 
 				</div>
@@ -132,15 +176,22 @@ hr {
 
 
 
+			</div>
+
+
+
+
+
+
 
 		</div>
-</div>
-		<!--풋터임  -->
-		<div id="footer"
-			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;">
-			<!-- footer -->
-		</div>
+	</div>
+	<!--풋터임  -->
+	<div id="footer"
+		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+		style="border: 1px solid black; padding: 10px;">
+		<!-- footer -->
+	</div>
 
 
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

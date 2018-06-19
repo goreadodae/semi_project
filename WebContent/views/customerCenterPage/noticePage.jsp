@@ -34,18 +34,19 @@
 	
 	
 	/* 중복체크 방지   */
-/*  	function onlyOneCheck(a){
-		var box = document.getElementsByName("searchCheck");
-		for(var i=0; i<box.length; i++)
+  	function onlyOneCheck(a){
+		var checkedBox = document.getElementsByName("searchBy");
+		for(var i=0; i<checkedBox.length; i++)
 			{
-				if(box[i] != a)
+				if(checkedBox[i] != a)
 					{
 						console.log(a);
-						box[i].checked=false;
+						checkedBox[i].checked=false;
 					}
 			}
 		
-	}  */
+	}  
+
 	
 	
 </script>
@@ -72,6 +73,14 @@ body {
 
 #searchTable tr td input {
 	vertical-align: middle;
+}
+.page-item.active>.page-link{
+   background-color: #512772 !important;
+   border-color: #512772 !important;
+   color: white !important;
+}
+.page-item>.page-link{
+   color: #512772 !important;
 }
 </style>
 
@@ -111,7 +120,6 @@ body {
 
 					<!--공지사항 테이블 -->
 					<table class="table" id="noticeTable">
-						<caption>List of notice</caption>
 						<thead>
 							<tr>
 								<th scope="col">번호</th>
@@ -157,20 +165,18 @@ body {
 							<form action="/searchNotice" method="get">
 								<table style="border-top: 2px solid #795b8f; width: 100%;"
 									id="searchTable">
-
 									<tr>
-
 										<td>검색어</td>
 										<td style="width: 40%">
-										<input type="checkbox"	name="searchByName" value="searchName" onclick="onlyOneCheck(this);"/>
+										<input type="checkbox"	name="searchBy" value="searchName" onclick="onlyOneCheck(this);"/>
 										 이름 &nbsp;&nbsp; 
-										 <input	type="checkbox" name="searchByTitle" value="searchTitle" onclick="onlyOneCheck(this);" />
+										 <input	type="checkbox" checked name="searchBy" value="searchTitle" onclick="onlyOneCheck(this);" />
 										  제목&nbsp;&nbsp; 
-										  <input type="checkbox" name="searchByContents" value="searchContents" onclick="onlyOneCheck(this);"/> 
+										  <input type="checkbox" name="searchBy" value="searchContents" onclick="onlyOneCheck(this);"/> 
 										  내용&nbsp;</td>
 										  <td style="width: 50%; text-align: right;">
-										  <input type="text" style="width: 200px; height: 33px"	name="inputWord"/>
-											<button type="submit" class="btn btn-outline-primary">검색</button>
+										  <input type="text" style="width: 200px; height: 33px" id="inputWord" name="inputWord"/>
+											<button type="submit" class="btn btn-outline-primary" >검색</button>
 
 										</td>
 									</tr>

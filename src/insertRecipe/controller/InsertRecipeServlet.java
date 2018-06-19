@@ -1,14 +1,19 @@
 package insertRecipe.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import insertRecipe.model.service.InsertRecipeService;
-import insertRecipe.model.vo.InsertRecipe;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class InsertRecipeServlet
@@ -34,7 +39,9 @@ public class InsertRecipeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2.View에서 전송한 데이터를 받아 변수에 저장
-		InsertRecipe ir = new InsertRecipe();
+		
+		//recipe내용 받는 곳
+		/*InsertRecipe ir = new InsertRecipe();
 				
 		ir.setRecipeTitle(request.getParameter("recipeTitle")); //제목
 		ir.setRecipeIntro(request.getParameter("recipeIntro")); //소개
@@ -42,13 +49,16 @@ public class InsertRecipeServlet extends HttpServlet {
 		ir.setCookServing(request.getParameter("cookServing")); //인분
 		ir.setCookTime(request.getParameter("CookTime")); //시간
 		ir.setCookLevel(request.getParameter("CookLevel")); //난이도
-		//재료
-		String [] materList = request.getParameterValues("materList");
-		String materListAll = "";
-		for(int i=0; i<materList.length ;i++) {
-			materListAll += materList[i];
-		}
-		ir.setIngredient(materListAll); //재료
+*/		//재료
+//		String [] materList = request.getParameterValues("materList");
+//		String materListAll = "";
+//		for(int i=0; i<materList.length ;i++) {
+//			materListAll += materList[i];
+//		}
+		
+		
+		/*ir.setIngredient(materListAll); //재료
+		 
 		
 		
 		ir.setTip(request.getParameter("recipeTip")); //팁
@@ -151,6 +161,78 @@ public class InsertRecipeServlet extends HttpServlet {
 		int result = new InsertRecipeService().insertRecipe(ir);
 		
 		System.out.println(result);
+		
+		//recipeProcess받는곳
+		
+		int stepBtnCount = Integer.parseInt(request.getParameter("stepBtnCount")); //step개수 받아오기
+		
+		for(int i=0;i<stepBtnCount;i++) {
+			String [] materList = request.getParameterValues("materList");
+		}*/
+		
+		//String[] stepArrayList = request.getParameterValues("stepArrayList");
+		//System.out.println(stepArrayList[0]);
+//		for(int i=0; i<stepArrayList.length ;i++) {
+//			System.out.println(stepArrayList[i]);
+//		}
+		
+		
+		// 파일 저장
+		//파일 업로드 사이즈(설정) 현재 byte단위 (5MB)
+		int FileSizeLimit = 1024*1024*5; 
+		
+		//파일이 업로드 될 경로 (※중요)
+		String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile";  
+		//->WebContent폴더 밑에있는 uploadfile을 지칭
+		
+		//인코딩타입(파일인코딩타입)
+	    String encType = "UTF-8";
+	      
+	    //위에 정보를 바탕으로 MultipartRequest 객체를 생성
+	    MultipartRequest multi = new MultipartRequest(request, uploadFilePath,FileSizeLimit,
+	            encType, new DefaultFileRenamePolicy());
+	    
+	    //마지막 인자값인 DeFaultFileRenamePolicy 객체를 생성하여
+	      //넣어줌으로써 파일 중복 처리를 자동으로 해결함
+	      //ex) a.bmp가 중복으로 업로드 되면 a1.bmp, a2.bmp, a3.bmp ...
+	      //MultipartRequest 객체가 생성되면 자동으로 파일은 해당경로로 업로드됨
+
+	    
+	    //업로드된 파일의 정보를 DB에 기록하여야 함
+	      
+	      //1.파일 이름 (fileName)
+	      //getFilesystemName("view의 파라미터이름"); 을 하게되면
+	      //해당 업로드 될때의 파일 이름을 가져옴
+	      String fileSucAll = multi.getFilesystemName("fileSucAll"); //원본 파일이름-메인
+	      String fileUpload = multi.getFilesystemName("fileUpload"); //바뀐파일이름-메인
+			String fileSucOne = multi.getFilesystemName("fileSucOne"); //바뀐파일이름-완성사진-1
+			String fileSucTwo = multi.getFilesystemName("fileSucTwo"); //바뀐파일이름-완성사진-2
+			String fileSucThrid = multi.getFilesystemName("fileSucThrid"); //바뀐파일이름-완성사진-3
+			String fileSucFour = multi.getFilesystemName("fileSucFour"); //바뀐파일이름-완성사진-4
+			String fileSucFive = multi.getFilesystemName("fileSucFive"); //바뀐파일이름-완성사진-5
+	      //2. 업로드 파일의 실제 총 경로(filePath)
+	      //총 경로: filePath+파일이름
+	      //ex) 업로드한 파일이 a.txt 라면?
+	      //총 경로 : c:\webworkspace2\web2\WebContent\\uploadfile\a.txt
+	      
+	      String fullFileMainPath = uploadFilePath+"\\"+fileUpload;
+	      String fullFileSucOnePath = uploadFilePath+"\\"+fileSucOne;
+	      String fullFileSucTwoPath = uploadFilePath+"\\"+fileSucTwo;
+	      String fullFileSucThridPath = uploadFilePath+"\\"+fileSucThrid;
+	      String fullFileSucFourPath = uploadFilePath+"\\"+fileSucFour;
+	      String fullFileSucFivePath = uploadFilePath+"\\"+fileSucFive;
+	      String fileSucAllPath = uploadFilePath+"\\"+fileSucAll;
+	      
+	      System.out.println(fullFileMainPath);
+	      System.out.println(fullFileSucOnePath);
+	      System.out.println(fullFileSucTwoPath);
+	      System.out.println(fullFileSucThridPath);
+	      System.out.println(fullFileSucFourPath);
+	      System.out.println(fullFileSucFivePath);
+	      System.out.println(fileSucAllPath);
+	      
+	     
+
 		
 		
 	}

@@ -41,6 +41,13 @@ public class RecipeListServlet extends HttpServlet {
 		categorySituationList = new RecipeService().getSituationCategory();
 		categoryMethodList = new RecipeService().getMethodCategory();
 		categoryIngreList = new RecipeService().getIngreCategory();
+		
+		int categoryOrderClass [] = {0,63,56,54,55,60,53,52,61,57,58,65,64,68,66,69,59,62};
+		int categoryOrderSituation [] = {0,12,18,13,19,21,15,43,17,45,20,46,44,14,22};
+		int categoryOrderIngre [] = {0,70,71,72,23,28,24,50,33,47,32,25,31,48,27,26,34};
+		int categoryOrderMethod [] = {0,6,1,7,36,41,42,8,10,9,38,67,39,37,11};
+		
+		Object category [] = {categoryClassList, categorySituationList, categoryMethodList, categoryIngreList};
 		if(request.getParameter("page")==null) {  //첫페이지면 1로 셋팅 그외 페이지면 해당 페이지 값을 가져옴
 			page = 1;
 		}
@@ -54,10 +61,11 @@ public class RecipeListServlet extends HttpServlet {
 		String order = request.getParameter("order");
 		
 		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order);
-		request.setAttribute("classList", categoryClassList);
-		request.setAttribute("situationList", categorySituationList);
-		request.setAttribute("methodList", categoryMethodList);
-		request.setAttribute("ingredientList", categoryIngreList);
+		request.setAttribute("classList", categoryOrderClass);
+		request.setAttribute("situationList", categoryOrderSituation);
+		request.setAttribute("methodList", categoryOrderMethod);
+		request.setAttribute("ingredientList", categoryOrderIngre);
+		request.setAttribute("category", category);
 		request.setAttribute("cate1", cate1);
 		request.setAttribute("cate2", cate2);
 		request.setAttribute("cate3", cate3);

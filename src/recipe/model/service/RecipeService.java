@@ -87,5 +87,17 @@ public class RecipeService {
 		}
 		return cpd;
 	}
+
+	public int writeRecipeComment(int recipeNo, int memberNo, String content) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecipeDao().writeRecipeComment(conn, recipeNo, memberNo, content);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 }

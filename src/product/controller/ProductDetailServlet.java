@@ -47,8 +47,6 @@ public class ProductDetailServlet extends HttpServlet {
 		else {
 			response.sendRedirect("/views/productPage/ProductMain.jsp");
 		}
-
-		
 	}
 
 	/**

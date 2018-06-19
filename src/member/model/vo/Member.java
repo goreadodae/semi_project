@@ -112,18 +112,5 @@ public class Member {
 		this.memberNo = memberNo;
 	}
 
-
-	
-	
-	
-	/*member_no      NUMBER          NOT NULL, 
-    member_id      VARCHAR2(20)    NOT NULL UNIQUE, 
-    member_pwd     VARCHAR2(20)    NOT NULL, 
-    member_name    VARCHAR2(10)    NOT NULL, 
-    birth_date     DATE            NOT NULL, 
-    phone          VARCHAR2(13)    NOT NULL, 
-    gender         CHAR(1)         NOT NULL  CHECK (gender IN ('M','F')),
-    email          VARCHAR2(30)    NOT NULL UNIQUE, 
-    enroll_date    DATE            NOT NULL, 
-    CONSTRAINT MEMBER_PK PRIMARY KEY (member_no)*/
 }
+

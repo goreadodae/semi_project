@@ -187,7 +187,7 @@ a{
          	if(value>1){
          		value--;
          		$('#qty').val(value);
-         		$('#basket_quantity').val(value);
+         		$('.basket_quantity').val(value);
          		$('#sumqty').html("수량 " + value +"개");
          		$('#sumprice').html($('#price').html()*value + "원");
          	}
@@ -199,7 +199,7 @@ a{
           	if(value<50){
           		value++;
           		$('#qty').val(value);
-          		$('#basket_quantity').val(value);
+          		$('.basket_quantity').val(value);
           		$('#sumqty').html("수량 " + value +"개");
           		$('#sumprice').html($('#price').html()*value +"원");
           	}
@@ -296,13 +296,17 @@ a{
 							</div>
 							<br>
 							<center>
-								<input type="hidden" id="basket_quantity" name="basket_quantity" value="1" >
+								<input type="hidden" class="basket_quantity" name="basket_quantity" value="1" >
 								<input type="hidden" id="product_no" value="${productInfo.productNo}" >
 								<button class="btn btn-info" onclick="inputBasket();">장바구니</button>
 								
 								
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="button" class="btn btn-success" onclick="location.href='/views/productPage/Purchase.jsp'">구매하기</button>
+								<form action="/buyDirect"  method="post" style="display:inline;">
+									<input type="hidden" class="basket_quantity" name="basketQuantity" value="1" >
+									<input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
+									<button  class="btn btn-success" onclick="location.href='/buyDirect'">구매하기</button>
+								</form>
 							</center>
 						
 							
@@ -324,7 +328,8 @@ a{
   						
   						<div class="col-md-4" id="nav1" onclick="location.href='#detailnav'">상품상세정보</div>
   						<div class="col-md-4" id="nav2" onclick="location.href='#reviewnav'">구매후기</div>
-  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">상품문의</div>
+  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">전성분표기</div>
+  						<!-- <div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">상품문의</div> -->
 					</div>
 				</div>
 				
@@ -347,7 +352,7 @@ a{
 				<div class="row">
   						<div class="col-md-4" id="nav2" onclick="location.href='#detailnav'">상품상세정보</div>
   						<div class="col-md-4" id="nav1" onclick="location.href='#reviewnav'">구매후기</div>
-  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">상품문의</div>
+  						<div class="col-md-4" id="nav2" onclick="location.href='#inquirynav'">전성분표기</div>
 					</div>
 				</div>
 				<!-- 구매후기 -->
@@ -397,15 +402,15 @@ a{
 				<div class="row">
   						<div class="col-md-4" id="nav2" onclick="location.href='#detailnav'">상품상세정보</div>
   						<div class="col-md-4" id="nav2" onclick="location.href='#reviewnav'">구매후기</div>
-  						<div class="col-md-4" id="nav1" onclick="location.href='#inquirynav'">상품문의</div>
+  						<div class="col-md-4" id="nav1" onclick="location.href='#inquirynav'">전성분표기</div>
 					</div>
 				</div>
 				<!-- 상품문의 -->
 				<div id="inquiry">
 				<br>
-				<div class="part"><h3 id="part" class="font">&nbsp;&nbsp; 상품문의</h3> &nbsp;&nbsp;전체 2건</div>
 				<br>
-					<table class="table" >
+				<center><h3 id="part" class="font">&nbsp;&nbsp; 전성분표기</h3><br><br><img src="${productInfo.productInfo}" width=60%></center>
+					<%-- <table class="table" >
 						<tr class="table_title">
 							<th width=10%><center>번호</center></th>
 							<th width=65%>문의내용</th>
@@ -454,10 +459,10 @@ a{
 						</tr>
 
 						<!-- for문 끝 -->
-					</table>
-				
+					</table> --%>
+				<br><br><br>
 				</div>
-				<br> <br>
+				<br>
 
 
 			</div>

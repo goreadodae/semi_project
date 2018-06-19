@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,15 +15,17 @@ import java.util.Properties;
 
 import common.JDBCTemplate;
 import product.model.vo.Basket;
+import product.model.vo.Buying;
 import product.model.vo.Product;
 
 public class ProductDao {
-	
+
+	//모든 상품 정보
 	public ArrayList<Product>  getAllProduct(Connection conn) {
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<Product> list = new ArrayList<Product>();
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		try {
@@ -55,26 +58,27 @@ public class ProductDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(stmt);
 		}
-		
+
 		return list;
 	}
 
+	//상품 상세 정보
 	public Product getProduct(Connection conn, int productNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Product productInfo = null;
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		try {
 			prop.load(new FileReader(path+"resources/productQuery.properties"));
 			String query = prop.getProperty("productSelectOne");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, productNo);
 			rset = pstmt.executeQuery();
-			
+
 			if(rset.next()) {
 				productInfo = new Product();
 				productInfo.setProductNo(rset.getInt("product_no"));
@@ -99,31 +103,71 @@ public class ProductDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return productInfo;
 	}
 
+
+
+	//이달의 레시피 정보
 	public ArrayList<Product> getThisMonthProduct(Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Product> list = new ArrayList<Product>();
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("productSelectThisMonth");
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()) {
+				Product pro = new Product();
+				pro.setProductNo(rset.getInt("product_no"));
+				pro.setProductQuantity(rset.getInt("product_quantity"));
+				pro.setProductName(rset.getString("product_name"));
+				pro.setProductPrice(rset.getInt("product_price"));
+				pro.setProduct1stPic(rset.getString("product_1st_pic"));
+				pro.setProductSpecPic(rset.getString("product_spec_pic"));
+				pro.setProductIntro(rset.getString("product_intro"));
+				pro.setProductInfo(rset.getString("product_info"));
+				list.add(pro);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+
+		return list;
 	}
-	
+
+	//로그인계정의 장바구니 정보
 	public ArrayList<Basket> getMyBasket(Connection conn, int memberNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Basket> bList = new ArrayList<Basket>();
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		try {
 			prop.load(new FileReader(path+"resources/productQuery.properties"));
 			String query = prop.getProperty("basketSelect");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
-			
+
 			while(rset.next()) {
 				Basket b = new Basket();
 				b.setBasketNo(rset.getInt("bascket_no"));
@@ -147,25 +191,72 @@ public class ProductDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return bList;
 	}
 
+
+	//바로 구매하기 버튼을 누를시의 상품 정보(제일 마지막에 담긴 장바구니 정보 가져옴)
+	public ArrayList<Basket> getLastBasket(Connection conn, int memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Basket> bList = new ArrayList<Basket>();
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("basketDirectSelect");
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				Basket b = new Basket();
+				b.setBasketNo(rset.getInt("bascket_no"));
+				b.setProductName(rset.getString("product_name"));
+				b.setProduct1stPic(rset.getString("product_1st_pic"));
+				b.setBasketQuantity(rset.getInt("bascket_quantity"));
+				b.setProductPrice(rset.getInt("product_price"));
+				bList.add(b);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return bList;
+	}
+
+
+	//장바구니 삭제
 	public int deleteBasket(Connection conn, int basketNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-	
+
 		try {
 			prop.load(new FileReader(path + "resources/productQuery.properties"));
 			String query = prop.getProperty("basketDelete");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, basketNo);
 			result = pstmt.executeUpdate();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -178,27 +269,29 @@ public class ProductDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return result;
 	}
-	
+
+
+	//장바구니 추가
 	public int insertBasket(Connection conn, int basketQuantity,int memberNo,int productNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-	
+
 		try {
 			prop.load(new FileReader(path + "resources/productQuery.properties"));
 			String query = prop.getProperty("basketInsert");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, basketQuantity);
 			pstmt.setInt(2, memberNo);
 			pstmt.setInt(3, productNo);
 			result = pstmt.executeUpdate();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,27 +304,29 @@ public class ProductDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return result;
 	}
 
+
+	//장바구니 수량 변경
 	public int updateBasket(Connection conn, int basketQuantity, int basketNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-	
+
 		try {
 			prop.load(new FileReader(path + "resources/productQuery.properties"));
 			String query = prop.getProperty("basketUpdate");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, basketQuantity);
 			pstmt.setInt(2, basketNo);
 
 			result = pstmt.executeUpdate();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -244,29 +339,30 @@ public class ProductDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return result;
 	}
-	
-	
+
+
+	//구매내역 테이블 추가
 	public int insertBuying(Connection conn, int basketNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-	
+
 		try {
 			prop.load(new FileReader(path + "resources/productQuery.properties"));
 			String query = prop.getProperty("buyingInsert");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, basketNo);
 			pstmt.setInt(2, basketNo);
 			pstmt.setInt(3, basketNo);
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -279,11 +375,107 @@ public class ProductDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return result;
 	}
-	
-	
-	
+
+
+	//방금 구매한 내역 정보 보기
+	public ArrayList<Buying> selectBuyingRecent(Connection conn, int memberNo, int rowCount) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Buying> list = new ArrayList<Buying>();
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("buyingSelectRecent");
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, rowCount);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Buying b = new Buying();
+				b.setBuyingNo(rset.getInt("buying_no"));
+				b.setProductNo(rset.getInt("product_no"));
+				b.setBuyingQuantity(rset.getInt("buying_quantity"));
+				b.setBuyingDate(rset.getDate("buying_date"));
+				b.setProductName(rset.getString("product_Name"));
+				b.setProductPrice(rset.getInt("product_price"));
+				b.setProduct1stPic(rset.getString("product_1st_pic"));
+				
+				list.add(b);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+	//로그인 계정의 전체 구매내역 보기
+	public ArrayList<Buying> selectBuyingAll(Connection conn, int memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Buying> list = new ArrayList<Buying>();
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("buyingSelect");
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Buying b = new Buying();
+				b.setBuyingNo(rset.getInt("buying_no"));
+				b.setProductNo(rset.getInt("product_no"));
+				b.setBuyingQuantity(rset.getInt("buying_quantity"));
+				b.setBuyingDate(rset.getDate("buying_date"));
+				b.setProductName(rset.getString("product_Name"));
+				b.setProductPrice(rset.getInt("product_price"));
+				b.setProduct1stPic(rset.getString("product_1st_pic"));
+				
+				list.add(b);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+
 
 }

@@ -123,6 +123,7 @@
 		<!-- 전체 컨텐츠 -->
 		<div id="total" class="contents">
 
+			<!-- 배너이미지 -->
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12 col-sm-12" style="padding: 0px;">
@@ -131,87 +132,11 @@
 					</div>
 				</div>
 			</div>
+			<!-- 배너이미지 끝 -->
+	
 
-			<br> <br>
-
+			<br> <br><br>
 			<!-- 내용1. 이달의 쿠킹박스 -->
-			<div id="start" class="col-md-8 mx-auto" style="padding: 0px;">
-				<div class="col-md-12" id="main-contents-header"
-					style="padding: 0px;">
-					<img src="/imgs/product_img/title1.JPG" alt="이미지"
-						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
-				</div>
-				<br> <br>
-
-
-				<div class="col-md-12" style="padding: 0px;">
-					<div class="row">
-
-						<!-- 첫번째 칸 -->
-						<div class="col-md-4 col-sm-12" id="eachContent">
-
-							<div id="content1" class="col-md-12 col-sm-12"
-								style="border: 1px solid #dadada; padding: 0px;">
-									<a href="/views/productPage/ProductDetail.jsp">
-									<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/product_img/product01.jpg" alt="제품이미지" height="300"
-									class="img-thumbnail">
-									</a>
-								<div id="desc" class="col-md-12">
-									<br>
-									<p class="p_title">${productList[0].productName}</p>
-									<hr>
-									<p class="price">${productList[0].productPrice}</p><br>
-								</div>
-							</div>
-
-						</div>
-
-
-						<!-- 두번째 칸 -->
-						<div class="col-md-4 col-sm-12">
-							<div id="content1" class="col-md-12 col-sm-12"
-								style="border: 1px solid #dadada; padding: 0px;">
-									<a href="/views/productPage/ProductDetail.jsp">
-									<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/product_img/product02.jpg" alt="제품이미지" height="300"
-									class="img-thumbnail">
-									</a>
-								<div id="desc" class="col-md-12">
-									<br>
-									<p class="p_title">소고기 찹스테이크 (2인분)</p>
-									<hr>
-									<p class="price">15900원</p><br>
-								</div>
-							</div>
-						</div>
-
-						<!-- 세번째 칸 -->
-						<div class="col-md-4 col-sm-12">
-							<div id="content1" class="col-md-12 col-sm-12"
-								style="border: 1px solid #dadada; padding: 0px;">
-									<a href="/views/productPage/ProductDetail.jsp">
-									<img class="col-md-12 col-sm-12" style="padding: 0px;"
-									src="/imgs/product_img/product3.jpg" alt="제품이미지" height="300"
-									class="img-thumbnail">
-									</a>
-								<div id="desc" class="col-md-12">
-									<br>
-									<p class="p_title">순두부찌개 양념</p>
-									<hr>
-									<p class="price">5000원</p><br>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br> <br>
-
-
-
-			<!-- 내용2. 이번달 외의 패키지 -->
-			<br> <br>
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header"
 					style="padding: 0px;">
@@ -220,13 +145,14 @@
 				</div><br><br>
 										
 				<!-- db에 있는 상품 다 가져옴 -->
-				<c:forEach begin="0" items="${productList}" var="p" varStatus="i">
+				<c:forEach begin="0" items="${productThisMonthList}" var="p" varStatus="i">
 					<!-- 줄바꿈 -->
 					<c:if test="${i.count%3==1}" var="result">
 						<div class="col-md-12" style="padding: 0px;">
 							<div class="row">
 					</c:if>
 					
+					<!-- 각각의 상품 정보 -->
 					<div class="col-md-4 col-sm-12" id="eachContent">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
@@ -245,28 +171,83 @@
 								</div>
 							</div>
 					</div>
+					<!-- 각각의 상품 정보 끝-->
 	
 					<!-- 줄바꿈 -->
-					<c:if test="${i.count%3==0}" var="result">
+						<c:if test="${i.count%3==0}" var="result">
 							</div>
-						</div><br><br><br>
+							</div><br><br><br>
 					</c:if>
 						
 				</c:forEach>
 					
-					</div>
-				</div>
 			</div>
-			<br><br><br>
+			<!-- 내용1. 이달의 쿠킹박스 끝-->
+
+			
+			
+			
+			
+			
+			<br> <br>
+			<!-- 내용2. 모든 상품 리스트 -->
+			<div class="col-md-8 mx-auto" style="padding: 0px;">
+				<div class="col-md-12" id="main-contents-header"
+					style="padding: 0px;">
+					<img src="/imgs/product_img/title1.JPG" alt="이미지"
+						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
+				</div><br><br>
+										
+				<!-- db에 있는 상품 다 가져옴 -->
+				<c:forEach begin="0" items="${productList}" var="p" varStatus="i">
+					<!-- 줄바꿈 -->
+					<c:if test="${i.count%3==1}" var="result">
+						<div class="col-md-12" style="padding: 0px;">
+							<div class="row">
+					</c:if>
+					
+					<!-- 각각의 상품 정보 -->
+					<div class="col-md-4 col-sm-12" id="eachContent">
+							<div id="content1" class="col-md-12 col-sm-12"
+								style="border: 1px solid #dadada; padding: 0px;">
+									<a href="/productDetail?productNo=${p.productNo}">
+									<div class="container">
+										<img class="col-md-12 col-sm-12" style="padding: 0px;"
+										src="${p.product1stPic}" alt="제품이미지" 
+										class="img-thumbnail">
+									</div>
+									</a>
+								<div id="desc" class="col-md-12">
+									<br>
+									<p class="p_title">${p.productName}</p>
+									<hr>
+									<p class="price">${p.productPrice}</p><br>
+								</div>
+							</div>
+					</div>
+					<!-- 각각의 상품 정보 끝-->
+	
+					<!-- 줄바꿈 -->
+						<c:if test="${i.count%3==0}" var="result">
+							</div>
+							</div><br><br><br>
+					</c:if>
+						
+				</c:forEach>
+					
+				</div>
+				<!-- 내용2. 모든 상품 리스트 끝-->
+			</div>
+			<br><br><br><br>
+			<!-- 전체 컨텐츠 끝-->
 
 
 			<!-- Footer -->
 			<div id="footer"
 				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding: 10px;">
-				<!-- footer -->
 			</div>
-		</div>
+			<!-- footer 끝-->
 	</div>
 </body>
 </html>

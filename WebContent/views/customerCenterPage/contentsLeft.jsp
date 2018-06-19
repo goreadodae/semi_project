@@ -37,11 +37,7 @@ background-color:#f7f5f8;
 									src="/imgs/manager-img/right-arrow.png" height="9px"
 									class="list-arrow"></a></td>
 						</tr>
-						<tr>
-							<td><a href="#" style="color: black">상품구매문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
+
 					</table>
 
 				</div>

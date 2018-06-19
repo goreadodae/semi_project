@@ -35,9 +35,16 @@ public class NoticeDetailServelt extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		Notice notice = new NoticeService().viewDetailNotice(noticeNo);
+		
+		String preNotice = new NoticeService().previousNotice(noticeNo);
+		String nexNotice = new NoticeService().nextNotice(noticeNo);
+		
+
 		if(notice!=null)
 		{
 			request.setAttribute("notice",notice);
+			request.setAttribute("preNotice", preNotice);
+			request.setAttribute("nexNotice", nexNotice);
 			RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/noticeContentsPage.jsp");
 			view.forward(request, response);
 		}

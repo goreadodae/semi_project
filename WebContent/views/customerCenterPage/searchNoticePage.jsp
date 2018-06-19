@@ -17,8 +17,6 @@
 	crossorigin="anonymous"></script>
 
 <script>
-
-
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
@@ -26,28 +24,22 @@
 
 	});
 
-	
-	
 	$(document).ready(function() {
 		$('#list-color tr').eq(0).addClass('on');
 	});
-	
-	
+
 	/* 중복체크 방지   */
-/*  	function onlyOneCheck(a){
-		var box = document.getElementsByName("searchCheck");
-		for(var i=0; i<box.length; i++)
-			{
-				if(box[i] != a)
-					{
-						console.log(a);
-						box[i].checked=false;
-					}
+	function onlyOneCheck(a) {
+		var checkedBox = document.getElementsByName("searchBy");
+		for (var i = 0; i < checkedBox.length; i++) {
+			if (checkedBox[i] != a) {
+				console.log(a);
+				checkedBox[i].checked = false;
 			}
-		
-	}  */
-	
-	
+		}
+
+	}
+
 </script>
 
 
@@ -72,6 +64,19 @@ body {
 
 #searchTable tr td input {
 	vertical-align: middle;
+}
+.pTag{
+	font-size:15px
+
+}
+}
+.page-item active>.page-link{
+   background-color: #512772 !important;
+   border-color: #512772 !important;
+   color: white !important;
+}
+.page-item>.page-link{
+   color: #512772 !important;
 }
 </style>
 
@@ -111,7 +116,6 @@ body {
 
 					<!--공지사항 테이블 -->
 					<table class="table" id="noticeTable">
-						<caption>List of notice</caption>
 						<thead>
 							<tr>
 								<th scope="col">번호</th>
@@ -122,6 +126,27 @@ body {
 							</tr>
 						</thead>
 						<tbody>
+							<c:if test="${requestScope.pageData.noticeList eq null}">
+								<tr>
+									<td colspan="5">
+									
+											<div class="col-md-12" style="text-align:left; padding-left:33%; padding-top:20px">
+
+												
+													<h3 style="display:inline">'<c:out value="${param.inputWord}"/>'</h3>
+													<p class="pTag" style="display:inline"> 에 대한 검색결과가 없습니다.</p>
+													<p class="pTag">&middot; 단어의 철자가 정확한지 확인해 보세요.</p> 
+													<p class="pTag">&middot; 한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.</p>
+													<p class="pTag">&middot; 검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.</p>
+													<p class="pTag">&middot; 두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요.</p>
+												
+											</div>
+										
+									</td>
+
+								</tr>
+
+							</c:if>
 
 							<c:forEach items="${requestScope.pageData.noticeList}" var="nl"
 								varStatus="i">
@@ -136,6 +161,7 @@ body {
 									<td>${nl.noticeWriter}</td>
 									<td>${nl.reportingDate}</td>
 									<td>${nl.noticeViews}</td>
+
 								</tr>
 							</c:forEach>
 
@@ -159,18 +185,17 @@ body {
 									id="searchTable">
 
 									<tr>
-
 										<td>검색어</td>
 										<td style="width: 40%"><input type="checkbox"
-											name="searchByName" value="searchName"
+											name="searchBy" value="searchName"
 											onclick="onlyOneCheck(this);"> 이름 &nbsp;&nbsp; <input
-											type="checkbox" name="searchByTitle" value="searchTitle"
+											type="checkbox" checked name="searchBy" value="searchTitle"
 											onclick="onlyOneCheck(this);" /> 제목&nbsp;&nbsp; <input
-											type="checkbox" name="searchByContents" value="searchContents"
+											type="checkbox" name="searchBy" value="searchContents"
 											onclick="onlyOneCheck(this);" /> 내용&nbsp;</td>
 										<td style="width: 50%; text-align: right;"><input
 											type="text" style="width: 200px; height: 33px"
-											name="inputWord"/>
+											name="inputWord" id="inputWord" />
 											<button type="submit" class="btn btn-outline-primary">검색</button>
 
 										</td>

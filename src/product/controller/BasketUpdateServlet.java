@@ -31,29 +31,19 @@ public class BasketUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int basket_quantity = Integer.parseInt(request.getParameter("basket_quantity"));
-		int basket_no = Integer.parseInt(request.getParameter("basket_no"));
 		
-		if(basket_quantity>=1) {
-			int result = new ProductService().updateBasket(basket_quantity,basket_no);
-			if(result>0) {
-				int member_no=1;	//로그인 정보 일단 1로 지정해놓음
-				RequestDispatcher view = request.getRequestDispatcher("/basketSelect");
-				request.setAttribute("member_no", member_no);
-				view.forward(request, response);
-			}
-			else {
-				System.out.println("뭐가 문제징?");
-				response.sendRedirect("/views/productPage/error.jsp");
-			}
-		}else {
-			int member_no=1;	//로그인 정보 일단 1로 지정해놓음
-			RequestDispatcher view = request.getRequestDispatcher("/basketSelect");
-			request.setAttribute("member_no", member_no);
-			view.forward(request, response);
+		int basketQuantity = Integer.parseInt(request.getParameter("basketQuantity"));
+		int basketNo = Integer.parseInt(request.getParameter("basketNo"));
+		
+		int result = new ProductService().updateBasket(basketQuantity,basketNo);
+		
+		if(result>0) {
+			
 		}
-		
-		
+		else {
+			System.out.println("뭐가 문제징?");
+			response.sendRedirect("/views/productPage/error.jsp");
+		}
 	}
 
 	/**

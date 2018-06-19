@@ -220,12 +220,12 @@ a{
 </script>
 <script>
 	function inputBasket(){
-		var basket_quantity = $('#qty').val();
-		var product_no = $('#product_no').val();
+		var basketQuantity = $('#qty').val();
+		var productNo = $('#product_no').val();
 		
 		$.ajax({
 			url : "/basketInsert",
-			data : {basket_quantity:basket_quantity,product_no:product_no},
+			data : {basketQuantity:basketQuantity,productNo:productNo},
 			type : "get",
 			success:function(data){
 				window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
@@ -256,13 +256,13 @@ a{
 					<div class="row">
 						<div class="col-md-6 col-sm-12"  id="title_img">
 							<center>
-								<img src="${productInfo.product_1st_pic}" width=80%>
+								<img src="${productInfo.product1stPic}" width=80%>
 							</center>
 						</div>
 
 						<div class="col-md-6 col-sm-12">
 							<br>
-							<h2 class="font">${productInfo.product_name}</h2>
+							<h2 class="font">${productInfo.productName}</h2>
 							<hr>
 							<div class="col-md-12">
 							
@@ -275,9 +275,9 @@ a{
 										<p>수량선택</p>
 									</div>
 									<div class="col-md-8">
-										<p id="price">${productInfo.product_price}</p>
+										<p id="price">${productInfo.productPrice}</p>
 										<p>묶음배송 (4만원 이상 무료배송)</p>
-										<p>${productInfo.product_quantity}</p>
+										<p>${productInfo.productQuantity}</p>
 										<button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
 									</div>
 								</div>
@@ -290,14 +290,14 @@ a{
 									</div>
 									<div class="col-md-3"><p id="sumqty" class="sum">수량 1개</p></div>
 									<div class="col-md-5" >
-										<p id="sumprice" class="sum">${productInfo.product_price}</p>
+										<p id="sumprice" class="sum">${productInfo.productPrice}</p>
 									</div>
 								</div>
 							</div>
 							<br>
 							<center>
 								<input type="hidden" id="basket_quantity" name="basket_quantity" value="1" >
-								<input type="hidden" id="product_no" value="${productInfo.product_no}" >
+								<input type="hidden" id="product_no" value="${productInfo.productNo}" >
 								<button class="btn btn-info" onclick="inputBasket();">장바구니</button>
 								
 								
@@ -334,7 +334,7 @@ a{
 				<div id="detail" class="col-md-12" style="padding: 0px;">
 
 				<center>
-					<img src="${productInfo.product_spec_pic}" height=100%></center>
+					<img src="${productInfo.productSpecPic}" height=100%></center>
 				</div>
 				
 

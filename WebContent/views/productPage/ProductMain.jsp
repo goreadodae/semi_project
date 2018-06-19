@@ -86,6 +86,12 @@
 
 #content1 {
 	background-color: white;
+	
+}
+
+#eachContent{
+	padding-left : 20px;
+	padding-right : 20px;
 }
 
 #desc {
@@ -142,7 +148,7 @@
 					<div class="row">
 
 						<!-- 첫번째 칸 -->
-						<div class="col-md-4 col-sm-12">
+						<div class="col-md-4 col-sm-12" id="eachContent">
 
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
@@ -153,9 +159,9 @@
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
-									<p class="p_title">${productList[0].product_name}</p>
+									<p class="p_title">${productList[0].productName}</p>
 									<hr>
-									<p class="price">${productList[0].product_price}</p><br>
+									<p class="price">${productList[0].productPrice}</p><br>
 								</div>
 							</div>
 
@@ -221,21 +227,21 @@
 							<div class="row">
 					</c:if>
 					
-					<div class="col-md-4 col-sm-12">
+					<div class="col-md-4 col-sm-12" id="eachContent">
 							<div id="content1" class="col-md-12 col-sm-12"
 								style="border: 1px solid #dadada; padding: 0px;">
-									<a href="/productDetail?product_no=${p.product_no}">
+									<a href="/productDetail?productNo=${p.productNo}">
 									<div class="container">
 										<img class="col-md-12 col-sm-12" style="padding: 0px;"
-										src="${p.product_1st_pic}" alt="제품이미지" 
+										src="${p.product1stPic}" alt="제품이미지" 
 										class="img-thumbnail">
 									</div>
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
-									<p class="p_title">${p.product_name}</p>
+									<p class="p_title">${p.productName}</p>
 									<hr>
-									<p class="price">${p.product_price}</p><br>
+									<p class="price">${p.productPrice}</p><br>
 								</div>
 							</div>
 					</div>
@@ -243,7 +249,7 @@
 					<!-- 줄바꿈 -->
 					<c:if test="${i.count%3==0}" var="result">
 							</div>
-						</div><br><br>
+						</div><br><br><br>
 					</c:if>
 						
 				</c:forEach>

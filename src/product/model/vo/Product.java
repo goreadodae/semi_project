@@ -1,82 +1,111 @@
 package product.model.vo;
 
 public class Product {
-	private int product_no;
-	private int product_quantity;
-	private String product_name;
-	private int product_price;
-	private String product_1st_pic;
-	private String product_spec_pic;
-	private String product_intro;
-	private String product_info;
+	private int productNo;
+	private int productQuantity;
+	private String productName;
+	private int productPrice;
+	private String product1stPic;
+	private String productSpecPic;
+	private String productIntro;
+	private String productInfo;
 	
 	
 	public Product() {}
-	
-	public Product(int product_no, int product_quantity, String product_name, int product_price, String product_1st_pic,
-			String product_spec_pic, String product_intro, String product_info) {
+
+
+	public Product(int productNo, int productQuantity, String productName, int productPrice, String product1stPic,
+			String productSpecPic, String productIntro, String productInfo) {
 		super();
-		this.product_no = product_no;
-		this.product_quantity = product_quantity;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_1st_pic = product_1st_pic;
-		this.product_spec_pic = product_spec_pic;
-		this.product_intro = product_intro;
-		this.product_info = product_info;
+		this.productNo = productNo;
+		this.productQuantity = productQuantity;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.product1stPic = product1stPic;
+		this.productSpecPic = productSpecPic;
+		this.productIntro = productIntro;
+		this.productInfo = productInfo;
 	}
-	
-	public int getProduct_no() {
-		return product_no;
+
+
+	public int getProductNo() {
+		return productNo;
 	}
-	public void setProduct_no(int product_no) {
-		this.product_no = product_no;
+
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
-	public int getProduct_quantity() {
-		return product_quantity;
+
+
+	public int getProductQuantity() {
+		return productQuantity;
 	}
-	public void setProduct_quantity(int product_quantity) {
-		this.product_quantity = product_quantity;
+
+
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
 	}
-	public String getProduct_name() {
-		return product_name;
+
+
+	public String getProductName() {
+		return productName;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public int getProduct_price() {
-		return product_price;
+
+
+	public int getProductPrice() {
+		return productPrice;
 	}
-	public void setProduct_price(int product_price) {
-		this.product_price = product_price;
+
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
-	public String getProduct_1st_pic() {
-		return product_1st_pic;
+
+
+	public String getProduct1stPic() {
+		return product1stPic;
 	}
-	public void setProduct_1st_pic(String product_1st_pic) {
-		this.product_1st_pic = product_1st_pic;
+
+
+	public void setProduct1stPic(String product1stPic) {
+		this.product1stPic = product1stPic;
 	}
-	public String getProduct_spec_pic() {
-		return product_spec_pic;
+
+
+	public String getProductSpecPic() {
+		return productSpecPic;
 	}
-	public void setProduct_spec_pic(String product_spec_pic) {
-		this.product_spec_pic = product_spec_pic;
+
+
+	public void setProductSpecPic(String productSpecPic) {
+		this.productSpecPic = productSpecPic;
 	}
-	public String getProduct_intro() {
-		return product_intro;
+
+
+	public String getProductIntro() {
+		return productIntro;
 	}
-	public void setProduct_intro(String product_intro) {
-		this.product_intro = product_intro;
+
+
+	public void setProductIntro(String productIntro) {
+		this.productIntro = productIntro;
 	}
-	public String getProduct_info() {
-		return product_info;
+
+
+	public String getProductInfo() {
+		return productInfo;
 	}
-	public void setProduct_info(String product_info) {
-		this.product_info = product_info;
+
+
+	public void setProductInfo(String productInfo) {
+		this.productInfo = productInfo;
 	}
-	
-	
-	
 
 }
 

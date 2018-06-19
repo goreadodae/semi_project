@@ -35,10 +35,10 @@ public class ForPurchaseSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//로그인 정보 임의로 1로 지정해놓음
-		int member_no=1;
+		int memberNo=1;
 		
 		ArrayList<Basket> basketList = new ArrayList<Basket>();
-		basketList = new ProductService().getMyBasket(member_no);
+		basketList = new ProductService().getMyBasket(memberNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/Purchase.jsp");
 		request.setAttribute("basket", basketList);

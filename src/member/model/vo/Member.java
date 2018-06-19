@@ -1,8 +1,7 @@
 package member.model.vo;
 
-import java.sql.Date;
-
 public class Member {
+	private int memberNo;
 	private String memberId;
 	private String memberPwd;
 	private String memberName;
@@ -12,7 +11,9 @@ public class Member {
 	private String gender;
 	private String email;
 	private String enrollDate;
-	
+	private String profile;
+	private String nickName;
+
 	public Member () {}
 
 	public String getMemberId() {
@@ -85,6 +86,30 @@ public class Member {
 
 	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 

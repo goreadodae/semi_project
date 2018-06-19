@@ -6,7 +6,6 @@
 <title>수상한 레시피</title>
 </head>
 
-
 <!-- 모든 스타일 시트 적용 -->
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
@@ -97,45 +96,49 @@
 			<!-- 인트로 이미지 -->
 			<div class="col-md-12 col-sm-12">
 				<div class="col-md-8 mx-auto text-center" id="intro-wrap">
-					<h3 style="font-family: 'Black Han Sans', sans-serif; font-weight: 200;">
+					<h3 style="font-family: 'Black Han Sans', sans-serif; font-weight: 200; color:#512772;">
 						누적 레시피
 					</h3>
 					<h1 style="font-family: 'Black Han Sans', sans-serif; font-weight: 800;">수상한
 						레시피에 레시피 올리고 수익올리자</h1>
 					<br>
-					<div class="col-md-8 mx-auto" id="intro-step" style="border: none;">
-
-						<div class="col-md-4" id="intro-step-wrap" style="padding:0px; border:1px solid black;">
-							<div style="width:100px; height:50px; position:absolute;">
-								<h4 style="line-height:50px; text-align:center; border:1px solid black;">STEP 1</h4>
+					<div class="col-md-8 mx-auto">
+						<div class="row">
+							<div class="col-md-4" style="height:50px;">
+								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 1</p>
 							</div>
-							<div class="mx-auto" style="border:1px solid black; width:110px; padding-top: 15px;">
+							<div class="col-md-4" style="height:50px;">
+								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 2</p>
+							</div>
+							<div class="col-md-4" style="height:50px;">
+								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 3</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-8 mx-auto" id="intro-step" style="border: none;">
+						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
+							<div class="mx-auto" style="width:110px; padding-top: 15px;">
 								<img id="intro_cook_img" src="/imgs/main-img/cook2.png" width="100">
 								<p style="padding-top:5px; margin:0px;">요리하고</p>
 							</div>
 						</div>
 
-						<div class="col-md-4" id="intro-step-wrap" style="padding:0px; border:1px solid black;">
-							<div style="width:100px; height:50px; position:absolute;">
-								<h4 style="line-height:50px; text-align:center; border:1px solid black;">STEP 2</h4>
-							</div>
-							<div class="mx-auto" style="border:1px solid black; width:110px; padding-top: 15px;">
+						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
+							<div class="mx-auto" style=" width:110px; padding-top: 15px;">
 								<img id="intro_recipe_img" src="/imgs/main-img/recipe.png" width="100">
 								<p style="padding-top:5px; margin:0px;">레시피 올리고</p>
 							</div>
 						</div>
 
-						<div class="col-md-4" id="intro-step-wrap" style="padding:0px; border:1px solid black;">
-							<div style="width:100px; height:50px; position:absolute;">
-								<h4 style="line-height:50px; text-align:center; border:1px solid black;">STEP 3</h4>
-							</div>
-							<div class="mx-auto" style="border:1px solid black; width:110px; padding-top: 15px;">
+						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
+							<div class="mx-auto" style="width:110px; padding-top: 15px;">
 								<img id="intro_money_img" src="/imgs/main-img/money.png" width="100">
 								<p style="padding-top:5px; margin:0px;">돈 벌자</p>
 							</div>
 						</div>
 					</div>
-					<br> <br>
+					<br>
 					<button type="button" class="col-md-3 btn btn btn-lg"
 						onclick="startClick();">시작하기</button>
 					<br> <br>
@@ -187,16 +190,25 @@
 					<br><br>
 					<div class="col-md-8 mx-auto">
 						<div class="row">
-						
+							<div class="position-absolute" style="right:20px; padding:0px; top:-35px; height:30px;">
+								<a href="/productList" style="text-decoration:none;">
+									<p style="color:#b5afab; line-height:30px;">
+										더보기 
+										<img src="/imgs/main-img/plus.png" height="15" width="15">
+									</p>
+								</a>
+							</div>
 							<!-- 추천 이벤트 이미지 슬라이드 -->
 							<div class="col-md-3" id="recommendEvent" style="height:400px; padding-right:20px;">
 								<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height:400px;">
   									
   									<!-- 슬라이드 -->
   									<div class="carousel-inner">
+  										
     									<div class="carousel-item active">
-     										<img id="product_img_1" class="d-block w-100 bg-overlay" alt="First slide" height="400">
-     										
+    										<a href="javascript:void(0)">
+     											<img id="product_img_1" class="d-block w-100 bg-overlay" alt="First slide" height="400" name="sale_img">
+     										</a>
      										<!-- 라벨 -->
      										<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">초특가</h5>
@@ -208,11 +220,18 @@
 												<p id="product_sale_title_1" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sale_price_1" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+								   		 	<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sale_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   		 </div>
 								   		 
 								   		 <div class="carousel-item">
-								      		<img id="product_img_2" class="d-block w-100" alt="Second slide" height="400">
-								      		
+								      		<a href="javascript:void(0)">
+								      			<img id="product_img_2" class="d-block w-100" alt="Second slide" height="400" name="sale_img">
+								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">초특가</h5>
@@ -224,11 +243,18 @@
 												<p id="product_sale_title_2" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sale_price_2" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sale_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								    	</div>
 								    	
 								    	<div class="carousel-item">
-								      		<img id="product_img_3" class="d-block w-100" alt="Third slide" height="400">
-								      		
+								    		<a href="javascript:void(0)">
+								      			<img id="product_img_3" class="d-block w-100" alt="Third slide" height="400" name="sale_img">
+								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">초특가</h5>
@@ -240,14 +266,22 @@
 												<p id="product_sale_title_3" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sale_price_3" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sale_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   	 	</div>
 									</div>
 									
-								  	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+								  	<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Previous</span>
 								  	</a>
-								  	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								  	<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Next</span>
 								  	</a>
@@ -260,7 +294,9 @@
   									
   									<div class="carousel-inner">
     									<div class="carousel-item active">
-     										<img id="product_new_img_1" class="d-block w-100" alt="First slide" height="400">
+    										<a href="javascript:void(0)">
+     											<img id="product_new_img_1" class="d-block w-100" alt="First slide" height="400" name="new_img">
+     										</a>
      										<!-- 라벨 -->
      										<div class="position-absolute" style="top:0px; background-color:#e66768; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">신상품</h5>
@@ -271,10 +307,18 @@
 												<p id="product_new_title_1" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_new_price_1" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="new_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   		 </div>
 								   		 
 								   		 <div class="carousel-item">
-								      		<img id="product_new_img_2"  class="d-block w-100" alt="Second slide" height="400">
+								   		 	<a href="javascript:void(0)">
+								      			<img id="product_new_img_2"  class="d-block w-100" alt="Second slide" height="400" name="new_img">
+								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#e66768; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">신상품</h5>
@@ -285,10 +329,18 @@
 												<p id="product_new_title_2" style="color:white; padding:5px; margin:0px"></p>
 												<p id="product_new_price_2" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="new_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								    	</div>
 								    	
 								    	<div class="carousel-item">
-								      		<img id="product_new_img_3"  class="d-block w-100" alt="Third slide" height="400">
+								    		<a href="javascript:void(0)">
+								      			<img id="product_new_img_3"  class="d-block w-100" alt="Third slide" height="400" name="new_img">
+								      		</a>
 								      		<!-- 라벨  -->
 								      		<div class="position-absolute" style="top:0px; background-color:#e66768; width:80px; height:80px;">
 												<h5 style="color:white; line-height:80px; text-align:center;">신상품</h5>
@@ -299,14 +351,22 @@
 												<p id="product_new_title_3" style="color:white; padding:5px; margin:0px"></p>
 												<p id="product_new_price_3" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="new_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   	 	</div>
 									</div>
 									
-								  	<a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
+								  	<a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Previous</span>
 								  	</a>
-								  	<a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+								  	<a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Next</span>
 								  	</a>
@@ -319,8 +379,8 @@
   									<!-- 슬라이드 -->
   									<div class="carousel-inner">
     									<div class="carousel-item active">
-    										<a href="#">
-     											<img id="product_imminent_img_1" class="d-block w-100" alt="First slide" height="400">
+    										<a href="javascript:void(0)">
+     											<img id="product_imminent_img_1" class="d-block w-100" alt="First slide" height="400" name="sold_img">
      										</a>
      										<!-- 라벨 -->
      										<div class="position-absolute" style="top:0px; background-color:#512772; width:80px; height:80px;">
@@ -332,10 +392,17 @@
 												<p id="product_sold_title_1" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sold_price_1" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sold_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   		 </div>
+								   		 
 								   		 <div class="carousel-item">
-								   		 	<a href="#">
-								      			<img id="product_imminent_img_2"  class="d-block w-100" alt="Second slide" height="400">
+								   		 	<a href="javascript:void(0)">
+								      			<img id="product_imminent_img_2"  class="d-block w-100" alt="Second slide" height="400" name="sold_img">
 								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#512772; width:80px; height:80px;">
@@ -347,10 +414,17 @@
 												<p id="product_sold_title_2" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sold_price_2" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sold_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								    	</div>
+								    	
 								    	<div class="carousel-item">
-								      		<a href="#">
-								      			<img id="product_imminent_img_3"  class="d-block w-100" alt="Third slide" height="400">
+								      		<a href="javascript:void(0)">
+								      			<img id="product_imminent_img_3"  class="d-block w-100" alt="Third slide" height="400" name="sold_img">
 								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#512772; width:80px; height:80px;">
@@ -362,14 +436,22 @@
 												<p id="product_sold_title_3" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_sold_price_3" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="sold_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   	 	</div>
 									</div>
 									
-								  	<a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev">
+								  	<a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev" 
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Previous</span>
 								  	</a>
-								  	<a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+								  	<a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Next</span>
 								  	</a>
@@ -381,8 +463,8 @@
   									<!-- 슬라이드 -->
   									<div class="carousel-inner">
     									<div class="carousel-item active">
-    										<a href="#">
-     											<img id="product_season_img_1" class="d-block w-100" alt="First slide" height="400">
+    										<a href="javascript:void(0)">
+     											<img id="product_season_img_1" class="d-block w-100" alt="First slide" height="400" name="season_img">
      										</a>
      										<!-- 라벨 -->
      										<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
@@ -394,10 +476,16 @@
 												<p id="product_season_title_1" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_season_price_1" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="season_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   		 </div>
 								   		 <div class="carousel-item">
-								   		 	<a href="#">
-								      			<img id="product_season_img_2"  class="d-block w-100" alt="Second slide" height="400">
+								   		 	<a href="javascript:void(0)">
+								      			<img id="product_season_img_2"  class="d-block w-100" alt="Second slide" height="400" name="season_img">
 								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
@@ -409,10 +497,16 @@
 												<p id="product_season_title_2" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_season_price_2" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="season_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								    	</div>
 								    	<div class="carousel-item">
-								    		<a href="#">
-								      			<img id="product_season_img_3"  class="d-block w-100" alt="Third slide" height="400">
+								    		<a href="javascript:void(0)">
+								      			<img id="product_season_img_3"  class="d-block w-100" alt="Third slide" height="400" name="season_img">
 								      		</a>
 								      		<!-- 라벨 -->
 								      		<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
@@ -424,14 +518,22 @@
 												<p id="product_season_title_3" style="color:white; padding:5px; margin:0px;"></p>
 												<p id="product_season_price_3" style="color:white; padding-left:5px; font-weight:800"></p>
 											</div>
+											<div class="position-absolute" style="height:60px; bottom:0px; right:0px;">
+								   		 		<a href="javascript:void(0)" name="season_btn">
+								   		 			<img src="/imgs/main-img/shopping-cart.png" height="35" width="35" 
+								   		 		  	    style="margin-top:11px; margin-right:8px;">
+								   		 		</a>
+								   		 	</div>
 								   	 	</div>
 									</div>
 									
-								  	<a class="carousel-control-prev" href="#carouselExampleControls4" role="button" data-slide="prev">
+								  	<a class="carousel-control-prev" href="#carouselExampleControls4" role="button" data-slide="prev"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Previous</span>
 								  	</a>
-								  	<a class="carousel-control-next" href="#carouselExampleControls4" role="button" data-slide="next">
+								  	<a class="carousel-control-next" href="#carouselExampleControls4" role="button" data-slide="next"
+								  	   style="height:200px; top:25%;">
 								    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								    	<span class="sr-only">Next</span>
 								  	</a>
@@ -446,6 +548,22 @@
 				
 				<script>
 					$(document).ready(function() {
+						// 메인 페이지에서 장바구니 담을시 무조건 1개씩
+						var basketQuantity = 1;
+						// 초특가
+						var saleProductNoArr = [];
+						var saleImgArr = [];
+						// 신상품
+						var newProductNoArr  = [];
+						var newImgArr = [];
+						
+						// 매진임박
+						var soldProductNoArr = [];
+						var soldImgArr = [];
+						
+						// 계절메뉴
+						var seasonProductNoArr = [];
+						var seasonImgArr = [];
 						
 						// 초특가
 						$.ajax({
@@ -459,7 +577,48 @@
 									$('#product_img_' + (i + 1)).attr("src", data[i].product_1st_pic);
 									$('#product_sale_title_' + (i + 1)).html(data[i].product_name);
 									$('#product_sale_price_' + (i + 1)).html(data[i].product_price+"원");
+									
+									saleImgArr.push(data[i].product_1st_pic);
+									saleProductNoArr.push(data[i].product_no);
 								}
+								
+								var imgs = $('[name=sale_img]');
+								var saleBtn = $('[name=sale_btn]');
+								
+								$('[name=sale_img]').each(function(index) {
+										
+									var index2 = index;
+									$(this).click(function() {
+										if ($(this).attr("src") == saleImgArr[index2]) {
+											var productNo = saleProductNoArr[index2];
+											location.href = "/productDetail?productNo=" + productNo;
+										}
+									});
+								})
+								
+								// 장바구니 클릭 시 장바구니 담기기
+								$('[name=sale_btn]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										
+										var productNo = saleProductNoArr[index2];
+										
+										$.ajax({
+											url : "/basketInsert",
+											data : {basketQuantity:basketQuantity,productNo:productNo},
+											type : "get",
+											success:function(data){
+												window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+												console.log("성공");
+											},
+											error:function(){
+												console.log("실패");
+											}
+										});
+									});
+								})
 							},
 							error : function() {
 								console.log("실패");
@@ -477,7 +636,50 @@
 									$('#product_new_img_' + (i + 1)).attr("src", data[i].product_1st_pic);
 									$('#product_new_title_' + (i + 1)).html(data[i].product_name);
 									$('#product_new_price_' + (i + 1)).html(data[i].product_price+"원");
+									
+									newImgArr.push(data[i].product_1st_pic);
+									newProductNoArr.push(data[i].product_no);
 								}
+								
+								var imgs = $('[name=new_img]');
+								
+								$('[name=new_img]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										if ($(this).attr("src") == newImgArr[index2]) {
+											var productNo = newProductNoArr[index2];
+											location.href = "/productDetail?productNo=" + productNo;
+										}
+									});
+								});
+								
+								// 장바구니 클릭 시 장바구니 담기기
+								$('[name=new_btn]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										
+										var productNo = newProductNoArr[index2];
+										
+										$.ajax({
+											url : "/basketInsert",
+											data : {basketQuantity:basketQuantity,productNo:productNo},
+											type : "get",
+											success:function(data){
+												window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+												console.log("성공");
+											},
+											error:function(){
+												console.log("실패");
+											}
+										});
+									});
+								});
+								
+								
 							},
 							error : function() {
 								console.log("실패");
@@ -496,7 +698,48 @@
 									$('#product_imminent_img_' + (i + 1)).attr("src", data[i].product_1st_pic);
 									$('#product_sold_title_' + (i + 1)).html(data[i].product_name);
 									$('#product_sold_price_' + (i + 1)).html(data[i].product_price+"원");
+									
+									soldImgArr.push(data[i].product_1st_pic);
+									soldProductNoArr.push(data[i].product_no);
 								}
+								
+								var imgs = $('[name=sold_img]');
+								
+								$('[name=sold_img]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										if ($(this).attr("src") == soldImgArr[index2]) {
+											var productNo = soldProductNoArr[index2];
+											location.href = "/productDetail?productNo=" + productNo;
+										}
+									});
+								});
+								
+								// 장바구니 클릭 시 장바구니 담기기
+								$('[name=sold_btn]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										
+										var productNo = soldProductNoArr[index2];
+										
+										$.ajax({
+											url : "/basketInsert",
+											data : {basketQuantity:basketQuantity,productNo:productNo},
+											type : "get",
+											success:function(data){
+												window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+												console.log("성공");
+											},
+											error:function(){
+												console.log("실패");
+											}
+										});
+									});
+								});
 							},
 							error : function() {
 								console.log("실패");
@@ -515,7 +758,46 @@
 									$('#product_season_img_' + (i + 1)).attr("src", data[i].product_1st_pic);
 									$('#product_season_title_' + (i + 1)).html(data[i].product_name);
 									$('#product_season_price_' + (i + 1)).html(data[i].product_price+"원");
+									
+									seasonImgArr.push(data[i].product_1st_pic);
+									seasonProductNoArr.push(data[i].product_no);
 								}
+								
+								var imgs = $('[name=season_img]');
+								
+								$('[name=season_img]').each(function(index) {
+										
+									var index2 = index;
+					
+									$(this).click(function() {
+										if ($(this).attr("src") == seasonImgArr[index2]) {
+											var productNo = soldProductNoArr[index2];
+											location.href = "/productDetail?productNo=" + productNo;
+										}
+									});
+								});
+								
+								// 장바구니 클릭 시 장바구니 담기기
+								$('[name=season_btn]').each(function(index) {
+									
+									var index2 = index;
+									
+									$(this).click(function() {
+										var productNo = seasonProductNoArr[index2];
+										$.ajax({
+											url : "/basketInsert",
+											data : {basketQuantity:basketQuantity,productNo:productNo},
+											type : "get",
+											success:function(data){
+												window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+												console.log("성공");
+											},
+											error:function(){
+												console.log("실패");
+											}
+										});
+									});
+								})
 							},
 							error : function() {
 								console.log("실패");
@@ -576,11 +858,11 @@
 							<div class="row">
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<!-- 이미지 -->
 										<a href="javascript:void(0)" id="week_link_1"> 
 											<img id="week_img_1" class="img col-md-12 col-sm-12" name="week_img"
-											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">
@@ -608,10 +890,10 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="week_link_2"> 
 											<img id="week_img_2" class="img col-md-12 col-sm-12" name="week_img"
-											  style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										
 										<div class="col-md-12" style="padding: 0px;">
@@ -639,10 +921,10 @@
 								
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="week_img_3" class="img col-md-12 col-sm-12" name="week_img"
-											  style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">
@@ -668,10 +950,10 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="week_link_4"> 
 											<img id="week_img_4" class="img col-md-12 col-sm-12" name="week_img"
-											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">
@@ -701,8 +983,8 @@
 				</div>
 
 				<script>
-					/* 조회수 증가 */
-					/* 레시피 받아오기 */
+				/* 조회수 증가 */
+				/* 레시피 받아오기 */
 					$(document).ready(function() {
 						var recipeImgArr = [];
 						var recipeNoArr = [];
@@ -723,11 +1005,9 @@
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
 								}
-				
 								var imgs = $('[name=week_img]');
 				
 								$('[name=week_img]').each(function(index) {
-				
 									var index2 = index;
 				
 									$(this).click(function() {
@@ -736,7 +1016,6 @@
 											location.href = "/upView?recipe_no=" + recipeNo;
 										}
 									});
-				
 								})
 							},
 							error : function() {
@@ -763,11 +1042,11 @@
 							
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<!-- 이미지 -->
 										<a href="javascript:void(0)" id="month_link_1"> 
 											<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
-											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">
@@ -795,10 +1074,10 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="month_link_2"> 
 											<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
-											  style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										
 										<div class="col-md-12" style="padding: 0px;">
@@ -825,10 +1104,10 @@
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
 									
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
-											  style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">
@@ -855,10 +1134,10 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 450px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
 										<a href="javascript:void(0)" id="month_link_4"> 
 											<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
-											style="padding: 0px;" alt="이미지" height="355" class="img-thumbnail">
+											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 
 										<div class="col-md-12" style="padding: 0px;">

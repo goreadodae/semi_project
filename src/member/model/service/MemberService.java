@@ -7,7 +7,6 @@ import common.JDBCTemplate;
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 
-
 public class MemberService {
 	
 	public boolean sendEmail(String email, String code) {
@@ -17,16 +16,15 @@ public class MemberService {
 		if(result==false) {
 			new MemberDao().sendEmail(email, code);
 		}
-		
+		JDBCTemplate.close(conn);
 		return result;
-		
 	}
 
 	public boolean idCheck(String userId) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		boolean result = new MemberDao().idCheck(userId, conn);
-		
+		JDBCTemplate.close(conn);
 		return result;
 	}
 
@@ -39,27 +37,37 @@ public class MemberService {
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
-		
+		JDBCTemplate.close(conn);
 		return result;
 		
 	}
 
 
 	public Member login(String loginId, String loginPwd) {
-		
 		Connection conn = JDBCTemplate.getConnection();
 		Member m = new MemberDao().login(loginId,loginPwd, conn);
-		
+		JDBCTemplate.close(conn);
 		return m;
 	}
 
 	public boolean pwdCheck(String password, String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		boolean result = new MemberDao().pwdCheck(conn, password,id);
-		
+		JDBCTemplate.close(conn);
 		return result;
-		
-		
 	}
+	
+	public int changInfo(String fullFilePath, String userId) {
+	      Connection conn = JDBCTemplate.getConnection();
+	      int result = new MemberDao().changeInfo(conn, userId, fullFilePath);
+	      
+	      if(result>0) {
+	         JDBCTemplate.commit(conn);
+	      }else {
+	         JDBCTemplate.rollback(conn);
+	      }
+	      return result;
+	   }
+
 
 }

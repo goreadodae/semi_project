@@ -8,8 +8,8 @@ import common.JDBCTemplate;
 import main.model.dao.MainDao;
 import main.model.vo.MainProduct;
 import main.model.vo.MainRecipe;
-import main.model.vo.searchRecipe;
-import main.model.vo.searchRecipePageData;
+import main.model.vo.SearchRecipe;
+import main.model.vo.SearchRecipePageData;
 
 public class MainService {
 	
@@ -91,7 +91,7 @@ public class MainService {
 	}
 
 	// 레시피 페이지
-	public searchRecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order, String searchVal) {
+	public SearchRecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order, String searchVal) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -102,17 +102,17 @@ public class MainService {
 		int naviCountPerPage = 5;
 		
 		// 전체 레시피
-		ArrayList<searchRecipe> list = new MainDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order, searchVal);
+		ArrayList<SearchRecipe> list = new MainDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order, searchVal);
 		
 		// 레시피 페이지 수 
 		String pageNavi = new MainDao().getPageNavi(conn, page, recordCountPerPage, naviCountPerPage, cate1, cate2, cate3, cate4, order, searchVal);
 		
 		JDBCTemplate.close(conn);
 		
-		searchRecipePageData sRPD = null;
+		SearchRecipePageData sRPD = null;
 		
 		if(!list.isEmpty() && !pageNavi.isEmpty()) {
-			sRPD = new searchRecipePageData();
+			sRPD = new SearchRecipePageData();
 			sRPD.setDataList(list);
 			sRPD.setPageNavi(pageNavi);
 		}

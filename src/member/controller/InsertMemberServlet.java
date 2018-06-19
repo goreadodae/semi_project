@@ -34,29 +34,32 @@ public class InsertMemberServlet extends HttpServlet {
 		Member m = new Member();
 		String phone = request.getParameter("phone1")+request.getParameter("phone2");
 		String address = request.getParameter("postcode")+" | "+request.getParameter("roadAddress")+" | "+request.getParameter("addAddress");
+		
 		StringBuffer setPhone = new StringBuffer(phone);
-		System.out.println(address);
+		
 		setPhone.insert(3, "-");
 		setPhone.insert(8, "-");
+		
+		String birth = request.getParameter("birth");
+		StringBuffer setBirth = new StringBuffer(birth);
+		setBirth.insert(2, "/");
+		setBirth.insert(5, "/");
 		
 		m.setMemberId(request.getParameter("userId"));
 		m.setMemberPwd(request.getParameter("userPwd"));
 		m.setMemberName(request.getParameter("userName"));
-		m.setBirthDate(request.getParameter("birth"));
+		m.setBirthDate(setBirth.toString());
 		m.setPhone(setPhone.toString());
 		m.setAddress(address);
 		m.setGender(request.getParameter("gender"));
 		m.setEmail(request.getParameter("email"));
 		
-		
-		
-		
 		int result = new MemberService().insertMember(m);
 		
 		if(result>0) {
-			System.out.println("¼º°ø");
+			response.sendRedirect("/index.jsp");
 		}else {
-			System.out.println("½ÇÆÐ");
+			System.out.println("ì‹¤íŒ¨");
 		}
 	}
 

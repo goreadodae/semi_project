@@ -48,6 +48,8 @@
 	/* 재료양념-전체 추가부분 */
 	var materNum = 3; 
 	var materAllDel =1;
+	var materDivA = 7; var materDivB = 101; var materDivC = 201; var materDivD = 301; 
+	var materDivE = 401; var materDivF = 501; var materDivG = 601;
 
 	function materComPlus(){
 		
@@ -55,7 +57,8 @@
 				'<div class="col-md-4 id="materLeft">'+
 				'<div class="row">'+
 				'<div class="col-md-12">'+
-				'<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료"></div></div>'+
+				'<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료" id="textMater'+materDivA+'" onchange="materListPlusName('+materDivA+')">'+
+				'<input type="hidden" id="materListId'+materDivA+'" name="materList" value=""></div></div>'+
 				'</div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
 				'<div class="row">'+
@@ -64,26 +67,33 @@
 			'<div class="col-md-8 id="materRight" id="materPlus'+materNum+'">'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row">'+	
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivB+'" onchange="materListPlusOne('+materDivB+')">'+
+				'<input type="hidden" id="materListId'+materDivB+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivC+'" onchange="materListPlusTwo('+materDivC+')">'+
+				'<input type="hidden" id="materListId'+materDivC+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row">'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivD+'" onchange="materListPlusOne('+materDivD+')">'+
+				'<input type="hidden" id="materListId'+materDivD+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivE+'" onchange="materListPlusTwo('+materDivE+')">'+
+				'<input type="hidden" id="materListId'+materDivE+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'+
 			'<div id="materPlusRow'+materNum+'">'+
 			'<div class="row" id="materPlusRow2">'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivF+'" onchange="materListPlusOne('+materDivF+')">'+
+				'<input type="hidden" id="materListId'+materDivF+'" name="materList" value=""></div>'+
+				'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivG+'" onchange="materListPlusTwo('+materDivG+')">'+
+				'<input type="hidden" id="materListId'+materDivG+'" name="materList" value=""></div>'+
 				'<div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div></div></div>'+
 			'<div class="row"><div class="col-md-12">　　</div></div>'+
 					'<div class="row"><div class="col-md-8 mx-auto">'+
 					'<div class="row"><div class="col-md-2 mx-auto"><button type="button" class="btn btn-default" onclick="materPlus('+materNum+');">추가</button></div></div></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>'); materNum++; materAllDel++;
+				materDivA++; materDivB++; materDivC++; materDivD++; materDivE++; materDivF++; materDivG++;
 				
 	}
 	
@@ -97,12 +107,17 @@
 	
 	
 	/* 재료 추가 부분  */	
-		 
+		 var materDivH = 801;
+		var materDivI = 901;
 	function materPlus(materNum){
 		
-		$('#materPlus'+materNum).append('<div id="materPlusRow'+materNum+'" style="resize: none;"><div class="row"><div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>'+
-		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
-		materNum++;
+		$('#materPlus'+materNum).append('<div id="materPlusRow'+materNum+'" style="resize: none;"><div class="row"><div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivH+'" onchange="materListPlusOne('+materDivH+')">'+
+		'<input type="hidden" id="materListId'+materDivH+'" name="materList" value=""></div>'+
+		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivI+'" onchange="materListPlusTwo('+materDivI+')">'+
+		'<input type="hidden" id="materListId'+materDivI+'" name="materList" value="">'+
+		'</div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
+		materNum++; materDivH++; materDivI++;
+		
 	}  
 	
 	
@@ -117,13 +132,15 @@
 	/* 요리순서-step 추가 넣는 곳  */
 	 var count = 2;
 	var plusNum =1;
+	var stepBtnCount = 1;
 	  function stepPlus(){
 		  
-		$('.test').append('<div class="row"><div class="col-md-2"><h3>Step'+count+'</h3></div>'+
-				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;"></textarea></div>'+
+		$('.stepPlusRow').append('<div class="stepPlusCount"><div class="row"><div class="col-md-2"><h3>Step'+count+'</h3></div>'+
+				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA'+plusNum+'"></textarea></div>'+
 				'<div class="col-md-3"><div class="row"><div class="col-md-12" id="stepImg'+plusNum+'">'+
 					'<input id="stepImgFile'+plusNum+'" multiple="multiple" type="file" style="display:none" onchange="readURL(this,'+plusNum+');"/>'+
-					'<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_'+plusNum+'" onclick="document.all.stepImgFile'+plusNum+'.click();"></div></div></div></div>'+
+					'<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_'+plusNum+'" onclick="document.all.stepImgFile'+plusNum+'.click();">'+
+					'<input type="hidden" id="stepRPic'+plusNum+'" name="stepRPic" value=""></div></div></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
 				'<div class="row">'+
 				'<div class="col-md-6 mx-auto">'+
@@ -142,21 +159,22 @@
 					'<div class="row">'+
 					'<div class="col-md-6 mx-auto">'+
 					'<div class="row"><div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>'+
-						'<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>'+
+						'<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g" id="textIngre'+plusNum+'"></div></div></div></div></form>'+
 					'<form class="mater" style="display:none;" id="toolPlus'+plusNum+'">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tool.png"></div>'+
-						'<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></form>'+
+						'<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼" id="textTools'+plusNum+'"></div></div></div></div></form>'+
 					'<form class="mater" style="display:none;" id="firePlus'+plusNum+'">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_fire.png"></div>'+
-						'<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></form>'+
+						'<div class="col-md-10"><input type="text" class="form-control" placeholder="약불" id="textFireLvl'+plusNum+'"></div></div></div></div></form>'+
 					'<form class="mater" style="display:none;" id="tipPlus'+plusNum+'">'+
 					'<div class="row"><div class="col-md-6 mx-auto"><div class="row">'+
 						'<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tip2.png"></div>'+
-						'<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></form>'+
-					'<div class="row"><div class="col-md-12">　　</div></div>'); count++; plusNum++;
+						'<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;" id="textTip'+plusNum+'"></textarea></div></div></div></div></form>'+
+					'<div class="row"><div class="col-md-12">　　</div></div></div>'); count++; plusNum++; stepBtnCount++;
 					
+				/* 	 $('#stepBtnCount').attr('value',stepBtnCount); */
 		} 
 	
 	/* 네비게이션부분  */
@@ -230,7 +248,7 @@
 	
 	
 	
-		/* 그림추가부분-요리완성1  */ sendPicSucOne
+		/* 그림추가부분-요리완성1  */
 	 $(document).ready(function() {
 	        $("#fileSucOne").on('change', function() {
 	          //Get count of selected files
@@ -248,9 +266,8 @@
 	                reader.onload = function(e) {
 	                	imgFile_Suc_One.attr('src',e.target.result);
 	                	
-	                	 var imgAddr = $('#imgFile_Suc_One').attr('src');
-	                       $('#sendPicSucOne').attr('value',imgAddr); 
-	                }
+	                var imgAddr = $('#imgFile_Suc_One').attr('src');
+	                $('#sendPicSucOne').attr('value',imgAddr);}
 	                imgFile_Suc_One.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
 	              }
@@ -262,6 +279,8 @@
 	          }
 	        });
 	      });
+		
+		
 		
 		/* 그림추가부분-요리완성2  */
 	 $(document).ready(function() {
@@ -281,7 +300,9 @@
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Two.attr('src',e.target.result);
 	         
-	                	console.log(e.target.result);
+	                	 var imgAddr = $('#imgFile_Suc_Two').attr('src');
+		 	                $('#sendPicSucTwo').attr('value',imgAddr);
+		 	                
 	                }
 	                imgFile_Suc_Two.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -312,6 +333,9 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Thrid.attr('src',e.target.result);
+	                	
+	                	var imgAddr = $('#imgFile_Suc_Thrid').attr('src');
+	 	                $('#sendPicSucThrid').attr('value',imgAddr);
 	                }
 	                imgFile_Suc_Thrid.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -342,6 +366,9 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Four.attr('src',e.target.result);
+	                	
+	                	 var imgAddr = $('#imgFile_Suc_Four').attr('src');
+		 	                $('#sendPicSucFour').attr('value',imgAddr);
 	                }
 	                imgFile_Suc_Four.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -372,6 +399,10 @@
 	                var reader = new FileReader();
 	                reader.onload = function(e) {
 	                	imgFile_Suc_Five.attr('src',e.target.result);
+	                
+	                	 var imgAddr = $('#imgFile_Suc_Five').attr('src');
+		 	                $('#sendPicSucFive').attr('value',imgAddr);
+	                	
 	                }
 	                imgFile_Suc_Five.show();
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -404,22 +435,38 @@
 	            	  var reader = new FileReader();
 	            	  if(i==0){
 	                reader.onload = function(e) {
-	                	imgFile_Suc_One.attr('src',e.target.result);}
+	                	imgFile_Suc_One.attr('src',e.target.result);
+	                
+	                	var imgAddr = $('#imgFile_Suc_One').attr('src');
+		                $('#sendPicSucOne').attr('value',imgAddr); }
 	                }else if(i==1){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Two.attr('src',e.target.result);
+	                		
+	                		var imgAddr = $('#imgFile_Suc_Two').attr('src');
+		 	                $('#sendPicSucTwo').attr('value',imgAddr);
 		                }
 	                }else if(i==2){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Thrid.attr('src',e.target.result);
+	                		
+	                		var imgAddr = $('#imgFile_Suc_Thrid').attr('src');
+		 	                $('#sendPicSucThrid').attr('value',imgAddr);
+	                	
 		                }
 	                }else if(i==3){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Four.attr('src',e.target.result);
+	                		
+	                		 var imgAddr = $('#imgFile_Suc_Four').attr('src');
+			 	                $('#sendPicSucFour').attr('value',imgAddr);
 		                }
 	                }else if(i==4){
 	                	reader.onload = function(e) {
 	                		imgFile_Suc_Five.attr('src',e.target.result);
+	                		
+	                		 var imgAddr = $('#imgFile_Suc_Five').attr('src');
+			 	                $('#sendPicSucFive').attr('value',imgAddr);
 		                }
 	                }
 	                reader.readAsDataURL($(this)[0].files[i]);
@@ -443,10 +490,14 @@
 	        reader.onload = function (e) {
 	        	$('#imgFile_Step_'+stepImgNum).attr('src', e.target.result);
 	        	
+	        	var imgAddr = $('#imgFile_Step_'+stepImgNum).attr('src');
+	                $('#stepRPic'+stepImgNum).attr('value',imgAddr);
+	        	
 	        }
 	 
 	        reader.readAsDataURL(input.files[0]);
 	    	}
+	    	
 		};
 		
 	
@@ -464,6 +515,71 @@
 		 
 	 };
 	 
+	 /*재료-text값 hidden값에 value 넣어주기 */
+	 
+	 function materListPlusOne(num) {
+		
+		 var textVal = document.getElementById('textMater'+num).value;
+		 var textValChg = textVal+" ";
+         $('#materListId'+num).attr('value',textValChg);
+		 
+	 }
+	 
+	 function materListPlusTwo(num) {
+			
+		 var textVal = document.getElementById('textMater'+num).value;
+		 var textValChg = textVal+"-";
+         $('#materListId'+num).attr('value',textValChg);
+		 
+	 }
+	 
+	 
+	 function materListPlusName(num) {
+			
+		 var textVal = document.getElementById('textMater'+num).value;
+		 var textValChg = "["+textVal+"]"
+         $('#materListId'+num).attr('value',textValChg);
+		 
+	 }
+	 
+	 /* /* step-text값 hidden값에 value 넣어주기 */
+	 
+
+	  /* function stepListPlus(num) {
+		
+		 var textVal = document.getElementById('stepTA'+num).value;
+         $('#stepRText'+num).attr('value',textVal);
+		 
+	 }  */
+	 
+	 /* step-array로 넘기기 */
+	 var stepArray = new Array();
+	 
+	  function stepList(){
+		
+		var sa;
+		for(var i=0;i<stepBtnCount;i++){
+				
+				sa = document.createElement("input");
+
+				sa.type = "hidden";
+
+				sa.name = "stepArrayList";
+						var processOrder = i+1;
+						var processExplain = document.getElementById('stepTA'+i).value;
+						var processPic = $('#imgFile_Step_'+i).attr('src');
+						var ingre = document.getElementById('textIngre'+i).value;
+						var tools = document.getElementById('textTools'+i).value;
+						var fireLevel = document.getElementById('textFireLvl'+i).value;
+				  		var tip = document.getElementById('textTip'+i).value;
+				sa.value = processOrder+"|"+processExplain+"|"+processPic+"|"+ingre+"|"+tools+"|"+fireLevel+"|"+tip;
+						
+			    $('.stepPlusCount').append(sa);
+			    
+		 }   
+				
+	 } 
+	 
 </script>
 
 
@@ -476,7 +592,7 @@
 		<div id="header"></div>
 		<br><br>
 		<!-- 컨테츠예용! -->
-		<form action="/insertRecipe" method="post">
+		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
 		<div class="row" id="inRecipe">
 		
 			<div class="col-md-8 mx-auto" id="inRecipeTitle">
@@ -640,7 +756,7 @@
 				<div class="col-md-3"> <!-- 메인 사진 넣는 곳  -->
 					<div class="row">
 					<div class="col-md-12" id="wrapper">
-					<input id="fileUpload" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileUpload" name="fileUpload" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none4.jpg" width="230" height="230" id="imgFile_Main" onclick="document.all.fileUpload.click();">
 					 <input type="hidden" id="mainRPic" name="mainRPic" value="">
 					</div></div>
@@ -664,12 +780,13 @@
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div id="materComPlus">
 				<div id="materComPlusAllDel0">
-				<div class="row">
+				<div class="row"> 
 					<div class="col-md-4 id="materLeft">
 						<div class="row"> 
 						<div class="col-md-12">
-						<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료"></div></div>
-						</div></div>
+						<div class="row"><div class="col-md-12"><input type="text" class="form-control" placeholder="재료" id="textMater0" onchange="materListPlusName(0)">
+						<!-- textMater0_0은 onchange 함수를 실행시킬시 구분을위한 id값 여기서 1번째 0은 재료의 전체 row번호 // 뒷자리 2번째 0은 재료row의 메인 text를 0번시작으로 추가가 될수록 값이 증가-->
+						<input type="hidden" id="materListId0" name="materList" value=""></div></div></div></div>
 						<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 						<div class="row">
 						<div class="col-md-12"><button type="button" onclick="materAllDelBtn(0);">삭제</button></div>
@@ -679,22 +796,28 @@
 					<div class="col-md-8 id="materRight" id="materPlus0">
 					<div id="materPlusRow0">
 					<div class="row">				
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater1" onchange="materListPlusOne(1)">
+						<input type="hidden" id="materListId1" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater2" onchange="materListPlusTwo(2)">
+						<input type="hidden" id="materListId2" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(0);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
 					<div id="materPlusRow1">
 					<div class="row">
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater3" onchange="materListPlusOne(3)">
+						<input type="hidden" id="materListId3" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater4" onchange="materListPlusTwo(4)">
+						<input type="hidden" id="materListId4" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(1);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
 					<div id="materPlusRow2">
 					<div class="row" id="materPlusRow2">
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기"></div>
-						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g"></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater5" onchange="materListPlusOne(5)">
+						<input type="hidden" id="materListId5" name="materList" value=""></div>
+						<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater6" onchange="materListPlusTwo(6)">
+						<input type="hidden" id="materListId6" name="materList" value=""></div>
 						<div class="col-md-2"><button type="button" onclick="materDelete(2);">삭제</button></div>
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 --></div>
@@ -737,16 +860,17 @@
       				　마늘편은 익혀주세요 ▷ 마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다.<br>
      				 　꿀을 조금 넣어주세요 ▷ 꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.</div></div>
      				 <div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-     				 
-     				<div class="test">
+     
+     				<div class="stepPlusRow">
+     				<div class="stepPlusCount">
 					<div class="row"><div class="col-md-2"><h3>Step1</h3></div>
-					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;"></textarea></div>
+					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA0" ></textarea></div>
 					<div class="col-md-3">
 					<div class="row"><div class="col-md-12" id="stepImg0"> 
-
 					<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
-					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();"></div></div></div>
-					</div>
+					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
+					</div></div></div></div>
+					
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">
 					<div class="col-md-6 mx-auto">
@@ -764,39 +888,44 @@
 					</div>
 					</div>
 					</div></div>
+					<input type="hidden" id="stepBtnCount" name="stepBtnCount" value=""> <!--step의 개수를 보내줌  -->
 									
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 
-					<form class="mater" style="display:none;" id="materOrderPlus0">
+					<div class="mater" style="display:none;" id="materOrderPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_material.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="밀가루 100g,소금 2큰술,물100g" id="textIngre0">
+						</div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="toolPlus0">
+					<div class="mater" style="display:none;" id="toolPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tool.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="국자,볼" id="textTools0">
+						</div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="firePlus0">
+					<div class="mater" style="display:none;" id="firePlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_fire.png"></div>
-						<div class="col-md-10"><input type="text" class="form-control" placeholder="약불"></div></div></div></div></form>
+						<div class="col-md-10"><input type="text" class="form-control" placeholder="약불" id="textFireLvl0">
+						</div></div></div></div></div>
 						
-					<form class="mater" style="display:none;" id="tipPlus0">
+					<div class="mater" style="display:none;" id="tipPlus0">
 					<div class="row">
 					<div class="col-md-6 mx-auto">
 					<div class="row">
 						<div class="col-md-2"><img src="/imgs/insertRecipe_img/icon_tip2.png"></div>
-						<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;"></textarea></div></div></div></div></form>
+						<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;" id="textTip0"></textarea>
+						</div></div></div></div></div>
 						
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->	
-					</div><!-- jquery 사용할 div -->
+					</div></div><!-- jquery 사용할 div -->
 											
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12"><button type="button" onclick="stepPlus();">+순서추가</button></div></div>
@@ -804,26 +933,26 @@
 					
 					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-12" id="successImgAll"><input id="fileSucAll" multiple="multiple" type="file" file_gubun="work" style="display:none"/>
+					<div class="row"><div class="col-md-12" id="successImgAll"><input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" file_gubun="work" style="display:none"/>
 					<button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
-					<input id="fileSucOne" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucOne" name="fileSucOne" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_One" onclick="document.all.fileSucOne.click();">
 					 <input type="hidden" id="sendPicSucOne" name="sendPicSucOne" value=""></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgTwo">
-					<input id="fileSucTwo" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucTwo" name="fileSucTwo" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Two" onclick="document.all.fileSucTwo.click();">
 					<input type="hidden" id="sendPicSucTwo" name="sendPicSucTwo" value=""></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgThrid">
-					<input id="fileSucThrid" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucThrid" name="fileSucThrid" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Thrid" onclick="document.all.fileSucThrid.click();">
 					<input type="hidden" id="sendPicSucThrid" name="sendPicSucThrid" value=""></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFour">
-					<input id="fileSucFour" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucFour" name="fileSucFour" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Four" onclick="document.all.fileSucFour.click();">
 					<input type="hidden" id="sendPicSucFour" name="sendPicSucFour" value=""></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgFive">
-					<input id="fileSucFive" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileSucFive" name="fileSucFive" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="130" height="130" id="imgFile_Suc_Five" onclick="document.all.fileSucFive.click();">
 					<input type="hidden" id="sendPicSucFive" name="sendPicSucFive" value=""></div></div></div>
 					</div>
@@ -871,7 +1000,7 @@
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4"><input type="submit" value="저장"/></div>
+				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();"/><!-- <button type="button" onclick="stepList();" >확인</button> --></div>
 				<div class="col-md-4"><button type="button" onclick="back();">취소</button></div>
 				<div class="col-md-2">　</div>
 				</div>

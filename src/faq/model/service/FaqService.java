@@ -17,4 +17,12 @@ public class FaqService {
 		return list;
 	}
 
+	public ArrayList<Faq> viewByCategory(String category) {
+		Connection conn = JDBCTemplate.getConnection();
+		 ArrayList<Faq> faqList = new FaqDao().viewByCategory(conn,category);
+		JDBCTemplate.close(conn);
+		
+		return faqList;
+	}
+
 }

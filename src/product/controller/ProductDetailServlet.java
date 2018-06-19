@@ -33,15 +33,11 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//1. 한글이 있을 경우 인코딩
 		request.setCharacterEncoding("utf-8");
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
 
-		//2. 변수에서 값 꺼내서 저장
-		int product_no = Integer.parseInt(request.getParameter("product_no"));
-
-		//3. 비즈니스 로직 처리
 		Product productInfo = new Product();
-		productInfo = new ProductService().getProduct(product_no);
+		productInfo = new ProductService().getProduct(productNo);
 		
 		if(productInfo!=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductDetail.jsp");

@@ -34,11 +34,7 @@ public class NoticeDetailServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		System.out.println(noticeNo);
 		Notice notice = new NoticeService().viewDetailNotice(noticeNo);
-		
-		System.out.println(notice);
-		
 		if(notice!=null)
 		{
 			request.setAttribute("notice",notice);

@@ -10,7 +10,6 @@ public class Process {
 	private String fireLevel;
 	private String tip;
 	private int recipeNo;
-	
 	public Process() {
 
 	}

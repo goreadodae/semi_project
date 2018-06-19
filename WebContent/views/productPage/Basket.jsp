@@ -78,36 +78,7 @@
 </script>
 
 
-<script>
-	
-	/*  $(document).ready(function(){
-		 
-		 
-		 
-		//+,- 버튼을 눌렀을때 수량 변화하는 함수
-         $('#minus').click(function(){
-         	var value   = Number($('#qty').val());
-         	if(value>1){
-         		value--;
-         		$('#qty').val(value);
-         		$('#sumqty').html("수량 " + value +"개");
-         		$('#sumprice').html($('#price').html()*value + "원");
-         	}
-            
-         });
-         
-         $('#plus').click(function(){
-          	var value   = Number($('#qty').val());
-          	if(value<50){
-          		value++;
-          		$('#qty').val(value);
-          		$('#sumqty').html("수량 " + value +"개");
-          		$('#sumprice').html($('#price').html()*value +"원");
-          	}
-          });
-     });
- */
-</script>
+
 
 <style>
 
@@ -118,7 +89,7 @@ table{
 
 .line1{
 	border-bottom : 2px solid #dcdcdc;
-	height : 90px;
+	height : 120px;
 }
 
 .line2{
@@ -128,8 +99,8 @@ table{
 }
 
 .inbasket{
-	height: 70px;
-	width: 50%;
+	height: 100px;
+	width: 40%;
 }
 
 .prod{
@@ -215,6 +186,84 @@ table{
 }
 </style>
 
+
+<script>
+
+$(document).ready(function(){
+		
+		//+,- 버튼을 눌렀을때 수량 변화하는 함수
+         $('.minus').click(function(){
+        	var qty = $(this).next().next().next('#qty');
+        	var basketQuantity = $(this).next().next().next('#qty').val();
+        	var basketNo = $(this).next('.basket_no').val();
+        	var productPrice = $(this).next().next('.productPrice').val();
+        	var tdPrice = $(this).parent().next('#tdPrice');
+        	var payment1 = $('#payment1');
+        	var payment2 = $('#payment2');
+        	var totalpayment = $('#totalpayment');
+        	
+        	if(basketQuantity>1){
+        		basketQuantity--;
+    	 		qty.val(basketQuantity);
+    	 		tdPrice.html(tdPrice.html()-productPrice);
+    	 		payment1.html(payment1.html()-productPrice);
+    	 		payment2.html(payment2.html()-productPrice);
+    	 		totalpayment.html(totalpayment.html()-productPrice);
+    	 		
+    	 		$.ajax({
+        			url : "/basketUpdate",
+        			data : {basketQuantity:basketQuantity,basketNo:basketNo},
+        			type : "get",
+        			success:function(data){
+        			},
+        			error:function(){
+        				console.log("실패");
+        			}
+        		});
+    	 	}
+            
+         });
+         
+         $('.plus').click(function(){
+        	
+        	var qty = $(this).prev('#qty');
+         	var basketQuantity = $(this).prev('#qty').val();
+         	var basketNo = $(this).next('.basket_no').val();
+         	var productPrice = $(this).next().next('.productPrice').val();
+         	var tdPrice = $(this).parent().next('#tdPrice');
+         	var payment1 = $('#payment1');
+        	var payment2 = $('#payment2');
+         	var totalpayment = $('#totalpayment');
+         	
+         	if(basketQuantity<50){
+         		basketQuantity++;
+     	 		qty.val(basketQuantity);
+     	 		tdPrice.html(Number(tdPrice.html())+Number(productPrice));
+     	 		payment1.html(Number(payment1.html())+Number(productPrice));
+     	 		payment2.html(Number(payment2.html())+Number(productPrice));
+     	 		totalpayment.html(Number(totalpayment.html())+Number(productPrice));
+     	 		
+     	 		$.ajax({
+         			url : "/basketUpdate",
+         			data : {basketQuantity:basketQuantity,basketNo:basketNo},
+         			type : "get",
+         			success:function(data){
+    
+         			},
+         			error:function(){
+         				console.log("실패");
+         			}
+         		});
+     	 	}
+        	
+          });
+         
+     });
+
+</script>
+
+
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -245,28 +294,28 @@ table{
 						<c:set var="sumprice" value="0"/>	<!-- 장바구니 품목 총 가격 -->
 						
 						<c:forEach begin="0" items="${basket}" var="b" varStatus="i">
-						<c:set var="sumprice" value="${sumprice + b.product_price*b.basket_quantity}"/>
+						<c:set var="sumprice" value="${sumprice + b.productPrice*b.basketQuantity}"/>
+						
 						<tr class="line1">
 							<td>${i.count}</td>
-							<td><center><img src="${b.product_1st_pic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">${b.product_name}</td>
+							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
+							<td class="prod">${b.productName}</td>
 							<!-- 수량 변경시 update 서블릿 실행 -->
-							<td><form action="/basketUpdate" method="post" style="display:inline;">
-									<input type="hidden" name="basket_quantity" value="${b.basket_quantity-1}">
-									<input type="hidden" name="basket_no" value="${b.basket_no}">
-									<button id="minus">-</button>
-								</form>
-								<input type="text" value="${b.basket_quantity}" size="4" class="qtytext">
-								<form action="/basketUpdate" method="post" style="display:inline;">
-									<input type="hidden" name="basket_quantity" value="${b.basket_quantity+1}">
-									<input type="hidden" name="basket_no" value="${b.basket_no}">
-									<button id="plus">+</button>
-								</form>
-								</td>
-							<td>${b.product_price*b.basket_quantity}</td>
+							<td>
+	
+								<button class="minus" id="minus">-</button>
+								<input type="hidden" class="basket_no" value="${b.basketNo}">
+								<input type="hidden" class="productPrice" value="${b.productPrice}">
+								<input id="qty" type="text" value="${b.basketQuantity}" size="4" class="qtytext">
+								<button class="plus" id="plus">+</button>
+								<input type="hidden" class="basket_no" value="${b.basketNo}">
+								<input type="hidden" class="productPrice" value="${b.productPrice}">
+							</td>
+							
+							<td id="tdPrice">${b.productPrice*b.basketQuantity}</td>
 							
 							<!-- 삭제버튼 누를시 delete서블릿 실행 -->
-							<td><button type="button" id="basketDeleteButton" onclick="location.href='/basketDelete?basket_no=${b.basket_no}'"><img src="/imgs/product_img/delete.png" alt="x"></button></td>
+							<td><button type="button" id="basketDeleteButton" onclick="location.href='/basketDelete?basketNo=${b.basketNo}'"><img src="/imgs/product_img/delete.png" alt="x"></button></td>
 						</tr>
 						</c:forEach>
 						

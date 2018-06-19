@@ -8,11 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <link rel="stylesheet" href="/css/recipePage_css/recipeSelect.css">
-<%
-	pageContext.setAttribute("CR", "\r");
-	pageContext.setAttribute("LF", "\n");
-%>
-<!-- 개행제거 -->
 <style>
 * {
 	padding: 0;
@@ -60,6 +55,7 @@
 		});
 	});
 </script>
+
 <title>수상한 레시피</title>
 </head>
 <body style="overflow-x: hidden; overflow-y: auto;">
@@ -70,8 +66,8 @@
 	</div>
 	<div style="padding: 0%; background-color: #f8faff">
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="padding: 10px;" id="point">
-			<div class="row">
+			style="padding: 10px;" id="point">			
+			<div class="row" id="recipe-body">
 				<!-- 제목,사진,view 수,인트로,요리정보,스크랩,공유,댓글 -->
 				<div class="col-md-12" id="recipe-infoes"
 					style="background-color: white">
@@ -136,15 +132,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" id="recipe-body">
 				<!-- 재료 -->
-				<div class="col-md-12">
-					<div>
-						<img src="/imgs/recipe_img/ingre.png" style="margin-bottom: 10px;">
-						<h3
-							style="display: inline-block; margin-top: 10px; margin-bottom: 0">재료</h3>
-						<br>
-					</div>
+				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+					<img src="/imgs/recipe_img/ingre.png" style="margin-bottom: 10px;">
+					<h3
+						style="display: inline-block; margin-top: 10px; margin-bottom: 0">재료</h3>
+					<br>
 				</div>
 				<div class="col-md-12" style="margin-bottom: 4%;">
 					<c:set var="string">
@@ -167,90 +161,164 @@
 					</c:forEach>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" id="recipe-body">
+				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+					<img src="/imgs/recipe_img/step.png" style="margin-bottom: 10px;">
+					<h3
+						style="display: inline-block; margin-top: 10px; margin-bottom: 0">조리순서</h3>
+				</div>
 				<!-- 요리순서, 완성사진, 팁, 태그, 등록일 -->
 				<c:forEach begin="0" items="${requestScope.processList}" var="list"
 					varStatus="i">
-					<div  class="col-md-5" style="margin-top: 5%; margin-left: auto; margin-right: auto; background-color: #f8faff; border-radius: 20px;	" >
-						<div class="row" style="background-color: #f8faff; border-bottom: 1px solid black; border-width: 90%;">
-							<div class="col-md-12" style="margin-bottom: 5%; margin-top: 5%; background-color: #f8faff">
+					<div class="col-md-1"></div>
+					<div class="col-md-10"
+						style="margin-bottom: 5%; background-color: #f8faff; border-radius: 20px;">
+						<div class="row" style="padding-top: 2%; padding-bottom: 2%;">
+							<div class="col-md-5">
 								<div style="text-align: center">
-								<img src="${list.processPic }" style="width: 80%; height: auto;" />
+									<c:choose>
+									<c:when test="${list.processPic=='undefined' }">
+									<img src="/imgs/recipe_img/noRecipeImage.png"
+										style="width: 80%; height: auto;" />
+									</c:when>
+									<c:otherwise>
+									<img src="${list.processPic }"
+										style="width: 80%; height: auto;" />
+									</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
+							<div class="col-md-7">
+								<div class="row">
+									<div class="col-md-1">
+										<h2
+											style="display: inline-block; margin-top: 5%; margin-left: 10%; width: 10px; color: #512772;"">
+											${list.processOrder }</h2>
+									</div>
+									<div class="col-md-11" style="font-size: 25px;">
+										<div class="row">
+											<div class="col-md-12" style="margin-bottom: 8%;">
+												${list.processExplain }
+											</div>
+											<div class="row" style="font-size: 15px; color: gray;">
+											<c:if test="${list.ingre!=null }">
+											<div class="col-md-12">
+												<img src="/imgs/recipe_img/pro_ingre.png"/>
+												${list.ingre }
+											</div>
+											</c:if>
+											<c:if test="${list.tools!=null }">
+											<div class="col-md-12">
+												<img src="/imgs/recipe_img/pro_tool.png"/>
+												${list.tools }
+											</div>
+											</c:if>
+											<c:if test="${list.fireLevel!=null }">
+											<div class="col-md-12">
+												<img src="/imgs/recipe_img/pro_fire.png"/>
+												${list.fireLevel }
+											</div>
+											</c:if>
+											<c:if test="${list.tip!=null }">
+											<div class="col-md-12">
+												<img src="/imgs/recipe_img/pro_tip.png"/>
+												${list.tip }
+											</div>
+											</c:if>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="row" style="background-color: #f8faff">
-							<div class="col-md-1" style="background-color: #f8faff"></div>	
-							<div class="col-md-1">
-								<h2 style="display: inline-block; margin-top: 5%; margin-left: 10%; width: 10px">${list.processOrder }</h2>
-							</div>
-							<div class="col-md-10" style="padding-right: 12%;">
-								${list.processExplain }
-							</div>
-						</div>
-						<div >
-							
 						</div>
 					</div>
+					<div class="col-md-1"></div>
 				</c:forEach>
-				<div class="col-md-12">	
-					완성사진
-					<c:set var="picList">
-					<c:forTokens var="list" items="${requestScope.recipe.completePic }" delims="">
+				<c:if test="${requestScope.recipe.completePic!='undefined' }">
+					<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+					<img src="/imgs/recipe_img/complete_pic.png" style="margin-bottom: 10px;">
+					<h3
+						style="display: inline-block; margin-top: 10px; margin-bottom: 0">완성사진</h3>
+					</div>
+					<div class="col-md-12" style="margin-bottom: 3%;">
+						<c:set var="picList">
+							<c:forTokens var="list"
+								items="${requestScope.recipe.completePic }" delims="">
 						${list},
 					</c:forTokens>
-					</c:set>
-					<div id="complete-pic-div">
-						<div id="carouselExampleIndicators" class="carousel slide"
-							data-ride="carousel">
-							<ol class="carousel-indicators">
-								<c:forEach begin="0" items="${picList }" varStatus="i" var="picListNavi">
-									<li data-target="#carouselExampleIndicators" data-slide-to="0"
-										class="active"></li>
-								</c:forEach>
-							</ol>
-							<div class="carousel-inner">
-								<c:forEach begin="0" items="${picList }" varStatus="i" var="picListNavi">
-									<div class="carousel-item active">
-									<img class="d-block w-100"
-										src="${picListNavi }" alt="First slide">
-									</div>
-								</c:forEach>
+						</c:set>
+						<div id="complete-pic-div">
+							<div id="carouselExampleIndicators" class="carousel slide"
+								data-ride="carousel">
+								<ol class="carousel-indicators">
+									<c:forEach begin="0" items="${picList }" varStatus="i"
+										var="picListNavi">
+										<li data-target="#carouselExampleIndicators" data-slide-to="0"
+											class="active"></li>
+									</c:forEach>
+								</ol>
+								<div class="carousel-inner">
+									<c:forEach begin="0" items="${picList }" varStatus="i"
+										var="picListNavi">
+										<div class="carousel-item active">
+											<img class="d-block w-100" src="${picListNavi }"
+												alt="First slide">
+										</div>
+									</c:forEach>
+								</div>
+								<a class="carousel-control-prev"
+									href="#carouselExampleIndicators" role="button"
+									data-slide="prev"> <span class="carousel-control-prev-icon"
+									aria-hidden="true"></span> <span class="sr-only">Previous</span>
+								</a> <a class="carousel-control-next"
+									href="#carouselExampleIndicators" role="button"
+									data-slide="next"> <span class="carousel-control-next-icon"
+									aria-hidden="true"></span> <span class="sr-only">Next</span>
+								</a>
 							</div>
-							<a class="carousel-control-prev"
-								href="#carouselExampleIndicators" role="button"
-								data-slide="prev"> <span class="carousel-control-prev-icon"
-								aria-hidden="true"></span> <span class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next"
-								href="#carouselExampleIndicators" role="button"
-								data-slide="next"> <span class="carousel-control-next-icon"
-								aria-hidden="true"></span> <span class="sr-only">Next</span>
-							</a>
 						</div>
 					</div>
+				</c:if>
+				
+				<c:if test="${requestScope.recipe.tip!=null }">
+				
+				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+					<img src="/imgs/recipe_img/tip&warning.png" style="margin-bottom: 10px;">
+					<h3
+						style="display: inline-block; margin-top: 10px; margin-bottom: 0">팁/주의사항</h3>
 				</div>
-				<div class="col-md-12">
+				<div class="col-md-1"></div>
+				<div class="col-md-9" style="margin-bottom: 5%;">
 					<!-- 팁 -->
-					<div class="row">
-						${requestScope.recipe.tip }<br>
-					</div>
+						<span style="font-size: 20px;">${requestScope.recipe.tip }</span><br>
 				</div>
-
+				<div class="col-md-2"></div>
+				</c:if>
+				
+				<c:if test="${requestScope.recipe.recipeTag!=null }">
 				<div class="col-md-12">
 					<!-- 태그 -->
-					<div class="row">
+					<div class="row" style="border-top: 1px solid black; padding-top: 2%; margin-bottom: 3%;">
+							<div class="col-md-1"></div>
+						<div class="col-md-10">
+						<img src="/imgs/recipe_img/tag.png"/>
 						<c:forTokens var="recipeTag"
 							items="${requestScope.recipe.recipeTag }" delims="#">
-							<a href="#">#${recipeTag} </a>
+							<span style="display: inline-block;">
+							<a href="searchRecipeList?searchVal=${recipeTag }" style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
+							</span>&nbsp;&nbsp;
 						</c:forTokens>
+						</div>
+						<div class="col-md-1"></div>
 					</div>
 				</div>
+				</c:if>
 			</div>
-			<div class="row">
-				<!-- 댓글 -->
+			<div class="row" id="recipe-body"><!-- 댓글 -->
+				<jsp:include page="/views/recipePage/recipeComment.jsp"></jsp:include>
 			</div>
 		</div>
-	</div>
+		
 	<div id="footer"
 		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="border: 1px solid black; padding: 10px;">

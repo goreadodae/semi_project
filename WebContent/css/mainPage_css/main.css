@@ -1,4 +1,4 @@
-@charset "UTF-8";
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Hi+Melody" rel="stylesheet">
 
 /* 폰트 */
 @font-face {
@@ -8,6 +8,8 @@
 	//eot포맷
 	src:local(※), url('/fonts/IropkeBatangM.woff') format('woff');
 }
+
+
 
 /* 미디어 쿼리 */
 @media ( max-width :1802px) {
@@ -145,13 +147,13 @@ strong {
 	float: left;
 }
 
-#intro-wrap #intro-step #intro-step-wrap div {
-	background-color:gray;
+#intro-wrap #intro-step #intro-step-wrap {
 	height: 150px;
 }
 
 #intro-wrap #intro-step #intro-step-wrap p {
 	padding-top: 10px;
+	font-family: 'Hi Melody';
 }
 
 #intro-wrap button {
@@ -207,67 +209,6 @@ strong {
 /* - 혜택 끝 */
 
 /* 가로 슬라이드  */
-.height_auto {
-	height: auto;
-	overflow: hidden;
-}
-
-.vertical_motion {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.vertical_motion .vm_list {
-	float: left;
-	margin-right: 5px;
-	overflow: hidden;
-}
-
-.vertical_motion .vm_list img {
-	vertical-align: middle
-}
-
-.vertical_motion .vm_list.last {
-	margin-right: 0
-}
-
-.sp_box {
-	width: 300px;
-	height: 300px;
-	overflow: hidden;
-}
-
-.vertical_motion.s2 .sp_box {
-	width: 795px;
-	height: 100px;
-}
-
-.vertical_motion2 {
-	margin: 0;
-	padding: 0;
-}
-
-.vertical_motion2 .vm_list2 {
-	float: left;
-	margin-right: 5px;
-	overflow: hidden;
-}
-
-.vertical_motion2 .vm_list2 img {
-	vertical-align: middle
-}
-
-.vertical_motion2 .vm_list2.last {
-	margin-right: 0
-}
-
-.vertical_motion2 .sp_box {
-	width: 685px;
-}
-
-.vm_list 
-
 .vm_list a{
 	text-decoration:none;
 }
@@ -277,4 +218,5 @@ strong {
 	font-size:13px;
 	font-weight: 600;
 }
+
 /* --- */

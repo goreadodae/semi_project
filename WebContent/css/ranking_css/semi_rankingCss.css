@@ -19,7 +19,7 @@
 }*/
 
 #todayRecipe{	/*오늘의 레시피 div*/
-height: 400px;
+height: 450px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
@@ -32,7 +32,7 @@ border: 1px solid #EAEAEA;*/
 }
 
 #monthRecipe{	/*이달의 레시피 div*/
-height: 400px;
+height: 450px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
@@ -45,7 +45,7 @@ border: 1px solid #EAEAEA;*/
 }
 
 #monthUserRecipe{	/*이달의 회원 div*/
-height: 400px;
+height: 450px;
 padding-left: 10px;
 padding-right: 10px;
 text-align: center;
@@ -60,7 +60,7 @@ border: 1px solid #EAEAEA;*/
 #rankingLine{ /*오늘의 레시피, 이달의 레시피, 이달의 회원 상단에 있는 라인(div)*/
 	border-top: 1px solid #353866;
 	width: 350px;
-	height: 350px;
+	height: 40px;
 	text-align: center;
 	/*background-color: #F8FAFF;*/
 }
@@ -148,3 +148,12 @@ border: 1px solid #EAEAEA;*/
 	width: 85%;
 	background-color: white;
 }
+
+#wrapgradient{
+	background: linear-gradient(180deg, rgba(255,255,255,1) 17%, rgba(248,250,255,1) 32%);
+}
+
+/*
+#iframe{
+	overflow: auto;
+}*/

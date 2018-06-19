@@ -51,6 +51,8 @@ public class RecipeServlet extends HttpServlet {
 			result.put("recipe_pic", mr.getRecipePic());
 			result.put("recipe_today_views", mr.getRecipeTodayViews());
 			result.put("recipe_month_views", mr.getRecipeMonthViews());
+			result.put("cook_time", mr.getCookTime());
+			result.put("cook_level", mr.getCookLevel());
 			
 			resultArray.add(result);
 

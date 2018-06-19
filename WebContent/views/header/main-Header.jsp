@@ -89,7 +89,8 @@
 		<div id="top-message" class="col-md-12">
 		
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
-				<a href="#">
+				<!-- 로그인 주소 -->
+				<a href="/views/userPage/Membership.html">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >
@@ -111,13 +112,13 @@
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
 			<ul class="nav justify-content-end">
 				<li class="nav-item text-center">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="/views/userPage/Membership.html">
 						회원가입
 					</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="/views/userPage/Login.html">
 						로그인
 					</a>
 				</li>
@@ -130,14 +131,14 @@
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-haspopup="true" aria-expanded="false">
+						role="button" aria-haspopup="true" aria-expanded="false">
 						고객센터
 					</a>
 
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">공지사항</a> 
-						<a class="dropdown-item" href="#">자주하는 질문</a> 
-						<a class="dropdown-item" href="#">1:1 문의</a>
+						<a class="dropdown-item" href="/views/customerCenterPage/noticePage.jsp">공지사항</a> 
+						<a class="dropdown-item" href="/views/customerCenterPage/faqPage.jsp">자주하는 질문</a> 
+						<a class="dropdown-item" href="/views/customerCenterPage/writeQNAPage.jsp">1:1 문의</a>
 					</div>
 				</li>
 			</ul>
@@ -188,7 +189,7 @@
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="#">검색</a>
+						<a class="nav-category" href="/views/productPage/ProductMain.jsp">상품</a>
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">

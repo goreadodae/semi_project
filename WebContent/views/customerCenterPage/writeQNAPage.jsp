@@ -32,13 +32,13 @@
 		});
 
 	});
-	
-	$(document).ready(function(){
-		$('#close').click(function(){
+
+	$(document).ready(function() {
+		$('#close').click(function() {
 			$('#hidingInquiry').hide();
 		});
 	});
-	
+
 	$(document).ready(function() { /*주문번호 테이블  닫기  */
 		$('#addrow>tr').click(function() {
 			$('#hidingInquiry').css("display", "none");
@@ -46,50 +46,66 @@
 	});
 
 	/* 1:1문의 이미지 추가  jQuery  */
-	$(document).ready(function(){
-		cnt2 = 1;
-		cnt = $('#rowCount').length + 1;
-		cnt3 = 5;
-		
-		$('#addImg').click(function() {
-			if (cnt <= 5) 
-			{
-				$('#addRow').append('<tr class="rowTr" id="rowTr_'+cnt2+'"><td><span>'+ cnt
-									+ ' '+ '<button>파일 선택</button>'+ ' '+ '<label>선택된 파일 없음</label>'
-									+ ' '+ '<img src="/imgs/manager-img/minus.png" class="minus-cursor"'
-									+ 'onclick="removeRow('+ cnt2+ ');"/></span></td></tr>');
-					cnt++;
-					cnt2++;
-					console.log(cnt2);
-			} else {alert("이미지는 최대 5개까지 업로드가 가능합니다.");}
-		});
-			
-	});
-	
+	$(document)
+			.ready(
+					function() {
+						cnt2 = 1;
+						cnt = $('#rowCount').length + 1;
+						cnt3 = 5;
+
+						$('#addImg')
+								.click(
+										function() {
+											if (cnt <= 5) {
+												$('#addRow')
+														.append(
+																'<tr class="rowTr" id="rowTr_'+cnt2+'"><td><span>'
+																		+ cnt
+																		+ ' '
+																		+ '<button>파일 선택</button>'
+																		+ ' '
+																		+ '<label>선택된 파일 없음</label>'
+																		+ ' '
+																		+ '<img src="/imgs/manager-img/minus.png" class="minus-cursor"'
+																		+ 'onclick="removeRow('
+																		+ cnt2
+																		+ ');"/></span></td></tr>');
+												cnt++;
+												cnt2++;
+												console.log(cnt2);
+											} else {
+												alert("이미지는 최대 5개까지 업로드가 가능합니다.");
+											}
+										});
+
+					});
+
 	function removeRow(cnt2) {/* 이미지추가 행 삭제   */
 		if ($('#rowTr_' + cnt2).remove()) {
-			cnt--;	/* 삭제할때마다 감소 */
+			cnt--; /* 삭제할때마다 감소 */
 			cnt2--; /* 삭제할때마다 감소 */
 			console.log(cnt);
 			console.log(cnt2);
 		}
 	}
-	
-	
-	$(document).ready(function(){
-		$('.selectRdo').click(function(){
-			$('.selectRdo').prop("checked",false);
-			$(this).prop("checked",true);
 
-			});
+	$(document).ready(function() {
+		$('.selectRdo').click(function() {
+			$('.selectRdo').prop("checked", false);
+			$(this).prop("checked", true);
+
 		});
-
-
+	});
+	
+	/*해당 페이지 표시 스크립트  */
+	$(document).ready(function(){
+		$('#list-color tr').eq(2).addClass('on');
+		
+	});
 	
 </script>
 
 <style>
-
 * {
 	margin: 0;
 	padding: 0;
@@ -116,7 +132,7 @@
 }
 
 #close {
-	cursor:pointer;
+	cursor: pointer;
 	float: right;
 }
 
@@ -137,17 +153,15 @@
 	text-align: left !important;
 }
 
-#addRow img{
-	cursor:pointer;
+#addRow img {
+	cursor: pointer;
 }
-
-
 </style>
 
 
 </head>
 <body>
-	<div class="container-fluid" style="padding:0px">
+	<div class="container-fluid" style="padding: 0px">
 		<div id="header"></div>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
@@ -168,32 +182,9 @@
 			<div class="row" style="padding: 0;">
 				<div id="customCenter" class="col-md-2" style="padding: 0;">
 					<!-- 고객센터 목록 테이블 -->
+					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
+						flush="false" />
 
-					<table class="table table-bordered table-hover" id="forWriting">
-						<tr>
-							<td><a href="/views/customerCenterPage/noticePage.jsp"
-								style="color: black">공지사항<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="/views/customerCenterPage/faqPage.jsp"
-								style="color: black">FAQ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr id="notice-color">
-							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
-								style="color: black">1:1문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">상품구매문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-					</table>
 
 				</div>
 				<div class="col-md-10">
@@ -209,7 +200,8 @@
 							<td style="background-color: #dcdbde">주문번호</td>
 
 							<td><input type="text" style="width: 25%" readonly />
-							<button type="button" class="btn btn-info" id="orderInquiry" style="height:2em">주문조회</button>
+								<button type="button" class="btn btn-info" id="orderInquiry"
+									style="height: 2em">주문조회</button>
 								<div class="col-md-8" style="border: 1px solid; height: 300px"
 									id="hidingInquiry">
 									문의하실 주문번호를 선택하세요<br>
@@ -259,8 +251,8 @@
 								하자 혹은 이상으로 반품(환불)이 필요한 경우 사진과 함께 구체적인 내용을 남겨주세요.<br> <br>
 								<b style="font-size: 15px">주문취소</b><br> -주문취소 신청은 배송일 전날 오후
 								6시까지 가능합니다. 오후 6시 이후에는 생산이 시작되어 취소가 불가능합니다.<br> -주문상품의 부분
-								취소는 불가능합니다. 전체 주문취소 후 재구매 해주세요. <br> <br> 
-								<b style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
+								취소는 불가능합니다. 전체 주문취소 후 재구매 해주세요. <br> <br> <b
+								style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
 								불가능합니다.<br> -배송일 및 배송시간 지정은 불가능합니다.(예약배송 포함)<br> <br>
 								*주문취소 외 평일 오후 5시(주말 공휴일 12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전
 								8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea

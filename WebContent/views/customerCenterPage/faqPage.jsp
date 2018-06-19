@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	pageContext.setAttribute("newLineChar", "\n");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>FAQ ÆäÀÌÁö ÀÔ´Ï´Ù.</title>
+<title>FAQ í˜ì´ì§€ ì…ë‹ˆë‹¤.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
@@ -15,28 +19,28 @@
 	crossorigin="anonymous"></script>
 
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
-
-	$(document).ready(function() {
-		var stat = true; /*display»óÅÂ¿¡ µû¶ó.... */
-		$("#whenClick").click(function() { /* faq Á¦¸ñ Å¬¸¯½Ã ÀÌº¥Æ® ¹ß»ı  */
-			if (stat == true) /*when display is none */
+	
+ 		var stat = true;
+	function showFaq(id){
+		console.log(id);
+		var showNhide = document.getElementById(id+"_hidingContens");
+		console.log(stat);
+		if(stat==true)
 			{
-				$("#hidingContens").css("display", "block");
+				showNhide.style.display="table-row";
 				stat = false;
-
-			} else { /*  when display is block */
-				console.log("false°ªÀÏ¶§");
-				$("#hidingContens").css("display", "none");
+			}
+		else
+			{
+				showNhide.style.display="none";
 				stat = true;
 			}
-		});
-	});
-
+	};	
 	$(document).ready(function() {
 
 		var jbOffset = $('#content-main').offset();
@@ -50,11 +54,21 @@
 				}
 
 			} else {
+				
 				$('#fixed_layer').removeClass('jbFixed');
 			}
 		});
 
 	});
+	
+	/*í•´ë‹¹ í˜ì´ì§€ í‘œì‹œ ìŠ¤í¬ë¦½íŠ¸  */
+	$(document).ready(function(){
+		$('#list-color tr').eq(1).addClass('on');
+		
+	});
+	
+	
+	
 </script>
 
 <style>
@@ -67,10 +81,6 @@
 	font-size: 15px;
 }
 
-#faq-color {
-	background-color: #dcdbde;
-}
-
 .list-arrow {
 	float: right;
 }
@@ -80,8 +90,8 @@
 	text-align: center;
 }
 
-#whenClick {
-	cursor: pointer;
+select:active {
+	border-color: black;;
 }
 </style>
 </head>
@@ -95,60 +105,52 @@
 			style="border: 1px solid black; padding: 10px;">
 			<div class="row" style="padding: 0;">
 				<div class="col-md-2" style="padding: 0;">
-					<!--°í°´¼¾ÅÍ ¸ñ·Ï  -->
+					<!--ê³ ê°ì„¼í„° ëª©ë¡  -->
 					<br>
-					<h2>°í°´¼¾ÅÍ</h2>
+					<h2>ê³ ê°ì„¼í„°</h2>
 					<br>
 				</div>
 				<div class="col-md-8">
 					<br>
 					<h2>
-						FAQ&nbsp;<span id="notice_sub_tit"> °í°´´ÔµéÀÌ ÀÚÁÖ ¹¯´Â Áú¹®µéÀ» ¸ğµÎ
-							¸ğ¾Ò½À´Ï´Ù. </span>
+						FAQ&nbsp;<span id="notice_sub_tit"> ê³ ê°ë‹˜ë“¤ì´ ìì£¼ ë¬»ëŠ” ì§ˆë¬¸ë“¤ì„ ëª¨ë‘
+							ëª¨ì•˜ìŠµë‹ˆë‹¤. </span>
 					</h2>
 				</div>
 			</div>
 			<br>
 			<div class="row" style="padding: 0;">
 				<div id="customCenter" class="col-md-2" style="padding: 0;">
-					<!-- °í°´¼¾ÅÍ ¸ñ·Ï Å×ÀÌºí -->
-
-					<table class="table table-bordered table-hover">
-						<tr id="notice-color">
-							<td><a href="/noticeList" style="color: black">°øÁö»çÇ×<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td id="faq-color"><a
-								href="/views/customerCenterPage/faqPage.jsp"
-								style="color: black">FAQ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
-								style="color: black">1:1¹®ÀÇ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="#" style="color: black">»óÇ°±¸¸Å¹®ÀÇ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-					</table>
-
+					<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸” -->
+					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
+						flush="false" />
 				</div>
+
+
+
 				<div class="col-md-10">
-					<!-- for¹® »ç¿ë?????  -->
+					<form action="/byFaqCategory" method="get">
+						<select name="category" size="1" style="height: 30px"
+							onChange="if(this.options[this.selectedIndex].text)this.form.submit();">
+							<option>ì„ íƒ</option>
+							<option value="íšŒì›ê´€ë ¨">íšŒì›ê´€ë ¨</option>
+							<option value="ì‚¬ì´íŠ¸ì´ìš©">ì‚¬ì´íŠ¸ì´ìš©</option>
+							<option value="ì£¼ë¬¸ê²°ì œ">ì£¼ë¬¸ê²°ì œ</option>
+							<option value="ê¸°íƒ€">ê¸°íƒ€</option>
+
+
+						</select>
+					</form>
+					<br>
+
+
 					<table class="table" id="faqTable" style="text-align: center">
 
 
 						<tr>
-							<th scope="col" width="50px">¹øÈ£</th>
-							<th scope="col" width="100px">Ä«Å×°í¸®</th>
-							<th scope="col">Á¦¸ñ</th>
+							<th scope="col" width="50px">ë²ˆí˜¸</th>
+							<th scope="col" width="100px">ì¹´í…Œê³ ë¦¬</th>
+							<th scope="col">ì œëª©</th>
 						</tr>
 
 
@@ -156,24 +158,21 @@
 							<tr>
 								<td>${list.faqNo}</td>
 								<td>${list.faqCategory}</td>
-								<td id="whenClick">${list.faqTitle}</td>
+								<td id="${list.faqNo}" onclick="showFaq(${list.faqNo});"
+									style="cursor: pointer; text-align: left;">
+									${list.faqTitle}</td>
 							</tr>
-							<tr id="hidingContens">
-								<td colspan=3>
-								<img src="/imgs/manager-img/faq.png" height="15px">&nbsp;
-									${list.faqContents} <!-- faq ÀÌ¹ÌÁö, faq´äº¯ ³»¿ë  -->
-									</td>
-
-							
+							<tr id="${list.faqNo}_hidingContens" style="display: none;">
+								<td colspan="3" style="text-align: left;">
+									<div class="col-md-12" style="padding: 30px;">
+										<img src="/imgs/manager-img/question.png">&nbsp;&nbsp;&nbsp;
+										${fn:replace(list.faqContents,newLineChar,"<br>")}
+										<!-- faq ì´ë¯¸ì§€, faqë‹µë³€ ë‚´ìš©  -->
+									</div>
+								</td>
 							</tr>
-	
-
-							
 						</c:forEach>
 					</table>
-
-
-
 				</div>
 
 			</div>
@@ -186,10 +185,10 @@
 		</div>
 	</div>
 
-	<!-- jQuery (ºÎÆ®½ºÆ®·¦ÀÇ ÀÚ¹Ù½ºÅ©¸³Æ® ÇÃ·¯±×ÀÎÀ» À§ÇØ ÇÊ¿äÇÕ´Ï´Ù) -->
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- ¸ğµç ÄÄÆÄÀÏµÈ ÇÃ·¯±×ÀÎÀ» Æ÷ÇÔÇÕ´Ï´Ù (¾Æ·¡), ¿øÇÏÁö ¾Ê´Â´Ù¸é ÇÊ¿äÇÑ °¢°¢ÀÇ ÆÄÀÏÀ» Æ÷ÇÔÇÏ¼¼¿ä -->
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
 	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

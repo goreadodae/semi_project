@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import common.JDBCTemplate;
 import recipe.model.vo.Recipe;
+import recipe.model.vo.RecipeComment;
 import recipe.model.vo.Process;
 
 public class RecipeDao {
@@ -390,6 +391,146 @@ public class RecipeDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+
+	public ArrayList<RecipeComment> getCurrentPage(Connection conn, int page, int recordCountPerPage, int recipeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		int start = (page - 1)*recordCountPerPage + 1;
+		int end = page*recordCountPerPage;
+		boolean first = true;
+		String query = "";
+		String where = "";
+		ArrayList<RecipeComment> list = new ArrayList<RecipeComment>();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			query = prop.getProperty("recipeComment");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				RecipeComment rc = new RecipeComment();
+				rc.setCommentNo(rset.getInt("comment_no"));
+				rc.setCommentContents(rset.getString("comment_contents"));
+				rc.setEnrollDate(rset.getDate("enroll_date"));
+				rc.setRecipeNo(rset.getInt("recipe_no"));
+				rc.setMemberNo(rset.getInt("member_no"));
+				//rc.setMemberPic(rset.getString("member_pic"));
+				//rc.setMemberNickName(rset.getString("member_nick_name"));
+				list.add(rc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public String getPageNavi(Connection conn, int page, int recordCountPerPage, int naviCountPerPage, int recipeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int recordTotalCount = 0; //총 게시물 개수 저장 변수
+		boolean first = true;
+		String query = "";
+		String where = "";
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			query = prop.getProperty("recipeCommentAll");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				recordTotalCount = rset.getInt("totalcount");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		int pageTotalCount = 0;//navi 토탈 카운트
+		if(recordTotalCount%recordCountPerPage!=0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+		}
+		else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		if(page<1) {
+			page=1;
+		}
+		else if(page>pageTotalCount) {
+			page=pageTotalCount;
+		}
+		int startNavi = ((page-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+
+		if(endNavi>pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi==1) {
+			needPrev = false;
+		}
+		if(endNavi==pageTotalCount) {
+			needNext=false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" onclick='showComment("+(startNavi-1)+");'> < </a></li>");
+			
+		}
+		for(int i=startNavi;i<=endNavi;i++) {
+			if(i==page) {
+				sb.append("<li class=\"page-item active\"><a class=\"page-link\"  onclick='showComment("+i+");'><B>"+i+"</B></a></li>");
+			}
+			else {
+				sb.append("<li class=\"page-item\"><a class=\"page-link\"  onclick='showComment("+i+");'>"+i+"</a></li>");
+			}
+		}
+		if(needNext) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\"  onclick='showComment("+(endNavi+1)+");'> > </a></li>");
+		}
+//		if(needPrev) {
+//			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeComment?search=&page="+(startNavi-1)+"'> < </a></li>");
+//			
+//		}
+//		for(int i=startNavi;i<=endNavi;i++) {
+//			if(i==page) {
+//				sb.append("<li class=\"page-item active\"><a class=\"page-link\" href='/recipeComment?page="+i+"'><B>"+i+"</B></a></li>");
+//			}
+//			else {
+//				sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeComment?page="+i+"'>"+i+"</a></li>");
+//			}
+//		}
+//		if(needNext) {
+//			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeComment?page="+(endNavi+1)+"'> > </a></li>");
+//		}
+		return sb.toString();
 	}
 
 }

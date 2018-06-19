@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
+import notice.model.vo.PageData;
 
 /**
  * Servlet implementation class viewAllNoticeServlet
@@ -34,21 +35,28 @@ public class viewAllNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			request.setCharacterEncoding("UTF-8");
 			
-			ArrayList<Notice> noticeList = new NoticeService().viewNotice();
-			
-			if(!noticeList.isEmpty())
+			int currentPage;
+			if(request.getParameter("currentPage")==null)
 			{
-				request.setAttribute("noticeList",noticeList);
+				currentPage=1;
+			}
+			else
+			{
+				currentPage=Integer.parseInt(request.getParameter("currentPage"));
+			}
+			PageData pd = new NoticeService().noticeAll(currentPage);
+			
+			if(pd!=null)
+			{
 				RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/noticePage.jsp");
+				request.setAttribute("pageData", pd);
 				view.forward(request, response);
-						
-						
 			}
 			else
 			{
 				
 			}
-			
+
 			
 			
 			

@@ -342,7 +342,10 @@ $("#monthClick").change(function() {
 
 }
 </script>
-
+<style>
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+</style>
 </head>
 <body>
 <!-- <style>
@@ -381,7 +384,7 @@ $("#monthClick").change(function() {
 
 <div id="wholeWrap" class="container">
   <div class="col-lg-12">
-    <h2 class="my-4">이달의 쉐프</h2>
+    <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 쉐프</h2>
     <hr style="border: 0.5px solid #EAEAEA;">
   </div>
   <!-- Team Members Row -->

@@ -65,9 +65,9 @@ public class MainDao {
 		String path = MainDao.class.getResource("../../..").getPath();
 
 		try {
-			// 로드
-			prop.load(new FileReader(path + "resources/mainQuery.properties"));
 
+			prop.load(new FileReader(path+"resources/mainQuery.properties"));
+			
 			String query = prop.getProperty("selectWeek");
 
 			pstmt = conn.prepareStatement(query);

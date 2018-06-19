@@ -1,4 +1,4 @@
-package user.controller;
+package member.controller;
 
 import java.io.IOException;
 import java.util.Random;
@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.model.service.UserService;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class EmailCheckServlet
@@ -30,7 +31,8 @@ public class EmailCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
+		Member m = new Member();
+		m.setEmail(request.getParameter("email"));
 		
 		int certCharLength = 6;
 	    char[] characterTable = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
@@ -46,10 +48,16 @@ public class EmailCheckServlet extends HttpServlet {
             buf.append(characterTable[random.nextInt(tablelength)]);
         }
 		
-		int result = new UserService().sendEmail(email, buf.toString());
+        boolean result = new MemberService().sendEmail(m.getEmail(), buf.toString());
 		
-		response.getWriter().print(buf.toString());
-		response.getWriter().close();
+        if(result==true) {
+        	response.getWriter().print("1");
+    		response.getWriter().close();
+        }else {
+        	response.getWriter().print(buf.toString());
+    		response.getWriter().close();
+        }
+
 	}
 
 	/**

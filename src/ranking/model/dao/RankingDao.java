@@ -36,7 +36,6 @@ public class RankingDao {
 			{
 				Ranking r = new Ranking();
 				r.setRecipeNo(rset.getInt("recipe_no"));
-				System.out.println(rset.getInt("recipe_no"));
 				r.setRecipeTitle(rset.getString("recipe_title"));
 				r.setRecipeIntro(rset.getString("recipe_intro"));
 				r.setRecipePic(rset.getString("recipe_pic"));
@@ -55,7 +54,6 @@ public class RankingDao {
 				r.setMemberNo(rset.getInt("member_no"));
 				r.setIngreNo(rset.getInt("ingre_no"));
 				r.setMethodNo(rset.getInt("method_no"));
-				/*System.out.println(rset.getString(19)+"5654564564654");*/
 /*				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));*/
 				r.setRanking(rset.getInt("ranking"));
@@ -118,7 +116,6 @@ public class RankingDao {
 				r.setMemberNo(rset.getInt("member_no"));
 				r.setIngreNo(rset.getInt("ingre_no"));
 				r.setMethodNo(rset.getInt("method_no"));
-				/*System.out.println(rset.getString(19)+"5654564564654");*/
 /*				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));*/
 				r.setRanking(rset.getInt("ranking"));
@@ -157,7 +154,7 @@ public class RankingDao {
 			String query = prop.getProperty("rankingMonthChef");
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setString(1, '%'+year+"/"+month+'%');
+			pstmt.setString(1, "%"+year+"/"+month+"%");
 			
 			rset = pstmt.executeQuery();
 			
@@ -182,6 +179,7 @@ public class RankingDao {
 				r.setClassNo(rset.getInt("class_no"));
 				r.setIngreNo(rset.getInt("ingre_no"));
 				r.setMethodNo(rset.getInt("method_no"));*/
+				r.setRecipeViews(rset.getInt("recipe_views"));
 				r.setRecipePic(rset.getString("recipe_pic"));
 				r.setRecipeNo(rset.getInt("recipe_no"));
 				r.setRecipeTitle(rset.getString("recipe_title"));
@@ -211,6 +209,247 @@ public class RankingDao {
 			JDBCTemplate.close(pstmt);
 		}	
 		return monthChefList;		
+	}
+
+	public ArrayList<Ranking> todayMoveRecipeRanking(Connection conn, String datepicker) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> todayList = new ArrayList<Ranking>();
+		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("rankingTodayRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+datepicker+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
+				r.setMemberNo(rset.getInt("member_no"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+/*				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));*/
+				r.setRanking(rset.getInt("ranking"));
+				todayList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return todayList;		
+	}
+
+	public ArrayList<Ranking> todayMoveNextRecipeRanking(Connection conn, String datepicker) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> todayList = new ArrayList<Ranking>();
+		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("rankingTodayRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+datepicker+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
+				r.setMemberNo(rset.getInt("member_no"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+/*				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));*/
+				r.setRanking(rset.getInt("ranking"));
+				todayList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return todayList;	
+	}
+
+	public ArrayList<Ranking> monthChefRankingRecipeList(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> userIdList = new ArrayList<Ranking>();
+		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("monthChefRecipeList");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
+				r.setMemberNo(rset.getInt("member_no"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));
+				userIdList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return userIdList;	
+	}
+
+	public ArrayList<Ranking> recipeList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ranking> recipeList = new ArrayList<Ranking>();
+		
+		Properties prop = new Properties();
+		String path = RankingDao.class.getResource("").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"rankingQuery.properties"));
+			String query = prop.getProperty("recipeList");
+			pstmt = conn.prepareStatement(query);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				Ranking r = new Ranking();
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setRecipeIntro(rset.getString("recipe_intro"));
+				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setCookServing(rset.getString("cook_serving"));
+				r.setCookTime(rset.getString("cook_time"));
+				r.setIngredient(rset.getString("ingredient"));
+				r.setTip(rset.getString("tip"));
+				r.setCompletePic(rset.getString("complete_pic"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+				r.setRecipeMonthViews(rset.getInt("recipe_month_views"));
+				r.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				r.setRecipeTag(rset.getString("recipe_tag"));
+				r.setVideo(rset.getString("video"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setClassNo(rset.getInt("class_no"));
+				r.setMemberNo(rset.getInt("member_no"));
+				r.setIngreNo(rset.getInt("ingre_no"));
+				r.setMethodNo(rset.getInt("method_no"));
+				r.setMemberName(rset.getString("member_name"));
+				r.setMemberId(rset.getString("member_id"));
+				recipeList.add(r);
+				
+			}
+			
+		} catch (FileNotFoundException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}	
+		return recipeList;	
 	}
 
 }

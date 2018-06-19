@@ -3,6 +3,7 @@ package ranking.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +16,16 @@ import ranking.model.service.RankingService;
 import ranking.model.vo.Ranking;
 
 /**
- * Servlet implementation class RankingMonthlyRecipeServlet
+ * Servlet implementation class RankingTodayServlet
  */
-@WebServlet(name = "RankingMonthlyRecipe", urlPatterns = { "/rankingMonthlyRecipe" })
-public class RankingMonthlyRecipeServlet extends HttpServlet {
+@WebServlet(name = "RankingTodayMove", urlPatterns = { "/rankingTodayMove" })
+public class RankingTodayMoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RankingMonthlyRecipeServlet() {
+    public RankingTodayMoveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +34,21 @@ public class RankingMonthlyRecipeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//인코딩
 		request.setCharacterEncoding("utf-8");
-		String year = request.getParameter("year");
-		String month = request.getParameter("month");
-		ArrayList<Ranking> monthRecipeList = new RankingService().monthRecipeRanking(year,month);
-
+		
+		String datepicker = request.getParameter("datepicker"); 
+		System.out.println(datepicker + " 값 가져오기 성공 날짜이동");
+		ArrayList<Ranking> todayList = new RankingService().todayMoveRecipeRanking(datepicker);
+		
+		System.out.println("날짜이동서블릿"+todayList);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		new Gson().toJson(monthRecipeList,response.getWriter());
+		new Gson().toJson(todayList,response.getWriter());
+		
 		//Gson을 만들어서 JSON에게 보내준다!
+
+		
 	}
 
 	/**

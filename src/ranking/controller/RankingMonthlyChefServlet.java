@@ -38,8 +38,6 @@ public class RankingMonthlyChefServlet extends HttpServlet {
 		String month = request.getParameter("month");
 		ArrayList<Ranking> monthChefList = new RankingService().monthChefRanking(year,month);
 		
-		System.out.println(year+"/"+month);
-		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(monthChefList,response.getWriter());

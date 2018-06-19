@@ -13,10 +13,14 @@
 	/* background-color: #F8FAFF; */
 	/* border-radius: 25px; */
 	height : 170px;
+  width: 1120px;
+ /* margin-left:14.2%;*/
 /* 	width : 1110px; */
-	border-top: 3px solid #F8FAFF;
-	border-bottom : 3px solid #F8FAFF;
+/*	border-top: 3px solid #F8FAFF;
+	border-bottom : 3px solid #F8FAFF;*/
 /* 	margin-left:175px; */
+border: 3px dashed #FFE400;
+border-radius: 10px;
 
 }
 .hidden {
@@ -46,7 +50,7 @@
 </style>
 </head>
 <body>
-<div id="testWrap">
+<div id="testWrap" class="container">
 <div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>_</div></div>
 </div>
 

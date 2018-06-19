@@ -165,7 +165,10 @@ $("#monthClick").change(
 
 }
 </script>
-
+<style>
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+</style>
 </head>
 <body>
 
@@ -201,7 +204,7 @@ $("#monthClick").change(
   <div id="wholeWrap">
    <div class="container" id="tableContainer">
     <div class="col-lg-12">
-      <h2 class="my-4">이달의 레시피</h2>
+      <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 레시피</h2>
     </div>
 
     <!-- 1위 -->

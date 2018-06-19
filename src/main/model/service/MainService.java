@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 import common.JDBCTemplate;
 import main.model.dao.MainDao;
+import main.model.vo.MainProduct;
 import main.model.vo.MainRecipe;
 import main.model.vo.searchRecipe;
 import main.model.vo.searchRecipePageData;
-import recipe.model.vo.RecipePageData;
 
 public class MainService {
 	
@@ -118,5 +118,37 @@ public class MainService {
 		}
 		
 		return sRPD;
+	}
+
+	// 초특가
+	public ArrayList<MainProduct> getProduct() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MainProduct> list = new MainDao().getProduct(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 뉴상품
+	public ArrayList<MainProduct> getNewProduct() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MainProduct> list = new MainDao().getNewProduct(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	// 매진임박
+	public ArrayList<MainProduct> getImminentProduct() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MainProduct> list = new MainDao().getImminentProduct(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	// 시즌상품
+	public ArrayList<MainProduct> getSeasonProduct() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<MainProduct> list = new MainDao().getSeasonProduct(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

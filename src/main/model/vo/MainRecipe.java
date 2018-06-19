@@ -6,17 +6,23 @@ public class MainRecipe {
 	private int recipeMonthViews;
 	private int recipeTodayViews;
 	private String recipePic;
+	private String cookTime;
+	private String cookLevel;
 	
-	public MainRecipe(){
-		
-	}
-	
-	public MainRecipe(int recipeNo, String recipeTitle, int recipeMonthViews, int recipeTodayViews, String recipePic) {
+	public MainRecipe(int recipeNo, String recipeTitle, int recipeMonthViews, int recipeTodayViews, String recipePic,
+			String cookTime, String cookLevel) {
+		super();	
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
 		this.recipeMonthViews = recipeMonthViews;
 		this.recipeTodayViews = recipeTodayViews;
 		this.recipePic = recipePic;
+		this.cookTime = cookTime;
+		this.cookLevel = cookLevel;
+	}
+
+	public MainRecipe(){
+		
 	}
 
 	public int getRecipeNo() {
@@ -57,5 +63,21 @@ public class MainRecipe {
 	
 	public void setRecipePic(String recipePic) {
 		this.recipePic = recipePic;
+	}
+
+	public String getCookTime() {
+		return cookTime;
+	}
+
+	public void setCookTime(String cookTime) {
+		this.cookTime = cookTime;
+	}
+
+	public String getCookLevel() {
+		return cookLevel;
+	}
+
+	public void setCookLevel(String cookLevel) {
+		this.cookLevel = cookLevel;
 	}
 }

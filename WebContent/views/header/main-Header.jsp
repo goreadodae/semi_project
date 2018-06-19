@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import = "member.model.vo.*"%>
+	
+<% Member m = (Member)session.getAttribute("user"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>main-Header</title>
-
 <script>
 	var inCategory = false;
 
@@ -37,7 +39,6 @@
 				$('#category_list').css('display', 'block');
 				inCategory = true; // 카테고리 오픈
 			}
-
 			// 카테고리 오픈되어 있을 때
 			if (inCategory) {
 				/* 카테고리 호버일 때 */
@@ -84,7 +85,6 @@
 <body>
 	<!-- 해더 시작 -->
 	<div class="header">
-
 		<!-- 팝업창 -->
 		<div id="top-message" class="col-md-12">
 		
@@ -104,7 +104,6 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			
 		</div>
 		<!-- 팝업창 끝-->
 
@@ -112,34 +111,33 @@
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
 			<ul class="nav justify-content-end">
 				<li class="nav-item text-center">
-					<a class="nav-link" href="/views/userPage/Membership.html">
+					<a class="nav-link" href="/views/memberPage/membershipPage.html" style="padding-right:10px;">
 						회원가입
 					</a>
 				</li>
-
+				<%if(m==null){ %>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/userPage/Login.html">
+					<a class="nav-link" href="/views/memberPage/loginPage.html" style="padding-right:10px;">
 						로그인
 					</a>
 				</li>
-
+				<%}else{%>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/insertRecipePage/insertRecipePage.jsp">
-						레시피 등록
+					<a class="nav-link" href="/index.jsp" style="padding-right:10px;">
+						로그아웃
 					</a>
 				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-						role="button" aria-haspopup="true" aria-expanded="false">
+				<%}%>
+				<li class="nav-item">
+					<a class="nav-link" href="/views/customerCenterPage/noticePage.jsp" style="padding-right:10px;">
 						고객센터
 					</a>
-
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/views/customerCenterPage/noticePage.jsp">공지사항</a> 
-						<a class="dropdown-item" href="/views/customerCenterPage/faqPage.jsp">자주하는 질문</a> 
-						<a class="dropdown-item" href="/views/customerCenterPage/writeQNAPage.jsp">1:1 문의</a>
-					</div>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="/basketSelect" style="padding-right:10px;">
+						장바구니
+					</a>
 				</li>
 			</ul>
 		</div>
@@ -184,17 +182,27 @@
 						<a class="nav-category" href="/views/rankingPage/rankingPage.jsp">랭킹</a>
 					</div>
 
+
 					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="#">이벤트</a>
+						<a class="nav-category" href="/productList">상품</a>
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="/views/productPage/ProductMain.jsp">상품</a>
+						<a class="nav-category" href="/views/memberPage/myHomeMainPage.jsp">마이홈</a>
 					</div>
-
+					<%if(m!=null){ %>
 					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="#">마이홈</a>
+						<div style="border:1px solid black; height:50px;">
+							<div class="row">
+								<div style="border:1px solid black; height:50px;">
+									ㅇㅇㅇㅇ
+								</div>
+							</div>
+						</div>
 					</div>
+					<%}else{ %>
+						
+					<%} %>
 				</div>
 			</div>
 		</div>
@@ -285,12 +293,36 @@
 				
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						style="text-decoration:none; color:black;">
+							고객센터
+						</a>
+						<hr>
 					</li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
+					<li class="category-text">
+						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						style="text-decoration:none; color:black;">
+							공지사항
+						</a>
+					</li>
+					<li class="category-text">
+						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						style="text-decoration:none; color:black;">
+							FAQ
+						</a>
+					</li>
+					<li class="category-text">
+						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						style="text-decoration:none; color:black;">
+							1:1 문의
+						</a>
+					</li>
+					<li class="category-text">
+						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						style="text-decoration:none; color:black;">
+							상품문의
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -19,7 +19,6 @@ import javax.mail.internet.MimeMessage;
 
 import common.JDBCTemplate;
 import member.model.vo.Member;
-import ranking.model.dao.RankingDao;
 
 public class MemberDao {
 
@@ -52,13 +51,8 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 		return result;
 	}
-
-
 
 	public void sendEmail(String email, String code) {
 
@@ -88,12 +82,12 @@ public class MemberDao {
 		try {
 			MimeMessage msg = new MimeMessage(session);
 
-			msg.setSubject("ÀÌ¸ÞÀÏ ÀÎÁõ");
-			Address fromAddr = new InternetAddress("dna1234a@gmail.com","¼ö»óÇÑ·¹½ÃÇÇ","utf-8"); 
+			msg.setSubject("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			Address fromAddr = new InternetAddress("dna1234a@gmail.com","ï¿½ï¿½ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½","utf-8"); 
 			msg.setFrom(fromAddr);
 			Address toAddr = new InternetAddress(email);    
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
-			msg.setContent("ÀÎÁõ¹øÈ£ : "+code, "text/plain;charset=KSC5601"); 
+			msg.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ : "+code, "text/plain;charset=KSC5601"); 
 			Transport.send(msg);
 
 		}catch (Exception e) {
@@ -136,13 +130,18 @@ public class MemberDao {
 
 	public int insertMember(Connection conn, Member m) {
 		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
 		PreparedStatement pstmt = null;
+		
 		int result =0;
 		
 		try {
+			prop.load(new FileReader(path+"resources/memberQuery.properties"));
 			
-			String query = "insert into member values (member_SEQ.NEXTVAL, ?, ?, ?,TO_DATE(?, 'YY-MM-DD'), ?, ?, ?, ?, SYSDATE)";
-			
+			String query = "insert into member values(member_SEQ.NEXTVAL, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), ?, ?, ?, SYSDATE,?,?,?)";
+	
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, m.getMemberId());
@@ -153,11 +152,16 @@ public class MemberDao {
 			pstmt.setString(6, m.getGender());
 			pstmt.setString(7, m.getEmail());
 			pstmt.setString(8, m.getAddress());
+			pstmt.setString(9, "");
+			pstmt.setString(10, "");
 			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
@@ -167,15 +171,18 @@ public class MemberDao {
 
 
 	public Member login(String loginId, String loginPwd, Connection conn) {
+		
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Member m=null;
+		Member m = null;
 		
 		try {
 			prop.load(new FileReader(path+"resources/memberQuery.properties"));
-			String query = prop.getProperty("login");
+			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as BIRTH_DATE, "
+					+ "phone, email, address, profile, nickname from member where member_id = ? and member_pwd = ?";
 			
 			pstmt = conn.prepareStatement(query);
 			
@@ -184,17 +191,17 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			
-			
 			if(rset.next()) {
 				m = new Member();
-				m.setMemberId(loginId);
+				
+				m.setMemberNo(rset.getInt("MEMBER_NO"));
 				m.setMemberName(rset.getString("MEMBER_NAME"));
-				m.setBirthDate(rset.getString("TO_CHAR(BIRTH_DATE,'YYMMDD')"));
+				m.setBirthDate(rset.getString("BIRTH_DATE"));
 				m.setPhone(rset.getString("PHONE"));
-				m.setGender(rset.getString("GENDER"));
 				m.setEmail(rset.getString("EMAIL"));
 				m.setAddress(rset.getString("ADDRESS"));
-				m.setEnrollDate(rset.getString("TO_CHAR(ENROLL_DATE,'YYMMDD')"));
+				m.setProfile(rset.getString("PROFILE"));
+				m.setNickName(rset.getString("NICKNAME"));
 			}
 			
 			
@@ -205,7 +212,6 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		return m;
 	}
@@ -245,6 +251,34 @@ public class MemberDao {
 		return result;
 	}
 
-
-
+	public int changeInfo(Connection conn, String fullFilePath, String userId ) {
+	      int result = 0;
+	      String path = JDBCTemplate.class.getResource("..").getPath();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      System.out.println(fullFilePath);
+	      System.out.println(userId);
+	      Properties prop = new Properties();
+	      
+	      try {
+	         prop.load(new FileReader(path+"resources/memberQuery.properties"));
+	         String query = "update member set profile=? where member_id=?";
+	         
+	         pstmt = conn.prepareStatement(query);
+	         
+	         pstmt.setString(1, fullFilePath);
+	         pstmt.setString(2, userId);
+	         
+	         result = pstmt.executeUpdate();
+	         
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      return result;
+	}
 }

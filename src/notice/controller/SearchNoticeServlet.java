@@ -34,17 +34,10 @@ public class SearchNoticeServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		
-		String searchByName  = request.getParameter("searchByName")==null?"":request.getParameter("searchByName");
-		String searchByTitle  = request.getParameter("searchByTitle")==null?"":request.getParameter("searchByTitle");
-		String searchByContents  = request.getParameter("searchByContents")==null?"":request.getParameter("searchByContents");
+		String searchBy  = request.getParameter("searchBy")==null?"":request.getParameter("searchBy");//언체크일땐 널값을 공백으로 처리함
 		String inputWord = request.getParameter("inputWord");
 		
-		
-		System.out.println(searchByName);
-		System.out.println(searchByTitle);
-		System.out.println(searchByContents);
-		System.out.println(inputWord);
-		
+	
 		
 	
 		int currentPage;
@@ -58,30 +51,12 @@ public class SearchNoticeServlet extends HttpServlet {
 		}
 		
 		
-		PageData pd = new NoticeService().searchNotice(currentPage,searchByName,searchByTitle,searchByContents,inputWord);
+		PageData pd = new NoticeService().searchNotice(currentPage,searchBy,inputWord);
 		 
-		if(pd!=null)
-		{
+		
 			RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/searchNoticePage.jsp");
 			request.setAttribute("pageData",pd);
 			view.forward(request, response);
-			
-			
-		}
-		else
-		{
-			
-		}
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
 
 	}
 

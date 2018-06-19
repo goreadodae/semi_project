@@ -15,7 +15,7 @@ import java.util.Properties;
 import common.JDBCTemplate;
 import main.model.vo.MainProduct;
 import main.model.vo.MainRecipe;
-import main.model.vo.searchRecipe;
+import main.model.vo.SearchRecipe;
 
 public class MainDao {
 	public String getTotalRecipe(Connection conn) {
@@ -341,7 +341,7 @@ public class MainDao {
 	
 
 	// 페이지 받아옴
-	public ArrayList<searchRecipe> getCurrentPage(Connection conn, int page, int recordCountPerPage, String cate1,
+	public ArrayList<SearchRecipe> getCurrentPage(Connection conn, int page, int recordCountPerPage, String cate1,
 			String cate2, String cate3, String cate4, String order, String searchVal) 
 	{
 		PreparedStatement pstmt = null;
@@ -355,7 +355,7 @@ public class MainDao {
 		String query = "";
 		String where = "";
 		
-		ArrayList<searchRecipe> list = new ArrayList<searchRecipe>();
+		ArrayList<SearchRecipe> list = new ArrayList<SearchRecipe>();
 		try {
 			
 			// 카테고리가 전부 클릭이 안된 상태이면서 search 값이 없으면
@@ -425,7 +425,7 @@ public class MainDao {
 			rset = pstmt.executeQuery();
 			
 			while (rset.next()) {
-				searchRecipe sR = new searchRecipe();
+				SearchRecipe sR = new SearchRecipe();
 				
 				sR.setRecipeNo(rset.getInt("recipe_no"));
 				sR.setRecipeTitle(rset.getString("recipe_title"));

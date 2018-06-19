@@ -1,7 +1,5 @@
 package member.model.vo;
 
-import java.sql.Date;
-
 public class Member {
 	private int memberNo;
 	private String memberId;
@@ -14,22 +12,9 @@ public class Member {
 	private String email;
 	private String enrollDate;
 	private String profile;
-	private String nickname;
-	
+	private String nickName;
+
 	public Member () {}
-	
-	
-	
-	public int getMemberNo() {
-		return memberNo;
-	}
-	
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
-
 
 	public String getMemberId() {
 		return memberId;
@@ -103,43 +88,29 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
+	public String getNickName() {
+		return nickName;
+	}
 
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 
 	public String getProfile() {
 		return profile;
 	}
 
-
-
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
 
-
-
-	public String getNickname() {
-		return nickname;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
-	
-	
 
-	
-	
-	
-	/*member_no      NUMBER          NOT NULL, 
-    member_id      VARCHAR2(20)    NOT NULL UNIQUE, 
-    member_pwd     VARCHAR2(20)    NOT NULL, 
-    member_name    VARCHAR2(10)    NOT NULL, 
-    birth_date     DATE            NOT NULL, 
-    phone          VARCHAR2(13)    NOT NULL, 
-    gender         CHAR(1)         NOT NULL  CHECK (gender IN ('M','F')),
-    email          VARCHAR2(30)    NOT NULL UNIQUE, 
-    enroll_date    DATE            NOT NULL, 
-    CONSTRAINT MEMBER_PK PRIMARY KEY (member_no)*/
 }
+

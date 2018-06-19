@@ -19,13 +19,13 @@ import main.model.vo.MainProduct;
  * Servlet implementation class seasonProductServlet
  */
 @WebServlet(name = "seasonServlet", urlPatterns = { "/seasonServlet" })
-public class seasonProductServlet extends HttpServlet {
+public class SeasonProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public seasonProductServlet() {
+    public SeasonProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

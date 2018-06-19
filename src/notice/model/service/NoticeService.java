@@ -44,21 +44,15 @@ public class NoticeService {
 
 
 
-	public PageData searchNotice(int currentPage, String searchByName, String searchByTitle, String searchByContents, String inputWord) {
+	public PageData searchNotice(int currentPage, String searchBy, String inputWord) {
 		Connection conn = JDBCTemplate.getConnection();
 		int recordCountPerPage=10;
 		int naviCountPerPage=5;
 		PageData pd = null;
 		
-		System.out.println(searchByName+"서비스");
-		System.out.println(searchByTitle);
-		System.out.println(searchByContents);
-		System.out.println(inputWord);
-		
-		
-		
-		ArrayList<Notice> list = new NoticeDao().getSearchCurrentPage(conn,currentPage,recordCountPerPage,searchByName,searchByTitle,searchByContents,inputWord);
-		String pageNavi = new NoticeDao().searchGetPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage,searchByName,searchByTitle,searchByContents,inputWord);
+	
+		ArrayList<Notice> list = new NoticeDao().getSearchCurrentPage(conn,currentPage,recordCountPerPage,searchBy,inputWord);
+		String pageNavi = new NoticeDao().searchGetPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage,searchBy,inputWord);
 		if(!list.isEmpty()&&!pageNavi.isEmpty())
 		{
 			pd = new PageData();
@@ -69,6 +63,25 @@ public class NoticeService {
 		
 		return pd;
 		
+	}
+
+	public String previousNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		String preNotice =new NoticeDao().previousNotice(conn,noticeNo);
+		
+		JDBCTemplate.close(conn);
+		
+		
+		return preNotice;
+	}
+
+	public String nextNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		String nexNotice = new NoticeDao().nextNotice(conn,noticeNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return nexNotice;
 	}
 
 }

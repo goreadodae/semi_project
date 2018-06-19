@@ -151,7 +151,16 @@ error : function() {
 	}	
 </script>
 
-
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Khula:700);
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+		@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+</style>
 </head>
 
 <body>
@@ -170,7 +179,9 @@ error : function() {
 
 <div id="warpgradient">
 	<div class="center-block" id="line">
-		<a id="rankingURL" href="#gray"><h2 id="rankingTopName">Ranking</h2></a>
+		<a id="rankingURL" href="#gray">
+		<img src="/imgs/ranking_img/trophy (1).png" alt="Ranking" id="trophy" style="width: 20%; height: 20%;">
+		</a>
 	</div>
 	<!-- 상단 구분선 -->
 <!-- 	<hr style="width: 500px; border: 2px solid #EAEAEA;">
@@ -189,68 +200,68 @@ error : function() {
 
 			<!-- 오늘의 레시피 -->
 
-			<div class="col-md container" id="todayRecipe" style="cursor: pointer;">
+			<div class="col-md container" id="todayRecipe" >
 				<br> <br>
 				<div id="rankingLine">
 					<!-- 오늘의 레시피 텍스트 url -->
-					<a id="rankingURL" href="#"><h3 id="rankingTitle">Today's
-							Recipes</h3></a>
+					<a id="rankingURL" href="#"><h3 id="rankingTitle" style=" font-family:hanna; font-weight: 800;">Today's Recipes</h3></a>
 					<!-- <h5 style="margin:0;">오늘의 레시피</h5> -->
 					<br> <br>
 					<div class="media-image">
 						<a href="#"> 
 							<img class="media-object"
 							src="/imgs/ranking_img/recipe.jpg" alt="오늘의 레시피" id="todayRecipeImage" 
-							style="width: 349px; height: 223px">
+							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<br>
-					<h6 style="margin: 0;" id="todayRecipe1st">오늘의 1위 레시피</h6>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<h6 style="margin: 0; color: white;" id="todayRecipe1st">오늘의 1위 레시피</h6>
+					</div>
 				</div>
 			</div>
 
 			<!-- <div class="clearfix visible-xs-block"></div> -->
 			<!-- 이달의 레시피 -->
-			<div class="col-md" id="monthRecipe" style="cursor: pointer;">
+			<div class="col-md" id="monthRecipe">
 				<br> <br>
 				<div id="rankingLine">
 					<!-- 이달의 레시피 텍스트 url -->
-					<a id="rankingURL" href="#"><h3 id="rankingTitle">Monthly
-							Recipes</h3></a>
+					<a id="rankingURL" href="#"><h3 id="rankingTitle" style=" font-family:hanna; font-weight: 800;">Monthly Recipes</h3></a>
 					<!-- <h5 style="margin:0;">이달의 레시피</h5> -->
 					<br> <br>
 					<div class="media-image">
 						<a href="#"> <img class="media-object"
 							src="/imgs/ranking_img/ingredient.jpg" alt="이달의 레시피" id="montylyRecipeImage" 
-							style="width: 349px; height: 223px">
+							style="width: 349px; height: 250px; border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<br>
-					<h6 style="margin: 0;"  id="monthRecipe1st">이달의 1위 레시피</h6>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px; border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<h6 style="margin: 0; color: white;"  id="monthRecipe1st">이달의 1위 레시피</h6>
+				</div>
 				</div>
 			</div>
 
 			<!-- Optional: clear the XS cols if their content doesn't match in height -->
 			<div class="clearfix visible-xs-block"></div>
 			<!-- 이달의 회원 -->
-			<div class="col-md" id="monthUserRecipe" style="cursor: pointer;">
+			<div class="col-md" id="monthUserRecipe">
 				<br>
 				<br>
 				<div id="rankingLine">
 					<!-- 이달의 회원 텍스트 url -->
-					<a id="rankingURL" href="#"><h3 id="rankingTitle">Member
-							of the Month</h3></a>
+					<a id="rankingURL" href="#"><h3 id="rankingTitle" style=" font-family:hanna; font-weight: 800;">Member of the Month</h3></a>
 					<!-- <h5 style="margin:0;">이달의 회원</h5> -->
 					<br>
 					<br>
 					<div class="media-image">
 						<a href="#"> <img class="media-object"
 							src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="이달의 회원" id="monthlyUserImage" 
-							style="width: 349px; height: 223px">
+							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<br>
-					<h6 style="margin: 0;" id="monthmember1st">이달의 1위 회원</h6>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<h6 style="margin: 0; color: white; " id="monthmember1st">이달의 1위 회원</h6>
+				</div>
 				</div>
 			</div>
 
@@ -299,9 +310,9 @@ error : function() {
 
 		<div class="container" id="aTextDiv">
 
-			<a data-url="rankingPage2_TRecipe.jsp" id="aText">오늘의 레시피</a> &emsp;&emsp; 
-			<a data-url="rankingPage2_MRecipe.jsp" id="aText">이달의 레시피</a> &emsp;&emsp; 
-			<a data-url="rankingPage2_MChef.jsp" id="aText">이달의 회원</a>
+			<a data-url="rankingPage2_TRecipe.jsp" id="aText" style=" font-family:hanna; font-weight: 800; font-size: 20px;">오늘의 레시피</a> &emsp;&emsp;&nbsp;
+			<a data-url="rankingPage2_MRecipe.jsp" id="aText" style=" font-family:hanna; font-weight: 800; font-size: 20px;">이달의 레시피</a> &emsp;&emsp;&nbsp;
+			<a data-url="rankingPage2_MChef.jsp" id="aText" style=" font-family:hanna; font-weight: 800; font-size: 20px;">이달의 회원</a>
 
 		</div>
 

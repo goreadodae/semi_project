@@ -533,4 +533,33 @@ public class RecipeDao {
 		return sb.toString();
 	}
 
+	public int writeRecipeComment(Connection conn, int recipeNo, int memberNo, String content) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("writeComment");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, recipeNo);
+			pstmt.setInt(3, memberNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
 }

@@ -19,13 +19,13 @@ import main.model.vo.MainProduct;
  * Servlet implementation class imminentPrdouctServlet
  */
 @WebServlet(name = "ImminentServlet", urlPatterns = { "/imminentServlet" })
-public class imminentPrdouctServlet extends HttpServlet {
+public class ImminentPrdouctServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public imminentPrdouctServlet() {
+	public ImminentPrdouctServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

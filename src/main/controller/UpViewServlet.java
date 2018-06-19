@@ -1,27 +1,26 @@
-package member.controller;
+package main.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
+import main.model.service.MainService;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class upViewServlet
  */
-@WebServlet(name = "Login", urlPatterns = { "/login" })
-public class LoginServlet extends HttpServlet {
+@WebServlet("/upView")
+public class UpViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public UpViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +30,20 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String loginId = request.getParameter("loginId");
-		String loginPwd = request.getParameter("loginPwd");
+		request.setCharacterEncoding("utf-8");
 		
-		Member m = new MemberService().login(loginId,loginPwd);
+		int num = Integer.parseInt(request.getParameter("recipe_no"));
+		int result = new MainService().upViews(num);
 		
-		if(m==null) {
-			response.sendRedirect("/");
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", m);
-			response.sendRedirect("/index.jsp");
+		if(result>0) {
+			response.sendRedirect("/recipe?recipeNo="+num);
+		} else {
+			System.out.println("에러");
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpS	ervletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

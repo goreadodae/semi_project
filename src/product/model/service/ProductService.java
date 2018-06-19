@@ -7,11 +7,12 @@ import java.util.HashMap;
 import common.JDBCTemplate;
 import product.model.dao.ProductDao;
 import product.model.vo.Basket;
+import product.model.vo.Buying;
 import product.model.vo.Product;
 import recipe.model.dao.RecipeDao;
 
 public class ProductService {
-	//모든 제품 정보
+	//모든 상품 정보
 	public ArrayList<Product> getAllProduct(){
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Product> list = new ProductDao().getAllProduct(conn);
@@ -19,7 +20,7 @@ public class ProductService {
 		return list;
 	}
 
-	//프로젝트 상세 정보
+	//상품 상세 정보
 	public Product getProduct(int productNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		Product productInfo = new ProductDao().getProduct(conn,productNo);
@@ -39,6 +40,15 @@ public class ProductService {
 	public ArrayList<Basket> getMyBasket(int memberNo){
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Basket> list = new ProductDao().getMyBasket(conn, memberNo);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	
+	//바로 구매하기 버튼을 누를시의 상품 정보(제일 마지막에 담긴 장바구니 정보 가져옴)
+	public ArrayList<Basket> getLastBasket(int memberNo){
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Basket> list = new ProductDao().getLastBasket(conn, memberNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}
@@ -81,6 +91,7 @@ public class ProductService {
 		return result;
 	}
 	
+	//구매내역 테이블 추가
 	public int insertBuying(int basketNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new ProductDao().insertBuying(conn, basketNo);
@@ -90,6 +101,22 @@ public class ProductService {
 			JDBCTemplate.rollback(conn);
 		JDBCTemplate.close(conn);
 		return result;
+	}
+	
+	//방금 구매한 내역 정보 보기
+	public ArrayList<Buying> selectBuyingRecent(int memberNo, int rowCount){
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Buying> list = new ProductDao().selectBuyingRecent(conn, memberNo, rowCount);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	//로그인 계정의 전체 구매내역 보기
+	public ArrayList<Buying> selectBuyingAll(int memberNo){
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Buying> list = new ProductDao().selectBuyingAll(conn, memberNo);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }

@@ -299,7 +299,7 @@ $(document).ready(function(){
 						<tr class="line1">
 							<td>${i.count}</td>
 							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">${b.productName}</td>
+							<td class="prod"><a href="/productDetail?">${b.productName}</a></td>
 							<!-- 수량 변경시 update 서블릿 실행 -->
 							<td>
 	

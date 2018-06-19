@@ -2,7 +2,6 @@ package product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import product.model.service.ProductService;
-import product.model.vo.Product;
-import recipe.model.service.RecipeService;
-import recipe.model.vo.RecipePageData;
+import product.model.vo.Buying;
 
 /**
- * Servlet implementation class ProductListServlet
+ * Servlet implementation class BuyingSelectAllServlet
  */
-@WebServlet(name = "ProductList", urlPatterns = { "/productList" })
-public class ProductListServlet extends HttpServlet {
+@WebServlet(name = "BuyingSelectAll", urlPatterns = { "/buyingSelectAll" })
+public class BuyingSelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet() {
+    public BuyingSelectAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +32,16 @@ public class ProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+request.setCharacterEncoding("utf-8");
+		///로그인 정보 일단 1로
+		int memberNo = 1;
 		
-		ArrayList<Product> productList = new ArrayList<Product>();
-		productList = new ProductService().getAllProduct();
-		ArrayList<Product> productThisMonthList = new ArrayList<Product>();
-		productThisMonthList = new ProductService().getThisMonthProduct();
+		//방금 구매한 상품 리스트 DB에서 받아옴
+		ArrayList<Buying> buyingList = new ProductService().selectBuyingAll(memberNo);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductMain.jsp");
-		request.setAttribute("productList", productList);
-		request.setAttribute("productThisMonthList", productThisMonthList);
+		//구매내역 페이지로 이동
+		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/BuyingListAll.jsp");
+		request.setAttribute("buying", buyingList);
 		view.forward(request, response);
 	}
 

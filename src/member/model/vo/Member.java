@@ -3,6 +3,7 @@ package member.model.vo;
 import java.sql.Date;
 
 public class Member {
+	private int memberNo;
 	private String memberId;
 	private String memberPwd;
 	private String memberName;
@@ -12,8 +13,23 @@ public class Member {
 	private String gender;
 	private String email;
 	private String enrollDate;
+	private String profile;
+	private String nickname;
 	
 	public Member () {}
+	
+	
+	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
+
 
 	public String getMemberId() {
 		return memberId;
@@ -87,6 +103,31 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
+
+
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	
 
 	
 	

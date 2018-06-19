@@ -100,42 +100,55 @@
 		});
 		
 		$('#pay').click(function(){
-			var basketNoTag = $('[name="basketNo1"]');
-			var basketNoArr = new Array();
-			
-			for(var i=0; i<basketNoTag.length ; i++){
-				basketNoArr[i] = basketNoTag[i].value;
-				console.log("basket : "+basketNoArr);
-			}
-			
-			jQuery.ajaxSettings.traditional=true;
-			 $.ajax({
-					url : "/buyingInsert",
-					data : {basketNo:basketNoArr},
-					type : "get",
-					success:function(data){
-						console.log("성공");
-					},
-					error:function(){
-						console.log("실패");
-					}
-			});
-		});
+			 var basketNoTag = $('[name="basketNo1"]');
+				var basketNoArr = new Array();
+				
+				for(var i=0; i<basketNoTag.length ; i++){
+					basketNoArr[i] = basketNoTag[i].value;
+				}
+				
+				
+				//4. 구매목록에 추가 후 페이지 전환
+				jQuery.ajaxSettings.traditional=true;
+				$.ajax({
+						url : "/buyingInsert",
+						data : {basketNo:basketNoArr},
+						async: false,
+						type : "get",
+						success:function(data){
+							console.log("성공");
+						},
+						error:function(){
+							console.log("실패");
+						}
+				});
+				
+				location.href="/buyingSelectRecent?rowCount="+basketNoTag.length;
+		}); 
 		
 		
 		
 		
-		//결제 api 실행
+		//////// 결제 ////////
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		
+		//1. 총 가격 계산
+		var eachPay = $('[name="eachPay"]');
+		var totalPay = 0;
+		for(var j=0; j<eachPay.length ; j++){
+			totalPay += Number(eachPay[j].value);
+		}
+		console.log("total : " + totalPay);
+		
+		//2. 결제 api 실행
 		$('#pay11').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '주문명:결제테스트',
-			    amount : 14000,	///////////////////////////////////////////////가격
+			    amount : totalPay,	//결제 가격
 			    buyer_email : 'iamport@siot.do',
 			    buyer_name : '구매자이름',
 			    buyer_tel : '010-1234-5678',
@@ -150,17 +163,27 @@
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
-			       
-			        $.ajax({
-						url : "/buyingInsert",
-						data : {basketQuantity:basketQuantity,productNo:productNo},
-						type : "get",
-						success:function(data){
-							console.log("성공");
-						},
-						error:function(){
-							console.log("실패");
-						}
+			       //결제 완료시 구매완료 페이지 전환
+			       //3. 구매할 품목들 장바구니 번호 배열 생성
+			        var basketNoTag = $('[name="basketNo1"]');
+					var basketNoArr = new Array();
+					
+					for(var i=0; i<basketNoTag.length ; i++){
+						basketNoArr[i] = basketNoTag[i].value;
+					}
+					
+					//4. 구매목록에 추가 후 페이지 전환
+					jQuery.ajaxSettings.traditional=true;
+					 $.ajax({
+							url : "/buyingInsert",
+							data : {basketNo:basketNoArr},
+							type : "get",
+							success:function(data){
+								console.log("성공");
+							},
+							error:function(){
+								console.log("실패");
+							}
 					});
 			        
 			    } else {
@@ -191,7 +214,7 @@
 
 .line1{
 	border-bottom : 1px solid #dcdcdc;
-	height : 90px;
+	height : 120px;
 }
 
 .line2{
@@ -210,8 +233,8 @@
 
 
 .inbasket{
-	height: 70px;
-	width: 50%;
+	height: 100px;
+	width: 40%;
 }
 
 .prod{
@@ -277,7 +300,48 @@
 	cursor : pointer;
 }
 
+/* 총 금액 정보 */
+#suminfo{
+	border : 2px solid #dcdcdc;
+	background-color : #FAFAFA;
+	text-align : center;
+	height : 140px;
+}
 
+#suminfo1{
+	border-top : 2px solid #dcdcdc;
+	border-left : 2px solid #dcdcdc;
+	border-bottom : 2px solid #dcdcdc;
+	text-align : center;
+	height : 140px;
+}
+
+#suminfo2{
+	border-top : 2px solid #dcdcdc;
+	border-bottom : 2px solid #dcdcdc;
+	text-align : center;
+	height : 140px;
+}
+
+#suminfo3{
+	border-top : 2px solid #dcdcdc;
+	border-right : 2px solid #dcdcdc;
+	border-bottom : 2px solid #dcdcdc;
+	background-color : #FAFAFA;
+	text-align : center;
+	height : 140px;
+}
+
+.sumtitle{
+	 font-weight: bold;
+}
+
+.oper{
+	font-size : 50px;
+	color : grey;
+	height : 140px;
+	line-height : 130px;
+}
 
 </style>
 
@@ -320,6 +384,7 @@
 							<td>${b.productPrice*b.basketQuantity}</td>
 						</tr>
 						<input type="hidden" id="basketNo" name="basketNo1" value="${b.basketNo}">
+						<input type="hidden" id="eachPay" name="eachPay" value="${b.productPrice*b.basketQuantity}">
 						</c:forEach>
 					</table>
 					<br><br><br>
@@ -389,13 +454,7 @@
 					<hr>
 					<br><br>
 					
-					
-					<!-- 참고사항 -->
-					<div id="notice" width=100%>
-					<center><img src="/imgs/product_img/notice.png" alt="참고메시지"></center>
-					</div>
-					<br><br>
-					
+
 					
 					<!-- 개인정보 수집 동의
 					<span id="pinfo">개인정보 수집/제공*</span>
@@ -403,13 +462,58 @@
 					<hr style="border:1px solid #522075;"> -->
 					
 					
+					<!-- 총 금액 정보 -->
+					<div class="row">
+						<div class="col-md-2" id="suminfo1">
+							<br><span class="sumtitle">상품금액</span>
+  							<hr>
+  							<span id="payment1"><c:out value="${sumprice}" /></span>원
+						</div>
+						
+						<div class="col-md-2" id="suminfo2">
+							<br><span class="sumtitle">할인금액</span>
+  							<hr>
+  							0원
+						</div>
+						
+						<div class="col-md-2" id="suminfo3">
+							<br><span class="sumtitle">주문금액</span>
+  							<hr>
+  							<span id="payment2"><c:out value="${sumprice}" /></span>원
+						</div>
+						
+						<div class="col-md-1"><center><span class="oper">+</span></center></div>
+ 						<div class="col-md-2" id="suminfo">
+  								<br><span class="sumtitle">배송비</span>
+  								<hr>
+  								<span id="deliverfee">0</span>원
+						</div>
+						<div class="col-md-1"><center><span class="oper">=</span></center></div>
+  						<div class="col-md-2" id="suminfo">
+  								<br><span class="sumtitle">결제예약금액</span>
+  								<hr>
+  								<span id="totalpayment"><c:out value="${sumprice}" /></span>원
+  						</div>
+					</div>
+
+					<br><br><br>
+					
+					
 					
 					<center>
 					<!-- 결제하기 버튼(BuyingInsert서블릿으로 이동) -->
 					<button class="mybutton1" id="pay">결제하기</button>
 					<button class="mybutton2" onclick="location.href='/basketSelect'">취소하기</button></center>
-					<br><br>
+					<br><br><br><br>
 				
+				
+					<!-- 참고사항 -->
+					<div id="notice" width=100%>
+					<center><img src="/imgs/product_img/notice.png" alt="참고메시지"></center>
+					</div>
+					<br><br><br><br>
+					
+					
 					<div class="row">
 					
 					</div>

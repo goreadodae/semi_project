@@ -1,6 +1,8 @@
 package product.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,12 +31,15 @@ public class BuyingInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+		//구매할 상품들의 장바구니번호들 (배열로 받아옴)
 		String[] basketNoList = request.getParameterValues("basketNo");
 		
+		//구매할 상품들을 구매내역에 추가하고 장바구니 비우기
 		for(int i=0; i<basketNoList.length ;i++) {
-	         System.out.println(basketNoList[i]);
-	         new ProductService().insertBuying(Integer.parseInt(basketNoList[i]));
-	    }
+	         int result = new ProductService().insertBuying(Integer.parseInt(basketNoList[i]));	//구매내역 추가
+	         new ProductService().deleteBasket(Integer.parseInt(basketNoList[i]));	//장바구니 비우기
+	    }	
 }
 
 	/**

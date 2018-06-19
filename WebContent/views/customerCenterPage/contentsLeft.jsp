@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,40 +7,42 @@
 <title>Insert title here</title>
 
 <style>
-#list-color tr.on{
-background-color:#f7f5f8;
-
+#list-color tr.on {
+	background-color: #f7f5f8;
 }
 
+#list-color tr:hover {
+	background-color: #f7f5f8;
+	cursor: pointer;
+}
+
+#list-color tr {
+	
+}
 </style>
 </head>
 <body>
-				<div id="customCenter">
-					<!-- 고객센터 목록 테이블 -->
+	<div id="customCenter">
+		<!-- 고객센터 목록 테이블 -->
 
-					<table class="table table-bordered table-hover"  id="list-color">
-						<tr>
-							<td><a href="/noticeList" style="color: black">공지사항<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a
-								href="/faqList"
-								style="color: black">FAQ<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
-						<tr>
-							<td><a href="/views/customerCenterPage/oneToOneQNAPage.jsp"
-								style="color: black">1:1문의<img
-									src="/imgs/manager-img/right-arrow.png" height="9px"
-									class="list-arrow"></a></td>
-						</tr>
+		<table class="table table-bordered" id="list-color">
+			<tr onclick="location.href='/noticeList'">
+				<td>공지사항<img src="/imgs/manager-img/right-arrow.png"
+					height="9px" class="list-arrow"></td>
+			</tr>
+			<tr onclick="location.href='/faqList'">
+				<td>FAQ<img src="/imgs/manager-img/right-arrow.png"
+					height="9px" class="list-arrow"></td>
+			</tr>
+			<tr
+				onclick="location.href='/views/customerCenterPage/oneToOneQNAPage.jsp'">
+				<td>1:1문의<img src="/imgs/manager-img/right-arrow.png"
+					height="9px" class="list-arrow"></td>
+			</tr>
 
-					</table>
+		</table>
 
-				</div>
+	</div>
 
 </body>
 </html>

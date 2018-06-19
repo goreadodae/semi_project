@@ -177,7 +177,7 @@ $("#monthClick").change(
 
 	<!-- 월별 selected option -->
 	<br>
-	<div class="container">
+	<div class="container"  style="padding-right: 50px;">
 
 		<div class="container">
 			<div class="row justify-content-end">
@@ -201,7 +201,7 @@ $("#monthClick").change(
 	</div>
 	<br>
 
-  <div id="wholeWrap">
+  <div id="wholeWrap"  style="padding-left: 50px;">
    <div class="container" id="tableContainer">
     <div class="col-lg-12">
       <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 레시피</h2>

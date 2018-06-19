@@ -157,9 +157,14 @@ pageEncoding="UTF-8"%>
 							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
 							$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 						}
-						$('#nextBtn').removeClass('btn btn-secondary btn-lg disabled');
+						if($('#datepicker').val()==today)
+						{
+								$('#nextBtn').removeClass('btn btn-secondary btn-lg active');
+     			$('#nextBtn').addClass('btn btn-secondary btn-lg disabled');
+     		}else{
+     			$('#nextBtn').removeClass('btn btn-secondary btn-lg disabled');
 							$('#nextBtn').addClass('btn btn-secondary btn-lg active');
-     			
+     		}
 					},
 					error : function() {
 						console.log("실패");
@@ -305,6 +310,27 @@ window.onload = function() {
 	}
 </style> -->
 
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Khula:700);
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	
+	@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
+</style>
+
 </head>
 <body>
 	<br>
@@ -343,7 +369,7 @@ window.onload = function() {
 		<div id="wholeWrap" style="padding-left: 50px;">
 			<div class="container justify-content-center" id="tableContainer">
 				<div class="col-lg-12">
-					<h2 class="my-4">오늘의 레시피</h2>
+					<h2 class="my-4" style=" font-family:hanna; font-weight: 800;">오늘의 레시피</h2>
 				</div>
 
 				<!-- 1위 -->
@@ -366,7 +392,7 @@ window.onload = function() {
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG1">
+				<a href="#" id="rankinListIMG1" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -379,8 +405,8 @@ window.onload = function() {
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
 									<h3 class="card-title" id="rankingTodayTitle1"></h3>
-									<p class="card-text" id="rankingTag1"></p>
-									<p class="card-text" id="rankingContents1"></p>
+									<p class="card-text" id="rankingTag1" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents1" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -410,7 +436,7 @@ window.onload = function() {
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG2">
+				<a href="#" id="rankinListIMG2" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -423,8 +449,8 @@ window.onload = function() {
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
 									<h3 class="card-title" id="rankingTodayTitle2"></h3>
-									<p class="card-text" id="rankingTag2"></p>
-									<p class="card-text" id="rankingContents2"></p>
+									<p class="card-text" id="rankingTag2" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents2" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -454,7 +480,7 @@ window.onload = function() {
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG3">
+				<a href="#" id="rankinListIMG3" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -467,8 +493,8 @@ window.onload = function() {
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
 									<h3 class="card-title" id="rankingTodayTitle3"></h3>
-									<p class="card-text" id="rankingTag3"></p>
-									<p class="card-text" id="rankingContents3"></p>
+									<p class="card-text" id="rankingTag3" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents3" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -498,7 +524,7 @@ window.onload = function() {
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG4">
+				<a href="#" id="rankinListIMG4" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -511,8 +537,8 @@ window.onload = function() {
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
 									<h3 class="card-title" id="rankingTodayTitle4"></h3>
-									<p class="card-text" id="rankingTag4"></p>
-									<p class="card-text" id="rankingContents4"></p>
+									<p class="card-text" id="rankingTag4" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents4" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -542,7 +568,7 @@ window.onload = function() {
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG5">
+				<a href="#" id="rankinListIMG5" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -555,8 +581,8 @@ window.onload = function() {
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
 									<h3 class="card-title" id="rankingTodayTitle5"></h3>
-									<p class="card-text" id="rankingTag5"></p>
-									<p class="card-text" id="rankingContents5"></p>
+									<p class="card-text" id="rankingTag5" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents5" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>

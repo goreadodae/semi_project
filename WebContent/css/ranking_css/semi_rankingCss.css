@@ -150,10 +150,10 @@ border: 1px solid #EAEAEA;*/
 
 
 #borderWrap{
-	border: 80px double #F8FAFF;
+	border: 85px double #F8FAFF;
 	padding: : 40px;
 	border-radius: 25px;
-	width: 85%;
+	width: 75%;
 	background-color: white;
 }
 

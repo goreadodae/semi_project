@@ -176,7 +176,8 @@ public class InsertRecipeServlet extends HttpServlet {
 		//recipeProcess받는곳
 		
 		String[] stepArrayList = multi.getParameterValues("stepArrayList");
-
+		
+		System.out.println(stepArrayList.length);
 		
 		for(int i=0; i<stepArrayList.length ;i++) {
 			System.out.println(stepArrayList[i]);

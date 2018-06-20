@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import insertRecipe.model.dao.InsertRecipeDao;
-import insertRecipe.model.vo.InsertRecipe;
 import recipe.model.vo.Process;
 
 public class InsertRecipeService {

@@ -19,6 +19,13 @@
 .page-item>.page-link {
 	color: #512772 !important;
 }
+.btn.btn-primary{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+	
+}
 </style>
 </head>
 <body>
@@ -66,7 +73,7 @@
 	function updateComment(i){
 		console.log(i);
 		document.getElementById('content'+i).style="display: none;";
-		document.getElementById('contentText'+i).style="display: block;";
+		document.getElementById('contentText'+i).style="display: block; width: 600px; height: 50px; resize: none;";
 		document.getElementById('updateBtn2'+i).style="display: inline;";
 		document.getElementById('updateBtn1'+i).style="display: none;";
 		document.getElementById('deleteBtn2'+i).style="display: inline;";
@@ -80,13 +87,25 @@
 		document.getElementById('deleteBtn2'+i).style="display: none;";
 		document.getElementById('deleteBtn1'+i).style="display: inline;";
 	}
-	function deleteComment(commentNo, noticeNo){
+	function deleteComment(commentNo){
 		if(confirm("정말로 삭제하시겠습니까?")){
-			location.href="/deleteComment?commentNo="+commentNo+"&noticeNo="+noticeNo;
+			$.ajax({
+				url : "/recipeCommentDelete",
+				type : "post",
+				data : {
+					commentNo : commentNo,
+				},
+				success : function(data) {
+					showComment();
+				},
+				error : function() {
+					console.log("실패");
+				}
+			});
 		}
 	}
 	function updateRecipeComment(commentNo){
-		console.log(commentNo);
+		if(confirm("정말로 수정하시겠습니까?")){
 		var content = $('#contentText'+commentNo).val();
 		$.ajax({
 			url : "/recipeCommentUpdate",
@@ -102,13 +121,17 @@
 				console.log("실패");
 			}
 		});
+		}
+		else{
+			cancelBtn(commentNo);
+		}
 	}
 	
 	
 		function login(){
 			var yn = window.confirm("로그인을 먼저 진행해주세요");
 			if(yn==true){
-				window.open("/views/memberPage/loginPage.html","_blanck","width=auto,height=auto");
+				location.href="/views/memberPage/loginPage.jsp";
 			}
 		}
 		function commentWrite(){
@@ -176,13 +199,15 @@
 											<%if(session.getAttribute("user")!=null) {%>
 											if(data.dataList[i].memberNo==<%=((Member)session.getAttribute("user")).getMemberNo()%>) { 
 												str += 
-									'<input type="text" style="display: none;" id="contentText'+data.dataList[i].commentNo+'" value="'+data.dataList[i].commentContents+'" name="content"/>'
+									'<textarea style="display: none;" id="contentText'+data.dataList[i].commentNo+'" name="content">'+data.dataList[i].commentContents+'</textarea>'
+									+ '<div style="float: right;">'
 									+ '<input type="hidden" name="commentNo" value="'+data.dataList[i].commentNo+'"/>'
 									+ '<input type="hidden" name="noticeNo" value="'+data.dataList[i].recipeNo+'"/>'
-									+ '<input type="button" value="수정" id="updateBtn2'+data.dataList[i].commentNo+'" style="display: none;" onclick="updateRecipeComment('+data.dataList[i].commentNo+');"/>'
-									+ '<button id="deleteBtn2'+data.dataList[i].commentNo+'" onclick="cancelBtn('+data.dataList[i].commentNo+')" style="display: none;">취소</button>'
-									+ '<button onclick="updateComment('+data.dataList[i].commentNo+');" id="updateBtn1'+data.dataList[i].commentNo+'">수정</button>'
-									+ '<button onclick="deleteComment('+data.dataList[i].commentNo+', '+data.dataList[i].recipeNo+');" id="deleteBtn1'+data.dataList[i].commentNo+'">삭제</button>';
+									+ '<input  class="btn btn-primary" type="button" value="수정" id="updateBtn2'+data.dataList[i].commentNo+'" style="display: none;" onclick="updateRecipeComment('+data.dataList[i].commentNo+');"/>'
+									+ '<button class="btn btn-primary" id="deleteBtn2'+data.dataList[i].commentNo+'" onclick="cancelBtn('+data.dataList[i].commentNo+')" style="display: none;">취소</button>'
+									+ '<button class="btn btn-primary" onclick="updateComment('+data.dataList[i].commentNo+');" id="updateBtn1'+data.dataList[i].commentNo+'">수정</button>'
+									+ '<button class="btn btn-primary" onclick="deleteComment('+data.dataList[i].commentNo+');" id="deleteBtn1'+data.dataList[i].commentNo+'">삭제</button>'
+									+ '</div>';
 									}
 											<%}%>
 											str += '</div>'

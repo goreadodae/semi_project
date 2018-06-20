@@ -537,6 +537,6 @@
 			style="border: 1px solid black; padding: 10px;">
 			<!-- footer -->
 		</div>
-	</div>ㄴ
+	</div>
 </body>
 </html>

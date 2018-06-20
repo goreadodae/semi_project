@@ -8,9 +8,10 @@ public class MainRecipe {
 	private String recipePic;
 	private String cookTime;
 	private String cookLevel;
+	private String memberId;
 	
 	public MainRecipe(int recipeNo, String recipeTitle, int recipeMonthViews, int recipeTodayViews, String recipePic,
-			String cookTime, String cookLevel) {
+			String cookTime, String cookLevel, String memberId) {
 		super();	
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
@@ -19,6 +20,7 @@ public class MainRecipe {
 		this.recipePic = recipePic;
 		this.cookTime = cookTime;
 		this.cookLevel = cookLevel;
+		this.memberId = memberId;
 	}
 
 	public MainRecipe(){
@@ -79,5 +81,13 @@ public class MainRecipe {
 
 	public void setCookLevel(String cookLevel) {
 		this.cookLevel = cookLevel;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 }

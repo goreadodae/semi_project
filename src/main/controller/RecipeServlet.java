@@ -49,10 +49,11 @@ public class RecipeServlet extends HttpServlet {
 			result.put("recipe_no", mr.getRecipeNo());
 			result.put("recipe_title", mr.getRecipeTitle());
 			result.put("recipe_pic", mr.getRecipePic());
-			result.put("recipe_today_views", mr.getRecipeTodayViews());
-			result.put("recipe_month_views", mr.getRecipeMonthViews());
+			result.put("recipe_week", mr.getRecipeTodayViews());
+			result.put("recipe_month", mr.getRecipeMonthViews());
 			result.put("cook_time", mr.getCookTime());
 			result.put("cook_level", mr.getCookLevel());
+			result.put("member_id", mr.getMemberId());
 			
 			resultArray.add(result);
 

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8" import="member.model.vo.*"%>
+<%
+	Member m = (Member)session.getAttribute("user");
+%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -107,36 +110,28 @@ list-style: none;
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
-		<div id="contents"
-				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-				style="border: 1px solid black; padding:0;">
+		<div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding:0;">
+				
+			<!-- 개인정보 영역  -->
 			<div class="row" id="myPageTop">
-				<div class="col-md-2"></div>
-				<div class="col-md-9" style="padding:0;">
-					<div class="col-md-12" id="myPageTopUser">
-						<div id="userInfo" class="col-md-5">
-							
-						</div>
-						<ul>
-						
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-1"></div>
+				<div class="col-md-12" style="border:1px solid black; height:200px;"></div>
 			</div>
+			
 			<div class="row" id="myPageBottom">
 				<div class="col-md-2" id="menu">
 					<h2 id="menu-title">마이 홈</h2>
 					<div id="menu-border">
 						<ul id="menu-list">
-							<li><a href="/views/memberPage/myHomeMainPage.jsp">나의 주문내역</a></li>
+							<li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>" onclick="userNo();">나의 주문내역</a></li>
 							<li><a href="/views/memberPage/myHomeRecipePage.jsp">나의 레시피</a></li>
 							<li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가 쓴 댓글</a></li>
 							<li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-9">
+				
+				<div class="col-md-10">
 					<div id="menu-title">
 						<h2>나만의 레시피</h2>
 					</div>
@@ -157,10 +152,6 @@ list-style: none;
 						
 						</tbody>
 					</table>
-		
-		
-		
-
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

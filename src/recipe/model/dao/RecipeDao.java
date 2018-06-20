@@ -591,4 +591,63 @@ public class RecipeDao {
 		return 0;
 	}
 
+	public int deleteComment(Connection conn, int commentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+//			String query = prop.getProperty("deleteComment");
+			String query = "delete comment_tbl where comment_no=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, commentNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
+	public int insertDeleteComment(Connection conn, int commentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("deleteComment");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, commentNo);
+			pstmt.setInt(2, commentNo);
+			pstmt.setInt(3, commentNo);
+			pstmt.setInt(4, commentNo);
+			pstmt.setInt(5, commentNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
 }

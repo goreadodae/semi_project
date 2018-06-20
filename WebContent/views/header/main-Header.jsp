@@ -1,12 +1,24 @@
+<!-- 폰트 적용중 -->
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 	
 <% Member m = (Member)session.getAttribute("user"); %>
-
+<%
+	String presentURI = request.getRequestURI();
+	String beforeURI = request.getHeader("referer");	// 로그인 할 때 필요함
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>main-Header</title>
+<style>
+	* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
+	/* * { font-family: 'Iropke Batang'} */
+</style>
 <script>
 	var inCategory = false;
 
@@ -68,17 +80,6 @@
 			}
 		});
 	});
-
-	/* 팝업 div 삭제 */
-	function delete_info(obj) {
-		// 삭제할 ID 정보 찾기
-		var target = obj.parentNode.getAttribute('div');
-		console.log(target);
-		// 삭제할 element 찾기
-		var field = document.getElementById(target);
-		// #field 에서 삭제할 element 제거하기
-		document.getElementById('top-message').remove();
-	}
 </script>
 </head>
 
@@ -86,11 +87,10 @@
 	<!-- 해더 시작 -->
 	<div class="header">
 		<!-- 팝업창 -->
-		<div id="top-message" class="col-md-12">
-		
+		<div id="top-message" class="col-md-12" style="display:none;">
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
 				<!-- 로그인 주소 -->
-				<a href="/views/userPage/Membership.html">
+				<a href="/views/memberPage/membershipPage.html">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >
@@ -100,30 +100,76 @@
 			</div>
 			<div id="top-message-close" class="col-md-8 col-sm-8 col-8 mx-auto nav justify-content-end">
 				<button type="button" class="close" id="top-message-close-btn" aria-label="close" 
-						onclick="delete_info(this)">
+						onclick="closePopupNotToday()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 		</div>
 		<!-- 팝업창 끝-->
+		<script>
+			/* 1. 쿠키 만들기 */
+			function setCookie(name, value, expiredays) {
+				var today = new Date();
+			   	today.setDate(today.getDate() + expiredays);
+			    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+			}
+			
+			/* 2. 쿠키 가져오기 */
+			function getCookie(name) { 
+   				var cName = name + "="; 
+    			var x = 0; 
+    			while (x <= document.cookie.length) { 
+    				
+        			var y = (x+cName.length); 
+        			
+        			if(document.cookie.substring( x, y ) == cName ) 
+        			{ 
+            			if((endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+                			endOfCookie = document.cookie.length;
+            			return unescape( document.cookie.substring( y, endOfCookie )); 
+       			 	} 
+        			
+        			x = document.cookie.indexOf( " ", x ) + 1; 
+        			
+        			if ( x == 0 ) 
+           				break; 
+   					} 
+    			
+    			return ""; 
+			} 
+			
+			/* 3. 오늘하루 그만보기 */
+			function closePopupNotToday(){	             
+				setCookie('notToday','Y', 1);
+				$("#top-message").hide();
+			}
+			
+			/* 4. 띄우기 */
+			$(window).ready(function(){
+				if(getCookie("notToday")!="Y"){
+					$("#top-message").show();
+				} 
+			});
+			
+		</script>
 
 		<!-- 최상단 -->
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
 			<ul class="nav justify-content-end">
 				<li class="nav-item text-center">
-					<a class="nav-link" href="/views/memberPage/membershipPage.html" style="padding-right:10px;">
+					<a class="nav-link" href="/views/memberPage/membershipPage.jsp" style="padding-right:10px;">
 						회원가입
 					</a>
 				</li>
 				<%if(m==null){ %>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/memberPage/loginPage.html" style="padding-right:10px;">
+					<a class="nav-link" href="/views/memberPage/loginPage.jsp" style="padding-right:10px;">
 						로그인
 					</a>
 				</li>
 				<%}else{%>
 				<li class="nav-item">
-					<a class="nav-link" href="/logout" style="padding-right:10px;">
+					<a class="nav-link" href="/logout?recentURI=<%=presentURI%>" style="padding-right:10px;">
 						로그아웃
 					</a>
 				</li>
@@ -142,7 +188,6 @@
 			</ul>
 		</div>
 		<!-- 최상단 끝 -->
-		
 		<!-- 해더 브랜드 이미지-->
 		<div class="col-8 mx-auto">
 			<div class="text-center" style="background-color: white;">
@@ -192,11 +237,11 @@
 					</div>
 					<%if(m!=null){ %>
 					<div class="col-md-2" style="padding:0px;">
-						<div class="col-md-12" style="height:50px;">
+						<div class="col-md-12" style="height:50px; border:1px solid #dadada;">
 							<div class="row">
-								<div class="col-md-4" style="border:1px solid black; height:50px;">
+								<div class="col-md-4" style="height:50px;">
 								</div>
-								<div class="col-md-8" style="border:1px solid black; height:50px; padding:0px;">
+								<div class="col-md-8" style="height:50px; padding:0px;">
 									<div style="display:inline-block; width: 100%;">
 										<p style="font-size:13px; margin:0px; padding-left:10px; text-align:left;">환영합니다.</p>
 									</div>
@@ -204,7 +249,7 @@
 										<p style="font-weight:800; font-size:15px; margin:0px; padding-left:10px; text-align:left; float:left;"><%=m.getNickName()%> 님</p>
 									</div>
 									<div style="display:inline-block; width:50%; height:25px;">
-										<a href="#" style="position:absolute; top:10px; display:block; 
+										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; top:10px; display:block; 
 										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
 									</div>
 								</div>

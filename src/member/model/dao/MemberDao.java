@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -18,6 +19,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import common.JDBCTemplate;
+import member.model.vo.BuyProduct;
 import member.model.vo.Member;
 
 public class MemberDao {
@@ -189,6 +191,7 @@ public class MemberDao {
 				m = new Member();
 
 				m.setMemberNo(rset.getInt("MEMBER_NO"));
+				m.setMemberId(loginId);
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setBirthDate(rset.getString("BIRTH_DATE"));
 				m.setPhone(rset.getString("PHONE"));
@@ -321,4 +324,48 @@ public class MemberDao {
 
 		return m;
 	}
+	
+	public ArrayList<BuyProduct> buyProduct(Connection conn, int userNo) {
+        
+        String path = JDBCTemplate.class.getResource("..").getPath();
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        
+        Properties prop = new Properties();
+        ArrayList<BuyProduct> product = new ArrayList<BuyProduct>();
+        
+        BuyProduct b = null;
+        
+        try {
+           prop.load(new FileReader(path+"resources/memberQuery.properties"));
+           String query = prop.getProperty("buyProduct");
+
+           pstmt = conn.prepareStatement(query);
+           
+          pstmt.setInt(1, userNo);
+           
+          rset =pstmt.executeQuery();
+          
+          while(rset.next()) {
+             b = new BuyProduct();
+             
+             b.setProduct_img(rset.getString("product_1st_pic"));
+             b.setProduct_name(rset.getString("product_name"));
+             b.setBuying_send_yn(rset.getString("buying_send_yn"));
+             
+             product.add(b);
+             System.out.println(b.getProduct_name());
+          }
+           
+        } catch (IOException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        } catch (SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+        }
+        
+     return product;
+  }
+	
 }

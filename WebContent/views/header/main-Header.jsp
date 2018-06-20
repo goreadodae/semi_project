@@ -1,3 +1,8 @@
+<!-- 폰트 적용중 -->
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 	
@@ -10,6 +15,10 @@
 <html>
 <head>
 <title>main-Header</title>
+<style>
+	* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
+	/* * { font-family: 'Iropke Batang'} */
+</style>
 <script>
 	var inCategory = false;
 
@@ -75,7 +84,6 @@
 </head>
 
 <body>
-	<%=presentURI %>
 	<!-- 해더 시작 -->
 	<div class="header">
 		<!-- 팝업창 -->
@@ -136,7 +144,7 @@
 				$("#top-message").hide();
 			}
 			
-			/* 사용 */
+			/* 4. 띄우기 */
 			$(window).ready(function(){
 				if(getCookie("notToday")!="Y"){
 					$("#top-message").show();
@@ -180,7 +188,6 @@
 			</ul>
 		</div>
 		<!-- 최상단 끝 -->
-		
 		<!-- 해더 브랜드 이미지-->
 		<div class="col-8 mx-auto">
 			<div class="text-center" style="background-color: white;">
@@ -242,7 +249,7 @@
 										<p style="font-weight:800; font-size:15px; margin:0px; padding-left:10px; text-align:left; float:left;"><%=m.getNickName()%> 님</p>
 									</div>
 									<div style="display:inline-block; width:50%; height:25px;">
-										<a href="#" style="position:absolute; top:10px; display:block; 
+										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; top:10px; display:block; 
 										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
 									</div>
 								</div>

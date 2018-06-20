@@ -6,29 +6,19 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <title>로그인</title>
+
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-	charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 <style type="text/css">
-html, body {
-	margin: 0;
-	padding: 0;
-}
-
-
 
 #section{
 	padding: 80px 100px 0px;
 	margin-bottom:80px;
-
 }
 
 #test {
@@ -57,7 +47,7 @@ fieldset, legend {
 	border: 0;
 }
 
-img {
+.img {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
@@ -88,7 +78,6 @@ img {
 	border: 0;
 }
 </style>
-
 </head>
 
 <body style="overflow-x: hidden; overflow-y: auto;">
@@ -134,16 +123,13 @@ img {
 					</div>
 					<span style="font-weight: bold; font-size: 20px;"><center>OR</center></span><br>
 					<div class="social-login">
-						<button id="facebook">
-							<img src="/imgs/member_img/facebook.JPG">
-						</button>
 						<button id="naver_id_login"></button>
 						<button id="google">
-							<img src="/imgs/member_img/googleplus.JPG">
+							<img class="img" src="/imgs/member_img/googleplus.JPG">
 						</button>
 						<button id="kakao">
 							<a id="custom-login-btn" onclick="loginWithKakao();"> <img
-								src="/imgs/member_img/kakao.JPG">
+								class="img" src="/imgs/member_img/kakao.JPG">
 							</a>
 						</button>
 					</div>
@@ -175,18 +161,15 @@ img {
 		}
 	}
 	
-	
-	
 	//소셜 네이버 로그인
     var naver_id_login = new naver_id_login("RC6jETK12YcVuQccaXmJ", "http://localhost:1347/index.jsp");
+	
     var state = naver_id_login.getUniqState();
-    naver_id_login.setButton("green", 3, 80);
+    naver_id_login.setButton("green", 3, 60);
     naver_id_login.setDomain("http://localhost:1347/views/memberPage/Login.html");
     naver_id_login.setState(state);
     naver_id_login.setPopup();
     naver_id_login.init_naver_id_login();
-    
-    
 
     var naver_id_login = new naver_id_login("RC6jETK12YcVuQccaXmJ", "http://localhost:1347/index.jsp");
     // 접근 토큰 값 출력
@@ -199,15 +182,8 @@ img {
         alert(naver_id_login.getProfileData('nickname'));
         alert(naver_id_login.getProfileData('age'));
     }
-    
-    
-    
-  
-    
     </script>
-    
       <!-- 푸터 -->
-     
 				<div id="footer"
 					class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 					style="border: 1px solid black; padding: 10px;"></div>

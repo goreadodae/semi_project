@@ -167,14 +167,9 @@ error : function() {
 	<!-- ☆ 디자인 참고 홈페이지
 	https://www.ovzect.kr/shop?productListFilter=117035 -->
 
-<<<<<<< HEAD
 	<!-- header -->
  	<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
-=======
 
- 	<!-- Header -->
-		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
->>>>>>> branch '지수' of https://github.com/jong920224/semi_project.git
 
 
 	<!-- 랭킹 상단 부분 url -->

@@ -1183,6 +1183,7 @@
 										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
+											 
 										<!-- 사용자 아이디 -->	 
 										<p id="month_user_3" style="text-align:center; margin:0px; position:absolute; width: 50px; 
 										   height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>

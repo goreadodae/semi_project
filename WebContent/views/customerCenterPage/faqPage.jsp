@@ -12,11 +12,9 @@
 <title>FAQ 페이지 입니다.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
+
 
 <script>
 	/* 해더 불러오는 제이쿼리 */
@@ -98,7 +96,6 @@ select:active {
 
 	<div class="container-fluid" style="padding: 0px">
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
-
 		<div id="contents"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;">

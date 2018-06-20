@@ -433,7 +433,6 @@ public class NoticeDao {
 	public String previousNotice(Connection conn, int noticeNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Properties prop = new Properties();
 		String preNotice = "";
 	
 		

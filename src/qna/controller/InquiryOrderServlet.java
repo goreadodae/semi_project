@@ -46,12 +46,6 @@ public class InquiryOrderServlet extends HttpServlet {
 	      new Gson().toJson(list,response.getWriter());
 		
 		
-		
-		
-	
-		
-		
-		
 	}
 
 	/**

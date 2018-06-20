@@ -33,15 +33,17 @@
 	});
 
 	function inquiry() {
+	
+	
+	
+		
 		$('#hidingInquiry').html("");
-		$
-				.ajax({
+		$.ajax({
 					url : "/inquiryOrder",
 					type : "post",
 					data : {
-						memberNo :
-<%=m.getMemberNo()%>
-	},
+					memberNo : <%=m.getMemberNo()%>
+				},
 					success : function(data) {
 
 						$('#hidingInquiry')
@@ -57,25 +59,16 @@
 												+ "	<th>선택</th> " + "	</tr> ")
 
 						for (var i = 0; i < data.length; i++) {
-							$('#inquiry-row').append('<tr>')
-							$('#inquiry-row').append(
-									'<td>' + data[i].buyingNo + '</td>');
-							$('#inquiry-row').append(
-									'<td>' + data[i].orderDate + '</td>');
-							$('#inquiry-row').append(
-									'<td>' + data[i].productName + '</td>');
-							$('#inquiry-row').append(
-									'<td>' + data[i].buyingQuantity + '</td>');
-							$('#inquiry-row').append(
-									'<td>' + data[i].productPrice + '</td>');
-							$('#inquiry-row')
-									.append(
-											'<td> <input type="radio" onclick="radio_('+data[i].buyingNo+');" value="'+data[i].buyingNo+'" name="inquiry" class="selectRdo"/> </td>');
-							$('#inquiry-row').append('</tr>')
+							$('#inquiry-row').append('<tr>'
+							+'<td>' + data[i].buyingNo + '</td>'
+							+'<td>' + data[i].orderDate + '</td>'
+							+'<td>' + data[i].productName + '</td>'
+							+'<td>' + data[i].buyingQuantity + '</td>'
+							+'<td>' + data[i].productPrice + '</td>'
+							+'<td> <input type="radio" onclick="radio_('+data[i].buyingNo+');"'
+							+'value="'+data[i].buyingNo+'" name="inquiry " class="selectRdo"/> </td> </tr>')
 						}
-						$('#hidingInquiry').append("</table>");
-						$('#hidingInquiry').append(
-								"<p id='close' style='float:right'>close</p>");
+						$('#hidingInquiry').append("</table><p id='close' style='float:right'>close</p>");
 					},
 					error : function() {
 						console.log("error");
@@ -83,10 +76,7 @@
 					}
 				});
 
-		
-		
 	}
-
 	$(document).ready(function() {
 		$(document).on("click", '#close', function(event) {
 			console.log("안뇽");
@@ -99,10 +89,6 @@
 	{
 		
 	$('#orderNum').val(no);
-		
-		
-		
-		
 		
 	}
 	
@@ -122,15 +108,11 @@
 	<input type="text" style="width: 25%" id="orderNum" readonly />
 	<button type="button" onclick="inquiry();" class="btn btn-info"
 		id="orderInquiry" style="height: 2em">주문조회</button>
-	<%-- <input type="hidden" name="memberNo" value="${sessionScope.member.memberNo}"> --%>
 
 	<div class="col-md-8"
 		style="border: 1px solid; padding: 20px; height: 300px"
 		id="hidingInquiry">
 		문의하실 주문번호를 선택하세요<br>
-
-
-
 
 		<p id="close">close</p>
 

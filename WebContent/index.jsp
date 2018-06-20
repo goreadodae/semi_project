@@ -54,6 +54,7 @@
 				<!-- ajax 이미지 카운트 받아오기 -->
 				<script>
 					$(document).ready(function() {
+						$("#footer").load("/views/footer/main-Footer.jsp");
 						$.ajax({
 							url : "/mainServlet",
 							type : "get",
@@ -872,7 +873,7 @@
 							<div class="row">
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<!-- 이미지 -->
 										<a href="javascript:void(0)" id="week_link_1"> 
 											<img id="week_img_1" class="img col-md-12 col-sm-12" name="week_img"
@@ -892,7 +893,7 @@
 											<!-- 제목 -->
 											<p id="week_title_1" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -913,7 +914,7 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="week_link_2"> 
 											<img id="week_img_2" class="img col-md-12 col-sm-12" name="week_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -932,7 +933,7 @@
 											<br>
 											<p id="week_title_2" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -954,7 +955,7 @@
 								
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="week_img_3" class="img col-md-12 col-sm-12" name="week_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -992,7 +993,7 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="week_link_4"> 
 											<img id="week_img_4" class="img col-md-12 col-sm-12" name="week_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -1096,7 +1097,7 @@
 							
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="month_link_1"> 
 											<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -1114,7 +1115,7 @@
 											<br>
 											<p id="month_title_1" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top:13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top:31px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1135,7 +1136,7 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="month_link_2"> 
 											<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -1151,7 +1152,7 @@
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="month_title_2" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1173,7 +1174,7 @@
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
 									
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
@@ -1192,7 +1193,7 @@
 											<br>
 											<p id="month_title_3" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1213,7 +1214,7 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
 										<a href="javascript:void(0)" id="month_link_4"> 
 											<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">

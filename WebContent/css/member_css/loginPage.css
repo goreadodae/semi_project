@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+#section{
+	padding: 80px 100px 0px;
+	margin-bottom:80px;
+}
+
+#test {
+	background-color: blue;
+}
+
+#noPnoM {
+	padding: 0;
+	margin: 0;
+}
+
+.form-login {
+	height: 46px;
+	width: 360px;
+}
+
+.social-login {
+	display: grid;
+	grid-template-columns: 2fr;
+	grid-auto-rows: 45px;
+	grid-column-gap: 20px;
+	grid-row-gap: 1em;
+}
+
+
+.img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.social-login, button {
+	padding: 0;
+	margin: 0;
+}
+
+#facebook {
+	background-color: #3b5998;
+	border: 0;
+}
+
+#naver {
+	background-color: #50DE00;
+	border: 1px solid gray;
+}
+
+#google {
+	background-color: #DB5635;
+	border: 0;
+}
+
+#kakao {
+	background-color: #FEE202;
+	border: 0;
+}

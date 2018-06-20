@@ -123,7 +123,7 @@
 				</li>
 				<%}else{%>
 				<li class="nav-item">
-					<a class="nav-link" href="/index.jsp" style="padding-right:10px;">
+					<a class="nav-link" href="/logout" style="padding-right:10px;">
 						로그아웃
 					</a>
 				</li>
@@ -187,15 +187,26 @@
 						<a class="nav-category" href="/productList">상품</a>
 					</div>
 
-					<div class="col-md-2 col-sm-2 col-4">
+					<div class="col-md-2">
 						<a class="nav-category" href="/views/memberPage/myHomeMainPage.jsp">마이홈</a>
 					</div>
 					<%if(m!=null){ %>
-					<div class="col-md-2 col-sm-2 col-4">
-						<div style="border:1px solid black; height:50px;">
+					<div class="col-md-2" style="padding:0px;">
+						<div class="col-md-12" style="height:50px;">
 							<div class="row">
-								<div style="border:1px solid black; height:50px;">
-									ㅇㅇㅇㅇ
+								<div class="col-md-4" style="border:1px solid black; height:50px;">
+								</div>
+								<div class="col-md-8" style="border:1px solid black; height:50px; padding:0px;">
+									<div style="display:inline-block; width: 100%;">
+										<p style="font-size:13px; margin:0px; padding-left:10px; text-align:left;">환영합니다.</p>
+									</div>
+									<div style="display:inline-block; width:50%; float:left; height:25px;">
+										<p style="font-weight:800; font-size:15px; margin:0px; padding-left:10px; text-align:left; float:left;"><%=m.getNickName()%> 님</p>
+									</div>
+									<div style="display:inline-block; width:50%; height:25px;">
+										<a href="#" style="position:absolute; top:10px; display:block; 
+										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
+									</div>
 								</div>
 							</div>
 						</div>

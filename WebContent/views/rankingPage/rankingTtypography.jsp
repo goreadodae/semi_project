@@ -29,7 +29,8 @@ border-radius: 10px;
 .console-container {
  padding-top:50px;
   font-family:hanna;
-  font-size:2.5em;
+  font-size:2.3em;
+  font-weight: 800;
   text-align:center;
   height:100px;
   width:900px;

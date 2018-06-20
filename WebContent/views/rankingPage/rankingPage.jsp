@@ -211,7 +211,7 @@ error : function() {
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius:5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
 					<h6 style="margin: 0; color: white;" id="todayRecipe1st">오늘의 1위 레시피</h6>
 					</div>
 				</div>
@@ -232,7 +232,7 @@ error : function() {
 							style="width: 349px; height: 250px; border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px; border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px; border-bottom-left-radius: 5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
 					<h6 style="margin: 0; color: white;"  id="monthRecipe1st">이달의 1위 레시피</h6>
 				</div>
 				</div>
@@ -256,7 +256,7 @@ error : function() {
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
-					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius: :5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
+					<div style="background-color:rgba(81, 39, 114, 0.8 ); height: 65px;  border-bottom-left-radius: 5px; border-bottom-right-radius:5px; text-align: center; overflow: auto;" class="container"><br>
 					<h6 style="margin: 0; color: white; " id="monthmember1st">이달의 1위 회원</h6>
 				</div>
 				</div>

@@ -14,10 +14,7 @@
 <link rel="stylesheet" href="/css/noticePage_css/noticeContents.css">
 
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <script>
 	/* 해더 불러오는 제이쿼리 */

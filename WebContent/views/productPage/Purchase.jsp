@@ -98,7 +98,7 @@
 			$(this).addClass('mybutton2');
 		});
 		
-		$('#pay').click(function(){
+		$('#pay11').click(function(){
 			var basketNoTag = $('[name="basketNo1"]');
 			var basketNoArr = new Array();
 			
@@ -122,8 +122,8 @@
 					}
 			});
 			
-			var memberNo = $('#memberNo').val();
-			location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo="+memberNo;
+			/* var memberNo = $('#memberNo').val(); */
+			location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo=${member.memberNo}";
 				
 				
 		}); 
@@ -141,17 +141,17 @@
 		console.log("total : " + totalPay);
 		
 		//2. 결제 api 실행
-		$('#pay11').click(function(){
+		$('#pay').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '주문명:결제테스트',
-			    amount : totalPay,	//결제 가격
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
+			    amount : 100,//totalPay,	//결제 가격
+			    buyer_email : "${member.email}",//'iamport@siot.do',
+			    buyer_name : "${member.memberName}",//'구매자이름',
+			    buyer_tel : "${member.phone}",
+			    buyer_addr : "${member.address}",
 			    buyer_postcode : '123-456',
 			    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 			}, function(rsp) {
@@ -173,9 +173,10 @@
 					
 					//4. 구매목록에 추가 후 페이지 전환
 					jQuery.ajaxSettings.traditional=true;
-					 $.ajax({
+					$.ajax({
 							url : "/buyingInsert",
 							data : {basketNo:basketNoArr},
+							async: false,
 							type : "get",
 							success:function(data){
 								console.log("성공");
@@ -184,6 +185,8 @@
 								console.log("실패");
 							}
 					});
+					
+					location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo=${member.memberNo}";
 			        
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
@@ -230,6 +233,10 @@
 	height : 50px;
 }
 
+.line5{
+	height : 130px;
+}
+
 
 .inbasket{
 	height: 100px;
@@ -245,7 +252,7 @@
 	padding : 30px;
 }
 
-#name1,#name2,#phone1{
+#name1,#name2,#phone1,#addr{
 	padding : 10px;
 }
 
@@ -426,10 +433,16 @@
 					<!-- 배송 정보 -->
 					<hr style="border:1px solid #522075;">
 					<table width=100%>
-						<tr class="line4">
+						<tr class="line5">
 							<th width=15%><span id="sub">주소</span></th>
-							<td width=85%><textarea id="addr" class="deliveryinfo" maxlength="50" cols="100" style="resize:none;">
-							${member.address}</textarea></td>
+							<td td width=85%>
+							<%-- <c:set var="addrString" value=" " />
+							<c:forTokens items="${member.address}" delims="|" var="item">
+								<c:set var="addrString" value="${addrString} + ${item}" />
+							</c:forTokens>
+							<input type="text" value="${addrString}" class="deliveryinfo">
+							</td> --%>
+							<%-- <td width=85%><textarea id="addr" class="deliveryinfo" rows="2" cols="100" style="resize:none;">${member.address}</textarea></td> --%>
 						</tr>
 						
 						<tr class="line4">
@@ -524,6 +537,6 @@
 			style="border: 1px solid black; padding: 10px;">
 			<!-- footer -->
 		</div>
-	</div>ㄴ
+	</div>
 </body>
 </html>

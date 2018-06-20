@@ -36,16 +36,12 @@ public class LoginServlet extends HttpServlet {
 		String loginId = request.getParameter("loginId");
 		String loginPwd = request.getParameter("loginPwd");
 		String beforeURI = request.getParameter("beforeURI");
-		String referer = request.getHeader("referer");
 		
 		Member m = new MemberService().login(loginId, loginPwd);
 
 		if (m == null) {
 			response.sendRedirect("");
 		} else {
-			System.out.println(beforeURI);
-			System.out.println(request.getRequestURI());	// 서블릿 주소
-			System.out.println(referer);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", m);
 			response.sendRedirect(beforeURI);

@@ -36,7 +36,7 @@ public class RecipeCommentUpdateServlet extends HttpServlet {
 		int result = new RecipeService().updateComment(commentNo, content);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(content,response.getWriter());
+		new Gson().toJson(result,response.getWriter());
 	}
 
 	/**

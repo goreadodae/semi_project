@@ -170,8 +170,6 @@ error : function() {
 	<!-- header -->
  	<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
-
-
 	<!-- 랭킹 상단 부분 url -->
 	<br><br>
 	<div id="bodyWrap">

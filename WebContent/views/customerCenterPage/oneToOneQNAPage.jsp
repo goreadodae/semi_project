@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,11 +9,7 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
@@ -47,6 +44,12 @@
 </head>
 <body>
 
+
+<c:if test="${sessionScope.user==null}" >
+	<c:redirect url="/views/memberPage/loginPage.jsp"/>
+</c:if>
+	
+	
 		<!--  1:1 문의 페이지 만들때 생각해야 할 것!!
 			1. 로그인했을때만 1:1문의가 가능하다....
 			(로그인을 하지 않았을 경우 로그인 창으로 가야함!!)

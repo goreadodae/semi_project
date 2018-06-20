@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,6 @@
 <script>
 	$(document).ready(function() {
 		/* 해더 불러오는 제이쿼리 */
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		
 		
@@ -100,34 +99,34 @@
 		});
 		
 		$('#pay').click(function(){
-			 var basketNoTag = $('[name="basketNo1"]');
-				var basketNoArr = new Array();
+			var basketNoTag = $('[name="basketNo1"]');
+			var basketNoArr = new Array();
+			
+			for(var i=0; i<basketNoTag.length ; i++){
+				basketNoArr[i] = basketNoTag[i].value;
+			}
+			
+			
+			//4. 구매목록에 추가 후 페이지 전환
+			jQuery.ajaxSettings.traditional=true;
+			$.ajax({
+					url : "/buyingInsert",
+					data : {basketNo:basketNoArr},
+					async: false,
+					type : "get",
+					success:function(data){
+						console.log("성공");
+					},
+					error:function(){
+						console.log("실패");
+					}
+			});
+			
+			var memberNo = $('#memberNo').val();
+			location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo="+memberNo;
 				
-				for(var i=0; i<basketNoTag.length ; i++){
-					basketNoArr[i] = basketNoTag[i].value;
-				}
 				
-				
-				//4. 구매목록에 추가 후 페이지 전환
-				jQuery.ajaxSettings.traditional=true;
-				$.ajax({
-						url : "/buyingInsert",
-						data : {basketNo:basketNoArr},
-						async: false,
-						type : "get",
-						success:function(data){
-							console.log("성공");
-						},
-						error:function(){
-							console.log("실패");
-						}
-				});
-				
-				location.href="/buyingSelectRecent?rowCount="+basketNoTag.length;
 		}); 
-		
-		
-		
 		
 		//////// 결제 ////////
 		var IMP = window.IMP; // 생략가능
@@ -246,7 +245,7 @@
 	padding : 30px;
 }
 
-#name1,#name2{
+#name1,#name2,#phone1{
 	padding : 10px;
 }
 
@@ -262,9 +261,7 @@
 }
 
 #phone1,#phone2,#phone3{
-	text-align : center;
-	width : 80px;
-	
+	/* text-align : center; */
 }
 
 #notice{
@@ -343,6 +340,10 @@
 	line-height : 130px;
 }
 
+
+#addr{
+	text-align : left;
+}
 </style>
 
 </head>
@@ -350,7 +351,7 @@
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 
 		<!-- contents -->
@@ -397,20 +398,18 @@
 					<table width=100%>
 						<tr class="line4">
 							<th width=15%><span id="sub">보내는 분</span></th>
-							<td width=85%><input type="text" id="name1" value="한아름" class="deliveryinfo"></td>
+							<td width=85%><input type="text" id="name1" value="${member.memberName}" class="deliveryinfo"></td>
 						</tr>
 						
 						<tr class="line4">
 							<th><span id="sub">휴대폰</span></th>
-							<td><input type="text" value="010" class="deliveryinfo" id="phone1" maxlength="3" >
-							 - <input type="text" value="1111" class="deliveryinfo" id="phone2" maxlength="4">
-							 - <input type="text" value="2222" class="deliveryinfo" id="phone3" maxlength="4">
+							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1" readonly>
 							</td>	
 						</tr>
 						
 						<tr class="line4">
 							<th><span id="sub">이메일</span></th>
-							<td><input type="text" value="whitestar503@naver.com" class="deliveryinfo" id="email"></td>	
+							<td><input type="text" value="${member.email}" class="deliveryinfo" id="email"></td>	
 						</tr>
 						
 						<tr class="line4">
@@ -429,21 +428,18 @@
 					<table width=100%>
 						<tr class="line4">
 							<th width=15%><span id="sub">주소</span></th>
-							<td width=85%><textarea class="deliveryinfo" maxlength="50" cols="100" style="resize:none">
-							서울 영등포구 선유동2로 57구(지번) 주소 양평동4가 2 (지번)</textarea></td>	
+							<td width=85%><textarea id="addr" class="deliveryinfo" maxlength="50" cols="100" style="resize:none;">
+							${member.address}</textarea></td>
 						</tr>
 						
 						<tr class="line4">
 							<th><span id="sub">수령인 이름 *</span></th>
-							<td><input type="text" id="name2" value="한아름" class="deliveryinfo"></td>	
+							<td><input type="text" id="name2" value="${member.memberName}" class="deliveryinfo"></td>	
 						</tr>
 						
 						<tr class="line4">
 							<th><span id="sub">휴대폰 *</span></th>
-							<td><input type="text" value="010" class="deliveryinfo" id="phone1" maxlength="3" >
-							 - <input type="text" value="1111" class="deliveryinfo" id="phone2" maxlength="4">
-							 - <input type="text" value="2222" class="deliveryinfo" id="phone3" maxlength="4">
-							</td>	
+							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1"></td>	
 						</tr>
 						
 						<tr class="line4">
@@ -453,7 +449,7 @@
 					</table>
 					<hr>
 					<br><br>
-					
+					<input type="hidden" id="memberNo" value="${member.memberNo}"><!-- 스크립트에서 memberNo정보 쓰기위하여 -->
 
 					
 					<!-- 개인정보 수집 동의

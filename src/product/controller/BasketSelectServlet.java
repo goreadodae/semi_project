@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import product.model.service.ProductService;
 import product.model.vo.Basket;
 import product.model.vo.Product;
@@ -34,21 +36,25 @@ public class BasketSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		//로그인 정보 임의로 1로 지정해놓음
-		int memberNo=1;
+		HttpSession session = request.getSession(false);	
+		Member m = (Member)session.getAttribute("user");
 		
-		ArrayList<Basket> basketList = new ArrayList<Basket>();
-		basketList = new ProductService().getMyBasket(memberNo);
-		System.out.println("실행////");
-		
-		for(int i=0; i<basketList.size(); i++) {
-			System.out.println("이름" + basketList.get(i).getProductName());
+		if(m==null) {	//로그인 안되있으면
+			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
+		}
+		else {
+			int memberNo=m.getMemberNo();
+			
+			ArrayList<Basket> basketList = new ArrayList<Basket>();
+			basketList = new ProductService().getMyBasket(memberNo);
+			
+			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/Basket.jsp");
+			request.setAttribute("basket", basketList);
+			view.forward(request, response);
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/Basket.jsp");
-		request.setAttribute("basket", basketList);
-		view.forward(request, response);
 	}
 
 	/**

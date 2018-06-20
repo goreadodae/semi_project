@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import product.model.service.ProductService;
 import product.model.vo.Buying;
 
@@ -32,17 +34,28 @@ public class BuyingSelectAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.setCharacterEncoding("utf-8");
-		///로그인 정보 일단 1로
-		int memberNo = 1;
 		
-		//방금 구매한 상품 리스트 DB에서 받아옴
-		ArrayList<Buying> buyingList = new ProductService().selectBuyingAll(memberNo);
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		HttpSession session = request.getSession(false);	
+		Member m = (Member)session.getAttribute("user");
+
+		if(m==null) {	//로그인 안되있으면
+			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
+		}
+		else {			//로그인 되있으면
+			int memberNo = m.getMemberNo();
+			
+			//user가 구매한 전체 상품 리스트 DB에서 받아옴
+			ArrayList<Buying> buyingList = new ProductService().selectBuyingAll(memberNo);
+			
+			//전체 구매내역 페이지로 이동
+			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/BuyingListAll.jsp");
+			request.setAttribute("buying", buyingList);
+			view.forward(request, response);
+		}
 		
-		//구매내역 페이지로 이동
-		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/BuyingListAll.jsp");
-		request.setAttribute("buying", buyingList);
-		view.forward(request, response);
 	}
 
 	/**

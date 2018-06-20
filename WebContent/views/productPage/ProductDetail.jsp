@@ -19,7 +19,6 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		
 		/* 웹 실행 시 카테고리 숨김 */
@@ -57,7 +56,8 @@
 		               $('#category_list').css('display', 'none');
 		            }
 		         });
-		      }
+		     }
+		  });
 	});
 </script>
 
@@ -280,8 +280,14 @@ a{
 			data : {basketQuantity:basketQuantity,productNo:productNo},
 			type : "get",
 			success:function(data){
-				window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
-				console.log("성공");
+				if(data=="success"){
+					window.open('/views/productPage/InputBasket.jsp','장바구니에 담겼습니다.','width=430,height=300,top=300,left=800, location=no,status=no,resizable=no,scrollbars=yes');
+					console.log("성공");
+				}
+				else if(data=="nologin"){	//비로그인 접근시 로그인페이지로 이동
+					alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
+					location.href="/views/memberPage/loginPage.html";
+				}
 			},
 			error:function(){
 				console.log("실패");
@@ -295,7 +301,7 @@ a{
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 		<!-- 전체 컨텐츠 -->
 		<br><br>

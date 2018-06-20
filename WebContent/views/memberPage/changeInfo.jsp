@@ -353,7 +353,6 @@ ol, li {
       <!-- 푸터 끝 -->
    </div>
 
-
    <script>
    var regExpSpace = /\s/g; //공백찾기
    var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/; //비밀번호
@@ -391,7 +390,7 @@ ol, li {
                     if ($('#phone2').val().length != 4||$('#phone3').val().length != 4) {
                    
                     } else {
-                        $('#savePhone').val(콜);
+                        $('#savePhone').val(phone);
                     }
                 }
             }
@@ -404,8 +403,6 @@ ol, li {
    
    
    //이메일 변경
-
-   
    function changeEmail() {
       hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
       

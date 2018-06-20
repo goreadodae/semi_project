@@ -1,12 +1,3 @@
-<!-- 폰트 적용중 -->
-<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
-<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
-
-<style>
-	* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
-	/* * { font-family: 'Iropke Batang'} */
-</style>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
@@ -157,7 +148,7 @@
 
 			<script>
 				function startClick() {
-					location.href = "/views/memberPage/loginPage.html";
+					location.href = "/views/memberPage/loginPage.jsp";
 				}
 			</script>
 			<!-- 인트로 끝 -->

@@ -107,23 +107,14 @@ list-style: none;
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
-		<div id="contents"
-				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+		<div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding:0;">
+				
+			<!-- 개인정보 영역  -->
 			<div class="row" id="myPageTop">
-				<div class="col-md-2"></div>
-				<div class="col-md-9" style="padding:0;">
-					<div class="col-md-12" id="myPageTopUser">
-						<div id="userInfo" class="col-md-5">
-							
-						</div>
-						<ul>
-						
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
+				<div class="col-md-12" style="border:1px solid black; height:200px;"></div>
+			</div>			
+			
 			<div class="row" id="myPageBottom">
 				<div class="col-md-2" id="menu">
 					<h2 id="menu-title">마이 홈</h2>
@@ -136,7 +127,7 @@ list-style: none;
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<div id="menu-title">
 						<h2>내가 쓴 댓글</h2>
 					</div>

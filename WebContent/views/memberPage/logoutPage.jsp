@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +28,9 @@
 
 </head>
 <body style="overflow-x: hidden; overflow-y: auto;">
-	<% String recentURI = (String)request.getParameter("recentURI"); %>
+	<% String beforeURI = request.getHeader("referer"); %>
 	<script>
-		location.href="<%=recentURI%>";
+		location.href="<%=beforeURI%>";
 	</script>
 </body>
 </html>

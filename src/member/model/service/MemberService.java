@@ -1,9 +1,11 @@
 package member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
+import member.model.vo.BuyProduct;
 import member.model.vo.Member;
 
 public class MemberService {
@@ -72,8 +74,15 @@ public class MemberService {
 	// 아름 수정 (회원번호에 따른 계정정보 가져오기)
 	public Member selectOneMember(int memberNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		Member member = new MemberDao().selectOneMember(conn,memberNo);
+		Member member = new MemberDao().selectOneMember(conn, memberNo);
 		JDBCTemplate.close(conn);
 		return member;
+	}
+
+	public ArrayList<BuyProduct> buyProduct(int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<BuyProduct> list = new MemberDao().buyProduct(conn, userNo);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 }

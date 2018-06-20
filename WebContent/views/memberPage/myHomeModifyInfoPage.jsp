@@ -10,12 +10,12 @@
 <style>
 
 #myPageTop{
-padding-top: 70px;
-margin: 0 auto;
+	padding-top: 70px;
+	margin: 0 auto;
 }
 #myPageTopUser{
-border: 2px solid #dddfe1;
-height: 180px;
+	border: 2px solid #dddfe1;
+	height: 180px;
 }
 #userInfo{
 	padding: 38px 28px 28px;
@@ -31,8 +31,8 @@ height: 180px;
     padding:70px 0 170px;
 }
 #menu{
-float:left;
-width:170px;
+	float:left;
+	width:170px;
 }
 #menu-title{
     padding: 0 0 30px 2px;
@@ -45,8 +45,8 @@ width:170px;
 }
 
 #menu-list li{
-height:51px;
-border-bottom: 1px solid #dcdbde;
+	height:51px;
+	border-bottom: 1px solid #dcdbde;
 }
 
 #menu-list li  a{
@@ -66,22 +66,26 @@ border-bottom: 1px solid #dcdbde;
 }
 
 #menu-title{
-padding: 5px 0 24px;
+	padding: 5px 0 24px;
 }
+
 #menu-tile h2{
 	height: 42px;
     font: 24px/36px "Noto Sans KR Medium";
     color: #514859;
 }
+
 #check-pwd{
     padding: 38px 0 24px;
     border-top: 2px solid #512772;
 }
+
 #title-message{
     padding: 20px 0px;
     text-align: center;
 
 }
+
 #field-pwd{
 	padding: 33px 0;
     border: 2px solid #ddd;
@@ -94,6 +98,7 @@ padding: 5px 0 24px;
     font: 13px/18px "Noto Sans KR Medium";
     color: #000;
 }
+
 #ok-btn button{
 	display:block
     border: 1px solid #56297a;
@@ -105,39 +110,23 @@ padding: 5px 0 24px;
     width: 150px;
     height: 42px;
 }	
-
-
 </style>
 </head>
 
 <!-- 모든 스타일 시트 적용 -->
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
+
 <body style="overflow-x: hidden; overflow-y: auto;">
 <!-- 전체 컨테이너  -->
 	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
-		<div id="contents"
-				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-				style="border: 1px solid black; padding:0;">
-			<div class="row" id="myPageTop">
-				<div class="col-md-2"></div>
-				<div class="col-md-9" style="padding:0;">
-					<div class="col-md-12" id="myPageTopUser">
-						<div id="userInfo" class="col-md-5">
-							
-						</div>
-						<ul>
-						
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
+		<div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding:0;">
 			<div class="row" id="myPageBottom">
 				<div class="col-md-2" id="menu">
 					<h2 id="menu-title">마이 홈</h2>
@@ -150,7 +139,7 @@ padding: 5px 0 24px;
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<div id="menu-title">
 						<h2>개인 정보 변경</h2>
 					</div>
@@ -191,38 +180,31 @@ padding: 5px 0 24px;
 	</div>
 	
 	<script type="text/javascript">
-	
-	function check-btn() {
-		var id = $('#txt-id').val();
-		var password = $('#txt-pwd').val();
-		
+		function check-btn() {
+			var id = $('#txt-id').val();
+			var password = $('#txt-pwd').val();
 			
-		$.ajax({
-	         url: "/pwdCheck",
-	         data: {password:password, id : id},
-	         type: "post",
-	         success: function() {
-	             console.log("성공");
-	             
-	         },
-	         error: function() {
-	             console.log("실패");
-	         },
-	         complete: function() {
-	             //무조건 실행
-	         }
-	     });
-	}
-	
-
+			$.ajax({
+	        	url: "/pwdCheck",
+	        	data: {password:password, id : id},
+	         	type: "post",
+	         	success: function() {
+	            	console.log("성공");
+	         	},
+	         	error: function() {
+	            	console.log("실패");
+	         	},
+	         	complete: function() {
+	            	//무조건 실행
+	        	 }
+	     	});
+		}
 	</script>
 
-<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 	<script src="/js/bootstrap.min.js"></script>
-	
 </body>
 </html>
 

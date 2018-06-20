@@ -60,6 +60,12 @@ public class RecipeListServlet extends HttpServlet {
 		String cate4 = request.getParameter("cate4");//재료별
 		String order = request.getParameter("order");
 		
+		if(cate1==null||cate2==null||cate3==null||cate4==null) {
+			cate1="0";
+			cate2="0";
+			cate3="0";
+			cate4="0";
+		}
 		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order);
 		request.setAttribute("classList", categoryOrderClass);
 		request.setAttribute("situationList", categoryOrderSituation);

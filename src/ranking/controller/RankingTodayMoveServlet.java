@@ -36,15 +36,25 @@ public class RankingTodayMoveServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//인코딩
 		request.setCharacterEncoding("utf-8");
-		
 		String datepicker = request.getParameter("datepicker"); 
-/*		String [] dateSplit = datepicker.split("/");
+		/*String datepicker = request.getParameter("datepicker"); 
+		String [] dateSplit = datepicker.split("/");
 		int day = Integer.parseInt(dateSplit[2]);
-		String empty = "";
+		int month = Integer.parseInt(dateSplit[1]);
+		int year = Integer.parseInt(dateSplit[0]);
+		String emptyDay = "";
+		String emptyMonth = "";
 		if(0<day&&day<10) {
-			empty = "0"+day;
-			}
-		System.out.println(empty);
+			emptyDay = "0"+day;
+		}else {
+			emptyDay = dateSplit[2];
+		}
+		if(0<month&&month<10) {
+			emptyMonth = "0"+month;
+		}else {
+			emptyMonth = dateSplit[1];
+		}
+		System.out.println("년   :   "+ year+"   달 : "+emptyMonth+"  월 : "+emptyDay);
 		*/
 		System.out.println(datepicker + " 값 가져오기 성공 날짜이동");
 		ArrayList<Ranking> todayList = new RankingService().todayMoveRecipeRanking(datepicker);

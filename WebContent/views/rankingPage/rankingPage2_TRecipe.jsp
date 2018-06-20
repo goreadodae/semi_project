@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,11 +48,26 @@ pageEncoding="UTF-8"%>
 		var nextDayMonth;
 		var nextDay;
 
+
+     var x = new Date();
+     var Tyear = x.getFullYear().toString().substr(2);
+     var Tmonth = (x.getMonth() + 1).toString();
+     var Tday = x.getDate().toString();
+     (Tday.length == 1) && (Tday = '0' + Tday);
+     (Tmonth.length == 1) && (Tmonth = '0' + Tmonth);
+     var today = Tyear + "/" + Tmonth + "/" + Tday;
+
+		var currentDay= new Date();
+     	var yesterday = new Date();
+    	 yesterday.setDate(yesterday.getDate()-1);
+    	 var nextDay = new Date();
+    	 nextDay.setDate(nextDay.getDate()+1);
+
 		/*datepicker script*/
 		/*클릭 했을 때*/
 		$(document).ready(function() {
 
-
+			/*	alert(new Date().getDate() - 1);*/
 			$("#datepicker").datepicker({
 				dateFormat : 'y/mm/dd',
 				prevText : '이전달',
@@ -70,141 +87,161 @@ pageEncoding="UTF-8"%>
 				onSelect : function(dateText, inst) {
 				var datepicker = document.getElementById("datepicker").value; //입력값
 
-/*현재 날짜에서 이전날 다음날로 이동하는 변수*/
-			var prevDay1 = datepicker.split('/');
-			preDayYear = prevDay1[0];	/*년*/
-			preDayMonth = prevDay1[1]; /*월*/
-			prevDay = prevDay1[2]; /*일*/
-/*			if(prevDay<1)
-			{
-				preDayMonth-1;
+				/*현재 날짜에서 이전날 다음날로 이동하는 변수*/
+				var prevDay1 = datepicker.split('/');
+				preDayYear = prevDay1[0];	/*년*/
+				preDayMonth = prevDay1[1]; /*월*/
+				prevDay = prevDay1[2]; /*일*/
+//if(Number(prevDay)<10){prevDay="0"+prevDay;}
+			console.log(prevDay);
+
+				var prevDay2 = datepicker.split('/');
+				nextDayYear = prevDay1[0];	/*년*/
+				nextDayMonth = prevDay1[1]; /*월*/
+				nextDay = prevDay1[2]; /*일*/
+
+				/*데이터 피커 선택 날짜로 값 집어 넣어서 보여주기!*/
+					
+				$('#rankingDateToday').html($('#datepicker').val());
+
+
+				$.ajax({
+					url : "/rankingToday",
+					data : {datepicker : $('#datepicker').val()},
+					type : "post",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							$('#rankNum' + (i + 1)).html((i + 1) + "위");
+							$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+							$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+							$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+							$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+						}
+						
+					},
+					error : function() {
+						console.log("실패");
+					}
+
+				});
+
+			}
+
+		});
+
+
+
+			/*이전날 버튼*/
+			$("#preBtn").click(function(event){
+				$('#datepicker').datepicker('setDate',yesterday);
+				$('#rankingDateToday').html($('#datepicker').val());
 				
-			}*/
+				yesterday.setDate(yesterday.getDate()-1);
 
-			var prevDay2 = datepicker.split('/');
-			nextDayYear = prevDay1[0];	/*년*/
-			nextDayMonth = prevDay1[1]; /*월*/
-			nextDay = prevDay1[2]; /*일*/
+					console.log("이전날 버튼 : "+$('#datepicker').val());
+				$.ajax({
+					url : "/rankingTodayMove",
+					data : {datepicker : $('#datepicker').val()},
+					type : "post",
+					success : function(data) {
 
-												/*데이터 피커 선택 날짜로 값 집어 넣어서 보여주기!*/
-												$('#rankingDateToday').html($('#datepicker').val());
+						for (var i = 0; i < data.length; i++) {
+							$('#rankNum' + (i + 1)).html((i + 1) + "위");
+							$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+							$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+							$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+							$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+						}
+						if($('#datepicker').val()==today)
+						{
+								$('#nextBtn').removeClass('btn btn-secondary btn-lg active');
+     			$('#nextBtn').addClass('btn btn-secondary btn-lg disabled');
+     		}else{
+     			$('#nextBtn').removeClass('btn btn-secondary btn-lg disabled');
+							$('#nextBtn').addClass('btn btn-secondary btn-lg active');
+     		}
+					},
+					error : function() {
+						console.log("실패");
+					}
 
-
-												$.ajax({
-													url : "/rankingToday",
-													data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +prevDay)},
-													type : "post",
-													success : function(data) {
-
-														for (var i = 0; i < data.length; i++) {
-															$('#rankNum' + (i + 1)).html((i + 1) + "위");
-															$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
-															$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
-															$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
-															$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
-															$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
-															$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-
-														}
-
-													},
-													error : function() {
-														console.log("실패");
-													}
-
-												});
-
-											}
-
-										});
+				});
 
 
+			});
 
-     /*이전날 버튼*/
-     $("#preBtn").click(function(event){
-     	$('#rankingDateToday').html((preDayYear+"/"+preDayMonth+"/" +(prevDay-1)));
-    	/*alert(prevDay-1);*/
- /*     	location.href="/rankingTodayMove?datepicker="+Tyear + "/" + Tmonth + "/" + (Tday-1);*/
-     	 $.ajax({
-     	url : "/rankingTodayMove",
-     	data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +(prevDay-=1))},
-     	type : "post",
-     	success : function(data) {
 
-     		for (var i = 0; i < data.length; i++) {
-     			$('#rankNum' + (i + 1)).html((i + 1) + "위");
-     			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
-     			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
-     			$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
-     			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
-     			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
-     			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+			/*다음날 버튼*/
+			$("#nextBtn").click(function(event){
+				//yesterday.setDate(yesterday.getDate());
+				$('#datepicker').datepicker('setDate',yesterday);
+				$('#rankingDateToday').html($('#datepicker').val());
+				yesterday.setDate(yesterday.getDate()+1);
+				console.log("다음날 버튼 : "+$('#datepicker').val());
+				$.ajax({
+					url : "/rankingTodayMoveNext",
+					data : {datepicker : $('#datepicker').val()},
+					type : "post",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							$('#rankNum' + (i + 1)).html((i + 1) + "위");
+							$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+							$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
+							$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
+							$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
+							$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+							$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+
+						}
+
+						if($('#datepicker').val()==today)
+						{
+								$('#nextBtn').removeClass('btn btn-secondary btn-lg active');
+     			$('#nextBtn').addClass('btn btn-secondary btn-lg disabled');
+     		}else{
+     			$('#nextBtn').removeClass('btn btn-secondary btn-lg disabled');
+							$('#nextBtn').addClass('btn btn-secondary btn-lg active');
      		}
 
-     	},
-     	error : function() {
-     		console.log("실패");
-     	}
+					},
+					error : function() {
+						console.log("실패");
+					}
 
-     });
+				});
 
-
-     });
-
-
-/*다음날 버튼*/
-     $("#nextBtn").click(function(event){
-     	$('#rankingDateToday').html((preDayYear+"/"+preDayMonth+"/" +(prevDay+1)));
-     		 $.ajax({
-     	url : "/rankingTodayMoveNext",
-     	data : {datepicker : (preDayYear+"/"+preDayMonth+"/" +(prevDay+=1))},
-     	type : "post",
-     	success : function(data) {
-
-     		for (var i = 0; i < data.length; i++) {
-     			$('#rankNum' + (i + 1)).html((i + 1) + "위");
-     			$('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
-     			$('#rankingTodayTitle' + (i + 1)).html(data[i].recipeTitle);
-     			$('#rankingViews' + (i + 1)).html(data[i].recipeTodayViews);
-     			$('#rankingTag' + (i + 1)).html(data[i].recipeTag);
-     			$('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
-     			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-
-     		}
-
-     	},
-     	error : function() {
-     		console.log("실패");
-     	}
-
-     });
-
-     });
+			});
 
 
 
 		});
 
 
-		/*클릭 하지 않았을 때 */
-		window.onload = function() {
+/*클릭 하지 않았을 때 */
+window.onload = function() {
+	/*alert(currentDay);*/
 
+	$("#datepicker").datepicker().datepicker("setDate", currentDay);
+	var datepicker = document.getElementById("datepicker").value;
 
-			$("#datepicker").datepicker().datepicker("setDate", new Date());
-			var datepicker = document.getElementById("datepicker").value;
+	var prevDay1 = datepicker.split('/');
+	preDayYear = prevDay1[0];
+	preDayMonth = prevDay1[1];
 
-			var prevDay1 = datepicker.split('/');
-			preDayYear = prevDay1[0];
-			preDayMonth = prevDay1[1];
+	prevDay = prevDay1[2];
 
-			prevDay = prevDay1[2];
-			
      //입력값
      console.log("오늘 날짜는 ?"+datepicker);
 
      $.ajax({
      	url : "/rankingToday",
-     	data : {datepicker : preDayYear+"/"+preDayMonth+"/" +prevDay},
+     	data : {datepicker : $('#datepicker').val()},
      	type : "post",
      	success : function(data) {
 
@@ -218,6 +255,9 @@ pageEncoding="UTF-8"%>
      			$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
 
      		}
+     		$('#nextBtn').removeClass('btn btn-secondary btn-lg active');
+     			$('#nextBtn').addClass('btn btn-secondary btn-lg disabled');
+
 
      	},
      	error : function() {
@@ -237,7 +277,7 @@ pageEncoding="UTF-8"%>
      	$('#datepicker').datepicker("show");
      });
 
-    
+
 
      /*오늘 날짜 구하기*/
      /*yyyy-mm-dd 형태 단일 코드*/
@@ -250,9 +290,6 @@ pageEncoding="UTF-8"%>
      (Tday.length == 1) && (Tday = '0' + Tday);
      (Tmonth.length == 1) && (Tmonth = '0' + Tmonth);
      var today = Tyear + "/" + Tmonth + "/" + Tday;
-
-     var ReToday= new Date();
-     alert(Tyear+"/"+Tmonth+"/"+(ReToday.getDate()-10));
 
      /*오늘 날짜 가져오기*/
      document.getElementById("rankingDateToday").innerHTML = today;
@@ -272,56 +309,55 @@ pageEncoding="UTF-8"%>
 		border: 1px solid black;
 	}
 </style> -->
-<style>
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
-	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Khula:700);
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	
 	@font-face {
   font-family: 'Godo';
   font-style: normal;
   font-weight: 400;
   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
 }
-*{
-	 font-family: 'Godo';font-style: normal; font-weight: 400;
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
 }
+
+
 </style>
+
 </head>
 <body>
 	<br>
-<!-- <div class="recipe-title">
-                     ${requestScope.pageData.dataList[i.count-1].recipeTitle}
-                     <fmt:formatDate var = "postDate" value="${requestScope.pageData.dataList[i.count-1].postedDate}" pattern = "yyyy-MM-dd"/>
-                     
-                     <fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today"/>
-                     <c:set var="sevenago" value="<%=new Date(new Date().getTime() - 60*60*24*1000*1)%>"/>
-                     <fmt:formatDate value="${sevenago}" pattern="yyyy-MM-dd" var="sevenago"/>
-                      <c:set var="sevenafter" value="<%=new Date(new Date().getTime() + 60*60*24*1000*1)%>"/>
-                     <fmt:formatDate value="${sevenafter}" pattern="yyyy-MM-dd" var="sevenafter"/>
-                      
-                      <c:if test="${sevenago < postDate && postDate < sevenafter }">
-                        <img src="/imgs/recipe_img/new-tag.png" class="img-new" />
-                     </c:if>
-                  </div> -->
+
 	<!-- datepicker 날짜 불러오기-->
 	<!-- <div id="dateTop"> -->
 		<div class="container" id="dateWrap">
 			<div class="row justify-content-center" id="rankingPage2_1Wrap">
 
-				 <a href="javascript:void(0)" class="btn btn-secondary btn-lg active" role="button"
-				aria-pressed="true" id="preBtn" class="dateButton">이전날</a> 
+				<a href="javascript:void(0)" class="btn btn-secondary btn-lg active" role="button"
+				aria-pressed="true" id="preBtn">이전날</a>
 
 				<div class="date">
 
 					<input type="hidden" id="datepicker" name="datepicker"
 					style="visibility: hidden" onclick="datepic();"> 
-					<a href="javascript:void(0)" id="rankingDateToday" style=" font-family:hanna; font-weight: 800; letter-spacing:7px;"></a>
+					<a href="javascript:void(0)" id="rankingDateToday"></a>
 
 				</div>
 
 
-				<a href="javascript:void(0)" class="btn btn-secondary btn-lg active" role="button"
-				aria-pressed="true" id="nextBtn" class="dateButton">다음날</a> 
+				<!-- 작동 안하는 버튼 -->
+<!-- 					<a href="javascript:void(0)" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">다음날</a> -->
+
+					<!-- 작동 하는 버튼 -->
+		<a href="javascript:void(0)" class="btn btn-secondary btn-lg active" role="button"
+				aria-pressed="true" id="nextBtn" >다음날</a> 
 
 			</div>
 		</div>
@@ -333,7 +369,7 @@ pageEncoding="UTF-8"%>
 		<div id="wholeWrap" style="padding-left: 50px;">
 			<div class="container justify-content-center" id="tableContainer">
 				<div class="col-lg-12">
-					<h2 class="my-4" style=" font-family: 'Godo'; font-style: normal; font-weight: 700;">오늘의 레시피</h2>
+					<h2 class="my-4" style=" font-family:hanna; font-weight: 800;">오늘의 레시피</h2>
 				</div>
 
 				<!-- 1위 -->
@@ -356,23 +392,21 @@ pageEncoding="UTF-8"%>
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG1" onclick="window.top.location.href ='/recipe?recipeNo=2'">
+				<a href="#" id="rankinListIMG1" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
-							<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px; border-bottom-right-radius: 10px;">
-												<h5 style="color:white; line-height:80px; text-align:center;">1위</h5>
-											</div>
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image" id="cardImgs1">
+							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							id="cardImgs1">
 						</div>
 						<div class="container">
 							<div class="card-img-overlay" id="cardOverlay">
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
-									<h4 class="card-title" id="rankingTodayTitle1" style="font-family:hanna;"></h4>
-									<p class="card-text" id="rankingTag1" style="color:#512772; "></p>
-									<p class="card-text" id="rankingContents1"></p>
+									<h3 class="card-title" id="rankingTodayTitle1"></h3>
+									<p class="card-text" id="rankingTag1" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents1" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -402,7 +436,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG2">
+				<a href="#" id="rankinListIMG2" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -414,9 +448,9 @@ pageEncoding="UTF-8"%>
 							<div class="card-img-overlay" id="cardOverlay">
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
-									<h4 class="card-title" id="rankingTodayTitle2" style="font-family:hanna;"></h4>
-									<p class="card-text" id="rankingTag2" style="color:#512772; "></p>
-									<p class="card-text" id="rankingContents2"></p>
+									<h3 class="card-title" id="rankingTodayTitle2"></h3>
+									<p class="card-text" id="rankingTag2" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents2" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -446,7 +480,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG3">
+				<a href="#" id="rankinListIMG3" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -458,9 +492,9 @@ pageEncoding="UTF-8"%>
 							<div class="card-img-overlay" id="cardOverlay">
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
-									<h4 class="card-title" id="rankingTodayTitle3" style="font-family:hanna;"></h4>
-									<p class="card-text" id="rankingTag3" style="color:#512772; "></p>
-									<p class="card-text" id="rankingContents3"></p>
+									<h3 class="card-title" id="rankingTodayTitle3"></h3>
+									<p class="card-text" id="rankingTag3" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents3" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -490,7 +524,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG4">
+				<a href="#" id="rankinListIMG4" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -502,9 +536,9 @@ pageEncoding="UTF-8"%>
 							<div class="card-img-overlay" id="cardOverlay">
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
-									<h4 class="card-title" id="rankingTodayTitle4" style="font-family:hanna;"></h4>
-									<p class="card-text" id="rankingTag4" style="color:#512772; "></p>
-									<p class="card-text" id="rankingContents4"></p>
+									<h3 class="card-title" id="rankingTodayTitle4"></h3>
+									<p class="card-text" id="rankingTag4" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents4" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>
@@ -534,7 +568,7 @@ pageEncoding="UTF-8"%>
 				</div>
 
 				<!-- a태그로 해당 레시피 이동 -->
-				<a href="#" id="rankinListIMG5">
+				<a href="#" id="rankinListIMG5" style=" font-family: 'Godo', sans-serif;">
 					<div class="card rounded shadow-sm" id="rankingList">
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
@@ -546,9 +580,9 @@ pageEncoding="UTF-8"%>
 							<div class="card-img-overlay" id="cardOverlay">
 								<div id="cardContents">
 									<!-- 랭킹 등록 관련 레시피 내용 -->
-									<h4 class="card-title" id="rankingTodayTitle5" style="font-family:hanna;"></h4>
-									<p class="card-text" id="rankingTag5" style="color:#512772; "></p>
-									<p class="card-text" id="rankingContents5"></p>
+									<h3 class="card-title" id="rankingTodayTitle5"></h3>
+									<p class="card-text" id="rankingTag5" style="color: #512772"></p>
+									<p class="card-text" id="rankingContents5" style="font-weight: 350;"></p>
 								</div>
 							</div>
 						</div>

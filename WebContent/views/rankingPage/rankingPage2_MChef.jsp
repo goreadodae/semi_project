@@ -358,7 +358,7 @@ $("#monthClick").change(function() {
 
 <!-- 월별 selected option -->
 <br>
-<div class="container">
+<div class="container"  style="padding-right: 50px;">
 
   <div class="container">
    <div class="row justify-content-end">
@@ -383,7 +383,7 @@ $("#monthClick").change(function() {
 <br>
 
 <div id="wholeWrap" class="container">
-  <div class="col-lg-12">
+  <div class="col-lg-12" style="padding-right: 50px;">
     <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 쉐프</h2>
     <hr style="border: 0.5px solid #EAEAEA;">
   </div>

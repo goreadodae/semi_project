@@ -99,5 +99,17 @@ public class RecipeService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int updateComment(int commentNo, String content) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecipeDao().updateComment(conn, commentNo, content);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 }

@@ -416,11 +416,12 @@ public class RecipeDao {
 				RecipeComment rc = new RecipeComment();
 				rc.setCommentNo(rset.getInt("comment_no"));
 				rc.setCommentContents(rset.getString("comment_contents"));
-				rc.setEnrollDate(rset.getDate("enroll_date"));
+				rc.setCommentEnrollDate(rset.getTimestamp("COMMENT_ENROLL_DATE"));
 				rc.setRecipeNo(rset.getInt("recipe_no"));
 				rc.setMemberNo(rset.getInt("member_no"));
-				//rc.setMemberPic(rset.getString("member_pic"));
-				//rc.setMemberNickName(rset.getString("member_nick_name"));
+				rc.setProfile(rset.getString("profile"));
+				rc.setNickname(rset.getString("nickname"));
+				rc.setGender(rset.getString("gender"));
 				list.add(rc);
 			}
 		} catch (SQLException e) {
@@ -545,6 +546,34 @@ public class RecipeDao {
 			pstmt.setString(1, content);
 			pstmt.setInt(2, recipeNo);
 			pstmt.setInt(3, memberNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
+	public int updateComment(Connection conn, int commentNo, String content) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("updateComment");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, content);
+			pstmt.setInt(2, commentNo);
 			result = pstmt.executeUpdate();
 			return result;
 		} catch (FileNotFoundException e) {

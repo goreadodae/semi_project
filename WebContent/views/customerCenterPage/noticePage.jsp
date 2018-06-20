@@ -21,7 +21,7 @@
 
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		
 		$("#footer").load("/views/footer/main-Footer.jsp");
 
 	});
@@ -90,7 +90,7 @@ body {
 
 	<div class="container-fluid" style="padding: 0px">
 
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"

@@ -542,7 +542,7 @@ pageEncoding="UTF-8"%>
 
   				<!-- 구매 후기 버튼 -->
   				<div class="d-flex justify-content-end">
-  					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyingAfter">구매 후기 작성</button>
+  					<button type="button" class="btn btn-primary" id="buyingAfterWriterButton" data-toggle="modal" data-target="#buyingAfter">구매 후기 작성</button>
   				</div>
 
   				<!-- 구매 후기 모달 -->
@@ -556,7 +556,7 @@ pageEncoding="UTF-8"%>
 
   							</div>
   							<div class="modal-body" >
-  								<div style="border:1px solid black; border-radius: 5px; padding: 25px;">
+  								<div style="border:1px solid #512772; border-radius: 5px; padding: 25px;">
   									<!-- 구매한 상품 정보 -->
   									<div class="container">
   										<div class="row">
@@ -566,7 +566,7 @@ pageEncoding="UTF-8"%>
   											</div>
   											<!-- 상품 타이틀 div -->
   											<div class="col-md-8" style="text-align: center; padding-right: 10px;">
-  												<strong><label id="buyProductName" style="font-size: 18px; padding-top: 25px; text-align: center;">쉬림프 로제 파스타 (2인분)</label></strong>
+  												<strong><label id="buyProductName" style="font-size: 18px; padding-top: 25px; text-align: center;">sdfsfsdfdsff쉬림프 로제 파스타 (2인분)</label></strong>
   											</div>
   											<!-- <div class="co-md-1"></div> -->
 
@@ -598,12 +598,12 @@ pageEncoding="UTF-8"%>
   										</div>
 
   									</div>
-  									<!-- 별점 value 뽑는 script -->
+  									<!-- 구매 후기 script☆ -->
   									<script>
   										//별점 
   										$('.star-rating input').click(function(){
   											/*alert($(this).val());*/
-  											$("#ratingNum").html("("+$(this).val()+")");
+  											$("#ratingNum").html("( "+$(this).val()+"점 )");
   										});
 
 
@@ -613,40 +613,80 @@ pageEncoding="UTF-8"%>
   												$('#print').text(500 - ($('#buyingAfterText').val().length));
   											});
   										});
+
+
+  										/* 그림추가부분-step*/
+  										function readURL(input,stepImgNum) {
+
+  											if (input.files && input.files[0]) {
+  												var reader = new FileReader();
+
+  												reader.onload = function (e) {
+  													$('#imgFile_Step_'+stepImgNum).attr('src', e.target.result);
+
+  													var imgAddr = $('#imgFile_Step_'+stepImgNum).attr('src');
+  													$('#stepRPic'+stepImgNum).attr('value',imgAddr);
+
+  												}
+
+  												reader.readAsDataURL(input.files[0]);
+  											}
+
+  										};
+
+  										//구매 후기 작성 버튼 클릭시 실행
+  										$('#buyingAfterWriterButton').click(function(){
+  											/*alert($('#1stImg').attr('src'));*/
+  											var buyProductImage = $('#buyProductImage').attr('src',$('#1stImg').attr('src'));
+  											buyProductImage.attr('src',${productInfo.product1stPic});
+  											
+  										});
+  										
   									</script>
   									<hr>
+
+
+
+
+
 
 
   									<!-- 구매 후기 작성 textarea -->
   									<div class="container">
   										<span class="byte" id="print" style="font-size: 13px;">500</span>
   										<textarea class="form-control" id="buyingAfterText" name="buyingAfterText" rows="7" cols="30" maxlength="500" style=" resize: none; "></textarea>
-  									</div>
+  									</div><br>
   									<hr><br>
 
 
   									<!-- 사진 첨부 -->
-  									<div class="photo-wrap" style="display: block;">
-  										<div class="photo">
-  											<!-- 사진 있을 경우 - 없으면 img, a태그 삭제-->
-  											<img id="img_preview" width="60" height="60" style="display:none;">
-  											<div id="div_preview"></div>
-  											<img id="gimg" style="display:none;">
-  											<button class="delete" style="display:none;">삭제</button>
-  										</div>
-
+  									<div class="fileWrap">
   										<form>
-  											<div class="form-group" id="uploadForm" method="post"  action="" enctype="multipart/form-data" >
-  												<label for="exampleFormControlFile1">Example file input</label>
-  												<input type="file" class="form-control-file" id="exampleFormControlFile1">
+  											<div class="form-group" id="uploadForm" method="post" enctype="multipart/form-data" action="" >
+  												<div class="container">
+  													<div class="row">
+  												<div class="col-md-4" style="padding-top: 65px; font-size: 16px; text-align: center; border-right: 1px dotted lightgrey;">
+  													<strong>사진 등록</strong>
+  											</div>
+  											<div class="col-md-8" style="font-size: 12px; text-align: center;">
+  												<label for="stepImgFile0" style="color: #BDBDBD;"> jpeg, jpg, png 파일 1개만 첨부 가능합니다. </label><br>
+  												<!-- <input type="file" class="form-control-file" id="exampleFormControlFile1"> -->
+  												<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
+  												<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" style="cursor: pointer;" id="imgFile_Step_0" class="rounded" onclick="document.all.stepImgFile0.click();">
+  												</div>
+  												</div>
+  											</div>
   											</div>
   										</form>
   									</div>
+
+
   								</div>
   							</div>
   							<div class="modal-footer">
   								<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-  								<button type="submit" class="btn btn-primary">등록</button>
+  								<input class="btn btn-primary" type="submit" value="등록">
+  								<!-- <button type="submit" class="btn btn-primary">등록</button> -->
   							</div>
   						</div>
   					</div>

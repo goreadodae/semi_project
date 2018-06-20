@@ -111,5 +111,18 @@ public class RecipeService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int deleteComment(int commentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result1 = new RecipeDao().insertDeleteComment(conn, commentNo);
+		int result2 = new RecipeDao().deleteComment(conn, commentNo);
+		if(result1>0&&result2>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result1*result2;
+	}
 	
 }

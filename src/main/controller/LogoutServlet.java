@@ -1,6 +1,8 @@
 package main.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +33,9 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		
 		response.setContentType("text/html; charset=UTF-8");
+		
+		String recentURI = request.getParameter("recentURI");
 		
 		HttpSession session = request.getSession(false);	
 		
@@ -40,7 +43,10 @@ public class LogoutServlet extends HttpServlet {
 		
 		if(m!=null) {
 			session.invalidate();
-			response.sendRedirect("/index.jsp");
+			
+			RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/logoutPage.jsp");
+			request.setAttribute("recentURI", recentURI);
+			view.forward(request, response);
 		} 
 		else {
 			System.out.println("에러입니다.");

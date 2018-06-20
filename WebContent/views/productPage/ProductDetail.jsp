@@ -19,7 +19,6 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		
 		/* 웹 실행 시 카테고리 숨김 */
@@ -295,7 +294,7 @@ a{
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<div id="header"></div>
+		<div id="header"><jsp:include page="/views/header/main-Header.jsp"></jsp:include></div>
 
 		<!-- 전체 컨텐츠 -->
 		<br><br>

@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 	
 <% Member m = (Member)session.getAttribute("user"); %>
-
+<%
+	String presentURI = request.getRequestURI();
+	String beforeURI = request.getHeader("referer");	// 로그인 할 때 필요함
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,21 +71,11 @@
 			}
 		});
 	});
-
-	/* 팝업 div 삭제 */
-	function delete_info(obj) {
-		// 삭제할 ID 정보 찾기
-		var target = obj.parentNode.getAttribute('div');
-		console.log(target);
-		// 삭제할 element 찾기
-		var field = document.getElementById(target);
-		// #field 에서 삭제할 element 제거하기
-		document.getElementById('top-message').remove();
-	}
 </script>
 </head>
 
 <body>
+	<%=presentURI %>
 	<!-- 해더 시작 -->
 	<div class="header">
 		<!-- 팝업창 -->
@@ -156,19 +149,19 @@
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
 			<ul class="nav justify-content-end">
 				<li class="nav-item text-center">
-					<a class="nav-link" href="/views/memberPage/membershipPage.html" style="padding-right:10px;">
+					<a class="nav-link" href="/views/memberPage/membershipPage.jsp" style="padding-right:10px;">
 						회원가입
 					</a>
 				</li>
 				<%if(m==null){ %>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/memberPage/loginPage.html" style="padding-right:10px;">
+					<a class="nav-link" href="/views/memberPage/loginPage.jsp" style="padding-right:10px;">
 						로그인
 					</a>
 				</li>
 				<%}else{%>
 				<li class="nav-item">
-					<a class="nav-link" href="/logout" style="padding-right:10px;">
+					<a class="nav-link" href="/logout?recentURI=<%=presentURI%>" style="padding-right:10px;">
 						로그아웃
 					</a>
 				</li>

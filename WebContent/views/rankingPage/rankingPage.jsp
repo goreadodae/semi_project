@@ -41,7 +41,6 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		$("#ranking2_TRecipe").load("rankingPage2_TRecipe.jsp");
 		$("#ranking2_MRecipe").load("rankingPage2_MRecipe.jsp");
@@ -169,9 +168,7 @@ error : function() {
 	https://www.ovzect.kr/shop?productListFilter=117035 -->
 
 	<!-- header -->
-	<div id="headWrap">
- 	<div id="header">
- 	</div>
+ 	<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 	<!-- 랭킹 상단 부분 url -->
 	<br><br>

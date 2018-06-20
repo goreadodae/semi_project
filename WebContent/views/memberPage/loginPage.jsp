@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<% String beforeURI = request.getHeader("referer"); %>
+<!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +97,7 @@ img {
 	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
@@ -112,8 +112,8 @@ img {
 					<legend>
 						<h2 style="font-weight: bold;">로그인</h2>
 					</legend>
-
-					<form action="/login" method="post" id="frm">
+					
+					<form action="/login?beforeURI=<%=beforeURI%>" method="post" id="frm">
 						<input class="form-control form-login" type="text"
 							placeholder="Your ID" id="loginId" name="loginId"><br>
 						<input class="form-control form-login" type="password"

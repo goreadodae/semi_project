@@ -21,17 +21,12 @@ public class Basket {
 		this.productPrice = productPrice;
 	}
 
-
-
 	public int getBasketNo() {
 		return basketNo;
 	}
 	public void setBasketNo(int basketNo) {
 		this.basketNo = basketNo;
-	}
-	
-
-	
+	}	
 	
 	public int getProductNo() {
 		return productNo;

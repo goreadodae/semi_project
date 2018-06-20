@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import product.model.service.ProductService;
 
 /**
@@ -31,20 +33,31 @@ public class BasketInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		int basketQuantity = Integer.parseInt(request.getParameter("basketQuantity"));
-//		int member_no = Integer.parseInt(request.getParameter("member_no"));
-		int memberNo = 1;
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		HttpSession session = request.getSession(false);	
+		Member m = (Member)session.getAttribute("user");
 		
-		
-		
-		int result = new ProductService().insertBasket(basketQuantity, memberNo, productNo);
-		if(result>0) {
-			System.out.println("성공");
-		}
-		else {
-			response.sendRedirect("/views/productPage/error.jsp");
+		if(m==null) {	//로그인 안되있으면
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print("nologin");
+			response.getWriter().close();
+		}else {			//로그인 되있으면
+			int basketQuantity = Integer.parseInt(request.getParameter("basketQuantity"));
+			int memberNo = m.getMemberNo();
+			int productNo = Integer.parseInt(request.getParameter("productNo"));
+			
+			int result = new ProductService().insertBasket(basketQuantity, memberNo, productNo);
+			if(result>0) {
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print("success");
+				response.getWriter().close();
+			}
+			else {
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().print("fail");
+				response.getWriter().close();
+			}
 		}
 	}
 

@@ -16,7 +16,7 @@
 <script>
 	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	$(document).ready(function(){
@@ -58,7 +58,7 @@
 			7. ÈæÈæÈæ
 		  -->
 	<div class="container-fluid" style="padding:0px">
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;" id="contents">

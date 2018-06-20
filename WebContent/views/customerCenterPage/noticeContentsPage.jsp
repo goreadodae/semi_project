@@ -22,7 +22,7 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	
@@ -62,7 +62,7 @@ border-collapse:collapse;
 <body>
 	<div class="container-fluid">
 
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!--메인헤더 가지고 옴   -->
 
 

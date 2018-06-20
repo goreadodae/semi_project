@@ -1,6 +1,7 @@
 package recipe.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import recipe.model.service.RecipeService;
 
 /**
  * Servlet implementation class RecipeCommentUpdateServlet
@@ -28,11 +31,12 @@ public class RecipeCommentUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
-		
+		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		String content = request.getParameter("content");
+		int result = new RecipeService().updateComment(commentNo, content);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(recipeNo,response.getWriter());
+		new Gson().toJson(content,response.getWriter());
 	}
 
 	/**

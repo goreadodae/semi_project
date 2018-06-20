@@ -1,28 +1,19 @@
 package recipe.model.vo;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class RecipeComment {
 	private int commentNo;
 	private String commentContents;
-	private Date enrollDate;
+	private Timestamp commentEnrollDate;
 	private int recipeNo;
 	private int memberNo;
-	private String memberPic;
-	private String memberNickName;
+	private String profile;
+	private String nickname;
+	private String gender;
 	public RecipeComment() {
 		// TODO Auto-generated constructor stub
-	}
-	public RecipeComment(int commentNo, String commentContents, Date enrollDate, int recipeNo, int memberNo,
-			String memberPic, String memberNickName) {
-		super();
-		this.commentNo = commentNo;
-		this.commentContents = commentContents;
-		this.enrollDate = enrollDate;
-		this.recipeNo = recipeNo;
-		this.memberNo = memberNo;
-		this.memberPic = memberPic;
-		this.memberNickName = memberNickName;
 	}
 	public int getCommentNo() {
 		return commentNo;
@@ -36,11 +27,11 @@ public class RecipeComment {
 	public void setCommentContents(String commentContents) {
 		this.commentContents = commentContents;
 	}
-	public Date getEnrollDate() {
-		return enrollDate;
+	public Timestamp getCommentEnrollDate() {
+		return commentEnrollDate;
 	}
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
+	public void setCommentEnrollDate(Timestamp commentEnrollDate) {
+		this.commentEnrollDate = commentEnrollDate;
 	}
 	public int getRecipeNo() {
 		return recipeNo;
@@ -54,16 +45,29 @@ public class RecipeComment {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	public String getMemberPic() {
-		return memberPic;
+	public String getProfile() {
+		return profile;
 	}
-	public void setMemberPic(String memberPic) {
-		this.memberPic = memberPic;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
-	public String getMemberNickName() {
-		return memberNickName;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setMemberNickName(String memberNickName) {
-		this.memberNickName = memberNickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "RecipeComment [commentNo=" + commentNo + ", commentContents=" + commentContents + ", commentEnrollDate="
+				+ commentEnrollDate + ", recipeNo=" + recipeNo + ", memberNo=" + memberNo + ", profile=" + profile
+				+ ", nickname=" + nickname + ", gender=" + gender + "]";
+	}
+	
 };

@@ -34,7 +34,6 @@ public class RecipeCommentWriteServlet extends HttpServlet {
 		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		String content = request.getParameter("content");
-		System.out.println(content);
 		int result = new RecipeService().writeRecipeComment(recipeNo, memberNo, content);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

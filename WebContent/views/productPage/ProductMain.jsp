@@ -14,7 +14,6 @@
 <script>
 	$(document).ready(function() {
 		/* 해더 불러오는 제이쿼리 */
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 		
 		
@@ -81,7 +80,8 @@
 }
 
 #total {
-	background-color: #E7E3D7;
+	/* background-color: #E7E3D7; */
+	background-color: #F7F5F8;
 }
 
 #content1 {
@@ -118,12 +118,12 @@
 	<div class="container-fluid">
 
 		<!-- Header -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 		<!-- 전체 컨텐츠 -->
 		<div id="total" class="contents">
 
-			<!-- 배너이미지 -->
+			<!-- 배너이미지
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12 col-sm-12" style="padding: 0px;">
@@ -132,14 +132,14 @@
 					</div>
 				</div>
 			</div>
-			<!-- 배너이미지 끝 -->
+			배너이미지 끝 -->
 	
 
 			<br> <br><br>
 			<!-- 내용1. 이달의 쿠킹박스 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
-				<div class="col-md-12" id="main-contents-header"
-					style="padding: 0px;">
+				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
+					<center>이달의 레시피(이미지 수정중)</center>
 					<img src="/imgs/product_img/title1.JPG" alt="이미지"
 						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
 				</div><br><br>
@@ -192,8 +192,7 @@
 			<br> <br>
 			<!-- 내용2. 모든 상품 리스트 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
-				<div class="col-md-12" id="main-contents-header"
-					style="padding: 0px;">
+				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
 					<img src="/imgs/product_img/title1.JPG" alt="이미지"
 						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
 				</div><br><br>

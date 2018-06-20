@@ -3,7 +3,6 @@ package member.model.service;
 import java.sql.Connection;
 
 import common.JDBCTemplate;
-
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
 
@@ -70,4 +69,11 @@ public class MemberService {
 		return result;
 	}
 
+	// 아름 수정 (회원번호에 따른 계정정보 가져오기)
+	public Member selectOneMember(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member member = new MemberDao().selectOneMember(conn,memberNo);
+		JDBCTemplate.close(conn);
+		return member;
+	}
 }

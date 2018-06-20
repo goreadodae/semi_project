@@ -130,6 +130,22 @@ margin-left:274px;
    margin-right: 5px;
 }
 
+#changeBtn{
+margin-left:10px;
+line-height: 32px;
+}
+#changeEmail{
+display: none;
+}
+
+.problem{
+   color: color: #f00;
+   font-size: 11pt;
+   margin: 0;
+   padding: 0;
+   display: none;
+}
+
 ol, li {
    list-style: none;
 }
@@ -140,6 +156,30 @@ ol, li {
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <body style="overflow-x: hidden; overflow-y: auto;">
+   
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">인증번호 입력</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      
+      </div>
+      <div class="modal-body">
+        <input class="form-control" type="text" id="txt-code">
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary" onclick="codeCheck();">인증</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
    <!-- 전체 컨테이너  -->
    <div class="container-fluid" style="padding: 0px;">
 
@@ -196,14 +236,16 @@ ol, li {
                         <tr>
                            <td class="memberCols1">새 비밀번호</td>
                            <td class="memberCols2"><input class="form-control"
-                              type="password" style="width: 250px;"> <span
+                              type="password" id="new-pwd-1" style="width: 250px;"> <span
                               style="color: #f00;">띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자
                                  조합하여야만 사용할 수 있습니다.</span></td>
                         </tr>
                         <tr>
                            <td class="memberCols1">새 비밀번호 확인</td>
                            <td class="memberCols2"><input class="form-control"
-                              type="password" style="width: 250px;"></td>
+                              type="password" id="new-pwd-2" style="width: 250px;">
+                              <input type="hidden" id="savePwd" name="savePwd" value="<%= m.getMemberPwd() %>">
+                              </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">이름</td>
@@ -213,7 +255,7 @@ ol, li {
                         </tr>
                         <tr>
                            <td class="memberCols1">휴대폰</td>
-                           <td class="memberCols2"><select class="form-control"
+                           <td class="memberCols2"><select class="form-control" id="phone1"
                               name="phone1" style="width: 75px; float: left;">
                                  <option>010</option>
                                  <option>011</option>
@@ -230,16 +272,22 @@ ol, li {
                               <input type="text" class="form-control" id="phone3"
                               name="phone3" onchange="phoneCheck();" value="<%=phone[2]%>"
                               style="width: 75px; float: left; text-align: center;"
-                              maxlength="4"></td>
+                              maxlength="4">
+                              <input type="hidden" id="savePhone" name="savePhone" value="<%=m.getPhone()%>" >
+                              </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">이메일</td>
-                           <td class="memberCols2"><input class="form-control"
-                              type="text" value="<%=email[0]%>"
-                              style="width: 150px; float: left;" />
+                           <td class="memberCols2"><input class="form-control" type="text" value="<%=email[0]%>"
+                              style="width: 150px; float: left;" id="first_email" />
                               <h5 style="float: left; line-height: 32px; padding: 0 5px;">@</h5>
                               <input class="form-control" type="text" value="<%=email[1]%>"
-                              style="width: 150px; float: left;" /> <a href="#">이메일 변경</a>
+                              style="width: 150px; float: left;" id="last_email"  /> 
+                              <a href="#" id="changeBtn" onclick="changeEmail();">중복검사</a>
+                              <input type="hidden" id="saveEmail" name="saveEmail" value="<%= m.getEmail() %>" />
+                              <span>
+                                 <label class="problem"id="emailProblem"></label>
+                              </span>
                            </td>
                         </tr>
                         <tr>
@@ -261,26 +309,33 @@ ol, li {
                            <td class="memberCols2">
                            <input id="stepImgFile0" multiple="multiple" type="file" style="display: none"
                               onchange="readURL(this,0);" name="profile" /> 
+                              
                               <%if(m.getProfile()==null) {%>
+                              
                                  <img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150"
                                  height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
+                                 
                               <%}else{ %>
+                              
                                  <img src="<%=m.getProfile() %>" width="150"
                                  height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
+                                 
                               <%} %>
+                              <input type="hidden" id="saveProfile">
                               </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">별명</td>
                            <td class="memberCols2">
-                           <input class="form-control" type="text" />
+                           <input class="form-control" id="nickname" onchange="nicknameCheck();" type="text" style="width:150px;" maxlength="20" />
+                           <input type="hidden" id="saveNick" name="saveNick">
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
                <div id="btn-bar">
-                  <a type="submit" onclick="profile();" style="background-color: #795b8f; color: #fff;">확인</a> 
+                  <a type="submit" onclick="changeInfo();" style="background-color: #795b8f; color: #fff;">확인</a> 
                   <a type="button" style="background-color: #fff; color: #795b8f;">취소</a> 
                   <a type="button" style="background-color: #fff; color: #795b8f;">탈퇴</a>
                </div>
@@ -301,19 +356,105 @@ ol, li {
 
    <script>
    var regExpSpace = /\s/g; //공백찾기
-   var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
-   
-   
-
-
-   
+   var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/; //비밀번호
+   var regExpNum = /^[0-9]+$/; // 숫자만
+   var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일
+   var emailCheckCode; // 생성된 인증번호
+   var hiddenEmail; //이메일 저장
+   var regExpNickname =/^[a-zA-Zㄱ-힣0-9]*$/; // 별명
    
    //SUBMIT
-   function profile() {
+   function changeInfo() {
+      if($('#new-pwd-1').val() != ""||$('#new-pwd-2').val() != ""){
+         if($('#new-pwd-1').val().match(regExpSpace)){
+            
+         }else{
+             if(!regExpPwd.test($('#new-pwd-1').val())){
+                
+             }else{
+                if($('#new-pwd-1').val() != $('#new-pwd-2').val()){
+                   
+                }else{
+                   $('#savePwd').val($('#new-pwd-1').val());
+                }
+             }
+         }
+      }
+         var phone = $('#phone1').val()+"-"+$('#phone2').val()+"-"+$('#phone3').val();
+          
+         if ($('#phone2').val().match(regExpSpace)||$('#phone3').val().match(regExpSpace)) {
+                
+            } else {
+                if (!regExpNum.test($('#phone2').val())||!regExpNum.test($('#phone3').val())) {
+                   
+                } else {
+                    if ($('#phone2').val().length != 4||$('#phone3').val().length != 4) {
+                   
+                    } else {
+                        $('#savePhone').val(콜);
+                    }
+                }
+            }
+      
       
       $('#frm').submit();
+      
+   }
+      
+   
+   
+   //이메일 변경
+
+   
+   function changeEmail() {
+      hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
+      
+      if (hiddenEmail.match(regExpSpace)) {
+           alert("공백이 존재합니다.");
+        }else if (!regExpEmail.test(hiddenEmail)) {
+           alert("알맞지 않는 이메일 형식입니다.")
+        }else{
+      
+       $.ajax({
+             url: "/emailCheck",
+             data: {email: hiddenEmail},
+             type: "post",
+             success: function(data) {
+                 console.log("성공");
+                 if(data=="1"){
+                 alert("이미 가입한 이메일 입니다.");
+                
+                
+                 }else{
+                    $('#changeEmail').show();
+                    emailCheckCode = data;
+                     $('#myModal').modal('show');
+                 }
+                 
+             },
+             error: function() {
+                 console.log("실패");
+             },
+             complete: function() {
+                 //무조건 실행
+             }
+         });
+      
+        }
    }
    
+   function codeCheck(){
+      if($('#txt-code').val()==emailCheckCode){
+          $('#myModal').modal('hide');
+          $('#saveEmail').val(hiddenEmail);
+          $('#emailProblem').text("인증완료");
+      }else{
+         
+         $('#myModal').modal('hide');
+         $('#emailProblem').show();
+         $('#emailProblem').text("입력된 정보가 맞지 않습니다. 다시 시도해주세요.");
+      }
+   }
    
    //주소찾기
    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -377,6 +518,19 @@ ol, li {
            reader.readAsDataURL(input.files[0]);
           }
       };
+      
+      //별명체크
+     function nicknameCheck(){
+        regExpNickname
+        if($('#nickname').val() != ""){
+           if (!regExpNickname.test($('#nickname').val())){
+              
+           }else{
+              $('#saveNick').val($('#nickname').val());
+           }
+        }
+        
+        }
    
    
    </script>

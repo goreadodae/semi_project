@@ -251,23 +251,29 @@ public class MemberDao {
 		return result;
 	}
 
-	public int changeInfo(Connection conn, String fullFilePath, String userId ) {
+	public int changeInfo(Connection conn, String userId, String fullFilePath, String userPwd, String phone,
+	         String email, String address, String nickname) {
+	      
 	      int result = 0;
 	      String path = JDBCTemplate.class.getResource("..").getPath();
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
-	      System.out.println(fullFilePath);
-	      System.out.println(userId);
+	      
 	      Properties prop = new Properties();
 	      
 	      try {
 	         prop.load(new FileReader(path+"resources/memberQuery.properties"));
-	         String query = "update member set profile=? where member_id=?";
-	         
+	         String query = "update member set member_pwd=?, phone=?, email=?, address=?, profile=?, nickname=? where member_id=?";
+
 	         pstmt = conn.prepareStatement(query);
 	         
-	         pstmt.setString(1, fullFilePath);
-	         pstmt.setString(2, userId);
+	         pstmt.setString(1, userPwd);
+	         pstmt.setString(2, phone);
+	         pstmt.setString(3, email);
+	         pstmt.setString(4, address);
+	         pstmt.setString(5, fullFilePath);
+	         pstmt.setString(6, nickname);
+	         pstmt.setString(7, userId);
 	         
 	         result = pstmt.executeUpdate();
 	         
@@ -280,5 +286,5 @@ public class MemberDao {
 	      }
 	      
 	      return result;
-	}
+	   }
 }

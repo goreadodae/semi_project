@@ -35,11 +35,6 @@ public class QnaDao {
 			}
 			
 			
-			
-			
-			
-			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,17 +44,7 @@ public class QnaDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 }

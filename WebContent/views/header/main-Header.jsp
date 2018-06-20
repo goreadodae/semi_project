@@ -75,7 +75,6 @@
 </head>
 
 <body>
-	<%=presentURI %>
 	<!-- 해더 시작 -->
 	<div class="header">
 		<!-- 팝업창 -->

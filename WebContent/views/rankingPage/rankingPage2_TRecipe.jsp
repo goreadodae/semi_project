@@ -58,8 +58,11 @@ pageEncoding="UTF-8"%>
      var today = Tyear + "/" + Tmonth + "/" + Tday;
 
 		var currentDay= new Date();
+
      	var yesterday = new Date();
     	 yesterday.setDate(yesterday.getDate()-1);
+
+
     	 var nextDay = new Date();
     	 nextDay.setDate(nextDay.getDate()+1);
 
@@ -136,10 +139,11 @@ pageEncoding="UTF-8"%>
 
 			/*이전날 버튼*/
 			$("#preBtn").click(function(event){
-				$('#datepicker').datepicker('setDate',yesterday);
+				currentDay.setDate(currentDay.getDate()-1);
+				$('#datepicker').datepicker('setDate',currentDay);
 				$('#rankingDateToday').html($('#datepicker').val());
 				
-				yesterday.setDate(yesterday.getDate()-1);
+			/*	yesterday.setDate(yesterday.getDate()-1);*/
 
 					console.log("이전날 버튼 : "+$('#datepicker').val());
 				$.ajax({
@@ -165,6 +169,9 @@ pageEncoding="UTF-8"%>
      			$('#nextBtn').removeClass('btn btn-secondary btn-lg disabled');
 							$('#nextBtn').addClass('btn btn-secondary btn-lg active');
      		}
+     		
+
+
 					},
 					error : function() {
 						console.log("실패");
@@ -176,13 +183,21 @@ pageEncoding="UTF-8"%>
 			});
 
 
+
+			
+
 			/*다음날 버튼*/
 			$("#nextBtn").click(function(event){
 				//yesterday.setDate(yesterday.getDate());
-				$('#datepicker').datepicker('setDate',yesterday);
+				currentDay.setDate(currentDay.getDate()+1);
+				$('#datepicker').datepicker('setDate',currentDay);
 				$('#rankingDateToday').html($('#datepicker').val());
-				yesterday.setDate(yesterday.getDate()+1);
+				/*yesterday.setDate(yesterday.getDate()+1);*/
+
+
 				console.log("다음날 버튼 : "+$('#datepicker').val());
+
+
 				$.ajax({
 					url : "/rankingTodayMoveNext",
 					data : {datepicker : $('#datepicker').val()},

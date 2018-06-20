@@ -19,7 +19,6 @@
 	var stepFileNum =1;
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	
@@ -565,10 +564,10 @@
 	 var stepArray = new Array();
 	 
 	  function stepList(){
-		  console.log(stepBtnCount);
+
 		var sa;
 		for(var i=0;i<stepBtnCount;i++){
-
+				
 				sa = document.createElement("input");
 
 				sa.type = "hidden";
@@ -586,11 +585,15 @@
 				  		
 				  		var valueAll ="";
 				  		for(var j=0;j<6;j++){
-				  		if(stepElement[j]!=""){valueAll += stepElement[j]+"|";}
+				  			if(stepElement[j]==""){
+				  				valueAll += "*"+"¡";	
+				  			}else{
+				  				valueAll += stepElement[j]+"¡";	
+				  			}
 						}
 				  		
 				  		sa.value = valueAll;		   
-				  		$('.stepPlusCount').append(sa);
+				  		$('.stepPlusRow').append(sa);
 		 }   
 				
 	 } 
@@ -602,8 +605,8 @@
 <body>
 
 	<div class="container-fluid" id="maindiv"> 
-		<!--헤더예용! -->
-		<div id="header"></div>
+		<!--헤더예용! -->	
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<br><br>
 		<!-- 컨테츠예용! --> <!--enctype="multipart/form-data"  -->
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
@@ -1019,7 +1022,7 @@
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4"><!-- <input type="submit" value="저장" onclick="stepList();"/> --><button type="button" onclick="stepList();">저장</button></div>
+				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();"/><!-- <button type="button" onclick="stepList();">저장</button> --></div>
 				<div class="col-md-4"><button type="button" onclick="back();">취소</button></div>
 				<div class="col-md-2">　</div>
 				</div>

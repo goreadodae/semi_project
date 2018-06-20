@@ -1,6 +1,7 @@
 package insertRecipe.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import insertRecipe.model.service.InsertRecipeService;
 import insertRecipe.model.vo.InsertRecipe;
+import recipe.model.vo.Process;
 
 /**
  * Servlet implementation class InsertRecipeServlet
@@ -61,6 +63,7 @@ public class InsertRecipeServlet extends HttpServlet {
 		
 		//recipe내용 받는 곳
 		InsertRecipe ir = new InsertRecipe();
+		Process pr = new Process();
 				
 		ir.setRecipeTitle(multi.getParameter("recipeTitle")); //제목
 		ir.setRecipeIntro(multi.getParameter("recipeIntro")); //소개
@@ -79,6 +82,7 @@ public class InsertRecipeServlet extends HttpServlet {
 			materListAll += materList[i];
 			}
 		}
+		
 		ir.setIngredient(materListAll); //재료
 		 
 		
@@ -175,15 +179,30 @@ public class InsertRecipeServlet extends HttpServlet {
 		
 		//recipeProcess받는곳
 		
-		String[] stepArrayList = multi.getParameterValues("stepArrayList");
+		String[] stepList = multi.getParameterValues("stepArrayList");
+		String [] valueToken = new String [6];
+		ArrayList<Process> stepValuelist = new ArrayList<Process>();
 		
-		System.out.println(stepArrayList.length);
+		System.out.println(stepList[0]);
+		for(int i=0; i<stepList.length ;i++) {
+			valueToken = stepList[i].split("¡");
 		
-		for(int i=0; i<stepArrayList.length ;i++) {
-			System.out.println(stepArrayList[i]);
+				if(valueToken[0].equals("*")) {} else {pr.setProcessOrder(Integer.parseInt(valueToken[0]));}
+				if(valueToken[1].equals("*")) {} else {pr.setProcessExplain(valueToken[1]);}
+				if(valueToken[2].equals("*")) {} else {pr.setIngre(valueToken[2]);}
+				if(valueToken[3].equals("*")) {} else {pr.setTools(valueToken[3]);}
+				if(valueToken[4].equals("*")) {} else {pr.setFireLevel(valueToken[4]);}
+				if(valueToken[5].equals("*")) {} else {pr.setTip(valueToken[5]);}
+			
+				stepValuelist.add(pr);
+			
 		}
 		
+		new InsertRecipeService().insertRecipe(stepValuelist);
 		
+		
+		
+
 
 	    //사진정보 받아오는곳
 	    //업로드된 파일의 정보를 DB에 기록하여야 함

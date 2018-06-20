@@ -73,8 +73,33 @@
 				$('#fixed_layer').removeClass('jbFixed');
 			}
 		});
+		
+		
+		
+		//버튼 마우스올렸을때 색상 변화
+		$('.mybutton1').mouseover(function(){
+			$(this).addClass('mybutton3');
+		});
+		
+		$('.mybutton1').mouseout(function(){
+			$(this).removeClass('mybutton3');
+			$(this).addClass('mybutton1');
+		});
+		
+		$('.mybutton2').mouseover(function(){
+			$(this).addClass('mybutton3');
+		});
+		
+		$('.mybutton2').mouseout(function(){
+			$(this).removeClass('mybutton3');
+			$(this).addClass('mybutton2');
+		});
 
 	});
+	
+	
+	
+	
 </script>
 
 
@@ -184,6 +209,34 @@ table{
 	border : 0px;
 	cursor : pointer;
 }
+
+/* 맨 밑 버튼 스타일 */
+.mybutton1{
+	background-color: #795B8F;
+	color : #F8FAFF;
+	height : 50px;
+	width : 200px;
+	border : 1px solid #522075;
+	cursor : pointer;
+}
+
+.mybutton2{
+	background-color: white;
+	color : #522075;
+	height : 50px;
+	width : 200px;
+	border : 1px solid #522075;
+	cursor : pointer;
+}
+
+.mybutton3{
+	background-color: #522075;
+	color : #F8FAFF;
+	height : 50px;
+	width : 200px;
+	border : 0px;
+	cursor : pointer;
+}
 </style>
 
 
@@ -201,7 +254,7 @@ table{
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12">
 				
-					<center><img src="/imgs/product_img/buying_title.png"></center>
+					<center><img src="/imgs/product_img/buyingRecent_title.png"></center>
 					
 					<!-- 구매 내역 리스트 -->
 					<br><table width=100%>
@@ -235,7 +288,8 @@ table{
 					
 					<!-- 확인 버튼 -->
 					<center>
-					<button class="mybutton" onclick="location.href='/index.jsp'">확인</button>
+					<button class="mybutton1" onclick="location.href='/buyingSelectAll'">전체 주문내역</button>
+					<button class="mybutton2" onclick="location.href='/index.jsp'">홈으로</button></center>
 					</center>
 					<br><br><br>
 					

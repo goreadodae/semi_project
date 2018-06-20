@@ -171,10 +171,12 @@ public class ProductDao {
 			while(rset.next()) {
 				Basket b = new Basket();
 				b.setBasketNo(rset.getInt("bascket_no"));
+				/*b.setProductNo(rset.getInt("product_no"));*/	///장바구니가 잘 안뜸...!!
 				b.setProductName(rset.getString("product_name"));
 				b.setProduct1stPic(rset.getString("product_1st_pic"));
 				b.setBasketQuantity(rset.getInt("bascket_quantity"));
 				b.setProductPrice(rset.getInt("product_price"));
+				
 				bList.add(b);
 			}
 

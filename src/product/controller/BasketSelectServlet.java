@@ -40,6 +40,11 @@ public class BasketSelectServlet extends HttpServlet {
 		
 		ArrayList<Basket> basketList = new ArrayList<Basket>();
 		basketList = new ProductService().getMyBasket(memberNo);
+		System.out.println("실행////");
+		
+		for(int i=0; i<basketList.size(); i++) {
+			System.out.println("이름" + basketList.get(i).getProductName());
+		}
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/productPage/Basket.jsp");
 		request.setAttribute("basket", basketList);

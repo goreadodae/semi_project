@@ -84,7 +84,13 @@
 	/* background-color: oldlace; */
 	padding: 0px;
 	margin: 0px;
+	overflow : hidden;
+	height :600px;
 }
+
+/* #1stImg{
+	top : -10%;
+} */
 
 #title, #detail, #review, #inquiry {
 	border: 1px solid lightgrey;
@@ -173,6 +179,33 @@ a{
 	display: none;
 }
 
+/* 장바구니, 구매하기 버튼 스타일 */
+.mybutton1{
+	background-color: #795B8F;
+	color : #F8FAFF;
+	height : 50px;
+	width : 200px;
+	border : 1px solid #522075;
+	cursor : pointer;
+}
+
+.mybutton2{
+	background-color: white;
+	color : #522075;
+	height : 50px;
+	width : 200px;
+	border : 1px solid #522075;
+	cursor : pointer;
+}
+
+.mybutton3{
+	background-color: #522075;
+	color : #F8FAFF;
+	height : 50px;
+	width : 200px;
+	border : 0px;
+	cursor : pointer;
+}
 </style>
 
 <script>
@@ -215,6 +248,25 @@ a{
         		 $(this).next().hide();
         	 }
          });
+       	 
+       //버튼 마우스올렸을때 색상 변화
+ 		$('.mybutton1').mouseover(function(){
+ 			$(this).addClass('mybutton3');
+ 		});
+ 		
+ 		$('.mybutton1').mouseout(function(){
+ 			$(this).removeClass('mybutton3');
+ 			$(this).addClass('mybutton1');
+ 		});
+ 		
+ 		$('.mybutton2').mouseover(function(){
+ 			$(this).addClass('mybutton3');
+ 		});
+ 		
+ 		$('.mybutton2').mouseout(function(){
+ 			$(this).removeClass('mybutton3');
+ 			$(this).addClass('mybutton2');
+ 		});
      });
 
 </script>
@@ -256,12 +308,12 @@ a{
 					<div class="row">
 						<div class="col-md-6 col-sm-12"  id="title_img">
 							<center>
-								<img src="${productInfo.product1stPic}" width=80%>
+								<img src="${productInfo.product1stPic}" id="1stImg" width=80%>
 							</center>
 						</div>
 
 						<div class="col-md-6 col-sm-12">
-							<br>
+							<br><br><br><br>
 							<h2 class="font">${productInfo.productName}</h2>
 							<hr>
 							<div class="col-md-12">
@@ -294,20 +346,20 @@ a{
 									</div>
 								</div>
 							</div>
-							<br>
-							<center>
+							<br><br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="hidden" class="basket_quantity" name="basket_quantity" value="1" >
 								<input type="hidden" id="product_no" value="${productInfo.productNo}" >
-								<button class="btn btn-info" onclick="inputBasket();">장바구니</button>
+								<button class="mybutton1" onclick="inputBasket();">장바구니</button>
 								
 								
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;
 								<form action="/buyDirect"  method="post" style="display:inline;">
 									<input type="hidden" class="basket_quantity" name="basketQuantity" value="1" >
 									<input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
-									<button  class="btn btn-success" onclick="location.href='/buyDirect'">구매하기</button>
+									<button  class="mybutton2" onclick="location.href='/buyDirect'">구매하기</button>
 								</form>
-							</center>
+							
 						
 							
 						</div>

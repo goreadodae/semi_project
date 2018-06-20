@@ -2,6 +2,7 @@ package product.model.vo;
 
 public class Basket {
 	private int basketNo;
+	private int productNo;
 	private String productName;
 	private String product1stPic;
 	private int basketQuantity;
@@ -9,21 +10,37 @@ public class Basket {
 	
 	public Basket() {}
 	
-	public Basket(int basketNo, String productName, String product1stPic, int basketQuantity, int productPrice) {
+	public Basket(int basketNo, int productNo, String productName, String product1stPic, int basketQuantity,
+			int productPrice) {
 		super();
 		this.basketNo = basketNo;
+		this.productNo = productNo;
 		this.productName = productName;
 		this.product1stPic = product1stPic;
 		this.basketQuantity = basketQuantity;
 		this.productPrice = productPrice;
 	}
-	
+
+
+
 	public int getBasketNo() {
 		return basketNo;
 	}
 	public void setBasketNo(int basketNo) {
 		this.basketNo = basketNo;
 	}
+	
+
+	
+	
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+
 	public String getProductName() {
 		return productName;
 	}

@@ -16,7 +16,7 @@
   width: 1120px;
  /* margin-left:14.2%;*/
 /* 	width : 1110px; */
-/*	border-top: 3px solid #F8FAFF;
+/*	border-top: 3px solid #F8FAFF; 
 	border-bottom : 3px solid #F8FAFF;*/
 /* 	margin-left:175px; */
 border: 3px dashed #FFE400;

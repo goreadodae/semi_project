@@ -38,7 +38,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 		String buyProductImage = request.getParameter("buyProductImage");
 		
 
-
+ 
 
 		
 		

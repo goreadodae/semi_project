@@ -14,7 +14,7 @@
 <!-- 랭킹페이지에 필요한 스타일시트 : 지현 작성 -->
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss.css">
 <link rel="stylesheet" href="/css/ranking_css/semi_rankingCss_common.css">
-
+ 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
 <!-- 부트스트랩 css -->

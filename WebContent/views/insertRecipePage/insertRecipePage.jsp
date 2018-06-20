@@ -565,42 +565,32 @@
 	 var stepArray = new Array();
 	 
 	  function stepList(){
-		
+		  console.log(stepBtnCount);
 		var sa;
 		for(var i=0;i<stepBtnCount;i++){
-	
+
 				sa = document.createElement("input");
 
 				sa.type = "hidden";
 
 				sa.name = "stepArrayList";
 					var stepElement = new Array(); 
-						/* var processOrder = i+1;
-						var processExplain = document.getElementById('stepTA'+i).value;
-						var processPic = $('#imgFile_Step_'+i).attr('src');
-						var ingre = document.getElementById('textIngre'+i).value;
-						var tools = document.getElementById('textTools'+i).value;
-						var fireLevel = document.getElementById('textFireLvl'+i).value;
-				  		var tip = document.getElementById('textTip'+i).value; */
+						
 				  		stepElement[0] = i+1;
 						stepElement[1] = document.getElementById('stepTA'+i).value;
-						stepElement[2] = $('#imgFile_Step_'+i).attr('src');
-						stepElement[3] = document.getElementById('textIngre'+i).value;
-						stepElement[4] = document.getElementById('textTools'+i).value;
-						stepElement[5] = document.getElementById('textFireLvl'+i).value;
-				  		stepElement[6] = document.getElementById('textTip'+i).value;
+						/* stepElement[2] = $('#imgFile_Step_'+i).attr('src'); */
+						stepElement[2] = document.getElementById('textIngre'+i).value;
+						stepElement[3] = document.getElementById('textTools'+i).value;
+						stepElement[4] = document.getElementById('textFireLvl'+i).value;
+				  		stepElement[5] = document.getElementById('textTip'+i).value;
 				  		
-		
 				  		var valueAll ="";
-				  		/* var valueAll = processOrder+"|"+processExplain+"|"+processPic+"|"+ingre+"|"+tools+"|"+fireLevel+"|"+tip; */
-				  		for(var j=0;j<7;j++){
-				  		if(stepElement[j]!=null){valueAll += stepElement[j]+"|";}
+				  		for(var j=0;j<6;j++){
+				  		if(stepElement[j]!=""){valueAll += stepElement[j]+"|";}
 						}
 				  		
-				  		sa.value = valueAll;
-						
-			    $('.stepPlusCount').append(sa);
-			    
+				  		sa.value = valueAll;		   
+				  		$('.stepPlusCount').append(sa);
 		 }   
 				
 	 } 
@@ -1029,7 +1019,7 @@
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();"/></div>
+				<div class="col-md-4"><!-- <input type="submit" value="저장" onclick="stepList();"/> --><button type="button" onclick="stepList();">저장</button></div>
 				<div class="col-md-4"><button type="button" onclick="back();">취소</button></div>
 				<div class="col-md-2">　</div>
 				</div>

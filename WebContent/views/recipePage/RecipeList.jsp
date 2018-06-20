@@ -72,8 +72,8 @@
 
 </head>
 
-<body style="overflow-x: hidden; overflow-y: auto;">
-	<div class="container-fluid">
+<body style="overflow-x: hidden; overflow-y: auto; background-color: #f8faff">
+	<div class="container-fluid" style="padding: 0;">
 		<!-- Header -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 해더 -->
@@ -81,10 +81,10 @@
 	<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="padding: 10px;" id="point">
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="col-md-12" id="category">
+			<div class="col-md-12" id="category" style="background-color: white;">
 				<c:forEach begin="0" items="${requestScope.category }"
 					var="cate-list" varStatus="i">
-					<div class="col-md-12">
+					<div class="col-md-12" style="margin-bottom: 3px;">
 						<span class="category"> <c:choose>
 								<c:when test="${i.count-1==0 }">종류별<c:set var="order"
 										value="${requestScope.classList}" />

@@ -14,7 +14,6 @@ public class InquiryOrder {
 		super();
 		
 	}
-	
 	public InquiryOrder(int buyingNo, Date orderDate, String productName, int buyingQuantity, int productPrice) {
 		super();
 		this.buyingNo = buyingNo;

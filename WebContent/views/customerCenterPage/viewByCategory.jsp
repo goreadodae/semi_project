@@ -21,7 +21,7 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
+		
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	/*faq제목 클릭시 답변 보이게 하는 js  */
@@ -105,7 +105,7 @@ font-family: 'Nanum Gothic', sans-serif;
 
 
 	<div class="container-fluid" style="padding: 0px">
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 
 

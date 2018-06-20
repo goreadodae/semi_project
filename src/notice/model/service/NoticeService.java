@@ -84,4 +84,21 @@ public class NoticeService {
 		return nexNotice;
 	}
 
+	public int viewCount(int noticeNo) {
+		System.out.println("쿠키가 없당");
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new NoticeDao().viewCount(conn,noticeNo);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }

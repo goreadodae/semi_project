@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,23 +16,11 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		/* $("#header").load("/views/header/main-Header.jsp"); */
+		 $("#header").load("/views/header/main-Header.jsp"); 
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 
-	$(document).ready(function() { /*주문번호 테이블  jquery  */
-		var stat = true;
-		$('#orderInquiry').click(function() {
-			if (stat == true) {
-				$('#hidingInquiry').css("display", "block");
-				stat = false;
-			} else {
-				$('#hidingInquiry').css("display", "none");
-				stat = true;
-			}
-		});
 
-	});
 
 	$(document).ready(function() {
 		$('#close').click(function() {
@@ -39,11 +28,7 @@
 		});
 	});
 
-	$(document).ready(function() { /*주문번호 테이블  닫기  */
-		$('#addrow>tr').click(function() {
-			$('#hidingInquiry').css("display", "none");
-		});
-	});
+
 
 	/* 1:1문의 이미지 추가  jQuery  */
 	$(document)
@@ -89,13 +74,7 @@
 		}
 	}
 
-	$(document).ready(function() {
-		$('.selectRdo').click(function() {
-			$('.selectRdo').prop("checked", false);
-			$(this).prop("checked", true);
 
-		});
-	});
 	
 	/*해당 페이지 표시 스크립트  */
 	$(document).ready(function(){
@@ -127,9 +106,7 @@
 	width: "200px";
 }
 
-#hidingInquiry {
-	display: none;
-}
+
 
 #close {
 	cursor: pointer;
@@ -199,45 +176,12 @@
 
 							<td style="background-color: #dcdbde">주문번호</td>
 
-							<td><input type="text" style="width: 25%" readonly />
-								<button type="button" class="btn btn-info" id="orderInquiry"
-									style="height: 2em">주문조회</button>
-								<div class="col-md-8" style="border: 1px solid; height: 300px"
-									id="hidingInquiry">
-									문의하실 주문번호를 선택하세요<br>
-									<table class="table table-bordered"
-										style="width: 100%; height: 8; text-align: center;">
-										<tr style="background-color: gray;">
-											<th height="8">주문번호</th>
-											<th>주문일자</th>
-											<th>상품명</th>
-											<th>수량</th>
-											<th>주문금액</th>
-											<th>선택</th>
-
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>2017-08-09</td>
-											<td>토게피</td>
-											<td>1</td>
-											<td>2000</td>
-											<td><input type="radio" class="selectRdo"></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>2017-08-09</td>
-											<td>토게피</td>
-											<td>1</td>
-											<td>2000</td>
-											<td><input type="radio" class="selectRdo"></td>
-										</tr>
-
-
-									</table>
-									<p id="close">close</p>
-
-								</div></td>
+							<td>
+							
+								<jsp:include page="/views/customerCenterPage/inquiryOrderPage.jsp" flush="false" />
+							
+							
+							</td>
 						</tr>
 
 

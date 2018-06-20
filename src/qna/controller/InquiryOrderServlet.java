@@ -1,4 +1,4 @@
-package notice.controller;
+package qna.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoadPreviousServlet
+ * Servlet implementation class InquiryOrderServlet
  */
-@WebServlet(name = "LoadPrevious", urlPatterns = { "/loadPrevious" })
-public class LoadPreviousServlet extends HttpServlet {
+@WebServlet(name = "InquiryOrder", urlPatterns = { "/inquiryOrder" })
+public class InquiryOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoadPreviousServlet() {
+    public InquiryOrderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,13 +26,8 @@ public class LoadPreviousServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		
-		System.out.println(noticeNo);
-		
-		
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

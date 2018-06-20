@@ -504,6 +504,31 @@ public class NoticeDao {
 	}
 
 
+	public int viewCount(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update notice set notice_views = notice_views+1 where notice_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result = pstmt.executeUpdate();
+
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+		
+	}
+
+
 
 
 

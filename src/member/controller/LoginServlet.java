@@ -17,38 +17,47 @@ import member.model.vo.Member;
 @WebServlet(name = "Login", urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String loginId = request.getParameter("loginId");
 		String loginPwd = request.getParameter("loginPwd");
+		String beforeURI = request.getParameter("beforeURI");
+		String referer = request.getHeader("referer");
 		
-		Member m = new MemberService().login(loginId,loginPwd);
-		
-		if(m==null) {
-			response.sendRedirect("/");
-		}else {
+		Member m = new MemberService().login(loginId, loginPwd);
+
+		if (m == null) {
+			response.sendRedirect("");
+		} else {
+			System.out.println(beforeURI);
+			System.out.println(request.getRequestURI());	// 서블릿 주소
+			System.out.println(referer);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", m);
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect(beforeURI);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -25,20 +25,21 @@ public class MemberDao {
 	public boolean emailCheck(String email, Connection conn) {
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		boolean result= false;
-		
+		boolean result = false;
+
 		try {
-			prop.load(new FileReader(path+"resources/memberQuery.properties"));
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = prop.getProperty("emailCheck");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, email);
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) result = true;
+
+			if (rset.next())
+				result = true;
 			System.out.println(result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -50,17 +51,17 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
 	public void sendEmail(String email, String code) {
 
-		final String id ="dna1234a@gmail.com";
-		final String pwd ="dansiback0";
+		final String id = "dna1234a@gmail.com";
+		final String pwd = "dansiback0";
 		System.out.println(id);
 		Properties p = new Properties();
-		p.put("mail.smtp.user", "dna1234a@gmail.com"); 
+		p.put("mail.smtp.user", "dna1234a@gmail.com");
 		p.put("mail.smtp.host", "smtp.gmail.com");
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
@@ -70,8 +71,7 @@ public class MemberDao {
 		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		p.put("mail.smtp.socketFactory.fallback", "false");
 
-		Session session = Session.getInstance(p, 
-				new javax.mail.Authenticator() {
+		Session session = Session.getInstance(p, new javax.mail.Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(id, pwd);
@@ -83,37 +83,36 @@ public class MemberDao {
 			MimeMessage msg = new MimeMessage(session);
 
 			msg.setSubject("�̸��� ����");
-			Address fromAddr = new InternetAddress("dna1234a@gmail.com","�����ѷ�����","utf-8"); 
+			Address fromAddr = new InternetAddress("dna1234a@gmail.com", "�����ѷ�����", "utf-8");
 			msg.setFrom(fromAddr);
-			Address toAddr = new InternetAddress(email);    
+			Address toAddr = new InternetAddress(email);
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
-			msg.setContent("������ȣ : "+code, "text/plain;charset=KSC5601"); 
+			msg.setContent("������ȣ : " + code, "text/plain;charset=KSC5601");
 			Transport.send(msg);
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	public boolean idCheck(String userId, Connection conn) {
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		boolean result= false;
-		
+		boolean result = false;
+
 		try {
-			prop.load(new FileReader(path+"resources/memberQuery.properties"));
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = prop.getProperty("idCheck");
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) result = true;
-			
+			if (rset.next())
+				result = true;
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,29 +120,26 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return result;
 	}
 
-
-
 	public int insertMember(Connection conn, Member m) {
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		PreparedStatement pstmt = null;
-		
-		int result =0;
-		
+
+		int result = 0;
+
 		try {
-			prop.load(new FileReader(path+"resources/memberQuery.properties"));
-			
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+
 			String query = "insert into member values(member_SEQ.NEXTVAL, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), ?, ?, ?, SYSDATE,?,?,?)";
-	
+
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, m.getMemberId());
 			pstmt.setString(2, m.getMemberPwd());
 			pstmt.setString(3, m.getMemberName());
@@ -154,9 +150,9 @@ public class MemberDao {
 			pstmt.setString(8, m.getAddress());
 			pstmt.setString(9, "");
 			pstmt.setString(10, "");
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -164,36 +160,34 @@ public class MemberDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
-
-
 	public Member login(String loginId, String loginPwd, Connection conn) {
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member m = null;
-		
+
 		try {
-			prop.load(new FileReader(path+"resources/memberQuery.properties"));
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as BIRTH_DATE, "
 					+ "phone, email, address, profile, nickname from member where member_id = ? and member_pwd = ?";
-			
+
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, loginId);
 			pstmt.setString(2, loginPwd);
-			
+
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				m = new Member();
-				
+
 				m.setMemberNo(rset.getInt("MEMBER_NO"));
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setBirthDate(rset.getString("BIRTH_DATE"));
@@ -203,8 +197,7 @@ public class MemberDao {
 				m.setProfile(rset.getString("PROFILE"));
 				m.setNickName(rset.getString("NICKNAME"));
 			}
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -212,34 +205,31 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return m;
 	}
 
-
-
-	public boolean pwdCheck(Connection conn, String id,  String password) {
+	public boolean pwdCheck(Connection conn, String id, String password) {
 		boolean result = false;
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileReader(path+"resources/memberQuery.properties"));
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = prop.getProperty("pwdCheck");
-			
+
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
-			
+
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) 
-				result=true;
-			
-			
+
+			if (rset.next())
+				result = true;
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -247,59 +237,64 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
-	public int changeInfo(Connection conn, String fullFilePath, String userId ) {
-	      int result = 0;
-	      String path = JDBCTemplate.class.getResource("..").getPath();
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
-	      System.out.println(fullFilePath);
-	      System.out.println(userId);
-	      Properties prop = new Properties();
-	      
-	      try {
-	         prop.load(new FileReader(path+"resources/memberQuery.properties"));
-	         String query = "update member set profile=? where member_id=?";
-	         
-	         pstmt = conn.prepareStatement(query);
-	         
-	         pstmt.setString(1, fullFilePath);
-	         pstmt.setString(2, userId);
-	         
-	         result = pstmt.executeUpdate();
-	         
-	      } catch (IOException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
-	      
-	      return result;
+	public int changeInfo(Connection conn, String userId, String fullFilePath, String userPwd, String phone,
+			String email, String address, String nickname) {
+
+		int result = 0;
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Properties prop = new Properties();
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "update member set member_pwd=?, phone=?, email=?, address=?, profile=?, nickname=? where member_id=?";
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, userPwd);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, email);
+			pstmt.setString(4, address);
+			pstmt.setString(5, fullFilePath);
+			pstmt.setString(6, nickname);
+			pstmt.setString(7, userId);
+
+			result = pstmt.executeUpdate();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
-	
-	
-	///아름 수정 (회원번호에 따른 계정정보 가져오기)
+
+	// 아름 수정 (회원번호에 따른 계정정보 가져오기)
 	public Member selectOneMember(Connection conn, int memberNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member m = new Member();
-		
+
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query  = prop.getProperty("selectOneMember");
+			String query = prop.getProperty("selectOneMember");
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				m.setMemberNo(rset.getInt("MEMBER_NO"));
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setBirthDate(rset.getString("BIRTH_DATE"));
@@ -307,9 +302,9 @@ public class MemberDao {
 				m.setEmail(rset.getString("EMAIL"));
 				m.setAddress(rset.getString("ADDRESS"));
 				m.setProfile(rset.getString("PROFILE"));
-				m.setNickName(rset.getString("NICKNAME"));				
+				m.setNickName(rset.getString("NICKNAME"));
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -319,11 +314,11 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return m;
 	}
 }

@@ -102,9 +102,10 @@ list-style: none;
 <body style="overflow-x: hidden; overflow-y: auto;">
 <!-- 전체 컨테이너  -->
 	<div class="container-fluid" style="padding: 0px;">
-
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<div id="header">
+			<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+		</div>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->

@@ -1,6 +1,17 @@
+<!-- 폰트 적용중 -->
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
+
+<style>
+	* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
+	/* * { font-family: 'Iropke Batang'} */
+</style>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 <!DOCTYPE html>
+<% Member m = (Member)session.getAttribute("user"); %>
 <html>
 <head>
 <title>수상한 레시피</title>
@@ -13,12 +24,11 @@
 <link rel="stylesheet" href="/css/mainPage_css/main.css">
 
 <body style="overflow-x: hidden; overflow-y: auto;">
-
 	<!-- 전체 컨테이너  -->
 	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
@@ -105,13 +115,13 @@
 					<div class="col-md-8 mx-auto">
 						<div class="row">
 							<div class="col-md-4" style="height:50px;">
-								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 1</p>
+								<p style="line-height:50px; text-align:center; font-size:20px; font-weight:800; color:#512772; font-family: 'Hi Melody', cursive;">STEP 1</p>
 							</div>
 							<div class="col-md-4" style="height:50px;">
-								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 2</p>
+								<p style="line-height:50px; text-align:center; font-size:20px; font-weight:800; color:#512772; font-family: 'Hi Melody', cursive;">STEP 2</p>
 							</div>
 							<div class="col-md-4" style="height:50px;">
-								<p style="line-height:50px; text-align:center; font-weight:800; color:#512772;">STEP 3</p>
+								<p style="line-height:50px; text-align:center; font-size:20px; font-weight:800; color:#512772; font-family: 'Hi Melody', cursive;">STEP 3</p>
 							</div>
 						</div>
 					</div>
@@ -120,34 +130,34 @@
 						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
 							<div class="mx-auto" style="width:110px; padding-top: 15px;">
 								<img id="intro_cook_img" src="/imgs/main-img/cook2.png" width="100">
-								<p style="padding-top:5px; margin:0px;">요리하고</p>
+								<p style="padding-top:5px; margin:0px; font-size:23px; font-weight:800; font-family: 'Hi Melody', cursive;">요리하고</p>
 							</div>
 						</div>
 
 						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
-							<div class="mx-auto" style=" width:110px; padding-top: 15px;">
+							<div class="mx-auto" style=" width:120px; padding-top: 15px;">
 								<img id="intro_recipe_img" src="/imgs/main-img/recipe.png" width="100">
-								<p style="padding-top:5px; margin:0px;">레시피 올리고</p>
+								<p style="padding-top:5px; font-size:23px; font-weight:800; margin:0px;">레시피 올리고</p>
 							</div>
 						</div>
 
 						<div class="col-md-4" id="intro-step-wrap" style="padding:0px;">
 							<div class="mx-auto" style="width:110px; padding-top: 15px;">
 								<img id="intro_money_img" src="/imgs/main-img/money.png" width="100">
-								<p style="padding-top:5px; margin:0px;">돈 벌자</p>
+								<p style="padding-top:5px; font-size:23px; font-weight:800; margin:0px;">돈 벌자</p>
 							</div>
 						</div>
 					</div>
 					<br>
 					<button type="button" class="col-md-3 btn btn btn-lg"
 						onclick="startClick();">시작하기</button>
-					<br> <br>
+					<br><br>
 				</div>
 			</div>
 
 			<script>
 				function startClick() {
-					location.href = "/views/userPage/Login.html";
+					location.href = "/views/memberPage/loginPage.html";
 				}
 			</script>
 			<!-- 인트로 끝 -->
@@ -600,9 +610,9 @@
 								$('[name=sale_btn]').each(function(index) {
 										
 									var index2 = index;
-					
+									
 									$(this).click(function() {
-										
+										<%if(m!=null){%>
 										var productNo = saleProductNoArr[index2];
 										
 										$.ajax({
@@ -617,6 +627,9 @@
 												console.log("실패");
 											}
 										});
+										<%}else{%>
+											alert("로그인이 필요합니다!");
+										<%}%>
 									});
 								})
 							},
@@ -661,7 +674,7 @@
 									var index2 = index;
 					
 									$(this).click(function() {
-										
+										<%if(m!=null){%>
 										var productNo = newProductNoArr[index2];
 										
 										$.ajax({
@@ -676,6 +689,9 @@
 												console.log("실패");
 											}
 										});
+										<%}else{%>
+											alert("로그인이 필요합니다.");
+										<%}%>
 									});
 								});
 								
@@ -723,7 +739,7 @@
 									var index2 = index;
 					
 									$(this).click(function() {
-										
+										<%if(m!=null){%>
 										var productNo = soldProductNoArr[index2];
 										
 										$.ajax({
@@ -738,6 +754,9 @@
 												console.log("실패");
 											}
 										});
+										<%}else{%>
+											alert("로그인이 필요합니다.");
+										<%}%>
 									});
 								});
 							},
@@ -783,6 +802,7 @@
 									var index2 = index;
 									
 									$(this).click(function() {
+										<%if(m!=null){%>
 										var productNo = seasonProductNoArr[index2];
 										$.ajax({
 											url : "/basketInsert",
@@ -796,6 +816,9 @@
 												console.log("실패");
 											}
 										});
+										<%}else{%>
+											alert("로그인이 필요합니다.");
+										<%}%>
 									});
 								})
 							},
@@ -858,18 +881,27 @@
 							<div class="row">
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<!-- 이미지 -->
 										<a href="javascript:void(0)" id="week_link_1"> 
 											<img id="week_img_1" class="img col-md-12 col-sm-12" name="week_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+											 
+										<!-- 사용자 아이디 -->	 
+										<p id="week_user_1" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+										          
 										<div class="col-md-12" style="padding: 0px;">
+											<br>
 											<!-- 제목 -->
-											<p id="week_title_1" style="padding: 5px; text-align:center; font-weight:800" class="lead my-1"></p>
+											<p id="week_title_1" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -890,16 +922,26 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="week_link_2"> 
 											<img id="week_img_2" class="img col-md-12 col-sm-12" name="week_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+											 
+										<!-- 사용자 아이디 -->	 
+										<p id="week_user_2" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+										
 										<div class="col-md-12" style="padding: 0px;">
-											<p id="week_title_2" style="padding: 5px;text-align:center;" class="lead my-1"></p>
+											<br>
+											<p id="week_title_2" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -921,15 +963,24 @@
 								
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="week_img_3" class="img col-md-12 col-sm-12" name="week_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+											 
+										<!-- 사용자 아이디 -->	 
+										<p id="week_user_3" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+										
 										<div class="col-md-12" style="padding: 0px;">
-											<p id="week_title_3" style="padding: 5px; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<br>
+											<p id="week_title_3" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -950,16 +1001,27 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="week_link_4"> 
 											<img id="week_img_4" class="img col-md-12 col-sm-12" name="week_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
+										
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+											 
+										<!-- 사용자 아이디 -->	 
+										<p id="week_user_4" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
 
 										<div class="col-md-12" style="padding: 0px;">
+											<br>
 											<!-- 타이틀 바  -->
-											<p id="week_title_4" style="padding: 5px; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<p id="week_title_4" style="padding: 5px; padding-top: 15px; text-align:center; font-weight:500;" class="lead my-1"></p>
+											
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -998,9 +1060,10 @@
 								for (var i = 0; i < keys.length; i++) {
 									$('#week_img_' + (i + 1)).attr("src", data[i].recipe_pic);
 									$('#week_title_' + (i + 1)).html(data[i].recipe_title);
-									$('#week_view_' + (i + 1)).append(data[i].recipe_today_views);
+									$('#week_view_' + (i + 1)).append(data[i].recipe_week);
 									$('#week_time_' + (i + 1)).append(data[i].cook_time);
 									$('#week_level_' + (i + 1)).append(data[i].cook_level);
+									$('#week_user_' + (i + 1)).html(data[i].member_id);
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
@@ -1042,18 +1105,25 @@
 							
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
-										<!-- 이미지 -->
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="month_link_1"> 
 											<img id="month_img_1" class="img col-md-12 col-sm-12" name="month_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-
-										<div class="col-md-12" style="padding: 0px;">
-											<!-- 제목 -->
-											<p id="month_title_1" style="padding: 5px; text-align:center;" class="lead my-1"></p>
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+											 
+										<!-- 사용자 아이디 -->	 
+										<p id="month_user_1" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+										
+										<div class="col-md-12" style="padding:0px;">
+											<br>
+											<p id="month_title_1" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<div class="col-md-12" style="padding: 0px; padding-top:13px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1074,15 +1144,23 @@
 								
 								<!-- 2번 째 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="month_link_2"> 
 											<img id="month_img_2" class="img col-md-12 col-sm-12" name="month_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-										
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+										<!-- 사용자 아이디 -->	 
+										<p id="month_user_2" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										    height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+											 
 										<div class="col-md-12" style="padding: 0px;">
-											<p id="month_title_2" style="padding: 5px; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<br>
+											<p id="month_title_2" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1104,16 +1182,25 @@
 								<!-- 3번 째 사진 -->
 								<li class="col-md-3 vm_list">
 									
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="month_link_3"> 
 											<img id="month_img_3" class="img col-md-12 col-sm-12" name="month_img"
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-
+										
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black;">
+										<!-- 사용자 아이디 -->	 
+										<p id="month_user_3" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										   height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+										
 										<div class="col-md-12" style="padding: 0px;">
-											<p id="month_title_3" style="padding: 5px; text-align:center;" class="lead my-1"></p>
+											<br>
+											<p id="month_title_3" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1134,15 +1221,25 @@
 								
 								<!-- 4번 째 사진 -->
 								<li class="col-md-3 vm_list">
-									<div class="sp_box b1" style="border: 1px solid #dadada; height: 395px;">
+									<div class="sp_box b1" style="border: 1px solid #dadada; height: 424px;">
 										<a href="javascript:void(0)" id="month_link_4"> 
 											<img id="month_img_4" class="img col-md-12 col-sm-12" name="month_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
-
+										
+										<!-- 사용자 이미지 -->
+										<img class="rounded-circle img-fluid d-block mx-auto"
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
+											 border:1px solid black; background-color:white;">
+										<!-- 사용자 아이디 -->	 
+										
+										<p id="month_user_4" style="text-align:center; margin:0px; position:absolute; width: 50px; 
+										          height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
+											 
 										<div class="col-md-12" style="padding: 0px;">
-											<p id="month_title_4" style="padding: 5px; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 16px;">
+											<br>
+											<p id="month_title_4" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500; "class="lead my-1"></p>
+											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1179,9 +1276,10 @@
 								for (var i = 0; i < keys.length; i++) {
 									$('#month_img_' + (i + 1)).attr("src", data[i].recipe_pic);
 									$('#month_title_' + (i + 1)).html(data[i].recipe_title);
-									$('#month_view_' + (i + 1)).append(data[i].recipe_month_views);
+									$('#month_view_' + (i + 1)).append(data[i].recipe_month);
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
+									$('#month_user_' + (i + 1)).html(data[i].member_id);
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);

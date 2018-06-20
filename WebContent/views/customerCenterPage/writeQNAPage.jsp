@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="member.model.vo.*"%>
+<%
+	Member m = (Member) session.getAttribute("user");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,19 +17,15 @@
 <script>
 	/* 해더 불러오는 제이쿼리 */
 	$(document).ready(function() {
-		
+
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
-
-
 
 	$(document).ready(function() {
 		$('#close').click(function() {
 			$('#hidingInquiry').hide();
 		});
 	});
-
-
 
 	/* 1:1문의 이미지 추가  jQuery  */
 	$(document)
@@ -71,13 +71,95 @@
 		}
 	}
 
+	/*해당 페이지 표시 스크립트  */
+	$(document).ready(function() {
+		$('#list-color tr').eq(2).addClass('on');
+
+	});
+	
+	$(document).ready(function() { /*주문번호 테이블  jquery  */
+		stat = true;
+		$('#orderInquiry').click(function() {
+			if (stat == true) {
+				$('#hidingInquiry').css("display", "block");
+				stat = false;
+			} else {
+				$('#hidingInquiry').css("display", "none");
+				stat = true;
+			}
+		});
+
+	});
+	$(document).ready(function() {
+		$('.selectRdo').click(function() {
+			$('.selectRdo').prop("checked", false);
+			$(this).prop("checked", true);
+
+		});
+	});
+
+	function inquiry() {
+	
+	
+	
+		
+		$('#hidingInquiry').html("");
+		$.ajax({
+					url : "/inquiryOrder",
+					type : "post",
+					data : {
+					memberNo : <%=m.getMemberNo()%>
+				},
+					success : function(data) {
+
+						$('#hidingInquiry')
+								.append(
+										"<table class='table table-bordered' "
+												+ "style='width: 100%; height: 8; text-align: center;' id='inquiry-row'>"
+												+ "<tr style='background-color: gray;' id='trow'> "
+												+ "<th height='8'>주문번호</th>"
+												+ "	<th>주문일자</th> "
+												+ " <th>상품명</th> "
+												+ "	<th>수량</th> "
+												+ "	<th>주문금액</th>"
+												+ "	<th>선택</th> " + "	</tr> ")
+
+						for (var i = 0; i < data.length; i++) {
+							$('#inquiry-row').append('<tr>'
+							+'<td>' + data[i].buyingNo + '</td>'
+							+'<td>' + data[i].orderDate + '</td>'
+							+'<td>' + data[i].productName + '</td>'
+							+'<td>' + data[i].buyingQuantity + '</td>'
+							+'<td>' + data[i].productPrice + '</td>'
+							+'<td> <input type="radio" onclick="radio_('+data[i].buyingNo+');"'
+							+'value="'+data[i].buyingNo+'" name="inquiry " class="selectRdo"/> </td> </tr>')
+						}
+						$('#hidingInquiry').append("</table><p id='close' style='float:right'>close</p>");
+					},
+					error : function() {
+						console.log("error");
+
+					}
+				});
+
+	}
+	$(document).ready(function() {
+		$(document).on("click", '#close', function(event) {
+			console.log("안뇽");
+			$('#hidingInquiry').hide();
+
+		});
+	});
+	
+	function radio_(no)
+	{
+		
+	$('#orderNum').val(no);
+		
+	}
 
 	
-	/*해당 페이지 표시 스크립트  */
-	$(document).ready(function(){
-		$('#list-color tr').eq(2).addClass('on');
-		
-	});
+	
 	
 </script>
 
@@ -128,9 +210,16 @@
 #addRow img {
 	cursor: pointer;
 }
+#hidingInquiry {
+	display: none;
+}
+
+#click {
+	cursor: pointer;
+}
+
+
 </style>
-
-
 </head>
 <body>
 	<div class="container-fluid" style="padding: 0px">
@@ -151,19 +240,25 @@
 				</div>
 			</div>
 			<br>
+			
+
 			<div class="row" style="padding: 0;">
 				<div id="customCenter" class="col-md-2" style="padding: 0;">
 					<!-- 고객센터 목록 테이블 -->
 					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
 						flush="false" />
-
-
 				</div>
 				<div class="col-md-10">
+							<form action="/insertQna" method="post">
 					<table class="table table-bordered" id="writeQNAFormTbl">
 						<tr height="70px">
-							<td width="100px" style="background-color: #dcdbde;">제목</td>
-							<td><br> <input type="text" size="100%" /></td>
+							<td width="100px" style="background-color: #dcdbde;">제목
+							
+							
+							</td>
+							
+							
+							<td><br> <input type="text" name="qnaTitle" size="100%" /></td>
 
 
 						</tr>
@@ -171,12 +266,19 @@
 
 							<td style="background-color: #dcdbde">주문번호</td>
 
-							<td>
-							
-								<jsp:include page="/views/customerCenterPage/inquiryOrderPage.jsp" flush="false" />
-							
-							
-							</td>
+							<td> <input type="text" name="inquiryNo" style="width: 25%"
+								id="orderNum" readonly />
+								<button type="button" onclick="inquiry();" class="btn btn-info"
+									id="orderInquiry" style="height: 2em">주문조회</button>
+
+								<div class="col-md-8"
+									style="border: 1px solid; padding: 20px; height: 300px"
+									id="hidingInquiry">
+									문의하실 주문번호를 선택하세요<br>
+
+									<p id="close">close</p>
+
+								</div></td>
 						</tr>
 
 
@@ -194,8 +296,8 @@
 								style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
 								불가능합니다.<br> -배송일 및 배송시간 지정은 불가능합니다.(예약배송 포함)<br> <br>
 								*주문취소 외 평일 오후 5시(주말 공휴일 12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전
-								8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea
-									style="width: 100%; height: 300px; resize: none;">
+								8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> 
+								<textarea name="contents" style="width: 100%; height: 300px; resize: none;">
 						 </textarea>
 							</td>
 						</tr>
@@ -217,6 +319,7 @@
 						</tr>
 
 					</table>
+						</form>
 
 					<div class="col-md-8" id="prInfoPolicy">
 
@@ -242,7 +345,7 @@
 					<div class="row">
 
 						<div class="offset-md-11 col-md-1">
-							<button type="button" class="btn btn-success" id="qnaSubmit"
+							<button type="submit" class="btn btn-success" id="qnaSubmit"
 								onclick="save()">저장</button>
 
 						</div>

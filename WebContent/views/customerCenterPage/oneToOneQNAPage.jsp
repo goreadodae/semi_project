@@ -48,8 +48,6 @@
 <c:if test="${sessionScope.user==null}" >
 	<c:redirect url="/views/memberPage/loginPage.jsp"/>
 </c:if>
-	
-	
 		<!--  1:1 문의 페이지 만들때 생각해야 할 것!!
 			1. 로그인했을때만 1:1문의가 가능하다....
 			(로그인을 하지 않았을 경우 로그인 창으로 가야함!!)

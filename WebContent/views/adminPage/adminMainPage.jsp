@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +16,7 @@
 
 
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
 		$("#header").load("/views/header/main-Header.jsp");
 		$("#footer").load("/views/footer/main-Footer.jsp");
@@ -74,7 +74,7 @@
 				<div class="row">
 					<div class="offset-md-2 col-md-10" style="text-align: center">
 						<br>
-						<h2>È¯¿µÇÕ´Ï´Ù!! °ü¸®ÀÚ´Ô!</h2>
+						<h2>í™˜ì˜í•©ë‹ˆë‹¤!! ê´€ë¦¬ìžë‹˜!</h2>
 						
 						<br> <br>
 
@@ -96,7 +96,7 @@
 									</div>
 									<div class="col-md-5">
 										<div style="text-align: center">
-											<span style="font-size: 20px">200</span> <b>°Ç</b>
+											<span style="font-size: 20px">200</span> <b>ê±´</b>
 
 										</div>
 										<div style="text-align: center">
@@ -117,7 +117,7 @@
 									<div class="col-md-6">
 
 										<div style="text-align: center">
-											<span style="font-size: 20px">1,254</span> <b>°³</b>
+											<span style="font-size: 20px">1,254</span> <b>ê°œ</b>
 
 										</div>
 										<div style="text-align: center">
@@ -135,7 +135,7 @@
 									</div>
 									<div class="col-md-6">
 										<div style="text-align: center">
-											<span style="font-size: 20px"> 1,200 </span> <b>¸í</b>
+											<span style="font-size: 20px"> 1,200 </span> <b>ëª…</b>
 										</div>
 										<b>subscriber</b>
 									</div>
@@ -181,16 +181,16 @@
 								<th><a href="/views/adminPage/adminMainPage.jsp">Home</a></th>
 							</tr>
 							<tr>
-								<th><a href="/memberMgt">È¸¿ø°ü¸®</a></th>
+								<th><a href="/memberMgt">íšŒì›ê´€ë¦¬</a></th>
 							</tr>
 							<tr>
-								<th>°Ô½Ã¹°°ü¸®</th>
+								<th>ê²Œì‹œë¬¼ê´€ë¦¬</th>
 							</tr>
 							<tr>
-								<th>°øÁö»çÇ×°ü¸®</th>
+								<th>ê³µì§€ì‚¬í•­ê´€ë¦¬</th>
 							</tr>
 							<tr>
-								<th><a href="/views/adminPage/qnaMgtPage.jsp"></a>¹®ÀÇ°ü¸®</th>
+								<th><a href="/views/adminPage/qnaMgtPage.jsp"></a>ë¬¸ì˜ê´€ë¦¬</th>
 							</tr>
 						</table>
 
@@ -199,7 +199,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/adminPage/memberMgtPage.jsp">¿À´Ã °¡ÀÔÇÑ È¸¿øÁ¤º¸ÀÔ´Ï´Ù.</a></h3>
+								<h3><a href="/views/adminPage/memberMgtPage.jsp">ì˜¤ëŠ˜ ê°€ìž…í•œ íšŒì›ì •ë³´ìž…ë‹ˆë‹¤.</a></h3>
 								<br> <br>
 
 
@@ -209,25 +209,25 @@
 							<div class=col-md-12>
 								<table class="table" style="text-align: center">
 									<tr>
-										<th>È¸¿ø¹øÈ£</th>
-										<th>¾ÆÀÌµð</th>
-										<th>ºñ¹Ð¹øÈ£</th>
-										<th>ÀÌ¸§</th>
-										<th>»ý³â¿ùÀÏ</th>
-										<th>¿¬¶ôÃ³</th>
-										<th>¼ºº°</th>
-										<th>ÀÌ¸ÞÀÏ</th>
-										<th>°¡ÀÔÀÏÀÚ</th>
+										<th>íšŒì›ë²ˆí˜¸</th>
+										<th>ì•„ì´ë””</th>
+										<th>ë¹„ë°€ë²ˆí˜¸</th>
+										<th>ì´ë¦„</th>
+										<th>ìƒë…„ì›”ì¼</th>
+										<th>ì—°ë½ì²˜</th>
+										<th>ì„±ë³„</th>
+										<th>ì´ë©”ì¼</th>
+										<th>ê°€ìž…ì¼ìž</th>
 
 									</tr>
 									<tr>
 										<td>59</td>
 										<td>han5631</td>
 										<td>saf*****</td>										
-										<td>ÇÑ¿µÁø</td>
+										<td>í•œì˜ì§„</td>
 										<td>930505</td>
 										<td>010454546</td>
-										<td>³²</td>
+										<td>ë‚¨</td>
 										<td>kiki123@naver.com</td>
 										<td>2018-06-14</td>
 
@@ -241,7 +241,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/adminPage/qnaMgtPage.jsp">¹Ì´äº¯ ¹®ÀÇ»çÇ×ÀÌ ÀÖ½À´Ï´Ù.</a></h3>
+								<h3><a href="/views/adminPage/qnaMgtPage.jsp">ë¯¸ë‹µë³€ ë¬¸ì˜ì‚¬í•­ì´ ìžˆìŠµë‹ˆë‹¤.</a></h3>
 							</div>
 							<br><br><br><br>
 						</div>
@@ -250,16 +250,16 @@
 							<div class="col-md-12">
 								<table class="table" style="width: 100%; text-align:center">
 									<tr>
-										<th>¹øÈ£</th>
-										<th>Á¦¸ñ</th>
-										<th>ÀÛ¼ºÀÚ</th>
-										<th>ÀÛ¼ºÀÏ</th>
+										<th>ë²ˆí˜¸</th>
+										<th>ì œëª©</th>
+										<th>ìž‘ì„±ìž</th>
+										<th>ìž‘ì„±ì¼</th>
 
 									</tr>
 									<tr>
 										<td>2424</td>
-										<td>±ÖÀÌ½Å°¡¿ä ´Ü°¡¿ä</td>
-										<td>Åä°ÔÇÇ</td>
+										<td>ê·¤ì´ì‹ ê°€ìš” ë‹¨ê°€ìš”</td>
+										<td>í† ê²Œí”¼</td>
 										<td>2018-06-04</td>
 									</tr>
 
@@ -282,10 +282,10 @@
 	</div>
 
 
-	<!-- jQuery (ºÎÆ®½ºÆ®·¦ÀÇ ÀÚ¹Ù½ºÅ©¸³Æ® ÇÃ·¯±×ÀÎÀ» À§ÇØ ÇÊ¿äÇÕ´Ï´Ù) -->
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ëž©ì˜ ìžë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- ¸ðµç ÄÄÆÄÀÏµÈ ÇÃ·¯±×ÀÎÀ» Æ÷ÇÔÇÕ´Ï´Ù (¾Æ·¡), ¿øÇÏÁö ¾Ê´Â´Ù¸é ÇÊ¿äÇÑ °¢°¢ÀÇ ÆÄÀÏÀ» Æ÷ÇÔÇÏ¼¼¿ä -->
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ëž˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
 	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

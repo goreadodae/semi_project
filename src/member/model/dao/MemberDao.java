@@ -281,4 +281,49 @@ public class MemberDao {
 	      
 	      return result;
 	}
+	
+	
+	///아름 수정 (회원번호에 따른 계정정보 가져오기)
+	public Member selectOneMember(Connection conn, int memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = new Member();
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query  = prop.getProperty("selectOneMember");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m.setMemberNo(rset.getInt("MEMBER_NO"));
+				m.setMemberName(rset.getString("MEMBER_NAME"));
+				m.setBirthDate(rset.getString("BIRTH_DATE"));
+				m.setPhone(rset.getString("PHONE"));
+				m.setEmail(rset.getString("EMAIL"));
+				m.setAddress(rset.getString("ADDRESS"));
+				m.setProfile(rset.getString("PROFILE"));
+				m.setNickName(rset.getString("NICKNAME"));				
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return m;
+	}
 }

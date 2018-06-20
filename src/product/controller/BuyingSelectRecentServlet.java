@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.model.vo.Member;
 import product.model.service.ProductService;
 import product.model.vo.Buying;
 
@@ -36,9 +38,8 @@ public class BuyingSelectRecentServlet extends HttpServlet {
 		
 		//방금 구매한 상품들의 갯수
 		int rowCount = Integer.parseInt(request.getParameter("rowCount"));
-		
-		///로그인 정보 일단 1로
-		int memberNo = 1;
+		///로그인 정보
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
 		//방금 구매한 상품 리스트 DB에서 받아옴
 		ArrayList<Buying> buyingList = new ProductService().selectBuyingRecent(memberNo, rowCount);

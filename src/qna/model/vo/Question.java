@@ -8,22 +8,24 @@ public class Question {
 	private Timestamp queTime;
 	private String queContents;
 	private String memberNo;
-	private String queYn;
+	private String responseYn;
+	private int buyingNo;
 	
-	
+
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
-	public Question(int queNo, String queTitle, Timestamp queTime, String queContents, String memberNo, String queYn) {
+	public Question(int queNo, String queTitle, Timestamp queTime, String queContents, String memberNo,
+			String responseYn, int buyingNo) {
 		super();
 		this.queNo = queNo;
 		this.queTitle = queTitle;
 		this.queTime = queTime;
 		this.queContents = queContents;
 		this.memberNo = memberNo;
-		this.queYn = queYn;
+		this.responseYn = responseYn;
+		this.buyingNo = buyingNo;
 	}
 
 	public int getQueNo() {
@@ -56,12 +58,19 @@ public class Question {
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
-	public String getQueYn() {
-		return queYn;
+	public String getResponseYn() {
+		return responseYn;
 	}
-	public void setQueYn(String queYn) {
-		this.queYn = queYn;
+	public void setResponseYn(String responseYn) {
+		this.responseYn = responseYn;
 	}
+	public int getBuyingNo() {
+		return buyingNo;
+	}
+	public void setBuyingNo(int buyingNo) {
+		this.buyingNo = buyingNo;
+	}
+	
 	
 	
 	

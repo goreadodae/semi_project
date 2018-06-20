@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>1:1 ¹®ÀÇ ÆäÀÌÁö ÀÔ´Ï´Ù.</title>
+<title>1:1 ë¬¸ì˜ íŽ˜ì´ì§€ ìž…ë‹ˆë‹¤.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
 		
 		$("#footer").load("/views/footer/main-Footer.jsp");
@@ -19,6 +19,8 @@
 	$(document).ready(function(){
 		$('#list-color tr').eq(2).addClass('on');
 	});
+	
+	
 	
 	
 </script>
@@ -46,18 +48,14 @@
 
 
 <c:if test="${sessionScope.user==null}" >
-	<c:redirect url="/views/memberPage/loginPage.jsp"/>
+<script language="javascript">
+alert("ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš” ^^");
+location.href="/views/memberPage/loginPage.jsp";
+
+</script>
+	<%-- <c:redirect url="/views/memberPage/loginPage.jsp"/> --%>
 </c:if>
-		<!--  1:1 ¹®ÀÇ ÆäÀÌÁö ¸¸µé¶§ »ý°¢ÇØ¾ß ÇÒ °Í!!
-			1. ·Î±×ÀÎÇßÀ»¶§¸¸ 1:1¹®ÀÇ°¡ °¡´ÉÇÏ´Ù....
-			(·Î±×ÀÎÀ» ÇÏÁö ¾Ê¾ÒÀ» °æ¿ì ·Î±×ÀÎ Ã¢À¸·Î °¡¾ßÇÔ!!)
-			2. È¸¿øÀÌ 1:1 ¹®ÀÇ¸¦ ÀÛ¼ºÇßÀ» ½Ã °ü¸®ÀÚ db·Î °í°í..
-			3. °ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ ¹®ÀÇ»çÇ×À» º¼ ¼ö ÀÖ°Ô ±¸ÇöÇÑ´Ù..¤Ð¤Ð
-			4. »ç¿ëÀÚ´Â ¿¹Àü¿¡ Çß´ø ¹®ÀÇµµ º¼ ¼ö ÀÖ°Ô ÇØ¾ß ÇÑ´Ù.
-			5. ¹®ÀÇ³»¿ªÀÌ ¾ø´Ù¸é!! ÄÃ·³¸í¸¸ ³²±â°í ¹®ÀÇ ÄÁÅÙÃ÷¿µ¿ª¿¡´Â ¹®ÀÇ³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù´Â ¹®±¸°¡ ÀÖ¾î¾ß ÇÔ!!
-			6. ±Û¾²±â ¹öÆ° Å¬¸¯½Ã »õ ÆäÀÌÁö·Î ÀÛ¼º °ø°£À¸·Î ¤¡¤¡
-			7. ÈæÈæÈæ
-		  -->
+
 	<div class="container-fluid" style="padding:0px">
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
@@ -65,43 +63,42 @@
 			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row" style="padding:0;">
 				<div class="col-md-2" style="padding:0;">
-					<!--°í°´¼¾ÅÍ ¸ñ·Ï  -->
+					<!--ê³ ê°ì„¼í„° ëª©ë¡  -->
 					<br>
-					<h2>°í°´¼¾ÅÍ</h2>
+					<h2>ê³ ê°ì„¼í„°</h2>
 					<br>
 				</div>
 				<div class="col-md-8" >
 					<br>
 					<h4 style="line-height:35px">
-						1:1¹®ÀÇ»çÇ×&nbsp;
+						1:1ë¬¸ì˜ì‚¬í•­&nbsp;
 					</h4>
 				</div>
 			</div>
 			<br>
 			<div class="row" style="padding:0;">
 				<div id="customCenter" class="col-md-2" style="padding:0;">
-					<!-- °í°´¼¾ÅÍ ¸ñ·Ï Å×ÀÌºí  include-->
+					<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸”  include-->
 					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp" flush="false"/>
 				</div>
 
 			<div class="col-md-10">
-			<!-- <a href="/views/managerPage/writeQNAPage.jsp">ÀÛ¼ºÇÏ±â(ÀÓ½Ã¸µÅ©)</a> -->
 			
 			<table class='table'>
 			<tr>
-			<th>¹øÈ£</th>
-			<th>Ä«Å×°í¸®</th>
-			<th>Á¦¸ñ</th>
-			<th>ÀÛ¼ºÀÚ</th>
-			<th>ÀÛ¼ºÀÏ</th>
+			<th>ë²ˆí˜¸</th>
+			<th>ì¹´í…Œê³ ë¦¬</th>
+			<th>ì œëª©</th>
+			<th>ìž‘ì„±ìž</th>
+			<th>ìž‘ì„±ì¼</th>
 			</tr>
 
 			</table>
-			<!-- »ç¿ëÀÚ°¡ ¹®ÀÇ ÇÑ ³»¿ªÀÌ ¾øÀ»¶§  -->
+			<!-- ì‚¬ìš©ìžê°€ ë¬¸ì˜ í•œ ë‚´ì—­ì´ ì—†ì„ë•Œ  -->
 			<div class="cols-md-10" style=" height:300px">
 				
 				<div id="noHasList">
-					<h6>1:1¹®ÀÇ³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</h6>
+					<h6>1:1ë¬¸ì˜ë‚´ì—­ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</h6>
 				
 				</div>
 			
@@ -109,7 +106,7 @@
 			<div class="offset-md-11 cols-md-1">
 			
 			
-			<button type="button" class="btn btn-success" onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">ÀÛ¼ºÇÏ±â</button>
+			<button type="button" class="btn btn-success" onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">ìž‘ì„±í•˜ê¸°</button>
 			</div>
 
 

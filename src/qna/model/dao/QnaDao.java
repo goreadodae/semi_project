@@ -47,4 +47,46 @@ public class QnaDao {
 
 	}
 
+	public int insertQuestion(Connection conn, String queTitle, String queContents, int memberNo, int buyingNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="";
+		
+		try {
+			if(buyingNo!=0)
+			{
+				query ="insert into question values(seq_que.nextval,?,sysdate,?,?,default,?)";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, queTitle);
+				pstmt.setString(2, queContents);
+				pstmt.setInt(3,memberNo);
+				pstmt.setInt(4, buyingNo);
+			}
+			else
+			{
+				query ="insert into question values(seq_que.nextval,?,sysdate,?,?,default,null)";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, queTitle);
+				pstmt.setString(2, queContents);
+				pstmt.setInt(3,memberNo);
+				
+			}
+			result = pstmt.executeUpdate();
+			
+	
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+
 }

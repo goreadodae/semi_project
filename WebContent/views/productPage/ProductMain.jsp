@@ -111,6 +111,22 @@
 	top : -40%;
 }
 
+#soldout{
+	background-color : #522075;
+	color : white;
+	float : right;
+	text-align : center;
+	border-radius : 0.8em;
+	display:inline;
+	align : right;
+	padding-right : 13px;
+	padding-left : 13px;
+	margin-right : 5px;
+}
+
+.p_title{
+	display:inline;
+}
 </style>
 
 </head>
@@ -157,14 +173,24 @@
 								style="border: 1px solid #dadada; padding: 0px;">
 									<a href="/productDetail?productNo=${p.productNo}">
 									<div class="container">
-										<img class="col-md-12 col-sm-12" style="padding: 0px;"
-										src="${p.product1stPic}" alt="제품이미지" 
-										class="img-thumbnail">
+										<c:choose>
+										<c:when test="${p.productQuantity<1}">
+											<img class="col-md-12 col-sm-12" style="padding: 0px; opacity:0.5;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+										</c:when>
+										<c:otherwise>
+											<img class="col-md-12 col-sm-12" style="padding: 0px;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+										</c:otherwise>
+										</c:choose>
 									</div>
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">${p.productName}</p>
+									<c:choose>
+										<c:when test="${p.productQuantity<1}">
+											<div id="soldout">sold out</div>
+										</c:when>
+									</c:choose>
 									<hr>
 									<p class="price">${p.productPrice}</p><br>
 								</div>
@@ -210,14 +236,27 @@
 								style="border: 1px solid #dadada; padding: 0px;">
 									<a href="/productDetail?productNo=${p.productNo}">
 									<div class="container">
-										<img class="col-md-12 col-sm-12" style="padding: 0px;"
-										src="${p.product1stPic}" alt="제품이미지" 
-										class="img-thumbnail">
+										<c:choose>
+										<c:when test="${p.productQuantity<1}">
+											<img class="col-md-12 col-sm-12" style="padding: 0px; opacity:0.5;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+										</c:when>
+										<c:otherwise>
+											<img class="col-md-12 col-sm-12" style="padding: 0px;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+										</c:otherwise>
+									</c:choose>
+										
+										
 									</div>
 									</a>
 								<div id="desc" class="col-md-12">
 									<br>
 									<p class="p_title">${p.productName}</p>
+									<c:choose>
+										<c:when test="${p.productQuantity<1}">
+											<div id="soldout">sold out</div>
+										</c:when>
+									</c:choose>
+									
 									<hr>
 									<p class="price">${p.productPrice}</p><br>
 								</div>

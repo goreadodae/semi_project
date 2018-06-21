@@ -41,7 +41,6 @@ public class BasketUpdateServlet extends HttpServlet {
 			
 		}
 		else {
-			System.out.println("뭐가 문제징?");
 			response.sendRedirect("/views/productPage/error.jsp");
 		}
 	}

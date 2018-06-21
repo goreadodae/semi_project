@@ -552,8 +552,9 @@ a{
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
               <!-- form tag -->
               <form id="uploadForm" method="get" enctype="multipart/form-data" action="/reviewUpdate">
-                <!-- 유저 아이디 같이 보냄! -->
-                <%-- <input type="hidden" name="userId" readonly value=<%=m.getMemberId() %> --%>
+                <!-- 유저 아이디 or 유저 넘버 + 상품 번호 같이 보냄! -->
+                <%-- <input type="hidden" name="userId" readonly value="<%=m.getMemberId()%>" >--%>
+                <input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
 
               <div class="modal-content">
                 <div class="modal-header">

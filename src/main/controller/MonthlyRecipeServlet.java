@@ -58,7 +58,6 @@ public class MonthlyRecipeServlet extends HttpServlet {
 			resultArray.add(result);
 
 		}
-		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().print(resultArray);

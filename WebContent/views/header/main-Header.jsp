@@ -7,6 +7,7 @@
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 	
 <% Member m = (Member)session.getAttribute("user"); %>
+
 <%
 	String presentURI = request.getRequestURI();
 	String beforeURI = request.getHeader("referer");	// 로그인 할 때 필요함
@@ -16,7 +17,16 @@
 <head>
 <title>main-Header</title>
 <style>
+  	#scroll {
+            height: 50px;
+            margin:0px;
+       }
 	* { font-family: 'Spoqa Han Sans', 'Sans-serif'; }
+	.ellip {
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
 	/* * { font-family: 'Iropke Batang'} */
 </style>
 <script>
@@ -106,6 +116,8 @@
 			</div>
 		</div>
 		<!-- 팝업창 끝-->
+		
+		<!-- 팝업창 쿠키  -->
 		<script>
 			/* 1. 쿠키 만들기 */
 			function setCookie(name, value, expiredays) {
@@ -150,9 +162,61 @@
 					$("#top-message").show();
 				} 
 			});
-			
 		</script>
-
+		<!-- 팝업창 쿠키 끝-->
+		
+		<!-- 실시간 검색어  -->
+		<script type="text/javascript">
+	        function textScroll(scroll_el_id) {
+	            this.objElement = document.getElementById(scroll_el_id);
+	            this.objElement.style.position = 'relative';
+	            this.objElement.style.overflow = 'hidden';
+	
+	            this.objLi = this.objElement.getElementsByTagName('li');
+	            this.height = this.objElement.offsetHeight; // li 엘리먼트가 움직이는 높이(외부에서 변경가능)
+	            this.num = this.objLi.length; // li 엘리먼트의 총 갯수
+	            this.totalHeight = this.height * this.num; // 총 높이
+	            this.scrollspeed = 2; // 스크롤되는 px
+	            this.objTop = new Array(); // 각 li의 top 위치를 저장
+	            this.timer = null;
+	
+	            for (var i = 0; i < this.num; i++) {
+	                this.objLi[i].style.position = 'absolute';
+	                this.objTop[i] = this.height * i;
+	                this.objLi[i].style.top = this.objTop[i] + "px";
+	            }
+	        }
+	
+	        textScroll.prototype.move = function () {
+	            for (var i = 0; i < this.num; i++) {
+	                this.objTop[i] = this.objTop[i] - this.scrollspeed;
+	                this.objLi[i].style.top = this.objTop[i] + "px";
+	            }
+	            if (this.objTop[0] % this.height == 0) {
+	                this.jump();
+	            } else {
+	                clearTimeout(this.timer);
+	                this.timer = setTimeout(this.name + ".move()", 50);
+	            }
+	        }
+	
+	        textScroll.prototype.jump = function () {
+	            for (var i = 0; i < this.num; i++) {
+	                if (this.objTop[i] == this.height * (-2)) {
+	                    this.objTop[i] = this.objTop[i] + this.totalHeight;
+	                    this.objLi[i].style.top = this.objTop[i] + "px";
+	                }
+	            }
+	            clearTimeout(this.timer);
+	            this.timer = setTimeout(this.name + ".move()", 3000);
+	        }
+	
+	        textScroll.prototype.start = function () {
+	            this.timer = setTimeout(this.name + ".move()", 3000);
+	        }
+    	</script>
+		<!-- 실시간 검색어 끝-->
+		
 		<!-- 최상단 -->
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
 			<ul class="nav justify-content-end">
@@ -233,7 +297,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/views/memberPage/myHomeMainPage.jsp">마이홈</a>
+						<a class="nav-category" href="/views/memberPage/myHomeMainPage.jsp">마이페이지</a>
 					</div>
 					<%if(m!=null){ %>
 					<div class="col-md-2" style="padding:0px;">
@@ -257,7 +321,61 @@
 						</div>
 					</div>
 					<%}else{ %>
-						
+					<div class="col-md-2 ellip" style="padding:0px;">
+						<ul id="scroll">
+	        				<li>
+	                			<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">1&nbsp;&nbsp;</p>
+	            				<a id="scroll_title_1" href="#" style="color:black;">
+	            				</a>
+	        				</li>
+					        <li>
+					          	<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">2&nbsp;&nbsp;</p>
+	            				<a id="scroll_title_2" href="#" style="color:black;">
+	            				</a>
+					        </li>
+					        <li>
+					            <p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">3&nbsp;&nbsp;</p>
+	            				<a id="scroll_title_3" href="#" style="color:black;">
+	            				</a>
+					        </li>
+					        <li>
+					            <p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">4&nbsp;&nbsp;</p>
+	            				<a id="scroll_title_4" href="#" style="color:black;">
+	            				</a>
+					        </li>
+					        <li>
+					           	<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">5&nbsp;&nbsp;</p>
+	            				<a id="scroll_title_5" href="#" style="color:black;">
+	            				</a>
+					        </li>
+					    </ul>
+				    </div>
+				    <script>
+					$(document).ready(function() {
+						$.ajax({
+							url : "/monthlyRecipe",
+							type : "post",
+							success : function(data) {
+								var keys = Object.keys(data);
+								// data[키] 형태로 사용해야 함
+								for (var i = 0; i < keys.length; i++) {
+									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title);
+									$('#scroll_title_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
+								}
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+					});
+				</script>
+				    
+				    
+				    <script type="text/javascript">
+				        var real_search_keyword = new textScroll('scroll'); // 스크롤링 하고자하는 ul 엘리먼트의 id값을 인자로 넣습니다
+				        real_search_keyword.name = "real_search_keyword"; // 인스턴스 네임을 등록합니다
+				        real_search_keyword.start(); // 스크롤링 시작
+				    </script>
 					<%} %>
 				</div>
 			</div>
@@ -295,13 +413,6 @@
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header2">
-						<a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr>
-					</li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
 				</ul>
 
 				<ul class="colum">
@@ -312,12 +423,6 @@
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
-					<li class="header2">
-						<a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr>
-					</li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
 				</ul>
 				
 				<ul class="colum">
@@ -326,13 +431,6 @@
 					</li>
 					<li class="category-text">채소</li>
 					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header2">
-						<a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr>
-					</li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>
 				</ul>

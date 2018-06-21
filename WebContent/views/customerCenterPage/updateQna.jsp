@@ -5,6 +5,11 @@
 <%
 	Member m = (Member) session.getAttribute("user");
 %>
+<%
+ 
+    request.setCharacterEncoding("UTF-8");
+ 
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -158,7 +163,6 @@
 
 					}
 				});
-
 	}
 	$(document).ready(function() {
 		$(document).on("click", '#close', function(event) {
@@ -189,12 +193,7 @@
 					$("#contents").focus();
 					return false;
 				}
-		
 		})
-		
-		
-		
-		
 	}); 
 	
 	
@@ -278,7 +277,7 @@
 			<br>
 
 
-			<form action="/insertQna" method="post">
+			<form action="/questionUpdate" method="post">
 				<div class="row" style="padding: 0;">
 					<div id="customCenter" class="col-md-2" style="padding: 0;">
 						<!-- 고객센터 목록 테이블 -->
@@ -291,17 +290,19 @@
 								<td width="100px" style="background-color: #dcdbde;">제목</td>
 
 
-								<td><br> <input type="text" id="qnaTitle" name="qnaTitle"
+								<td><br> <input type="text" id="queTitle" name="queTitle" value="${param.queTitle}"
 									size="100%" /></td>
+
+
 							</tr>
 							<tr height="70px">
 
 								<td style="background-color: #dcdbde">주문번호</td>
 
-								<td><input type="text" name="inquiryNo" style="width: 25%"
-									id="orderNum" readonly />
-									<button type="button" onclick="inquiry();" class="btn btn-info"
-										id="orderInquiry" style="height: 2em">주문조회</button>
+					<td><input type="text" name="inquiryNo" style="width: 25%"
+					id="orderNum" readonly <c:if test="${param.buyingNo ne 0}">value="${param.buyingNo}</c:if>/>
+					<button type="button" onclick="inquiry();" class="btn btn-info"
+						id="orderInquiry" style="height: 2em">주문조회</button>
 
 									<div class="col-md-8"
 										style="border: 1px solid; padding: 20px; height: 300px"
@@ -330,8 +331,7 @@
 									*주문취소 외 평일 오후 5시(주말 공휴일 12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전
 									8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea
 										name="contents" id="contents"
-										style="width: 100%; height: 300px; resize: none;">
-						 </textarea>
+										style="width: 100%; height: 300px; resize: none;">${param.queContents} </textarea>
 								</td>
 							</tr>
 							<tr>
@@ -377,9 +377,8 @@
 						<div class="row">
 
 							<div class="offset-md-11 col-md-1">
-							
-							
-								<button type="submit" class="btn btn-success" id="qnaSubmit">저장</button>
+							<input type="hidden" name="queNo" value="${param.queNo}"/>
+								<button type="submit" class="btn btn-success" id="qnaSubmit">수정</button>
 
 							</div>
 						</div>

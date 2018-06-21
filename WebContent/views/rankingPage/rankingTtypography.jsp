@@ -16,7 +16,7 @@
   width: 1120px;
  /* margin-left:14.2%;*/
 /* 	width : 1110px; */
-/*	border-top: 3px solid #F8FAFF;
+/*	border-top: 3px solid #F8FAFF; 
 	border-bottom : 3px solid #F8FAFF;*/
 /* 	margin-left:175px; */
 border: 3px dashed #FFE400;
@@ -29,7 +29,8 @@ border-radius: 10px;
 .console-container {
  padding-top:50px;
   font-family:hanna;
-  font-size:2.5em;
+  font-size:2.3em;
+  font-weight: 800;
   text-align:center;
   height:100px;
   width:900px;

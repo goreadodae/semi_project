@@ -58,6 +58,9 @@
 									<input class="form-control form-login mx-auto" type="password"
 									 placeholder="비밀번호를 입력하세요" id="loginPwd" name="loginPwd" style="width:250px;">
 								</div>
+								<div class="col-md-4 mx-auto" style="padding:0px;">
+									<p id="loginError" style="color:red; width:300px; font-size:15px; display:none;">아이디 또는 비밀번호를 다시 확인하세요. </p>
+								</div>
 							</form>
 							
 							<!-- id저장 -->
@@ -95,12 +98,59 @@
 		<br><br><br><br>
 	</div>
 	<script type="text/javascript">
-		//로그인 버튼
-		function login(){
-			if($('#loginId').val()==""||$('#loginPwd').val()==""){
-				alert("아이디 또는 패스워드를 정확히 입력해주세요.")
+	
+		var memberIdArr = [];
+		var memberPwdArr = [];
+		
+		$.ajax({
+			url : "/loginCheck",
+			type : "post",
+			success : function(data) {
 				
-			}else{
+				// data[키] 형태로 사용해야 함
+				for (var i=0; i < data.length; i++) {
+					memberIdArr.push(data[i].member_id);
+					memberPwdArr.push(data[i].member_pwd);
+				}
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
+		
+		//로그인 버튼
+		function login()
+		{
+			var result = false;
+			
+			if(($('#loginId').val()=="" || $('#loginPwd').val()=="")){
+				alert("아이디 또는 비밀번호를 입력하세요.");
+			} 
+			
+			for(var i=0; i<memberIdArr.length; i++)
+			{
+				if($('#loginId').val()==memberIdArr[i])
+				{
+					for(var j=0; j<memberPwdArr.length; j++)
+					{	
+						if($('#loginPwd').val()==memberPwdArr[j])
+						{	
+							$('#loginError').toggle();
+							result = true;
+							
+						} else
+						{
+							$('#loginError').show(1500);
+							continue;
+						}
+					}
+				} else
+				{
+					$('#loginError').show(1500);
+				}
+			}
+			
+			if(result==true){
 				$('#frm').submit();
 			}
 		}

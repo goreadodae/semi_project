@@ -1221,7 +1221,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto"
+										<img class="rounded-circle img-fluid d-block mx-auto" src=""
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black; background-color:white;">
 										<!-- 사용자 아이디 -->	 
@@ -1273,6 +1273,7 @@
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
 									$('#month_user_' + (i + 1)).html(data[i].member_id);
+									$('#')
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);

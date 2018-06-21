@@ -35,9 +35,9 @@ public class PwdCheckServlet extends HttpServlet {
 		boolean result= new MemberService().pwdCheck(id, password);
 		
 		if(result==true) {
-			response.sendRedirect("/views/memberPage/changeInfo.jsp");
+			response.sendRedirect("/views/memberPage/myHomeChangeInfo.jsp");
 		}else {
-			System.out.println("½ÇÆÐ");
+			System.out.println("ì‹¤íŒ¨");
 		}
 		
 	}

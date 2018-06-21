@@ -146,7 +146,7 @@
 							<li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
 							<li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
 							<li><a href="/views/memberPage/myHomeRecipePage.jsp">나의 레시피</a></li>
-							<li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가 쓴 댓글</a></li>
+							<li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
 							<li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
 						</ul>
 					</div>
@@ -166,7 +166,6 @@
 								<input type="hidden" id="hiddenId" name="id" value=<%=m.getMemberId() %> />
 								<div id="userPwd">비밀번호</div>
 								<div>
-									
 									<input type="password" id="txt-pwd" name="password" />
 								</div>
 							</div>

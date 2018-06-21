@@ -174,6 +174,9 @@ public class RecipeDao {
 				else {where+=" and ";}
 				where+="ingre_no="+cate4;
 			}
+			if(order==null) {
+				order="posted_date";
+			}
 			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+") where num between ? and ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);

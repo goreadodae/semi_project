@@ -59,14 +59,14 @@
 <title>수상한 레시피</title>
 </head>
 <body style="overflow-x: hidden; overflow-y: auto;">
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding: 0;">
 		<!-- Header -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 해더 -->
 	</div>
 	<div style="padding: 0%; background-color: #f8faff">
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="padding: 10px;" id="point">			
+			style="padding: 10px;" id="point">
 			<div class="row" id="recipe-body">
 				<!-- 제목,사진,view 수,인트로,요리정보,스크랩,공유,댓글 -->
 				<div class="col-md-12" id="recipe-infoes"
@@ -161,6 +161,23 @@
 					</c:forEach>
 				</div>
 			</div>
+			<c:if test="${requestScope.recipe.video!='undefined'&& requestScope.recipe.video!=null}">
+			<div class="row" id="recipe-body" style="padding-bottom: 5%;">
+				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+					<img src="/imgs/recipe_img/video-camera.png"
+						style="margin-bottom: 10px;">
+					<h3
+						style="display: inline-block; margin-top: 10px; margin-bottom: 0">동영상</h3>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe src="${requestScope.recipe.video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			</c:if>
 			<div class="row" id="recipe-body">
 				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
 					<img src="/imgs/recipe_img/step.png" style="margin-bottom: 10px;">
@@ -177,14 +194,14 @@
 							<div class="col-md-5">
 								<div style="text-align: center">
 									<c:choose>
-									<c:when test="${list.processPic=='undefined' }">
-									<img src="/imgs/recipe_img/noRecipeImage.png"
-										style="width: 80%; height: auto;" />
-									</c:when>
-									<c:otherwise>
-									<img src="${list.processPic }"
-										style="width: 80%; height: auto;" />
-									</c:otherwise>
+										<c:when test="${list.processPic=='undefined' }">
+											<img src="/imgs/recipe_img/noRecipeImage.png"
+												style="width: 80%; height: auto;" />
+										</c:when>
+										<c:otherwise>
+											<img src="${list.processPic }"
+												style="width: 80%; height: auto;" />
+										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
@@ -198,33 +215,29 @@
 									<div class="col-md-11" style="font-size: 25px;">
 										<div class="row">
 											<div class="col-md-12" style="margin-bottom: 8%;">
-												${list.processExplain }
-											</div>
+												${list.processExplain }</div>
 											<div class="row" style="font-size: 15px; color: gray;">
-											<c:if test="${list.ingre!=null }">
-											<div class="col-md-12">
-												<img src="/imgs/recipe_img/pro_ingre.png"/>
-												${list.ingre }
-											</div>
-											</c:if>
-											<c:if test="${list.tools!=null }">
-											<div class="col-md-12">
-												<img src="/imgs/recipe_img/pro_tool.png"/>
-												${list.tools }
-											</div>
-											</c:if>
-											<c:if test="${list.fireLevel!=null }">
-											<div class="col-md-12">
-												<img src="/imgs/recipe_img/pro_fire.png"/>
-												${list.fireLevel }
-											</div>
-											</c:if>
-											<c:if test="${list.tip!=null }">
-											<div class="col-md-12">
-												<img src="/imgs/recipe_img/pro_tip.png"/>
-												${list.tip }
-											</div>
-											</c:if>
+												<c:if test="${list.ingre!=null }">
+													<div class="col-md-12">
+														<img src="/imgs/recipe_img/pro_ingre.png" /> ${list.ingre }
+													</div>
+												</c:if>
+												<c:if test="${list.tools!=null }">
+													<div class="col-md-12">
+														<img src="/imgs/recipe_img/pro_tool.png" /> ${list.tools }
+													</div>
+												</c:if>
+												<c:if test="${list.fireLevel!=null }">
+													<div class="col-md-12">
+														<img src="/imgs/recipe_img/pro_fire.png" />
+														${list.fireLevel }
+													</div>
+												</c:if>
+												<c:if test="${list.tip!=null }">
+													<div class="col-md-12">
+														<img src="/imgs/recipe_img/pro_tip.png" /> ${list.tip }
+													</div>
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -234,11 +247,13 @@
 					</div>
 					<div class="col-md-1"></div>
 				</c:forEach>
-				<c:if test="${requestScope.recipe.completePic!='undefined' && requestScope.recipe.completePic!=null}">
+				<c:if
+					test="${requestScope.recipe.completePic!='undefined' && requestScope.recipe.completePic!=null}">
 					<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
-					<img src="/imgs/recipe_img/complete_pic.png" style="margin-bottom: 10px;">
-					<h3
-						style="display: inline-block; margin-top: 10px; margin-bottom: 0">완성사진</h3>
+						<img src="/imgs/recipe_img/complete_pic.png"
+							style="margin-bottom: 10px;">
+						<h3
+							style="display: inline-block; margin-top: 10px; margin-bottom: 0">완성사진</h3>
 					</div>
 					<div class="col-md-12" style="margin-bottom: 3%;">
 						<c:set var="picList">
@@ -261,18 +276,18 @@
 									<c:forEach begin="0" items="${picList }" varStatus="i"
 										var="picListNavi">
 										<c:choose>
-										<c:when test="${i.count==1 }">
-										<div class="carousel-item active">
-											<img class="d-block w-100" src="${picListNavi }"
-												alt="First slide">
-										</div>
-										</c:when>
-										<c:otherwise>
-										<div class="carousel-item">
-											<img class="d-block w-100" src="${picListNavi }"
-												alt="First slide">
-										</div>
-										</c:otherwise>
+											<c:when test="${i.count==1 }">
+												<div class="carousel-item active">
+													<img class="d-block w-100" src="${picListNavi }"
+														alt="First slide">
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="carousel-item">
+													<img class="d-block w-100" src="${picListNavi }"
+														alt="First slide">
+												</div>
+											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 								</div>
@@ -289,50 +304,54 @@
 						</div>
 					</div>
 				</c:if>
-				
+
 				<c:if test="${requestScope.recipe.tip!=null }">
-				
-				<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
-					<img src="/imgs/recipe_img/tip&warning.png" style="margin-bottom: 10px;">
-					<h3
-						style="display: inline-block; margin-top: 10px; margin-bottom: 0">팁/주의사항</h3>
-				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-9" style="margin-bottom: 5%;">
-					<!-- 팁 -->
-						<span style="font-size: 20px;">${requestScope.recipe.tip }</span><br>
-				</div>
-				<div class="col-md-2"></div>
-				</c:if>
-				
-				<c:if test="${requestScope.recipe.recipeTag!=null }">
-				<div class="col-md-12">
-					<!-- 태그 -->
-					<div class="row" style="border-top: 1px solid black; padding-top: 2%; margin-bottom: 3%;">
-							<div class="col-md-1"></div>
-						<div class="col-md-10">
-						<img src="/imgs/recipe_img/tag.png"/>
-						<c:forTokens var="recipeTag"
-							items="${requestScope.recipe.recipeTag }" delims="#">
-							<span style="display: inline-block;">
-							<a href="searchRecipeList?searchVal=${recipeTag }" style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
-							</span>&nbsp;&nbsp;
-						</c:forTokens>
-						</div>
-						<div class="col-md-1"></div>
+
+					<div class="col-md-12" style="padding-left: 3%; padding-top: 2%;">
+						<img src="/imgs/recipe_img/tip&warning.png"
+							style="margin-bottom: 10px;">
+						<h3
+							style="display: inline-block; margin-top: 10px; margin-bottom: 0">팁/주의사항</h3>
 					</div>
-				</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-9" style="margin-bottom: 5%;">
+						<!-- 팁 -->
+						<span style="font-size: 20px;">${requestScope.recipe.tip }</span><br>
+					</div>
+					<div class="col-md-2"></div>
+				</c:if>
+
+				<c:if test="${requestScope.recipe.recipeTag!=null }">
+					<div class="col-md-12">
+						<!-- 태그 -->
+						<div class="row"
+							style="border-top: 1px solid black; padding-top: 2%; margin-bottom: 3%;">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<img src="/imgs/recipe_img/tag.png" />
+								<c:forTokens var="recipeTag"
+									items="${requestScope.recipe.recipeTag }" delims="#">
+									<span style="display: inline-block;"> <a
+										href="searchRecipeList?searchVal=${recipeTag }"
+										style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
+									</span>&nbsp;&nbsp;
+						</c:forTokens>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+					</div>
 				</c:if>
 			</div>
-			<div class="row" id="recipe-body"><!-- 댓글 -->
+			<div class="row" id="recipe-body">
+				<!-- 댓글 -->
 				<jsp:include page="/views/recipePage/recipeComment.jsp"></jsp:include>
 			</div>
 		</div>
-		
-	<div id="footer"
-		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-		style="border: 1px solid black; padding: 10px;">
-		<!-- footer -->
-	</div>
+
+		<div id="footer"
+			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+			style="border: 1px solid black; padding: 10px;">
+			<jsp:include page="/views/footer/main-Footer.jsp"></jsp:include>
+		</div>
 </body>
 </html>

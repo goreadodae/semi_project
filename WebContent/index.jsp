@@ -972,7 +972,7 @@
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="week_title_3" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1013,7 +1013,7 @@
 											<!-- 타이틀 바  -->
 											<p id="week_title_4" style="padding: 5px; padding-top: 15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1221,7 +1221,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto"
+										<img class="rounded-circle img-fluid d-block mx-auto" src=""
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black; background-color:white;">
 										<!-- 사용자 아이디 -->	 
@@ -1232,7 +1232,7 @@
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="month_title_4" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500; "class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 13px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1273,6 +1273,7 @@
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
 									$('#month_user_' + (i + 1)).html(data[i].member_id);
+									$('#')
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);

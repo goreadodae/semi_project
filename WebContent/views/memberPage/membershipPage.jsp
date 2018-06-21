@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
+<!DOCTYPE html>
 
 <head>
 <meta charset="utf-8">
@@ -14,8 +13,9 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
 <style type="text/css">
-html, body, div, span, button, ul, li, img, h1, h2, h3, h4, h5, h6,
+	html, body, div, span, button, ul, li, img, h1, h2, h3, h4, h5, h6,
 	.member-join {
 	padding: 0;
 	margin: 0;
@@ -238,10 +238,6 @@ pre {
 <body style="overflow-x: hidden; overflow-y: auto;">
 	<!-- 전체 컨테이너  -->
 	<div class="container-fluid" style="padding: 0px;">
-
-		<!-- 해더 영역 -->
-		<div id="header"></div>
-		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
 		<div id="content-main" class="contents">

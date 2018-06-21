@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
 import member.model.vo.BuyProduct;
+import member.model.vo.Comments;
 import member.model.vo.Member;
 
 public class MemberService {
@@ -78,11 +79,27 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return member;
 	}
-
+	
+	
 	public ArrayList<BuyProduct> buyProduct(int userNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<BuyProduct> list = new MemberDao().buyProduct(conn, userNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public ArrayList<Member> selectAll() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> list = new MemberDao().selectAll(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+	
+	public ArrayList<Comments> comments(int userNo) {
+	      Connection conn = JDBCTemplate.getConnection();
+	      ArrayList<Comments> list = new MemberDao().comments(conn, userNo);
+	      JDBCTemplate.close(conn);
+	      return list;
+	  }
+
 }

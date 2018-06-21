@@ -112,6 +112,17 @@
 }	
 </style>
 </head>
+<!-- 제이쿼리 -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	
+<!-- 해더 불러오는 제이쿼리 -->
+<script>
+	$(document).ready(function() {
+		$("#footer").load("/views/footer/main-Footer.jsp");
+	});
+</script>
 
 <!-- 모든 스타일 시트 적용 -->
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
@@ -132,9 +143,10 @@
 					<h2 id="menu-title">마이 홈</h2>
 					<div id="menu-border">
 						<ul id="menu-list">
-							<li><a href="/views/memberPage/myHomeMainPage.jsp">나의 주문내역</a></li>
+							<li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+							<li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
 							<li><a href="/views/memberPage/myHomeRecipePage.jsp">나의 레시피</a></li>
-							<li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가 쓴 댓글</a></li>
+							<li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
 							<li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
 						</ul>
 					</div>
@@ -154,7 +166,6 @@
 								<input type="hidden" id="hiddenId" name="id" value=<%=m.getMemberId() %> />
 								<div id="userPwd">비밀번호</div>
 								<div>
-									
 									<input type="password" id="txt-pwd" name="password" />
 								</div>
 							</div>
@@ -171,11 +182,10 @@
 			</div>	
 		
 		</div>
-		
 		<!-- 푸터 -->
-				<div id="footer"
-					class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
-					style="border: 1px solid black; padding: 10px;"></div>
+		<div id="footer"
+		  class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+		  style="border: 1px solid black; padding: 10px;"></div>
 		<!-- 푸터 끝 -->
 	</div>
 	

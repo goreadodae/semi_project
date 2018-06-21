@@ -5,6 +5,7 @@
 <head>
 <title>main-footer</title>
 </head>
+
 <body>
 	<!-- 고객 센터 -->
 	<div id="footer_cc" class="com-md-4">

@@ -28,6 +28,9 @@
 		text-overflow:ellipsis;
 	}
 	/* * { font-family: 'Iropke Batang'} */
+	.category-text a{
+		color:black;
+	}
 </style>
 <script>
 	var inCategory = false;
@@ -237,17 +240,15 @@
 						로그아웃
 					</a>
 				</li>
-				<%}%>
 				<li class="nav-item">
-				<!-- 고객센터 경로 변경했어 지수야 -->
 					<a class="nav-link" href="/noticeList" style="padding-right:10px;">
 						고객센터
 					</a>
 				</li>
-				
-				<li class="nav-item">
-					<a class="nav-link" href="/basketSelect" style="padding-right:10px;">
-						장바구니
+				<%}%>
+				<li class="nav-item text-center">
+					<a class="nav-link" href="/views/customerCenterPage/noticePage.jsp" style="padding-right:10px;">
+						고객센터
 					</a>
 				</li>
 			</ul>
@@ -298,30 +299,35 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/views/memberPage/myHomeMainPage.jsp">마이페이지</a>
+						<a class="nav-category" href="/views/customerCenterPage/noticePage.jsp">고객센터</a>
 					</div>
 					<%if(m!=null){ %>
-					<div class="col-md-2" style="padding:0px;">
-						<div class="col-md-12" style="height:50px; border:1px solid #dadada;">
+					<div class="col-md-2" style="padding:0px; position:absolute; right:0px; bottom:70px;">
+						<div class="col-md-12" style="height:80px; border:1px solid #dadada;">
 							<div class="row">
-								<div class="col-md-4" style="height:50px;">
+								<div class="col-md-4" style="height:44px; padding:5px;">
+									<img src="<%=m.getProfile()%>" width="90" height="70">
 								</div>
-								<div class="col-md-8" style="height:50px; padding:0px;">
+								<div class="col-md-8" style="height:50px; padding:0px; padding-left:20px;">
 									<div style="display:inline-block; width: 100%;">
 										<p style="font-size:13px; margin:0px; padding-left:10px; text-align:left;">환영합니다.</p>
 									</div>
 									<div style="display:inline-block; width:50%; float:left; height:25px;">
-										<p style="font-weight:800; font-size:15px; margin:0px; padding-left:10px; text-align:left; float:left;"><%=m.getNickName()%> 님</p>
+										<p style="font-weight:800; width:100%; font-size:15px; margin:0px; padding-left:10px; padding-top:2px; text-align:left; float:left;"><%=m.getNickName()%>님</p>
 									</div>
-									<div style="display:inline-block; width:50%; height:25px;">
-										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; top:10px; display:block; 
+									<div style="display:block; width:50%; height:25px;">
+										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; left:30px; top:40px;
 										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
+									</div>
+									<div style="display:block; width:50%; height:25px;">
+										<a class="nav-link" href="/basketSelect" style="position:absolute; left:57px; top:32px;
+										   text-decoration:underline; color:#878787; font-size:13px;">장바구니</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<%}else{ %>
+					<%} %>
 					<div class="col-md-2 ellip" style="padding:0px;">
 						<ul id="scroll">
 	        				<li>
@@ -377,7 +383,6 @@
 				        real_search_keyword.name = "real_search_keyword"; // 인스턴스 네임을 등록합니다
 				        real_search_keyword.start(); // 스크롤링 시작
 				    </script>
-					<%} %>
 				</div>
 			</div>
 		</div>
@@ -391,56 +396,91 @@
 				<!-- 1번 칼럼  -->
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="#" id="title-1" class="category-text" style="color:black;">종류별</a><hr>
 					</li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
-					<li class="header2">
-						<a href="#" id="title-1" class="category-text">채소/과일/곡류</a><hr>
-					</li>
-					<li class="category-text">오늘의 레시피</li>
-					<li class="category-text">이달의 레시피</li>
-					<li class="category-text">쌀/잡곡</li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">밑반찬</a></li>
+					<li class="category-text"><a href="#">퓨전김치</a></li>
+					<li class="category-text" style="float:left; margin-right:8px;"><a href="#">메인반찬</a></li>
+					<li class="category-text"><a href="#">김치/젓갈/장류</a></li>
+					<li class="category-text" style="float:left; margin-right:25px;"><a href="#">국/탕</a></li>
+					<li class="category-text"><a href="#">양념/소스/잼</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">찌개</a></li>
+					<li class="category-text"><a href="#">양식</a></li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">디저트</a></li>
+					<li class="category-text"><a href="#">샐러드</a></li>
+					<li class="category-text" style="float:left; margin-right:15px;"><a href="#">면/만두</a></li>
+					<li class="category-text"><a href="#">스프</a></li>
+					<li class="category-text" style="float:left; margin-right:10px;"><a href="#">밥/죽/떡</a></li>
+					<li class="category-text"><a href="#">빵</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">과자</a></li>
+					<li class="category-text"><a href="#">차/음료/술</a></li>
 				</ul>
 
 				<!-- 2번 칼럼  -->
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="#" id="title-1" class="category-text" style="color:black;">상황별</a><hr>
 					</li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">일상</a></li>
+					<li class="category-text"><a href="#">초스피드</a></li>
+					<li class="category-text" style="float:left; margin-right:8px;"><a href="#">손님접대</a></li>
+					<li class="category-text"><a href="#">술접대</a></li>
+					<li class="category-text" style="float:left; margin-right:20px;"><a href="#">술안주</a></li>
+					<li class="category-text"><a href="#">다이어트</a></li>
+					<li class="category-text" style="float:left; margin-right:20px;"><a href="#">도시락</a></li>
+					<li class="category-text"><a href="#">영양식</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">간식</a></li>
+					<li class="category-text"><a href="#">야식</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">명절</a></li>
+					<li class="category-text"><a href="#">이유식</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">해장</a></li>
+					<li class="category-text"><a href="#">푸드스타일링</a></li>
 				</ul>
 
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="#" id="title-1" class="category-text" style="color:black;">재료별</a><hr>
 					</li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">볶음</a></li>
+					<li class="category-text"><a href="#">끓이기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">무침</a></li>
+					<li class="category-text"><a href="#">비빔</a></li>
+					<li class="category-text" style="float:left; margin-right:40px;"><a href="#">찜</a></li>
+					<li class="category-text"><a href="#">절임</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">튀김</a></li>
+					<li class="category-text"><a href="#">삶기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">굽기</a></li>
+					<li class="category-text"><a href="#">데치기</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">회</a></li>
+
 				</ul>
 				
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="#" id="title-1" class="category-text" style="color:black;">방법별</a><hr>
 					</li>
-					<li class="category-text">채소</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">소고기</a></li>
+					<li class="category-text"><a href="#">돼지고기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">닭고기</a></li>
+					<li class="category-text"><a href="#">육류</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">채소류</a></li>
+					<li class="category-text"><a href="#">해물류</a></li>
+					<li class="category-text" style="float:left; margin-right:3px;"><a href="#">달걀/유제품</a></li>
+					<li class="category-text"><a href="#">가공식품류</a></li>
+					<li class="category-text" style="float:left; margin-right:52px;"><a href="#">쌀</a></li>
+					<li class="category-text"><a href="#">밀가루</a></li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">건어물류</a></li>
+					<li class="category-text"><a href="#">버섯류</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">과일류</a></li>
+					<li class="category-text"><a href="#">콩/견과류</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">곡류</a></li>
 				</ul>
 				
 				<ul class="colum">
 					<li class="header">
-						<a href="#" id="title-1" class="category-text">종류별</a><hr>
+						<a href="#" id="title-1" class="category-text" style="color:black;">랭킹</a><hr>
 					</li>
-					<li class="category-text">채소</li>
+					<li class="category-text">1위</li>
 					<li class="category-text">과일</li>
 					<li class="category-text">쌀/잡곡</li>
 					<li class="category-text">견과류</li>

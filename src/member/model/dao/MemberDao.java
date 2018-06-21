@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
 
 import common.JDBCTemplate;
 import member.model.vo.BuyProduct;
+import member.model.vo.Comments;
 import member.model.vo.Member;
 
 public class MemberDao {
@@ -192,6 +193,7 @@ public class MemberDao {
 
 				m.setMemberNo(rset.getInt("MEMBER_NO"));
 				m.setMemberId(loginId);
+				m.setMemberPwd(loginPwd);
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setBirthDate(rset.getString("BIRTH_DATE"));
 				m.setPhone(rset.getString("PHONE"));
@@ -250,7 +252,6 @@ public class MemberDao {
 		int result = 0;
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 
 		Properties prop = new Properties();
 
@@ -324,48 +325,145 @@ public class MemberDao {
 
 		return m;
 	}
-	
-	public ArrayList<BuyProduct> buyProduct(Connection conn, int userNo) {
-        
-        String path = JDBCTemplate.class.getResource("..").getPath();
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        
-        Properties prop = new Properties();
-        ArrayList<BuyProduct> product = new ArrayList<BuyProduct>();
-        
-        BuyProduct b = null;
-        
-        try {
-           prop.load(new FileReader(path+"resources/memberQuery.properties"));
-           String query = prop.getProperty("buyProduct");
 
-           pstmt = conn.prepareStatement(query);
-           
-          pstmt.setInt(1, userNo);
-           
-          rset =pstmt.executeQuery();
-          
-          while(rset.next()) {
-             b = new BuyProduct();
-             
-             b.setProduct_img(rset.getString("product_1st_pic"));
-             b.setProduct_name(rset.getString("product_name"));
-             b.setBuying_send_yn(rset.getString("buying_send_yn"));
-             
-             product.add(b);
-             System.out.println(b.getProduct_name());
-          }
-           
-        } catch (IOException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        } catch (SQLException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        }
-        
-     return product;
-  }
+	public ArrayList<BuyProduct> buyProduct(Connection conn, int userNo) {
+
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Properties prop = new Properties();
+		ArrayList<BuyProduct> product = new ArrayList<BuyProduct>();
+
+		BuyProduct b = null;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select product_1st_pic, product_name, buying_send_yn from product p inner join buying b on p.product_no = b.product_no where p.product_no in (select product_no from member join buying using(member_no) where member_no=?)";
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, userNo);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				b = new BuyProduct();
+
+				b.setProduct_img(rset.getString("product_1st_pic"));
+				b.setProduct_name(rset.getString("product_name"));
+				b.setBuying_send_yn(rset.getString("buying_send_yn"));
+
+				product.add(b);
+				System.out.println(b.getProduct_name());
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return product;
+	}
+
+	public ArrayList<Member> selectAll(Connection conn) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			
+			String query ="select * from member";
+			
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				m = new Member();
+				
+				m.setMemberNo(rset.getInt("MEMBER_NO"));
+				m.setMemberId(rset.getString("MEMBER_ID"));
+				m.setMemberPwd(rset.getString("MEMBER_PWD"));
+				m.setMemberName(rset.getString("MEMBER_NAME"));
+				m.setBirthDate(rset.getString("BIRTH_DATE"));
+				m.setPhone(rset.getString("PHONE"));
+				m.setEmail(rset.getString("EMAIL"));
+				m.setAddress(rset.getString("ADDRESS"));
+				m.setProfile(rset.getString("PROFILE"));
+				m.setNickName(rset.getString("NICKNAME"));
+				
+				list.add(m);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public ArrayList<Comments> comments(Connection conn, int userNo) {
+	      String path = JDBCTemplate.class.getResource("..").getPath();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+
+	      Properties prop = new Properties();
+	      ArrayList<Comments> comments = new ArrayList<Comments>();
+	      Comments c;
+	      
+	      try {
+	         prop.load(new FileReader(path + "resources/memberQuery.properties"));
+	         String query = prop.getProperty("comments");
+
+	         pstmt = conn.prepareStatement(query);
+
+	         pstmt.setInt(1, userNo);
+
+	         rset = pstmt.executeQuery();
+	         
+	         
+	         while (rset.next()) {
+	            c = new Comments();
+	            
+	            c.setCommentNO(rset.getInt("comment_no"));
+	            c.setRecipeName(rset.getString("recipe_title"));
+	            c.setCommentContents(rset.getString("comment_contents"));
+	            c.setCommentEnrollDate(rset.getTimestamp("comment_enroll_date"));
+
+	            comments.add(c);
+	         }
+	         
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	      }
+	      
+	      
+	      return comments;
+	   }
+
 }

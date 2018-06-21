@@ -43,22 +43,25 @@ public class BuyingInsertServlet extends HttpServlet {
 		int totalFee = Integer.parseInt(request.getParameter("totalFee"));
 		int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
 		int finalFee = Integer.parseInt(request.getParameter("finalFee"));
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
 		Ordercall oc = new Ordercall();
 		oc.setTotalFee(totalFee);
 		oc.setDeliveryFee(deliveryFee);
 		oc.setFinalFee(finalFee);
+		oc.setMemberNo(memberNo);
 		
 		//0. 주문내역에 추가
 		int result0 = new ProductService().insertOrdercall(oc);
+		//0.5 구매내역 번호 가져오기
+		int orderNo = new ProductService().getOrderNo(memberNo).getOrderNo();
 		
 		//구매할 상품들을 구매내역에 추가하고 장바구니 비우기
 		for(int i=0; i<basketNoList.length ;i++) {
-	         int result1 = new ProductService().insertBuying(Integer.parseInt(basketNoList[i]));//1.구매내역 추가
+	         int result1 = new ProductService().insertBuying(Integer.parseInt(basketNoList[i]),orderNo);//1.구매내역 추가
 	         int result2 = new ProductService().deleteBasket(Integer.parseInt(basketNoList[i]));//2.장바구니 비우기
 	         int result3 = new ProductService().updateProduct(Integer.parseInt(productNoList[i]), Integer.parseInt(basketQuantityList[i]));//3.수량 줄이기
 	         int result4 = new ProductService().deleteBasketOver(Integer.parseInt(productNoList[i]));//4.수량초과인 장바구니 모두 삭제
-	         
 	    }
 		
 		

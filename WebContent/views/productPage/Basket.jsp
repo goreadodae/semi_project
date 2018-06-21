@@ -81,8 +81,11 @@
 <style>
 
 table{
-	font-size : 100px;
 	text-align:center;
+}
+
+td,th{
+	font-size : 15px;
 }
 
 .line1{
@@ -330,7 +333,7 @@ $(document).ready(function(){
 					<center><img src="/imgs/product_img/basket_title.png"></center>
 					
 					<!-- 장바구니에 담긴 상품 리스트 -->
-					<br><table width=100%>
+					<br><table width=100% id="listTable">
 						<tr class="line2">
 							<th width=5%>번호</th>
 							<th width=15%></th>

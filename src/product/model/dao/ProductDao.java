@@ -351,7 +351,7 @@ public class ProductDao {
 	}
 
 	//구매내역 테이블 추가
-	public int insertBuying(Connection conn, int basketNo) {
+	public int insertBuying(Connection conn, int basketNo, int orderNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 
@@ -366,6 +366,7 @@ public class ProductDao {
 			pstmt.setInt(1, basketNo);
 			pstmt.setInt(2, basketNo);
 			pstmt.setInt(3, basketNo);
+			pstmt.setInt(4, orderNo);
 
 			result = pstmt.executeUpdate();
 
@@ -470,6 +471,7 @@ public class ProductDao {
 			pstmt.setInt(1, oc.getTotalFee());
 			pstmt.setInt(2, oc.getDeliveryFee());
 			pstmt.setInt(3, oc.getFinalFee());
+			pstmt.setInt(4, oc.getMemberNo());
 			result = pstmt.executeUpdate();
 
 		} catch (FileNotFoundException e) {
@@ -487,7 +489,45 @@ public class ProductDao {
 
 		return result;
 	}
+	
+	//0.5 주문내역의 주문번호 받아오기
+	public Ordercall getOrderNo(Connection conn, int memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Ordercall ordercall = null;
 
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("ordercallSelectRecent");
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				ordercall = new Ordercall();
+				ordercall.setOrderNo(rset.getInt("order_no"));
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return ordercall;
+	}
+	
 
 	//방금 구매한 내역 정보 보기
 	public ArrayList<Buying> selectBuyingRecent(Connection conn, int memberNo, int rowCount) {
@@ -538,6 +578,55 @@ public class ProductDao {
 		return list;
 	}
 
+	
+	//로그인 계정의 전체 주문 내역 보기
+	public ArrayList<Ordercall> selectOrdercallAll(Connection conn, int memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Ordercall> list = new ArrayList<Ordercall>();
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		try {
+			prop.load(new FileReader(path+"resources/productQuery.properties"));
+			String query = prop.getProperty("ordercallSelect");
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				Ordercall oc = new Ordercall();
+				oc.setOrderNo(rset.getInt("order_no"));
+				oc.setTotalFee(rset.getInt("total_fee"));
+				oc.setDeliveryFee(rset.getInt("delivery_fee"));
+				oc.setDiscount(rset.getInt("discount"));
+				oc.setFinalFee(rset.getInt("final_fee"));
+				oc.setOrdererInfo(rset.getString("orderer_info"));
+				oc.setDeliveryInfo(rset.getString("delivery_info"));
+				oc.setMemberNo(rset.getInt("member_no"));
+
+				list.add(oc);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+	
 	//로그인 계정의 전체 구매내역 보기
 	public ArrayList<Buying> selectBuyingAll(Connection conn, int memberNo) {
 		PreparedStatement pstmt = null;

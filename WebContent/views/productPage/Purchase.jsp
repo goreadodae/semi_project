@@ -131,12 +131,13 @@
 			}
 			
 			var totalpayment =$('#totalpayment').html();
+			var memberNo = "${member.memberNo}";
 			
 			//4. 구매목록에 추가 후 페이지 전환
 			jQuery.ajaxSettings.traditional=true;
 			$.ajax({
 					url : "/buyingInsert",
-					data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment},
+					data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment,memberNo:memberNo},
 					async: false,
 					type : "get",
 					success:function(data){
@@ -231,6 +232,9 @@
 	text-align:center;
 }
 
+#table1 td,th{
+	font-size : 14px;
+}
 
 .line1{
 	border-bottom : 1px solid #dcdcdc;

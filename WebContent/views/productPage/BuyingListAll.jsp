@@ -86,6 +86,10 @@ table{
 	text-align:center;
 }
 
+td,th{
+	font-size : 14px;
+}
+
 .line1{
 	border-bottom : 2px solid #dcdcdc;
 	height : 120px;

@@ -250,7 +250,6 @@ public class MemberDao {
 		int result = 0;
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 
 		Properties prop = new Properties();
 
@@ -324,48 +323,47 @@ public class MemberDao {
 
 		return m;
 	}
-	
-	public ArrayList<BuyProduct> buyProduct(Connection conn, int userNo) {
-        
-        String path = JDBCTemplate.class.getResource("..").getPath();
-        PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        
-        Properties prop = new Properties();
-        ArrayList<BuyProduct> product = new ArrayList<BuyProduct>();
-        
-        BuyProduct b = null;
-        
-        try {
-           prop.load(new FileReader(path+"resources/memberQuery.properties"));
-           String query = prop.getProperty("buyProduct");
 
-           pstmt = conn.prepareStatement(query);
-           
-          pstmt.setInt(1, userNo);
-           
-          rset =pstmt.executeQuery();
-          
-          while(rset.next()) {
-             b = new BuyProduct();
-             
-             b.setProduct_img(rset.getString("product_1st_pic"));
-             b.setProduct_name(rset.getString("product_name"));
-             b.setBuying_send_yn(rset.getString("buying_send_yn"));
-             
-             product.add(b);
-             System.out.println(b.getProduct_name());
-          }
-           
-        } catch (IOException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        } catch (SQLException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        }
-        
-     return product;
-  }
-	
+	public ArrayList<BuyProduct> buyProduct(Connection conn, int userNo) {
+
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Properties prop = new Properties();
+		ArrayList<BuyProduct> product = new ArrayList<BuyProduct>();
+
+		BuyProduct b = null;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select product_1st_pic, product_name, buying_send_yn from product p inner join buying b on p.product_no = b.product_no where p.product_no in (select product_no from member join buying using(member_no) where member_no=?)";
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, userNo);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				b = new BuyProduct();
+
+				b.setProduct_img(rset.getString("product_1st_pic"));
+				b.setProduct_name(rset.getString("product_name"));
+				b.setBuying_send_yn(rset.getString("buying_send_yn"));
+
+				product.add(b);
+				System.out.println(b.getProduct_name());
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return product;
+	}
 }

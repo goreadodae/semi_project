@@ -78,11 +78,13 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return member;
 	}
-
+	
+	
 	public ArrayList<BuyProduct> buyProduct(int userNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<BuyProduct> list = new MemberDao().buyProduct(conn, userNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
 }

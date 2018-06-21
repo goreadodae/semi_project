@@ -1,19 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+<!DOCTYPE html>
+<%
+   Member m = (Member) session.getAttribute("user");
+%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My Home</title>
-<style>
 
+<style>
 #myPageTop{
-padding-top: 70px;
-margin: 0 auto;
+	padding-top: 70px;
+	margin: 0 auto;
 }
 #myPageTopUser{
-border: 2px solid #dddfe1;
-height: 180px;
+	border: 2px solid #dddfe1;
+	height: 180px;
 }
 #userInfo{
 	padding: 38px 28px 28px;
@@ -29,22 +33,23 @@ height: 180px;
     padding:70px 0 170px;
 }
 #menu{
-float:left;
-width:170px;
+	float:left;
+	width:170px;
 }
 #menu-title{
     padding: 0 0 30px 2px;
     font: 28px/41px "Noto Sans KR Medium";
     color: #4a4a4a;
 }
+
 #menu-border{
 	border: 1px solid #dcdbde;
     border-bottom: 0 none;
 }
 
 #menu-list li{
-height:51px;
-border-bottom: 1px solid #dcdbde;
+	height:51px;
+	border-bottom: 1px solid #dcdbde;
 }
 
 #menu-list li  a{
@@ -57,6 +62,7 @@ border-bottom: 1px solid #dcdbde;
     color: #514859;
     line-height: 18px;
 }
+
 #menu-list li #on{
     background: #f7f5f8 url(https://res.kurly.com/pc/ico/1803/ico_arrow_on_12x22.png) no-repeat 174px 50%;
     background-size: 6px 10px;
@@ -64,8 +70,9 @@ border-bottom: 1px solid #dcdbde;
 }
 
 #menu-title{
-padding: 5px 0 24px;
+	padding: 5px 0 24px;
 }
+
 #menu-tile h2{
 	height: 42px;
     font: 24px/36px "Noto Sans KR Medium";
@@ -88,14 +95,19 @@ padding: 5px 0 24px;
     color: #514859;
 }
 ol, li{
-list-style: none;
+	list-style: none;
 }
-
-
-
 </style>
 </head>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<script>
+	/* 해더 불러오는 제이쿼리 */
+	$(document).ready(function() {
+		$("#footer").load("/views/footer/main-Footer.jsp");
+	});
+</script>
 <!-- 모든 스타일 시트 적용 -->
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <body style="overflow-x: hidden; overflow-y: auto;">
@@ -103,24 +115,20 @@ list-style: none;
 	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
 		<div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding:0;">
 				
-			<!-- 개인정보 영역  -->
-			<div class="row" id="myPageTop">
-				<div class="col-md-12" style="border:1px solid black; height:200px;"></div>
-			</div>			
-			
 			<div class="row" id="myPageBottom">
 				<div class="col-md-2" id="menu">
 					<h2 id="menu-title">마이 홈</h2>
 					<div id="menu-border">
 						<ul id="menu-list">
-							<li><a href="/views/memberPage/myHomeMainPage.jsp">나의 주문내역</a></li>
+							<li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+							<li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
 							<li><a href="/views/memberPage/myHomeRecipePage.jsp">나의 레시피</a></li>
 							<li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가 쓴 댓글</a></li>
 							<li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
@@ -155,9 +163,9 @@ list-style: none;
 		</div>
 		
 		<!-- 푸터 -->
-				<div id="footer"
-					class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
-					style="border: 1px solid black; padding: 10px;"></div>
+		<div id="footer"
+		  class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+		  style="border: 1px solid black; padding: 10px;"></div>
 		<!-- 푸터 끝 -->
 	</div>
 

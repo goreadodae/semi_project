@@ -50,13 +50,13 @@
 								<div class="col-md-12">
 									<p style="float:left; line-height:48px; font-weight:800;">아이디&nbsp;&nbsp;&nbsp;&nbsp;</p>
 									<input class="form-control form-login mx-auto" type="text" 
-								     placeholder="Your ID" id="loginId" name="loginId" style="width:250px;"><br>
+								     placeholder="아이디를 입력하세요" id="loginId" name="loginId" style="width:250px;"><br>
 								</div> 
 									<!-- 패스워드 -->
 								<div class="col-md-12">
 									<p style="float:left; line-height:48px; font-weight:800;">비밀번호</p>
 									<input class="form-control form-login mx-auto" type="password"
-									 placeholder="Your Password" id="loginPwd" name="loginPwd" style="width:250px;">
+									 placeholder="비밀번호를 입력하세요" id="loginPwd" name="loginPwd" style="width:250px;">
 								</div>
 							</form>
 							

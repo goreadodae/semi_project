@@ -24,4 +24,23 @@ public class QnaService {
 		
 	}
 
+	public int insertQuestion(String queTitle, String queContents, int memberNo, int buyingNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new QnaDao().insertQuestion(conn,queTitle,queContents,memberNo,buyingNo);
+		
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+		
+		
+	}
+
 }

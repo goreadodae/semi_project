@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="member.model.vo.*"%>
+<%
+	Member m = (Member) session.getAttribute("user");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>1:1¹®ÀÇ ÀÛ¼º</title>
+<title>1:1ë¬¸ì˜ ìž‘ì„±</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
-		
+
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
-
-
 
 	$(document).ready(function() {
 		$('#close').click(function() {
@@ -25,9 +27,7 @@
 		});
 	});
 
-
-
-	/* 1:1¹®ÀÇ ÀÌ¹ÌÁö Ãß°¡  jQuery  */
+	/* 1:1ë¬¸ì˜ ì´ë¯¸ì§€ ì¶”ê°€  jQuery  */
 	$(document)
 			.ready(
 					function() {
@@ -44,9 +44,9 @@
 																'<tr class="rowTr" id="rowTr_'+cnt2+'"><td><span>'
 																		+ cnt
 																		+ ' '
-																		+ '<button>ÆÄÀÏ ¼±ÅÃ</button>'
+																		+ '<button>íŒŒì¼ ì„ íƒ</button>'
 																		+ ' '
-																		+ '<label>¼±ÅÃµÈ ÆÄÀÏ ¾øÀ½</label>'
+																		+ '<label>ì„ íƒëœ íŒŒì¼ ì—†ìŒ</label>'
 																		+ ' '
 																		+ '<img src="/imgs/manager-img/minus.png" class="minus-cursor"'
 																		+ 'onclick="removeRow('
@@ -56,28 +56,148 @@
 												cnt2++;
 												console.log(cnt2);
 											} else {
-												alert("ÀÌ¹ÌÁö´Â ÃÖ´ë 5°³±îÁö ¾÷·Îµå°¡ °¡´ÉÇÕ´Ï´Ù.");
+												alert("ì´ë¯¸ì§€ëŠ” ìµœëŒ€ 5ê°œê¹Œì§€ ì—…ë¡œë“œê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 											}
 										});
 
 					});
 
-	function removeRow(cnt2) {/* ÀÌ¹ÌÁöÃß°¡ Çà »èÁ¦   */
+	function removeRow(cnt2) {/* ì´ë¯¸ì§€ì¶”ê°€ í–‰ ì‚­ì œ   */
 		if ($('#rowTr_' + cnt2).remove()) {
-			cnt--; /* »èÁ¦ÇÒ¶§¸¶´Ù °¨¼Ò */
-			cnt2--; /* »èÁ¦ÇÒ¶§¸¶´Ù °¨¼Ò */
+			cnt--; /* ì‚­ì œí• ë•Œë§ˆë‹¤ ê°ì†Œ */
+			cnt2--; /* ì‚­ì œí• ë•Œë§ˆë‹¤ ê°ì†Œ */
 			console.log(cnt);
 			console.log(cnt2);
 		}
 	}
 
-
-	
-	/*ÇØ´ç ÆäÀÌÁö Ç¥½Ã ½ºÅ©¸³Æ®  */
-	$(document).ready(function(){
+	/*í•´ë‹¹ íŽ˜ì´ì§€ í‘œì‹œ ìŠ¤í¬ë¦½íŠ¸  */
+	$(document).ready(function() {
 		$('#list-color tr').eq(2).addClass('on');
-		
+
 	});
+
+	$(document).ready(function() { /*ì£¼ë¬¸ë²ˆí˜¸ í…Œì´ë¸”  jquery  */
+		stat = true;
+		$('#orderInquiry').click(function() {
+			if (stat == true) {
+				$('#hidingInquiry').css("display", "block");
+				stat = false;
+			} else {
+				$('#hidingInquiry').css("display", "none");
+				stat = true;
+			}
+		});
+
+	});
+	$(document).ready(function() {
+		$('.selectRdo').click(function() {
+			$('.selectRdo').prop("checked", false);
+			$(this).prop("checked", true);
+
+		});
+	});
+
+	function inquiry() {
+
+		$('#hidingInquiry').html("");
+		$
+				.ajax({
+					url : "/inquiryOrder",
+					type : "post",
+					data : {
+						memberNo :
+<%=m.getMemberNo()%>
+	},
+					success : function(data) {
+
+						$('#hidingInquiry')
+								.append(
+										"<table class='table table-bordered' "
+												+ "style='width: 100%; height: 8; text-align: center;' id='inquiry-row'>"
+												+ "<tr style='background-color: gray;' id='trow'> "
+												+ "<th height='8'>ì£¼ë¬¸ë²ˆí˜¸</th>"
+												+ "	<th>ì£¼ë¬¸ì¼ìž</th> "
+												+ " <th>ìƒí’ˆëª…</th> "
+												+ "	<th>ìˆ˜ëŸ‰</th> "
+												+ "	<th>ì£¼ë¬¸ê¸ˆì•¡</th>"
+												+ "	<th>ì„ íƒ</th> " + "	</tr> ")
+
+						for (var i = 0; i < data.length; i++) {
+							$('#inquiry-row')
+									.append(
+											'<tr>'
+													+ '<td>'
+													+ data[i].buyingNo
+													+ '</td>'
+													+ '<td>'
+													+ data[i].orderDate
+													+ '</td>'
+													+ '<td>'
+													+ data[i].productName
+													+ '</td>'
+													+ '<td>'
+													+ data[i].buyingQuantity
+													+ '</td>'
+													+ '<td>'
+													+ data[i].productPrice
+													+ '</td>'
+													+ '<td> <input type="radio" onclick="radio_('
+													+ data[i].buyingNo
+													+ ');"'
+													+ 'value="'
+													+ data[i].buyingNo
+													+ '" name="inquiry " class="selectRdo"/> </td> </tr>')
+						}
+						$('#hidingInquiry')
+								.append(
+										"</table><p id='close' style='float:right'>close</p>");
+					},
+					error : function() {
+						console.log("error");
+
+					}
+				});
+
+	}
+	$(document).ready(function() {
+		$(document).on("click", '#close', function(event) {
+			console.log("ì•ˆë‡½");
+			$('#hidingInquiry').hide();
+
+		});
+	});
+
+	function radio_(no) {
+
+		$('#orderNum').val(no);
+
+	}
+	
+ 	$(document).ready(function(){
+		
+		$("form").submit(function(){
+			if($("#qnaTitle").val()=="")
+				{
+					alert("ì œëª©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”");
+					$("#qnaTitle").focus();
+					return false;
+				}
+			if($("#contents").val()=="")
+				{
+					alert("ë‚´ìš©ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”");
+					$("#contents").focus();
+					
+					return false;
+				}
+		
+		})
+		
+		
+		
+		
+	}); 
+	
 	
 </script>
 
@@ -128,9 +248,15 @@
 #addRow img {
 	cursor: pointer;
 }
+
+#hidingInquiry {
+	display: none;
+}
+
+#click {
+	cursor: pointer;
+}
 </style>
-
-
 </head>
 <body>
 	<div class="container-fluid" style="padding: 0px">
@@ -140,115 +266,130 @@
 			style="border: 1px solid black; padding: 10px;" id="contents">
 			<div class="row" style="padding: 0;">
 				<div class="col-md-2" style="padding: 0;">
-					<!--°í°´¼¾ÅÍ ¸ñ·Ï  -->
+					<!--ê³ ê°ì„¼í„° ëª©ë¡  -->
 					<br>
-					<h2>°í°´¼¾ÅÍ</h2>
+					<h2>ê³ ê°ì„¼í„°</h2>
 					<br>
 				</div>
 				<div class="col-md-8">
 					<br>
-					<h4>1:1¹®ÀÇ»çÇ×&nbsp;</h4>
+					<h4>1:1ë¬¸ì˜ì‚¬í•­&nbsp;</h4>
 				</div>
 			</div>
 			<br>
-			<div class="row" style="padding: 0;">
-				<div id="customCenter" class="col-md-2" style="padding: 0;">
-					<!-- °í°´¼¾ÅÍ ¸ñ·Ï Å×ÀÌºí -->
-					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
-						flush="false" />
 
 
-				</div>
-				<div class="col-md-10">
-					<table class="table table-bordered" id="writeQNAFormTbl">
-						<tr height="70px">
-							<td width="100px" style="background-color: #dcdbde;">Á¦¸ñ</td>
-							<td><br> <input type="text" size="100%" /></td>
+			<form action="/insertQna" method="post">
+				<div class="row" style="padding: 0;">
+					<div id="customCenter" class="col-md-2" style="padding: 0;">
+						<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸” -->
+						<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
+							flush="false" />
+					</div>
+					<div class="col-md-10">
+						<table class="table table-bordered" id="writeQNAFormTbl">
+							<tr height="70px">
+								<td width="100px" style="background-color: #dcdbde;">ì œëª©</td>
 
 
-						</tr>
-						<tr height="70px">
-
-							<td style="background-color: #dcdbde">ÁÖ¹®¹øÈ£</td>
-
-							<td>
-							
-								<jsp:include page="/views/customerCenterPage/inquiryOrderPage.jsp" flush="false" />
-							
-							
-							</td>
-						</tr>
+								<td><br> <input type="text" id="qnaTitle" name="qnaTitle"
+									size="100%" /></td>
 
 
-						<tr>
-							<td style="background-color: #dcdbde;">³»¿ë</td>
-							<td>
+							</tr>
+							<tr height="70px">
 
-								<p>
-									<b>1:1 ¹®ÀÇ ÀÛ¼º Àü È®ÀÎÇØÁÖ¼¼¿ä!</b>
-								</p> <br> <b style="font-size: 15px">¹ÝÇ° / È¯ºÒ</b><br> -Á¦Ç°
-								ÇÏÀÚ È¤Àº ÀÌ»óÀ¸·Î ¹ÝÇ°(È¯ºÒ)ÀÌ ÇÊ¿äÇÑ °æ¿ì »çÁø°ú ÇÔ²² ±¸Ã¼ÀûÀÎ ³»¿ëÀ» ³²°ÜÁÖ¼¼¿ä.<br> <br>
-								<b style="font-size: 15px">ÁÖ¹®Ãë¼Ò</b><br> -ÁÖ¹®Ãë¼Ò ½ÅÃ»Àº ¹è¼ÛÀÏ Àü³¯ ¿ÀÈÄ
-								6½Ã±îÁö °¡´ÉÇÕ´Ï´Ù. ¿ÀÈÄ 6½Ã ÀÌÈÄ¿¡´Â »ý»êÀÌ ½ÃÀÛµÇ¾î Ãë¼Ò°¡ ºÒ°¡´ÉÇÕ´Ï´Ù.<br> -ÁÖ¹®»óÇ°ÀÇ ºÎºÐ
-								Ãë¼Ò´Â ºÒ°¡´ÉÇÕ´Ï´Ù. ÀüÃ¼ ÁÖ¹®Ãë¼Ò ÈÄ Àç±¸¸Å ÇØÁÖ¼¼¿ä. <br> <br> <b
-								style="font-size: 15px">¹è¼Û</b><br> -ÁÖ¹® ¿Ï·á ÈÄ ¹è¼Û ¹æ¹ý(ÅÃ¹è)Àº º¯°æÀÌ
-								ºÒ°¡´ÉÇÕ´Ï´Ù.<br> -¹è¼ÛÀÏ ¹× ¹è¼Û½Ã°£ ÁöÁ¤Àº ºÒ°¡´ÉÇÕ´Ï´Ù.(¿¹¾à¹è¼Û Æ÷ÇÔ)<br> <br>
-								*ÁÖ¹®Ãë¼Ò ¿Ü ÆòÀÏ ¿ÀÈÄ 5½Ã(ÁÖ¸» °øÈÞÀÏ 12½Ã)±îÁö Á¢¼öµÈ ¹®ÀÇ´Â ´çÀÏ ´äº¯µå¸³´Ï´Ù. ÀÌÈÄ ¹®ÀÇ´Â ´ÙÀ½³¯ ¿ÀÀü
-								8½Ã ºÎÅÍ ¼øÂ÷ÀûÀ¸·Î ´äº¯ÇØµå¸³´Ï´Ù. <br> <br> <!-- 1:1¹®ÀÇ ³»¿ë  --> <textarea
-									style="width: 100%; height: 300px; resize: none;">
+								<td style="background-color: #dcdbde">ì£¼ë¬¸ë²ˆí˜¸</td>
+
+								<td><input type="text" name="inquiryNo" style="width: 25%"
+									id="orderNum" readonly />
+									<button type="button" onclick="inquiry();" class="btn btn-info"
+										id="orderInquiry" style="height: 2em">ì£¼ë¬¸ì¡°íšŒ</button>
+
+									<div class="col-md-8"
+										style="border: 1px solid; padding: 20px; height: 300px"
+										id="hidingInquiry">
+										ë¬¸ì˜í•˜ì‹¤ ì£¼ë¬¸ë²ˆí˜¸ë¥¼ ì„ íƒí•˜ì„¸ìš”<br>
+
+										<p id="close">close</p>
+
+									</div></td>
+							</tr>
+
+
+							<tr>
+								<td style="background-color: #dcdbde;">ë‚´ìš©</td>
+								<td>
+
+									<p>
+										<b>1:1 ë¬¸ì˜ ìž‘ì„± ì „ í™•ì¸í•´ì£¼ì„¸ìš”!</b>
+									</p> <br> <b style="font-size: 15px">ë°˜í’ˆ / í™˜ë¶ˆ</b><br> -ì œí’ˆ
+									í•˜ìž í˜¹ì€ ì´ìƒìœ¼ë¡œ ë°˜í’ˆ(í™˜ë¶ˆ)ì´ í•„ìš”í•œ ê²½ìš° ì‚¬ì§„ê³¼ í•¨ê»˜ êµ¬ì²´ì ì¸ ë‚´ìš©ì„ ë‚¨ê²¨ì£¼ì„¸ìš”.<br> <br>
+									<b style="font-size: 15px">ì£¼ë¬¸ì·¨ì†Œ</b><br> -ì£¼ë¬¸ì·¨ì†Œ ì‹ ì²­ì€ ë°°ì†¡ì¼ ì „ë‚ 
+									ì˜¤í›„ 6ì‹œê¹Œì§€ ê°€ëŠ¥í•©ë‹ˆë‹¤. ì˜¤í›„ 6ì‹œ ì´í›„ì—ëŠ” ìƒì‚°ì´ ì‹œìž‘ë˜ì–´ ì·¨ì†Œê°€ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.<br> -ì£¼ë¬¸ìƒí’ˆì˜
+									ë¶€ë¶„ ì·¨ì†ŒëŠ” ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤. ì „ì²´ ì£¼ë¬¸ì·¨ì†Œ í›„ ìž¬êµ¬ë§¤ í•´ì£¼ì„¸ìš”. <br> <br> <b
+									style="font-size: 15px">ë°°ì†¡</b><br> -ì£¼ë¬¸ ì™„ë£Œ í›„ ë°°ì†¡ ë°©ë²•(íƒë°°)ì€ ë³€ê²½ì´
+									ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.<br> -ë°°ì†¡ì¼ ë° ë°°ì†¡ì‹œê°„ ì§€ì •ì€ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.(ì˜ˆì•½ë°°ì†¡ í¬í•¨)<br> <br>
+									*ì£¼ë¬¸ì·¨ì†Œ ì™¸ í‰ì¼ ì˜¤í›„ 5ì‹œ(ì£¼ë§ ê³µíœ´ì¼ 12ì‹œ)ê¹Œì§€ ì ‘ìˆ˜ëœ ë¬¸ì˜ëŠ” ë‹¹ì¼ ë‹µë³€ë“œë¦½ë‹ˆë‹¤. ì´í›„ ë¬¸ì˜ëŠ” ë‹¤ìŒë‚  ì˜¤ì „
+									8ì‹œ ë¶€í„° ìˆœì°¨ì ìœ¼ë¡œ ë‹µë³€í•´ë“œë¦½ë‹ˆë‹¤. <br> <br> <!-- 1:1ë¬¸ì˜ ë‚´ìš©  --> <textarea
+										name="contents" id="contents"
+										style="width: 100%; height: 300px; resize: none;">
 						 </textarea>
-							</td>
-						</tr>
-						<tr>
-							<td style="background-color: #dcdbde">ÀÌ¹ÌÁö</td>
-							<td>
+								</td>
+							</tr>
+							<tr>
+								<td style="background-color: #dcdbde">ì´ë¯¸ì§€</td>
+								<td>
 
-								<div id="refImage">
-									<table class="table" id="addRow">
-										<tr id="rowCount">
-											<td><span><span id="num">1</span>
-													<button>ÆÄÀÏ ¼±ÅÃ</button> <label>¼±ÅÃµÈ ÆÄÀÏ ¾øÀ½</label> <img
-													src="/imgs/manager-img/add.png" id="addImg" /> </span></td>
-										</tr>
+									<div id="refImage">
+										<table class="table" id="addRow">
+											<tr id="rowCount">
+												<td><span><span id="num">1</span>
+														<button>íŒŒì¼ ì„ íƒ</button> <label>ì„ íƒëœ íŒŒì¼ ì—†ìŒ</label> <img
+														src="/imgs/manager-img/add.png" id="addImg" /> </span></td>
+											</tr>
 
-									</table>
-								</div>
-							</td>
-						</tr>
+										</table>
+									</div>
+								</td>
+							</tr>
 
-					</table>
+						</table>
 
-					<div class="col-md-8" id="prInfoPolicy">
+						<div class="col-md-8" id="prInfoPolicy">
 
-						<b>°³ÀÎÁ¤º¸ ¼öÁý ¹× ÀÌ¿ë¿¡ ´ëÇÑ ¾È³»</b> <br> <b>¼öÁýÇ×¸ñ:</b> ÀÌ¸§, ÀüÈ­¹øÈ£, ÀÌ¸ÞÀÏÁÖ¼Ò<br>
-						<b>¼öÁý¸ñÀû:</b> »óÇ°¹®ÀÇ Á¢¼ö ¹× °á°ú ÁÖ¼Ò<br> <b>ÀÌ¿ë±â°£:</b> ¿øÄ¢ÀûÀ¸·Î °³ÀÎÁ¤º¸ ¼öÁý ¹×
-						ÀÌ¿ë¸ñÀûÀÌ ´Þ¼ºµÈ ÈÄ¿¡´Â ÇØ´ç Á¤º¸¸¦ ÁöÃ¼ ¾øÀÌ ÆÄ±âÇÕ´Ï´Ù.<br> ´Ü, °ü°è¹ý·ÉÀÇ ±ÔÁ¤¿¡ ÀÇÇÏ¿© º¸ÀüÇÒ
-						ÇÊ¿ä°¡ ÀÖ´Â °æ¿ì<br> ÀÏÁ¤±â°£ µ¿¾È °³ÀÎÁ¤º¸¸¦ º¸°üÇÒ ¼ö ÀÖ½À´Ï´Ù. <br>±× ¹ÛÀÇ »çÇ×Àº ¼ö»óÇÑ
-						·¹½ÃÇÇ °³ÀÎÁ¤º¸Ãë±Þ¹æÄ§À» ÁØ¼öÇÕ´Ï´Ù.<br>
+							<b>ê°œì¸ì •ë³´ ìˆ˜ì§‘ ë° ì´ìš©ì— ëŒ€í•œ ì•ˆë‚´</b> <br> <b>ìˆ˜ì§‘í•­ëª©:</b> ì´ë¦„, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œ<br>
+							<b>ìˆ˜ì§‘ëª©ì :</b> ìƒí’ˆë¬¸ì˜ ì ‘ìˆ˜ ë° ê²°ê³¼ ì£¼ì†Œ<br> <b>ì´ìš©ê¸°ê°„:</b> ì›ì¹™ì ìœ¼ë¡œ ê°œì¸ì •ë³´ ìˆ˜ì§‘
+							ë° ì´ìš©ëª©ì ì´ ë‹¬ì„±ëœ í›„ì—ëŠ” í•´ë‹¹ ì •ë³´ë¥¼ ì§€ì²´ ì—†ì´ íŒŒê¸°í•©ë‹ˆë‹¤.<br> ë‹¨, ê´€ê³„ë²•ë ¹ì˜ ê·œì •ì— ì˜í•˜ì—¬ ë³´ì „í• 
+							í•„ìš”ê°€ ìžˆëŠ” ê²½ìš°<br> ì¼ì •ê¸°ê°„ ë™ì•ˆ ê°œì¸ì •ë³´ë¥¼ ë³´ê´€í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. <br>ê·¸ ë°–ì˜ ì‚¬í•­ì€
+							ìˆ˜ìƒí•œ ë ˆì‹œí”¼ ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨ì„ ì¤€ìˆ˜í•©ë‹ˆë‹¤.<br>
 
-						<div class="row">
-							<div class="col-md-10 row" style="border: 1px soild">
-								<div class="col-md-10" style="text-align: center">
-									<br> <input type="radio" id="agreeRdo" name="whetherAgree"
-										value="agree"><label>µ¿ÀÇ</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" id="disAgreeRdo" name="whetherAgree"
-										value="disAgree" /><label>µ¿ÀÇÇÏÁö ¾Ê½À´Ï´Ù</label>
+							<div class="row">
+								<div class="col-md-10 row" style="border: 1px soild">
+									<div class="col-md-10" style="text-align: center">
+										<br> <input type="radio" id="agreeRdo"
+											name="whetherAgree" value="agree"><label>ë™ì˜</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="radio" id="disAgreeRdo" name="whetherAgree"
+											value="disAgree" /><label>ë™ì˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤</label>
 
+									</div>
 								</div>
 							</div>
+
 						</div>
+						<div class="row">
 
-					</div>
-					<div class="row">
+							<div class="offset-md-11 col-md-1">
+								<button type="submit" class="btn btn-success" id="qnaSubmit"
+									onclick="save()">ì €ìž¥</button>
 
-						<div class="offset-md-11 col-md-1">
-							<button type="button" class="btn btn-success" id="qnaSubmit"
-								onclick="save()">ÀúÀå</button>
-
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+
+			</form>
+			--
 		</div>
 
 		<div id="footer"

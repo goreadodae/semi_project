@@ -68,4 +68,11 @@ public class Process {
 		this.recipeNo = recipeNo;
 	}
 	
+	@Override
+	public String toString () {
+		return "processNo="+processNo + ",processOrder=" + processOrder + ",processExplain=" +
+				processExplain + ",processPic=" + processPic + ",ingre=" + ingre +
+				",tools=" + tools + ",fireLevel=" + fireLevel + ",tip=" + tip + ",recipeNo=" +recipeNo; 
+	}
+	
 }

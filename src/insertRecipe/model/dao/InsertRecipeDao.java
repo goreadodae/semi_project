@@ -63,7 +63,7 @@ public class InsertRecipeDao {
 		return result;
 	}
 
-	public int insertRecipeProcess(Connection conn, ArrayList<Process> stepValuelist, int maxNum) {
+	public int insertRecipeProcess(Connection conn, Process pr) {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -73,30 +73,20 @@ public class InsertRecipeDao {
 		try {
 			prop.load(new FileReader(path+"resources/insertRecipeQuery.properties"));
 			String query = prop.getProperty("insertRecipeProcess");
-			pstmt = conn.prepareStatement(query);
-			
-			for(int i=0; i<stepValuelist.size();i++) {
+			pstmt = conn.prepareStatement(query);		
 				
-				pstmt.setInt(1, stepValuelist.get(i).getProcessOrder());
-				pstmt.setString(2, stepValuelist.get(i).getProcessExplain());
-				pstmt.setString(3, stepValuelist.get(i).getProcessPic());
-				pstmt.setString(4, stepValuelist.get(i).getIngre());
-				pstmt.setString(5, stepValuelist.get(i).getTools());
-				pstmt.setString(6, stepValuelist.get(i).getFireLevel());
-				pstmt.setString(7, stepValuelist.get(i).getTip());
-				pstmt.setInt(8, maxNum+1);
+				pstmt.setInt(1, pr.getProcessOrder());
+				pstmt.setString(2, pr.getProcessExplain());
+				pstmt.setString(3, pr.getProcessPic());
+				pstmt.setString(4, pr.getIngre());
+				pstmt.setString(5, pr.getTools());
+				pstmt.setString(6, pr.getFireLevel());
+				pstmt.setString(7, pr.getTip());
+				pstmt.setInt(8, pr.getRecipeNo());
 				
-				/*System.out.println(stepValuelist.get(i).getProcessOrder());
-				System.out.println(stepValuelist.get(i).getProcessExplain());
-				System.out.println(stepValuelist.get(i).getProcessPic());
-				System.out.println(stepValuelist.get(i).getIngre());
-				System.out.println(stepValuelist.get(i).getTools());
-				System.out.println(stepValuelist.get(i).getFireLevel());
-				System.out.println(stepValuelist.get(i).getTip());
-				System.out.println(maxNum+1);*/
 				
 				result = pstmt.executeUpdate();
-			}
+		
 			
 		} catch (IOException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -127,9 +117,7 @@ public class InsertRecipeDao {
 			
 			while(rset.next()) {
 				maxNum = rset.getInt("MAXRECIPENUM");
-				System.out.println(maxNum);
 			}
-			
 			
 			
 		}  catch (SQLException e) {

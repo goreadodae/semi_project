@@ -34,7 +34,7 @@ public class InsertQnaServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8"); 
 		
 		String queTitle = request.getParameter("qnaTitle");
-		int buyingNo = (request.getParameter("inquiry") == null) ? 0 : Integer.parseInt(request.getParameter("inquiryNo"));
+		int buyingNo = (request.getParameter("inquiry") == null) ? 0: Integer.parseInt(request.getParameter("inquiryNo"));
 		 String queContents  = request.getParameter("contents");
 		 HttpSession session = request.getSession(false);
 		 int memberNo = ((Member)session.getAttribute("user")).getMemberNo();
@@ -43,7 +43,7 @@ public class InsertQnaServlet extends HttpServlet {
 		 
 		 if(result>0)
 		 {
-			 response.sendRedirect("/views/customerCenterPage/oneToOneQNAPage.jsp");
+			 response.sendRedirect("/questionList");
 		 }
 		 else {
 			 System.out.println("실패");

@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FAQ 페이지 입니다.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
@@ -22,24 +22,21 @@
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	/*faq제목 클릭시 답변 보이게 하는 js  */
-		var stat = true;
-	function showFaq(id){
-		console.log(id);
-		var showNhide = document.getElementById(id+"_hidingContens");
-		console.log(stat);
-		if(stat==true)
-			{
-				showNhide.style.display="table-row";
-				/* tr은 display가 기본적으로 table-row형임  block으로 하면 colspan 안 먹힘  */
-				stat = false;
-			}
-		else
-			{
-				showNhide.style.display="none";
-				stat = true;
-			}
-	};	
+	 var toggleText1 = false;
+	 var toggleText2 = false;
+	 function showFaq(id){
+	    console.log(id);
+	    $('#'+id+"_hidingContents").toggle('display');
+	    console.log($('#'+id+"_hidingContents"));
+	    if(toggleText1==true)
+	    {
+	       toggleText1 = false;
+	    }
+	    else{
 
+	       toggleText1 = true;
+	    }
+	 }
 
 	$(document).ready(function() {
 
@@ -163,13 +160,13 @@ font-family: 'Nanum Gothic', sans-serif;
 						<!-- 선택카테고리만  출력  -->
 						<c:forEach items="${requestScope.faqList}" var="list">
 							<tr>
-								<td>${list.faqNo}</td>
+								<td> ${list.faqNo} </td>
 								<td>${list.faqCategory}</td>
-								<td id="${list.faqNo}" onclick="showFaq(${list.faqNo})"
+								<td id="${list.faqNo}" onclick="showFaq(${list.faqNo}) "
 									style="cursor: pointer">${list.faqTitle}</td>
 							</tr>
 							<!-- 초기 display none -->
-							<tr id="${list.faqNo}_hidingContens" style="display: none;">
+							<tr id="${list.faqNo}_hidingContents" style="display: none;">
 								<td colspan="3" style="text-align: left">
 									<div class="col-md-12" style="padding:30px">
 										<img src="/imgs/manager-img/question.png">&nbsp;&nbsp;&nbsp;

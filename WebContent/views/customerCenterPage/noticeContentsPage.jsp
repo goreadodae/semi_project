@@ -23,7 +23,6 @@
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	
-	
 	function listBack()
 	{
 		location.href="/views/customerCenterPage/noticePage.jsp";
@@ -61,8 +60,6 @@ border-collapse:collapse;
 
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!--메인헤더 가지고 옴   -->
-
-
 
 		<!--여기서부터 컨텐츠 영역(공지사항 내용)  -->
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
@@ -126,7 +123,7 @@ border-collapse:collapse;
 
 			<div class="row" style="padding: 0;">
 				<div class="col-md-12">
-					<button type="button" onclick="listBack();"
+					<button type="button" onclick="location.href='/noticeList'"
 						class="btn btn-outline-primary" id="listBtn">목록</button>
 				</div>
 

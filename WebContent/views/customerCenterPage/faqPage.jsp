@@ -22,22 +22,23 @@
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
 	
- 		var stat = true;
-	function showFaq(id){
-		console.log(id);
-		var showNhide = document.getElementById(id+"_hidingContens");
-		console.log(stat);
-		if(stat==true)
-			{
-				showNhide.style.display="table-row";
-				stat = false;
-			}
-		else
-			{
-				showNhide.style.display="none";
-				stat = true;
-			}
-	};	
+	 var toggleText1 = false;
+	 var toggleText2 = false;
+	 function showFaq(id){
+	    console.log(id);
+	    $('#'+id+"_hidingContents").toggle('display');
+	    console.log($('#'+id+"_hidingContents"));
+	    if(toggleText1==true)
+	    {
+	       toggleText1 = false;
+	    }
+	    else{
+
+	       toggleText1 = true;
+	    }
+	 }
+	
+	
 	$(document).ready(function() {
 
 		var jbOffset = $('#content-main').offset();
@@ -82,10 +83,6 @@
 	float: right;
 }
 
-#hidingContens {
-	display: none;
-	text-align: center;
-}
 
 select:active {
 	border-color: black;;
@@ -122,8 +119,6 @@ select:active {
 						flush="false" />
 				</div>
 
-
-
 				<div class="col-md-10">
 					<form action="/byFaqCategory" method="get">
 						<select name="category" size="1" style="height: 30px"
@@ -158,7 +153,7 @@ select:active {
 									style="cursor: pointer; text-align: left;">
 									${list.faqTitle}</td>
 							</tr>
-							<tr id="${list.faqNo}_hidingContens" style="display: none;">
+							<tr id="${list.faqNo}_hidingContents" style="display: none;">
 								<td colspan="3" style="text-align: left;">
 									<div class="col-md-12" style="padding: 30px;">
 										<img src="/imgs/manager-img/question.png">&nbsp;&nbsp;&nbsp;

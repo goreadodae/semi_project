@@ -239,7 +239,8 @@
 				</li>
 				<%}%>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/customerCenterPage/noticePage.jsp" style="padding-right:10px;">
+				<!-- 고객센터 경로 변경했어 지수야 -->
+					<a class="nav-link" href="/noticeList" style="padding-right:10px;">
 						고객센터
 					</a>
 				</li>

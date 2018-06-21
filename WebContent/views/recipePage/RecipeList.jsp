@@ -60,7 +60,7 @@
 	function order(sel) {
 		location.href = "/recipeList?cate1=${requestScope.cate1}"
 				+ "&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}&order="
-				+ sel.getAttribute('id') + "&search=";
+				+ sel.getAttribute('id') + "&search=null";
 	}
 	function recipeSelect(recipeNo){
 		$.ajax({
@@ -154,13 +154,13 @@
 									<c:when test="${key==compare}">
 										<li class="nav-item"><a class="nav-link active"
 											href="/recipeList?cate1=${cate1}
-										&cate2=${cate2}&cate3=${cate3}&cate4=${cate4}">
+										&cate2=${cate2}&cate3=${cate3}&cate4=${cate4}&search=null">
 												${requestScope.category[i.count-1][key] }</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item"><a class="nav-link nonactive"
 											href="/recipeList?cate1=${cate1}
-										&cate2=${cate2}&cate3=${cate3}&cate4=${cate4}">${requestScope.category[i.count-1][key] }</a>
+										&cate2=${cate2}&cate3=${cate3}&cate4=${cate4}&search=null">${requestScope.category[i.count-1][key] }</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>

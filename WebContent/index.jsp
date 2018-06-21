@@ -828,8 +828,7 @@
 					<div class="col-md-8 mx-auto text-center">
 						<br> <br> <br>
 						<h3 style="color: white;">냉장고를 부탁해!</h3>
-						<h1 style="color: yellow; font-weight: 800">내가 가진 재료로 레시피
-							추천받기</h1>
+						<h1 style="color: yellow; font-weight: 800">내가 가진 재료로 레시피 추천받기</h1>
 						<br>
 						<fieldset>
 							<div class="col-md-8 input-group mb-3 mx-auto">
@@ -852,7 +851,7 @@
 				<script>
 					function search() {
 						var searchVal = $('#material').val();
-						location.href = "/searchRecipeList?searchVal=" + searchVal;
+						location.href = "/recipeList?cate1=0&cate2=0&cate3=0&cate4=0&search=" + searchVal;
 					}
 				</script>
 				<!-- 레시피 검색 끝 -->
@@ -1273,7 +1272,6 @@
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
 									$('#month_user_' + (i + 1)).html(data[i].member_id);
-									$('#')
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);

@@ -15,52 +15,9 @@
 	crossorigin="anonymous"></script>
 
 
-<style>
-* {
-	padding: 0;
-}
-</style>
+
 <script>
-	var scrollUpDelay = 1;
-	var scrollUpSpeed = 30;
-
-	/* 영역 설정 */
-	$(document).ready(function() {
-
-		var $info = $("#info");
-
-		window.onresize = function() {
-			$info.html(window.innerWidth);
-		}
-	});
-
-	/* 위로 올라가기 */
-	function scrollUp() {
-		if (document.body.scrollTop < 1) {
-			return;
-		}
-		document.body.scrollTop = document.body.scrollTop - scrollUpSpeed;
-		setTimeout('scrollUp()', scrollUpDelay);
-	}
-</script>
-<!-- 페이지 네비게이션 고정 -->
-<script>
-	$(document).ready(function() {
-		var jbOffset = $('#point').offset();
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
-
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
-	});
+	
 </script>
 <style>
 * {
@@ -68,117 +25,96 @@
 	margin: 0px;
 }
 
-.radius {
-	border-radius: 2em;
-	border-top-left-radius: 2em;
-	border-top-right-radius: 2em;
-	border-bottom-left-radius: 2em;
-	border-bottom-right-radius: 2em;
-	border: 2px solid black;
-	height: 70px;
-	padding: 1;
-	background: linear-gradient(-90deg, white 50%, #30A9DE 50%);
-}
-
-.radiusImg {
-	height: 70px;
-	padding: 1;
-}
-
-#bascketCnt {
-	background: linear-gradient(90deg, white 50%, #30A9DE 50%);
-}
-
-#postedCnt {
-	background: linear-gradient(-90deg, white 50%, #F68657 50%);
-}
-
-#joinCnt {
-	background: linear-gradient(-90deg, white 50%, #60c5ba 50%);
-}
-
-#viewsCnt {
-	background: linear-gradient(-90deg, white 50%, #ef5285 50%);
-}
 .list-group li {
-height: 20% !important;
+	background-color: #566270;
+	color: white;
 }
 </style>
 </head>
 <body>
-	<div class="container-fluid" style="height: 1000px">
-		<div class="col-md-12"
-			style="padding: 0px; margin: 0px; height: 100%;">
-
-			<div class="row">
-				<div class="col-md-2" style="padding: 0px; height:1000px">
-				<div class="col-md-12" style="height:50px" style="vertical-align:middle;" >
-				<h3>수상한 레시피</h3>
-				
-				</div>
-
-					<ul class="list-group">
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							회원관리<span class="badge badge-primary badge-pill">14</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							게시판관리<span
-							class="badge badge-primary badge-pill">2</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							공지사항관리<span class="badge badge-primary badge-pill">1</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							<span class="badge badge-primary badge-pill">1</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							문의관리 <span class="badge badge-primary badge-pill">1</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							Morbi leo risus <span class="badge badge-primary badge-pill">1</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center">
-							Morbi leo risus <span class="badge badge-primary badge-pill">1</span>
-						</li>
-
-					</ul>
-
-				</div>
-
-				<div class="col-md-10"
-					style="border: 1px solid black; height: 1000px;">
-					<div class="row">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"
+				style="background-color: #566270; height: 950px; padding: 0;">
+				<div class="row">
+					<div class="col-md-12">
 						<div class="col-md-12"
-							style="background-color: red; height: 50px;"></div>
+							style="background-color: #566270; height: 50px"></div>
+						<ul class="list-group" style="text-align: center">
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								회원관리<span class="badge badge-primary badge-pill">14</span>
+							</li>
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								게시판관리<span class="badge badge-primary badge-pill">2</span>
+							</li>
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								공지사항관리<span class="badge badge-primary badge-pill">1</span>
+							</li>
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								FAQ관리<span class="badge badge-primary badge-pill">1</span>
+							</li>
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								문의관리 <span class="badge badge-primary badge-pill">1</span>
+							</li>
 
 
-
+						</ul>
 					</div>
-					<div class="row" style="height:100%">
-						<div class="col-md-12" style="background-color:#F8FAFF; padding-top:15px">
-							<div class="col-md-12" style="border:1px solid black; height:250px; padding:3px;">
-				
-								ss
-								
-							
-							
-							
+
+				</div>
+			</div>
+
+			<div class="col-md-10" style="background-color: #dadbdb">
+				<div class="row">
+					<div class="col-md-12"
+						style="height: 50px; background-color: white;">s</div>
+
+
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="container col-md-12">
+						<div class="col-md-12"
+							style="background-color: white; height: 300px">d</div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="row">
+
+				<div class="col-md-12" >
+						<div class="row">
+							<div class="col-md-6">
+								<div class="col-md-12" style="background-color: white; height:200px">
+								s
+								</div>
 							
 							</div>
+							<div class="col-md-6">
+							<div class="col-md-12" style="background-color: white; height:200px">
+							s
+							</div>
+							</div>
+
+
 						</div>
-					</div>
+
+
+
+
 				</div>
 			</div>
 
 		</div>
+
 	</div>
+
+
 
 
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

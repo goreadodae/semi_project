@@ -181,7 +181,7 @@ ol, li {
          	class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
          	style="border: 1px solid black; padding: 10px;">
         </div>
-      <!-- 푸터 끝 -->
+     	<!-- 푸터 끝 -->
 	</div>
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script

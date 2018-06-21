@@ -15,16 +15,34 @@ public class InsertRecipeService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		int result =0;
-
+		Process pr = new Process();
+		int insertProcessResult=0;
+		
 		int maxNum = new InsertRecipeDao().insertRecipeMaxNum(conn);
 		int insertRecipeResult = new InsertRecipeDao().insertRecipe(conn,ir,maxNum);
-		int insertProcessResult = new InsertRecipeDao().insertRecipeProcess(conn,stepValuelist,maxNum);
+		
+		
+		for(int i=0; i<stepValuelist.size();i++) {
+			
+			pr.setProcessOrder(stepValuelist.get(i).getProcessOrder());
+			pr.setProcessExplain(stepValuelist.get(i).getProcessExplain());
+			pr.setProcessPic(stepValuelist.get(i).getProcessPic());
+			pr.setIngre(stepValuelist.get(i).getIngre());
+			pr.setTools(stepValuelist.get(i).getTools());
+			pr.setFireLevel(stepValuelist.get(i).getFireLevel());
+			pr.setTip(stepValuelist.get(i).getTip());
+			pr.setRecipeNo(maxNum+1);
+			
+			insertProcessResult = new InsertRecipeDao().insertRecipeProcess(conn,pr);
+		}
+		
 		
 		if(insertRecipeResult>0 && insertProcessResult>0) {
 			JDBCTemplate.commit(conn);
-			result = 1;
+			result = maxNum+1; //커밋완료시 레시피 번호를 리턴
 		}else {
 			JDBCTemplate.rollback(conn);
+			result = -1;
 		}
 		
 		JDBCTemplate.close(conn);

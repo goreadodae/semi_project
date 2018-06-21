@@ -86,14 +86,14 @@ public class InsertRecipeDao {
 				pstmt.setString(7, stepValuelist.get(i).getTip());
 				pstmt.setInt(8, maxNum+1);
 				
-				System.out.println(stepValuelist.get(i).getProcessOrder());
+				/*System.out.println(stepValuelist.get(i).getProcessOrder());
 				System.out.println(stepValuelist.get(i).getProcessExplain());
 				System.out.println(stepValuelist.get(i).getProcessPic());
 				System.out.println(stepValuelist.get(i).getIngre());
 				System.out.println(stepValuelist.get(i).getTools());
 				System.out.println(stepValuelist.get(i).getFireLevel());
 				System.out.println(stepValuelist.get(i).getTip());
-				System.out.println(maxNum+1);
+				System.out.println(maxNum+1);*/
 				
 				result = pstmt.executeUpdate();
 			}

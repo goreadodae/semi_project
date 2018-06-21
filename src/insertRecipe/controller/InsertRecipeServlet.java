@@ -204,6 +204,8 @@ public class InsertRecipeServlet extends HttpServlet {
 				if(valueToken[4].equals("*")) {} else {pr.setFireLevel(valueToken[4]);}
 				if(valueToken[5].equals("*")) {} else {pr.setTip(valueToken[5]);}
 				
+				System.out.println(valueToken[i]);
+				
 				String stepImgFile= multi.getFilesystemName("stepImgFile"+i);
 				pr.setProcessPic(stepImgFile);
 				
@@ -215,8 +217,6 @@ public class InsertRecipeServlet extends HttpServlet {
 				System.out.println(stepValuelist.get(i).getProcessPic());
 			}
 			
-
-
 
 			//사진정보 받아오는곳
 			//업로드된 파일의 정보를 DB에 기록하여야 함
@@ -258,16 +258,14 @@ public class InsertRecipeServlet extends HttpServlet {
 				}
 			}
 
-			System.out.println(fileSucAll);
 
 			ir.setRecipePic(fullFileMainPath); //메인사진
 			ir.setCompletePic(fileSucAll); //완성사진
 
-			System.out.println(ir);
 			new InsertRecipeService().insertRecipe(ir,stepValuelist);
 
 		}else {
-
+				
 		}
 
 	}

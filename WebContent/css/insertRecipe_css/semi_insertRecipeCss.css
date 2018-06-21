@@ -8,9 +8,9 @@
 	}
 }
 
-/* div {
+div {
 	border: 1px solid black;
-} */
+}
 
 *{
 	margin:0;
@@ -37,3 +37,32 @@
 }
 
 body{font-family:IropkeBatang;}
+
+
+
+.mybutton1{
+   background-color: #795B8F;
+   color : #F8FAFF;
+   height : 50px;
+   width : 200px;
+   border : 1px solid #522075;
+   cursor : pointer;
+}
+
+.mybutton2{
+   background-color: white;
+   color : #522075;
+   height : 50px;
+   width : 200px;
+   border : 1px solid #522075;
+   cursor : pointer;
+}
+
+.mybutton3{
+   background-color: #522075;
+   color : #F8FAFF;
+   height : 50px;
+   width : 200px;
+   border : 0px;
+   cursor : pointer;
+}

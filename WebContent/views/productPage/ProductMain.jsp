@@ -139,10 +139,9 @@
 			<!-- 내용1. 이달의 쿠킹박스 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
-					<center>이달의 레시피(이미지 수정중)</center>
-					<img src="/imgs/product_img/title1.JPG" alt="이미지"
-						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
-				</div><br><br>
+					<img src="/imgs/product_img/ex1.PNG" alt="이미지"
+						class="col-md-12 col-sm-12"  style="padding: 0px;">
+				</div><br><br><br>
 										
 				<!-- db에 있는 상품 다 가져옴 -->
 				<c:forEach begin="0" items="${productThisMonthList}" var="p" varStatus="i">
@@ -193,8 +192,8 @@
 			<!-- 내용2. 모든 상품 리스트 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
-					<img src="/imgs/product_img/title1.JPG" alt="이미지"
-						class="col-md-12 col-sm-12" height="200" style="padding: 0px;">
+					<img src="/imgs/product_img/ex4.PNG" alt="이미지"
+						class="col-md-12 col-sm-12" style="padding: 0px;">
 				</div><br><br>
 										
 				<!-- db에 있는 상품 다 가져옴 -->

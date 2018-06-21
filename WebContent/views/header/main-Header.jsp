@@ -241,8 +241,8 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/views/memberPage/myHomeMainPage.jsp" style="padding-right:10px;">
-						마이페이지
+					<a class="nav-link" href="/noticeList" style="padding-right:10px;">
+						고객센터
 					</a>
 				</li>
 				<%}%>

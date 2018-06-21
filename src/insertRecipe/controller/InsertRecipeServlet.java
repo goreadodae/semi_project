@@ -43,14 +43,21 @@ public class InsertRecipeServlet extends HttpServlet {
 
 		if(session!=null) {
 			
-			String userId = ((Member)session.getAttribute("user")).getMemberId();
-					
+			Recipe ir = new Recipe();
+			Process pr = new Process();
+			
+			int usernum = ((Member)session.getAttribute("user")).getMemberNo();
+			
+			ir.setMemberNo(usernum); //유저번호
+			
+			
 			// 파일 저장
 			//파일 업로드 사이즈(설정) 현재 byte단위 (5MB)
 			int FileSizeLimit = 1024*1024*5; 
 
 			//파일이 업로드 될 경로 (※중요)
-			String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile";  
+			String uploadFilePath = getServletContext().getRealPath("/")+"uploadfile"; 
+			String filePathName = "/uploadfile/"; //파일경로 이름 지정
 			//->WebContent폴더 밑에있는 uploadfile을 지칭
 
 			//인코딩타입(파일인코딩타입)
@@ -70,8 +77,6 @@ public class InsertRecipeServlet extends HttpServlet {
 			//2.View에서 전송한 데이터를 받아 변수에 저장
 
 			//recipe내용 받는 곳
-			Recipe ir = new Recipe();
-			Process pr = new Process();
 
 			ir.setRecipeTitle(multi.getParameter("recipeTitle")); //제목
 			ir.setRecipeIntro(multi.getParameter("recipeIntro")); //소개
@@ -191,26 +196,36 @@ public class InsertRecipeServlet extends HttpServlet {
 			String [] valueToken = new String [6];
 			ArrayList<Process> stepValuelist = new ArrayList<Process>();
 
-			System.out.println(stepList[0]);
 			for(int i=0; i<stepList.length ;i++) {
+				
 				valueToken = stepList[i].split("¡");
-
+				
+				
+				pr = new Process();
 				if(valueToken[0].equals("*")) {} else {pr.setProcessOrder(Integer.parseInt(valueToken[0]));}
 				if(valueToken[1].equals("*")) {} else {pr.setProcessExplain(valueToken[1]);}
 				if(valueToken[2].equals("*")) {} else {pr.setIngre(valueToken[2]);}
 				if(valueToken[3].equals("*")) {} else {pr.setTools(valueToken[3]);}
 				if(valueToken[4].equals("*")) {} else {pr.setFireLevel(valueToken[4]);}
 				if(valueToken[5].equals("*")) {} else {pr.setTip(valueToken[5]);}
-
+				
+				
+				String stepImgFile= multi.getFilesystemName("stepImgFile"+i);
+				String fullFileStepPath = filePathName+stepImgFile;
+				pr.setProcessPic(fullFileStepPath);
+				
+				
 				stepValuelist.add(pr);
+			
 
 			}
+			
 
-
+			
 
 			//사진정보 받아오는곳
 			//업로드된 파일의 정보를 DB에 기록하여야 함
-			Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴
+			//Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴
 			//1.파일 이름 (fileName)
 			//getFilesystemName("view의 파라미터이름"); 을 하게되면
 			//해당 업로드 될때의 파일 이름을 가져옴
@@ -229,14 +244,14 @@ public class InsertRecipeServlet extends HttpServlet {
 			//ex) 업로드한 파일이 a.txt 라면?
 			//총 경로 : c:\webworkspace2\web2\WebContent\\uploadfile\a.txt
 
-
-			String fullFileMainPath = uploadFilePath+"\\"+fileUpload;
+			
+			String fullFileMainPath = filePathName+fileUpload;
 			String fileSucPath [] = new String [5];
-			fileSucPath[0] = uploadFilePath+"\\"+fileSuc[0];
-			fileSucPath[1] = uploadFilePath+"\\"+fileSuc[1];
-			fileSucPath[2] = uploadFilePath+"\\"+fileSuc[2];
-			fileSucPath[3] = uploadFilePath+"\\"+fileSuc[3];
-			fileSucPath[4] = uploadFilePath+"\\"+fileSuc[4];
+			fileSucPath[0] = filePathName+fileSuc[0];
+			fileSucPath[1] = filePathName+fileSuc[1];
+			fileSucPath[2] = filePathName+fileSuc[2];
+			fileSucPath[3] = filePathName+fileSuc[3];
+			fileSucPath[4] = filePathName+fileSuc[4];
 			//String fileSucAllPath = uploadFilePath+"\\"+fileSucAll;
 
 
@@ -248,16 +263,20 @@ public class InsertRecipeServlet extends HttpServlet {
 				}
 			}
 
-			System.out.println(fileSucAll);
 
 			ir.setRecipePic(fullFileMainPath); //메인사진
 			ir.setCompletePic(fileSucAll); //완성사진
 
-
-			new InsertRecipeService().insertRecipe(ir,stepValuelist,userId);
+		  int result =	new InsertRecipeService().insertRecipe(ir,stepValuelist);
+		  
+		  if(result>0) { //레시피 등록 성공했을때
+			  response.sendRedirect("/recipe?recipeNo="+result);
+		  }else { //레시피 등록 실패하였을때 
+			  
+		  }
 
 		}else {
-
+				
 		}
 
 	}

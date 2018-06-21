@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <style>
@@ -23,11 +24,11 @@
 </head>
 <body>
 	<div id="customCenter">
-		<!-- °í°´¼¾ÅÍ ¸ñ·Ï Å×ÀÌºí -->
+		<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸” -->
 
 		<table class="table table-bordered" id="list-color">
 			<tr onclick="location.href='/noticeList'">
-				<td>°øÁö»çÇ×<img src="/imgs/manager-img/right-arrow.png"
+				<td>ê³µì§€ì‚¬í•­<img src="/imgs/manager-img/right-arrow.png"
 					height="9px" class="list-arrow"></td>
 			</tr>
 			<tr onclick="location.href='/faqList'">
@@ -35,8 +36,8 @@
 					height="9px" class="list-arrow"></td>
 			</tr>
 			<tr
-				onclick="location.href='/views/customerCenterPage/oneToOneQNAPage.jsp'">
-				<td>1:1¹®ÀÇ<img src="/imgs/manager-img/right-arrow.png"
+				onclick="location.href='/questionList'">
+				<td>1:1ë¬¸ì˜<img src="/imgs/manager-img/right-arrow.png"
 					height="9px" class="list-arrow"></td>
 			</tr>
 

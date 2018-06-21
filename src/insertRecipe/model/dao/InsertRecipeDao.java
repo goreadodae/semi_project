@@ -16,17 +16,18 @@ import recipe.model.vo.Recipe;
 
 public class InsertRecipeDao {
 
-	public int insertRecipe(Connection conn, Recipe ir, int maxNum, String userId) {
+	public int insertRecipe(Connection conn, Recipe ir, int maxNum) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
-		
+		/*String query = "insert into recipe values(?,?,?,?,?,?,?,?,?,?,0,0,0,?,?,sysdate,?,?,?,?,?)";*/
 		try {
 			prop.load(new FileReader(path+"resources/insertRecipeQuery.properties"));
 			String query = prop.getProperty("insertRecipeAll");
 			pstmt = conn.prepareStatement(query);
+			
 			pstmt.setInt(1, maxNum+1);
 			pstmt.setString(2, ir.getRecipeTitle());
 			pstmt.setString(3, ir.getRecipeIntro());
@@ -38,19 +39,22 @@ public class InsertRecipeDao {
 			pstmt.setString(9, ir.getTip());
 			pstmt.setString(10, ir.getCompletePic());
 			pstmt.setString(11, ir.getRecipeTag());
-			pstmt.setInt(12, ir.getClassNo());
-			pstmt.setString(13, ir.getVideo());	
+			pstmt.setString(12, ir.getVideo());
+			pstmt.setInt(13, ir.getClassNo());
 			pstmt.setInt(14, ir.getSituationNo());
-			pstmt.setInt(15, ir.getMemberNo());
+			pstmt.setInt(15, ir.getMethodNo());
 			pstmt.setInt(16, ir.getIngreNo());
-			pstmt.setString(17, userId);
+			pstmt.setInt(17, ir.getMemberNo());
 			
 			result = pstmt.executeUpdate();
 			
-		} catch (IOException e) {
+		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
@@ -59,7 +63,7 @@ public class InsertRecipeDao {
 		return result;
 	}
 
-	public int insertRecipeProcess(Connection conn, ArrayList<Process> stepValuelist, int maxNum) {
+	public int insertRecipeProcess(Connection conn, Process pr) {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -69,21 +73,20 @@ public class InsertRecipeDao {
 		try {
 			prop.load(new FileReader(path+"resources/insertRecipeQuery.properties"));
 			String query = prop.getProperty("insertRecipeProcess");
-			pstmt = conn.prepareStatement(query);
-			
-			for(int i=0; i<stepValuelist.size();i++) {
+			pstmt = conn.prepareStatement(query);		
 				
-				pstmt.setInt(1, stepValuelist.get(i).getProcessOrder());
-				pstmt.setString(2, stepValuelist.get(i).getProcessExplain());
-				pstmt.setString(3, stepValuelist.get(i).getProcessPic());
-				pstmt.setString(4, stepValuelist.get(i).getIngre());
-				pstmt.setString(5, stepValuelist.get(i).getTools());
-				pstmt.setString(6, stepValuelist.get(i).getFireLevel());
-				pstmt.setString(7, stepValuelist.get(i).getTip());
-				pstmt.setInt(8, maxNum+1);
+				pstmt.setInt(1, pr.getProcessOrder());
+				pstmt.setString(2, pr.getProcessExplain());
+				pstmt.setString(3, pr.getProcessPic());
+				pstmt.setString(4, pr.getIngre());
+				pstmt.setString(5, pr.getTools());
+				pstmt.setString(6, pr.getFireLevel());
+				pstmt.setString(7, pr.getTip());
+				pstmt.setInt(8, pr.getRecipeNo());
+				
 				
 				result = pstmt.executeUpdate();
-			}
+		
 			
 		} catch (IOException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -114,9 +117,7 @@ public class InsertRecipeDao {
 			
 			while(rset.next()) {
 				maxNum = rset.getInt("MAXRECIPENUM");
-				System.out.println(maxNum);
 			}
-			
 			
 			
 		}  catch (SQLException e) {

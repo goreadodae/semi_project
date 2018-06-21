@@ -1,27 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<%
+	pageContext.setAttribute("newLineChar", "\n");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>1:1 ¹®ÀÇ ÆäÀÌÁö ÀÔ´Ï´Ù.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>1:1 ë¬¸ì˜ í˜ì´ì§€ ì…ë‹ˆë‹¤.</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	/* í•´ë” ë¶ˆëŸ¬ì˜¤ëŠ” ì œì´ì¿¼ë¦¬ */
 	$(document).ready(function() {
-		
+
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
-	$(document).ready(function(){
+	$(document).ready(function() {
 		$('#list-color tr').eq(2).addClass('on');
 	});
 	
-	
-</script>
+	 
+	 var toggleText1 = false;
+	 var toggleText2 = false;
+	 function showQue(no){
+	    console.log(no);
+	    $('#'+no+"_hidingContents").toggle('display');
+	    if(toggleText1==true)
+	    {
+	       toggleText1 = false;
+	    }
+	    else{
+
+	       toggleText1 = true;
+	    }
+	 }
+	 function deleteCheck(){
+		 if(window.confirm("ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
+			return true; 
+		 }
+		 else{
+			 return false;
+		 }
+	 }
+	 </script>
+
 
 <style>
 * {
@@ -29,14 +57,22 @@
 	padding: 0;
 }
 
-#noHasList{
-	position:relative;
-	text-align:center;
-	top:40%;
-
+#noHasList {
+	position: relative;
+	text-align: center;
+	top: 40%;
 }
-.list-arrow{
-	float:right;
+
+.list-arrow {
+	float: right;
+}
+#hidingContens {
+	display: none;
+	text-align: center;
+}
+update
+{
+	vertical-align:middle;
 }
 
 </style>
@@ -45,82 +81,118 @@
 <body>
 
 
-<c:if test="${sessionScope.user==null}" >
-	<c:redirect url="/views/memberPage/loginPage.jsp"/>
-</c:if>
-	
-	
-		<!--  1:1 ¹®ÀÇ ÆäÀÌÁö ¸¸µé¶§ »ı°¢ÇØ¾ß ÇÒ °Í!!
-			1. ·Î±×ÀÎÇßÀ»¶§¸¸ 1:1¹®ÀÇ°¡ °¡´ÉÇÏ´Ù....
-			(·Î±×ÀÎÀ» ÇÏÁö ¾Ê¾ÒÀ» °æ¿ì ·Î±×ÀÎ Ã¢À¸·Î °¡¾ßÇÔ!!)
-			2. È¸¿øÀÌ 1:1 ¹®ÀÇ¸¦ ÀÛ¼ºÇßÀ» ½Ã °ü¸®ÀÚ db·Î °í°í..
-			3. °ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ ¹®ÀÇ»çÇ×À» º¼ ¼ö ÀÖ°Ô ±¸ÇöÇÑ´Ù..¤Ğ¤Ğ
-			4. »ç¿ëÀÚ´Â ¿¹Àü¿¡ Çß´ø ¹®ÀÇµµ º¼ ¼ö ÀÖ°Ô ÇØ¾ß ÇÑ´Ù.
-			5. ¹®ÀÇ³»¿ªÀÌ ¾ø´Ù¸é!! ÄÃ·³¸í¸¸ ³²±â°í ¹®ÀÇ ÄÁÅÙÃ÷¿µ¿ª¿¡´Â ¹®ÀÇ³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù´Â ¹®±¸°¡ ÀÖ¾î¾ß ÇÔ!!
-			6. ±Û¾²±â ¹öÆ° Å¬¸¯½Ã »õ ÆäÀÌÁö·Î ÀÛ¼º °ø°£À¸·Î ¤¡¤¡
-			7. ÈæÈæÈæ
-		  -->
-	<div class="container-fluid" style="padding:0px">
+	<c:if test="${sessionScope.user==null}">
+		<script language="javascript">
+			alert("ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš” ^^");
+			location.href="/views/memberPage/loginPage.jsp";
+		</script>
+
+	</c:if>
+
+	<div class="container-fluid" style="padding: 0px">
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;" id="contents">
-			<div class="row" style="padding:0;">
-				<div class="col-md-2" style="padding:0;">
-					<!--°í°´¼¾ÅÍ ¸ñ·Ï  -->
+			<div class="row" style="padding: 0;">
+				<div class="col-md-2" style="padding: 0;">
+					<!--ê³ ê°ì„¼í„° ëª©ë¡  -->
 					<br>
-					<h2>°í°´¼¾ÅÍ</h2>
+					<h2>ê³ ê°ì„¼í„°</h2>
 					<br>
 				</div>
-				<div class="col-md-8" >
+				<div class="col-md-8">
 					<br>
-					<h4 style="line-height:35px">
-						1:1¹®ÀÇ»çÇ×&nbsp;
-					</h4>
+					<h4 style="line-height: 35px">1:1ë¬¸ì˜ì‚¬í•­&nbsp;</h4>
 				</div>
 			</div>
 			<br>
-			<div class="row" style="padding:0;">
-				<div id="customCenter" class="col-md-2" style="padding:0;">
-					<!-- °í°´¼¾ÅÍ ¸ñ·Ï Å×ÀÌºí  include-->
-					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp" flush="false"/>
+			<div class="row" style="padding: 0;">
+				<div id="customCenter" class="col-md-2" style="padding: 0;">
+					<!-- ê³ ê°ì„¼í„° ëª©ë¡ í…Œì´ë¸”  include-->
+					<jsp:include page="/views/customerCenterPage/contentsLeft.jsp"
+						flush="false" />
 				</div>
 
-			<div class="col-md-10">
-			<!-- <a href="/views/managerPage/writeQNAPage.jsp">ÀÛ¼ºÇÏ±â(ÀÓ½Ã¸µÅ©)</a> -->
-			
-			<table class='table'>
-			<tr>
-			<th>¹øÈ£</th>
-			<th>Ä«Å×°í¸®</th>
-			<th>Á¦¸ñ</th>
-			<th>ÀÛ¼ºÀÚ</th>
-			<th>ÀÛ¼ºÀÏ</th>
-			</tr>
+				<div class="col-md-10">
+				
+					<table class='table'>
+						<tr>
+							<th>ë²ˆí˜¸</th>
+							<th>ì œëª©</th>
+							<th>ì‘ì„±ì</th>
+							<th>ì‘ì„±ì¼</th>
+						</tr>
+						<c:forEach items="${requestScope.qList}" var="qList" varStatus="i">
+						
+							<tr>
+								<td>${i.count}</td>
+								<td id="${i.count}" onclick="showQue(${i.count})" style="cursor:pointer;">
+								${qList.queTitle}
+								</td>
+								<td>${qList.memberId}</td>
+								<td>${qList.queTime}</td>
+							</tr>
+							<tr id="${i.count}_hidingContents" style="display:none">
+								<td colspan="4">
+								<div class="row">
+									<div class="col-md-8" style="padding: 30px">
+										${fn:replace(qList.queContents,newLineChar,"<br>")}
+										</div>
 
-			</table>
-			<!-- »ç¿ëÀÚ°¡ ¹®ÀÇ ÇÑ ³»¿ªÀÌ ¾øÀ»¶§  -->
-			<div class="cols-md-10" style=" height:300px">
+										<div class="col-md-4" style="padding-top:20px;" >
+										<div class="row" style="padding:0">
+											<form action="/views/customerCenterPage/updateQna.jsp" method="post">
+											
+											<div class="col-md-6">
+											<input type="submit" class="btn btn-outline-success" value="ìˆ˜ì •"/>&nbsp;&nbsp;
+											</div>
+											
+											<input type="hidden" name="queTitle" value="${qList.queTitle}"/>
+											<input type="hidden" name="queContents" value="${qList.queContents}"/>
+											<input type="hidden" name="buyingNo" value="${qList.buyingNo}"/>
+											<input type="hidden" name="queNo" value="${qList.queNo}"/>
+										</form>
+										<form action="/deleteQuestion" method="post">
+											<input type="hidden" style="display:inline" name="queNo" value="${qList.queNo}"/>
+											
+											<div class="col-md-6">
+											<button type="submit" style="display:inline" class="btn btn-outline-success" onclick="return deleteCheck();">ì‚­ì œ</button>
+											</div>
+										</form>
+										</div>
+											</div>
+										</div>
+								
+										
+								</td>
+							</tr>
+						
+						</c:forEach>
+
+
+
+
+					</table>
 				
-				<div id="noHasList">
-					<h6>1:1¹®ÀÇ³»¿ªÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.</h6>
-				
+					<!-- ì‚¬ìš©ìê°€ ë¬¸ì˜ í•œ ë‚´ì—­ì´ ì—†ì„ë•Œ  -->
+					<c:if test="${empty requestScope.qList}">
+						<div class="cols-md-10" style="height: 300px">
+
+							<div id="noHasList">
+								<h6>1:1ë¬¸ì˜ë‚´ì—­ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</h6>
+
+							</div>
+
+						</div>
+					</c:if>
+					<div class="offset-md-11 cols-md-1">
+
+
+						<button type="button" class="btn btn-success"
+							onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">ì‘ì„±í•˜ê¸°</button>
+					</div>
 				</div>
-			
-			</div>
-			<div class="offset-md-11 cols-md-1">
-			
-			
-			<button type="button" class="btn btn-success" onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">ÀÛ¼ºÇÏ±â</button>
-			</div>
-
-
-			</div>
-			
-			
-			
-			
-			
 			</div>
 		</div>
 

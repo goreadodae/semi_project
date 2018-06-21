@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,18 +8,58 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
-
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
 
+<style>
+* {
+	padding: 0;
+}
+</style>
 <script>
-	/* ÇØ´õ ºÒ·¯¿À´Â Á¦ÀÌÄõ¸® */
+	var scrollUpDelay = 1;
+	var scrollUpSpeed = 30;
+
+	/* ì˜ì—­ ì„¤ì • */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
-		$("#footer").load("/views/footer/main-Footer.jsp");
+
+		var $info = $("#info");
+
+		window.onresize = function() {
+			$info.html(window.innerWidth);
+		}
+	});
+
+	/* ìœ„ë¡œ ì˜¬ë¼ê°€ê¸° */
+	function scrollUp() {
+		if (document.body.scrollTop < 1) {
+			return;
+		}
+		document.body.scrollTop = document.body.scrollTop - scrollUpSpeed;
+		setTimeout('scrollUp()', scrollUpDelay);
+	}
+</script>
+<!-- í˜ì´ì§€ ë„¤ë¹„ê²Œì´ì…˜ ê³ ì • -->
+<script>
+	$(document).ready(function() {
+		var jbOffset = $('#point').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
 	});
 </script>
 <style>
@@ -64,7 +104,11 @@
 </head>
 <body>
 	<div class="container-fluid" style="padding: 0px">
-		<div id="header"></div>
+		<div class="container-fluid" style="padding: 0;">
+		<!-- Header -->
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+		<!-- í•´ë” -->
+		</div>
 
 		<div style="background-color: #f8faff; padding: 0px">
 
@@ -74,7 +118,7 @@
 				<div class="row">
 					<div class="offset-md-2 col-md-10" style="text-align: center">
 						<br>
-						<h2>È¯¿µÇÕ´Ï´Ù!! °ü¸®ÀÚ´Ô!</h2>
+						<h2>í™˜ì˜í•©ë‹ˆë‹¤!! ê´€ë¦¬ìë‹˜!</h2>
 						
 						<br> <br>
 
@@ -96,7 +140,7 @@
 									</div>
 									<div class="col-md-5">
 										<div style="text-align: center">
-											<span style="font-size: 20px">200</span> <b>°Ç</b>
+											<span style="font-size: 20px">200</span> <b>ê±´</b>
 
 										</div>
 										<div style="text-align: center">
@@ -117,7 +161,7 @@
 									<div class="col-md-6">
 
 										<div style="text-align: center">
-											<span style="font-size: 20px">1,254</span> <b>°³</b>
+											<span style="font-size: 20px">1,254</span> <b>ê°œ</b>
 
 										</div>
 										<div style="text-align: center">
@@ -135,7 +179,7 @@
 									</div>
 									<div class="col-md-6">
 										<div style="text-align: center">
-											<span style="font-size: 20px"> 1,200 </span> <b>¸í</b>
+											<span style="font-size: 20px"> 1,200 </span> <b>ëª…</b>
 										</div>
 										<b>subscriber</b>
 									</div>
@@ -181,16 +225,16 @@
 								<th><a href="/views/adminPage/adminMainPage.jsp">Home</a></th>
 							</tr>
 							<tr>
-								<th><a href="/memberMgt">È¸¿ø°ü¸®</a></th>
+								<th><a href="/memberMgt">íšŒì›ê´€ë¦¬</a></th>
 							</tr>
 							<tr>
-								<th>°Ô½Ã¹°°ü¸®</th>
+								<th><a href="/recipeMgt">ê²Œì‹œë¬¼ê´€ë¦¬</a></th>
 							</tr>
 							<tr>
-								<th>°øÁö»çÇ×°ü¸®</th>
+								<th>ê³µì§€ì‚¬í•­ê´€ë¦¬</th>
 							</tr>
 							<tr>
-								<th><a href="/views/adminPage/qnaMgtPage.jsp"></a>¹®ÀÇ°ü¸®</th>
+								<th><a href="/views/adminPage/qnaMgtPage.jsp"></a>ë¬¸ì˜ê´€ë¦¬</th>
 							</tr>
 						</table>
 
@@ -199,7 +243,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/adminPage/memberMgtPage.jsp">¿À´Ã °¡ÀÔÇÑ È¸¿øÁ¤º¸ÀÔ´Ï´Ù.</a></h3>
+								<h3><a href="/views/adminPage/memberMgtPage.jsp">ì˜¤ëŠ˜ ê°€ì…í•œ íšŒì›ì •ë³´ì…ë‹ˆë‹¤.</a></h3>
 								<br> <br>
 
 
@@ -209,25 +253,25 @@
 							<div class=col-md-12>
 								<table class="table" style="text-align: center">
 									<tr>
-										<th>È¸¿ø¹øÈ£</th>
-										<th>¾ÆÀÌµğ</th>
-										<th>ºñ¹Ğ¹øÈ£</th>
-										<th>ÀÌ¸§</th>
-										<th>»ı³â¿ùÀÏ</th>
-										<th>¿¬¶ôÃ³</th>
-										<th>¼ºº°</th>
-										<th>ÀÌ¸ŞÀÏ</th>
-										<th>°¡ÀÔÀÏÀÚ</th>
+										<th>íšŒì›ë²ˆí˜¸</th>
+										<th>ì•„ì´ë””</th>
+										<th>ë¹„ë°€ë²ˆí˜¸</th>
+										<th>ì´ë¦„</th>
+										<th>ìƒë…„ì›”ì¼</th>
+										<th>ì—°ë½ì²˜</th>
+										<th>ì„±ë³„</th>
+										<th>ì´ë©”ì¼</th>
+										<th>ê°€ì…ì¼ì</th>
 
 									</tr>
 									<tr>
 										<td>59</td>
 										<td>han5631</td>
 										<td>saf*****</td>										
-										<td>ÇÑ¿µÁø</td>
+										<td>í•œì˜ì§„</td>
 										<td>930505</td>
 										<td>010454546</td>
-										<td>³²</td>
+										<td>ë‚¨</td>
 										<td>kiki123@naver.com</td>
 										<td>2018-06-14</td>
 
@@ -241,7 +285,7 @@
 
 						<div class="row">
 							<div class="col-md-5" style="margin: 0 auto; text-align: center">
-								<h3><a href="/views/adminPage/qnaMgtPage.jsp">¹Ì´äº¯ ¹®ÀÇ»çÇ×ÀÌ ÀÖ½À´Ï´Ù.</a></h3>
+								<h3><a href="/views/adminPage/qnaMgtPage.jsp">ë¯¸ë‹µë³€ ë¬¸ì˜ì‚¬í•­ì´ ìˆìŠµë‹ˆë‹¤.</a></h3>
 							</div>
 							<br><br><br><br>
 						</div>
@@ -250,16 +294,16 @@
 							<div class="col-md-12">
 								<table class="table" style="width: 100%; text-align:center">
 									<tr>
-										<th>¹øÈ£</th>
-										<th>Á¦¸ñ</th>
-										<th>ÀÛ¼ºÀÚ</th>
-										<th>ÀÛ¼ºÀÏ</th>
+										<th>ë²ˆí˜¸</th>
+										<th>ì œëª©</th>
+										<th>ì‘ì„±ì</th>
+										<th>ì‘ì„±ì¼</th>
 
 									</tr>
 									<tr>
 										<td>2424</td>
-										<td>±ÖÀÌ½Å°¡¿ä ´Ü°¡¿ä</td>
-										<td>Åä°ÔÇÇ</td>
+										<td>ê·¤ì´ì‹ ê°€ìš” ë‹¨ê°€ìš”</td>
+										<td>í† ê²Œí”¼</td>
 										<td>2018-06-04</td>
 									</tr>
 
@@ -276,16 +320,16 @@
 		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="border: 1px solid black; padding: 10px;">
 		<!-- footer -->
-
+	<jsp:include page="/views/footer/main-Footer.jsp"></jsp:include>
 	</div>
 
 	</div>
 
 
-	<!-- jQuery (ºÎÆ®½ºÆ®·¦ÀÇ ÀÚ¹Ù½ºÅ©¸³Æ® ÇÃ·¯±×ÀÎÀ» À§ÇØ ÇÊ¿äÇÕ´Ï´Ù) -->
+	<!-- jQuery (ë¶€íŠ¸ìŠ¤íŠ¸ë©ì˜ ìë°”ìŠ¤í¬ë¦½íŠ¸ í”ŒëŸ¬ê·¸ì¸ì„ ìœ„í•´ í•„ìš”í•©ë‹ˆë‹¤) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- ¸ğµç ÄÄÆÄÀÏµÈ ÇÃ·¯±×ÀÎÀ» Æ÷ÇÔÇÕ´Ï´Ù (¾Æ·¡), ¿øÇÏÁö ¾Ê´Â´Ù¸é ÇÊ¿äÇÑ °¢°¢ÀÇ ÆÄÀÏÀ» Æ÷ÇÔÇÏ¼¼¿ä -->
+	<!-- ëª¨ë“  ì»´íŒŒì¼ëœ í”ŒëŸ¬ê·¸ì¸ì„ í¬í•¨í•©ë‹ˆë‹¤ (ì•„ë˜), ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í•„ìš”í•œ ê°ê°ì˜ íŒŒì¼ì„ í¬í•¨í•˜ì„¸ìš” -->
 	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

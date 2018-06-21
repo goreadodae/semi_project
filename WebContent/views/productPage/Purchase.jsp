@@ -98,20 +98,45 @@
 			$(this).addClass('mybutton2');
 		});
 		
-		$('#pay11').click(function(){
+		
+		
+		//1. 총 가격 계산 & 그에 따른 배송비와 결제금액 설정
+		var deliveryFee = 0;	//배송비
+		var eachPay = $('[name="eachPay"]');	//물품들의 총가격
+		var totalPay = 0;						//다 합한 가격
+		for(var j=0; j<eachPay.length ; j++){
+			totalPay += Number(eachPay[j].value);
+		}
+		console.log("total : " + totalPay);
+		
+		if(totalPay<30000){	//3만원 미만이면
+			deliveryFee = 2500;//배송비 2500원
+		}
+		
+		$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
+		$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
+		
+		$('#pay').click(function(){
 			var basketNoTag = $('[name="basketNo1"]');
+			var basketQuantity1 = $('[name="basketQuantity1"]');
+			var productNo1 = $('[name="productNo1"]');
 			var basketNoArr = new Array();
+			var basketQuantityArr = new Array();
+			var productNoArr = new Array();
 			
 			for(var i=0; i<basketNoTag.length ; i++){
 				basketNoArr[i] = basketNoTag[i].value;
+				basketQuantityArr[i] = basketQuantity1[i].value;
+				productNoArr[i] = productNo1[i].value;
 			}
 			
+			var totalpayment =$('#totalpayment').html();
 			
 			//4. 구매목록에 추가 후 페이지 전환
 			jQuery.ajaxSettings.traditional=true;
 			$.ajax({
 					url : "/buyingInsert",
-					data : {basketNo:basketNoArr},
+					data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment},
 					async: false,
 					type : "get",
 					success:function(data){
@@ -132,16 +157,9 @@
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		
-		//1. 총 가격 계산
-		var eachPay = $('[name="eachPay"]');
-		var totalPay = 0;
-		for(var j=0; j<eachPay.length ; j++){
-			totalPay += Number(eachPay[j].value);
-		}
-		console.log("total : " + totalPay);
 		
 		//2. 결제 api 실행
-		$('#pay').click(function(){
+		$('#pay11').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
@@ -392,6 +410,8 @@
 							<td>${b.productPrice*b.basketQuantity}</td>
 						</tr>
 						<input type="hidden" id="basketNo" name="basketNo1" value="${b.basketNo}">
+						<input type="hidden" id="productNo1" name="productNo1" value="${b.productNo}">
+						<input type="hidden" id="basketQuantity1" name="basketQuantity1" value="${b.basketQuantity}">
 						<input type="hidden" id="eachPay" name="eachPay" value="${b.productPrice*b.basketQuantity}">
 						</c:forEach>
 					</table>
@@ -410,7 +430,7 @@
 						
 						<tr class="line4">
 							<th><span id="sub">휴대폰</span></th>
-							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1" readonly>
+							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1">
 							</td>	
 						</tr>
 						
@@ -433,16 +453,15 @@
 					<!-- 배송 정보 -->
 					<hr style="border:1px solid #522075;">
 					<table width=100%>
-						<tr class="line5">
+						<tr class="line4">
 							<th width=15%><span id="sub">주소</span></th>
 							<td td width=85%>
-							<%-- <c:set var="addrString" value=" " />
+							<c:set var="addrString" value=" " />
 							<c:forTokens items="${member.address}" delims="|" var="item">
-								<c:set var="addrString" value="${addrString} + ${item}" />
+								<c:set var="addrString" value="${addrString} ${item}" />
 							</c:forTokens>
-							<input type="text" value="${addrString}" class="deliveryinfo">
-							</td> --%>
-							<%-- <td width=85%><textarea id="addr" class="deliveryinfo" rows="2" cols="100" style="resize:none;">${member.address}</textarea></td> --%>
+							<input type="text" value="${addrString}" style="width:600px" class="deliveryinfo">
+							</td>
 						</tr>
 						
 						<tr class="line4">

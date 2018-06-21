@@ -206,6 +206,14 @@ a{
    border : 0px;
    cursor : pointer;
 }
+
+.mybutton0{
+   background-color: #70658B;
+   color : #F8FAFF;
+   height : 50px;
+   width : 300px;
+   border : 0px;
+}
 </style>
 
 <script>
@@ -229,12 +237,15 @@ a{
          
          $('#plus').click(function(){
              var value   = Number($('#qty').val());
-             if(value<50){
+             if(value<"${productInfo.productQuantity}"){
                 value++;
                 $('#qty').val(value);
                 $('.basket_quantity').val(value);
                 $('#sumqty').html("수량 " + value +"개");
                 $('#sumprice').html($('#price').html()*value +"원");
+             }
+             else{
+            	 alert("수량이 부족합니다.");
              }
           });
          
@@ -286,7 +297,7 @@ a{
             }
             else if(data=="nologin"){   //비로그인 접근시 로그인페이지로 이동
                alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
-               location.href="/views/memberPage/loginPage.html";
+               location.href="/views/memberPage/loginPage.jsp";
             }
          },
          error:function(){
@@ -334,9 +345,17 @@ a{
                            </div>
                            <div class="col-md-8">
                               <p id="price">${productInfo.productPrice}</p>
-                              <p>묶음배송 (4만원 이상 무료배송)</p>
+                              <p>묶음배송 (3만원 이상 무료배송)</p>
                               <p>${productInfo.productQuantity}</p>
-                              <button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
+                              <c:choose>
+								<c:when test="${productInfo.productQuantity>0}">
+									<button id="minus">-</button> <input id="qty" type="text" value=1 size="1" /> <button id="plus">+</button>
+								</c:when>
+								<c:otherwise>
+									품절
+								</c:otherwise>
+							</c:choose>
+                              
                            </div>
                         </div>
                      </div>
@@ -353,21 +372,30 @@ a{
                         </div>
                      </div>
                      <br><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="hidden" class="basket_quantity" name="basket_quantity" value="1" >
-                        <input type="hidden" id="product_no" value="${productInfo.productNo}" >
-                        <button class="mybutton1" onclick="inputBasket();">장바구니</button>
+                     
+                     <c:choose>
+						<c:when test="${productInfo.productQuantity>0}">
+							<div id="selectButton">
+                        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        		<input type="hidden" class="basket_quantity" name="basket_quantity" value="1" >
+                        		<input type="hidden" id="product_no" value="${productInfo.productNo}" >
+                        		<button class="mybutton1" onclick="inputBasket();">장바구니</button>
                         
                         
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <form action="/buyDirect"  method="post" style="display:inline;">
-                           <input type="hidden" class="basket_quantity" name="basketQuantity" value="1" >
-                           <input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
-                           <button  class="mybutton2" onclick="location.href='/buyDirect'">구매하기</button>
-                        </form>
+                        		&nbsp;&nbsp;&nbsp;&nbsp;
+                        		<form action="/buyDirect"  method="post" style="display:inline;">
+                          		<input type="hidden" class="basket_quantity" name="basketQuantity" value="1" >
+                           		<input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
+                           		<button  class="mybutton2" onclick="location.href='/buyDirect'">구매하기</button>
+                        		</form>
+                     		</div>
+						</c:when>
+						<c:otherwise>
+							<center><button class="mybutton0">품 절</button></center>
+						</c:otherwise>
+					</c:choose>
                      
-                  
-                     
+          
                   </div>
                </div>
             </div>

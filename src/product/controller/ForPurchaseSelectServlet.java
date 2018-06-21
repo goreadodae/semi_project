@@ -42,7 +42,7 @@ public class ForPurchaseSelectServlet extends HttpServlet {
 		
 		
 		if(member==null) {//로그인 안되있으면
-			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
+			response.sendRedirect("/views/memberPage/loginPage.jsp");	//로그인하는 페이지로 이동
 		}
 		else {
 			int memberNo=member.getMemberNo();

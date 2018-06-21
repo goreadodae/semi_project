@@ -43,7 +43,12 @@ public class InsertRecipeServlet extends HttpServlet {
 
 		if(session!=null) {
 			
-			String userId = ((Member)session.getAttribute("user")).getMemberId();
+			Recipe ir = new Recipe();
+			Process pr = new Process();
+			
+			int usernum = ((Member)session.getAttribute("user")).getMemberNo();
+			
+			ir.setMemberNo(usernum); //유저번호
 					
 			// 파일 저장
 			//파일 업로드 사이즈(설정) 현재 byte단위 (5MB)
@@ -70,8 +75,6 @@ public class InsertRecipeServlet extends HttpServlet {
 			//2.View에서 전송한 데이터를 받아 변수에 저장
 
 			//recipe내용 받는 곳
-			Recipe ir = new Recipe();
-			Process pr = new Process();
 
 			ir.setRecipeTitle(multi.getParameter("recipeTitle")); //제목
 			ir.setRecipeIntro(multi.getParameter("recipeIntro")); //소개
@@ -191,7 +194,6 @@ public class InsertRecipeServlet extends HttpServlet {
 			String [] valueToken = new String [6];
 			ArrayList<Process> stepValuelist = new ArrayList<Process>();
 
-			System.out.println(stepList[0]);
 			for(int i=0; i<stepList.length ;i++) {
 				valueToken = stepList[i].split("¡");
 
@@ -201,16 +203,24 @@ public class InsertRecipeServlet extends HttpServlet {
 				if(valueToken[3].equals("*")) {} else {pr.setTools(valueToken[3]);}
 				if(valueToken[4].equals("*")) {} else {pr.setFireLevel(valueToken[4]);}
 				if(valueToken[5].equals("*")) {} else {pr.setTip(valueToken[5]);}
-
+				
+				System.out.println(valueToken[i]);
+				
+				String stepImgFile= multi.getFilesystemName("stepImgFile"+i);
+				pr.setProcessPic(stepImgFile);
+				
 				stepValuelist.add(pr);
 
 			}
-
-
+			
+			for(int i=0;i<stepValuelist.size();i++) {
+				System.out.println(stepValuelist.get(i).getProcessPic());
+			}
+			
 
 			//사진정보 받아오는곳
 			//업로드된 파일의 정보를 DB에 기록하여야 함
-			Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴
+			//Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴
 			//1.파일 이름 (fileName)
 			//getFilesystemName("view의 파라미터이름"); 을 하게되면
 			//해당 업로드 될때의 파일 이름을 가져옴
@@ -248,16 +258,14 @@ public class InsertRecipeServlet extends HttpServlet {
 				}
 			}
 
-			System.out.println(fileSucAll);
 
 			ir.setRecipePic(fullFileMainPath); //메인사진
 			ir.setCompletePic(fileSucAll); //완성사진
 
-
-			new InsertRecipeService().insertRecipe(ir,stepValuelist,userId);
+			new InsertRecipeService().insertRecipe(ir,stepValuelist);
 
 		}else {
-
+				
 		}
 
 	}

@@ -137,7 +137,7 @@
 		$('.stepPlusRow').append('<div class="stepPlusCount"><div class="row"><div class="col-md-2"><h3>Step'+count+'</h3></div>'+
 				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA'+plusNum+'"></textarea></div>'+
 				'<div class="col-md-3"><div class="row"><div class="col-md-12" id="stepImg'+plusNum+'">'+
-					'<input id="stepImgFile'+plusNum+'" multiple="multiple" type="file" style="display:none" onchange="readURL(this,'+plusNum+');"/>'+
+					'<input id="stepImgFile'+plusNum+'" name="stepImgFile'+plusNum+'" multiple="multiple" type="file" style="display:none" onchange="readURL(this,'+plusNum+');"/>'+
 					'<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_'+plusNum+'" onclick="document.all.stepImgFile'+plusNum+'.click();">'+
 					'<input type="hidden" id="stepRPic'+plusNum+'" name="stepRPic" value=""></div></div></div></div>'+
 				'<div class="row"><div class="col-md-12">　　</div></div>'+
@@ -527,7 +527,6 @@
 		 var textVal = document.getElementById('textMater'+num).value;
 		 var textValChg = textVal+" "; 
          $('#materListId'+num).attr('value',textValChg);
-         alert(textValChg);
 		 
 	 }
 	 
@@ -536,7 +535,6 @@
 		 var textVal = document.getElementById('textMater'+num).value;
 		 var textValChg = textVal+"-";
          $('#materListId'+num).attr('value',textValChg);
-         alert(textValChg);
 		 
 	 }
 	 
@@ -546,7 +544,6 @@
 		 var textVal = document.getElementById('textMater'+num).value;
 		 var textValChg = "["+textVal+"]"
          $('#materListId'+num).attr('value',textValChg);
-		 alert(textValChg);
 		 
 	 }
 	 
@@ -884,7 +881,7 @@
 					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA0" ></textarea></div>
 					<div class="col-md-3">
 					<div class="row"><div class="col-md-12" id="stepImg0"> 
-					<input id="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
+					<input id="stepImgFile0" name="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
 					<img src="/imgs/insertRecipe_img/pic_none2.jpg" width="150" height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
 					</div></div></div></div>
 					

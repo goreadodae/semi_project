@@ -11,13 +11,13 @@ import recipe.model.vo.Recipe;
 
 public class InsertRecipeService {
 
-	public int insertRecipe(Recipe ir, ArrayList<Process> stepValuelist, String userId) {
+	public int insertRecipe(Recipe ir, ArrayList<Process> stepValuelist) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		int result =0;
 
 		int maxNum = new InsertRecipeDao().insertRecipeMaxNum(conn);
-		int insertRecipeResult = new InsertRecipeDao().insertRecipe(conn,ir,maxNum,userId);
+		int insertRecipeResult = new InsertRecipeDao().insertRecipe(conn,ir,maxNum);
 		int insertProcessResult = new InsertRecipeDao().insertRecipeProcess(conn,stepValuelist,maxNum);
 		
 		if(insertRecipeResult>0 && insertProcessResult>0) {

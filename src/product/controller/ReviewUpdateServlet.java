@@ -1,6 +1,7 @@
 package product.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.vo.Member;
+import product.model.service.ReviewService;
+import product.model.vo.Review;
 
 /**
  * Servlet implementation class ReviewUpdateServlet
@@ -34,13 +37,36 @@ public class ReviewUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		//세션에 저장된 userid ->> 로그인 중인 사용자
 		String userId = ((Member)session.getAttribute("user")).getMemberId();
-		//구매한 상품 이미지
-		String buyProductImage = request.getParameter("buyProductImage");
+		
+		int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
+		/*String buyProductImage = request.getParameter("buyProductImage");//구매한 상품 이미지
+*/		int rating = Integer.parseInt(request.getParameter("rating"));//상품 만족도
+		String buyingAfterText = request.getParameter("buyingAfterText"); //상품 후기 textarea
+		//String buyingAfterImage = request.getParameter("buyingAfterImage"); //상품 후기 이미지
 		
 
- 
-
+		System.out.println("상품 번호 : " + productNo+"  별점  :  " +rating + "  후 기    :   " +buyingAfterText + " 유저 아이디 : " + userId);
 		
+		Review r = new Review();
+		
+		if(session.getAttribute("user") !=null)
+		{	
+			r.setReviewContents(buyingAfterText);
+			r.setReviewSatisfied(rating);
+			r.setProductNo(productNo);
+			r.setMemberId(userId);
+			
+			int result = new ReviewService().updateReview(r);
+			if(result>0)
+			{
+				response.sendRedirect("/productDetail?productNo="+productNo);
+			}else {
+				
+			}
+			
+		}else {
+			response.sendRedirect("/views/productPage/reviewUpdateFail.html"); //로그인시 이용이 가능 or 실패 로 이동! 일단은 그 페이지로!
+	}
 		
 		
 	}

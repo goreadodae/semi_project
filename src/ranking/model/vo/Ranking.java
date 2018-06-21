@@ -27,6 +27,8 @@ public class Ranking {
 	private int memberNo;
 	private String memberName;
 	private String memberId;
+	private String profile;
+	private String nickname;
 	private int ranking;
 	
 	public Ranking() {}
@@ -34,7 +36,8 @@ public class Ranking {
 	public Ranking(int recipeNo, String recipeTitle, String recipeIntro, String recipePic, String cookServing,
 			String cookTime, String cookLevel, String ingredient, String tip, String completePic, int recipeViews,
 			int recipeMonthViews, int recipeTodayViews, String recipeTag, String video, Date postedDate, int classNo,
-			int situationNo, int methodNo, int ingreNo, int memberNo, String memberName, String memberId, int ranking) {
+			int situationNo, int methodNo, int ingreNo, int memberNo, String memberName, String memberId,
+			String profile, String nickname, int ranking) {
 		super();
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
@@ -59,6 +62,8 @@ public class Ranking {
 		this.memberNo = memberNo;
 		this.memberName = memberName;
 		this.memberId = memberId;
+		this.profile = profile;
+		this.nickname = nickname;
 		this.ranking = ranking;
 	}
 
@@ -246,6 +251,22 @@ public class Ranking {
 		this.memberId = memberId;
 	}
 
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public int getRanking() {
 		return ranking;
 	}
@@ -263,10 +284,10 @@ public class Ranking {
 				+ ", recipeTodayViews=" + recipeTodayViews + ", recipeTag=" + recipeTag + ", video=" + video
 				+ ", postedDate=" + postedDate + ", classNo=" + classNo + ", situationNo=" + situationNo + ", methodNo="
 				+ methodNo + ", ingreNo=" + ingreNo + ", memberNo=" + memberNo + ", memberName=" + memberName
-				+ ", memberId=" + memberId + ", ranking=" + ranking + "]";
+				+ ", memberId=" + memberId + ", profile=" + profile + ", nickname=" + nickname + ", ranking=" + ranking
+				+ "]";
 	}
 
-	
 	
 	
 	

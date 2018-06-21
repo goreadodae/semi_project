@@ -137,9 +137,9 @@ error : function() {
 					},
 					type : "post",
 					success : function(data) {
-						$('#monthlyUserImage').attr('src',data[0].recipePic);
-  						$('#monthmember1st').html(data[0].memberId);
-  						$('#monthUserRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");
+						$('#monthlyUserImage').attr('src',data[0].profile);
+  						$('#monthmember1st').html(data[0].nickname);
+  						/*$('#monthUserRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");*/
 
 					},
 					error : function() {
@@ -246,7 +246,7 @@ error : function() {
 				<br>
 				<div id="rankingLine">
 					<!-- 이달의 회원 텍스트 url -->
-					<a id="rankingURL" href="#"><h3 id="rankingTitle" style=" font-family:hanna; font-weight: 800;">Member of the Month</h3></a>
+					<a id="rankingURL" href="javascript:void(0)"><h3 id="rankingTitle" style=" font-family:hanna; font-weight: 800;">Member of the Month</h3></a>
 					<!-- <h5 style="margin:0;">이달의 회원</h5> -->
 					<br>
 					<br>

@@ -118,9 +118,9 @@ success : function(data) {
   console.log("성공");
   console.log("선택 안한 기본 날 : "+data);
   for (var i = 0; i < data.length; i++) {
-   $('#rankingMemberID'+(i+1)).html(data[i].memberId);
+   $('#rankingMemberID'+(i+1)).html(data[i].nickname);
    $('#rankNum' + (i + 1)).html((i + 1) + "위");
-   $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+   $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
    $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
    $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
    $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
@@ -133,7 +133,7 @@ success : function(data) {
 
  /*1위 랭킹 리스트*/
  $('#cardImgs1').click(function(){
-  var rankingUserId = $('#rankingMemberID1').html();
+  var rankingUserId = data[0].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
@@ -142,7 +142,7 @@ success : function(data) {
       console.log("리스트 아작스 성공!"+data.length);
       $('#RecipeListTbody1').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
@@ -157,7 +157,7 @@ success : function(data) {
 
  /*2위 랭킹 리스트*/
  $('#cardImgs2').click(function(){
-  var rankingUserId = $('#rankingMemberID2').html();
+  var rankingUserId = data[1].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
@@ -166,7 +166,7 @@ success : function(data) {
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody2').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
@@ -180,7 +180,7 @@ success : function(data) {
 
  /*3위 랭킹 리스트*/
  $('#cardImgs3').click(function(){
-  var rankingUserId = $('#rankingMemberID3').html();
+  var rankingUserId = data[2].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
@@ -189,7 +189,7 @@ success : function(data) {
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody3').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
@@ -203,7 +203,7 @@ success : function(data) {
 
  /*4위 랭킹 리스트*/
  $('#cardImgs4').click(function(){
-  var rankingUserId = $('#rankingMemberID4').html();
+  var rankingUserId = data[3].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
@@ -212,7 +212,7 @@ success : function(data) {
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody4').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
@@ -226,7 +226,7 @@ success : function(data) {
 
  /*5위 랭킹 리스트*/
  $('#cardImgs5').click(function(){
-  var rankingUserId = $('#rankingMemberID5').html();
+  var rankingUserId = data[4].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
@@ -235,7 +235,7 @@ success : function(data) {
       console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody5').html("");
       for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].memberId +"</th>"+
+        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
@@ -278,9 +278,9 @@ $("#yearClick").change(function() {
      for (var i = 0; i < data.length; i++) {
       console.log("선택한 년도 : "+ i + "번째" + data[i]);
 
-      $('#rankingMemberID'+(i+1)).html(data[i].memberId);
+      $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
-      $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+      $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
       $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
       $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
@@ -320,9 +320,9 @@ $("#monthClick").change(function() {
      for (var i = 0; i < data.length; i++) {
       console.log("선택한 달 : "+ i + "번째" + data[i]);
 
-      $('#rankingMemberID'+(i+1)).html(data[i].memberId);
+      $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
-      $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
+      $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
       $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
       $('#rankingTag' + (i + 1)).html(data[i].recipeTag);

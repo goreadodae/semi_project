@@ -187,6 +187,8 @@ public class RankingDao {
 				r.setMemberNo(rset.getInt("member_no"));
 				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));
+				r.setProfile(rset.getString("profile"));
+				r.setNickname(rset.getString("nickname"));
 				
 				
 				//r.setRanking(rset.getInt("ranking"));
@@ -373,6 +375,7 @@ public class RankingDao {
 				r.setMethodNo(rset.getInt("method_no"));
 				r.setMemberName(rset.getString("member_name"));
 				r.setMemberId(rset.getString("member_id"));
+				r.setNickname(rset.getString("nickname"));
 				userIdList.add(r);
 				
 			}

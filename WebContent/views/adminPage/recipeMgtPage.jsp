@@ -144,12 +144,14 @@
 									<c:forEach begin="0"
 										items="${requestScope.pageData.dataList }" var="list"
 										varStatus="i">
-										<tr>
+										<tr >
 										<th scope="row">${requestScope.pageData.dataList[i.count-1].recipeNo }</th>
-										<th>${requestScope.pageData.dataList[i.count-1].recipeTitle }</th>
+										<th><a href="/recipe?recipeNo=${requestScope.pageData.dataList[i.count-1].recipeNo }">
+										${requestScope.pageData.dataList[i.count-1].recipeTitle }</a></th>
 										<th>${requestScope.pageData.dataList[i.count-1].recipeViews }</th>
 										<th>${requestScope.pageData.dataList[i.count-1].postedDate }</th>
 										<th>${requestScope.pageData.dataList[i.count-1].memberId }</th>
+										<th><button>삭제</button>
 										</tr>
 									</c:forEach>
 									

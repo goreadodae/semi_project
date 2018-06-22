@@ -116,14 +116,14 @@
 		'<input type="hidden" id="materListId'+materDivH+'" name="materList" value=""></div>'+
 		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivI+'" onchange="materListPlusTwo('+materDivI+')">'+
 		'<input type="hidden" id="materListId'+materDivI+'" name="materList" value="">'+
-		'</div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
+		'</div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');" class="mybutton2-1">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
 		materNum++; materDivH++; materDivI++;
 		
 	}  
 	
-	
+	/* 재료 삭제 부분 */
 	function materDelete(materNum){
-		
+		alert(materNum);
 		$('#materPlusRow'+materNum).remove();
 
 	}
@@ -175,7 +175,6 @@
 						'<div class="col-md-10"><textarea class="form-control" rows="2" style="resize: none;" id="textTip'+plusNum+'"></textarea></div></div></div></div></form>'+
 					'<div class="row"><div class="col-md-12">　　</div></div></div>'); count++; plusNum++; stepBtnCount++;
 					
-				/* 	 $('#stepBtnCount').attr('value',stepBtnCount); */
 		} 
 	
 	/* 네비게이션부분  */
@@ -222,17 +221,11 @@
                    reader.onload = function(e) {
 
                       imgFile_Main.attr('src',e.target.result);
-                     // imgFile_Suc_One.attr('src',e.target.result);
-                      
                    
              		 
                       var imgAddr = $('#imgFile_Main').attr('src');
                        $('#mainRPic').attr('value',imgAddr);
-                   
-                      // var imgAddr = $('#imgFile_Suc_One').attr('src');
-                      // $('#sendPicSucOne').attr('value',imgAddr);
              		 
-  					
                    }
 
                    reader.readAsDataURL($(this)[0].files[i]);
@@ -633,7 +626,7 @@
 
 /* div {
 	border: 1px solid black;
-} */
+}  */
 
 *{
 	margin:0;
@@ -1054,15 +1047,12 @@ body{font-family:IropkeBatang;}
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12"><button type="button" onclick="stepPlus();" class="mybutton1">+순서추가</button></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					
 					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12" id="successImgAll">
 					<input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" style="display:none"/>
-					<!-- <input id="fileSucAll2" name="fileSucAll2" multiple="multiple" type="file" style="display:none"/>
-					<input id="fileSucAll3" name="fileSucAll3" multiple="multiple" type="file" style="display:none"/>
-					<input id="fileSucAll4" name="fileSucAll4" multiple="multiple" type="file" style="display:none"/>
-					<input id="fileSucAll5" name="fileSucAll5" multiple="multiple" type="file" style="display:none"/> -->
 					<button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
 					<input id="fileSucOne" name="fileSucOne" multiple="multiple" type="file" style="display:none"/>

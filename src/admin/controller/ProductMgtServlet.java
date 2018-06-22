@@ -1,28 +1,29 @@
-package recipe.controller;
+package admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
-import recipe.model.service.RecipeService;
+import admin.model.service.AdminService;
+import admin.model.vo.AdminProduct;
 
 /**
- * Servlet implementation class RecipeDeleteServlet
+ * Servlet implementation class ProductMgtServlet
  */
-@WebServlet(name = "RecipeDelete", urlPatterns = { "/recipeDelete" })
-public class RecipeDeleteServlet extends HttpServlet {
+@WebServlet(name = "ProductMgt", urlPatterns = { "/productMgt" })
+public class ProductMgtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RecipeDeleteServlet() {
+    public ProductMgtServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +32,10 @@ public class RecipeDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
-		int result = new RecipeService().deleteRecipe(recipeNo);
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		new Gson().toJson(result,response.getWriter());
+		ArrayList<AdminProduct> list = new AdminService().getProductList();
+		request.setAttribute("productList", list);
+		RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/productMgtPage.jsp");
+		view.forward(request, response);
 	}
 
 	/**

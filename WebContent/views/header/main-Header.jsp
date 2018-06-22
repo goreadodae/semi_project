@@ -388,28 +388,27 @@
 		<!-- 전체 카테고리 -->
 		<div class="position-absolute col-md-12" id="t_category_list" style="padding: 0px;">
 			<div class="col-md-8 mx-auto" id="category_list">
-			
 				<!-- 1번 칼럼  -->
 				<ul class="colum">
 					<li class="header">
 						<a href="#" id="title-1" class="category-text" style="color:black;">종류별</a><hr>
 					</li>
 					<li class="category-text" style="float:left; margin-right:19px;"><a href="/recipeList?cate1=63&cate2=0&cate3=0&cate4=0&search=null">밑반찬</a></li>
-					<li class="category-text"><a href="#">퓨전김치</a></li>
-					<li class="category-text" style="float:left; margin-right:8px;"><a href="#">메인반찬</a></li>
-					<li class="category-text"><a href="#">김치/젓갈/장류</a></li>
-					<li class="category-text" style="float:left; margin-right:25px;"><a href="#">국/탕</a></li>
-					<li class="category-text"><a href="#">양념/소스/잼</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">찌개</a></li>
-					<li class="category-text"><a href="#">양식</a></li>
-					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">디저트</a></li>
-					<li class="category-text"><a href="#">샐러드</a></li>
-					<li class="category-text" style="float:left; margin-right:15px;"><a href="#">면/만두</a></li>
-					<li class="category-text"><a href="#">스프</a></li>
-					<li class="category-text" style="float:left; margin-right:10px;"><a href="#">밥/죽/떡</a></li>
-					<li class="category-text"><a href="#">빵</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">과자</a></li>
-					<li class="category-text"><a href="#">차/음료/술</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=61&cate2=0&cate3=0&cate4=0&search=null">퓨전</a></li>
+					<li class="category-text" style="float:left; margin-right:8px;"><a href="/recipeList?cate1=56&cate2=0&cate3=0&cate4=0&search=null">메인반찬</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=57&cate2=0&cate3=0&cate4=0&search=null">김치/젓갈/장류</a></li>
+					<li class="category-text" style="float:left; margin-right:25px;"><a href="/recipeList?cate1=54&cate2=0&cate3=0&cate4=0&search=null">국/탕</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=58&cate2=0&cate3=0&cate4=0&search=null">양념/소스/잼</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=55&cate2=0&cate3=0&cate4=0&search=null">찌개</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=65&cate2=0&cate3=0&cate4=0&search=null">양식</a></li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="/recipeList?cate1=60&cate2=0&cate3=0&cate4=0&search=null">디저트</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=64&cate2=0&cate3=0&cate4=0&search=null">샐러드</a></li>
+					<li class="category-text" style="float:left; margin-right:15px;"><a href="/recipeList?cate1=53&cate2=0&cate3=0&cate4=0&search=null">면/만두</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=68&cate2=0&cate3=0&cate4=0&search=null">스프</a></li>
+					<li class="category-text" style="float:left; margin-right:10px;"><a href="/recipeList?cate1=52&cate2=0&cate3=0&cate4=0&search=null">밥/죽/떡</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=66&cate2=0&cate3=0&cate4=0&search=null">빵</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=52&cate2=0&cate3=0&cate4=0&search=null">과자</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=59&cate2=0&cate3=0&cate4=0&search=null">차/음료/술</a></li>
 				</ul>
 
 				<!-- 2번 칼럼  -->

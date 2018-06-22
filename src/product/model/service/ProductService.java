@@ -93,9 +93,9 @@ public class ProductService {
 	}
 
 	//1.구매내역 테이블 추가
-	public int insertBuying(int basketNo) {
+	public int insertBuying(int basketNo,int orderNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new ProductDao().insertBuying(conn, basketNo);
+		int result = new ProductDao().insertBuying(conn, basketNo, orderNo);
 		if(result>0)
 			JDBCTemplate.commit(conn);
 		else
@@ -139,11 +139,27 @@ public class ProductService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	//0.5 주문내역의 주문번호 받아오기
+	public Ordercall getOrderNo(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Ordercall ordercall = new ProductDao().getOrderNo(conn, memberNo);
+		JDBCTemplate.close(conn);
+		return ordercall;
+	}
 
 	//방금 구매한 내역 정보 보기
 	public ArrayList<Buying> selectBuyingRecent(int memberNo, int rowCount){
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Buying> list = new ProductDao().selectBuyingRecent(conn, memberNo, rowCount);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	//로그인 계정의 전체 주문내역 보기
+	public ArrayList<Ordercall> selectOrdercallAll(int memberNo){
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Ordercall> list = new ProductDao().selectOrdercallAll(conn, memberNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}

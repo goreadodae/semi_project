@@ -43,6 +43,7 @@ public class ProductDao {
 				pro.setProductSpecPic(rset.getString("product_spec_pic"));
 				pro.setProductIntro(rset.getString("product_intro"));
 				pro.setProductInfo(rset.getString("product_info"));
+				
 				list.add(pro);
 			}
 		} catch (FileNotFoundException e) {
@@ -89,6 +90,7 @@ public class ProductDao {
 				productInfo.setProductSpecPic(rset.getString("product_spec_pic"));
 				productInfo.setProductIntro(rset.getString("product_intro"));
 				productInfo.setProductInfo(rset.getString("product_info"));
+				productInfo.setRecipeNo(rset.getInt("recipe_no"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -223,6 +225,8 @@ public class ProductDao {
 				b.setProduct1stPic(rset.getString("product_1st_pic"));
 				b.setBasketQuantity(rset.getInt("bascket_quantity"));
 				b.setProductPrice(rset.getInt("product_price"));
+				b.setProductNo(rset.getInt("product_no"));
+				
 				bList.add(b);
 			}
 
@@ -653,7 +657,8 @@ public class ProductDao {
 				b.setProductName(rset.getString("product_Name"));
 				b.setProductPrice(rset.getInt("product_price"));
 				b.setProduct1stPic(rset.getString("product_1st_pic"));
-
+				b.setOrderNo(rset.getInt("order_no"));
+				
 				list.add(b);
 			}
 

@@ -1,19 +1,15 @@
 package admin.model.dao;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import admin.model.vo.AdminProduct;
 import admin.model.vo.AdminRecipe;
 import common.JDBCTemplate;
-import recipe.model.vo.Recipe;
+import qna.model.vo.Question;
 
 public class AdminDao {
 
@@ -118,6 +114,39 @@ public class AdminDao {
 		return sb.toString();
 	}
 
+
+	public ArrayList<Question> getQuestionCurrentPage(Connection conn, int currentPage, int recordCountPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Question q = null;
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		
+		String query="select que_no,que_title,que_time,que_contents,member_no,member_id,buying_no,response_yn "+
+					"from(select question.*,row_number()over(order by que_no desc) as num from question) "+
+					"left join member using(member_no) where num between ? and ? ";
+		
+		ArrayList<Question> list = new ArrayList<Question>();
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next())
+			{
+				q = new Question();
+				q.setMemberNo(rset.getInt("que_no"));
+				q.setQueTitle(rset.getString("que_title"));
+				q.setQueTime(rset.getTimestamp("que_time"));
+				q.setQueContents(rset.getString("que_contents"));
+				q.setMemberNo(rset.getInt("member_no"));
+				q.setMemberId(rset.getString("member_id"));
+				q.setBuyingNo(rset.getInt("buying_no"));
+				q.setResponseYn(rset.getString("response_yn"));
+				list.add(q);
+
 	public ArrayList<AdminProduct> getProductList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -142,15 +171,115 @@ public class AdminDao {
 				ap.setProductNo(rset.getInt("product_no"));
 				ap.setRecipeNo(rset.getInt("recipe_no"));
 				list.add(ap);
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+
+		}finally
+		{
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
+		
 		return list;
+	}
+
+	public String getQuestionPageNavi(Connection conn, int currentPage, int recordCountPerPage, int naviCountPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int recordTotalCount = 0;
+		String query="select count(*)as totalCount from question";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next())
+			{
+				recordTotalCount = rset.getInt("totalCount");
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		int pageTotalCount=0;
+		
+		if(recordTotalCount%recordCountPerPage!=0)
+		{
+			pageTotalCount = recordTotalCount / recordCountPerPage+1;
+			
+		}
+		else
+		{
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+		if(currentPage<1)
+		{
+			currentPage =1;
+		}
+		else if(currentPage>pageTotalCount)
+		{
+			currentPage = pageTotalCount;
+		}
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		
+		int endNavi = startNavi + naviCountPerPage-1;
+		
+		if(endNavi>pageTotalCount)
+		{
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi ==1)
+		{
+			needPrev =false;
+		}
+		if(endNavi ==pageTotalCount)
+		{
+			needNext =false;
+		}
+		StringBuilder sb = new StringBuilder();
+		if(needPrev)
+		{
+			sb.append("<li class=\'page-item\'>");
+			sb.append("<a class='page-link' href='/qnaMgt?currentPage="+(startNavi-1)+" aria-label='previous'>");
+			sb.append("<span aria-hidden='true'>&laquo;</span>");
+			sb.append("<span class='sr-only'>Previous</span></a></li>");
+			
+		}
+		for(int i= startNavi; i<=endNavi;i++)
+		{
+			if(i==currentPage)
+			{
+				sb.append("<li class=\'page-item active\'><a class=\'page-link\'");
+				sb.append(" href='/qnaMgt?currentPage="+i+"'>"+i+"</a>");
+			}
+			else
+			{
+				sb.append("<li class=\'page-item\'><a class=\'page-link\'");
+				sb.append(" href='/qnaMgt?currentPage="+i+"'>"+i+"</a>");
+			}
+		}
+		if(needNext)
+		{
+			sb.append("<li class=\'page-item\'>");
+			sb.append("<a class='page-link' href='/qnaMgt?currentPage="+(endNavi+1)+" aria-label='Next'>");
+			sb.append("<span aria-hidden='true'>&laquo;</span>");
+			sb.append("<span class='sr-only'>Next</span></a></li>");
+		}
+		
+		return sb.toString();
+		
+		
 	}
 
 }

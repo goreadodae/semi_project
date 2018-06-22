@@ -1,0 +1,212 @@
+@charset "UTF-8";
+
+.member-join>h2 {
+	background: #202222;
+	font-weight: 500;
+	font-size: 13pt;
+	color: white;
+	padding: 19px 33px;
+	margin-bottom: 20px;
+}
+
+.member-join ul>li {
+	vertical-align: top;
+	display: inline-block;
+	width: calc(50% + 0px - 10px);
+}
+
+.member-join .box {
+	padding: 40px 55px 55px;
+	background: #f9f9f9;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	height: 416px;
+	width: 626px;
+	
+}
+
+.member-join .box h3 {
+	font-size: 17px;
+	font-weight: 500;
+	padding-bottom: 42px;
+}
+
+#phone-auth .box, #member-insert .box {
+	padding: 40px 55px 55px;
+	background: #f9f9f9;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	height: 300px;
+	width: 1270px;
+	border:1px solid black;
+}
+
+.member-join>ul>li>div {
+	padding: 20px;
+	font-size: 13px;	
+	overflow: auto;
+	height: 220px;
+	text-align: left;
+	line-height: 140%;
+	border: 1px solid #c4c4c4;
+	background: white;
+}
+
+.button-bar {
+	padding: 20px 0;
+}
+
+.member-join .box div.msg {
+	border: 1px solid #c4c4c4;
+	padding: 25px;
+	text-align: center;
+	color: #585858;
+	font-size: 17px;
+	line-height: 140%;
+	background: white;
+}
+
+#phone-auth ul {
+	padding-top: 40px;
+	list-style: none;
+}
+
+.button-bar>div a, .button-bar>div input[type=button], .button-bar>div input[type=submit],
+	.button-bar>div input[type=reset], .button-bar>div button {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-size: 15px;
+	color: white;
+	width: 260px
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.agree1 {
+	background: #202222;
+}
+
+.agree2 {
+	background: #f35b5e;
+}
+
+ul.filter li {
+	float: left;
+	margin-bottom: 20px;
+	font-size: 11pt;
+	width: 1070px;
+	height: 35px;
+}
+
+.line label {
+	margin: 0;
+	float: left;
+	width: 100px;
+	height: 35px;
+	font-weight: 500;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 35px;
+}
+
+.line div input {
+	float: left;
+	height: 35px;
+	width: 150px;
+	box-sizing: border-box;
+	font-size: 11pt;
+	border: 1px solid #c4c4c4;
+	padding: 0 6px;
+}
+
+ul.filter>li span.choice {
+	width: 60%;
+	height: 40px;
+	margin-left: 0;
+}
+
+ul.filter>li h5 {
+	font-weight: 500;
+	float: left;
+	font-weight: bold;
+	line-height: 30px;
+	padding: 0 5px;
+}
+
+.desktop {
+	color: gray;
+	font-size: 17px;
+	font-weight: 400;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol";
+	background-color: white;
+}
+
+#email font {
+	line-height: 35px;
+}
+
+#member-insert .box {
+	height: 700px;
+}
+
+#member-insert input {
+	padding:0px;
+	font-size: 11pt;
+}
+
+#birth-print input {
+	border: 0;
+	background: #f9f9f9;
+	font-weight: 500;
+	font-weight: bold;
+	width: 44px;
+	text-align: right;
+	padding: 0;
+}
+
+#gender button {
+	width: 100px;
+}
+
+pre {
+	background: #f9f9f9;
+	border: 0;
+}
+
+.ghost {
+	display: none;
+}
+
+.jombi {
+	visibility: hidden;
+	margin: 0;
+}
+
+.problem {
+	color: red;
+	font-size: 11pt;
+	margin: 0;
+	padding: 0;
+	display: none;
+}
+
+.form-group1 {
+	margin-bottom: 21px;
+}
+
+.form-control{
+	width:60%;
+	height:40px;
+}

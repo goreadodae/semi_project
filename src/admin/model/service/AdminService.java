@@ -50,7 +50,7 @@ public class AdminService {
 		JDBCTemplate.close(conn);
 		
 		return aqpd;
-
+	}
 		
 	public ArrayList<AdminProduct> getProductList() {
 		Connection conn = JDBCTemplate.getConnection();

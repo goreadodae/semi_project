@@ -7,12 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import common.JDBCTemplate;
 import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class ChangeInfoServlet
@@ -74,9 +75,10 @@ public class ChangeInfoServlet extends HttpServlet {
 	        fullFilePath = "/imgs/profile_img/"+ afterFileName;
 		}
 		
-		result = new MemberService().changInfo(userId, fullFileStepPath, userPwd, Phone, email, address, nickname);
-
-		if (result > 0) {
+		Member m = new MemberService().changInfo(userId, fullFileStepPath, userPwd, Phone, email, address, nickname);
+		if (m != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", m);
 			response.sendRedirect("/views/memberPage/myHomeMainPage.jsp");
 			System.out.println("성공");
 		} else {

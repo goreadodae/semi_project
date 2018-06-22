@@ -141,7 +141,7 @@ margin-left:274px;
 
 #changeBtn{
 margin-left:10px;
-line-height: 32px;
+line-height: 39px;
 }
 #changeEmail{
 display: none;
@@ -187,8 +187,6 @@ ol, li {
   </div>
 </div>
 
-
-
    <!-- 전체 컨테이너  -->
    <div class="container-fluid" style="padding: 0px;">
 
@@ -204,9 +202,10 @@ ol, li {
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                     <li><a href="/views/memberPage/myHomeMainPage.jsp">나의 주문내역</a></li>
-                     <li><a href="/views/memberPage/myHomeRecipePage.jsp">나의 레시피</a></li>
-                     <li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가 쓴 댓글</a></li>
+                  	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                     <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
+                     <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
+                     <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
                      <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인정보 수정</a></li>
                   </ul>
                </div>
@@ -223,7 +222,7 @@ ol, li {
                            <td class="memberCols1">아이디</td>
                            <td class="memberCols2">
                            <input class="form-control" name="userId" readonly value="<%=m.getMemberId() %>" style="width: 150px;" />
-                              </td>
+                           </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">새 비밀번호</td>
@@ -274,7 +273,7 @@ ol, li {
                               <h5 style="float: left; line-height: 32px; padding: 0 5px;">@</h5>
                               <input class="form-control" type="text" value="<%=email[1]%>"
                               style="width: 150px; float: left;" id="last_email"  /> 
-                              <a href="#" id="changeBtn" onclick="changeEmail();">중복검사</a>
+                              <a href="#" id="changeBtn" onclick="changeEmail();" style="margin-top:5px;">중복검사</a>
                               <input type="hidden" id="saveEmail" name="saveEmail" value="<%= m.getEmail() %>" />
                               <span>
                                  <label class="problem"id="emailProblem"></label>
@@ -316,7 +315,6 @@ ol, li {
                                  
                               <%} %>
                               <input type="hidden" id="saveProfile" value="<%=m.getProfile()%>" name="beforeProfile">
-                              <%=m.getProfile() %>
                               </td>
                         </tr>
                         <tr>
@@ -389,8 +387,6 @@ ol, li {
                     }
                 }
             }
-      
-      
       $('#frm').submit();
       
    }
@@ -498,7 +494,7 @@ ol, li {
     function readURL(input,stepImgNum) {
        if (input.files && input.files[0]) {
            var reader = new FileReader();
-    
+           
            reader.onload = function (e) {
               $('#imgFile_Step_'+stepImgNum).attr('src', e.target.result);
               
@@ -506,7 +502,6 @@ ol, li {
                    $('#stepRPic'+stepImgNum).attr('value',imgAddr);
             
            }
-    
            reader.readAsDataURL(input.files[0]);
           }
       };
@@ -516,7 +511,6 @@ ol, li {
         regExpNickname
         if($('#nickname').val() != ""){
            if (!regExpNickname.test($('#nickname').val())){
-              
            }else{
               $('#saveNick').val($('#nickname').val());
            }
@@ -526,7 +520,6 @@ ol, li {
    
    
    </script>
-
 
    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
    <script

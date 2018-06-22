@@ -243,7 +243,7 @@
 				</li>
 				<%}%>
 				<li class="nav-item text-center">
-					<a class="nav-link" href="/views/customerCenterPage/noticePage.jsp" style="padding-right:10px;">
+					<a class="nav-link" href="/noticeList" style="padding-right:10px;">
 						고객센터
 					</a>
 				</li>
@@ -295,7 +295,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<a class="nav-category" href="/views/customerCenterPage/noticePage.jsp">고객센터</a>
+						<a class="nav-category" href="/noticeList">고객센터</a>
 					</div>
 					<%if(m!=null){ %>
 					<div class="col-md-2" style="padding:0px; position:absolute; right:0px; bottom:70px;">
@@ -394,7 +394,7 @@
 					<li class="header">
 						<a href="#" id="title-1" class="category-text" style="color:black;">종류별</a><hr>
 					</li>
-					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">밑반찬</a></li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="/recipeList?cate1=63&cate2=0&cate3=0&cate4=0&search=null">밑반찬</a></li>
 					<li class="category-text"><a href="#">퓨전김치</a></li>
 					<li class="category-text" style="float:left; margin-right:8px;"><a href="#">메인반찬</a></li>
 					<li class="category-text"><a href="#">김치/젓갈/장류</a></li>

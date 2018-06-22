@@ -14,8 +14,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My Home</title>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
 
 
 <style>
@@ -148,7 +148,7 @@ ol, li {
 
 #nav {
    margin-top:30px;
-   width: 500px;
+   width: 100%;
    text-align: center;
 }
 
@@ -173,10 +173,10 @@ ol, li {
 </style>
 </head>
 <script>
-	/* 해더 불러오는 제이쿼리 */
-	$(document).ready(function() {
-		$("#footer").load("/views/footer/main-Footer.jsp");
-	});
+   /* 해더 불러오는 제이쿼리 */
+   $(document).ready(function() {
+      $("#footer").load("/views/footer/main-Footer.jsp");
+   });
 </script>
 
 <!-- 모든 스타일 시트 적용 -->
@@ -187,8 +187,8 @@ ol, li {
    <div class="container-fluid" style="padding: 0px;">
 
     <!-- 해더 영역 -->
-	<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
-	<!-- 헤더 영역 끝 -->
+   <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+   <!-- 헤더 영역 끝 -->
 
       <!-- 컨텐츠 영역 -->
       <div id="contents"
@@ -199,15 +199,15 @@ ol, li {
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                  	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                      <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
-                     <li><a href="/views/memberPage/myHomeRecipePage.jsp">나의  레시피</a></li>
+                     <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
                      <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
                   </ul>
                </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                <div id="menu-title">
                   <h2>나의 주문 내역</h2>
                </div>
@@ -231,8 +231,7 @@ ol, li {
                      
                      <%if(p.isEmpty()==false) {%>
                      <tbody>
-                     
-
+                     	<%=p.isEmpty() %>
                         <%
                            for (BuyProduct bp : p) {
                         %>
@@ -259,7 +258,7 @@ ol, li {
                      </tbody>
                      <%}else{ %>
                      <tbody>
-                           <td colspan="3" class="no_data">
+                           <td colspan="5" class="no_data">
                            <center>주문내역이 없습니다.</center>
                            </td>
                      </tbody>
@@ -304,7 +303,7 @@ ol, li {
                var rowTotals = $tr.length;
                console.log(rowTotals);
                
-               if(rowTotals>3){
+               if(rowTotals>rowPerPage){
                 $products.after('<div id="nav">');
                 }
 

@@ -670,50 +670,91 @@ public class MemberDao {
 
 		return result;
 	}
-	
+
 	public ArrayList<Recipe> recipe(Connection conn, int userNo) {
-	      String path = JDBCTemplate.class.getResource("..").getPath();
-	      PreparedStatement pstmt = null;
-	      ResultSet rset = null;
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
-	      Properties prop = new Properties();
-	      ArrayList<Recipe> recipe = new ArrayList<Recipe>();
-	      Recipe r=null;
-	      
-	      
-	      try {
-	         prop.load(new FileReader(path + "resources/memberQuery.properties"));
-	         String query = "select recipe_no, recipe_title, posted_date, recipe_views from recipe where member_no=?";
+		Properties prop = new Properties();
+		ArrayList<Recipe> recipe = new ArrayList<Recipe>();
+		Recipe r = null;
 
-	         pstmt = conn.prepareStatement(query);
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select recipe_no, recipe_title, posted_date, recipe_views from recipe where member_no=?";
 
-	         pstmt.setInt(1, userNo);
+			pstmt = conn.prepareStatement(query);
 
-	         rset = pstmt.executeQuery();
-	         
-	         while (rset.next()) {
-	            r = new Recipe();
-	            
-	            r.setRecipeNo(rset.getInt("recipe_no"));
-	            r.setRecipeTitle(rset.getString("recipe_title"));
-	            r.setPostedDate(rset.getDate("posted_date"));
-	            r.setRecipeViews(rset.getInt("recipe_views"));
-	            
-	            recipe.add(r);
-	         }
-	         
-	      } catch (IOException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }finally {
-	         JDBCTemplate.close(rset);
-	         JDBCTemplate.close(pstmt);
-	      }
-	      
-	      return recipe;
-	   }
+			pstmt.setInt(1, userNo);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				r = new Recipe();
+
+				r.setRecipeNo(rset.getInt("recipe_no"));
+				r.setRecipeTitle(rset.getString("recipe_title"));
+				r.setPostedDate(rset.getDate("posted_date"));
+				r.setRecipeViews(rset.getInt("recipe_views"));
+
+				recipe.add(r);
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return recipe;
+	}
+
+	public ArrayList<Member> getMemberInfo(Connection conn) {
+		
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		Properties prop = new Properties();
+		
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		String query = "select member.member_no, member.member_name, member.profile from member, recipe where member.member_no = recipe.member_no";
+		try {
+			
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			
+			pstmt = conn.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				m = new Member();
+				
+				m.setMemberNo(rset.getInt("member_no"));
+				m.setMemberName(rset.getString("member_name"));
+				m.setProfile(rset.getString("profile"));
+				
+				list.add(m);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
 
 }

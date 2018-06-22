@@ -2,6 +2,7 @@ package main.model.vo;
 
 public class MainRecipe {
 	private int recipeNo;
+	private int userNo;
 	private String recipeTitle;
 	private int recipeMonthViews;
 	private int recipeTodayViews;
@@ -10,9 +11,10 @@ public class MainRecipe {
 	private String cookLevel;
 	private String memberId;
 	
-	public MainRecipe(int recipeNo, String recipeTitle, int recipeMonthViews, int recipeTodayViews, String recipePic,
+	public MainRecipe(int recipeNo, String recipeTitle, int recipeMonthViews, int userNo, int recipeTodayViews, String recipePic,
 			String cookTime, String cookLevel, String memberId) {
 		super();	
+		this.setUserNo(userNo);
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
 		this.recipeMonthViews = recipeMonthViews;
@@ -89,5 +91,13 @@ public class MainRecipe {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 }

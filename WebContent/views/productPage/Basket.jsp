@@ -265,7 +265,7 @@ $(document).ready(function(){
         	var payment2 = $('#payment2');
          	var totalpayment = $('#totalpayment');
          	
-         	if(basketQuantity<productQuantity){
+         	if(Number(basketQuantity)<Number(productQuantity)){
          		basketQuantity++;
      	 		qty.val(basketQuantity);
      	 		tdPrice.html(Number(tdPrice.html())+Number(productPrice));

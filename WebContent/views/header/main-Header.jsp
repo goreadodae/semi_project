@@ -359,7 +359,6 @@
 							url : "/monthlyRecipe",
 							type : "post",
 							success : function(data) {
-								var keys = Object.keys(data);
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
 									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title);
@@ -416,37 +415,36 @@
 					<li class="header">
 						<a href="#" id="title-1" class="category-text" style="color:black;">상황별</a><hr>
 					</li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">일상</a></li>
-					<li class="category-text"><a href="#">초스피드</a></li>
-					<li class="category-text" style="float:left; margin-right:8px;"><a href="#">손님접대</a></li>
-					<li class="category-text"><a href="#">술접대</a></li>
-					<li class="category-text" style="float:left; margin-right:20px;"><a href="#">술안주</a></li>
-					<li class="category-text"><a href="#">다이어트</a></li>
-					<li class="category-text" style="float:left; margin-right:20px;"><a href="#">도시락</a></li>
-					<li class="category-text"><a href="#">영양식</a></li>
-					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">간식</a></li>
-					<li class="category-text"><a href="#">야식</a></li>
-					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">명절</a></li>
-					<li class="category-text"><a href="#">이유식</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">해장</a></li>
-					<li class="category-text"><a href="#">푸드스타일링</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=12&cate3=0&cate4=0&search=null">일상</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=18&cate3=0&cate4=0&search=null">초스피드</a></li>
+					<li class="category-text" style="float:left; margin-right:8px;"><a href="/recipeList?cate1=0&cate2=13&cate3=0&cate4=0&search=null">손님접대</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=19&cate3=0&cate4=0&search=null">술안주</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=46&cate3=0&cate4=0&search=null">해장</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=21&cate3=0&cate4=0&search=null">다이어트</a></li>
+					<li class="category-text" style="float:left; margin-right:20px;"><a href="/recipeList?cate1=0&cate2=15&cate3=0&cate4=0&search=null">도시락</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=43&cate3=0&cate4=0&search=null">영양식</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="/recipeList?cate1=0&cate2=17&cate3=0&cate4=0&search=null">간식</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=45&cate3=0&cate4=0&search=null">야식</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="/recipeList?cate1=0&cate2=44&cate3=0&cate4=0&search=null">명절</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=14&cate3=0&cate4=0&search=null">이유식</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=20&cate3=0&cate4=0&search=null">푸드스타일링</a></li>
 				</ul>
 
 				<ul class="colum">
 					<li class="header">
 						<a href="#" id="title-1" class="category-text" style="color:black;">재료별</a><hr>
 					</li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">볶음</a></li>
-					<li class="category-text"><a href="#">끓이기</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">무침</a></li>
-					<li class="category-text"><a href="#">비빔</a></li>
-					<li class="category-text" style="float:left; margin-right:40px;"><a href="#">찜</a></li>
-					<li class="category-text"><a href="#">절임</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">튀김</a></li>
-					<li class="category-text"><a href="#">삶기</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">굽기</a></li>
-					<li class="category-text"><a href="#">데치기</a></li>
-					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">회</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=6&cate4=0&search=null">볶음</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=1&cate4=0&search=null">끓이기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=7&cate4=0&search=null">무침</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=36&cate4=0&search=null">조림</a></li>
+					<li class="category-text" style="float:left; margin-right:40px;"><a href="/recipeList?cate1=0&cate2=0&cate3=8&cate4=0&search=null">찜</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=10&cate4=0&search=null">절임</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=9&cate4=0&search=null">튀김</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=38&cate4=0&search=null">삶기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=67&cate4=0&search=null">굽기</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=39&cate4=0&search=null">데치기</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="/recipeList?cate1=0&cate2=0&cate3=37&cate4=0&search=null">회</a></li>
 
 				</ul>
 				
@@ -454,21 +452,21 @@
 					<li class="header">
 						<a href="#" id="title-1" class="category-text" style="color:black;">방법별</a><hr>
 					</li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">소고기</a></li>
-					<li class="category-text"><a href="#">돼지고기</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">닭고기</a></li>
-					<li class="category-text"><a href="#">육류</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">채소류</a></li>
-					<li class="category-text"><a href="#">해물류</a></li>
-					<li class="category-text" style="float:left; margin-right:3px;"><a href="#">달걀/유제품</a></li>
-					<li class="category-text"><a href="#">가공식품류</a></li>
-					<li class="category-text" style="float:left; margin-right:52px;"><a href="#">쌀</a></li>
-					<li class="category-text"><a href="#">밀가루</a></li>
-					<li class="category-text" style="float:left; margin-right:19px;"><a href="#">건어물류</a></li>
-					<li class="category-text"><a href="#">버섯류</a></li>
-					<li class="category-text" style="float:left; margin-right:30px;"><a href="#">과일류</a></li>
-					<li class="category-text"><a href="#">콩/견과류</a></li>
-					<li class="category-text" style="float:left; margin-right:31px;"><a href="#">곡류</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=70&search=null">소고기</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=71&search=null">돼지고기</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=72&search=null">닭고기</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=23&search=null">육류</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=28&search=null">채소류</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=24&search=null">해물류</a></li>
+					<li class="category-text" style="float:left; margin-right:3px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=50&search=null">달걀/유제품</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=33&search=null">가공식품류</a></li>
+					<li class="category-text" style="float:left; margin-right:52px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=47&search=null">쌀</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=32&search=null">밀가루</a></li>
+					<li class="category-text" style="float:left; margin-right:19px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=25&search=null">건어물류</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=31&search=null">버섯류</a></li>
+					<li class="category-text" style="float:left; margin-right:30px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=48&search=null">과일류</a></li>
+					<li class="category-text"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=27&search=null">콩/견과류</a></li>
+					<li class="category-text" style="float:left; margin-right:31px;"><a href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=26&search=null">곡류</a></li>
 				</ul>
 				
 				<ul class="colum">
@@ -476,9 +474,10 @@
 						<a href="#" id="title-1" class="category-text" style="color:black;">랭킹</a><hr>
 					</li>
 					<li class="category-text">1위</li>
-					<li class="category-text">과일</li>
-					<li class="category-text">쌀/잡곡</li>
-					<li class="category-text">견과류</li>
+					<li class="category-text">2위</li>
+					<li class="category-text">3위</li>
+					<li class="category-text">4위</li>
+					<li class="category-text">5위</li>
 				</ul>
 				
 				<ul class="colum">
@@ -490,27 +489,22 @@
 						<hr>
 					</li>
 					<li class="category-text">
-						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						<a href="/noticeList" id="title-1" class="category-text" 
 						style="text-decoration:none; color:black;">
 							공지사항
 						</a>
 					</li>
 					<li class="category-text">
-						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
+						<a href="/faqList" id="title-1" class="category-text" 
 						style="text-decoration:none; color:black;">
 							FAQ
 						</a>
 					</li>
+					<!-- 로그인 상태이면 -->
 					<li class="category-text">
 						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
 						style="text-decoration:none; color:black;">
 							1:1 문의
-						</a>
-					</li>
-					<li class="category-text">
-						<a href="/views/customerCenterPage/noticePage.jsp" id="title-1" class="category-text" 
-						style="text-decoration:none; color:black;">
-							상품문의
 						</a>
 					</li>
 				</ul>

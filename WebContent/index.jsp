@@ -873,13 +873,15 @@
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
 									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
-										<!-- 이미지 -->
+									
+										<!-- 레시피 이미지 -->
 										<a href="javascript:void(0)" id="week_link_1"> 
 											<img id="week_img_1" class="img col-md-12 col-sm-12" name="week_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
+										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_1" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -920,7 +922,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_2" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -960,7 +962,7 @@
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_3" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -999,7 +1001,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_4" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -1041,6 +1043,7 @@
 					$(document).ready(function() {
 						var recipeImgArr = [];
 						var recipeNoArr = [];
+						
 						$.ajax({
 							url : "/recipeServlet",
 							type : "post",
@@ -1054,7 +1057,6 @@
 									$('#week_view_' + (i + 1)).append(data[i].recipe_week);
 									$('#week_time_' + (i + 1)).append(data[i].cook_time);
 									$('#week_level_' + (i + 1)).append(data[i].cook_level);
-									$('#week_user_' + (i + 1)).html(data[i].member_id);
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
@@ -1076,6 +1078,27 @@
 								console.log("실패");
 							}
 						});
+						
+						/* 에이작스로 받아오기 */
+						/* $.ajax({
+							url : "/memberRecipe",
+							type : "post",
+							success : function(data) {
+								
+								var keys2 = Object.keys(data);
+								
+								// data[키] 형태로 사용해야 함
+								for (var i = 0; i < keys2.length; i++) {
+									if(recipeNoArr[i]==data[i].recipe_no){
+										$('#week_user_' + (i + 1)).html(data[i].member_name);
+										$('#week_user_img_' + (i + 1)).attr("src", data[i].profile);
+									}
+								}
+							},
+							error : function() {
+								console.log("실패");
+							}
+						}); */
 					});
 				</script>
 
@@ -1102,7 +1125,7 @@
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_1" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -1141,7 +1164,7 @@
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_2" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 										<!-- 사용자 아이디 -->	 
@@ -1180,7 +1203,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_3" src="" alt="" 
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black;">
 											 
@@ -1220,7 +1243,7 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src=""
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_4" src=""
 											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
 											 border:1px solid black; background-color:white;">
 										<!-- 사용자 아이디 -->	 
@@ -1253,12 +1276,14 @@
 						</ul>
 					</div>
 				</div>
+				
 				<!-- 레시피 받아오기 -->
 				<script>
 					$(document).ready(function() {
 						var recipeImgArr = [];
 						var recipeNoArr = [];
-				
+						var monthUserNoArr = [];
+						
 						$.ajax({
 							url : "/monthlyRecipe",
 							type : "post",
@@ -1271,12 +1296,13 @@
 									$('#month_view_' + (i + 1)).append(data[i].recipe_month);
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
-									$('#month_user_' + (i + 1)).html(data[i].member_id);
-				
+									
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
 								}
-				
+								
+								alert(monthUserNoArr.length);
+								
 								$('[name=month_img]').each(function(index) {
 				
 									var index2 = index;
@@ -1289,6 +1315,37 @@
 									});
 				
 								})
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+						
+						// 에이작스로 
+						// 사진 경로와 멤버 이름을 가져오기
+						/* 에이작스로 받아오기 */
+						$.ajax({
+							url : "/memberRecipe",
+							type : "post",
+							success : function(data) {
+								
+								var keys2 = Object.keys(data);
+								
+								alert(keys2.length);
+								
+								// data[키] 형태로 사용해야 함
+								for (var i = 0; i < keys2.length; i++) {
+									
+									monthUserNoArr[keys2].push(data[i].member_no);
+									
+									var mUserNo = monthUserNoArr[i];
+									
+									if(mUserNo == data[i].member_no){
+										$('#month_user_' + (i + 1)).html(data[i].member_name);
+										$('#month_user_img_' + (i + 1)).attr("src", data[i].profile);
+									}
+								}
+								alert(monthUserNoArr.length);
 							},
 							error : function() {
 								console.log("실패");

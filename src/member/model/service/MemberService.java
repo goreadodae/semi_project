@@ -142,4 +142,11 @@ public class MemberService {
 		return list;
 	}
 
+	public ArrayList<Member> getMemberInfo() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> list = new MemberDao().getMemberInfo(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

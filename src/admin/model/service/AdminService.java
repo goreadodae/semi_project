@@ -50,13 +50,22 @@ public class AdminService {
 		JDBCTemplate.close(conn);
 		
 		return aqpd;
-
+	}
 		
 	public ArrayList<AdminProduct> getProductList() {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<AdminProduct> list = new AdminDao().getProductList(conn);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+
+	public Question questionDetail(int queNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Question qt = new AdminDao().questionDetail(conn,queNo);
+		JDBCTemplate.close(conn);
+		
+		
+		return qt;
 	}
 
 }

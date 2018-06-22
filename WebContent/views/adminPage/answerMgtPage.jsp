@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<% pageContext.setAttribute("newLineChar","\n"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-
 #qnaTbl tr {
-text-align:center;
-
-
+	text-align: center;
 }
-
-
 </style>
 
 </head>
@@ -27,58 +24,65 @@ text-align:center;
 				<div class="col-md-12">
 					<div class="col-md-12" style="text-align: center">
 						<br>
-						
+
 
 					</div>
 				</div>
-<!-- border-top: 2px solid #795b8f !important; border-bottom: 2px solid #795b8f !important;
- -->
+
 				<br> <br> <br>
 				<div class="col-md-12" style="height: 800px">
 					<br> <br>
-					<h2>문의사항</h2><br>
-					 <table class="table table-bordered" style="text-align: left;cellpadding='0'; cellspacing='0';
-					 	border-top: 2px solid #795b8f !important; border-bottom: 2px solid #795b8f !important
-					  ">
-                  <thead>
-                     <tr>
-                        <th style="width: 100px; background-color: lightgray;">제목</th>
-                        <td width="200px"></td>
-                        <th style="background-color:lightgray; width=100px;">구매번호</th>
-                        <td></td>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <th style="background-color: lightgray">작성자</th>
-                        <td width="150px"></td>
-                        <th style="background-color:lightgray; width=100px;">문의번호</th>
-                        <td></td>
-                     </tr>
-                     <tr>
-                        <th style="background-color: lightgray;">문의시간</th>
-                        <td width="150px"></td>
-                        <th style="background-color: lightgray;" width="100px">회원아이디</th>
-                        <td></td>
-                        <!-- 카운트 해야함  -->
-                     </tr>
+					<h2>문의사항</h2>
+					<br>
+					<table class="table table-bordered"
+						style="text-align: left;  border-top: 2px solid #795b8f !important; border-bottom: 2px solid #795b8f !important">
+						
+							<tr>
+								<th style="width:100px; background-color: lightgray;">제목</th>
+								<td colspan="4" width="200px">
+									${requestScope.qt.queTitle}
+								</td>
+							</tr>
+						
+						
+							<tr>
+								<th style="background-color: lightgray">작성자</th>
+								<td colspan="4" width="150px">
+								${requestScope.qt.memberId}
+								</td>
+							</tr>
+							<tr>
+								<th style="background-color: lightgray;">문의시간</th>
+								<td colspan="4" width="150px">
+								${requestScope.qt.queTime}
+								
+								</td>
+							</tr>
+							<tr>
+								<th style="background-color: lightgray;">구매번호</th>
+								<td width="150px">
+								${requestScope.qt.buyingNo}
+								
+								
+								</td>
+								<th style="background-color: lightgray; width:100px">문의번호</th>
+								<td>
+								${requestScope.qt.queNo}
 
-                     <tr>
-                     </tr>
-                  </tbody>
-               </table>
-
+								</td>
+				
+									
+							</tr>
+					</table>
 
 					<div class="row">
-						<div class="container">
-							<div class="col-md-5">
 
-								<nav aria-label="Page navigation example" id="pagination">
-								<ul class="pagination ">${requestScope.adminQData.pageNavi}</ul>
-								</nav>
-
-
-							</div>
+						<div class="col-md-12"
+							style="text-align: justify; padding: 30px;">
+							
+							${fn:replace(requestScope.qt.queContents,newLineChar,"<br/>")}
+							
+							<br> <br>
 						</div>
 
 

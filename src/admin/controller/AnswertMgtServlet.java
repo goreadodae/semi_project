@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.AdminService;
-import admin.model.vo.AdminQuestionPageData;
+import qna.model.vo.Question;
 
 /**
- * Servlet implementation class QnaMgtServlet
+ * Servlet implementation class AnswertMgtServlet
  */
-@WebServlet(name = "QnaMgt", urlPatterns = { "/qnaMgt" })
-public class QnaMgtServlet extends HttpServlet {
+@WebServlet(name = "AnswertMgt", urlPatterns = { "/answertMgt" })
+public class AnswertMgtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaMgtServlet() {
+    public AnswertMgtServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,29 +31,21 @@ public class QnaMgtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int currentPage;
-		if(request.getParameter("currentPage")==null)
-		{
-			currentPage=1;
-		}
-		else
-		{
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			
-		}
+		int  queNo = Integer.parseInt(request.getParameter("queNo"));
+		Question qt = new AdminService().questionDetail(queNo);
 		
 		
-		AdminQuestionPageData aqpd= new AdminService().questionList(currentPage);
 		
-		if(aqpd!=null)
+		if(qt!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/qnaMgtPage.jsp");
-			request.setAttribute("adminQData", aqpd);
+			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/answerMgtPage.jsp");
+			request.setAttribute("qt",qt);
 			view.forward(request, response);
+				
 		}
-		
-		
+		else {
+			System.out.println("실수");
+		}
 		
 	}
 

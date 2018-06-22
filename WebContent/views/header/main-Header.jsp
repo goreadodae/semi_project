@@ -234,6 +234,7 @@
 						로그인
 					</a>
 				</li>
+				
 				<%}else{%>
 				<li class="nav-item">
 					<a class="nav-link" href="/logout?recentURI=<%=presentURI%>" style="padding-right:10px;">

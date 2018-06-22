@@ -60,7 +60,7 @@
 	function order(sel) {
 		location.href = "/recipeList?cate1=${requestScope.cate1}"
 				+ "&cate2=${requestScope.cate2}&cate3=${requestScope.cate3}&cate4=${requestScope.cate4}&order="
-				+ sel.getAttribute('id') + "&search=null";
+				+ sel.getAttribute('id') + "&search=${requestScope.search}";
 	}
 	function recipeSelect(recipeNo){
 		$.ajax({

@@ -298,31 +298,29 @@ public class RecipeDao {
 		
 
 		if(needPrev) {
-	        sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	              +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page=1'> << </a></li>");
-	        sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	              +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+(startNavi-1)+"'> < </a></li>");
-	        
-	     }
-	     for(int i=startNavi;i<=endNavi;i++) {
-	        if(i==page) {
-	           sb.append("<li class=\"page-item active\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	                 +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+i+"'><B>"+i+"</B></a></li>");
-	        }
-	        else {
-	           sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	                 +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+i+"'>"+i+"</a></li>");
-	        }
-	     }
-	     if(needNext) {
-	        sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	              +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+(endNavi+1)+"'> > </a></li>");
-	        sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-	              +"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+pageTotalCount+"'> >> </a></li>");
-	     }
-	     
-	     return sb.toString();
-		
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page=1'> << </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(startNavi-1)+"'> < </a></li>");
+			
+		}
+		for(int i=startNavi;i<=endNavi;i++) {
+			if(i==page) {
+				sb.append("<li class=\"page-item active\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'><B>"+i+"</B></a></li>");
+			}
+			else {
+				sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'>"+i+"</a></li>");
+			}
+		}
+		if(needNext) {
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi+1)+"'> > </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+pageTotalCount+"'> >> </a></li>");
+		}
+		return sb.toString();
 	}
 
 	public Recipe recipeSelect(Connection conn, int recipeNo) {

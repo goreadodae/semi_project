@@ -214,7 +214,7 @@ public class ProductDao {
 			prop.load(new FileReader(path+"resources/productQuery.properties"));
 			String query = prop.getProperty("basketDirectSelect");
 
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement("select bascket_no,product_no,product_name,PRODUCT_1ST_PIC,BASCKET_QUANTITY,PRODUCT_PRICE from product join bascket using(PRODUCT_NO) where bascket_no=(select max(bascket_no) from bascket where member_no=?)");
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
 

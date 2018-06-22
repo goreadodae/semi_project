@@ -41,8 +41,6 @@ public class ProductDetailServlet extends HttpServlet {
 		Product productInfo = new Product();
 		productInfo = new ProductService().getProduct(productNo);
 		
-		
-		
 		if(productInfo!=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductDetail.jsp");
 			request.setAttribute("productInfo", productInfo);

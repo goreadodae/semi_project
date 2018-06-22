@@ -62,7 +62,7 @@ public class BuyingInsertServlet extends HttpServlet {
 	         int result2 = new ProductService().deleteBasket(Integer.parseInt(basketNoList[i]));//2.장바구니 비우기
 	         int result3 = new ProductService().updateProduct(Integer.parseInt(productNoList[i]), Integer.parseInt(basketQuantityList[i]));//3.수량 줄이기
 	         int result4 = new ProductService().deleteBasketOver(Integer.parseInt(productNoList[i]));//4.수량초과인 장바구니 모두 삭제
-	    }
+		}
 		
 		
 		

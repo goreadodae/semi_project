@@ -184,7 +184,7 @@ a{
    background-color: #795B8F;
    color : #F8FAFF;
    height : 50px;
-   width : 200px;
+   width : 180px;
    border : 1px solid #522075;
    cursor : pointer;
 }
@@ -193,7 +193,7 @@ a{
    background-color: white;
    color : #522075;
    height : 50px;
-   width : 200px;
+   width : 180px;
    border : 1px solid #522075;
    cursor : pointer;
 }
@@ -202,7 +202,7 @@ a{
    background-color: #522075;
    color : #F8FAFF;
    height : 50px;
-   width : 200px;
+   width : 180px;
    border : 0px;
    cursor : pointer;
 }
@@ -211,7 +211,7 @@ a{
    background-color: #70658B;
    color : #F8FAFF;
    height : 50px;
-   width : 300px;
+   width : 250px;
    border : 0px;
 }
 </style>
@@ -376,22 +376,29 @@ a{
                      <c:choose>
 						<c:when test="${productInfo.productQuantity>0}">
 							<div id="selectButton">
-                        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        		
                         		<input type="hidden" class="basket_quantity" name="basket_quantity" value="1" >
                         		<input type="hidden" id="product_no" value="${productInfo.productNo}" >
                         		<button class="mybutton1" onclick="inputBasket();">장바구니</button>
                         
-                        
-                        		&nbsp;&nbsp;&nbsp;&nbsp;
+                        		&nbsp;&nbsp;
+                        		
                         		<form action="/buyDirect"  method="post" style="display:inline;">
                           		<input type="hidden" class="basket_quantity" name="basketQuantity" value="1" >
                            		<input type="hidden" id="productNo" name="productNo" value="${productInfo.productNo}" >
                            		<button  class="mybutton2" onclick="location.href='/buyDirect'">구매하기</button>
                         		</form>
+                        		&nbsp;&nbsp;
+  
+                        		<button class="mybutton2" onclick="location.href='/recipe?recipeNo=${productInfo.recipeNo}'">레시피보기</button>
                      		</div>
 						</c:when>
 						<c:otherwise>
-							<center><button class="mybutton0">품 절</button></center>
+							<center>
+							<button class="mybutton0">품 절</button>&nbsp;&nbsp;
+							<button class="mybutton2" onclick="location.href='/recipe?recipeNo=${productInfo.recipeNo}'">레시피보기</button>
+							</center>
+							
 						</c:otherwise>
 					</c:choose>
                      

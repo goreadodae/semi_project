@@ -10,11 +10,12 @@ public class Buying {
 	private String productName;
 	private int productPrice;
 	private String product1stPic;
+	private int orderNo;
 	
-	public Buying() {}
+	public Buying() {}	
 	
 	public Buying(int productNo, int buyingNo, int buyingQuantity, Date buyingDate, String productName,
-			int productPrice, String product1stPic) {
+			int productPrice, String product1stPic, int orderNo) {
 		super();
 		this.productNo = productNo;
 		this.buyingNo = buyingNo;
@@ -23,8 +24,9 @@ public class Buying {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.product1stPic = product1stPic;
+		this.orderNo = orderNo;
 	}
-	
+
 	public int getProductNo() {
 		return productNo;
 	}
@@ -66,6 +68,14 @@ public class Buying {
 	}
 	public void setProduct1stPic(String product1stPic) {
 		this.product1stPic = product1stPic;
+	}
+
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
 	
 	

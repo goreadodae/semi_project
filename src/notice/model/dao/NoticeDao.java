@@ -528,6 +528,96 @@ public class NoticeDao {
 	}
 
 
+	public Notice noticeSelect(Connection conn, int noticeNo) {
+		
+		PreparedStatement pstmt = null;
+		  ResultSet rset = null;
+	      String query = "select * from notice where notice_no=?";
+	      Notice notice = null;
+	      
+	      try {
+	          pstmt = conn.prepareStatement(query);
+	          
+	          pstmt.setInt(1, noticeNo);
+	          rset = pstmt.executeQuery();
+	          
+	          if(rset.next()) {
+	             notice = new Notice();
+	             
+	             notice.setNoticeNo(rset.getInt("notice_no"));
+	             notice.setNoticeTitle(rset.getString("notice_title"));
+	             notice.setNoticeContents(rset.getString("notice_contents"));
+	             notice.setNoticeWriter(rset.getString("notice_writer"));
+	             notice.setReportingDate(rset.getDate("reporting_date"));
+	             notice.setNoticeViews(rset.getInt("notice_views"));
+	             
+	          }
+	          
+	       } catch (SQLException e) {
+	          // TODO Auto-generated catch block
+	          e.printStackTrace();
+	       }finally {
+	    	 JDBCTemplate.close(rset);
+	         JDBCTemplate.close(pstmt);
+	       }
+	       
+	       return notice;
+	}
+
+
+	public int updateNotice(Connection conn, Notice n) {
+		
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query ="update notice set notice_title=?, notice_contents=? where notice_no=?";
+		
+		 try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, n.getNoticeTitle());
+	         pstmt.setString(2, n.getNoticeContents());
+	         pstmt.setInt(3,n.getNoticeNo());
+	         
+	         result = pstmt.executeUpdate();
+	         
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+	         JDBCTemplate.close(pstmt);
+	       }
+         
+		return result;
+	}
+
+
+	public int noticeInsert(Connection conn, Notice n) {
+		
+		PreparedStatement pstmt = null;
+		int result =0;
+		String query ="insert into notice values(NOTICE_SEQ.NEXTVAL,?,?,?,sysdate,0)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContents());
+			pstmt.setString(3, n.getNoticeWriter());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+	         JDBCTemplate.close(pstmt);
+	       }
+        
+		return result;
+	}
+
+
 
 
 

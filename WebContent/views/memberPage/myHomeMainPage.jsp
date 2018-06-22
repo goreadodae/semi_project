@@ -200,20 +200,43 @@ ol, li {
                   <ul id="menu-list">
                   	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
-                     <li><a href="/views/memberPage/myHomeRecipePage.jsp">나의  레시피</a></li>
+                      <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
                      <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
                   </ul>
                </div>
             </div>
-            <div class="col-md-9">
-               <div id="menu-title">
-                  <h2>나의 정보</h2>
+            <div class="col-md-10">
+                <div id="menu-title">
+                  	<h2>내 정보</h2>
+              	</div>
+                <div class="container">
+				  	<div class="row" style="padding-top:3px;">
+				    	<div class="col" style="height:255px; border:1px solid black; padding:10px; margin-right:10px;">
+				    		<div>
+				    			<h5 style="padding-left:10px; padding-top:20px;">수상한 레시피 프로필</h5>
+				    			<img src="<%=m.getProfile()%>" width="110" height="90" style="padding-left:10px;">
+				    			<h4 style="padding-left:10px; padding-top:10px;"><%=m.getNickName()%>님</h4>
+				    		</div>
+				    	</div>
+				    	<div class="col" style="height:255px; border:1px solid black; padding:10px; margin-right:10px;">
+				    		<h6 style="padding:10px; padding-top:20px; text-align:center;">연락처</h6>
+				    		<p>이메일</p>
+				    		<p>휴대전화</p>
+				    	</div>
+				    	<div class="w-120"></div>
+				    	<div class="col" style="height:255px; border:1px solid black; padding:10px; margin-right:10px;">
+				    		<h6 style="padding:10px; padding-top:20px; text-align:center;">적립금</h6>
+				    	</div>
+				    	<div class="col" style="height:255px; border:1px solid black; margin-right:10px;">
+				    		<h6 style="padding:10px; padding-top:20px; text-align:center;">장바구니</h6>
+				    	</div>
+				  	</div>
+				</div>
                </div>
             </div>
          </div>
-
-   </div>
+   	</div>
       <!-- 푸터 -->
       <div id="footer"
          class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"

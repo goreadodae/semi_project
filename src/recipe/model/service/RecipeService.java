@@ -124,5 +124,17 @@ public class RecipeService {
 		JDBCTemplate.close(conn);
 		return result1*result2;
 	}
+
+	public int deleteRecipe(int recipeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new RecipeDao().deleteRecipe(conn, recipeNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 }

@@ -96,16 +96,17 @@
 
 </head>
 
-<body style="overflow-x: hidden; overflow-y: auto; background-color: #f8faff">
+<body style="overflow-x: hidden; overflow-y: auto;">
 	<div class="container-fluid" style="padding: 0;">
 		<!-- Header -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 해더 -->
 	</div>
+	<div class="row" style="background-color: #f8faff;">
 	<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="padding: 10px;" id="point">
 		<div class="row" style="margin-bottom: 30px;">
-			<div class="col-md-12" id="category" style="background-color: white; padding: 2%; border-radius: 20px;">
+			<div class="col-md-12" id="category" style="background-color: white; padding: 2%; border-radius: 20px; border: 1px solid lightgray;">
 				<c:forEach begin="0" items="${requestScope.category }"
 					var="cate-list" varStatus="i">
 					<div class="col-md-12" style="margin-bottom: 3px;">
@@ -116,10 +117,10 @@
 								<c:when test="${i.count-1==1 }">상황별<c:set var="order"
 										value="${requestScope.situationList}" />
 								</c:when>
-								<c:when test="${i.count-1==2 }">재료별<c:set var="order"
+								<c:when test="${i.count-1==2 }">방법별<c:set var="order"
 										value="${requestScope.methodList}" />
 								</c:when>
-								<c:when test="${i.count-1==3 }">방법별<c:set var="order"
+								<c:when test="${i.count-1==3 }">재료별<c:set var="order"
 										value="${requestScope.ingredientList}" />
 								</c:when>
 							</c:choose>
@@ -196,6 +197,9 @@
 		</div>
 
 		<div class="row">
+			<c:if test="${requestScope.pageData.dataList==null }">
+				<jsp:include page="/views/recipePage/recipeEmpty.html"></jsp:include>
+			</c:if>
 			<c:forEach begin="0" items="${requestScope.pageData.dataList}"
 				var="list" varStatus="i">
 				<div class="col-md-4" style="margin-bottom: 3%;">
@@ -212,9 +216,9 @@
 							${requestScope.pageData.dataList[i.count-1].recipeTitle}
 							<fmt:formatDate var = "postDate" value="${requestScope.pageData.dataList[i.count-1].postedDate}" pattern = "yyyy-MM-dd"/>
 							<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today"/>
-							<c:set var="sevenago" value="<%=new Date(new Date().getTime() - 60*60*24*1000*7)%>"/>
+							<c:set var="sevenago" value="<%=new Date(new Date().getTime() - 60*60*24*1000*3)%>"/>
 							<fmt:formatDate value="${sevenago}" pattern="yyyy-MM-dd" var="sevenago"/>
- 							<c:set var="sevenafter" value="<%=new Date(new Date().getTime() + 60*60*24*1000*7)%>"/>
+ 							<c:set var="sevenafter" value="<%=new Date(new Date().getTime() + 60*60*24*1000*3)%>"/>
 							<fmt:formatDate value="${sevenafter}" pattern="yyyy-MM-dd" var="sevenafter"/>
  							
  							<c:if test="${sevenago < postDate && postDate < sevenafter }">
@@ -225,7 +229,7 @@
 						${requestScope.pageData.dataList[i.count-1].recipeIntro}
 						</div>
 						<img src="/imgs/recipe_img/view_icon.png" class="views-icon">
-						<div class="views">${requestScope.pageData.dataList[i.count-1].recipeViews}</div>
+						<div class="views"><fmt:formatNumber value="${requestScope.pageData.dataList[i.count-1].recipeViews}" groupingUsed="true"/></div>
 					</div>
 				</div>
 				</div>
@@ -239,7 +243,7 @@
 			</ul>
 		</div>
 	</div>
-
+	</div>
 
 	<!-- Footer -->
 	<div id="footer"

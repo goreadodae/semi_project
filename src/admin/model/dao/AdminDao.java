@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import admin.model.vo.AdminProduct;
 import admin.model.vo.AdminRecipe;
 import common.JDBCTemplate;
 import qna.model.vo.Question;
@@ -113,6 +114,7 @@ public class AdminDao {
 		return sb.toString();
 	}
 
+
 	public ArrayList<Question> getQuestionCurrentPage(Connection conn, int currentPage, int recordCountPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -144,10 +146,37 @@ public class AdminDao {
 				q.setBuyingNo(rset.getInt("buying_no"));
 				q.setResponseYn(rset.getString("response_yn"));
 				list.add(q);
+
+	public ArrayList<AdminProduct> getProductList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select recipe_title, product_name, member.NICKNAME, product_price, sell_quantity, product_price*sell_quantity as total_sales, product_no, recipe_no\r\n" + 
+				"from product join recipe using (recipe_no)\r\n" + 
+				"join member using(member_no)\r\n" + 
+				"left join (select product_no, sum(buying_quantity) as sell_quantity\r\n" + 
+				"from buying\r\n" + 
+				"group by product_no) using (product_no)";
+		ArrayList<AdminProduct> list = new ArrayList<AdminProduct>();
+		try {
+			pstmt=conn.prepareStatement(query);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				AdminProduct ap = new AdminProduct();
+				ap.setRecipeTitle(rset.getString("recipe_title"));
+				ap.setProductName(rset.getString("product_name"));
+				ap.setRecipeWriter(rset.getString("nickname"));
+				ap.setPrice(rset.getInt("product_price"));
+				ap.setSellQuantity(rset.getInt("sell_quantity"));
+				ap.setTotalSales(rset.getInt("total_sales"));
+				ap.setProductNo(rset.getInt("product_no"));
+				ap.setRecipeNo(rset.getInt("recipe_no"));
+				list.add(ap);
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}finally
 		{
 			JDBCTemplate.close(rset);
@@ -252,9 +281,5 @@ public class AdminDao {
 		
 		
 	}
-	
-	
-
-
 
 }

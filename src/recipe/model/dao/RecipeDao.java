@@ -282,6 +282,8 @@ public class RecipeDao {
 		}
 		if(needPrev) {
 			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page=1'> << </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(startNavi-1)+"'> < </a></li>");
 			
 		}
@@ -298,6 +300,8 @@ public class RecipeDao {
 		if(needNext) {
 			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
 					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi+1)+"'> > </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+pageTotalCount+"'> >> </a></li>");
 		}
 		return sb.toString();
 	}

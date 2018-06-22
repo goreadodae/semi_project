@@ -99,19 +99,20 @@ public class AdminDao {
 		
 		StringBuilder sb = new StringBuilder();
 		if(needPrev) {
-			sb.append("<li class=\"page-item\"><a class=\"page-link\" onclick='/recipeMgt?page="+(startNavi-1)+"'> < </a></li>");
-			
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href=\"/recipeMgt?page=1\"> << </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href=\"/recipeMgt?page="+(startNavi-1)+"\"> < </a></li>");
 		}
 		for(int i=startNavi;i<=endNavi;i++) {
 			if(i==page) {
-				sb.append("<li class=\"page-item active\"><a class=\"page-link\"  onclick='/recipeMgt?page="+i+"'><B>"+i+"</B></a></li>");
+				sb.append("<li class=\"page-item active\"><a class=\"page-link\"  href=\"/recipeMgt?page="+i+"\"><B>"+i+"</B></a></li>");
 			}
 			else {
-				sb.append("<li class=\"page-item\"><a class=\"page-link\"  onclick='/recipeMgt?page="+i+"'>"+i+"</a></li>");
+				sb.append("<li class=\"page-item\"><a class=\"page-link\"  href=\"/recipeMgt?page="+i+"\">"+i+"</a></li>");
 			}
 		}
 		if(needNext) {
-			sb.append("<li class=\"page-item\"><a class=\"page-link\"  onclick='/recipeMgt?page="+(endNavi+1)+"'> > </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\"  href=\"/recipeMgt?page="+(endNavi+1)+"\"> > </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\"  href=\"/recipeMgt?page="+pageTotalCount+"\"> >> </a></li>");
 		}
 		return sb.toString();
 	}

@@ -674,4 +674,31 @@ public class RecipeDao {
 		return 0;
 	}
 
+	public int deleteRecipe(Connection conn, int recipeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("deleteRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
 }

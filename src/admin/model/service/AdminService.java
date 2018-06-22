@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import admin.model.dao.AdminDao;
+import admin.model.vo.AdminProduct;
 import admin.model.vo.AdminRecipe;
 import admin.model.vo.AdminRecipePageData;
 import common.JDBCTemplate;
@@ -25,6 +26,13 @@ public class AdminService {
 			arpd.setPageNavi(pageNavi);
 		}
 		return arpd;
+	}
+
+	public ArrayList<AdminProduct> getProductList() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<AdminProduct> list = new AdminDao().getProductList(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }

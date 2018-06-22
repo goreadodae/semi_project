@@ -42,12 +42,12 @@ public class RecipeService {
 		return ingredientList;
 	}
 
-	public RecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order) {
+	public RecipePageData recipeAll(int page, String cate1, String cate2, String cate3, String cate4, String order, String search) {
 		Connection conn = JDBCTemplate.getConnection();
 		int recordCountPerPage = 12;
 		int naviCountPerPage = 5;
-		ArrayList<Recipe> list = new RecipeDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order);
-		String pageNavi = new RecipeDao().getPageNavi(conn, page, recordCountPerPage, naviCountPerPage, cate1, cate2, cate3, cate4, order);
+		ArrayList<Recipe> list = new RecipeDao().getCurrentPage(conn, page, recordCountPerPage, cate1, cate2, cate3, cate4, order, search);
+		String pageNavi = new RecipeDao().getPageNavi(conn, page, recordCountPerPage, naviCountPerPage, cate1, cate2, cate3, cate4, order, search);
 		JDBCTemplate.close(conn);
 		RecipePageData rpd = null;
 		if(!list.isEmpty() && !pageNavi.isEmpty()) {

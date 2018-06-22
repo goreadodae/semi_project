@@ -234,15 +234,11 @@
 						로그인
 					</a>
 				</li>
+				
 				<%}else{%>
 				<li class="nav-item">
 					<a class="nav-link" href="/logout?recentURI=<%=presentURI%>" style="padding-right:10px;">
 						로그아웃
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/noticeList" style="padding-right:10px;">
-						고객센터
 					</a>
 				</li>
 				<%}%>
@@ -286,7 +282,7 @@
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4" id="div-receipe">
-						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0">레시피</a>
+						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0&search=null">레시피</a>
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-4">
@@ -312,7 +308,7 @@
 									<div style="display:inline-block; width: 100%;">
 										<p style="font-size:13px; margin:0px; padding-left:10px; text-align:left;">환영합니다.</p>
 									</div>
-									<div style="display:inline-block; width:50%; float:left; height:25px;">
+									<div style="display:inline-block; width:100%; float:left; height:25px;">
 										<p style="font-weight:800; width:100%; font-size:15px; margin:0px; padding-left:10px; padding-top:2px; text-align:left; float:left;"><%=m.getNickName()%>님</p>
 									</div>
 									<div style="display:block; width:50%; height:25px;">

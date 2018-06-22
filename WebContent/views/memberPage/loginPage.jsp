@@ -140,13 +140,13 @@
 							
 						} else
 						{
-							$('#loginError').show(1500);
+							$('#loginError').show();
 							continue;
 						}
 					}
 				} else
 				{
-					$('#loginError').show(1500);
+					$('#loginError').show();
 				}
 			}
 			

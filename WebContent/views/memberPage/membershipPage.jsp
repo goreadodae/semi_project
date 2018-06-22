@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>회원가입</title>
 
@@ -57,14 +55,14 @@
 	background: #f9f9f9;
 	box-sizing: border-box;
 	margin-bottom: 20px;
-	height: 400px;
+	height: 380px;
 	width: 1170px;
 	float: left;
 }
 
 .member-join>ul>li>div {
 	padding: 20px;
-	font-size: 13px;
+	font-size: 13px;	
 	overflow: auto;
 	height: 220px;
 	text-align: left;
@@ -244,11 +242,10 @@ pre {
 			<div class="container" style="padding: 0;">
 				<div class="col-md-12 member-join" style="margin-top: 40px;">
 					<h2>
-						약관 <a href="#" class="ghost" id="hide-button1"
-							style="float: right; color: white;">동의함</a>
+						약관<a href="#" class="ghost" id="hide-button1" style="float: right; color: white;">동의함</a>
 					</h2>
 					<ul class="agreement row">
-						<li class="box" style="margin-right: 20px;">
+						<li class="box" style="margin-left: 15px; border:1px solid black;">
 							<h3>이용약관</h3>
 							<div>
 								<p style="display: block; padding: 20px 0">
@@ -696,7 +693,7 @@ pre {
 								</p>
 							</div>
 						</li>
-						<li class="box" style="margin-left: 0;">
+						<li class="box" style="margin-left:17px; border:1px solid black;">
 							<h3>개인정보 취급방침</h3>
 							<div>
 								<p style="display: block; padding: 20px 0">
@@ -1233,8 +1230,8 @@ pre {
 					</ul>
 					<div class="button-bar" id="btnBar1">
 						<div class="right">
-							<a href="#" class="agree1">동의하지 않음</a> <a href="#" class="agree2"
-								onclick="nextShow();">동의함</a>
+							<button type="button" class="btn btn-primary btn-lg" style="background-color:black" onclick="exit();">동의하지 않음</button>
+							<button type="button" class="agree2 btn btn-primary btn-lg" onclick="nextShow();">동의함</button>
 						</div>
 					</div>
 					<div class="col-md-12 member-join ghost" id="phone-auth">
@@ -1265,7 +1262,7 @@ pre {
 											<option value="gmail.com">gmail.com</option>
 											<option value=" ">::직접입력::</option>
 											</datalist>
-											<a href="#" style="margin-left: 30px; line-height: 30px;"
+											<a href="#" style="margin-left: 30px; line-height: 35px;"
 												id="checkBtn" onclick="emailCheck();">인증요청</a>
 										</div></li>
 									<li class="line "><label class="ghost emailCheck">인증번호</label>
@@ -1274,31 +1271,30 @@ pre {
 											<h5>
 												<pre>     </pre>
 											</h5>
-											<div id="checkCount" class="ghost"></div>
+											<div id="checkCount" class="ghost" style="padding-top:10px;"></div>
 											<div id="reCheck" class="ghost">
 												<a href="#" style="margin-left: 30px; line-height: 30px;"
 													id="reCheckBtn" onclick="reEmailCheck();">재요청</a>
 											</div>
-										</div></li>
+										</div>
+									</li>
 								</ul>
-
 							</div>
 							<div class="col-md-3"></div>
 						</div>
 						<div class="button-bar" id="btnBar2">
 							<div class="right">
-								<button id="next-page">확인</button>
+								<button class="btn btn-primary" id="next-page" type="submit">확인</button>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12 member-join ghost" id="member-insert">
 						<h2>회원 정보 입력</h2>
 						<form action="/insertMember" method="post" id="frm">
-							<div class="box">
+							<div class="box" style="height:780px;">
 								<div class="col-md-3"></div>
 								<div class="col-md-6">
 									<div style="width: 90%; float: left">
-
 										<div class="form-group">
 											<label for="userId">아이디</label> <input type="text"
 												class="form-control" id="userId" name="userId"
@@ -1335,33 +1331,37 @@ pre {
 										<div class="form-group">
 											<label for="phone">휴대폰</label><br> <select
 												class="form-control" name="phone1"
-												style="width: 75px; float: left;">
+												style="width: 90px; float: left; margin-right:5px;">
 												<option>010</option>
 												<option>011</option>
 												<option>019</option>
 												<option>017</option>
 												<option>016</option>
+												
 											</select> <input type="text" class="form-control" id="phone"
 												name="phone2" onchange="phoneCheck();"
-												placeholder=" ' - ' 없이 휴대폰번호입력" style="width: 375px;"
+												placeholder=" ' - ' 없이 휴대폰번호입력" style="width: 333px; margin-left:5px;"
 												maxlength="8"> <label class="problem"
 												id="phoneProblem"></label>
 										</div>
-										<div class="form-group">
-											<label for="postcode">주소</label><br> <input type="text"
-												id="postcode" name="postcode" placeholder="우편번호"
-												class="form-control" style="width: 100px; float: left;"
-												readonly /> <input type="button" class="btn btn-default"
-												id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
-												style="width: 100px; float: left; height: 34px; magin: 0; padding: 0 5px;" />
+										
+										<div class="form-group" style="height:170px; margin-bottom:0px;">
+											<label for="postcode">주소</label><br> 
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호"
+												class="form-control" style="width: 100px; float: left; margin-right:10px;"
+												readonly />
+											
+											<input type="button" class="btn btn-default" id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
+												style="width: 100px; height: 34px; margin:0; magin-left:5px; padding: 0 5px;" />
+												
 											<input type="text" id="roadAddress" name="roadAddress"
-												placeholder="도로명주소" style="margin-right: 20px;"
-												class="form-control" readonly /> <input type="text"
-												id="addAddress" name="addAddress" placeholder="상세주소 입력"
-												class="form-control" /> <span id="guide"
-												style="color: #999"></span> <label class="problem"
-												id="addressProblem"></label>
-
+												placeholder="도로명주소" style="margin-right: 20px; margin-top:10px;"
+												class="form-control" readonly /> 
+												
+											<input type="text" id="addAddress" name="addAddress" 
+											    placeholder="상세주소 입력" class="form-control" style="margin-top:10px;"/> 
+												<span id="guide" style="color: #999"></span> 
+												<label class="problem" id="addressProblem"></label>
 										</div>
 										<div class="form-group">
 											<label for="userName">성별</label> <label class="problem"
@@ -1371,14 +1371,12 @@ pre {
 											<P>
 											<div class="btn-group" role="group" aria-label="..."
 												id="gender">
-												<button type="button" class="btn btn-default" id="genderM">Men</button>
-												<button type="button" class="btn btn-default" id="genderF">Woman</button>
+												<button type="button" class="btn btn-default" id="genderM">남자</button>
+												<button type="button" class="btn btn-default" id="genderF">여자</button>
 											</div>
 										</div>
-
 									</div>
-									<div
-										style="width: 8%; float: left; margin-left: 10px; padding-top: 9px;">
+									<div style="width: 8%; float: left; margin-left: 10px; padding-top: 9px;">
 										<div class="form-group1">
 											<label><h3></h3></label> <label class="jombi" id="check1">
 												<h2 class="ghost" id="ok-1">
@@ -1469,20 +1467,20 @@ pre {
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3"></div>
+							<div class="col-md-3"></div><br><br><br>
 							<div class="button-bar">
 								<div class="right">
-									<a type="button" onclick="allCheck();"
-										style="background-color: blue;">확인</a>
+									<button class="btn btn-primary" type="submit" onclick="allCheck();">확인</button>
 								</div>
 							</div>
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!--  -->
 	<script>
    		var regExpId = /^[a-z0-9_]{6,}$/; // 아이디 영소문자+숫자 6-12
     	//var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
@@ -1496,25 +1494,28 @@ pre {
         var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
         var emailCheckCode; // 생성된 인증번호
     	var hiddenEmail; //이메일 저장
+    	
     	function nextShow() {
             $('#phone').css("display", "block");
         }
+    	
+    	function exit(){
+    		location.href="/index.jsp";
+    	}
+    	
         $('.agree2').click(function() {
             $('.agreement').slideToggle();
             $('#btnBar1').hide();
             $('#hide-button1').show();
             $('#phone-auth').show();
         });
+        
         $('#hide-button1').click(function() {
             $('.agreement').slideToggle();
         });
 
         
-        
         function emailCheck() {
-        	
-        	
-        	
             hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
             
             if (hiddenEmail.match(regExpSpace)) {
@@ -1522,12 +1523,10 @@ pre {
             }else if (!regExpEmail.test(hiddenEmail)) {
             	alert("알맞지 않는 이메일 형식입니다.")
             }else{
-            
             	$('.emailCheck').show();
             	SetTime = 300; // 최초 설정 시간(기본 : 초)
             	$('#checkCount').show();
                 $('#checkBtn').hide();
-                
     			
                 $.ajax({
                     url: "/emailCheck",
@@ -1536,15 +1535,14 @@ pre {
                     success: function(data) {
                         console.log("성공");
                         if(data=="1"){
+                        // 바꾸기
                         alert("이미 가입한 이메일 입니다.");
-                        $('.emailCheck').hide();
-                        $('#checkCount').hide();
+                        $('.emailCheck').toggle();
+                        $('#checkCount').toggle();
                         $('#checkBtn').show();
                         }else{
-                        	
                         	emailCheckCode = data;
                         }
-                        
                     },
                     error: function() {
                         console.log("실패");
@@ -1556,11 +1554,8 @@ pre {
             }
         }
         
-        
         function reEmailCheck() {
         	 hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
-        	 
-        	
              
         	 if (hiddenEmail.match(regExpSpace)) {
              	alert("공백이 존재합니다.");
@@ -1684,11 +1679,6 @@ pre {
                 }
             }).open();
         }
-
-
-
-        
-
 
         function idCheck() {
             $('#check1').css('visibility', 'visible');
@@ -2013,9 +2003,7 @@ pre {
             }
         }
     </script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/css/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 
 </html>

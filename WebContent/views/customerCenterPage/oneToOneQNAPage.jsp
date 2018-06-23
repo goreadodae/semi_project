@@ -131,6 +131,7 @@ update
 						
 							<tr>
 								<td>${i.count}</td>
+								
 								<td id="${i.count}" onclick="showQue(${i.count})" style="cursor:pointer;">
 								${qList.queTitle}
 								</td>
@@ -173,9 +174,6 @@ update
 							</tr>
 						
 						</c:forEach>
-
-
-
 
 					</table>
 				

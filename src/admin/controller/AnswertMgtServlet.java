@@ -1,7 +1,6 @@
-package notice.controller;
+package admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-import notice.model.vo.PageData;
+import admin.model.service.AdminService;
+import qna.model.vo.Question;
 
 /**
- * Servlet implementation class viewAllNoticeServlet
+ * Servlet implementation class AnswertMgtServlet
  */
-@WebServlet(name = "NoticeList", urlPatterns = { "/noticeList" })
-public class viewAllNoticeServlet extends HttpServlet {
+@WebServlet(name = "AnswertMgt", urlPatterns = { "/answertMgt" })
+public class AnswertMgtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllNoticeServlet() {
+    public AnswertMgtServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,30 +31,23 @@ public class viewAllNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setCharacterEncoding("UTF-8");
-			
-			int currentPage;
-			if(request.getParameter("currentPage")==null)
-			{
-				currentPage=1;
-			}
-			else
-			{
-				currentPage=Integer.parseInt(request.getParameter("currentPage"));
-			}
-			PageData pd = new NoticeService().noticeAll(currentPage);
-			
-			if(pd!=null)
-			{
-				RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/noticePage.jsp");
-				request.setAttribute("pageData", pd);
-				view.forward(request, response);
-			}
-			else
-			{
+		int  queNo = Integer.parseInt(request.getParameter("queNo"));
+		
+		Question qt = new AdminService().questionDetail(queNo);
+
+		
+		
+		if(qt!=null)
+		{
+			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/answerMgtPage.jsp");
+			request.setAttribute("qt",qt);
+			view.forward(request, response);
 				
-			}
-			
+		}
+		else {
+			System.out.println("실수");
+		}
+		
 	}
 
 	/**

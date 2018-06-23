@@ -399,11 +399,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
-									<div class="center-block" id="viewDiv">
+<!-- 									<div class="center-block" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews1"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -444,10 +444,10 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
 										<div id="rankingViews2"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -487,11 +487,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews3"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -531,11 +531,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews4"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -575,11 +575,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
-									<div class="float-right" id="viewDiv">
+	<!-- 								<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews5"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>

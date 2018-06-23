@@ -184,6 +184,22 @@
 		<!-- 팝업창 쿠키 끝-->
 		
 		<!-- 실시간 검색어  -->
+		<script>
+			$(document).ready(function(){
+				$('#showOneScroll').hover(function(){
+					$('#showAllScroll').css('display','block');
+				});
+				$('#showAllScroll').mouseleave(function(){
+					$('#showAllScroll').css('display','none');
+				});
+				$('#downScroll').mouseleave(function(e){
+					$('#showAllScroll').css('display','none');
+					$('#showAllScroll').mouseover(function(){
+						$('#showAllScroll').css('display','block');
+					});
+				});
+			});
+		</script>
 		<script type="text/javascript">
 	        function textScroll(scroll_el_id) {
 	            this.objElement = document.getElementById(scroll_el_id);
@@ -339,13 +355,27 @@
 						</div>
 					</div>
 					<%} %>
-					<div class="col-md-2 ellip" style="padding:0px;">
+					<div id="showAllScroll" class="position-absolute col-md-12" style="padding:0px; display: none;">
+						<div style="background-color: white; position: absolute; z-index: 999; border: 1px solid black;	margin-left: 70%; width: 350px; text-align: left;">
+							<span style="margin-left: 3%; margin-top: 3%; font-weight: bolder">실시간 랭킹</span><br>
+							<span style="margin-left: 5%; color:#00ab33;">1. </span><a id="scroll_title2_1" href="#" style="color:black;"></a><br>
+							<span style="margin-left: 5%; color:#00ab33;">2. </span><a id="scroll_title2_2" href="#" style="color:black;"></a><br>
+							<span style="margin-left: 5%; color:#00ab33;">3. </span><a id="scroll_title2_3" href="#" style="color:black;"></a><br>
+							<span style="margin-left: 5%; color:#00ab33;">4. </span><a id="scroll_title2_4" href="#" style="color:black;"></a><br>
+							<span style="margin-left: 5%; color:#00ab33;">5. </span><a id="scroll_title2_5" href="#" style="color:black;"></a><br>
+						</div>
+					</div>
+					<div id="showOneScroll" class="col-md-2 ellip" style="padding:0px;">
 						<ul id="scroll">
+						<span id="downScroll" style="float: right;line-height:50px;">
+						<img src="/imgs/main-img/down-arrow.png"/>
+						</span>
 	        				<li>
 	                			<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">1&nbsp;&nbsp;</p>
 	            				<a id="scroll_title_1" href="#" style="color:black;">
 	            				</a>
 	        				</li>
+	        				
 					        <li>
 					          	<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">2&nbsp;&nbsp;</p>
 	            				<a id="scroll_title_2" href="#" style="color:black;">
@@ -368,6 +398,7 @@
 					        </li>
 					    </ul>
 				    </div>
+				    
 				    <script>
 					$(document).ready(function() {
 						$.ajax({
@@ -377,8 +408,10 @@
 								var keys = Object.keys(data);
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title);
+									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title.substr(0, 8)+"...");
 									$('#scroll_title_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
+									$('#scroll_title2_' +(i + 1)).append(data[i].recipe_title.substr(0, 20)+"...");
+									$('#scroll_title2_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
 								}
 							},
 							error : function() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import common.JDBCTemplate;
+import insertRecipe.model.dao.InsertRecipeDao;
 import recipe.model.dao.RecipeDao;
 import recipe.model.vo.CommentPageData;
 import recipe.model.vo.Process;
@@ -134,6 +135,41 @@ public class RecipeService {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updateRecipe(Recipe ir, ArrayList<Process> stepValuelist) {
+		Connection conn = JDBCTemplate.getConnection();
+		Process pr = new Process();
+		int result=0;
+		int insertProcessResult=0;
+		int insertRecipeResult = new RecipeDao().updateRecipe(conn,ir);
+		
+		
+		for(int i=0; i<stepValuelist.size();i++) {
+			
+			pr.setProcessOrder(stepValuelist.get(i).getProcessOrder());
+			pr.setProcessExplain(stepValuelist.get(i).getProcessExplain());
+			pr.setProcessPic(stepValuelist.get(i).getProcessPic());
+			pr.setIngre(stepValuelist.get(i).getIngre());
+			pr.setTools(stepValuelist.get(i).getTools());
+			pr.setFireLevel(stepValuelist.get(i).getFireLevel());
+			pr.setTip(stepValuelist.get(i).getTip());
+			
+			insertProcessResult = new RecipeDao().updateRecipeProcess(conn,pr);
+			if(insertProcessResult==0) {
+				return 0;
+			}
+		}
+		
+		
+		if(insertRecipeResult>0 && insertProcessResult>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
 		return result;
 	}
 	

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import admin.model.vo.AdminProduct;
 import admin.model.vo.AdminRecipe;
+import admin.model.vo.Answer;
 import common.JDBCTemplate;
 import qna.model.vo.Question;
 
@@ -137,7 +138,7 @@ public class AdminDao {
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
 				q = new Question();
-				q.setMemberNo(rset.getInt("que_no"));
+				q.setQueNo(rset.getInt("que_no"));
 				q.setQueTitle(rset.getString("que_title"));
 				q.setQueTime(rset.getTimestamp("que_time"));
 				q.setQueContents(rset.getString("que_contents"));
@@ -272,5 +273,102 @@ public class AdminDao {
 		return sb.toString();
 
 	}
+
+	public Question questionDetail(Connection conn, int queNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select que_no,que_title,que_time,que_contents,member_no,member_id,buying_no" 
+					  + " from question left join member using(member_no) where que_No= ? ";
+		Question qt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, queNo);
+			rset = pstmt.executeQuery();
+			if(rset.next())
+			{
+				qt = new Question();
+				qt.setQueNo(rset.getInt("que_no"));
+				qt.setQueTitle(rset.getString("que_title"));
+				qt.setQueTime(rset.getTimestamp("que_time"));
+				qt.setQueContents(rset.getString("que_contents"));
+				qt.setMemberNo(rset.getInt("member_no"));
+				qt.setMemberId(rset.getString("member_id"));
+				qt.setBuyingNo(rset.getInt("buying_no"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		
+		
+		
+		
+		return qt;
+
+	}
+
+	public int insertAnsInfo(Connection conn, Answer ans) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="insert into answer values(answer_seq.nextval,sysdate,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ans.getAnsContents());
+			pstmt.setInt(2, ans.getQueNo());
+			pstmt.setInt(3, ans.getMemberNo());
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+
+	public int completeAns(Connection conn, Answer ans) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update question set response_yn = 'Y' where que_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, ans.getQueNo());
+			result = pstmt.executeUpdate();
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
 
 }

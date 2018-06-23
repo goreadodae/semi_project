@@ -186,7 +186,7 @@ public class RecipeDao {
 				order="posted_date";
 			}
 			
-			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+") where num between ? and ?";
+			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic,member.NICKNAME from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+")  join member using(member_no) where num between ? and ?";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -200,6 +200,7 @@ public class RecipeDao {
 				r.setRecipeViews(rset.getInt("recipe_views"));
 				r.setPostedDate(rset.getDate("posted_date"));
 				r.setRecipePic(rset.getString("recipe_pic"));
+				r.setVideo(rset.getString("nickname"));
 				list.add(r);
 			}
 		} catch (SQLException e) {
@@ -699,6 +700,83 @@ public class RecipeDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return 0;
+	}
+
+	public int updateRecipe(Connection conn, Recipe ir) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			String query = "update recipe\r\n" + 
+					"set\r\n" + 
+					"RECIPE_TITLE=?,\r\n" + 
+					"RECIPE_INTRO=?,\r\n" + 
+					"RECIPE_PIC=?,\r\n" + 
+					"COOK_SERVING=?,\r\n" + 
+					"COOK_TIME=?,\r\n" + 
+					"COOK_LEVEL=?,\r\n" + 
+					"INGREDIENT=?,\r\n" + 
+					"TIP=?,\r\n" + 
+					"COMPLETE_PIC=?,\r\n" + 
+					"RECIPE_TAG=?,\r\n" + 
+					"VIDEO=?\r\n" + 
+					"where recipe_no=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ir.getRecipeTitle());
+			pstmt.setString(2, ir.getRecipeIntro());
+			pstmt.setString(3, ir.getRecipePic());
+			pstmt.setString(4, ir.getCookServing());
+			pstmt.setString(5, ir.getCookTime());
+			pstmt.setString(6, ir.getCookLevel());
+			pstmt.setString(7, ir.getIngredient());
+			pstmt.setString(8, ir.getTip());
+			pstmt.setString(9, ir.getCompletePic());
+			pstmt.setString(10, ir.getRecipeTag());
+			pstmt.setString(11, ir.getVideo());
+			pstmt.setInt(12, ir.getRecipeNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateRecipeProcess(Connection conn, Process pr) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		
+		try {
+			prop.load(new FileReader(path+"resources/insertRecipeQuery.properties"));
+			String query = prop.getProperty("insertRecipeProcess");
+			pstmt = conn.prepareStatement(query);		
+				
+				pstmt.setInt(1, pr.getProcessOrder());
+				pstmt.setString(2, pr.getProcessExplain());
+				pstmt.setString(3, pr.getProcessPic());
+				pstmt.setString(4, pr.getIngre());
+				pstmt.setString(5, pr.getTools());
+				pstmt.setString(6, pr.getFireLevel());
+				pstmt.setString(7, pr.getTip());
+				pstmt.setInt(8, pr.getRecipeNo());
+				
+				
+				result = pstmt.executeUpdate();
+		
+			
+		} catch (IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

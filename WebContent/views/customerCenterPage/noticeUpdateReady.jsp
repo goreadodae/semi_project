@@ -121,7 +121,7 @@ border-collapse:collapse;
 
             <div class="col-md-12">
                <textarea rows="15" style="resize: none;" name="noticeBoard" class="form-control">
-               ${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}</textarea>
+               ${requestScope.notice.noticeContents}</textarea>
          	<br><br>
             </div>
 

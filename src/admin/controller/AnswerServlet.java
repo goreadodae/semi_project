@@ -1,30 +1,27 @@
-package notice.controller;
+package admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-import notice.model.vo.PageData;
+import admin.model.service.AdminService;
+import admin.model.vo.Answer;
 
 /**
- * Servlet implementation class viewAllNoticeServlet
+ * Servlet implementation class AnswerServlet
  */
-@WebServlet(name = "NoticeList", urlPatterns = { "/noticeList" })
-public class viewAllNoticeServlet extends HttpServlet {
+@WebServlet(name = "Answer", urlPatterns = { "/answer" })
+public class AnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public viewAllNoticeServlet() {
+    public AnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,30 +30,27 @@ public class viewAllNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
+		Answer ans = new Answer();
+		ans.setAnsContents(request.getParameter("ansContents"));
+		ans.setQueNo(Integer.parseInt(request.getParameter("queNo")));
+		ans.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
+
+		int result = new AdminService().insertAnsInfo(ans);//답변시 답변테이블에 정보를 저장
+		int comAns = new AdminService().completeAns(ans);//답변시 질문테이블에서 답변여부를 n->y로 변경
+		if(result>0&&comAns>0)
+		{
 			
-			int currentPage;
-			if(request.getParameter("currentPage")==null)
-			{
-				currentPage=1;
-			}
-			else
-			{
-				currentPage=Integer.parseInt(request.getParameter("currentPage"));
-			}
-			PageData pd = new NoticeService().noticeAll(currentPage);
 			
-			if(pd!=null)
-			{
-				RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/noticePage.jsp");
-				request.setAttribute("pageData", pd);
-				view.forward(request, response);
-			}
-			else
-			{
-				
-			}
+			response.sendRedirect("/qnaMgt");
+		}
+		else
+		{
 			
+		}
+
+		
+		
 	}
 
 	/**

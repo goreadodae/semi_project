@@ -1,28 +1,27 @@
-package main.controller;
+package admin.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import member.model.vo.Member;
+import com.google.gson.Gson;
+
+import admin.model.service.UserCountMgrService;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class NoticeAllMainMgtServlet
  */
-@WebServlet(name = "Logout", urlPatterns = { "/logout" })
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "NoticeAllMainMgt", urlPatterns = { "/noticeAllMainMgt" })
+public class NoticeAllMainMgtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public NoticeAllMainMgtServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +31,14 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=UTF-8");
+	request.setCharacterEncoding("UTF-8");
 		
-		String recentURI = request.getParameter("recentURI");
+		int result [] = new UserCountMgrService().boardCount();
 		
-		HttpSession session = request.getSession(false);	
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		new Gson().toJson(result,response.getWriter());
 		
-		Member m = (Member)session.getAttribute("user");
-		
-		if(m!=null) {
-			session.invalidate();
-			RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/logoutPage.jsp");
-			request.setAttribute("recentURI", recentURI);
-			view.forward(request, response);
-		} 
-		else {
-			System.out.println("에러입니다.");
-		}	
 	}
 
 	/**

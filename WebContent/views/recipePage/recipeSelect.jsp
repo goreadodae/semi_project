@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="member.model.vo.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	Member m = (Member) session.getAttribute("user");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,6 +70,12 @@
 	<div style="padding: 0%; background-color: #f8faff">
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="padding: 10px;" id="point">
+			<div class="row">
+				<div class="col-md-12">
+					<button class="btn btn-primary" onclick="#"
+			style="float: right; background-color: #512772 !important; color: white !important; margin-top: 3%; margin-bottom: 3%;">레시피 수정</button>
+				</div>
+			</div>
 			<div class="row" id="recipe-body">
 				<!-- 제목,사진,view 수,인트로,요리정보,스크랩,공유,댓글 -->
 				<div class="col-md-12" id="recipe-infoes"

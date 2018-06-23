@@ -43,7 +43,6 @@ public class LogoutServlet extends HttpServlet {
 		
 		if(m!=null) {
 			session.invalidate();
-			
 			RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/logoutPage.jsp");
 			request.setAttribute("recentURI", recentURI);
 			view.forward(request, response);

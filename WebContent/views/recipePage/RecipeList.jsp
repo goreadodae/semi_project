@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="/css/recipePage_css/recipeList.css">
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
@@ -14,6 +15,7 @@
 	padding: 0;
 }
 </style>
+
 <script>
 	var scrollUpDelay = 1;
 	var scrollUpSpeed = 30;
@@ -172,8 +174,6 @@
 		</div>
 		
 		<div class="row" style="margin-bottom: 2%;">
-			<button class="btn btn-primary" onclick="insertRecipe();"
-			style="background-color: #512772 !important; color: white !important;">레시피 등록</button>
 			<div class="offset-md-10 col-md-1" style="padding: 0px;">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<c:choose>
@@ -212,7 +212,7 @@
 							<img src="${requestScope.pageData.dataList[i.count-1].recipePic}"
 								class="rounded">
 						</div>
-						<div class="recipe-title">
+						<div class="recipe-title" style="text-overflow: ellipsis; height: 50px; width: auto; overflow: hidden;">
 							${requestScope.pageData.dataList[i.count-1].recipeTitle}
 							<fmt:formatDate var = "postDate" value="${requestScope.pageData.dataList[i.count-1].postedDate}" pattern = "yyyy-MM-dd"/>
 							<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today"/>
@@ -228,8 +228,11 @@
 						<div class="recipe-intro" style="text-overflow: ellipsis; height: 100px; width: auto; overflow: hidden;">
 						${requestScope.pageData.dataList[i.count-1].recipeIntro}
 						</div>
-						<img src="/imgs/recipe_img/view_icon.png" class="views-icon">
+						<div>
+						<span style="margin-left: 10%; display: inline-block; font-weight: bolder; color: gray">by. ${requestScope.pageData.dataList[i.count-1].video}</span>
+						<img style="margin-left: 45%;" src="/imgs/recipe_img/view_icon.png" class="views-icon">
 						<div class="views"><fmt:formatNumber value="${requestScope.pageData.dataList[i.count-1].recipeViews}" groupingUsed="true"/></div>
+						</div>
 					</div>
 				</div>
 				</div>
@@ -237,10 +240,14 @@
 				<div class="row"></div>
 			</c:forEach>
 		</div>
+		<button class="btn btn-primary" onclick="insertRecipe();"
+			style="float: right; background-color: #512772 !important; color: white !important; margin-right: 10%;">레시피 등록</button>
 		<div class="row">
+			<div style="margin-left: 50%;">
 			<ul id="pageNavi" class="pagination">
 				${requestScope.pageData.pageNavi }
 			</ul>
+			</div>
 		</div>
 	</div>
 	</div>

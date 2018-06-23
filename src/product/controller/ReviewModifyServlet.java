@@ -39,19 +39,23 @@ public class ReviewModifyServlet extends HttpServlet {
 		//세션에 저장된 userid ->> 로그인 중인 사용자
 		Member m = (Member)session.getAttribute("user");
 		String userId = ((Member)session.getAttribute("user")).getMemberId();
-		System.out.println(userId);
+		//System.out.println(userId);
 		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));//리뷰넘버
+		//System.out.println("리뷰번호"+reviewNo);
 		int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
+		int rating = Integer.parseInt(request.getParameter(reviewNo+"_ratingModify"));//상품 만족도
+		String buyingAfterText = request.getParameter(reviewNo+"_buyingAfterTextModify"); //상품 후기 textarea
 
-		System.out.println("리뷰 번호 : " + reviewNo+"  상품 번호  :  " +productNo + " 유저 아이디 : " + userId);
+		
+		System.out.println("리뷰 번호 : " + reviewNo+"  상품 번호  :  " +productNo + " 유저 아이디 : " + userId + buyingAfterText);
 		
 		Review r = new Review();
 		
 		if(m!=null)
 		{	
 			
-			int result = new ReviewService().modifyReview(r);
+			int result = new ReviewService().modifyReview(reviewNo,rating,buyingAfterText);
 			if(result>0)
 			{
 				response.sendRedirect("/productDetail?productNo="+productNo);
@@ -59,10 +63,7 @@ public class ReviewModifyServlet extends HttpServlet {
 				
 			}
 			
-		}else {
-			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
-	}
-		
+		}	
 		
 	}
 

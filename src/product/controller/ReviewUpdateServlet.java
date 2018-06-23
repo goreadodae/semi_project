@@ -65,10 +65,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 				
 			}
 			
-		}else {
-			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
-	}
-		
+		}
 		
 	}
 

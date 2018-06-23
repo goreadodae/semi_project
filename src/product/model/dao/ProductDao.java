@@ -4,19 +4,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
 import product.model.vo.Basket;
 import product.model.vo.Buying;
 import product.model.vo.Product;
+import product.model.vo.Review;
 
 public class ProductDao {
 
@@ -479,5 +478,52 @@ public class ProductDao {
 	}
 
 
+	//☆ 지현 추가 --> 댓글 나오기
+		public ArrayList<Review> noticeComment(Connection conn, int productNo) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			Properties prop = new Properties();
+			String path = ReviewDao.class.getResource("").getPath();
+			ArrayList<Review> list = new ArrayList<Review>();
+			String query = "SELECT review_no, review_contents, review_enroll_date, review_meet, product_no, member_id, nickname FROM REVIEW left join member using(member_id) WHERE PRODUCT_NO = ? order by review_no desc";
+			try {
+				prop.load(new FileReader(path+"reviewQuery.properties"));
+				/*String query = prop.getProperty("reviewAll");*/
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, productNo);
+				
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					Review r = new Review();
+					r.setReviewNo(rset.getInt("review_no"));
+					r.setReviewContents(rset.getString("review_contents"));
+					r.setEnrollDate(rset.getDate("review_enroll_date"));
+					r.setReviewSatisfied(rset.getInt("review_meet"));
+					r.setProductNo(rset.getInt("product_no"));
+					r.setMemberId(rset.getString("member_id"));
+					r.setNickName(rset.getString("nickname"));
+					list.add(r);
+					
+				}
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			
+			
+			return list;
+		}
 
+	
 }

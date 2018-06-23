@@ -136,4 +136,37 @@ public class ReviewDao {
 		return result;
 	}
 
+	public int modifyReview(Connection conn, int reviewNo, int rating, String buyingAfterText) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		Properties prop = new Properties();
+		String path = ReviewDao.class.getResource("").getPath();
+		
+
+			try {
+				prop.load(new FileReader(path+"reviewQuery.properties"));
+				String query = prop.getProperty("reviewModify");
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, buyingAfterText);
+				pstmt.setInt(2, rating);
+				pstmt.setInt(3, reviewNo);
+				
+				
+				result = pstmt.executeUpdate();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

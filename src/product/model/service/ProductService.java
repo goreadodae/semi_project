@@ -2,14 +2,13 @@ package product.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import common.JDBCTemplate;
 import product.model.dao.ProductDao;
 import product.model.vo.Basket;
 import product.model.vo.Buying;
 import product.model.vo.Product;
-import recipe.model.dao.RecipeDao;
+import product.model.vo.Review;
 
 public class ProductService {
 	//모든 상품 정보
@@ -119,4 +118,14 @@ public class ProductService {
 		return list;
 	}
 
+	
+	//☆ 지현 추가 --> 댓글
+	public ArrayList<Review> reviewAll(int productNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Review> list = new ProductDao().noticeComment(conn,productNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
 }

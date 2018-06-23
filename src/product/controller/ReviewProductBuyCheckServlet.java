@@ -41,24 +41,34 @@ public class ReviewProductBuyCheckServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		//세션에 저장된 userid ->> 로그인 중인 사용자
 		Member m = (Member)session.getAttribute("user");
-		
-		
-		String userId = ((Member)session.getAttribute("user")).getMemberId();
-		int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
 
-		System.out.println("  상품 번호  :  " +productNo + " 유저 아이디 : " + userId);
 		
 		/*Review r = new Review();*/
 		
 		if(m!=null)
 		{	
 			
+			
+			String userId = ((Member)session.getAttribute("user")).getMemberId();
+			int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
+
+			System.out.println("  상품 번호  :  " +productNo + " 유저 아이디 : " + userId);
+			
 			ArrayList<Review> reviewBuyList = new ReviewService().reviewBuyCheckList(userId,productNo);
-			System.out.println(reviewBuyList);
+			//System.out.println(reviewBuyList);
+			if(reviewBuyList!=null) {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			new Gson().toJson(reviewBuyList,response.getWriter());
-			
+			}else {
+				response.setContentType("application/json");
+				response.setCharacterEncoding("utf-8");
+				new Gson().toJson("",response.getWriter());
+			}
+		}else {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			new Gson().toJson("",response.getWriter());
 		}
 		
 		

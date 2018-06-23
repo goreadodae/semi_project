@@ -55,7 +55,7 @@ public class ProductDetailServlet extends HttpServlet {
 			response.sendRedirect("/views/productPage/ProductMain.jsp");
 		}
 	}
-
+ 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

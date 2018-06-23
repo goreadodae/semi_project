@@ -24,52 +24,15 @@
 	padding: 0px;
 	margin: 0px;
 }
-
-.list-group li {
-	background-color: #566270;
-	color: white;
-}
 </style>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" style="background-color: #dadbdb; padding:0px">
 		<div class="row">
-			<div class="col-md-2"
-				style="background-color: #566270; height: 950px; padding: 0;">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="col-md-12"
-							style="background-color: #566270; height: 50px"></div>
-						<ul class="list-group" style="text-align: center">
-							<li
-								class="list-group-item d-flex justify-content-between align-items-center">
-								회원관리<span class="badge badge-primary badge-pill">14</span>
-							</li>
-							<li
-								class="list-group-item d-flex justify-content-between align-items-center">
-								게시판관리<span class="badge badge-primary badge-pill">2</span>
-							</li>
-							<li
-								class="list-group-item d-flex justify-content-between align-items-center">
-								공지사항관리<span class="badge badge-primary badge-pill">1</span>
-							</li>
-							<li
-								class="list-group-item d-flex justify-content-between align-items-center">
-								FAQ관리<span class="badge badge-primary badge-pill">1</span>
-							</li>
-							<li
-								class="list-group-item d-flex justify-content-between align-items-center">
-								문의관리 <span class="badge badge-primary badge-pill">1</span>
-							</li>
 
+			<jsp:include page="/views/adminPage/layoutPageLeft.jsp"></jsp:include>
 
-						</ul>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="col-md-10" style="background-color: #dadbdb">
+			<div class="col-md-10" >
 				<div class="row">
 					<div class="col-md-12"
 						style="height: 50px; background-color: white;">s</div>
@@ -83,36 +46,44 @@
 							style="background-color: white; height: 300px">d</div>
 					</div>
 				</div>
-				<br>
-				<br>
+
+				<br> <br>
 				<div class="row">
 
-				<div class="col-md-12" >
+					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="col-md-12" style="background-color: white; height:200px">
-								s
-								</div>
-							
+								<div class="col-md-12"
+									style="background-color: white; height: 200px">s</div>
+
 							</div>
 							<div class="col-md-6">
-							<div class="col-md-12" style="background-color: white; height:200px">
-							s
-							</div>
+								<div class="col-md-12"
+									style="background-color: white; height: 200px">s</div>
 							</div>
 
 
 						</div>
-
-
-
-
+					</div>
 				</div>
+				<br><br>
+				<div class="row" style="padding:0">
+				<div class="col-md-12" >
+					<div class="md-12" style="padding:0; background-color:white; height:200px" >
+						
+					</div>
+				</div>
+				
+				
+				</div>
+
 			</div>
 
-		</div>
 
+
+		</div>
 	</div>
+
 
 
 

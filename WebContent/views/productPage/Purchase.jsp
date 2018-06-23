@@ -116,7 +116,7 @@
 		$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
 		$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
 		
-		$('#pay').click(function(){
+		$('#pay11').click(function(){
 			var basketNoTag = $('[name="basketNo1"]');
 			var basketQuantity1 = $('[name="basketQuantity1"]');
 			var productNo1 = $('[name="productNo1"]');
@@ -160,7 +160,7 @@
 		
 		
 		//2. 결제 api 실행
-		$('#pay11').click(function(){
+		$('#pay').click(function(){
 			IMP.request_pay({
 			    pg : 'inicis', // version 1.1.0부터 지원.
 			    pay_method : 'card',
@@ -176,25 +176,28 @@
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
-			       //결제 완료시 구매완료 페이지 전환
-			       //3. 구매할 품목들 장바구니 번호 배열 생성
 			        var basketNoTag = $('[name="basketNo1"]');
+					var basketQuantity1 = $('[name="basketQuantity1"]');
+					var productNo1 = $('[name="productNo1"]');
 					var basketNoArr = new Array();
+					var basketQuantityArr = new Array();
+					var productNoArr = new Array();
 					
 					for(var i=0; i<basketNoTag.length ; i++){
 						basketNoArr[i] = basketNoTag[i].value;
+						basketQuantityArr[i] = basketQuantity1[i].value;
+						productNoArr[i] = productNo1[i].value;
 					}
+					
+					var totalpayment =$('#totalpayment').html();
+					var memberNo = "${member.memberNo}";
 					
 					//4. 구매목록에 추가 후 페이지 전환
 					jQuery.ajaxSettings.traditional=true;
 					$.ajax({
 							url : "/buyingInsert",
-							data : {basketNo:basketNoArr},
+							data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment,memberNo:memberNo},
 							async: false,
 							type : "get",
 							success:function(data){
@@ -206,7 +209,7 @@
 					});
 					
 					location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo=${member.memberNo}";
-			        
+						
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;

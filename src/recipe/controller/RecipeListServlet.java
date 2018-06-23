@@ -68,6 +68,7 @@ public class RecipeListServlet extends HttpServlet {
 			cate2="0";
 			cate3="0";
 			cate4="0";
+			search="null";
 		}
 		
 		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order, search);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -166,25 +167,30 @@
 						<div class="col-md-12">
 							<table class="table table-hover">
 								<tr>
-									<th scope="col">레시피번호</th>
+									<th scope="col">#</th>
 									<th scope="col">레시피제목</th>
-									<th scope="col">조회수</th>
-									<th scope="col">등록일</th>
-									<th scope="col">작성자ID</th>
-									<th scope="col">삭제</th>
+									<th scope="col">상품제목</th>
+									<th scope="col">레시피 작성자</th>
+									<th scope="col">상품 가격</th>
+									<th scope="col">팔린 개수</th>
+									<th scope="col">총판매 가격</th>
+									<th scope="col">송금</th>
 								</tr>
-								
 									<c:forEach begin="0"
-										items="${requestScope.pageData.dataList }" var="list"
+										items="${requestScope.productList }" var="list"
 										varStatus="i">
 										<tr >
-										<th scope="row">${requestScope.pageData.dataList[i.count-1].recipeNo }</th>
-										<th><a href="/recipe?recipeNo=${requestScope.pageData.dataList[i.count-1].recipeNo }">
-										${requestScope.pageData.dataList[i.count-1].recipeTitle }</a></th>
-										<th>${requestScope.pageData.dataList[i.count-1].recipeViews }</th>
-										<th>${requestScope.pageData.dataList[i.count-1].postedDate }</th>
-										<th>${requestScope.pageData.dataList[i.count-1].memberId }</th>
-										<th><button class="btn btn-primary" onclick="deleteRecipe(${requestScope.pageData.dataList[i.count-1].recipeNo })">삭제</button>
+										<th scope="row">${i.count}</th>
+										<th>
+										<a href="/recipe?recipeNo=${requestScope.productList[i.count-1].recipeNo }">
+										${requestScope.productList[i.count-1].recipeTitle }</a></th>
+										<th><a href="/productDetail?productNo=${requestScope.productList[i.count-1].productNo }">
+										${requestScope.productList[i.count-1].productName }</a></th>
+										<th>${requestScope.productList[i.count-1].recipeWriter }</th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].price }" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sellQuantity }" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].totalSales }" groupingUsed="true"/></th>
+										<th><button class="btn btn-primary" onclick="">송금</button>
 										</tr>
 									</c:forEach>
 									

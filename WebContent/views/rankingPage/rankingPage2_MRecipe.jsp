@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
 
   <script>
    window.onload = function() {
-    var preYear = new Date().getFullYear().toString() - 10; /*현재 년도 - 10년*/
+    var preYear = new Date().getFullYear().toString() - 5; /*현재 년도 - 10년*/
     var nowYear = new Date().getFullYear().toString(); /*현재 년도*/
     var preMonth = 1; /*1월*/
     var endMonth = 12; /*12월*/
@@ -118,7 +118,7 @@ $("#yearClick").change(function() {
    },
    type : "post",
    success : function(data) {
-     console.log("성공");
+     //console.log("성공");
      for (var i = 0; i < data.length; i++) {
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
@@ -237,7 +237,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs1">
  </div>
  <div class="container">
@@ -282,7 +282,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs2">
  </div>
  <div class="container">
@@ -326,7 +326,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs3">
  </div>
  <div class="container">
@@ -371,7 +371,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs4">
  </div>
  <div class="container">
@@ -415,7 +415,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs5">
  </div>
  <div class="container">

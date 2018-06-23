@@ -75,17 +75,17 @@
 
 /*현재 선택된 셀렉트 값 가져오기*/
 /*console.log($("#yearClick option:selected").val());*/
-console.log("선택하지 않은 상태의 년도 : "+$("select[name=yearClickName]").val());
-console.log("선택하지 않은 상태의 년도 : "+$("select[name=monthClickName]").val());
+//console.log("선택하지 않은 상태의 년도 : "+$("select[name=yearClickName]").val());
+//console.log("선택하지 않은 상태의 년도 : "+$("select[name=monthClickName]").val());
  var yearClick = $("select[name=yearClickName]").val().substr(2,4);
  var monthClick = $("select[name=monthClickName]").val();
 
-  console.log("선택한 년도 : "+$("select[name=yearClickName]").val().substr(2,4));
+  //console.log("선택한 년도 : "+$("select[name=yearClickName]").val().substr(2,4));
 
 /*바뀐 셀렉트 값 가져오기*/
 $("#yearClick").change(function(){
 /*alert($(this).children("option:selected").text());*/
-  console.log("선택한 년도 : "+yearClick.substr(2,4));
+ // console.log("선택한 년도 : "+yearClick.substr(2,4));
 
 
     $.ajax({
@@ -93,9 +93,9 @@ $("#yearClick").change(function(){
       data : {year : yearClick, month : monthClick},
       type : "post",
       success : function(data){
-        console.log("성공");
+      //  console.log("성공");
         for(var i=0; i<data.lenth;i++){
-            console.log(i+"번째"+data[i]);
+       //     console.log(i+"번째"+data[i]);
             $("#rankNum"+(i+1)).html(i+"위");
             $("#cardImgs"+(i+1)).attr("src",data[i].completePic);
             $("#rankingTodayTitle"+(i+1)).html(data[i].recipeTitle);
@@ -115,7 +115,7 @@ $("#yearClick").change(function(){
 });
 
   $("#monthClick").change(function(){
-  console.log("선택한 달 : "+monthClick);
+  //console.log("선택한 달 : "+monthClick);
 
     $.ajax({
       url : "/rankingMonthlyRecipe",
@@ -123,7 +123,7 @@ $("#yearClick").change(function(){
       type : "post",
       success : function(data){
           for(var i=0; i<data.lenth;i++){
-              console.log(i+"번째"+data[i]);
+            //  console.log(i+"번째"+data[i]);
               $("#rankNum"+(i+1)).html(i+"위");
               $("#cardImgs"+(i+1)).attr("src",data[i].completePic);
               $("#rankingTodayTitle"+(i+1)).html(data[i].recipeTitle);

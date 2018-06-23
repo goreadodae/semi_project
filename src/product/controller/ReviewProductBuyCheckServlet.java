@@ -35,27 +35,22 @@ public class ReviewProductBuyCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.인코딩
+		//ajax를 통해 리뷰 작성 및 수정을 할 때, 사용자가 상품을 구매한 이력이 있는지 확인!
+		//인코딩
 		request.setCharacterEncoding("utf-8");
-		//2. 변수값 저장 (내용, 별점, 리뷰 번호, 아이디(닉네임))
+		
+	    //로그인 되어져 있는세션의 아이디 가져오기
 		HttpSession session = request.getSession(false);
-		//세션에 저장된 userid ->> 로그인 중인 사용자
 		Member m = (Member)session.getAttribute("user");
 
-		
-		/*Review r = new Review();*/
-		
 		if(m!=null)
 		{	
-			
-			
-			String userId = ((Member)session.getAttribute("user")).getMemberId();
+			//변수에 값 저장
+			String userId = ((Member)session.getAttribute("user")).getMemberId();//세션에서 아이디 가져오기
 			int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
 
-			System.out.println("  상품 번호  :  " +productNo + " 유저 아이디 : " + userId);
-			
 			ArrayList<Review> reviewBuyList = new ReviewService().reviewBuyCheckList(userId,productNo);
-			//System.out.println(reviewBuyList);
+			
 			if(reviewBuyList!=null) {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");

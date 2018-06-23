@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
 
 
    window.onload = function() {
-    var preYear = new Date().getFullYear().toString() - 10; /*현재 년도 - 10년*/
+    var preYear = new Date().getFullYear().toString() - 5; /*현재 년도 - 10년*/
     var nowYear = new Date().getFullYear().toString(); /*현재 년도*/
     var preMonth = 1; /*1월*/
     var endMonth = 12; /*12월*/
@@ -96,10 +96,8 @@ document.getElementById("yearClick").innerHTML = strYear;
 document.getElementById("monthClick").innerHTML = strMonth;
 
 /*현재 선택된 셀렉트 값 가져오기*/
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=yearClickName]").val().substr(2, 4));
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=monthClickName]").val());
+//console.log("선택하지 않은 상태의 년도 : "$("select[name=yearClickName]").val().substr(2, 4));
+//console.log("선택하지 않은 상태의 년도 : "$("select[name=monthClickName]").val());
 
 
 /* 선택되어지지 않는 상태 */
@@ -109,7 +107,6 @@ var monthClick = $("select[name=monthClickName]").val();
 
 
 /* 기존 선택하지 않은 상태  */
-
 $
 .ajax({
  url : "/rankingMonthlyChef",
@@ -119,8 +116,8 @@ $
 },
 type : "post",
 success : function(data) {
-  console.log("성공");
-  console.log("선택 안한 기본 날 : "+data);
+  //console.log("성공");
+  //console.log("선택 안한 기본 날 : "+data);
   for (var i = 0; i < data.length; i++) {
    $('#rankingMemberID'+(i+1)).html(data[i].nickname);
    $('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -129,11 +126,7 @@ success : function(data) {
    $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
    $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
    $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
-
-   /* $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");*/
-
- }
-
+    }
 
  /*1위 랭킹 리스트*/
  $('#cardImgs1').click(function(){
@@ -143,14 +136,12 @@ success : function(data) {
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("리스트 아작스 성공!"+data.length);
       $('#RecipeListTbody1').html("");
       for (var i = 0; i < data.length; i++) {
         $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
           "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
         $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-
       }
     },
     error : function(){
@@ -167,7 +158,7 @@ success : function(data) {
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+     // console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody2').html("");
       for (var i = 0; i < data.length; i++) {
         $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
@@ -190,7 +181,7 @@ success : function(data) {
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+  //    console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody3').html("");
       for (var i = 0; i < data.length; i++) {
         $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
@@ -213,7 +204,7 @@ success : function(data) {
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+    //  console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody4').html("");
       for (var i = 0; i < data.length; i++) {
         $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
@@ -236,7 +227,7 @@ success : function(data) {
     data : {userId : rankingUserId},
     type : "get",
     success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+   //   console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody5').html("");
       for (var i = 0; i < data.length; i++) {
         $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
@@ -263,11 +254,8 @@ $("#yearClick").change(function() {
   var monthClick = $("select[name=monthClickName]").val();
   /*alert($(this).children("option:selected").text());*/
 
-  console.log("year에서 선택한 년도 : "
-   + $("select[name=yearClickName]").val()
-   .substr(2, 4));
-  console.log("year에서 선택한 달 : "
-   + $("select[name=monthClickName]").val());
+ // console.log("year에서 선택한 년도 : "$("select[name=yearClickName]").val().substr(2, 4));
+ // console.log("year에서 선택한 달 : "$("select[name=monthClickName]").val());
 
   $.ajax({
     url : "/rankingMonthlyChef",
@@ -277,10 +265,10 @@ $("#yearClick").change(function() {
    },
    type : "post",
    success : function(data) {
-     console.log("성공");
-     console.log(data);
+   //  console.log("성공");
+   //  console.log(data);
      for (var i = 0; i < data.length; i++) {
-      console.log("선택한 년도 : "+ i + "번째" + data[i]);
+   //   console.log("선택한 년도 : "+ i + "번째" + data[i]);
 
       $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -304,11 +292,8 @@ $("#monthClick").change(function() {
   var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
   var monthClick = $("select[name=monthClickName]").val();
 
-  console.log("month에서 선택한 년도 : "
-   + $("select[name=yearClickName]").val()
-   .substr(2, 4));
-  console.log("month에서 선택한 달 : "
-   + $("select[name=monthClickName]").val());
+//  console.log("month에서 선택한 년도 : " $("select[name=yearClickName]").val().substr(2, 4));
+//  console.log("month에서 선택한 달 : "$("select[name=monthClickName]").val());
 
   $.ajax({
     url : "/rankingMonthlyChef",
@@ -318,11 +303,11 @@ $("#monthClick").change(function() {
    },
    type : "post",
    success : function(data) {
-     console.log("성공");
-     console.log(data);
+   //  console.log("성공");
+    // console.log(data);
 
      for (var i = 0; i < data.length; i++) {
-      console.log("선택한 달 : "+ i + "번째" + data[i]);
+    //  console.log("선택한 달 : "+ i + "번째" + data[i]);
 
       $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -400,7 +385,7 @@ $("#monthClick").change(function() {
     <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count}" role="button" aria-expanded="false" aria-controls="userRanking${status.count}">
       <div class="pull-left"><h3 id="rankNum${status.count}">${status.count}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count}">
-        <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
+        <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO300x300.png" alt="" style="width: 300px; height: 300px;" >
       </a>
       <h3 id="rankingMemberID${status.count}">Strange Recipes</h3>
 <!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
@@ -413,7 +398,7 @@ $("#monthClick").change(function() {
     <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count+2}" role="button" aria-expanded="false" aria-controls="userRanking${status.count+2}">
       <div class="pull-left"><h3 id="rankNum${status.count+2}">${status.count+2}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count+2}">
-        <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;" >
+        <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO200x200.png" alt="" style="width: 200px; height: 200px;" >
       </a>
       <h3 id="rankingMemberID${status.count+2}">Strange Recipes</h3>
 <!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">

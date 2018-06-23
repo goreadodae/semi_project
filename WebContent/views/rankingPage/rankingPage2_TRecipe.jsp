@@ -100,7 +100,7 @@ pageEncoding="UTF-8"%>
 				preDayMonth = prevDay1[1]; /*월*/
 				prevDay = prevDay1[2]; /*일*/
 //if(Number(prevDay)<10){prevDay="0"+prevDay;}
-			console.log(prevDay);
+			//console.log(prevDay);
 
 				var prevDay2 = datepicker.split('/');
 				nextDayYear = prevDay1[0];	/*년*/
@@ -149,7 +149,7 @@ pageEncoding="UTF-8"%>
 				
 			/*	yesterday.setDate(yesterday.getDate()-1);*/
 
-					console.log("이전날 버튼 : "+$('#datepicker').val());
+					//console.log("이전날 버튼 : "+$('#datepicker').val());
 				$.ajax({
 					url : "/rankingTodayMove",
 					data : {datepicker : $('#datepicker').val()},
@@ -199,7 +199,7 @@ pageEncoding="UTF-8"%>
 				/*yesterday.setDate(yesterday.getDate()+1);*/
 
 
-				console.log("다음날 버튼 : "+$('#datepicker').val());
+				//console.log("다음날 버튼 : "+$('#datepicker').val());
 
 
 				$.ajax({
@@ -256,7 +256,7 @@ window.onload = function() {
 	prevDay = prevDay1[2];
 
      //입력값
-     console.log("오늘 날짜는 ?"+datepicker);
+     //console.log("오늘 날짜는 ?"+datepicker);
 
      $.ajax({
      	url : "/rankingToday",
@@ -416,7 +416,7 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
 							id="cardImgs1">
 						</div>
 						<div class="container">
@@ -460,7 +460,7 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
 							id="cardImgs2">
 						</div>
 						<div class="container">
@@ -504,7 +504,7 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
 							id="cardImgs3">
 						</div>
 						<div class="container">
@@ -548,7 +548,7 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
 							id="cardImgs4">
 						</div>
 						<div class="container">
@@ -592,7 +592,7 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
 							id="cardImgs5">
 						</div>
 						<div class="container">

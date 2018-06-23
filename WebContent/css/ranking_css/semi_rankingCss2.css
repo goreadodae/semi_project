@@ -54,7 +54,7 @@
 
 /*카드에서 오버레이 - 글자 감싸고 있는 부분 -> padding으로 글자 아래로*/
 #cardOverlay{
-	width: 905px;
+	width: 850px;
 	height: 350px;
 	padding-top: 230px;
 	padding-left: 0px;  

@@ -122,16 +122,11 @@ success : function(data) {
   $('#montylyRecipeImage').attr('src',data[0].recipePic);
   $('#monthRecipe1st').html(data[0].recipeTitle);
   $('#monthRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");
-
-
-
 },
 error : function() {
   console.log("실패");
 }
 });
-
-
 /*상단 이달의 회원*/
 				$.ajax({
 					url : "/rankingMonthlyChef",
@@ -143,7 +138,6 @@ error : function() {
 					success : function(data) {
 						$('#monthlyUserImage').attr('src',data[0].profile);
   						$('#monthmember1st').html(data[0].nickname);
-  						/*$('#monthUserRecipe').attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[0].recipeNo+"'");*/
 
 					},
 					error : function() {
@@ -181,7 +175,7 @@ error : function() {
 <div id="warpgradient">
 	<div class="center-block" id="line">
 		<a id="rankingURL" href="#gray">
-		<img src="/imgs/ranking_img/trophy (1).png" alt="Ranking" id="trophy" style="width: 20%; height: 20%;">
+		<img src="/imgs/ranking_img/trophy (1).png" alt="Ranking" id="trophy" style="width: 150px; height: 150px;">
 		</a>
 	</div>
 	<!-- 상단 구분선 -->
@@ -211,7 +205,7 @@ error : function() {
 					<div class="media-image">
 						<a href="#"> 
 							<img class="media-object"
-							src="/imgs/ranking_img/recipe.jpg" alt="오늘의 레시피" id="todayRecipeImage" 
+							src="/imgs/ranking_img/todayRecipe350x250.png" alt="오늘의 레시피" id="todayRecipeImage" 
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
@@ -232,7 +226,7 @@ error : function() {
 					<br> <br>
 					<div class="media-image">
 						<a href="#"> <img class="media-object"
-							src="/imgs/ranking_img/ingredient.jpg" alt="이달의 레시피" id="montylyRecipeImage" 
+							src="/imgs/ranking_img/monthRecipe350x250.png" alt="이달의 레시피" id="montylyRecipeImage" 
 							style="width: 349px; height: 250px; border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>
@@ -256,7 +250,7 @@ error : function() {
 					<br>
 					<div class="media-image">
 						<a href="#"> <img class="media-object"
-							src="/imgs/ranking_img/chef-1245676_1920.jpg" alt="이달의 회원" id="monthlyUserImage" 
+							src="/imgs/ranking_img/monthChef350x250.png" alt="이달의 회원" id="monthlyUserImage" 
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>

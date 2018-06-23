@@ -72,7 +72,7 @@
 			style="padding: 10px;" id="point">
 			<div class="row">
 				<div class="col-md-12">
-					<button class="btn btn-primary" onclick="#"
+					<button class="btn btn-primary" onclick=""
 			style="float: right; background-color: #512772 !important; color: white !important; margin-top: 3%; margin-bottom: 3%;">레시피 수정</button>
 				</div>
 			</div>
@@ -181,7 +181,8 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
 					<div class="embed-responsive embed-responsive-16by9">
-						<iframe src="${requestScope.recipe.video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						<c:set var="videoSrc" value = "${fn:replace(requestScope.recipe.video,'watch?v=','embed/')}"/>
+						<iframe src="${videoSrc}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 					</div>
 				</div>
 				<div class="col-md-2"></div>

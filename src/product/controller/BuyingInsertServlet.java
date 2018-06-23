@@ -64,10 +64,7 @@ public class BuyingInsertServlet extends HttpServlet {
 	         int result4 = new ProductService().deleteBasketOver(Integer.parseInt(productNoList[i]));//4.수량초과인 장바구니 모두 삭제
 		}
 		
-		
-		
 }
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

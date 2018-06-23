@@ -246,10 +246,6 @@ public class ProductDao {
 		return bList;
 	}
 
-
-
-
-
 	//장바구니 추가
 	public int insertBasket(Connection conn, int basketQuantity,int memberNo,int productNo) {
 		PreparedStatement pstmt = null;

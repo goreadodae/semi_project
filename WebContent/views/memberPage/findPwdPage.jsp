@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+<%
    String beforeURI = request.getHeader("referer");
 %>
 <!DOCTYPE html>
@@ -19,17 +24,16 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <link rel="stylesheet" href="/css/member_css/loginPage.css">
 
-<style>
-td{
-   text-align: left;
-   padding: 15px 7px;
-   font-weight: 400;
-   font: 14px/20px 'Noto Sans KR Medium';
-   color: #514859;
-}
-</style>
-
 </head>
+<script type="text/javascript">
+	<%if(session.getAttribute("user")==null){%>
+	<%}else{%>
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+	<%}%>
+</script>
 <script>
    $(document).ready(function() {
       /* 해더 불러오는 제이쿼리 */
@@ -54,58 +58,44 @@ td{
          <div class="container">
             <div class="col-md-12" id="section">
                <div class="col-md-8 mx-auto">
-                  <fieldset>               
-                        <div class="col-md-10 mx-auto">
-                           <table>
-                              
-                           
-                              <tr>
-                                 <td style="width:100px;">
-                                    아이디
-                                 </td>
-                                 <td>
-                                    <input class="form-control form-login mx-auto" type="text" 
-                                      id="userId" name="userId" style="width:250px;">
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    이름
-                                 </td>
-                                 <td>
-                                    <input class="form-control form-login mx-auto" type="text" 
-                                       id="userName" name="userName" style="width:250px;">
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    이메일
-                                 </td>
-                                 <td>
-                                    <input class="form-control form-login mx-auto" type="text" 
-                                      id="email" name="email" style="width:250px;">
-                                 </td>
-                              </tr>
+            	<fieldset>
+                     <form action="" method="post" id="frm">
+                     
+                        <!-- 아이디 -->
+                        <div class="col-md-12">
+                           <p style="float:left; line-height:48px; font-weight:800;">아이디</p>
+                           <input class="form-control form-login mx-auto" type="text" 
+                             id="userId" name="userId" style="width:250px;"><br>
+                        </div> 
                         
-                           </table>
+                        <!-- 이름 -->
+                        <div class="col-md-12">
+                           <p style="float:left; line-height:48px; font-weight:800;">이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                           <input class="form-control form-login mx-auto" type="text" id="userName" name="userName" 
+                                  style="width:250px; margin-left:40px;"><br>
+                        </div>
+                        
+                        <!-- 이메일 -->
+                        <div class="col-md-12">
+                           <p style="float:left; line-height:48px; font-weight:800;">이메일</p>
+                           <input class="form-control form-login mx-auto" type="text"
+                            id="email" name="email" style="width:250px; left:0px;"><br>
                         </div>
                      </form>
-                     
                   </fieldset>
-                  <div class="col-md-12" style="margin-top: 20px; margin-left:155px;">
+                </div>
+                  <div class="col-md-4 mx-auto" style="margin-top:20px; left:36px;">
                   <button class="btn btn-primary btn-lg btn-block form-login" 
                          onclick="findPwd();" style="background-color:#795b8f; width:250px;">확인</button>
+              	  </div>
                </div>
-               </div>
-               
-               
-               </div>
-            <br>
+            <hr>
+           </div>
+           <br>
          </div>
       </div>
       
       <br><br><br><br>
-   </div>
 
     
    <!-- 푸터 -->
@@ -113,7 +103,6 @@ td{
         style="border: 1px solid black; padding: 10px;">
    </div>
    <!-- 푸터 끝 -->
-   <br><br>
 
    <script>
       function findPwd() {
@@ -144,7 +133,6 @@ td{
          
       }
    </script>
-
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <script src="/js/bootstrap.min.js"></script>

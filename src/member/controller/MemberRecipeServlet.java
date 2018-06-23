@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import main.model.vo.MainRecipe;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
 /**
- * Servlet implementation class LoginCheckServlet
+ * Servlet implementation class MemberRecipeServlet
  */
-@WebServlet(name = "LoginCheck", urlPatterns = { "/loginCheck" })
-public class LoginCheckServlet extends HttpServlet {
+@WebServlet(name = "MemberRecipe", urlPatterns = { "/memberRecipe" })
+public class MemberRecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginCheckServlet() {
+    public MemberRecipeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,24 +35,32 @@ public class LoginCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
-		String userId = request.getParameter("loginId");
-		String userPwd = request.getParameter("loginPwd");
 		
-		System.out.println(userId+" "+userPwd);
+		ArrayList<Member> list = new MemberService().getMemberInfo();
 		
-		boolean result = new MemberService().loginCheck(userId, userPwd);
-		
-		System.out.println(result);
-		
-		if(result==true) {
-			response.getWriter().print("1");
-    		response.getWriter().close();
-		}else {
-			response.getWriter().print("0");
-    		response.getWriter().close();
+		System.out.println(list);
+		JSONArray resultArray = new JSONArray();
+
+		for (Member m : list) {
+
+			JSONObject result = new JSONObject();
+			
+			result.put("member_no", m.getMemberNo());
+			result.put("nickname", m.getNickName());
+			result.put("profile",m.getProfile());
+
+			resultArray.add(result);
+
 		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().print(resultArray);
+		response.getWriter().close();
+		
+		
 	}
 
 	/**

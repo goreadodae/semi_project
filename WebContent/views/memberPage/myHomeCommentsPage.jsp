@@ -1,12 +1,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.*"%>
-<!DOCTYPE html>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <%
    Member m = (Member) session.getAttribute("user");
    ArrayList<Comments> c = (ArrayList<Comments>) request.getAttribute("c");
    int count = 1;
 %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -171,14 +176,14 @@ width:100%;
 
       <!-- 컨텐츠 영역 -->
       <div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-            style="border: 1px solid black; padding:0;">
+            style="padding:0;">
             
          <div class="row" id="myPageBottom">
             <div class="col-md-2" id="menu">
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                     <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                     <li><a href="/views/memberPage/myHomeMainPage.jsp">내 프로필</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
                       <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
@@ -238,7 +243,8 @@ width:100%;
                                  </label>
                            </td>
                            <td>
-                                 <button onclick="deleteComment(this);">삭제</button>
+                                 <button type="button" class="btn btn-dark" 
+                                 		onclick="deleteComment(this);" style="color:white;">삭제</button>
                            </td>
                         </tr>
                         <%
@@ -254,22 +260,17 @@ width:100%;
                      <%} %>
                </table>
             </div>
-            <div class="col-md-1"></div>
          </div>   
-      
       </div>
-      
       <!-- 푸터 -->
+      <br>
       <div id="footer"
         class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
         style="border: 1px solid black; padding: 10px;"></div>
       <!-- 푸터 끝 -->
    </div>
-
-
-
-   <script>
    
+   <script>
       function deleteComment(obj){
           var tr = $(obj).parent().parent();
           var commentNo = tr.find('#commentNo').val();

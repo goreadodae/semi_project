@@ -1,11 +1,13 @@
 package member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
@@ -46,6 +48,7 @@ public class InsertMemberServlet extends HttpServlet {
 		setBirth.insert(5, "/");
 		
 		m.setMemberId(request.getParameter("userId"));
+		m.setNickName("유저");
 		m.setMemberPwd(request.getParameter("userPwd"));
 		m.setMemberName(request.getParameter("userName"));
 		m.setBirthDate(setBirth.toString());
@@ -54,12 +57,15 @@ public class InsertMemberServlet extends HttpServlet {
 		m.setGender(request.getParameter("gender"));
 		m.setEmail(request.getParameter("email"));
 		
-		int result = new MemberService().insertMember(m);
+		Member user = new MemberService().insertMember(m);
 		
-		if(result>0) {
+		if(user!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", m);
 			response.sendRedirect("/index.jsp");
 		}else {
-			System.out.println("실패");
+			// 에러페이지
+			response.sendRedirect("insertError.jsp");
 		}
 	}
 

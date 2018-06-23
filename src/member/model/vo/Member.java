@@ -18,7 +18,7 @@ public class Member {
 
 	public String getMemberId() {
 		return memberId;
-	}
+	}	
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;

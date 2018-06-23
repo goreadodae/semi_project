@@ -2,6 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+
 <!-- ☆지현 추가 -->
 <%@ page import="product.model.vo.*" import="java.util.*" import="member.model.vo.*"%>
 <% 

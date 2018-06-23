@@ -35,6 +35,7 @@ public class FindIdServlet extends HttpServlet {
       String email = request.getParameter("email");
       
       String userId = new MemberService().findId(userName, email);
+      
       response.getWriter().print(userId);
       response.getWriter().close();
    }

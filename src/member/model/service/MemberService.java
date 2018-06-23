@@ -31,18 +31,12 @@ public class MemberService {
 		return result;
 	}
 
-	public int insertMember(Member m) {
+	public Member insertMember(Member m) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MemberDao().insertMember(conn, m);
+		Member m2 = new MemberDao().insertMember(conn, m);
 
-		if (result > 0) {
-			JDBCTemplate.commit(conn);
-		} else {
-			JDBCTemplate.rollback(conn);
-		}
 		JDBCTemplate.close(conn);
-		return result;
-
+		return m2;
 	}
 
 	public Member login(String loginId, String loginPwd) {
@@ -140,6 +134,29 @@ public class MemberService {
 		ArrayList<Recipe> list = new MemberDao().recipe(conn, userNo);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+
+	public ArrayList<Member> getMemberInfo() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> list = new MemberDao().getMemberInfo(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public int totalBascket(int member_no) {
+		Connection conn = JDBCTemplate.getConnection();
+		int count = new MemberDao().totalBascket(conn, member_no);
+		JDBCTemplate.close(conn);
+		return count;
+	}
+
+	public boolean loginCheck(String userId, String userPwd) {
+		Connection conn = JDBCTemplate.getConnection();
+		boolean result = new MemberDao().loginCheck(conn, userId, userPwd);
+
+		JDBCTemplate.close(conn);
+
+		return result;
 	}
 
 }

@@ -3,6 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,13 +137,13 @@
 
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- Header -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
 		<!-- 전체 컨텐츠 -->
-		<div id="total" class="contents">
+		<div id="total" class="contents" style="padding: 0px;">
 
 			<!-- 배너이미지
 			<div class="col-md-12">

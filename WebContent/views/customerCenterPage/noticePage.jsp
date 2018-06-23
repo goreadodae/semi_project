@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +88,7 @@ body {
 
 
 </head>
-<body>
+<body style="overflow-x: hidden; overflow-y: auto;">
 
 	<div class="container-fluid" style="padding: 0px">
 
@@ -91,7 +96,7 @@ body {
 
 
 		<div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;" id="contents">
+			style="padding: 10px;" id="contents">
 			<div class="row">
 				<div class="col-md-2" style="padding: 0;">
 					<!--고객센터 목록  -->

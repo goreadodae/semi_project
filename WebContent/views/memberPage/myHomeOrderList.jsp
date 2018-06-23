@@ -3,6 +3,11 @@
    pageEncoding="UTF-8" import="member.model.vo.Member"
    import="member.model.vo.BuyProduct"%>
 <%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>  
+<%
    Member m = (Member) session.getAttribute("user");
    ArrayList<BuyProduct> p = (ArrayList<BuyProduct>) request.getAttribute("p");
    int count = 1;
@@ -191,15 +196,13 @@ ol, li {
    <!-- 헤더 영역 끝 -->
 
       <!-- 컨텐츠 영역 -->
-      <div id="contents"
-         class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-         style="border: 1px solid black; padding: 0;">
+      <div id="contents" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0" style="padding:0;">
          <div class="row" id="myPageBottom">
             <div class="col-md-2" id="menu">
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                      <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                      <li><a href="/views/memberPage/myHomeMainPage.jsp">내 프로필</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
                      <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
@@ -214,7 +217,6 @@ ol, li {
                <div>
                   <table id="tbl-order-list">
                   <form action="" id="setRows">
-                
                      </form>
                      <colgroup>
                         <col style="width: 130px;">
@@ -266,17 +268,14 @@ ol, li {
                   </table>
                </div>
             </div>
-            <div class="col-md-1"></div>
          </div>
-
       </div>
-
+      <br>
       <!-- 푸터 -->
-      <div id="footer"
-         class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+      <div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
          style="border: 1px solid black; padding: 10px;"></div>
       <!-- 푸터 끝 -->
-   </div><br><br>
+   </div>
 
 
    <script>

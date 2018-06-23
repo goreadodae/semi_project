@@ -107,17 +107,11 @@ var monthClick = $("select[name=monthClickName]").val();
 
 
 /* 기존 선택하지 않은 상태  */
-$
-.ajax({
+$.ajax({
  url : "/rankingMonthlyChef",
- data : {
-  year : yearClick,
-  month : monthClick
-},
-type : "post",
-success : function(data) {
-  //console.log("성공");
-  //console.log("선택 안한 기본 날 : "+data);
+ data : {year : yearClick, month : monthClick},
+ type : "post",
+ success : function(data) {
   for (var i = 0; i < data.length; i++) {
    $('#rankingMemberID'+(i+1)).html(data[i].nickname);
    $('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -128,7 +122,7 @@ success : function(data) {
    $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
     }
 
- /*1위 랭킹 리스트*/
+ /*이중 ajax! memberId에 따른 아이디별 랭킹 리스트 불러오기(1위)*/
  $('#cardImgs1').click(function(){
   var rankingUserId = data[0].memberId;
   $.ajax({
@@ -138,9 +132,10 @@ success : function(data) {
     success : function(data){
       $('#RecipeListTbody1').html("");
       for (var i = 0; i < data.length; i++) {
+    	  //랭킹 테이블 리스트 만들기
         $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
-          );
+          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>");
+    	  //랭킹 테이블 리스트의 각각의 레시피로 이동
         $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
       }
     },
@@ -373,7 +368,7 @@ $("#monthClick").change(function() {
 
 <div id="wholeWrap" class="container">
   <div class="col-lg-12" style="padding-right: 50px;">
-    <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 쉐프</h2>
+    <h2 class="my-4" style=" font-family:hanna; font-weight: 800; display: inline-block;">이달의 쉐프</h2><labe style=" font-family:hanna; font-weight: 400;">&nbsp;&nbsp; : &nbsp;&nbsp;레시피별 총 VIEWS가 많은 쉐프 선정!</label>
     <hr style="border: 0.5px solid #EAEAEA;">
   </div>
   <!-- Team Members Row -->

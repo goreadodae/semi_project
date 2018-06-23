@@ -592,6 +592,26 @@
 	  
 	  function back(){history.go(-1);} //뒤로가기
 	  
+	  /* 유효성검사 */
+	          function check() {
+            /*return true; // onclick이 true면 회원가입
+            return false; // onclick이 false면 다음화면으로 넘어가지 않음*/
+            var pw = document.getElementById("pw");
+            var pwre = document.getElementById("pwre");
+            
+            if(pw.value != pwre.value)
+                {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    pw.style.backgroundColor = 'red';
+                    pwre.style.backgroundColor = 'red';
+                    return false;
+                }
+            else{
+                return true;
+            }
+            
+            }
+	  
 	//버튼 마우스올렸을때 색상 변화
 
       $('.mybutton1').mouseover(function(){
@@ -611,6 +631,7 @@
          $(this).removeClass('mybutton3');
          $(this).addClass('mybutton2');
       });
+      
 
 	 
 </script>
@@ -708,7 +729,7 @@ body{font-family:IropkeBatang;}
 		<!--헤더예용! -->	
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<br><br>
-		<!-- 컨테츠예용! --> <!--enctype="multipart/form-data"  -->
+		<!-- 컨테츠예용! -->
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
 		<div class="row" id="inRecipe">
 		

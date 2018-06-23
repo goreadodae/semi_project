@@ -12,16 +12,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class JDBCTemplate {
+public class JDBCTemplate{
 	public JDBCTemplate() {}
 
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
 			String driver = "oracle.jdbc.driver.OracleDriver";
-			String url = "jdbc:oracle:thin:@192.168.10.30:1521:xe";
+			String url = "jdbc:oracle:thin:@localhost:80:xe";
 			String user = "strangeRecipe";
-			String passwd = "bob4jo";
+			String passwd = "strangeRecipe";
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, passwd);
 			conn.setAutoCommit(false);

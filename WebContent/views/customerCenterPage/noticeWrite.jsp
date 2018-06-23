@@ -117,7 +117,6 @@ border-collapse:collapse;
                ${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}</textarea>
          	<br><br>
             </div>
-
          </div>
          
          <!-- 바뀐부분 시작 -->

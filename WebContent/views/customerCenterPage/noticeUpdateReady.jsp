@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"
-   import="member.model.vo.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"
+    import="member.model.vo.*" import="notice.model.vo.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% pageContext.setAttribute("newLineChar","\n"); %>
-
+<% Notice n = (Notice)request.getAttribute("notice");%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항 내용</title>
+<title>공지사항 수정</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/noticePage_css/noticeContents.css">
@@ -30,13 +30,6 @@
       location.href="/views/customerCenterPage/noticePage.jsp";
    }
    
-   function check(){
-	      if(window.confirm("삭제하시겠습니까?")){
-	         return true;
-	      }else{
-	         return false;
-	      }
-	   }
    
 </script>
 <style>
@@ -63,9 +56,11 @@ border-collapse:collapse;
 }
 </style>
 
+
 </head>
 <body>
-   <div class="container-fluid">
+
+<div class="container-fluid">
 
       <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
       <!--메인헤더 가지고 옴   -->
@@ -73,6 +68,7 @@ border-collapse:collapse;
       <!--여기서부터 컨텐츠 영역(공지사항 내용)  -->
       <div class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
          style="padding: 10px;" id="contents">
+         <form action="/noticeUpdate" method="post">
          <div class="row" style="padding: 0;">
             <!--공지사항 타이틀  -->
             <div class="col-md-12" style="padding: 0;">
@@ -94,7 +90,7 @@ border-collapse:collapse;
                   <thead>
                      <tr>
                         <th style="width: 100px; background-color: lightgray;">제목</th>
-                        <td colspan="4">${requestScope.notice.noticeTitle}</td>
+                        <td colspan="4"><input type="text" class="form-control" name="noticeTitle" value="${requestScope.notice.noticeTitle}"></td>
                      </tr>
                   </thead>
                   <tbody>
@@ -114,114 +110,49 @@ border-collapse:collapse;
                      </tr>
                   </tbody>
                </table>
-
-
-
             </div>
          </div>
          <div class="row" style="padding: 0;">
 
-            <div class="col-md-12"
-               style="text-align: justify; padding: 10px; border-bottom-color: red;">
-               ${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}
-               <br> <br>
+            <div class="col-md-12">
+               <textarea rows="15" style="resize: none;" name="noticeBoard" class="form-control">
+               ${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}</textarea>
+         	<br><br>
             </div>
-
 
          </div>
          
          <!-- 바뀐부분 시작 -->
          <!--관리자일경우 -->
          
-		<%if (session.getAttribute("user")!=null&& ((Member)session.getAttribute("user")).getMemberId().equals("user28")){ %>
          <div class="row" style="padding: 0;">
          	<div class="col-md-12">
          		<div class="row">
-         			<div class="col-md-7 mx-auto">
+         			<div class="col-md-3 mx-auto">
          			<div class="row">
-         	<!-- <div class="col-md-2"></div> -->		
-            <div class="col-md-3"> 
-            	<form action="/noticeUpdateReady" style="display:inline;">
+         	<div class="col-md-2"></div>		
+            <div class="col-md-4"> 
             	<input type="hidden" name="noticeNo" value="${requestScope.notice.noticeNo}">
-               <button class="btn btn-outline-primary" id="listBtn">수정</button>
-                 </form>
+               <button type="submit" class="btn btn-outline-primary" id="listBtn">수정하기</button>
+         
             </div>
-            <div class="col-md-3">
-            	<form action="/noticeDelete" style="display:inline;">
-            	<input type="hidden" name="noticeNo" value="${requestScope.notice.noticeNo}">
-               <button type="submit" onclick="return check();"
-                class="btn btn-outline-primary" id="listBtn">삭제</button>
-                 </form>
-            </div>
-            <div class="col-md-3">
-            	<button type="button" onclick="location.href='/views/customerCenterPage/noticeWrite.jsp'"
-                  class="btn btn-outline-primary" id="listBtn">글쓰기(임시)</button>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                <button type="button" onclick="location.href='/noticeList'"
                   class="btn btn-outline-primary" id="listBtn">목록</button>
             </div>
-            <!-- <div class="col-md-3">
-               <button type="button" onclick="location.href='/noticeList'"
-                  class="btn btn-outline-primary" id="listBtn">목록</button>
-            </div> -->
-			<div class="col-md-1"></div>
+			<div class="col-md-2"></div>
 						</div>
 					</div>
 				</div>
 			</div>
          </div>
-      <%}else{ %>   <!-- 관리자가 아닐경우 -->
-      	
-      	  <div class="row" style="padding: 0;">
-            <div class="col-md-12">
-               <button type="button" onclick="location.href='/noticeList'"
-                  class="btn btn-outline-primary" id="listBtn">목록</button>
-            </div>
-         </div>      	
-      	
-      <%} %>
+     
          
          <!-- 바뀐부분 끝-->
          
          <br> <br>
-         <div class="row" style="padding: 0;">
-
-
-
-            <div class="col-md-12" style="padding: 0">
-               <table class="table "
-                  style="width: 100%; border-top: 2px solid #795b8f; border-bottom: 2px solid #795b8f;"
-                  id="historyTbl">
-                  <tr>
-                     <c:if test="${!empty requestScope.preNotice}">
-                     <td style="width:5%; border-right:1px solid #dcdcdc; !important">이전글</td>
-                     <td colspan="2"><a href="/noticeDetail?noticeNo=${requestScope.notice.noticeNo-1}">${requestScope.preNotice}</a></td>
-                     </c:if>
-                     <c:if test="${empty requestScope.preNotice}">
-                     <td colspan="2">
-                     　<!--공백이 숨어있어요  -->
-                     </td>
-                     </c:if>
-                  </tr>
-                  <tr>
-                     <c:if test="${!empty requestScope.nexNotice}">
-                     <td style="border-right:1px solid #dcdcdc; !important">다음글</td>
-                     <td><a href="/noticeDetail?noticeNo=${requestScope.notice.noticeNo+1}">${requestScope.nexNotice}</a></td>
-                     </c:if>
-                     <c:if test="${empty requestScope.nexNotice}">
-                     <td colspan="2">
-                     　<!--공백이 숨어있어요  -->
-                     </td>
-                     
-                     </c:if>
-               
-                  </tr>
-
-               </table>
-            </div>
-         </div>
-
+         
+		 </form>
 
       </div>
    </div>
@@ -238,5 +169,7 @@ border-collapse:collapse;
       src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
    <script src="/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

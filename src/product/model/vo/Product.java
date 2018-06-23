@@ -9,13 +9,13 @@ public class Product {
 	private String productSpecPic;
 	private String productIntro;
 	private String productInfo;
+	private int recipeNo;
 	
 	
 	public Product() {}
 
-
 	public Product(int productNo, int productQuantity, String productName, int productPrice, String product1stPic,
-			String productSpecPic, String productIntro, String productInfo) {
+			String productSpecPic, String productIntro, String productInfo, int recipeNo) {
 		super();
 		this.productNo = productNo;
 		this.productQuantity = productQuantity;
@@ -25,6 +25,7 @@ public class Product {
 		this.productSpecPic = productSpecPic;
 		this.productIntro = productIntro;
 		this.productInfo = productInfo;
+		this.recipeNo = recipeNo;
 	}
 
 
@@ -106,6 +107,16 @@ public class Product {
 	public void setProductInfo(String productInfo) {
 		this.productInfo = productInfo;
 	}
+
+	public int getRecipeNo() {
+		return recipeNo;
+	}
+
+	public void setRecipeNo(int recipeNo) {
+		this.recipeNo = recipeNo;
+	}
+	
+	
 
 }
 

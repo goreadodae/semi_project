@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
 import product.model.service.ProductService;
 import product.model.vo.Product;
+import product.model.vo.Review;
 
 /**
  * Servlet implementation class ProductDetailServlet
@@ -41,11 +40,15 @@ public class ProductDetailServlet extends HttpServlet {
 		Product productInfo = new Product();
 		productInfo = new ProductService().getProduct(productNo);
 		
-		
-		
+
+		//☆ 지현 추가 : 댓글
+		ArrayList<Review> list = new ProductService().reviewAll(productNo);
+
 		if(productInfo!=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductDetail.jsp");
 			request.setAttribute("productInfo", productInfo);
+			//☆ 지현 추가 : 댓글
+			request.setAttribute("comment", list);
 			view.forward(request, response);
 		}
 		else {

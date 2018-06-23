@@ -1,28 +1,23 @@
-package main.controller;
+package notice.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import member.model.vo.Member;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet(name = "Logout", urlPatterns = { "/logout" })
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "NoticeDelete", urlPatterns = { "/noticeDelete" })
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +27,11 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
-		String recentURI = request.getParameter("recentURI");
 		
-		HttpSession session = request.getSession(false);	
 		
-		Member m = (Member)session.getAttribute("user");
 		
-		if(m!=null) {
-			session.invalidate();
-			RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/logoutPage.jsp");
-			request.setAttribute("recentURI", recentURI);
-			view.forward(request, response);
-		} 
-		else {
-			System.out.println("에러입니다.");
-		}	
+		
 	}
 
 	/**

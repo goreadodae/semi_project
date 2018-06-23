@@ -4,13 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
@@ -18,6 +16,7 @@ import product.model.vo.Basket;
 import product.model.vo.Buying;
 import product.model.vo.Ordercall;
 import product.model.vo.Product;
+import product.model.vo.Review;
 
 public class ProductDao {
 	//모든 상품 정보
@@ -43,6 +42,7 @@ public class ProductDao {
 				pro.setProductSpecPic(rset.getString("product_spec_pic"));
 				pro.setProductIntro(rset.getString("product_intro"));
 				pro.setProductInfo(rset.getString("product_info"));
+				
 				list.add(pro);
 			}
 		} catch (FileNotFoundException e) {
@@ -89,6 +89,7 @@ public class ProductDao {
 				productInfo.setProductSpecPic(rset.getString("product_spec_pic"));
 				productInfo.setProductIntro(rset.getString("product_intro"));
 				productInfo.setProductInfo(rset.getString("product_info"));
+				productInfo.setRecipeNo(rset.getInt("recipe_no"));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -212,7 +213,7 @@ public class ProductDao {
 			prop.load(new FileReader(path+"resources/productQuery.properties"));
 			String query = prop.getProperty("basketDirectSelect");
 
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement("select bascket_no,product_no,product_name,PRODUCT_1ST_PIC,BASCKET_QUANTITY,PRODUCT_PRICE from product join bascket using(PRODUCT_NO) where bascket_no=(select max(bascket_no) from bascket where member_no=?)");
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
 
@@ -223,6 +224,8 @@ public class ProductDao {
 				b.setProduct1stPic(rset.getString("product_1st_pic"));
 				b.setBasketQuantity(rset.getInt("bascket_quantity"));
 				b.setProductPrice(rset.getInt("product_price"));
+				b.setProductNo(rset.getInt("product_no"));
+				
 				bList.add(b);
 			}
 
@@ -653,7 +656,8 @@ public class ProductDao {
 				b.setProductName(rset.getString("product_Name"));
 				b.setProductPrice(rset.getInt("product_price"));
 				b.setProduct1stPic(rset.getString("product_1st_pic"));
-
+				b.setOrderNo(rset.getInt("order_no"));
+				
 				list.add(b);
 			}
 
@@ -675,5 +679,52 @@ public class ProductDao {
 	}
 
 
+	//☆ 지현 추가 --> 댓글 나오기
+		public ArrayList<Review> noticeComment(Connection conn, int productNo) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			Properties prop = new Properties();
+			String path = ReviewDao.class.getResource("").getPath();
+			ArrayList<Review> list = new ArrayList<Review>();
+			String query = "SELECT review_no, review_contents, review_enroll_date, review_meet, product_no, member_id, nickname FROM REVIEW left join member using(member_id) WHERE PRODUCT_NO = ? order by review_no desc";
+			try {
+				prop.load(new FileReader(path+"reviewQuery.properties"));
+				/*String query = prop.getProperty("reviewAll");*/
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, productNo);
+				
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					Review r = new Review();
+					r.setReviewNo(rset.getInt("review_no"));
+					r.setReviewContents(rset.getString("review_contents"));
+					r.setEnrollDate(rset.getDate("review_enroll_date"));
+					r.setReviewSatisfied(rset.getInt("review_meet"));
+					r.setProductNo(rset.getInt("product_no"));
+					r.setMemberId(rset.getString("member_id"));
+					r.setNickName(rset.getString("nickname"));
+					list.add(r);
+					
+				}
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			
+			
+			return list;
+		}
 
+	
 }

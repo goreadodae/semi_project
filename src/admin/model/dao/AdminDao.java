@@ -314,6 +314,7 @@ public class AdminDao {
 		
 		
 		return qt;
+
 	}
 
 	public int insertAnsInfo(Connection conn, Answer ans) {

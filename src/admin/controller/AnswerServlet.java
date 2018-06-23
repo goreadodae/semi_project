@@ -2,7 +2,6 @@ package admin.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.AdminService;
-import qna.model.vo.Question;
+import admin.model.vo.Answer;
 
 /**
- * Servlet implementation class AnswertMgtServlet
+ * Servlet implementation class AnswerServlet
  */
-@WebServlet(name = "AnswertMgt", urlPatterns = { "/answertMgt" })
-public class AnswertMgtServlet extends HttpServlet {
+@WebServlet(name = "Answer", urlPatterns = { "/answer" })
+public class AnswerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AnswertMgtServlet() {
+    public AnswerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +30,26 @@ public class AnswertMgtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int  queNo = Integer.parseInt(request.getParameter("queNo"));
-		
-		Question qt = new AdminService().questionDetail(queNo);
+		request.setCharacterEncoding("utf-8");
+		Answer ans = new Answer();
+		ans.setAnsContents(request.getParameter("ansContents"));
+		ans.setQueNo(Integer.parseInt(request.getParameter("queNo")));
+		ans.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
+
+		int result = new AdminService().insertAnsInfo(ans);//답변시 답변테이블에 정보를 저장
+		int comAns = new AdminService().completeAns(ans);//답변시 질문테이블에서 답변여부를 n->y로 변경
+		if(result>0&&comAns>0)
+		{
+			
+			
+			response.sendRedirect("/qnaMgt");
+		}
+		else
+		{
+			
+		}
 
 		
-		
-		if(qt!=null)
-		{
-			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/answerMgtPage.jsp");
-			request.setAttribute("qt",qt);
-			view.forward(request, response);
-				
-		}
-		else {
-			System.out.println("실수");
-		}
 		
 	}
 

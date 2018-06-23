@@ -9,6 +9,7 @@ import admin.model.vo.AdminProduct;
 
 import admin.model.vo.AdminRecipe;
 import admin.model.vo.AdminRecipePageData;
+import admin.model.vo.Answer;
 import common.JDBCTemplate;
 import qna.model.vo.Question;
 
@@ -67,5 +68,37 @@ public class AdminService {
 		
 		return qt;
 	}
+
+	public int insertAnsInfo(Answer ans) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new AdminDao().insertAnsInfo(conn,ans);
+		if(result>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+
+	public int completeAns(Answer ans) {
+		Connection conn = JDBCTemplate.getConnection();
+		int comAns = new AdminDao().completeAns(conn,ans);
+		
+		if(comAns>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return comAns;
+	}
+
+
 
 }

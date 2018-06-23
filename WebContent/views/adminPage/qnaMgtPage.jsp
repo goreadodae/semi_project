@@ -47,6 +47,7 @@
 							<c:url var="url" value="/answertMgt">
 								<c:param name="queNo" value="${ql.queNo}"></c:param>
 							</c:url>
+							
 							<tr>
 								<td>${ql.queNo}</td>
 								<td><a href="${url}">${ql.queTitle}</a></td>

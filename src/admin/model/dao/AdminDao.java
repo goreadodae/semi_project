@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import admin.model.vo.AdminProduct;
 import admin.model.vo.AdminRecipe;
+import admin.model.vo.Answer;
 import common.JDBCTemplate;
 import qna.model.vo.Question;
 
@@ -314,5 +315,59 @@ public class AdminDao {
 		
 		return qt;
 	}
+
+	public int insertAnsInfo(Connection conn, Answer ans) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="insert into answer values(answer_seq.nextval,sysdate,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ans.getAnsContents());
+			pstmt.setInt(2, ans.getQueNo());
+			pstmt.setInt(3, ans.getMemberNo());
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+
+	public int completeAns(Connection conn, Answer ans) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update question set response_yn = 'Y' where que_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, ans.getQueNo());
+			result = pstmt.executeUpdate();
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
 
 }

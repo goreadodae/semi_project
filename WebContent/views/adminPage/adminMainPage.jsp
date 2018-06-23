@@ -8,18 +8,58 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
 
-
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
 
+<style>
+* {
+	padding: 0;
+}
+</style>
 <script>
-	/* 해더 불러오는 제이쿼리 */
+	var scrollUpDelay = 1;
+	var scrollUpSpeed = 30;
+
+	/* 영역 설정 */
 	$(document).ready(function() {
-		$("#header").load("/views/header/main-Header.jsp");
-		$("#footer").load("/views/footer/main-Footer.jsp");
+
+		var $info = $("#info");
+
+		window.onresize = function() {
+			$info.html(window.innerWidth);
+		}
+	});
+
+	/* 위로 올라가기 */
+	function scrollUp() {
+		if (document.body.scrollTop < 1) {
+			return;
+		}
+		document.body.scrollTop = document.body.scrollTop - scrollUpSpeed;
+		setTimeout('scrollUp()', scrollUpDelay);
+	}
+</script>
+<!-- 페이지 네비게이션 고정 -->
+<script>
+	$(document).ready(function() {
+		var jbOffset = $('#point').offset();
+
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
 	});
 </script>
 <style>
@@ -64,7 +104,11 @@
 </head>
 <body>
 	<div class="container-fluid" style="padding: 0px">
-		<div id="header"></div>
+		<div class="container-fluid" style="padding: 0;">
+		<!-- Header -->
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+		<!-- 해더 -->
+		</div>
 
 		<div style="background-color: #f8faff; padding: 0px">
 
@@ -184,7 +228,7 @@
 								<th><a href="/memberMgt">회원관리</a></th>
 							</tr>
 							<tr>
-								<th>게시물관리</th>
+								<th><a href="/recipeMgt">게시물관리</a></th>
 							</tr>
 							<tr>
 								<th>공지사항관리</th>
@@ -276,7 +320,7 @@
 		class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 		style="border: 1px solid black; padding: 10px;">
 		<!-- footer -->
-
+	<jsp:include page="/views/footer/main-Footer.jsp"></jsp:include>
 	</div>
 
 	</div>

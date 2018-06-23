@@ -2,13 +2,22 @@
    pageEncoding="UTF-8" import="member.model.vo.*"%>
 <% Member m = (Member)session.getAttribute("user"); %>
 <% 
-String [] address = m.getAddress().split(" \\| ");
-String [] phone = m.getPhone().split("-");
-String [] email = m.getEmail().split("@");
+	String [] address = m.getAddress().split(" \\| ");
+	String [] phone = m.getPhone().split("-");
+	String [] email = m.getEmail().split("@");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	
+<script>
+	/* 해더 불러오는 제이쿼리 */
+	$(document).ready(function() {
+		$("#footer").load("/views/footer/main-Footer.jsp");
+	});
+</script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My Home</title>
@@ -132,7 +141,7 @@ margin-left:274px;
 
 #changeBtn{
 margin-left:10px;
-line-height: 32px;
+line-height: 39px;
 }
 #changeEmail{
 display: none;
@@ -178,44 +187,26 @@ ol, li {
   </div>
 </div>
 
-
-
    <!-- 전체 컨테이너  -->
    <div class="container-fluid" style="padding: 0px;">
 
       <!-- 해더 영역 -->
-      <div id="header"></div>
-      <!-- 헤더 영역 끝 -->
+	  <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+	  <!-- 헤더 영역 끝 -->
 
       <!-- 컨텐츠 영역 -->
-      <div id="contents"
-         class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
+      <div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
          style="border: 1px solid black; padding: 0;">
-         <div class="row" id="myPageTop">
-            <div class="col-md-2"></div>
-            <div class="col-md-9" style="padding: 0;">
-               <div class="col-md-12" id="myPageTopUser">
-                  <div id="userInfo" class="col-md-5"></div>
-                  <ul>
-
-                  </ul>
-               </div>
-            </div>
-            <div class="col-md-1"></div>
-         </div>
          <div class="row" id="myPageBottom">
             <div class="col-md-2" id="menu">
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                     <li><a href="/views/memberPage/myHomeMainPage.jsp">나의
-                           주문내역</a></li>
-                     <li><a href="/views/memberPage/myHomeRecipePage.jsp">나의
-                           레시피</a></li>
-                     <li><a href="/views/memberPage/myHomeCommentsPage.jsp ">내가
-                           쓴 댓글</a></li>
-                     <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인
-                           정보 수정</a></li>
+                  	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                     <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
+                     <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
+                     <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
+                     <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인정보 수정</a></li>
                   </ul>
                </div>
             </div>
@@ -231,14 +222,13 @@ ol, li {
                            <td class="memberCols1">아이디</td>
                            <td class="memberCols2">
                            <input class="form-control" name="userId" readonly value="<%=m.getMemberId() %>" style="width: 150px;" />
-                              </td>
+                           </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">새 비밀번호</td>
                            <td class="memberCols2"><input class="form-control"
                               type="password" id="new-pwd-1" style="width: 250px;"> <span
-                              style="color: #f00;">띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자
-                                 조합하여야만 사용할 수 있습니다.</span></td>
+                              style="color: #f00;">띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자 조합하여야만 사용할 수 있습니다.</span></td>
                         </tr>
                         <tr>
                            <td class="memberCols1">새 비밀번호 확인</td>
@@ -283,7 +273,7 @@ ol, li {
                               <h5 style="float: left; line-height: 32px; padding: 0 5px;">@</h5>
                               <input class="form-control" type="text" value="<%=email[1]%>"
                               style="width: 150px; float: left;" id="last_email"  /> 
-                              <a href="#" id="changeBtn" onclick="changeEmail();">중복검사</a>
+                              <a href="#" id="changeBtn" onclick="changeEmail();" style="margin-top:5px;">중복검사</a>
                               <input type="hidden" id="saveEmail" name="saveEmail" value="<%= m.getEmail() %>" />
                               <span>
                                  <label class="problem"id="emailProblem"></label>
@@ -292,17 +282,20 @@ ol, li {
                         </tr>
                         <tr>
                            <td class="memberCols1">주소</td>
-                           <td class="memberCols2"><input type="text" id="postcode"
-                              name="postcode" class="form-control"
-                              style="width: 100px; float: left;" value="<%=address[0] %>"
-                              readonly /> <input type="button" class="btn btn-default"
-                              id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
-                              style="width: 100px; float: left; height: 38px; magin: 0; padding: 0 5px;" />
-                              <input type="text" id="roadAddress" name="roadAddress"
-                              style="margin-right: 20px;" value="<%=address[1] %>"
-                              class="form-control" readonly /> <input type="text"
-                              id="addAddress" name="addAddress" value="<%=address[2] %>"
-                              class="form-control" /> <span id="guide" style="color: #999"></td>
+                           <td class="memberCols2">
+                           	  <input type="text" id="postcode" name="postcode" class="form-control"
+                              		style="width: 100px; float: left; margin-right:10px;" value="<%=address[0] %>"readonly /> 
+                              
+                              <input type="button" class="btn btn-default" id="postBtn" onclick="execDaumPostcode();" 
+                              		value="주소 찾기" style="width: 100px; float: left; height: 38px; magin: 0; 
+                              		padding: 0 5px;" />
+                              <br>
+                              <input type="text" id="roadAddress" name="roadAddress" style="margin-top:20px;"
+                               		value="<%=address[1] %>" class="form-control" readonly /> 
+                              <input type="text" id="addAddress" name="addAddress" style="margin-top:10px;" 
+                              		value="<%=address[2] %>" class="form-control" /> 
+                              <span id="guide" style="color: #999">
+                           </td>
                         </tr>
                         <tr>
                            <td class="memberCols1">사진</td>
@@ -321,7 +314,7 @@ ol, li {
                                  height="150" id="imgFile_Step_0" onclick="document.all.stepImgFile0.click();">
                                  
                               <%} %>
-                              <input type="hidden" id="saveProfile">
+                              <input type="hidden" id="saveProfile" value="<%=m.getProfile()%>" name="beforeProfile">
                               </td>
                         </tr>
                         <tr>
@@ -394,8 +387,6 @@ ol, li {
                     }
                 }
             }
-      
-      
       $('#frm').submit();
       
    }
@@ -503,7 +494,7 @@ ol, li {
     function readURL(input,stepImgNum) {
        if (input.files && input.files[0]) {
            var reader = new FileReader();
-    
+           
            reader.onload = function (e) {
               $('#imgFile_Step_'+stepImgNum).attr('src', e.target.result);
               
@@ -511,7 +502,6 @@ ol, li {
                    $('#stepRPic'+stepImgNum).attr('value',imgAddr);
             
            }
-    
            reader.readAsDataURL(input.files[0]);
           }
       };
@@ -521,7 +511,6 @@ ol, li {
         regExpNickname
         if($('#nickname').val() != ""){
            if (!regExpNickname.test($('#nickname').val())){
-              
            }else{
               $('#saveNick').val($('#nickname').val());
            }
@@ -531,7 +520,6 @@ ol, li {
    
    
    </script>
-
 
    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
    <script

@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import member.model.dao.MemberDao;
 import member.model.vo.BuyProduct;
+import member.model.vo.Comments;
 import member.model.vo.Member;
+import recipe.model.vo.Recipe;
 
 public class MemberService {
 
@@ -57,18 +59,18 @@ public class MemberService {
 		return result;
 	}
 
-	public int changInfo(String userId, String fullFilePath, String userPwd, String phone, String email, String address,
-			String nickname) {
+	public Member changInfo(String userId, String fullFilePath, String userPwd, String phone, String email,
+			String address, String nickname) {
 
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MemberDao().changeInfo(conn, userId, fullFilePath, userPwd, phone, email, address, nickname);
+		Member m = new MemberDao().changeInfo(conn, userId, fullFilePath, userPwd, phone, email, address, nickname);
 
-		if (result > 0) {
+		if (m != null) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		return result;
+		return m;
 	}
 
 	// 아름 수정 (회원번호에 따른 계정정보 가져오기)
@@ -85,4 +87,59 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public ArrayList<Member> selectAll() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> list = new MemberDao().selectAll(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<Comments> comments(int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Comments> list = new MemberDao().comments(conn, userNo);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public String findId(String userName, String email) {
+		Connection conn = JDBCTemplate.getConnection();
+		String userId = new MemberDao().findId(conn, userName, email);
+		JDBCTemplate.close(conn);
+		return userId;
+	}
+
+	public int findPwd(String userId, String userName, String email, String uuid) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().findPwd(conn, userId, userName, email, uuid);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			System.out.println(1);
+		} else {
+			JDBCTemplate.rollback(conn);
+			System.out.println(0);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deleteRecipe(int recipeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().deleteRecipe(conn, recipeNo);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public ArrayList<Recipe> recipe(int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Recipe> list = new MemberDao().recipe(conn, userNo);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

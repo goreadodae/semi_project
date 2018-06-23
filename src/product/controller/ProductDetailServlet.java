@@ -40,10 +40,10 @@ public class ProductDetailServlet extends HttpServlet {
 		Product productInfo = new Product();
 		productInfo = new ProductService().getProduct(productNo);
 		
+
 		//☆ 지현 추가 : 댓글
 		ArrayList<Review> list = new ProductService().reviewAll(productNo);
-				
-		
+
 		if(productInfo!=null) {
 			RequestDispatcher view = request.getRequestDispatcher("/views/productPage/ProductDetail.jsp");
 			request.setAttribute("productInfo", productInfo);

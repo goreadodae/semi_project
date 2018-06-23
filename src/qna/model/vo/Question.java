@@ -7,17 +7,18 @@ public class Question {
 	private String queTitle;
 	private Timestamp queTime;
 	private String queContents;
-	private String memberNo;
+	private int memberNo;
 	private String responseYn;
 	private int buyingNo;
+	private String memberId;
 	
 
 	public Question() {
 		super();
 	}
 	
-	public Question(int queNo, String queTitle, Timestamp queTime, String queContents, String memberNo,
-			String responseYn, int buyingNo) {
+	public Question(int queNo, String queTitle, Timestamp queTime, String queContents, int memberNo,
+			String responseYn, int buyingNo, String memberId) {
 		super();
 		this.queNo = queNo;
 		this.queTitle = queTitle;
@@ -26,6 +27,7 @@ public class Question {
 		this.memberNo = memberNo;
 		this.responseYn = responseYn;
 		this.buyingNo = buyingNo;
+		this.memberId = memberId;
 	}
 
 	public int getQueNo() {
@@ -52,10 +54,10 @@ public class Question {
 	public void setQueContents(String queContents) {
 		this.queContents = queContents;
 	}
-	public String getMemberNo() {
+	public int getMemberNo() {
 		return memberNo;
 	}
-	public void setMemberNo(String memberNo) {
+	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
 	public String getResponseYn() {
@@ -69,6 +71,14 @@ public class Question {
 	}
 	public void setBuyingNo(int buyingNo) {
 		this.buyingNo = buyingNo;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 	

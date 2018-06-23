@@ -59,14 +59,19 @@ public class RecipeListServlet extends HttpServlet {
 		String cate3 = request.getParameter("cate3");//방법별
 		String cate4 = request.getParameter("cate4");//재료별
 		String order = request.getParameter("order");
+		// 지수
+		String search = request.getParameter("search"); // 메인페이지에서 검색
 		
+		System.out.println(search);
 		if(cate1==null||cate2==null||cate3==null||cate4==null) {
 			cate1="0";
 			cate2="0";
 			cate3="0";
 			cate4="0";
+			search="null";
 		}
-		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order);
+		
+		RecipePageData rpd = new RecipeService().recipeAll(page, cate1, cate2, cate3, cate4, order, search);
 		request.setAttribute("classList", categoryOrderClass);
 		request.setAttribute("situationList", categoryOrderSituation);
 		request.setAttribute("methodList", categoryOrderMethod);
@@ -76,7 +81,8 @@ public class RecipeListServlet extends HttpServlet {
 		request.setAttribute("cate2", cate2);
 		request.setAttribute("cate3", cate3);
 		request.setAttribute("cate4", cate4);
-		request.setAttribute("order", order	);
+		request.setAttribute("order", order);
+		request.setAttribute("search", search);
 		
 		request.setAttribute("pageData", rpd);
 		RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/RecipeList.jsp");

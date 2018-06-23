@@ -98,20 +98,46 @@
 			$(this).addClass('mybutton2');
 		});
 		
+		
+		
+		//1. 총 가격 계산 & 그에 따른 배송비와 결제금액 설정
+		var deliveryFee = 0;	//배송비
+		var eachPay = $('[name="eachPay"]');	//물품들의 총가격
+		var totalPay = 0;						//다 합한 가격
+		for(var j=0; j<eachPay.length ; j++){
+			totalPay += Number(eachPay[j].value);
+		}
+		console.log("total : " + totalPay);
+		
+		if(totalPay<30000){	//3만원 미만이면
+			deliveryFee = 2500;//배송비 2500원
+		}
+		
+		$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
+		$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
+		
 		$('#pay11').click(function(){
 			var basketNoTag = $('[name="basketNo1"]');
+			var basketQuantity1 = $('[name="basketQuantity1"]');
+			var productNo1 = $('[name="productNo1"]');
 			var basketNoArr = new Array();
+			var basketQuantityArr = new Array();
+			var productNoArr = new Array();
 			
 			for(var i=0; i<basketNoTag.length ; i++){
 				basketNoArr[i] = basketNoTag[i].value;
+				basketQuantityArr[i] = basketQuantity1[i].value;
+				productNoArr[i] = productNo1[i].value;
 			}
 			
+			var totalpayment =$('#totalpayment').html();
+			var memberNo = "${member.memberNo}";
 			
 			//4. 구매목록에 추가 후 페이지 전환
 			jQuery.ajaxSettings.traditional=true;
 			$.ajax({
 					url : "/buyingInsert",
-					data : {basketNo:basketNoArr},
+					data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment,memberNo:memberNo},
 					async: false,
 					type : "get",
 					success:function(data){
@@ -132,13 +158,6 @@
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp23408974'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		
-		//1. 총 가격 계산
-		var eachPay = $('[name="eachPay"]');
-		var totalPay = 0;
-		for(var j=0; j<eachPay.length ; j++){
-			totalPay += Number(eachPay[j].value);
-		}
-		console.log("total : " + totalPay);
 		
 		//2. 결제 api 실행
 		$('#pay').click(function(){
@@ -157,25 +176,28 @@
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
 			        
-			       //결제 완료시 구매완료 페이지 전환
-			       //3. 구매할 품목들 장바구니 번호 배열 생성
 			        var basketNoTag = $('[name="basketNo1"]');
+					var basketQuantity1 = $('[name="basketQuantity1"]');
+					var productNo1 = $('[name="productNo1"]');
 					var basketNoArr = new Array();
+					var basketQuantityArr = new Array();
+					var productNoArr = new Array();
 					
 					for(var i=0; i<basketNoTag.length ; i++){
 						basketNoArr[i] = basketNoTag[i].value;
+						basketQuantityArr[i] = basketQuantity1[i].value;
+						productNoArr[i] = productNo1[i].value;
 					}
+					
+					var totalpayment =$('#totalpayment').html();
+					var memberNo = "${member.memberNo}";
 					
 					//4. 구매목록에 추가 후 페이지 전환
 					jQuery.ajaxSettings.traditional=true;
 					$.ajax({
 							url : "/buyingInsert",
-							data : {basketNo:basketNoArr},
+							data : {basketNo:basketNoArr,productNo:productNoArr,basketQuantity:basketQuantityArr,totalFee:totalPay,deliveryFee:deliveryFee,finalFee:totalpayment,memberNo:memberNo},
 							async: false,
 							type : "get",
 							success:function(data){
@@ -187,7 +209,7 @@
 					});
 					
 					location.href="/buyingSelectRecent?rowCount="+basketNoTag.length +"&memberNo=${member.memberNo}";
-			        
+						
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -213,6 +235,9 @@
 	text-align:center;
 }
 
+#table1 td,th{
+	font-size : 14px;
+}
 
 .line1{
 	border-bottom : 1px solid #dcdcdc;
@@ -392,6 +417,8 @@
 							<td>${b.productPrice*b.basketQuantity}</td>
 						</tr>
 						<input type="hidden" id="basketNo" name="basketNo1" value="${b.basketNo}">
+						<input type="hidden" id="productNo1" name="productNo1" value="${b.productNo}">
+						<input type="hidden" id="basketQuantity1" name="basketQuantity1" value="${b.basketQuantity}">
 						<input type="hidden" id="eachPay" name="eachPay" value="${b.productPrice*b.basketQuantity}">
 						</c:forEach>
 					</table>
@@ -410,7 +437,7 @@
 						
 						<tr class="line4">
 							<th><span id="sub">휴대폰</span></th>
-							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1" readonly>
+							<td><input type="text" value="${member.phone}" class="deliveryinfo" id="phone1">
 							</td>	
 						</tr>
 						
@@ -433,16 +460,15 @@
 					<!-- 배송 정보 -->
 					<hr style="border:1px solid #522075;">
 					<table width=100%>
-						<tr class="line5">
+						<tr class="line4">
 							<th width=15%><span id="sub">주소</span></th>
 							<td td width=85%>
-							<%-- <c:set var="addrString" value=" " />
+							<c:set var="addrString" value=" " />
 							<c:forTokens items="${member.address}" delims="|" var="item">
-								<c:set var="addrString" value="${addrString} + ${item}" />
+								<c:set var="addrString" value="${addrString} ${item}" />
 							</c:forTokens>
-							<input type="text" value="${addrString}" class="deliveryinfo">
-							</td> --%>
-							<%-- <td width=85%><textarea id="addr" class="deliveryinfo" rows="2" cols="100" style="resize:none;">${member.address}</textarea></td> --%>
+							<input type="text" value="${addrString}" style="width:600px" class="deliveryinfo">
+							</td>
 						</tr>
 						
 						<tr class="line4">

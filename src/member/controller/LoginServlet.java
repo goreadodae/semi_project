@@ -38,9 +38,9 @@ public class LoginServlet extends HttpServlet {
 		String beforeURI = request.getParameter("beforeURI");
 		
 		Member m = new MemberService().login(loginId, loginPwd);
-
+		
 		if (m == null) {
-			response.sendRedirect("");
+			response.sendRedirect("/views/memberPage/errors/loginError.jsp");
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", m);

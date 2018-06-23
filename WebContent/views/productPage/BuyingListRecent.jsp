@@ -111,6 +111,10 @@ table{
 	text-align:center;
 }
 
+td,th{
+	font-size : 14px;
+}
+
 .line1{
 	border-bottom : 2px solid #dcdcdc;
 	height : 120px;
@@ -236,6 +240,10 @@ table{
 	border : 0px;
 	cursor : pointer;
 }
+
+.productDetail:link { color: black; text-decoration: none;}
+.productDetail:visited { color: black; text-decoration: none;}
+.productDetail:hover { color: black; text-decoration: none;}
 </style>
 
 
@@ -273,8 +281,8 @@ table{
 						
 						<tr class="line1">
 							<td>${b.buyingNo}<%-- ${i.count} --%></td>
-							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">${b.productName}</td>
+							<td><center><a href="/productDetail?productNo=${b.productNo}" class="productDetail"><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></a></center></td>
+							<td class="prod"><a href="/productDetail?productNo=${b.productNo}" class="productDetail">${b.productName}</a></td>
 							<td>${b.buyingQuantity}</td>
 							<td id="tdPrice">${b.productPrice*b.buyingQuantity}</td>
 							<td>${b.buyingDate}</td>

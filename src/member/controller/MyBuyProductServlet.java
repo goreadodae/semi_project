@@ -37,7 +37,7 @@ public class MyBuyProductServlet extends HttpServlet {
       
       ArrayList<BuyProduct>  productList = new MemberService().buyProduct(userNo);
       
-      RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/myHomeMainPage.jsp");
+      RequestDispatcher view = request.getRequestDispatcher("/views/memberPage/myHomeOrderList.jsp");
       request.setAttribute("p", productList);
       view.forward(request,response);
       

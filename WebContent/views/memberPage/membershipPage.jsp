@@ -1,258 +1,49 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
-
+	pageEncoding="UTF-8" import="member.model.vo.*"%>
+<!DOCTYPE html>
+<%
+	Member m = (Member) session.getAttribute("user");
+%>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>회원가입</title>
+<title>수상한 레시피</title>
+</head>
 
-<link href="/css/bootstrapJH.min.css" rel="stylesheet">
+<!-- 모든 스타일 시트 적용 -->
+<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
+
+<!-- 메인 전용 css -->
+<link rel="stylesheet" href="/css/mainPage_css/main.css">
+<link rel="stylesheet" href="/css/member_css/membership.css">
+
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<style type="text/css">
-html, body, div, span, button, ul, li, img, h1, h2, h3, h4, h5, h6,
-	.member-join {
-	padding: 0;
-	margin: 0;
-}
+<script>
+   $(document).ready(function() {
+      /* 해더 불러오는 제이쿼리 */
+      $("#footer").load("/views/footer/main-Footer.jsp");
+   });
+</script>
 
-.member-join>h2 {
-	background: #202222;
-	font-weight: 500;
-	font-size: 13pt;
-	color: white;
-	padding: 19px 33px;
-	margin-bottom: 20px;
-}
-
-.member-join ul>li {
-	vertical-align: top;
-	display: inline-block;
-	width: calc(50% + 0px - 10px);
-}
-
-.member-join .box {
-	padding: 40px 55px 55px;
-	background: #f9f9f9;
-	box-sizing: border-box;
-	margin-bottom: 20px;
-	height: 416px;
-	width: 575px;
-	
-}
-
-.member-join .box h3 {
-	font-size: 17px;
-	font-weight: 500;
-	padding-bottom: 42px;
-}
-
-#phone-auth .box, #member-insert .box {
-	padding: 40px 55px 55px;
-	background: #f9f9f9;
-	box-sizing: border-box;
-	margin-bottom: 20px;
-	height: 400px;
-	width: 1170px;
-	float: left;
-}
-
-.member-join>ul>li>div {
-	padding: 20px;
-	font-size: 13px;
-	overflow: auto;
-	height: 220px;
-	text-align: left;
-	line-height: 140%;
-	border: 1px solid #c4c4c4;
-	background: white;
-}
-
-.button-bar {
-	padding: 20px 0;
-	margin-bottom: -20px;
-}
-
-.button-bar div.right {
-	float: right;
-	margin-bottom: 20px;
-}
-
-.member-join .box div.msg {
-	border: 1px solid #c4c4c4;
-	padding: 50px;
-	text-align: center;
-	color: #585858;
-	font-size: 17px;
-	line-height: 140%;
-	background: white;
-}
-
-#phone-auth ul {
-	padding-top: 40px;
-	list-style: none;
-}
-
-.button-bar>div a, .button-bar>div input[type=button], .button-bar>div input[type=submit],
-	.button-bar>div input[type=reset], .button-bar>div button {
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	height: 60px;
-	line-height: 60px;
-	text-align: center;
-	box-sizing: border-box;
-	cursor: pointer;
-	font-size: 15px;
-	color: white;
-	width: 260px
-}
-
-a {
-	text-decoration: none !important;
-}
-
-.agree1 {
-	background: #202222;
-}
-
-.agree2 {
-	background: #f35b5e;
-}
-
-ul.filter li {
-	float: left;
-	margin-bottom: 20px;
-	font-size: 11pt;
-	width: 1070px;
-	height: 35px;
-}
-
-.line label {
-	margin: 0;
-	float: left;
-	width: 100px;
-	height: 35px;
-	font-weight: 500;
-	font-size: 20px;
-	font-weight: bold;
-	line-height: 35px;
-}
-
-.line div input {
-	float: left;
-	height: 35px;
-	width: 150px;
-	box-sizing: border-box;
-	font-size: 11pt;
-	border: 1px solid #c4c4c4;
-	padding: 0 6px;
-}
-
-ul.filter>li span.choice {
-	width: 100%;
-	height: 40px;
-	margin-left: 0;
-}
-
-ul.filter>li h5 {
-	font-weight: 500;
-	float: left;
-	font-weight: bold;
-	line-height: 30px;
-	padding: 0 5px;
-}
-
-.desktop {
-	color: gray;
-	font-size: 17px;
-	font-weight: 400;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		"Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol";
-	background-color: white;
-}
-
-#email font {
-	line-height: 35px;
-}
-
-#member-insert .box {
-	height: 700px;
-}
-
-#member-insert input {
-	padding: 0 10px;
-	font-size: 11pt;
-}
-
-#birth-print input {
-	border: 0;
-	background: #f9f9f9;
-	font-weight: 500;
-	font-weight: bold;
-	width: 44px;
-	text-align: right;
-	padding: 0;
-}
-
-#gender button {
-	width: 100px;
-}
-
-pre {
-	background: #f9f9f9;
-	border: 0;
-}
-
-.ghost {
-	display: none;
-}
-
-.jombi {
-	visibility: hidden;
-	margin: 0;
-}
-
-.problem {
-	color: red;
-	font-size: 11pt;
-	margin: 0;
-	padding: 0;
-	display: none;
-}
-
-.form-group1 {
-	margin-bottom: 21px;
-}
-</style>
-</head>
 
 <body style="overflow-x: hidden; overflow-y: auto;">
 	<!-- 전체 컨테이너  -->
 	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- 해더 영역 -->
-		<div id="header"></div>
+		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
 
 		<!-- 컨텐츠 영역 -->
 		<div id="content-main" class="contents">
-			<div class="container" style="padding: 0;">
-				<div class="col-md-12 member-join" style="margin-top: 40px;">
-					<h2>
-						약관 <a href="#" class="ghost" id="hide-button1"
-							style="float: right; color: white;">동의함</a>
-					</h2>
+			<div class="col-md-12" style="padding: 0;">
+				<div class="col-md-8 mx-auto member-join" style="margin-top: 20px; padding:0px;">
+					<h2>약관<a href="#" class="ghost" id="hide-button1" style="float: right; color: white;">동의함</a></h2>
 					<ul class="agreement row">
-						<li class="box" style="margin-right: 20px;">
+						<li class="box" style="margin-left: 15px; border: 1px solid black;">
 							<h3>이용약관</h3>
 							<div>
 								<p style="display: block; padding: 20px 0">
@@ -700,7 +491,8 @@ pre {
 								</p>
 							</div>
 						</li>
-						<li class="box" style="margin-left: 0;">
+						<li class="box"
+							style="margin-left: 17px; border: 1px solid black;">
 							<h3>개인정보 취급방침</h3>
 							<div>
 								<p style="display: block; padding: 20px 0">
@@ -1235,16 +1027,16 @@ pre {
 							</div>
 						</li>
 					</ul>
-					<div class="button-bar" id="btnBar1">
-						<div class="right">
-							<a href="#" class="agree1">동의하지 않음</a> <a href="#" class="agree2"
-								onclick="nextShow();">동의함</a>
-						</div>
+					
+					<div class="button-bar" id="btnBar1" style="padding-top:5px; padding-left:1075px;">
+						<button type="button" class="btn btn-primary" style="background-color:black;" onclick="exit();">동의하지 않음</button>
+						<button type="button" class="agree2 btn btn-primary" onclick="nextShow();">동의함</button>
 					</div>
-					<div class="col-md-12 member-join ghost" id="phone-auth">
+					
+					<!-- 이메일 인증 -->
+					<div class="col-md-12 member-join ghost" id="phone-auth" style="padding:0px;">
 						<h2>
-							이메일 인증 <a href="#" class="ghost" id="hide-button2"
-								style="float: right; color: white;">확인</a>
+							이메일 인증 <a href="#" class="ghost" id="hide-button2" style="float: right; color: white;">확인</a>
 						</h2>
 						<div class="box" id="emailCheck">
 							<div class="msg only-desktop">
@@ -1253,136 +1045,136 @@ pre {
 							</div>
 							<div class="col-md-3"></div>
 							<div class="col-md-6">
-
 								<ul class="filter">
-									<li class="line"><label>이메일</label>
+									<li class="line mx-auto">
+										<label>이메일</label>
 										<div>
 											<input type="text" id="first_email" size="10" />
 											<h5>@</h5>
 											<input type="text" id="last_email" size="10"
 												list="email_select" placeholder="선택하세요" />
 											<datalist id="email_select">
-											<option value="" selected>::선택하기::</option>
-											<option value="naver.com">naver.com</option>
-											<option value="nate.com">nate.com</option>
-											<option value="daum.net">daum.net</option>
-											<option value="gmail.com">gmail.com</option>
-											<option value=" ">::직접입력::</option>
+												<option value="" selected>::선택하기::</option>
+												<option value="naver.com">naver.com</option>
+												<option value="nate.com">nate.com</option>
+												<option value="daum.net">daum.net</option>
+												<option value="gmail.com">gmail.com</option>
+												<option value=" ">::직접입력::</option>
 											</datalist>
-											<a href="#" style="margin-left: 30px; line-height: 30px;"
+											<a href="#" style="margin-left: 30px; line-height: 35px;"
 												id="checkBtn" onclick="emailCheck();">인증요청</a>
-										</div></li>
+										</div>
+									</li>
 									<li class="line "><label class="ghost emailCheck">인증번호</label>
 										<div>
 											<input class="ghost emailCheck" id="checkBar" type="text">
 											<h5>
-												<pre>     </pre>
 											</h5>
-											<div id="checkCount" class="ghost"></div>
+											<div id="checkCount" class="ghost" style="padding-top:10px;"></div>
 											<div id="reCheck" class="ghost">
 												<a href="#" style="margin-left: 30px; line-height: 30px;"
 													id="reCheckBtn" onclick="reEmailCheck();">재요청</a>
 											</div>
-										</div></li>
+										</div>
+									</li>
 								</ul>
-
 							</div>
 							<div class="col-md-3"></div>
 						</div>
-						<div class="button-bar" id="btnBar2">
-							<div class="right">
-								<button id="next-page">확인</button>
-							</div>
+						
+						<!-- 이메일 인증 확인 바 -->
+						<div class="button-bar" id="btnBar2" style="padding-left:1170px;">
+								<button class="btn btn-primary" id="next-page" type="submit" style="width:100px;">확인</button>
 						</div>
 					</div>
-					<div class="col-md-12 member-join ghost" id="member-insert">
+						<div class="col-md-12 member-join ghost" id="member-insert" style="padding:0px; height: 1090px;">
 						<h2>회원 정보 입력</h2>
 						<form action="/insertMember" method="post" id="frm">
-							<div class="box">
-								<div class="col-md-3"></div>
-								<div class="col-md-6">
-									<div style="width: 90%; float: left">
-
-										<div class="form-group">
-											<label for="userId">아이디</label> <input type="text"
-												class="form-control" id="userId" name="userId"
+							<div class="box mx-auto" style="height:854px;">
+								<div>
+									<div style="width: 100%; float: left; padding-left:310px;">
+										<div class="form-group mx-auto">
+											<label for="userId">아이디</label> 
+											<input type="text" class="form-control" id="userId" name="userId"
 												onchange="idCheck();" placeholder="띄어 쓰기 없이 영소문자/숫자 6-12자"
-												maxlength="12"> <label class="problem"
-												id="idProblem"></label>
+												maxlength="12"> 
+												<label class="problem" id="idProblem"></label>
 										</div>
-										<div class="form-group">
+										<div class="form-group mx-auto">
 											<label for="userPwd1">비밀번호</label> <input type="password"
 												class="form-control" id="userPwd1" name="userPwd"
 												onchange="pwdCheck1();"
 												placeholder="띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자 조합" maxlength="20">
 											<label class="problem" id="pwdProblem1"></label>
 										</div>
-										<div class="form-group">
+										<div class="form-group mx-auto">
 											<label for="userPwd2">비밀번호 확인</label> <input type="password"
 												class="form-control" id="userPwd2" onchange="pwdCheck2();"
 												placeholder="위의 비밀번호를 다시 입력해주세요." maxlength="20"> <label
 												class="problem" id="pwdProblem2"></label>
 										</div>
-										<div class="form-group">
+										<div class="form-group mx-auto" >
 											<label for="userName">이름</label> <input type="text"
 												class="form-control" id="userName" name="userName"
 												onchange="nameCheck();" placeholder="이름" maxlength="20">
 											<label class="problem" id="nameProblem"></label>
 										</div>
-										<div class="form-group">
+										<div class="form-group mx-auto">
 											<label for="birth">생년월일</label> <input type="text"
 												class="form-control" id="birth" name="birth"
 												onchange="birthCheck();" placeholder="생년월일 ex) 930707"
 												maxlength="6"> <label class="problem"
 												id="birthProblem"></label>
 										</div>
-										<div class="form-group">
+										<div class="form-group mx-auto">
 											<label for="phone">휴대폰</label><br> <select
 												class="form-control" name="phone1"
-												style="width: 75px; float: left;">
+												style="width: 90px; float: left; margin-right:5px;">
 												<option>010</option>
 												<option>011</option>
 												<option>019</option>
 												<option>017</option>
 												<option>016</option>
+												
 											</select> <input type="text" class="form-control" id="phone"
 												name="phone2" onchange="phoneCheck();"
-												placeholder=" ' - ' 없이 휴대폰번호입력" style="width: 375px;"
+												placeholder=" ' - ' 없이 휴대폰번호입력" style="width: 333px; margin-left:5px;"
 												maxlength="8"> <label class="problem"
 												id="phoneProblem"></label>
 										</div>
-										<div class="form-group">
-											<label for="postcode">주소</label><br> <input type="text"
-												id="postcode" name="postcode" placeholder="우편번호"
-												class="form-control" style="width: 100px; float: left;"
-												readonly /> <input type="button" class="btn btn-default"
-												id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
-												style="width: 100px; float: left; height: 34px; magin: 0; padding: 0 5px;" />
+										
+										<div class="form-group mx-auto" style="height:170px; margin-bottom:0px;">
+											<label for="postcode">주소</label><br> 
+											<input type="text" id="postcode" name="postcode" placeholder="우편번호"
+												class="form-control" style="width: 100px; float: left; margin-right:10px;"
+												readonly />
+											
+											<input type="button" class="btn btn-default" id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
+												style="width: 100px; height: 42px; margin:0; magin-left:5px; padding: 0 5px;" />
+												
 											<input type="text" id="roadAddress" name="roadAddress"
-												placeholder="도로명주소" style="margin-right: 20px;"
-												class="form-control" readonly /> <input type="text"
-												id="addAddress" name="addAddress" placeholder="상세주소 입력"
-												class="form-control" /> <span id="guide"
-												style="color: #999"></span> <label class="problem"
-												id="addressProblem"></label>
-
+												placeholder="도로명주소" style="margin-right: 20px; margin-top:10px;"
+												class="form-control" readonly /> 
+												
+											<input type="text" id="addAddress" name="addAddress" 
+											    placeholder="상세주소 입력" class="form-control" style="margin-top:10px;"/> 
+												<span id="guide" style="color: #999"></span> 
+												<label class="problem" id="addressProblem"></label>
 										</div>
-										<div class="form-group">
-											<label for="userName">성별</label> <label class="problem"
+										<div class="form-group mx-auto">
+											<label for="userName" style="margin-top:10px;">성별</label> <label class="problem"
 												id="genderProblem"></label> <input type="hidden"
 												id="hiddenGender" name="gender" /> <input type="hidden"
 												id="hiddenEmail" name="email" />
-											<P>
-											<div class="btn-group" role="group" aria-label="..."
+											<p style="margin-bottom:5px;"></p>
+											<div class="btn-group mx-auto" role="group" aria-label="..."
 												id="gender">
-												<button type="button" class="btn btn-default" id="genderM">Men</button>
-												<button type="button" class="btn btn-default" id="genderF">Woman</button>
+												<button type="button" class="btn btn-default" id="genderM">남자</button>
+												<button type="button" class="btn btn-default" id="genderF">여자</button>
 											</div>
 										</div>
-
 									</div>
-									<div
-										style="width: 8%; float: left; margin-left: 10px; padding-top: 9px;">
+									<div style="width: 8%; float: left; margin-left: 10px; padding-top: 9px;">
 										<div class="form-group1">
 											<label><h3></h3></label> <label class="jombi" id="check1">
 												<h2 class="ghost" id="ok-1">
@@ -1473,553 +1265,535 @@ pre {
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3"></div>
-							<div class="button-bar">
-								<div class="right">
-									<a type="button" onclick="allCheck();"
-										style="background-color: blue;">확인</a>
-								</div>
+							<div class="col-md-3"></div><br><br><br>
+							<div class="button-bar" id="btnBar1" style="padding-top:5px; padding-left:1190px;">
+								<button class="btn btn-primary" type="submit" onclick="allCheck();" style="width:80px; height:40px;">확인</button>
 							</div>
 						</form>
 					</div>
-
 				</div>
-			</div>
+				<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+			      style="border: 1px solid black; padding: 10px;"></div><br><br>
+			<!-- 푸터 끝 -->
 		</div>
-	</div>
-	<script>
-   		var regExpId = /^[a-z0-9_]{6,}$/; // 아이디 영소문자+숫자 6-12
-    	//var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
-    	var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
-    	var regExpSpace = /\s/g; //공백찾기
-    	var regExpNum = /^[0-9]+$/; // 숫자만
-    	var regExpKor = /^[가-힣]+$/; // 한글만
-    	var SetTime; //인증시간
-        var regExpEmailFirst = /^[a-zA-Z0-9_]$/; // 이메일 영 대소문자+숫자
-        var regExpEmailLast = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소
-        var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
-        var emailCheckCode; // 생성된 인증번호
-    	var hiddenEmail; //이메일 저장
-    	function nextShow() {
-            $('#phone').css("display", "block");
-        }
-        $('.agree2').click(function() {
-            $('.agreement').slideToggle();
-            $('#btnBar1').hide();
-            $('#hide-button1').show();
-            $('#phone-auth').show();
-        });
-        $('#hide-button1').click(function() {
-            $('.agreement').slideToggle();
-        });
-
-        
-        
-        function emailCheck() {
-        	
-        	
-        	
-            hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
-            
-            if (hiddenEmail.match(regExpSpace)) {
-            	alert("공백이 존재합니다.");
-            }else if (!regExpEmail.test(hiddenEmail)) {
-            	alert("알맞지 않는 이메일 형식입니다.")
-            }else{
-            
-            	$('.emailCheck').show();
-            	SetTime = 300; // 최초 설정 시간(기본 : 초)
-            	$('#checkCount').show();
-                $('#checkBtn').hide();
-                
-    			
-                $.ajax({
-                    url: "/emailCheck",
-                    data: {email: hiddenEmail},
-                    type: "post",
-                    success: function(data) {
-                        console.log("성공");
-                        if(data=="1"){
-                        alert("이미 가입한 이메일 입니다.");
-                        $('.emailCheck').hide();
-                        $('#checkCount').hide();
-                        $('#checkBtn').show();
-                        }else{
-                        	
-                        	emailCheckCode = data;
-                        }
-                        
-                    },
-                    error: function() {
-                        console.log("실패");
-                    },
-                    complete: function() {
-                        //무조건 실행
-                    }
-                });
-            }
-        }
-        
-        
-        function reEmailCheck() {
-        	 hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
-        	 
-        	
-             
-        	 if (hiddenEmail.match(regExpSpace)) {
-             	alert("공백이 존재합니다.");
-             }else if (!regExpEmail.test(hiddenEmail)) {
-             	alert("알맞지 않는 이메일 형식입니다.")
-             }else{
-             
-            	 $('#reCheck').hide();
-            	 SetTime = 300; // 최초 설정 시간(기본 : 초)
-            	 $('#checkCount').show();
-                 
-     			
-                 $.ajax({
-                     url: "/emailCheck",
-                     data: {email: hiddenEmail},
-                     type: "post",
-                     success: function(data) {
-                         console.log("성공");
-                         emailCheckCode = data;
-                         
-                         
-                     },
-                     error: function() {
-                         console.log("실패");
-                     },
-                     complete: function() {
-                         //무조건 실행
-                     }
-                 });
-             }
-		}
-
-        function msg_time() { // 1초씩 카운트
-            m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초"; // 남은 시간 계산
-            var msg = "<font color='red'>" + m + "</font>";
-            //document.all.email.innerHTML = msg; // div 영역에 보여줌 
-            $("#checkCount").html(msg);
-            SetTime--; // 1초씩 감소
-            if (SetTime < 0) { // 시간이 종료 되었으면..
-                //clearInterval(tid); // 타이머 해제
-                SetTime=1000;
-                //clearInterval(tid); // 타이머 해제
-                $('#checkCount').hide();
-                $('#reCheck').show();
-                alert("시간이 초과되었습니다. 다시 시도해주시기 바랍니다");
-            }
-        }
-        window.onload = function TimerStart() {
-            tid = setInterval('msg_time()', 1000)
-        };
-
-        $('#next-page').click(function() {
-        	
-        	if($('#checkBar').css("display")=="none"){
-        		alert("이메일 인증을 완료하신 후 눌러주시기 바랍니다.");
-        	}
-        	
-        	if($('#checkBar').val()==emailCheckCode){
-        	
-            $('#emailCheck').slideToggle();
-            $('.desktop').html("이메일 인증이 완료되었습니다.");
-            $('.filter').hide();
-            $('#btnBar2').hide();
-            $('#hide-button2').show();
-            $('#member-insert').show();
-            $('#hiddenEmail').val(hiddenEmail);
-            
-        	}else{
-        		alert("인증번호를 다시 확인해주시기 바랍니다.");
-        	}
-        });
-        
-        
-        
-        $('#hide-button2').click(function() {
-            $('#emailCheck').slideToggle();
-        });
-
-
-
-        //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-        function execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                    // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-                    var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                        extraRoadAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if (data.buildingName !== '' && data.apartment === 'Y') {
-                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if (extraRoadAddr !== '') {
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
-                    // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-                    if (fullRoadAddr !== '') {
-                        fullRoadAddr += extraRoadAddr;
-                    }
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
-                    document.getElementById('roadAddress').value = fullRoadAddr;
-                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                    if (data.autoRoadAddress) {
-                        //예상되는 도로명 주소에 조합형 주소를 추가한다.
-                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                        document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    } else if (data.autoJibunAddress) {
-                        var expJibunAddr = data.autoJibunAddress;
-                        document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    } else {
-                        document.getElementById('guide').innerHTML = '';
-                    }
-                }
-            }).open();
-        }
-
-
-
-        
-
-
-        function idCheck() {
-            $('#check1').css('visibility', 'visible');
-
-            if ($('#userId').val().match(regExpSpace)) {
-                $('#userId').css('border', '3px solid red');
-                $('#remove-1').show();
-                $('#ok-1').hide();
-                $('#idProblem').text("공백을 제거해주세요.");
-                $('#idProblem').show();
-                $('#remove-1').css("margin-bottom", "20px");
-
-            } else {
-                if (!regExpId.test($('#userId').val())) {
-                    $('#userId').css('border', '3px solid red');
-                    $('#remove-1').show();
-                    $('#ok-1').hide();
-                    $('#idProblem').text("띄어 쓰기 없이 영소문자/숫자 6-12자로 입력해주세요.");
-                    $('#idProblem').show();
-                    $('#remove-1').css("margin-bottom", "20px");
-
-                } else {
-                	
-                	$.ajax({
-                        url: "/idCheck",
-                        data: {userId:$('#userId').val()},
-                        type: "post",
-                        success: function(data) {
-                            console.log("성공");
-                            if(data==1){
-                            	$('#userId').css('border', '3px solid red');
-                                $('#remove-1').show();
-                                $('#ok-1').hide();
-                                $('#idProblem').text("이미 사용중인 아이디입니다.");
-                                $('#idProblem').show();
-                                $('#remove-1').css("margin-bottom", "20px");
-                            }else{
-                            	  $('#userId').css('border', '3px solid #00FF40');
-                                  $('#ok-1').show();
-                                  $('#remove-1').hide();
-                                  $('#idProblem').hide();
-                            }
-                        },
-                        error: function() {
-                            console.log("실패");
-                        },
-                        complete: function() {
-                            //무조건 실행
-                        }
-                    });
-                	
-          
-                }
-            }
-        }
-        
-    
-
-        function pwdCheck1() {
-            $('#check2').css('visibility', 'visible');
-
-            if ($('#userPwd1').val().match(regExpSpace)) {
-                $('#userPwd1').css('border', '3px solid red');
-                $('#remove-2').show();
-                $('#ok-2').hide();
-                $('#pwdProblem1').text("공백을 제거해주세요.");
-                $('#pwdProblem1').show();
-                $('#remove-2').css("margin-bottom", "20px");
-
-            } else {
-                if (!regExpPwd.test($('#userPwd1').val())) {
-                    $('#userPwd1').css('border', '3px solid red');
-                    $('#remove-2').show();
-                    $('#ok-2').hide();
-                    $('#pwdProblem1').text("띄어 쓰기 없이 영소문자, 숫자 및 특수문자 조합");
-                    $('#pwdProblem1').show();
-                    $('#remove-2').css("margin-bottom", "20px");
-                } else {
-                    $('#userPwd1').css('border', '3px solid #00FF40');
-                    $('#ok-2').show();
-                    $('#remove-2').hide();
-                    $('#pwdProblem1').hide();
-                }
-            }
-        }
-
-        function pwdCheck2() {
-            $('#check3').css('visibility', 'visible');
-
-            if ($('#userPwd2').val().match(regExpSpace)) {
-                $('#userPwd2').css('border', '3px solid red');
-                $('#remove-3').show();
-                $('#ok-3').hide();
-                $('#pwdProblem2').text("공백을 제거해주세요.");
-                $('#pwdProblem2').show();
-                $('#remove-3').css("margin-bottom", "20px");
-
-            } else {
-
-                if ($('#userPwd1').val() != $('#userPwd2').val()) {
-                    $('#userPwd2').css('border', '3px solid red');
-                    $('#remove-3').show();
-                    $('#ok-3').hide();
-                    $('#pwdProblem2').text("비밀번호가 다릅니다.");
-                    $('#pwdProblem2').show();
-                    $('#remove-3').css("margin-bottom", "20px");
-                } else {
-                    $('#userPwd2').css('border', '3px solid #00FF40');
-                    $('#ok-3').show();
-                    $('#remove-3').hide();
-                    $('#pwdProblem2').hide();
-                }
-            }
-        }
-
-        function nameCheck() {
-            $('#check4').css('visibility', 'visible');
-            if ($('#userName').val().match(regExpSpace)) {
-                $('#userName').css('border', '3px solid red');
-                $('#remove-4').show();
-                $('#ok-4').hide();
-                $('#nameProblem').text("공백을 제거해주세요.");
-                $('#nameProblem').show();
-                $('#remove-4').css("margin-bottom", "20px");
-            } else {
-                if (!regExpKor.test($('#userName').val())) {
-                    $('#userName').css('border', '3px solid red');
-                    $('#remove-4').show();
-                    $('#ok-4').hide();
-                    $('#nameProblem').text("한글만 입력해주세요.");
-                    $('#nameProblem').show();
-                    $('#remove-4').css("margin-bottom", "20px");
-                } else {
-                    $('#userName').css('border', '3px solid #00FF40');
-                    $('#ok-4').show();
-                    $('#remove-4').hide();
-                    $('#nameProblem').hide();
-                }
-            }
-        }
-
-        function birthCheck() {
-            $('#check5').css('visibility', 'visible');
-
-            if ($('#birth').val().match(regExpSpace)) {
-                $('#birth').css('border', '3px solid red');
-                $('#remove-5').show();
-                $('#ok-5').hide();
-                $('#birthProblem').text("공백을 제거해주세요.");
-                $('#birthProblem').show();
-                $('#remove-5').css("margin-bottom", "20px");
-
-            } else {
-                if (!regExpNum.test($('#birth').val())) {
-                    $('#birth').css('border', '3px solid red');
-                    $('#remove-5').show();
-                    $('#ok-5').hide();
-                    $('#birthProblem').text("숫자만 입력해주세요.");
-                    $('#birthProblem').show();
-                    $('#remove-5').css("margin-bottom", "20px");
-                } else {
-                    if ($('#birth').val().substring(2, 4) > 0 && $('#birth').val().substring(2, 4) < 13) {
-                        if ($('#birth').val().substring(4, 6) > 0 && $('#birth').val().substring(4, 6) < 32) {
-                            $('#birth').css('border', '3px solid #00FF40');
-                            $('#ok-5').show();
-                            $('#remove-5').hide();
-                            $('#birthProblem').hide();
-                        } else {
-                            $('#birth').css('border', '3px solid red');
-                            $('#remove-5').show();
-                            $('#ok-5').hide();
-                            $('#birthProblem').text("31일을 초과하였습니다.");
-                            $('#birthProblem').show();
-                            $('#remove-5').css("margin-bottom", "20px");
-                        }
-                    } else {
-                        $('#birth').css('border', '3px solid red');
-                        $('#remove-5').show();
-                        $('#ok-5').hide();
-                        $('#birthProblem').text("12월을 초과하였습니다.");
-                        $('#birthProblem').show();
-                        $('#remove-5').css("margin-bottom", "20px");
-                    }
-                }
-            }
-        }
-
-        function phoneCheck() {
-            $('#check6').css('visibility', 'visible');
-            if ($('#phone').val().match(regExpSpace)) {
-                $('#phone').css('border', '3px solid red');
-                $('#remove-6').show();
-                $('#ok-6').hide();
-                $('#phoneProblem').text("공백을 제거해주세요.");
-                $('#phoneProblem').show();
-                $('#remove-6').css("margin-bottom", "20px");
-            } else {
-                if (!regExpNum.test($('#phone').val())) {
-                    $('#phone').css('border', '3px solid red');
-                    $('#remove-6').show();
-                    $('#ok-6').hide();
-                    $('#phoneProblem').text("숫자만 입력해주세요.");
-                    $('#phoneProblem').show();
-                    $('#remove-6').css("margin-bottom", "20px");
-                } else {
-                    if ($('#phone').val().length != 8) {
-                        $('#phone').css('border', '3px solid red');
-                        $('#remove-6').show();
-                        $('#ok-6').hide();
-                        $('#phoneProblem').text("앞자리를 뺀 8자리를 정확히 입력해주시기 바랍니다.");
-                        $('#phoneProblem').show();
-                        $('#remove-6').css("margin-bottom", "20px");
-                    } else {
-                        $('#phone').css('border', '3px solid #00FF40');
-                        $('#ok-6').show();
-                        $('#remove-6').hide();
-                        $('#phoneProblem').hide();
-                    }
-                }
-            }
-        }
-        
-        
-        $('#genderM').click(function(){
-			 $('#hiddenGender').val("M");
-			 $('#genderM').css("background-color","#eeeeee");
-			 $('#genderF').css("background-color","white");
-		});
-        
-        $('#genderF').click(function(){
-        	$('#hiddenGender').val("F");
-			$('#genderF').css("background-color","#eeeeee");
-			$('#genderM').css("background-color","white");
-		});
-        
-        function allCheck() {
-            var success = 0;
-            if ($('#userId').val() == ""&&$('#ok-1').css("display")=="none") {
-                $('#check1').css('visibility', 'visible');
-                $('#userId').css('border', '3px solid red');
-                $('#remove-1').show();
-                $('#ok-1').hide();
-                success--;
-            }else{
-                success++;
-            }
-            if ($('#userPwd1').val() == ""&&$('#ok-2').css("display")=="none") {
-                $('#check2').css('visibility', 'visible');
-                $('#userPwd1').css('border', '3px solid red');
-                $('#remove-2').show();
-                $('#ok-2').hide();
-                success--;
-                
-            }else{
-                success++;
-            }
-            
-            if ($('#userPwd2').val() == ""&&$('#ok-3').css("display")=="none") {
-                $('#check3').css('visibility', 'visible');
-                $('#userPwd2').css('border', '3px solid red');
-                $('#remove-3').show();
-                $('#ok-3').hide();
-                success--;
-                
-            }else{
-                success++;
-            }
-            
-            if ($('#userName').val() == ""&&$('#ok-4').css("display")=="none") {
-                $('#check4').css('visibility', 'visible');
-                $('#userName').css('border', '3px solid red');
-                $('#remove-4').show();
-                $('#ok-4').hide();
-                success--;
-                
-            }else{
-                success++;
-            }
-            
-            if ($('#birth').val() == ""&&$('#ok-5').css("display")=="none") {
-                $('#check5').css('visibility', 'visible');
-                $('#birth').css('border', '3px solid red');
-                $('#remove-5').show();
-                $('#ok-5').hide();
-                success--;
-                
-            }else{
-                success++;
-            }
-            
-            if ($('#phone').val() == ""&&$('#ok-6').css("display")=="none") {
-                $('#check6').css('visibility', 'visible');
-                $('#phone').css('border', '3px solid red');
-                $('#remove-6').show();
-                $('#ok-6').hide();
-                success--;
-               
-            }else{
-                success++;
-            }
-            
-            if ($('#postcode').val() == "") {
-                $('#postBtn').css('border', '3px solid red');
-                success--;
-            } else{
-                success++;
-            }
-            
-            if ($('#addAddress').val() == ""&&$('#ok-7').css("display")=="none") {
-                $('#check7').css('visibility', 'visible');
-                $('#addAddress').css('border', '3px solid red');
-                $('#remove-7').show();
-                $('#ok-7').hide();
-                success--;
-                
-            }else{
-                success++;
-            }
-            
-            if(success==8) {
-                $('#frm').submit();
-            }
-        }
+		
+		<!-- 스크립트 -->
+		<script>
+			/* 정규식 표현 */
+	   		var regExpId = /^[a-z0-9_]{6,}$/; // 아이디 영소문자+숫자 6-12
+	    	//var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
+	    	var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
+	    	var regExpSpace = /\s/g; //공백찾기
+	    	var regExpNum = /^[0-9]+$/; // 숫자만
+	    	var regExpKor = /^[가-힣]+$/; // 한글만
+	    	var SetTime; //인증시간
+	        var regExpEmailFirst = /^[a-zA-Z0-9_]$/; // 이메일 영 대소문자+숫자
+	        var regExpEmailLast = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소
+	        var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
+	        var emailCheckCode; // 생성된 인증번호
+	    	var hiddenEmail; //이메일 저장
+	    	
+	    	
+	    	function nextShow() {
+	            $('#phone').css("display", "block");
+	        }
+	    	
+	    	function exit(){
+	    		location.href="/index.jsp";
+	    	}
+	    	
+	        $('.agree2').click(function() {
+	            $('.agreement').slideToggle();
+	            $('#btnBar1').hide();
+	            $('#hide-button1').show();
+	            $('#phone-auth').show();
+	        });
+	        
+	        $('#hide-button1').click(function() {
+	            $('.agreement').slideToggle();
+	        });
+	
+	        function emailCheck() {
+	            hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
+	            
+	            if (hiddenEmail.match(regExpSpace)) {
+	            	alert("공백이 존재합니다.");
+	            }else if (!regExpEmail.test(hiddenEmail)) {
+	            	alert("알맞지 않는 이메일 형식입니다.")
+	            }else{
+	            	$('.emailCheck').show();
+	            	SetTime = 300; // 최초 설정 시간(기본 : 초)
+	            	$('#checkCount').show();
+	                $('#checkBtn').hide();
+	    			
+	                $.ajax({
+	                    url: "/emailCheck",
+	                    data: {email: hiddenEmail},
+	                    type: "post",
+	                    success: function(data) {
+	                        console.log("성공");
+	                        if(data=="1"){
+	                        // 바꾸기
+	                        alert("이미 가입한 이메일 입니다.");
+	                        $('.emailCheck').toggle();
+	                        $('#checkCount').toggle();
+	                        $('#checkBtn').show();
+	                        }else{
+	                        	emailCheckCode = data;
+	                        }
+	                    },
+	                    error: function() {
+	                        console.log("실패");
+	                    },
+	                    complete: function() {
+	                        //무조건 실행
+	                    }
+	                });
+	            }
+	        }
+	        
+	        function reEmailCheck() {
+	        	 hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
+	             
+	        	 if (hiddenEmail.match(regExpSpace)) {
+	             	alert("공백이 존재합니다.");
+	             }else if (!regExpEmail.test(hiddenEmail)) {
+	             	alert("알맞지 않는 이메일 형식입니다.")
+	             }else{
+	             
+	            	 $('#reCheck').hide();
+	            	 SetTime = 180; // 최초 설정 시간(기본 : 초)
+	            	 $('#checkCount').show();
+	                 
+	                 $.ajax({
+	                     url: "/emailCheck",
+	                     data: {email: hiddenEmail},
+	                     type: "post",
+	                     success: function(data) {
+	                         console.log("성공");
+	                         emailCheckCode = data;
+	                         
+	                         
+	                     },
+	                     error: function() {
+	                         console.log("실패");
+	                     },
+	                     complete: function() {
+	                         //무조건 실행
+	                     }
+	                 });
+	             }
+			}
+	
+	        function msg_time() { // 1초씩 카운트
+	            m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초"; // 남은 시간 계산
+	            var msg = "<font color='red'>" + m + "</font>";
+	            //document.all.email.innerHTML = msg; // div 영역에 보여줌 
+	            $("#checkCount").html(msg);
+	            SetTime--; // 1초씩 감소
+	            if (SetTime < 0) { // 시간이 종료 되었으면..
+	                //clearInterval(tid); // 타이머 해제
+	                SetTime=1000;
+	                //clearInterval(tid); // 타이머 해제
+	                $('#checkCount').hide();
+	                $('#reCheck').show();
+	                alert("시간이 초과되었습니다. 다시 시도해주시기 바랍니다");
+	            }
+	        }
+	        window.onload = function TimerStart() {
+	            tid = setInterval('msg_time()', 1000)
+	        };
+	
+	        $('#next-page').click(function() {
+	        	
+	        	if($('#checkBar').css("display")=="none"){
+	        		alert("이메일 인증을 완료하신 후 눌러주시기 바랍니다.");
+	        	}
+	        	
+	        	if($('#checkBar').val()==emailCheckCode){
+		            $('#emailCheck').slideToggle();
+		            $('.desktop').html("이메일 인증이 완료되었습니다.");
+		            $('.filter').hide();
+		            $('#btnBar2').hide();
+		            $('#hide-button2').show();
+		            $('#member-insert').show();
+		            $('#hiddenEmail').val(hiddenEmail);
+	        	}else{
+	        		alert("인증번호를 다시 확인해주시기 바랍니다.");
+	        	}
+	        });
+	        
+	        
+	        
+	        $('#hide-button2').click(function() {
+	            $('#emailCheck').slideToggle();
+	        });
+	
+	        //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	        function execDaumPostcode() {
+	            new daum.Postcode({
+	                oncomplete: function(data) {
+	                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	                    // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+	                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                    var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+	                    var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+	                        extraRoadAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if (data.buildingName !== '' && data.apartment === 'Y') {
+	                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if (extraRoadAddr !== '') {
+	                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+	                    }
+	                    // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+	                    if (fullRoadAddr !== '') {
+	                        fullRoadAddr += extraRoadAddr;
+	                    }
+	                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                    document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+	                    document.getElementById('roadAddress').value = fullRoadAddr;
+	                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+	                    if (data.autoRoadAddress) {
+	                        //예상되는 도로명 주소에 조합형 주소를 추가한다.
+	                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+	                        document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+	                    } else if (data.autoJibunAddress) {
+	                        var expJibunAddr = data.autoJibunAddress;
+	                        document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+	                    } else {
+	                        document.getElementById('guide').innerHTML = '';
+	                    }
+	                }
+	            }).open();
+	        }
+	
+	        function idCheck() {
+	            $('#check1').css('visibility', 'visible');
+	
+	            if ($('#userId').val().match(regExpSpace)) {
+	                $('#userId').css('border', '3px solid red');
+	                $('#remove-1').show();
+	                $('#ok-1').hide();
+	                $('#idProblem').text("공백을 제거해주세요.");
+	                $('#idProblem').show();
+	                $('#remove-1').css("margin-bottom", "20px");
+	
+	            } else {
+	                if (!regExpId.test($('#userId').val())) {
+	                    $('#userId').css('border', '3px solid red');
+	                    $('#remove-1').show();
+	                    $('#ok-1').hide();
+	                    $('#idProblem').text("띄어 쓰기 없이 영소문자/숫자 6-12자로 입력해주세요.");
+	                    $('#idProblem').show();
+	                    $('#remove-1').css("margin-bottom", "20px");
+	
+	                } else {
+	                	$.ajax({
+	                        url: "/idCheck",
+	                        data: {userId:$('#userId').val()},
+	                        type: "post",
+	                        success: function(data) {
+	                            console.log("성공");
+	                            if(data==1){
+	                            	$('#userId').css('border', '3px solid red');
+	                                $('#remove-1').show();
+	                                $('#ok-1').hide();
+	                                $('#idProblem').text("이미 사용중인 아이디입니다.");
+	                                $('#idProblem').show();
+	                                $('#remove-1').css("margin-bottom", "20px");
+	                            }else{
+	                            	  $('#userId').css('border', '3px solid #00FF40');
+	                                  $('#ok-1').show();
+	                                  $('#remove-1').hide();
+	                                  $('#idProblem').hide();
+	                            }
+	                        },
+	                        error: function() {
+	                            console.log("실패");
+	                        },
+	                        complete: function() {
+	                            //무조건 실행
+	                        }
+	                    });
+	                	
+	          
+	                }
+	            }
+	        }
+	
+	        function pwdCheck1() {
+	            $('#check2').css('visibility', 'visible');
+	
+	            if ($('#userPwd1').val().match(regExpSpace)) {
+	                $('#userPwd1').css('border', '3px solid red');
+	                $('#remove-2').show();
+	                $('#ok-2').hide();
+	                $('#pwdProblem1').text("공백을 제거해주세요.");
+	                $('#pwdProblem1').show();
+	                $('#remove-2').css("margin-bottom", "20px");
+	
+	            } else {
+	                if (!regExpPwd.test($('#userPwd1').val())) {
+	                    $('#userPwd1').css('border', '3px solid red');
+	                    $('#remove-2').show();
+	                    $('#ok-2').hide();
+	                    $('#pwdProblem1').text("띄어 쓰기 없이 영소문자, 숫자 및 특수문자 조합");
+	                    $('#pwdProblem1').show();
+	                    $('#remove-2').css("margin-bottom", "20px");
+	                } else {
+	                    $('#userPwd1').css('border', '3px solid #00FF40');
+	                    $('#ok-2').show();
+	                    $('#remove-2').hide();
+	                    $('#pwdProblem1').hide();
+	                }
+	            }
+	        }
+	
+	        function pwdCheck2() {
+	            $('#check3').css('visibility', 'visible');
+	
+	            if ($('#userPwd2').val().match(regExpSpace)) {
+	                $('#userPwd2').css('border', '3px solid red');
+	                $('#remove-3').show();
+	                $('#ok-3').hide();
+	                $('#pwdProblem2').text("공백을 제거해주세요.");
+	                $('#pwdProblem2').show();
+	                $('#remove-3').css("margin-bottom", "20px");
+	
+	            } else {
+	
+	                if ($('#userPwd1').val() != $('#userPwd2').val()) {
+	                    $('#userPwd2').css('border', '3px solid red');
+	                    $('#remove-3').show();
+	                    $('#ok-3').hide();
+	                    $('#pwdProblem2').text("비밀번호가 다릅니다.");
+	                    $('#pwdProblem2').show();
+	                    $('#remove-3').css("margin-bottom", "20px");
+	                } else {
+	                    $('#userPwd2').css('border', '3px solid #00FF40');
+	                    $('#ok-3').show();
+	                    $('#remove-3').hide();
+	                    $('#pwdProblem2').hide();
+	                }
+	            }
+	        }
+	
+	        function nameCheck() {
+	            $('#check4').css('visibility', 'visible');
+	            if ($('#userName').val().match(regExpSpace)) {
+	                $('#userName').css('border', '3px solid red');
+	                $('#remove-4').show();
+	                $('#ok-4').hide();
+	                $('#nameProblem').text("공백을 제거해주세요.");
+	                $('#nameProblem').show();
+	                $('#remove-4').css("margin-bottom", "20px");
+	            } else {
+	                if (!regExpKor.test($('#userName').val())) {
+	                    $('#userName').css('border', '3px solid red');
+	                    $('#remove-4').show();
+	                    $('#ok-4').hide();
+	                    $('#nameProblem').text("한글만 입력해주세요.");
+	                    $('#nameProblem').show();
+	                    $('#remove-4').css("margin-bottom", "20px");
+	                } else {
+	                    $('#userName').css('border', '3px solid #00FF40');
+	                    $('#ok-4').show();
+	                    $('#remove-4').hide();
+	                    $('#nameProblem').hide();
+	                }
+	            }
+	        }
+	
+	        function birthCheck() {
+	            $('#check5').css('visibility', 'visible');
+	
+	            if ($('#birth').val().match(regExpSpace)) {
+	                $('#birth').css('border', '3px solid red');
+	                $('#remove-5').show();
+	                $('#ok-5').hide();
+	                $('#birthProblem').text("공백을 제거해주세요.");
+	                $('#birthProblem').show();
+	                $('#remove-5').css("margin-bottom", "20px");
+	
+	            } else {
+	                if (!regExpNum.test($('#birth').val())) {
+	                    $('#birth').css('border', '3px solid red');
+	                    $('#remove-5').show();
+	                    $('#ok-5').hide();
+	                    $('#birthProblem').text("숫자만 입력해주세요.");
+	                    $('#birthProblem').show();
+	                    $('#remove-5').css("margin-bottom", "20px");
+	                } else {
+	                    if ($('#birth').val().substring(2, 4) > 0 && $('#birth').val().substring(2, 4) < 13) {
+	                        if ($('#birth').val().substring(4, 6) > 0 && $('#birth').val().substring(4, 6) < 32) {
+	                            $('#birth').css('border', '3px solid #00FF40');
+	                            $('#ok-5').show();
+	                            $('#remove-5').hide();
+	                            $('#birthProblem').hide();
+	                        } else {
+	                            $('#birth').css('border', '3px solid red');
+	                            $('#remove-5').show();
+	                            $('#ok-5').hide();
+	                            $('#birthProblem').text("31일을 초과하였습니다.");
+	                            $('#birthProblem').show();
+	                            $('#remove-5').css("margin-bottom", "20px");
+	                        }
+	                    } else {
+	                        $('#birth').css('border', '3px solid red');
+	                        $('#remove-5').show();
+	                        $('#ok-5').hide();
+	                        $('#birthProblem').text("12월을 초과하였습니다.");
+	                        $('#birthProblem').show();
+	                        $('#remove-5').css("margin-bottom", "20px");
+	                    }
+	                }
+	            }
+	        }
+	
+	        function phoneCheck() {
+	            $('#check6').css('visibility', 'visible');
+	            if ($('#phone').val().match(regExpSpace)) {
+	                $('#phone').css('border', '3px solid red');
+	                $('#remove-6').show();
+	                $('#ok-6').hide();
+	                $('#phoneProblem').text("공백을 제거해주세요.");
+	                $('#phoneProblem').show();
+	                $('#remove-6').css("margin-bottom", "20px");
+	            } else {
+	                if (!regExpNum.test($('#phone').val())) {
+	                    $('#phone').css('border', '3px solid red');
+	                    $('#remove-6').show();
+	                    $('#ok-6').hide();
+	                    $('#phoneProblem').text("숫자만 입력해주세요.");
+	                    $('#phoneProblem').show();
+	                    $('#remove-6').css("margin-bottom", "20px");
+	                } else {
+	                    if ($('#phone').val().length != 8) {
+	                        $('#phone').css('border', '3px solid red');
+	                        $('#remove-6').show();
+	                        $('#ok-6').hide();
+	                        $('#phoneProblem').text("앞자리를 뺀 8자리를 정확히 입력해주시기 바랍니다.");
+	                        $('#phoneProblem').show();
+	                        $('#remove-6').css("margin-bottom", "20px");
+	                    } else {
+	                        $('#phone').css('border', '3px solid #00FF40');
+	                        $('#ok-6').show();
+	                        $('#remove-6').hide();
+	                        $('#phoneProblem').hide();
+	                    }
+	                }
+	            }
+	        }
+	        
+	        
+	        $('#genderM').click(function(){
+				 $('#hiddenGender').val("M");
+				 $('#genderM').css("background-color","#eeeeee");
+				 $('#genderF').css("background-color","white");
+			});
+	        
+	        $('#genderF').click(function(){
+	        	$('#hiddenGender').val("F");
+				$('#genderF').css("background-color","#eeeeee");
+				$('#genderM').css("background-color","white");
+			});
+	        
+	        function allCheck() {
+	            var success = 0;
+	            if ($('#userId').val() == ""&&$('#ok-1').css("display")=="none") {
+	                $('#check1').css('visibility', 'visible');
+	                $('#userId').css('border', '3px solid red');
+	                $('#remove-1').show();
+	                $('#ok-1').hide();
+	                success--;
+	            }else{
+	                success++;
+	            }
+	            if ($('#userPwd1').val() == ""&&$('#ok-2').css("display")=="none") {
+	                $('#check2').css('visibility', 'visible');
+	                $('#userPwd1').css('border', '3px solid red');
+	                $('#remove-2').show();
+	                $('#ok-2').hide();
+	                success--;
+	                
+	            }else{
+	                success++;
+	            }
+	            
+	            if ($('#userPwd2').val() == ""&&$('#ok-3').css("display")=="none") {
+	                $('#check3').css('visibility', 'visible');
+	                $('#userPwd2').css('border', '3px solid red');
+	                $('#remove-3').show();
+	                $('#ok-3').hide();
+	                success--;
+	                
+	            }else{
+	                success++;
+	            }
+	            
+	            if ($('#userName').val() == ""&&$('#ok-4').css("display")=="none") {
+	                $('#check4').css('visibility', 'visible');
+	                $('#userName').css('border', '3px solid red');
+	                $('#remove-4').show();
+	                $('#ok-4').hide();
+	                success--;
+	                
+	            }else{
+	                success++;
+	            }
+	            
+	            if ($('#birth').val() == ""&&$('#ok-5').css("display")=="none") {
+	                $('#check5').css('visibility', 'visible');
+	                $('#birth').css('border', '3px solid red');
+	                $('#remove-5').show();
+	                $('#ok-5').hide();
+	                success--;
+	                
+	            }else{
+	                success++;
+	            }
+	            
+	            if ($('#phone').val() == ""&&$('#ok-6').css("display")=="none") {
+	                $('#check6').css('visibility', 'visible');
+	                $('#phone').css('border', '3px solid red');
+	                $('#remove-6').show();
+	                $('#ok-6').hide();
+	                success--;
+	               
+	            }else{
+	                success++;
+	            }
+	            
+	            if ($('#postcode').val() == "") {
+	                $('#postBtn').css('border', '3px solid red');
+	                success--;
+	            } else{
+	                success++;
+	            }
+	            
+	            if ($('#addAddress').val() == ""&&$('#ok-7').css("display")=="none") {
+	                $('#check7').css('visibility', 'visible');
+	                $('#addAddress').css('border', '3px solid red');
+	                $('#remove-7').show();
+	                $('#ok-7').hide();
+	                success--;
+	                
+	            }else{
+	                success++;
+	            }
+	            
+	            if(success==8) {
+	                $('#frm').submit();
+	            }
+	        }
     </script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/css/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 
 </html>

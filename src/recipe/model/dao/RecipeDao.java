@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import common.JDBCTemplate;
+import recipe.model.vo.Process;
 import recipe.model.vo.Recipe;
 import recipe.model.vo.RecipeComment;
-import recipe.model.vo.Process;
 
 public class RecipeDao {
 
@@ -140,7 +140,7 @@ public class RecipeDao {
 	}
 
 	public ArrayList<Recipe> getCurrentPage(Connection conn, int page, int recordCountPerPage, String cate1, String cate2,
-			String cate3, String cate4, String order) {
+			String cate3, String cate4, String order, String search) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -151,7 +151,7 @@ public class RecipeDao {
 		String where = "";
 		ArrayList<Recipe> list = new ArrayList<Recipe>();
 		try {
-			if(!(cate1.equals("0")&&cate2.equals("0")&&cate3.equals("0")&&cate4.equals("0"))) {
+			if(!(cate1.equals("0")&&cate2.equals("0")&&cate3.equals("0")&&cate4.equals("0")&&search.equals("null"))) {
 				where+="where ";
 			}
 			if(!cate1.equals("0")) {
@@ -174,7 +174,20 @@ public class RecipeDao {
 				else {where+=" and ";}
 				where+="ingre_no="+cate4;
 			}
+			
+			if(!search.equals("null")){
+				if(first){ 
+					first=false;
+				}else {where+=" and ";}
+				where+="ingredient like '%"+search+"%' or recipe_title like '%"+search+"%'";
+			}
+			
+			if(order==null) {
+				order="posted_date";
+			}
+			
 			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+") where num between ? and ?";
+			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
@@ -199,14 +212,14 @@ public class RecipeDao {
 	}
 
 	public String getPageNavi(Connection conn, int page, int recordCountPerPage, int naviCountPerPage, String cate1,
-			String cate2, String cate3, String cate4, String order) {
+			String cate2, String cate3, String cate4, String order, String search) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int recordTotalCount = 0; //총 게시물 개수 저장 변수
 		boolean first = true;
 		String query = "";
 		String where = "";
-		if(!(cate1.equals("0")&&cate2.equals("0")&&cate3.equals("0")&&cate4.equals("0"))) {
+		if(!(cate1.equals("0")&&cate2.equals("0")&&cate3.equals("0")&&cate4.equals("0")&&search.equals("null"))) {
 			where+="where ";
 		}
 		if(!cate1.equals("0")) {
@@ -228,6 +241,11 @@ public class RecipeDao {
 			if(first) {	first=false; }
 			else {where+=" and ";}
 			where+="ingre_no="+cate4;
+		}
+		if(!search.equals("null")){
+			if(first) { first=false;}
+			else {where+=" and ";}
+			where+="ingredient like '%"+search+"%' or recipe_title like '%"+search+"%'";
 		}
 		try {
 			query = "select count(*) as totalcount from recipe " + where;
@@ -277,24 +295,30 @@ public class RecipeDao {
 		if(order==null) {
 			order="posted_date";
 		}
+		
+
 		if(needPrev) {
 			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(startNavi-1)+"'> < </a></li>");
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page=1'> << </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+(startNavi-1)+"'> < </a></li>");
 			
 		}
 		for(int i=startNavi;i<=endNavi;i++) {
 			if(i==page) {
 				sb.append("<li class=\"page-item active\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'><B>"+i+"</B></a></li>");
+						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+i+"'><B>"+i+"</B></a></li>");
 			}
 			else {
 				sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+i+"'>"+i+"</a></li>");
+						+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+i+"'>"+i+"</a></li>");
 			}
 		}
 		if(needNext) {
 			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
-					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search=&page="+(endNavi+1)+"'> > </a></li>");
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+(endNavi+1)+"'> > </a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='/recipeList?cate1="+cate1
+					+"&cate2="+cate2+"&cate3="+cate3+"&cate4="+cate4+"&order="+order+"&search="+search+"&page="+pageTotalCount+"'> >> </a></li>");
 		}
 		return sb.toString();
 	}
@@ -633,6 +657,33 @@ public class RecipeDao {
 			pstmt.setInt(3, commentNo);
 			pstmt.setInt(4, commentNo);
 			pstmt.setInt(5, commentNo);
+			result = pstmt.executeUpdate();
+			return result;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return 0;
+	}
+
+	public int deleteRecipe(Connection conn, int recipeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		try {
+			prop.load(new FileReader(path+"resources/recipeQuery.properties"));
+			String query = prop.getProperty("deleteRecipe");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, recipeNo);
 			result = pstmt.executeUpdate();
 			return result;
 		} catch (FileNotFoundException e) {

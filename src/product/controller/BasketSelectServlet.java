@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import member.model.vo.Member;
 import product.model.service.ProductService;
 import product.model.vo.Basket;
+import product.model.vo.Ordercall;
 import product.model.vo.Product;
 
 /**
@@ -42,7 +43,7 @@ public class BasketSelectServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("user");
 		
 		if(m==null) {	//로그인 안되있으면
-			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
+			response.sendRedirect("/views/memberPage/loginPage.jsp");	//로그인하는 페이지로 이동
 		}
 		else {
 			int memberNo=m.getMemberNo();

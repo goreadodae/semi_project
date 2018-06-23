@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>1:1문의 작성</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/reset.css">
@@ -183,11 +183,10 @@
 					$("#qnaTitle").focus();
 					return false;
 				}
-			if($("#contents").val()=="")
+			if($("#contents").text()=="")
 				{
 					alert("내용을 입력해주세요");
 					$("#contents").focus();
-					
 					return false;
 				}
 		
@@ -294,8 +293,6 @@
 
 								<td><br> <input type="text" id="qnaTitle" name="qnaTitle"
 									size="100%" /></td>
-
-
 							</tr>
 							<tr height="70px">
 
@@ -380,8 +377,9 @@
 						<div class="row">
 
 							<div class="offset-md-11 col-md-1">
-								<button type="submit" class="btn btn-success" id="qnaSubmit"
-									onclick="save()">저장</button>
+							
+							
+								<button type="submit" class="btn btn-success" id="qnaSubmit">저장</button>
 
 							</div>
 						</div>
@@ -389,14 +387,13 @@
 				</div>
 
 			</form>
-			--
 		</div>
 
 		<div id="footer"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding: 10px;">
 			<!-- footer -->
-			>
+			
 		</div>
 
 

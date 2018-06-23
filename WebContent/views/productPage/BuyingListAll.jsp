@@ -86,8 +86,20 @@ table{
 	text-align:center;
 }
 
+td,th{
+	font-size : 14px;
+}
+
+.line0{
+	border-bottom : 1px solid #dcdcdc;
+	height : 10px;
+}
+
+
 .line1{
-	border-bottom : 2px solid #dcdcdc;
+	border-bottom : 1px solid #dcdcdc;
+	border-right : 1px solid #dcdcdc;
+	border-left : 1px solid #dcdcdc;
 	height : 120px;
 }
 
@@ -95,6 +107,14 @@ table{
 	border-top : 2px solid #522075;
 	border-bottom : 2px solid #dcdcdc;
 	height : 50px;
+}
+
+.line3{
+	border-bottom : 2px solid #dcdcdc;
+	border-right : 1px solid #dcdcdc;
+	border-left : 1px solid #dcdcdc;
+	height : 50px;
+	background-color : #F7F5F8;
 }
 
 .inbasket{
@@ -183,6 +203,10 @@ table{
 	border : 0px;
 	cursor : pointer;
 }
+
+.productDetail:link { color: black; text-decoration: none;}
+.productDetail:visited { color: black; text-decoration: none;}
+.productDetail:hover { color: black; text-decoration: none;}
 </style>
 
 
@@ -214,19 +238,32 @@ table{
 						</tr>
 						
 						<c:set var="sumprice" value="0"/>	<!-- 구매 품목 총 가격 -->
-						
+					<c:forEach begin="0" items="${order}" var="o" varStatus="i">
+						<tr class="line0">
+							<td colspan="6"></td>
+						</tr>
 						<c:forEach begin="0" items="${buying}" var="b" varStatus="i">
 						<c:set var="sumprice" value="${sumprice + b.productPrice*b.buyingQuantity}"/>
-						
+						<c:if test="${o.orderNo==b.orderNo}">
 						<tr class="line1">
-							<td>${b.buyingNo}<%-- ${i.count} --%></td>
-							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
-							<td class="prod">${b.productName}</td>
+							<td><%-- ${b.buyingNo} --%></td>
+							<td><center><a href="/productDetail?productNo=${b.productNo}" class="productDetail"><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></a></center></td>
+							<td class="prod"><a href="/productDetail?productNo=${b.productNo}" class="productDetail">${b.productName}</a></td>
 							<td>${b.buyingQuantity}</td>
 							<td id="tdPrice">${b.productPrice*b.buyingQuantity}</td>
 							<td>${b.buyingDate}</td>
 						</tr>
+						</c:if>
 						</c:forEach>
+						<tr class="line3">
+							<td>${o.orderNo}</td>
+							
+							<td colspan="5">(상품가격)${o.totalFee}원 - (적립금)${o.discount}원 + (배송비)${o.deliveryFee}원 = 결제가격 : ${o.finalFee}원 </td>
+							
+							
+						</tr>
+					</c:forEach>
+						
 						
 					</table>
 					<br><br><br>

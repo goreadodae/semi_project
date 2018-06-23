@@ -81,8 +81,11 @@
 <style>
 
 table{
-	font-size : 100px;
 	text-align:center;
+}
+
+td,th{
+	font-size : 15px;
 }
 
 .line1{
@@ -182,12 +185,31 @@ table{
 	border : 0px;
 	cursor : pointer;
 }
+
+.productDetail:link { color: black; text-decoration: none;}
+.productDetail:visited { color: black; text-decoration: none;}
+.productDetail:hover { color: black; text-decoration: none;}
 </style>
 
 
 <script>
 
 $(document).ready(function(){
+	
+	//1. 총 가격 계산 & 그에 따른 배송비와 결제금액 설정
+	var deliveryFee = 0;	//배송비
+	var eachPay = $('[name="eachPay"]');	//물품들의 총가격
+	var totalPay = 0;						//다 합한 가격
+	for(var j=0; j<eachPay.length ; j++){
+		totalPay += Number(eachPay[j].value);
+	}
+	
+	if(totalPay<30000){	//3만원 미만이면
+		deliveryFee = 2500;//배송비 2500원
+	}
+	
+	$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
+	$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
 		
 		//+,- 버튼을 눌렀을때 수량 변화하는 함수
          $('.minus').click(function(){
@@ -205,8 +227,17 @@ $(document).ready(function(){
     	 		qty.val(basketQuantity);
     	 		tdPrice.html(tdPrice.html()-productPrice);
     	 		payment1.html(payment1.html()-productPrice);
-    	 		payment2.html(payment2.html()-productPrice);
-    	 		totalpayment.html(totalpayment.html()-productPrice);
+    	 		payment2.html(payment2.html()-productPrice);    	 		
+    	 		
+    	 		totalPay-=Number(productPrice);
+    	 		if(totalPay<30000){	//3만원 미만이면
+    	 			deliveryFee = 2500;//배송비 2500원
+    	 		}else{	//3만원 이상이면
+    	 			deliveryFee = 0;//배송비 없음
+    	 		}
+    	 		
+    	 		$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
+    	 		$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
     	 		
     	 		$.ajax({
         			url : "/basketUpdate",
@@ -228,18 +259,28 @@ $(document).ready(function(){
          	var basketQuantity = $(this).prev('#qty').val();
          	var basketNo = $(this).next('.basket_no').val();
          	var productPrice = $(this).next().next('.productPrice').val();
+         	var productQuantity = $(this).next().next().next('.productQuantity').val();
          	var tdPrice = $(this).parent().next('#tdPrice');
          	var payment1 = $('#payment1');
         	var payment2 = $('#payment2');
          	var totalpayment = $('#totalpayment');
          	
-         	if(basketQuantity<50){
+         	if(basketQuantity<productQuantity){
          		basketQuantity++;
      	 		qty.val(basketQuantity);
      	 		tdPrice.html(Number(tdPrice.html())+Number(productPrice));
      	 		payment1.html(Number(payment1.html())+Number(productPrice));
      	 		payment2.html(Number(payment2.html())+Number(productPrice));
-     	 		totalpayment.html(Number(totalpayment.html())+Number(productPrice));
+     	 		
+     	 		totalPay+=Number(productPrice);
+    	 		if(totalPay<30000){	//3만원 미만이면
+    	 			deliveryFee = 2500;//배송비 2500원
+    	 		}else{	//3만원 이상이면
+    	 			deliveryFee = 0;//배송비 없음
+    	 		}
+    	 		
+    	 		$('#deliverfee').html(deliveryFee);	//배송비 가격 설정
+    	 		$('#totalpayment').html(totalPay+deliveryFee);//결제예약금액(final-fee) 설정
      	 		
      	 		$.ajax({
          			url : "/basketUpdate",
@@ -253,6 +294,9 @@ $(document).ready(function(){
          			}
          		});
      	 	}
+         	else{
+         		alert("최대 수량입니다.");
+         	}
         	
           });
          
@@ -261,6 +305,8 @@ $(document).ready(function(){
         	 console.log(productNo);
         	 /* location.href="/productDetail?productNo="; */
          });
+         
+         
          
          
          
@@ -287,7 +333,7 @@ $(document).ready(function(){
 					<center><img src="/imgs/product_img/basket_title.png"></center>
 					
 					<!-- 장바구니에 담긴 상품 리스트 -->
-					<br><table width=100%>
+					<br><table width=100% id="listTable">
 						<tr class="line2">
 							<th width=5%>번호</th>
 							<th width=15%></th>
@@ -300,13 +346,14 @@ $(document).ready(function(){
 						<c:set var="sumprice" value="0"/>	<!-- 장바구니 품목 총 가격 -->
 						
 						<c:forEach begin="0" items="${basket}" var="b" varStatus="i">
+						<input type="hidden" id="eachPay" name="eachPay" value="${b.productPrice*b.basketQuantity}">
 						<c:set var="sumprice" value="${sumprice + b.productPrice*b.basketQuantity}"/>
 						
 						<tr class="line1">
 							<td>${i.count}</td>
-							<td><center><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></center></td>
+							<td><center><a href="/productDetail?productNo=${b.productNo}" class="productDetail"><img src="${b.product1stPic}" alt="제품이미지" class="inbasket"></a></center></td>
 							<td class="prod">
-								<span class="showDetail">${b.productName}</span>
+								<a href="/productDetail?productNo=${b.productNo}" class="productDetail"><span class="showDetail">${b.productName}</span></a>
 							</td>
 							
 							<!-- 수량 변경시 update 서블릿 실행 -->
@@ -319,6 +366,8 @@ $(document).ready(function(){
 								<button class="plus" id="plus">+</button>
 								<input type="hidden" class="basket_no" value="${b.basketNo}">
 								<input type="hidden" class="productPrice" value="${b.productPrice}">
+								<input type="hidden" class="productQuantity" value="${b.productQuantity}">
+								
 							</td>
 							
 							<td id="tdPrice">${b.productPrice*b.basketQuantity}</td>

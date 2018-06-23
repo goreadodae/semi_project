@@ -44,12 +44,11 @@ public class BuyDirectServlet extends HttpServlet {
 		
 		
 		if(m==null) {//로그인 안되있으면
-			response.sendRedirect("/views/memberPage/loginPage.html");	//로그인하는 페이지로 이동
+			response.sendRedirect("/views/memberPage/loginPage.jsp");	//로그인하는 페이지로 이동
 		}
 		else {	//로그인 되있으면 바로구매 페이지로 이동
 			int memberNo = m.getMemberNo();
 			Member member = new MemberService().selectOneMember(memberNo);	//로그인한 계정 정보 가져오기
-			System.out.println("member-name" + member.getMemberName());
 			
 			int basketQuantity = Integer.parseInt(request.getParameter("basketQuantity"));//수량
 			int productNo = Integer.parseInt(request.getParameter("productNo"));//상품번호

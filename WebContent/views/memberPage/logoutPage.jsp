@@ -30,7 +30,11 @@
 <body style="overflow-x: hidden; overflow-y: auto;">
 	<% String beforeURI = request.getHeader("referer"); %>
 	<script>
-		location.href="<%=beforeURI%>";
+		<%if(beforeURI.substring(1, 6).equals("myHome")){%>
+			location.href=beforeURI;
+		<%}else{%>
+			location.href="/index.jsp";
+		<%}%>
 	</script>
 </body>
 </html>

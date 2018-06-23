@@ -56,15 +56,7 @@ public class viewAllNoticeServlet extends HttpServlet {
 			{
 				
 			}
-
 			
-			
-			
-			
-			
-		
-		
-		
 	}
 
 	/**

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class JDBCTemplate {
+public class JDBCTemplate{
 	public JDBCTemplate() {}
 
 	public static Connection getConnection() {

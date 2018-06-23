@@ -95,7 +95,7 @@ public class QnaDao {
 		ResultSet rset = null;
 		String query ="select que_no,que_title,que_time,que_contents,member_id "+ 
 				"from question left join member on question.member_no = member.member_no " + 
-				"where question.member_no = ?";
+				"where question.member_no = ? order by que_time desc";
 		Question qst = null;
 		ArrayList<Question> qList = new ArrayList<Question>();
 		
@@ -114,8 +114,6 @@ public class QnaDao {
 				qst.setMemberId(rset.getString("member_id"));
 				qList.add(qst);		
 			}
-			
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

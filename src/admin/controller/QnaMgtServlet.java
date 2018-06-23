@@ -48,7 +48,7 @@ public class QnaMgtServlet extends HttpServlet {
 		
 		if(aqpd!=null)
 		{
-			RequestDispatcher view = request.getRequestDispatcher("views/adminPage/qnaMgtPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/qnaMgtPage.jsp");
 			request.setAttribute("adminQData", aqpd);
 			view.forward(request, response);
 		}

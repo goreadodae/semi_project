@@ -48,7 +48,7 @@ public class MemberRecipeServlet extends HttpServlet {
 			JSONObject result = new JSONObject();
 			
 			result.put("member_no", m.getMemberNo());
-			result.put("member_name", m.getMemberName());
+			result.put("nickname", m.getNickName());
 			result.put("profile",m.getProfile());
 
 			resultArray.add(result);

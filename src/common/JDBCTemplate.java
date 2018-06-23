@@ -1,16 +1,11 @@
 package common;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class JDBCTemplate {
 	public JDBCTemplate() {}
@@ -19,9 +14,9 @@ public class JDBCTemplate {
 		Connection conn = null;
 		try {
 			String driver = "oracle.jdbc.driver.OracleDriver";
-			String url = "jdbc:oracle:thin:@192.168.10.30:1521:xe";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "strangeRecipe";
-			String passwd = "bob4jo";
+			String passwd = "strangeRecipe";
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, passwd);
 			conn.setAutoCommit(false);

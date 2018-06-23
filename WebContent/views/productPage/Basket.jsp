@@ -3,7 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -318,7 +322,7 @@ $(document).ready(function(){
 
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding: 0px;">
 
 		<!-- Header -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>

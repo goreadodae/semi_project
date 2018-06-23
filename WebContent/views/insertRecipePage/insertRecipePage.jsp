@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="member.model.vo.*"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <% Member mem = ((Member)session.getAttribute("user"));%>
 <!DOCTYPE html>
 <html>
@@ -1145,7 +1150,7 @@ body{font-family:IropkeBatang;}
 	</div><!--전체  -->
 <%}else{ %>
 <script>
-	alert("로그인 후 레시피등록을 이용해주세요.");
+	/* alert("로그인 후 레시피등록을 이용해주세요."); */
 	location.href="/views/memberPage/loginPage.jsp";
 </script>
 <%} %>

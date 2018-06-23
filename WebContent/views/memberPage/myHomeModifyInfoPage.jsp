@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "member.model.vo.*"%>
 <% Member m = (Member)session.getAttribute("user"); %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -134,7 +138,7 @@
 		<!-- 해더 영역 -->
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<!-- 헤더 영역 끝 -->
-
+		
 		<!-- 컨텐츠 영역 -->
 		<div id="contents" class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
 			style="border: 1px solid black; padding:0;">
@@ -143,7 +147,7 @@
 					<h2 id="menu-title">마이 홈</h2>
 					<div id="menu-border">
 						<ul id="menu-list">
-							<li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+							<li><a href="/views/memberPage/myHomeMainPage.jsp">내 프로필</a></li>
 							<li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
 							<li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
 							<li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
@@ -153,7 +157,7 @@
 				</div>
 				<div class="col-md-10">
 					<div id="menu-title">
-						<h2>개인 정보 변경</h2>
+						<h2>개인 정보 수정</h2>
 					</div>
 					<div id="check-pwd">
 						<form action="/pwdCheck" method="post">
@@ -161,10 +165,10 @@
 								<img src="/imgs/member_img/check-pwd.JPG">
 							</div>
 							<div id="field-pwd">
-								<div id="userId">아이디</div>
+								<div id="userId" style="font-size:14px; font-weight:700">아이디</div>
 								<span id="txt-id"><%= m.getMemberId() %></span>
 								<input type="hidden" id="hiddenId" name="id" value=<%=m.getMemberId() %> />
-								<div id="userPwd">비밀번호</div>
+								<div id="userPwd" style="font-size:14px; font-weight:700">비밀번호</div>
 								<div>
 									<input type="password" id="txt-pwd" name="password" />
 								</div>
@@ -174,17 +178,13 @@
 									<button type="submit">확인</button>
 								</center>
 							</div>
-								
 						</form>
 					</div>
 				</div>
-				<div class="col-md-1"></div>
 			</div>	
-		
 		</div>
 		<!-- 푸터 -->
-		<div id="footer"
-		  class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+		<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 		  style="border: 1px solid black; padding: 10px;"></div>
 		<!-- 푸터 끝 -->
 	</div>

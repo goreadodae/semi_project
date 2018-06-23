@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -15,19 +20,28 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <link rel="stylesheet" href="/css/member_css/loginPage.css">
 
-
 <style>
    .mod2{
    display: none;
    }
 </style>
 </head>
+<script type="text/javascript">
+	<%if(session.getAttribute("user")==null){%>
+	<%}else{%>
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+	<%}%>
+</script>
 <script>
    $(document).ready(function() {
       /* 해더 불러오는 제이쿼리 */
       $("#footer").load("/views/footer/main-Footer.jsp");
    });
 </script>
+
 <body style="overflow-x: hidden; overflow-y: auto;">
 
    <!-- 전체 컨테이너  -->
@@ -41,7 +55,7 @@
       <br><br>
       <h2 style="font-weight: bold; text-align: center;">아이디 찾기</h2>
       <br><br>
-      <div id="content-main" class="contents" style="background-color: white;">
+      <div id="content-main" class="contents" style="background-color: #f7f5f8;">
          <div class="container">
             <div class="col-md-12 mod1" id="section">
                <div class="col-md-8 mx-auto">
@@ -60,43 +74,40 @@
                             id="email" name="email" style="width:250px;">
                         </div>
                      </form>
-                     
                   </fieldset>
                </div>
                
-               <div class="col-md-4 mx-auto" style="margin-bottom: 20px; left:39px;">
+               <div class="col-md-4 mx-auto" style="margin-bottom: 20px; left:35px; margin-top:10px;">
                   <button class="btn btn-primary btn-lg btn-block form-login" 
                          onclick="findId();" style="background-color:#795b8f; width:250px;">확인</button>
                </div>
             
                </div>
                <div class="col-md-12 mod2" style="background-color:#f7f5f8; height:300px; margin-top: 40px;
-                   padding: 40px 100px; margin-bottom: 80px; ">
-               <div class="col-md-6 mx-auto" style="border-top:2px solid #795b8f; border-bottom: 1px solid #795b8f">
+                   padding: 40px 100px; margin-bottom: 80px; "><br>
+               	  <div class="col-md-6 mx-auto" style="border-top:2px solid #795b8f; border-bottom: 1px solid #795b8f"><br>
                   <fieldset>
                         <div class="col-md-12" style="text-align: center; width:100%; height:130px; background-color:#f7f5f8;">
-                           <H3 style="margin:10px 0 20px;">아이디 찾기가 완료되었습니다.</H3>
+                           <h3 style="margin:10px 0 20px;">아이디 찾기가 완료되었습니다.</h3>
+                           <hr>	
                            <h6>아이디 : <label id="userId"></label></h6>
                         </div> 
                   </fieldset>
                </div>
-               
+               <br>
                <div class="col-md-6 mx-auto row" style="margin: 20px 0; left:39px;">
-               <button class="btn btn-primary btn-lg btn-block form-login" 
-                         onclick="locationStr('/views/memberPage/findPwdPage.jsp');"style="background-color:#795b8f; width:150px; float:left;">비밀번호찾기</button>
-               <button class="btn btn-primary btn-lg btn-block form-login" 
-                         onclick="locationStr('/views/memberPage/loginPage.jsp');" style="background-color:#795b8f; width:150px; margin:0 0 0 50px;float:left;">확인</button>
+             		<button class="btn btn-primary btn-lg btn-block form-login" 
+                         	onclick="locationStr('/views/memberPage/findPwdPage.jsp');"style="background-color:#795b8f; width:150px; float:left;">비밀번호찾기</button>
+               		<button class="btn btn-primary btn-lg btn-block form-login" 
+                         	onclick="locationStr('/views/memberPage/loginPage.jsp');" style="background-color:#795b8f; width:150px; margin:0 0 0 50px;float:left;">확인</button>
                </div>
-            
                </div>
                <hr>
                </div>
             <br>
          </div>
       </div>
-      
       <br><br><br><br>
-   </div>
    
     
    <!-- 푸터 -->
@@ -104,7 +115,6 @@
         style="border: 1px solid black; padding: 10px;">
    </div>
    <!-- 푸터 끝 -->
-   <br><br>
    
    <script>
       function findId() 

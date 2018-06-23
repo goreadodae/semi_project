@@ -128,7 +128,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public int insertMember(Connection conn, Member m) {
+	public Member insertMember(Connection conn, Member m) {
 
 		Properties prop = new Properties();
 		String path = JDBCTemplate.class.getResource("..").getPath();
@@ -136,6 +136,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 
 		int result = 0;
+		Member m2 = null;
 
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
@@ -156,7 +157,15 @@ public class MemberDao {
 			pstmt.setString(10, "");
 
 			result = pstmt.executeUpdate();
-
+			
+			if (result > 0) {
+				JDBCTemplate.commit(conn);
+				m2 = insertSession(conn,m);
+				
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -165,8 +174,54 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 
-		return result;
+		return m2;
 	}
+
+	private Member insertSession(Connection conn, Member m) {
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Properties prop = new Properties();
+		Member m2=null;
+		
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD'), phone, email, address, profile, nickname from member where member_id = ?";
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, m.getMemberId());
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				m2 = new Member();
+
+				m2.setMemberNo(rset.getInt("MEMBER_NO"));
+				m2.setMemberId(m.getMemberId());
+				m2.setMemberPwd(m.getMemberPwd());
+				m2.setMemberName(rset.getString("MEMBER_NAME"));
+				m2.setBirthDate(rset.getString("BIRTH_DATE"));
+				m2.setPhone(rset.getString("PHONE"));
+				m2.setEmail(rset.getString("EMAIL"));
+				m2.setAddress(rset.getString("ADDRESS"));
+				m2.setProfile(rset.getString("PROFILE"));
+				m2.setNickName(rset.getString("NICKNAME"));
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return m2;
+	}
+
 
 	public Member login(String loginId, String loginPwd, Connection conn) {
 
@@ -716,34 +771,34 @@ public class MemberDao {
 	}
 
 	public ArrayList<Member> getMemberInfo(Connection conn) {
-		
+
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Member m = null;
 		Properties prop = new Properties();
-		
+
 		ArrayList<Member> list = new ArrayList<Member>();
-		
-		String query = "select member.member_no, member.member_name, member.profile from member, recipe where member.member_no = recipe.member_no";
+
+		String query = "select member_no, profile, nickname from member";
 		try {
-			
+
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			
+
 			pstmt = conn.prepareStatement(query);
 
 			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				m = new Member();
-				
+
 				m.setMemberNo(rset.getInt("member_no"));
-				m.setMemberName(rset.getString("member_name"));
 				m.setProfile(rset.getString("profile"));
-				
+				m.setNickName(rset.getString("nickname"));
+
 				list.add(m);
 			}
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -757,4 +812,70 @@ public class MemberDao {
 		return list;
 	}
 
+	public int totalBascket(Connection conn, int member_no) {
+
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int result = 0;
+
+		Properties prop = new Properties();
+
+		String query = "select count(*) as totalBascket FROM member INNER JOIN bascket ON member.member_no=bascket.member_no where member.member_no = bascket.member_no and member.member_no = ?";
+
+		try {
+
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, member_no);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				result = rset.getInt("totalBascket");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	// 추가
+	public boolean loginCheck(Connection conn, String userId, String userPwd) {
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		boolean result = false;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select member_id from member where member_id=? and member_pwd=?";
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next())
+				result = true;
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }

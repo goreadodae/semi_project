@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+<%
 	String beforeURI = request.getHeader("referer");
+
+	String firstURI = beforeURI;
+	if(firstURI.equals(beforeURI)){
+		firstURI = firstURI;
+	} else{
+		firstURI = beforeURI;
+	}
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,6 +23,7 @@
 <title>로그인</title>
 
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
+
 
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -25,6 +38,16 @@
 		/* 해더 불러오는 제이쿼리 */
 		$("#footer").load("/views/footer/main-Footer.jsp");
 	});
+</script>
+<script type="text/javascript">
+	<%if(session.getAttribute("user")==null){%>
+		
+	<%}else{%>
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+	<%}%>
 </script>
 
 <body style="overflow-x: hidden; overflow-y: auto;">
@@ -45,6 +68,7 @@
 				<div class="col-md-12" id="section">
 					<div class="col-md-8 mx-auto">
 						<fieldset>
+							<!-- 오류잡기 -->
 							<form action="/login?beforeURI=<%=beforeURI%>" method="post" id="frm">
 								<!-- 아이디 -->
 								<div class="col-md-12">
@@ -99,61 +123,34 @@
 	</div>
 	<script type="text/javascript">
 	
-		var memberIdArr = [];
-		var memberPwdArr = [];
-		
-		$.ajax({
-			url : "/loginCheck",
-			type : "post",
-			success : function(data) {
-				
-				// data[키] 형태로 사용해야 함
-				for (var i=0; i < data.length; i++) {
-					memberIdArr.push(data[i].member_id);
-					memberPwdArr.push(data[i].member_pwd);
-				}
-			},
-			error : function() {
-				console.log("실패");
-			}
-		});
-		
-		//로그인 버튼
-		function login()
-		{
-			var result = false;
-			
-			if(($('#loginId').val()=="" || $('#loginPwd').val()=="")){
-				alert("아이디 또는 비밀번호를 입력하세요.");
-			} 
-			
-			for(var i=0; i<memberIdArr.length; i++)
-			{
-				if($('#loginId').val()==memberIdArr[i])
-				{
-					for(var j=0; j<memberPwdArr.length; j++)
-					{	
-						if($('#loginPwd').val()==memberPwdArr[j])
-						{	
-							$('#loginError').toggle();
-							result = true;
-							
-						} else
-						{
-							$('#loginError').show();
-							continue;
-						}
-					}
-				} else
-				{
-					$('#loginError').show();
-				}
-			}
-			
-			if(result==true){
-				$('#frm').submit();
-			}
+	function login()
+	{
+		console.log($('#loginPwd').val());
+		if(($('#loginId').val()=="" || $('#loginPwd').val()=="")){
+			alert("아이디 또는 비밀번호를 입력하세요.");
+		}else{
+			$.ajax({
+	            url: "/loginCheck",
+	            data: {loginId:$('#loginId').val(), loginPwd:$('#loginPwd').val()},
+	            type: "post",
+	            success: function(data) {
+	                console.log("성공");
+	                if(data==1){
+	                	$('#frm').submit();
+	                	$('#loginError').hide();
+	                }else{
+	                	$('#loginError').show();
+	                }
+	            },
+	            error: function() {
+	                console.log("실패");
+	            },
+	            complete: function() {
+	                //무조건 실행
+	            }
+	        });
 		}
+	}
 		
 		//소셜 네이버 로그인
 	    var naver_id_login = new naver_id_login("RC6jETK12YcVuQccaXmJ", "http://localhost:1347/index.jsp");
@@ -186,7 +183,6 @@
 	     style="border: 1px solid black; padding: 10px;">
 	</div>
 	<!-- 푸터 끝 -->
-	<br><br>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

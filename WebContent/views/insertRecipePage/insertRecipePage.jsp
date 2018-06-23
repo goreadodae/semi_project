@@ -632,6 +632,9 @@
          $(this).addClass('mybutton2');
       });
       
+      
+      
+      
 
 	 
 </script>
@@ -719,6 +722,15 @@ body{font-family:IropkeBatang;}
    border : 0px;
    cursor : pointer;
 }
+
+
+.problem {
+   color: red;
+   font-size: 11pt;
+   margin: 0;
+   padding: 0;
+   display: none;
+}
 </style>
 
 
@@ -744,8 +756,9 @@ body{font-family:IropkeBatang;}
 					<div class="col-md-9" id="inRecipeTitleLeft">
 					<div class="row">					
 					<div class="col-md-3"><label><h4>레시피 제목</h4></label></div>
-					<div class="col-md-9"><input type="text" class="form-control" placeholder="예) 소고기 미역국 끓이기" name="recipeTitle"></div>
-					</div>
+					<div class="col-md-9"><input type="text" class="form-control" placeholder="예) 소고기 미역국 끓이기" name="recipeTitle">
+					<label class="problem " id="titleError">제목을 입력하세요.</label>
+					</div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">					
 					<div class="col-md-3"><label><h4>요리소개</h4></label></div>

@@ -19,7 +19,7 @@ public class JDBCTemplate{
 		Connection conn = null;
 		try {
 			String driver = "oracle.jdbc.driver.OracleDriver";
-			String url = "jdbc:oracle:thin:@localhost:80:xe";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "strangeRecipe";
 			String passwd = "strangeRecipe";
 			Class.forName(driver);

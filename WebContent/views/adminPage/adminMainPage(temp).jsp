@@ -17,13 +17,40 @@
 
 
 <script>
+
+	$(document).ready(function() { 
 	
+		$.ajax({
+		url : "/userCountMgt",
+		type : "get",
+		success :function(data){
+			$('#userCount').append("<h1>"+data[0]+"</h1>");
+			$('#recipeBoard').append("<h1>"+data[1]+"</h1>");
+			$('#buyProduct').append("<h1>"+data[2]+"</h1>");
+		},
+		error:function(){ 
+			
+		}
+		
+		});
+
+		
+			
+		});
+
+
 </script>
 <style>
 * {
 	padding: 0px;
 	margin: 0px;
 }
+
+
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
+
+ div{font-family: 'Patrick Hand', cursive;}
+
 </style>
 </head>
 <body>
@@ -42,8 +69,25 @@
 				<br> <br>
 				<div class="row">
 					<div class="container col-md-12">
+						<!--고치는부분  -->
 						<div class="col-md-12"
-							style="background-color: white; height: 300px">d</div>
+							style="background-color: white; height: 300px">
+							<div class="row">
+							<div class="col-md-4">
+								<div class="row"><div class="col-md-12"><div class="row"><div class="col-md-8 mx-auto">
+								<img src="/imgs/manager-img/users-group.png" width="200" height="200"></div></div>
+								<div class="row"><div class="col-md-5 mx-auto" id="userCount"><h3>Member</h3></div></div></div></div></div>
+							<div class="col-md-4">
+								<div class="row"><div class="col-md-12"><div class="row"><div class="col-md-8 mx-auto">
+								<img src="/imgs/manager-img/recipe.png" width="200" height="200"></div></div>
+								<div class="row"><div class="col-md-5 mx-auto" id="recipeBoard"><h3>Recipe</h3></div></div></div></div></div>
+							<div class="col-md-4">
+								<div class="row"><div class="col-md-12"><div class="row"><div class="col-md-8 mx-auto">
+								<img src="/imgs/manager-img/buying.png" width="200" height="200"></div></div>
+								<div class="row"><div class="col-md-8 mx-auto" id="buyProduct"><h4>Today's buying</h4></div></div></div></div></div>
+							</div>
+							</div>
+							<!--고치는부분끝  -->
 					</div>
 				</div>
 

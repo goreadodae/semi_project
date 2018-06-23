@@ -27,15 +27,25 @@
 			$('#userCount').append("<h1>"+data[0]+"</h1>");
 			$('#recipeBoard').append("<h1>"+data[1]+"</h1>");
 			$('#buyProduct').append("<h1>"+data[2]+"</h1>");
+			
+			
 		},
 		error:function(){ 
 			
 		}
 		
 		});
-
 		
-			
+		
+		$.ajax({
+			url : "/noticeAllMain",
+			type : "get",
+			success :function(data){
+				
+				
+			},
+			error:function(){}
+			});
 		});
 
 
@@ -93,20 +103,20 @@
 
 				<br> <br>
 				<div class="row">
-
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="col-md-12"
-									style="background-color: white; height: 200px">s</div>
-
+									style="background-color: white; height: 200px">
+										안녕하세요
+								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="col-md-12"
-									style="background-color: white; height: 200px">s</div>
+									style="background-color: white; height: 200px">
+									안녕하세요 ㅋㅋㅋㅋ
+									</div>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
@@ -117,10 +127,7 @@
 						
 					</div>
 				</div>
-				
-				
 				</div>
-
 			</div>
 
 

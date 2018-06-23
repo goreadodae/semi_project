@@ -509,7 +509,7 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
-
+ 
 			if(rset.next()) {
 				ordercall = new Ordercall();
 				ordercall.setOrderNo(rset.getInt("order_no"));

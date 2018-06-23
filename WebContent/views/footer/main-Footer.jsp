@@ -36,7 +36,7 @@
 			<!-- 카카오톡 문의 -->
 			<div class="col-md-4 cc-kakao-view" id="call_kakao" style="padding-left: 15px;">
 				<h6>
-					<span><a href="#">카카오톡 문의</a></span>
+					<span><a href="#" style="text-decoration:none; color:black;">카카오톡 문의</a></span>
 				</h6>
 
 				<dl class="list" style="margin-bottom: 0px;">

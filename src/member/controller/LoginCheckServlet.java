@@ -36,32 +36,22 @@ public class LoginCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
+		String userId = request.getParameter("loginId");
+		String userPwd = request.getParameter("loginPwd");
 		
-		ArrayList<Member> list = new MemberService().selectAll();
+		System.out.println(userId+" "+userPwd);
 		
-		JSONArray resultArray = new JSONArray();
+		boolean result = new MemberService().loginCheck(userId, userPwd);
 		
-		for (Member m : list) {
-
-			JSONObject result = new JSONObject();
-			result.put("member_no", m.getMemberNo());
-			result.put("member_id", m.getMemberId());
-			result.put("member_pwd", m.getMemberPwd());
-			result.put("member_name", m.getMemberName());
-			result.put("BIRTH_DATE", m.getBirthDate());
-			result.put("PHONE", m.getPhone());
-			result.put("EMAIL", m.getEmail());
-			result.put("ADDRESS", m.getAddress());
-			result.put("PROFILE", m.getProfile());
-			result.put("NICKNAME", m.getNickName());
-			
-			resultArray.add(result);
-
+		System.out.println(result);
+		
+		if(result==true) {
+			response.getWriter().print("1");
+    		response.getWriter().close();
+		}else {
+			response.getWriter().print("0");
+    		response.getWriter().close();
 		}
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		response.getWriter().print(resultArray);
-		response.getWriter().close();
 	}
 
 	/**

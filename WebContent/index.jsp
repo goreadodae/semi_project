@@ -1,13 +1,23 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
+<%
+	response.setHeader("cache-control","no-cache");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <% Member m = (Member)session.getAttribute("user"); %>
 <html>
 <head>
 <title>수상한 레시피</title>
 </head>
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+	rel="stylesheet">
+<style>
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
 <!-- 모든 스타일 시트 적용 -->
 <jsp:include page="/views/main/default_layout.jsp"></jsp:include>
 
@@ -148,13 +158,16 @@
 			</div>
 
 			<script>
-				function startClick() {
-					location.href = "/views/memberPage/loginPage.jsp";
+				function startClick(){
+					<%if(request.getSession()!=null){%>
+						location.href="/views/insertRecipePage/insertRecipePage.jsp";
+					<%}else{%>
+						location.href="/views/memberPage/loginPage.jsp";
+					<%}%>
 				}
 			</script>
+			
 			<!-- 인트로 끝 -->
-
-
 			<!-- 사이드 메뉴 -->
 			<!-- <div id="aside" style="height: 135px; display: inline-block; padding-right: 15px;">
 				<div class="col-md-12 col-sm-12 text-center"
@@ -873,15 +886,16 @@
 								<!-- 1번 째  -->
 								<li class="col-md-3 vm_list">
 									<div class="sp_box b1" style="border: 1px solid #dadada; height: 443px;">
-										<!-- 이미지 -->
+									
+										<!-- 레시피 이미지 -->
 										<a href="javascript:void(0)" id="week_link_1"> 
 											<img id="week_img_1" class="img col-md-12 col-sm-12" name="week_img"
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
+										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_1" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="week_user_1" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -902,7 +916,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="week_view_1" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -920,9 +934,8 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_2" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="week_user_2" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -942,7 +955,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="week_view_2" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -960,9 +973,8 @@
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_3" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="week_user_3" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -971,7 +983,7 @@
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="week_title_3" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -981,7 +993,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="week_view_3" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -999,9 +1011,8 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="week_user_img_4" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="week_user_4" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -1012,7 +1023,7 @@
 											<!-- 타이틀 바  -->
 											<p id="week_title_4" style="padding: 5px; padding-top: 15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1022,7 +1033,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="week_view_4" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -1041,6 +1052,8 @@
 					$(document).ready(function() {
 						var recipeImgArr = [];
 						var recipeNoArr = [];
+						var weekUserNoArr = [];
+						
 						$.ajax({
 							url : "/recipeServlet",
 							type : "post",
@@ -1054,10 +1067,10 @@
 									$('#week_view_' + (i + 1)).append(data[i].recipe_week);
 									$('#week_time_' + (i + 1)).append(data[i].cook_time);
 									$('#week_level_' + (i + 1)).append(data[i].cook_level);
-									$('#week_user_' + (i + 1)).html(data[i].member_id);
 				
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
+									weekUserNoArr.push(data[i].member_no);
 								}
 								var imgs = $('[name=week_img]');
 				
@@ -1071,6 +1084,28 @@
 										}
 									});
 								})
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+						
+						$.ajax({
+							url : "/memberRecipe",
+							type : "post",
+							success : function(data) {
+								
+								var keys2 = Object.keys(data);
+								
+								// data[키] 형태로 사용해야 함
+								for (var i=0; i < keys2.length; i++) {
+									for(var j=0; j<keys2.length; j++){
+										if(weekUserNoArr[i] == data[j].member_no){
+											$('#week_user_' + (i + 1)).html(data[j].nickname);
+											$('#week_user_img_' + (i + 1)).attr("src", data[j].profile);
+										}
+									}
+								}
 							},
 							error : function() {
 								console.log("실패");
@@ -1102,9 +1137,8 @@
 											style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_1" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="month_user_1" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -1124,7 +1158,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="month_view_1" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -1141,9 +1175,8 @@
 											  style="padding: 0px;" alt="이미지" height="300" class="img-thumbnail">
 										</a>
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_2" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 										<!-- 사용자 아이디 -->	 
 										<p id="month_user_2" style="text-align:center; margin:0px; position:absolute; width: 50px; 
 										    height: 20px; top:320px; left: 50%; transform: translateX(-50%);"></p>
@@ -1161,7 +1194,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="month_view_2" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -1180,9 +1213,8 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" 
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_3" src="" alt="" 
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);">
 											 
 										<!-- 사용자 아이디 -->	 
 										<p id="month_user_3" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -1202,7 +1234,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="month_view_3" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -1220,9 +1252,8 @@
 										</a>
 										
 										<!-- 사용자 이미지 -->
-										<img class="rounded-circle img-fluid d-block mx-auto" src=""
-											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);
-											 border:1px solid black; background-color:white;">
+										<img class="rounded-circle img-fluid d-block mx-auto" id="month_user_img_4" src=""
+											 style="position:absolute; width: 50px; height: 50px; top:270px; left: 50%; transform: translateX(-50%);background-color:white;">
 										<!-- 사용자 아이디 -->	 
 										
 										<p id="month_user_4" style="text-align:center; margin:0px; position:absolute; width: 50px; 
@@ -1231,7 +1262,7 @@
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="month_title_4" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500; "class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1241,7 +1272,7 @@
 													</div>
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada;">
 														<p id="month_view_4" style="padding-left: 5px; line-height: 40px; text-align: center; color:#bebebe;">
-															<img src="/imgs/recipe_img/view_icon.png">
+															<img src="/imgs/main-img/like.png" width="20" height="16" style="padding-bottom:2px;">
 														</p>
 													</div>
 												</div>
@@ -1253,12 +1284,14 @@
 						</ul>
 					</div>
 				</div>
+				
 				<!-- 레시피 받아오기 -->
 				<script>
 					$(document).ready(function() {
 						var recipeImgArr = [];
 						var recipeNoArr = [];
-				
+						var monthUserNoArr = [];
+						
 						$.ajax({
 							url : "/monthlyRecipe",
 							type : "post",
@@ -1271,12 +1304,11 @@
 									$('#month_view_' + (i + 1)).append(data[i].recipe_month);
 									$('#month_time_' + (i + 1)).append(data[i].cook_time);
 									$('#month_level_' + (i + 1)).append(data[i].cook_level);
-									$('#month_user_' + (i + 1)).html(data[i].member_id);
-				
+									
 									recipeImgArr.push(data[i].recipe_pic);
 									recipeNoArr.push(data[i].recipe_no);
+									monthUserNoArr.push(data[i].member_no);
 								}
-				
 								$('[name=month_img]').each(function(index) {
 				
 									var index2 = index;
@@ -1289,6 +1321,31 @@
 									});
 				
 								})
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+						
+						// 에이작스로 
+						// 사진 경로와 멤버 이름을 가져오기
+						/* 에이작스로 받아오기 */
+						$.ajax({
+							url : "/memberRecipe",
+							type : "post",
+							success : function(data) {
+								
+								var keys2 = Object.keys(data);
+								
+								// data[키] 형태로 사용해야 함
+								for (var i=0; i < keys2.length; i++) {
+									for(var j=0; j<keys2.length; j++){
+										if(monthUserNoArr[i] == data[j].member_no){
+											$('#month_user_' + (i + 1)).html(data[j].nickname);
+											$('#month_user_img_' + (i + 1)).attr("src", data[j].profile);
+										}
+									}
+								}
 							},
 							error : function() {
 								console.log("실패");
@@ -1349,8 +1406,6 @@
 					class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 					style="border: 1px solid black; padding: 10px;"></div>
 				<!-- 푸터 끝 -->
-
-				<br> <br>
 			</div>
 		</div>
 	</div>

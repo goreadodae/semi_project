@@ -2,9 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="member.model.vo.*" import="recipe.model.vo.Recipe"%>
 <%
-   Member m = (Member) session.getAttribute("user");
-ArrayList<Recipe> r = (ArrayList<Recipe>) request.getAttribute("r");
-int count = 1;
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+<%
+   	Member m = (Member) session.getAttribute("user");
+	ArrayList<Recipe> r = (ArrayList<Recipe>) request.getAttribute("r");
+	int count = 1;
 %>
 <!DOCTYPE html>
 <html>
@@ -182,11 +187,11 @@ ol, li {
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                     <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                     <li><a href="/views/memberPage/myHomeMainPage.jsp">내 프로필</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
                      <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>
-                     <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인정보 수정</a></li>
+                     <li><a href="/views/memberPage/myHomeModifyInfoPage.jsp">개인 정보 수정</a></li>
                   </ul>
                </div>
             </div>
@@ -247,7 +252,8 @@ ol, li {
                                  </label>
                            </td>
                            <td>
-                                 <button onclick="deleteComment(this);">삭제</button>
+                                 <button class="btn btn-dark"
+                                 onclick="deleteComment(this);" style="color:white;">삭제</button>
                            </td>
                         </tr>
                         <%

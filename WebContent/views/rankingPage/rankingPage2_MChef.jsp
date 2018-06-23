@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -399,8 +403,8 @@ $("#monthClick").change(function() {
         <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
       </a>
       <h3 id="rankingMemberID${status.count}">Strange Recipes</h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count}"></p>
+<!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count}"></p> -->
 
     </div>
   </c:forEach>
@@ -412,8 +416,8 @@ $("#monthClick").change(function() {
         <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;" >
       </a>
       <h3 id="rankingMemberID${status.count+2}">Strange Recipes</h3>
-      <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
-      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count+2}"></p>
+<!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
+      <p style="padding-left: 10px;padding-right: 15px;" id="rankingViews${status.count+2}"></p> -->
 
     </div>
   </c:forEach>

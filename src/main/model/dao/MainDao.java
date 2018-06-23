@@ -73,11 +73,12 @@ public class MainDao {
 			while (rset.next()) {
 				mr = new MainRecipe();
 
+				mr.setUserNo(rset.getInt("member_no"));
 				mr.setRecipeNo(rset.getInt("recipe_no"));
 				mr.setRecipeTitle(rset.getString("recipe_title"));
 				mr.setRecipePic(rset.getString("recipe_pic"));
-				mr.setRecipeTodayViews(rset.getInt("recipe_week"));
-				mr.setRecipeMonthViews(rset.getInt("recipe_month"));
+				mr.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				mr.setRecipeMonthViews(rset.getInt("recipe_month_views"));
 				mr.setCookLevel(rset.getString("cook_level"));
 				mr.setCookTime(rset.getString("cook_time"));
 				mr.setMemberId(rset.getString("member_id"));
@@ -116,7 +117,7 @@ public class MainDao {
 			prop.load(new FileReader(path + "resources/mainQuery.properties"));
 
 			String query = prop.getProperty("selectMonth");
-
+			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 
 			rset = pstmt.executeQuery();
@@ -124,11 +125,12 @@ public class MainDao {
 			while (rset.next()) {
 				mr = new MainRecipe();
 
+				mr.setUserNo(rset.getInt("member_no"));
 				mr.setRecipeNo(rset.getInt("recipe_no"));
 				mr.setRecipeTitle(rset.getString("recipe_title"));
 				mr.setRecipePic(rset.getString("recipe_pic"));
-				mr.setRecipeTodayViews(rset.getInt("recipe_week"));
-				mr.setRecipeMonthViews(rset.getInt("recipe_month"));
+				mr.setRecipeTodayViews(rset.getInt("recipe_today_views"));
+				mr.setRecipeMonthViews(rset.getInt("recipe_month_views"));
 				mr.setCookLevel(rset.getString("cook_level"));
 				mr.setCookTime(rset.getString("cook_time"));
 				mr.setMemberId(rset.getString("member_id"));

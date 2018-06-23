@@ -36,6 +36,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 		// 1. 사용자 계정명 (업로드한 사람 정보가 있어야 함, session 객체에서 꺼냄)
 		HttpSession session = request.getSession(false);
 		//세션에 저장된 userid ->> 로그인 중인 사용자
+		Member m = (Member)session.getAttribute("user");
 		String userId = ((Member)session.getAttribute("user")).getMemberId();
 		
 		int productNo = Integer.parseInt(request.getParameter("productNo"));//상품넘버
@@ -49,7 +50,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 		
 		Review r = new Review();
 		
-		if(session.getAttribute("user") !=null)
+		if(m!=null)
 		{	
 			r.setReviewContents(buyingAfterText);
 			r.setReviewSatisfied(rating);
@@ -64,10 +65,7 @@ public class ReviewUpdateServlet extends HttpServlet {
 				
 			}
 			
-		}else {
-			response.sendRedirect("/views/productPage/reviewUpdateFail.html"); //로그인시 이용이 가능 or 실패 로 이동! 일단은 그 페이지로!
-	}
-		
+		}
 		
 	}
 

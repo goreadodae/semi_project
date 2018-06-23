@@ -3,7 +3,11 @@ pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -395,11 +399,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
-									<div class="center-block" id="viewDiv">
+<!-- 									<div class="center-block" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews1"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -440,10 +444,10 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
 										<div id="rankingViews2"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -483,11 +487,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews3"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -527,11 +531,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
-									<div class="float-right" id="viewDiv">
+<!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews4"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>
@@ -571,11 +575,11 @@ window.onload = function() {
 							<tr>
 								<th class='row'>
 									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
-									<div class="float-right" id="viewDiv">
+	<!-- 								<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
 										<div id="rankingViews5"></div>
-									</div>
+									</div> -->
 								</th>
 							</tr>
 						</tbody>

@@ -3,10 +3,15 @@
     import="member.model.vo.*" import="notice.model.vo.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <% pageContext.setAttribute("newLineChar","\n"); %>
 <% Notice n = (Notice)request.getAttribute("notice");%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -116,7 +121,7 @@ border-collapse:collapse;
 
             <div class="col-md-12">
                <textarea rows="15" style="resize: none;" name="noticeBoard" class="form-control">
-               ${fn:replace(requestScope.notice.noticeContents,newLineChar,"<br/>")}</textarea>
+               ${requestScope.notice.noticeContents}</textarea>
          	<br><br>
             </div>
 

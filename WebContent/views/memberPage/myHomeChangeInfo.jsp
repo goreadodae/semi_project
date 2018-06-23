@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="member.model.vo.*"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <% Member m = (Member)session.getAttribute("user"); %>
 <% 
 	String [] address = m.getAddress().split(" \\| ");
@@ -202,7 +207,7 @@ ol, li {
                <h2 id="menu-title">마이 홈</h2>
                <div id="menu-border">
                   <ul id="menu-list">
-                  	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 정보</a></li>
+                  	 <li><a href="/views/memberPage/myHomeMainPage.jsp">내 프로필</a></li>
                      <li><a href="/myBuyProduct?userNo=<%=m.getMemberNo()%>">나의 주문내역</a></li>
                      <li><a href="/myRecipe?userNo=<%=m.getMemberNo()%>">나의  레시피</a></li>
                      <li><a href="/myComments?userNo=<%=m.getMemberNo()%>">내가 쓴 댓글</a></li>

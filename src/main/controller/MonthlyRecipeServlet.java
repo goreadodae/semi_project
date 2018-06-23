@@ -45,8 +45,8 @@ public class MonthlyRecipeServlet extends HttpServlet {
 		for (MainRecipe mr : list) {
 
 			JSONObject result = new JSONObject();
-
 			result.put("recipe_no", mr.getRecipeNo());
+			result.put("member_no", mr.getUserNo());
 			result.put("recipe_title", mr.getRecipeTitle());
 			result.put("recipe_pic", mr.getRecipePic());
 			result.put("recipe_week", mr.getRecipeTodayViews());

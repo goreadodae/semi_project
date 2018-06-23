@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <%
 	pageContext.setAttribute("newLineChar", "\n");
 %>
@@ -127,6 +131,7 @@ update
 						
 							<tr>
 								<td>${i.count}</td>
+								
 								<td id="${i.count}" onclick="showQue(${i.count})" style="cursor:pointer;">
 								${qList.queTitle}
 								</td>
@@ -169,9 +174,6 @@ update
 							</tr>
 						
 						</c:forEach>
-
-
-
 
 					</table>
 				

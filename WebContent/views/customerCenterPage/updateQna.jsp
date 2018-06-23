@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="member.model.vo.*"%>
 <%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
+<%
 	Member m = (Member) session.getAttribute("user");
 %>
 <%

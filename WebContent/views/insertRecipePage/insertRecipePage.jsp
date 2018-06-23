@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="member.model.vo.*"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <% Member mem = ((Member)session.getAttribute("user"));%>
 <!DOCTYPE html>
 <html>
@@ -137,7 +142,7 @@
 	  function stepPlus(){
 		  
 		$('.stepPlusRow').append('<div class="stepPlusCount"><div class="row"><div class="col-md-2"><h3>Step'+count+'</h3></div>'+
-				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA'+plusNum+'"></textarea></div>'+
+				'<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA'+plusNum+'" required="required"></textarea></div>'+
 				'<div class="col-md-3"><div class="row"><div class="col-md-12" id="stepImg'+plusNum+'">'+
 					'<input id="stepImgFile'+plusNum+'" name="stepImgFile'+plusNum+'" multiple="multiple" type="file" style="display:none" onchange="readURL(this,'+plusNum+');"/>'+
 					'<img src="/imgs/insertRecipe_img/pic_none2-3.jpg" width="150" height="150" id="imgFile_Step_'+plusNum+'" onclick="document.all.stepImgFile'+plusNum+'.click();">'+
@@ -586,11 +591,27 @@
 				  		
 				  		sa.value = valueAll;		   
 				  		$('.stepPlusRow').append(sa);
-		 }   
+		 }  
+		
+		var imgAddr = $('#imgFile_Main').attr('src');
+
+		if(imgAddr=="/imgs/insertRecipe_img/pic_none4.jpg"){
+			
+			alert("메인사진을 등록해주세요.");
+			return false;
+			
+		}else{
+			
+			return true;
+			
+		}
+		
+		
 				
 	 } 
 	  
 	  function back(){history.go(-1);} //뒤로가기
+	  
 	  
 	//버튼 마우스올렸을때 색상 변화
 
@@ -611,6 +632,10 @@
          $(this).removeClass('mybutton3');
          $(this).addClass('mybutton2');
       });
+      
+      
+      
+      
 
 	 
 </script>
@@ -698,6 +723,15 @@ body{font-family:IropkeBatang;}
    border : 0px;
    cursor : pointer;
 }
+
+
+.problem {
+   color: red;
+   font-size: 11pt;
+   margin: 0;
+   padding: 0;
+   display: none;
+}
 </style>
 
 
@@ -708,7 +742,7 @@ body{font-family:IropkeBatang;}
 		<!--헤더예용! -->	
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<br><br>
-		<!-- 컨테츠예용! --> <!--enctype="multipart/form-data"  -->
+		<!-- 컨테츠예용! -->
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
 		<div class="row" id="inRecipe">
 		
@@ -717,14 +751,18 @@ body{font-family:IropkeBatang;}
 			<div class="row" id="inRecipeTitle">
 				<div class="col-md-12" id="inRecipeTitleAll">
 				<div class="row" id="mainTitle"><div class="col-md-12"><h1>레시피 등록</h1></div></div>
+				
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+				<div class="row"><div class="col-md-12">(*)항목은 필수 입력 항목입니다</div></div><!-- 빈 공란 -->
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+				
 				<div class="row" id="inRecipeOne"> 
 					<div class="col-md-9" id="inRecipeTitleLeft">
 					<div class="row">					
-					<div class="col-md-3"><label><h4>레시피 제목</h4></label></div>
-					<div class="col-md-9"><input type="text" class="form-control" placeholder="예) 소고기 미역국 끓이기" name="recipeTitle"></div>
-					</div>
+					<div class="col-md-3"><label><h4>레시피 제목(*)</h4></label></div>
+					<div class="col-md-9"><input type="text" class="form-control" placeholder="예) 소고기 미역국 끓이기" name="recipeTitle" required="required">
+					<label class="problem " id="titleError">제목을 입력하세요.</label>
+					</div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">					
 					<div class="col-md-3"><label><h4>요리소개</h4></label></div>
@@ -738,87 +776,87 @@ body{font-family:IropkeBatang;}
 					</div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row">					
-					<div class="col-md-3"><label for="recipeCategory"><h4>카테고리</h4></label></div>
+					<div class="col-md-3"><label for="recipeCategory"><h4>카테고리(*)</h4></label></div>
 					<div class="col-md-2">
-					<select  class="form-control" name="class_no">
-									<option selected>종류별</option>
-									<option>밑반찬</option>
-									<option>메인반찬</option>
-									<option>국/탕</option>
-									<option>찌개</option>
-									<option>디저트</option>
-									<option>면/만두</option>
-									<option>밥/죽/떡</option>
-									<option>퓨전</option>
-									<option>김치/젓갈/장류</option>
-									<option>양념/소스/잼</option>
-									<option>양식</option>
-									<option>샐러드</option>
-									<option>스프</option>
-									<option>빵</option>
-									<option>과자</option>
-									<option>차/음료/술</option>
-									<option>기타</option>
+					<select  class="form-control" name="class_no" required>
+									<option value="">종류별</option>
+									<option value="종류별">밑반찬</option>
+									<option value="메인반찬">메인반찬</option>
+									<option value="국/탕">국/탕</option>
+									<option value="찌개">찌개</option>
+									<option value="디저트">디저트</option>
+									<option value="면/만두">면/만두</option>
+									<option value="밥/죽/떡">밥/죽/떡</option>
+									<option value="퓨전">퓨전</option>
+									<option value="김치/젓갈/장류">김치/젓갈/장류</option>
+									<option value="양념/소스/잼">양념/소스/잼</option>
+									<option value="양식">양식</option>
+									<option value="샐러드">샐러드</option>
+									<option value="스프">스프</option>
+									<option value="빵">빵</option>
+									<option value="과자">과자</option>
+									<option value="차/음료/술">차/음료/술</option>
+									<option value="기타">기타</option>
 								</select>
 								
 					</div>
 					<div class="col-md-3">
-					<select class="form-control" name="situation_no">
-									<option selected>상황별</option>
-									<option>일상</option>
-									<option>초스피드</option>
-									<option>손님접대</option>
-									<option>술안주</option>
-									<option>다이어트</option>
-									<option>도시락</option>
-									<option>영양식</option>
-									<option>간식</option>
-									<option>야식</option>
-									<option>푸드스타일링</option>
-									<option>해장</option>
-									<option>명절</option>
-									<option>이유식</option>
-									<option>기타</option>
+					<select class="form-control" name="situation_no" required>
+									<option value="">상황별</option>
+									<option value="일상">일상</option>
+									<option value="초스피드">초스피드</option>
+									<option value="손님접대">손님접대</option>
+									<option value="술안주">술안주</option>
+									<option value="다이어트">다이어트</option>
+									<option value="도시락">도시락</option>
+									<option value="영양식">영양식</option>
+									<option value="간식">간식</option>
+									<option value="야식">야식</option>
+									<option value="푸드스타일링">푸드스타일링</option>
+									<option value="해장">해장</option>
+									<option value="명절">명절</option>
+									<option value="이유식">이유식</option>
+									<option value="기타">기타</option>
 								</select>
 					</div>
 					<div class="col-md-2">
-					<select class="form-control" name="method_no">
-									<option selected>방법별</option>
-									<option>볶음</option>
-									<option>끓이기</option>
-									<option>부침</option>
-									<option>조림</option>
-									<option>무침</option>
-									<option>비빔</option>
-									<option>찜</option>
-									<option>절임</option>
-									<option>튀김</option>
-									<option>삶기</option>
-									<option>굽기</option>
-									<option>데치기</option>
-									<option>회</option>
-									<option>기타</option>
+					<select class="form-control" name="method_no" required>
+									<option value="">방법별</option>
+									<option value="볶음">볶음</option>
+									<option value="끓이기">끓이기</option>
+									<option value="부침">부침</option>
+									<option value="조림">조림</option>
+									<option value="무침">무침</option>
+									<option value="비빔">비빔</option>
+									<option value="찜">찜</option>
+									<option value="절임">절임</option>
+									<option value="튀김">튀김</option>
+									<option value="삶기">삶기</option>
+									<option value="굽기">굽기</option>
+									<option value="데치기">데치기</option>
+									<option value="회">회</option>
+									<option value="기타">기타</option>
 								</select>
 					</div>
 					<div class="col-md-2">
-					<select class="form-control" name="ingredient_no">
-									<option selected>재료별</option>
-									<option>소고기</option>
-									<option>돼지고기</option>
-									<option>닭고기</option>
-									<option>육류</option>
-									<option>채소류</option>
-									<option>해물류</option>
-									<option>달걀/유제품</option>
-									<option>가공식품류</option>
-									<option>쌀</option>
-									<option>밀가루</option>
-									<option>건어물류</option>
-									<option>버섯류</option>
-									<option>과일류</option>
-									<option>콩/견과류</option>
-									<option>곡류</option>
-									<option>기타</option>
+					<select class="form-control" name="ingredient_no" required>
+									<option value="">재료별</option>
+									<option value="소고기">소고기</option>
+									<option value="돼지고기">돼지고기</option>
+									<option value="닭고기">닭고기</option>
+									<option value="육류">육류</option>
+									<option value="채소류">채소류</option>
+									<option value="해물류">해물류</option>
+									<option value="달걀/유제품">달걀/유제품</option>
+									<option value="가공식품류">가공식품류</option>
+									<option value="쌀">쌀</option>
+									<option value="밀가루">밀가루</option>
+									<option value="건어물류">건어물류</option>
+									<option value="버섯류">버섯류</option>
+									<option value="과일류">과일류</option>
+									<option value="콩/견과류">콩/견과류</option>
+									<option value="곡류">곡류</option>
+									<option value="기타">기타</option>
 								</select>
 					</div>
 					</div><!-- 카테고리닫기 -->
@@ -873,7 +911,7 @@ body{font-family:IropkeBatang;}
 				<div class="col-md-3"> <!-- 메인 사진 넣는 곳  -->
 					<div class="row">
 					<div class="col-md-12" id="wrapper">
-					<input id="fileUpload" name="fileUpload" multiple="multiple" type="file" style="display:none"/>
+					<input id="fileUpload" name="fileUpload" multiple="multiple" type="file" style="display:none" required/>
 					<img src="/imgs/insertRecipe_img/pic_none4.jpg" width="230" height="230" id="imgFile_Main" onclick="document.all.fileUpload.click();">
 					 <input type="hidden" id="mainRPic" name="mainRPic" value="">
 					</div></div>
@@ -981,7 +1019,7 @@ body{font-family:IropkeBatang;}
      				<div class="stepPlusRow">
      				<div class="stepPlusCount">
 					<div class="row"><div class="col-md-2"><h3>Step1</h3></div>
-					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA0" ></textarea></div>
+					<div class="col-md-7"><textarea class="form-control" rows="6" placeholder="예)소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." style="resize: none;" id="stepTA0" required="required"></textarea></div>
 					<div class="col-md-3">
 					<div class="row"><div class="col-md-12" id="stepImg0"> 
 					<input id="stepImgFile0" name="stepImgFile0" multiple="multiple" type="file" style="display:none" onchange="readURL(this,0);" />
@@ -1119,7 +1157,7 @@ body{font-family:IropkeBatang;}
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4"><input type="submit" value="저장" onclick="stepList();" class="mybutton1" /><!-- <button type="button" onclick="stepList();">저장</button> --></div>
+				<div class="col-md-4 mx-auto"><input type="submit" value="저장" onclick="return stepList();" class="mybutton1" /><!-- <button type="button" onclick="stepList();">저장</button> --></div>
 				<div class="col-md-4"><button type="button" onclick="back();" class="mybutton1">취소</button></div>
 				<div class="col-md-2">　</div>
 				</div>
@@ -1145,7 +1183,7 @@ body{font-family:IropkeBatang;}
 	</div><!--전체  -->
 <%}else{ %>
 <script>
-	alert("로그인 후 레시피등록을 이용해주세요.");
+	/* alert("로그인 후 레시피등록을 이용해주세요."); */
 	location.href="/views/memberPage/loginPage.jsp";
 </script>
 <%} %>

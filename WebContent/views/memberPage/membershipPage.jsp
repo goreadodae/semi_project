@@ -1,6 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="member.model.vo.*"%>
+<%
+	response.setHeader("cache-control","no-store");
+	response.setHeader("expires","0");
+	response.setHeader("pragma","no-cache");
+%>
 <!DOCTYPE html>
 <%
 	Member m = (Member) session.getAttribute("user");
@@ -1169,7 +1173,7 @@
 											<p style="margin-bottom:5px;"></p>
 											<div class="btn-group mx-auto" role="group" aria-label="..."
 												id="gender">
-												<button type="button" class="btn btn-default" id="genderM">남자</button>
+												<button type="button" class="btn btn-default" id="genderM" style="margin-right:15px;">남자</button>
 												<button type="button" class="btn btn-default" id="genderF">여자</button>
 											</div>
 										</div>
@@ -1273,7 +1277,7 @@
 					</div>
 				</div>
 				<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
-			      style="border: 1px solid black; padding: 10px;"></div><br><br>
+			      style="border: 1px solid black; padding: 10px;"></div>
 			<!-- 푸터 끝 -->
 		</div>
 		
@@ -1292,7 +1296,28 @@
 	        var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
 	        var emailCheckCode; // 생성된 인증번호
 	    	var hiddenEmail; //이메일 저장
-	    	
+	    	var surnameList1 = 
+	    		['가', '간', '갈', '감', '강', '견', '경', '계', '고', '곡', '공'
+	    		, '곽', '교', '구', '국', '군', '궉', '권', '근', '금', '기', '길'
+	    		, '김', '나', '난', '남', '낭', '내', '노', '뇌', '누', '단', '담'
+	    		, '당', '대', '도', '돈', '동', '두', '마', '만', '매', '맹', '명'
+	    		, '모', '목', '묘', '묵', '문', '미', '민', '박', '반', '방', '배'
+	    		, '백', '범', '변', '복', '봉', '부', '비', '빈', '빙', '사', '삼'
+	    		, '상', '서', '서', '석', '선', '설', '서', '성', '소', '손', '송'
+	    		, '수', '순', '승', '시', '신', '심', '십', '아', '안', '애', '야'
+	    		, '양', '어', '엄', '여', '연', '염', '엽', '영', '예', '오', '옥'
+	    		, '온', '옹', '왕', '요', '용', '우', '운', '원', '위', '유', '육'
+	    		, '윤', '은', '음', '이', '인', '임', '자', '장', '저', '전', '점'
+	    		, '정', '제', '조', '종', '좌', '주', '준', '즙', '증', '지', '지'
+	    		, '진', '차', '창', '채', '천', '초', '최', '추', '춘', '탁', '탄'
+	    		, '태', '판', '팽', '편', '평', '포', '표', '풍', '피', '필', '하'
+	    		, '학', '한', '함', '해', '허', '현', '형', '호', '홍', '화', '환'
+	    		, '황', '후', '흥']; //추가
+	    		
+	    	var surnameList2 = 
+	    		['강전', '남궁', '독고', '동방', '망절', '사공', '서문', '선우'
+	    			, '소봉', '어금', '징곡', '제갈', '황보']; //추가
+	    	var nametest=0;//추가
 	    	
 	    	function nextShow() {
 	            $('#phone').css("display", "block");
@@ -1322,7 +1347,7 @@
 	            	alert("알맞지 않는 이메일 형식입니다.")
 	            }else{
 	            	$('.emailCheck').show();
-	            	SetTime = 300; // 최초 설정 시간(기본 : 초)
+	            	SetTime = 180; // 최초 설정 시간(기본 : 초)
 	            	$('#checkCount').show();
 	                $('#checkBtn').hide();
 	    			
@@ -1351,6 +1376,12 @@
 	                });
 	            }
 	        }
+	        
+	        //추가
+	        $('#reCheckBtn').click(function() {
+	        	SetTime = 180;
+	            tid = setInterval('msg_time()',1000);
+	        });
 	        
 	        function reEmailCheck() {
 	        	 hiddenEmail = $('#first_email').val() + "@" + $('#last_email').val();
@@ -1385,21 +1416,32 @@
 	             }
 			}
 	
+	        //수정
 	        function msg_time() { // 1초씩 카운트
+	        	if(SetTime>0){
 	            m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초"; // 남은 시간 계산
-	            var msg = "<font color='red'>" + m + "</font>";
-	            //document.all.email.innerHTML = msg; // div 영역에 보여줌 
-	            $("#checkCount").html(msg);
+	        	}else{
+	        	m=" ";
+	        	}
+	            var msg = "<font color='red' style='margin-left:30px'>" + m + "</font>";
+	            console.log(m);
+	            if(m!="NaN분 NaN초"){
+	            	if(SetTime>-1){
+	            	$("#checkCount").html(msg);	
+	            	}
+	             }
 	            SetTime--; // 1초씩 감소
-	            if (SetTime < 0) { // 시간이 종료 되었으면..
-	                //clearInterval(tid); // 타이머 해제
-	                SetTime=1000;
-	                //clearInterval(tid); // 타이머 해제
-	                $('#checkCount').hide();
-	                $('#reCheck').show();
-	                alert("시간이 초과되었습니다. 다시 시도해주시기 바랍니다");
-	            }
+            	if (SetTime < -1) { // 시간이 종료 되었으면..
+                	clearInterval(tid); // 타이머 해제
+               	 	$('#checkCount').hide();
+                	$('#reCheck').show();
+                	alert("시간이 초과되었습니다. 다시 시도해주시기 바랍니다");
+            		}
 	        }
+	        
+	        window.onload = function() {
+	            tid = setInterval('msg_time()',1000);
+	        };
 	        window.onload = function TimerStart() {
 	            tid = setInterval('msg_time()', 1000)
 	        };
@@ -1584,7 +1626,10 @@
 	            }
 	        }
 	
+	      //변경 성씨 검사 추가
 	        function nameCheck() {
+	        	var surname = $('#userName').val().substring(0,2);
+	        	
 	            $('#check4').css('visibility', 'visible');
 	            if ($('#userName').val().match(regExpSpace)) {
 	                $('#userName').css('border', '3px solid red');
@@ -1598,17 +1643,38 @@
 	                    $('#userName').css('border', '3px solid red');
 	                    $('#remove-4').show();
 	                    $('#ok-4').hide();
-	                    $('#nameProblem').text("한글만 입력해주세요.");
+	                    $('#nameProblem').text("한국어로 정확한 이름을 입력해주세요.");
 	                    $('#nameProblem').show();
 	                    $('#remove-4').css("margin-bottom", "20px");
 	                } else {
-	                    $('#userName').css('border', '3px solid #00FF40');
-	                    $('#ok-4').show();
-	                    $('#remove-4').hide();
-	                    $('#nameProblem').hide();
-	                }
-	            }
-	        }
+	                		nametest=0
+	                	
+	                		for(var i=0; i<surnameList1.length; i++){
+	                			if(surnameList1[i]==surname.substring(0,1)){
+	                				nametest=1;
+	                			}
+	                		}
+	                		for(var i=0; i<surnameList2.length; i++){
+	                			if(surnameList2[i]==surname.substring(0,2)){
+	                				nametest=1;
+	                			}
+	                		}
+	                	if(nametest==0){	
+	                		$('#userName').css('border', '3px solid red');
+		                    $('#remove-4').show();
+		                    $('#ok-4').hide();
+		                    $('#nameProblem').text("유효한 성씨가 아닙니다.");
+		                    $('#nameProblem').show();
+		                    $('#remove-4').css("margin-bottom", "20px");
+	                	}else{
+	                		 $('#userName').css('border', '3px solid #00FF40');
+	                         $('#ok-4').show();
+	                         $('#remove-4').hide();
+	                         $('#nameProblem').hide();
+	                		}
+	                	}
+	            	}
+	       		}
 	
 	        function birthCheck() {
 	            $('#check5').css('visibility', 'visible');

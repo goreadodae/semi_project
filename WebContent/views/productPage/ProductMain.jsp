@@ -8,6 +8,7 @@
 	response.setHeader("expires","0");
 	response.setHeader("pragma","no-cache");
 %>
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Nanum+Myeongjo|Poiret+One|Poor+Story|Song+Myung" rel="stylesheet">
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +82,27 @@
 </script>
 
 <style>
+
+#main-contents-header{
+	/* background-color : #FFF5EE; */
+	background-color : white;
+	color : #454545;
+}
+
+.banner_title1{
+	font-size : 50px;
+	/* font-family: 'Amatic SC', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Song Myung', serif;
+font-family: 'Poor Story', cursive; */
+font-family: 'Nanum Myeongjo', serif;
+}
+
+.banner_title2{
+	font-size : 30px;
+	font-family: 'Poiret One', cursive;
+}
+
 .price {
 	text-align: right;
 }
@@ -144,25 +166,21 @@
 
 		<!-- 전체 컨텐츠 -->
 		<div id="total" class="contents" style="padding: 0px;">
-
-			<!-- 배너이미지
-			<div class="col-md-12">
-				<div class="row">
-					<div class="col-md-12 col-sm-12" style="padding: 0px;">
-						<img src="/imgs/product_img/banner.PNG" alt="이미지"
-							class="col-md-12 col-sm-12" height="400" style="padding: 0px;">
-					</div>
-				</div>
-			</div>
-			배너이미지 끝 -->
 	
 
 			<br> <br><br>
 			<!-- 내용1. 이달의 쿠킹박스 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
-					<img src="/imgs/product_img/ex1.PNG" alt="이미지"
-						class="col-md-12 col-sm-12"  style="padding: 0px;">
+						<center>
+						<hr style="color : #795B8F;">
+						
+						<span class="banner_title1"><img src="/imgs/product_img/fork.png" width="40px">&nbsp;&nbsp;이달의 쿠킹박스&nbsp;&nbsp;<img src="/imgs/product_img/fork.png" width="40px"></span>
+						<br>
+						<hr width="200px">
+						<span class="banner_title2">The Best of this Month</span>
+						<hr style="color : #795B8F;">
+						</center>
 				</div><br><br><br>
 										
 				<!-- db에 있는 상품 다 가져옴 -->
@@ -203,6 +221,7 @@
 							</div>
 					</div>
 					<!-- 각각의 상품 정보 끝-->
+
 	
 					<!-- 줄바꿈 -->
 						<c:if test="${i.count%3==0}" var="result">
@@ -210,8 +229,8 @@
 							</div><br><br><br>
 					</c:if>
 						
-				</c:forEach>
-					
+				</c:forEach>	
+				
 			</div>
 			<!-- 내용1. 이달의 쿠킹박스 끝-->
 
@@ -224,8 +243,13 @@
 			<!-- 내용2. 모든 상품 리스트 -->
 			<div class="col-md-8 mx-auto" style="padding: 0px;">
 				<div class="col-md-12" id="main-contents-header" style="padding: 0px;">
-					<img src="/imgs/product_img/ex4.PNG" alt="이미지"
-						class="col-md-12 col-sm-12" style="padding: 0px;">
+					<center>
+						<hr style="color : #795B8F;">
+						<span class="banner_title1"><img src="/imgs/product_img/strawberry.png" width="40px">&nbsp;&nbsp;쿠킹박스 리스트&nbsp;&nbsp;<img src="/imgs/product_img/strawberry.png" width="40px"></span><br>
+						<hr width="200px">
+						<span class="banner_title2">ALL of cooking box</span>
+						<hr style="color : #795B8F;">
+						</center>
 				</div><br><br>
 										
 				<!-- db에 있는 상품 다 가져옴 -->

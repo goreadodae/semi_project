@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 <!-- ☆지현 추가 -->
 <%@ page import="product.model.vo.*" import="java.util.*" import="member.model.vo.*"%>
 <% 
-ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
+	ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
 %>
 <% Member m = (Member)session.getAttribute("user"); %>
 
@@ -32,6 +32,22 @@ ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
   <script>
    /* 해더 불러오는 제이쿼리 */
    $(document).ready(function() {
+	   
+	   var jbOffset = $('#fixed_layer').offset();
+		var jbOffset2 = $('#category_list').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+	   
     $("#footer").load("/views/footer/main-Footer.jsp");
 
     /* 웹 실행 시 카테고리 숨김 */
@@ -289,7 +305,7 @@ a{
 
 </head>
 <body>
- <div class="container-fluid">
+ <div class="container-fluid" style="padding:0px;">
 
   <!-- Header -->
   <jsp:include page="/views/header/main-Header.jsp"></jsp:include>

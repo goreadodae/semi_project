@@ -8,8 +8,17 @@ public class AdminProduct {
 	private int sellQuantity;
 	private int totalSales;
 	private int recipeNo;
+	private int memberNo;
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
 	public AdminProduct(String recipeTitle, String productName, String recipeWriter, int price, int sellQuantity,
-			int totalSales, int recipeNo, int productNo) {
+			int totalSales, int recipeNo, int sendMoney, int productNo) {
 		super();
 		this.recipeTitle = recipeTitle;
 		this.productName = productName;
@@ -18,8 +27,25 @@ public class AdminProduct {
 		this.sellQuantity = sellQuantity;
 		this.totalSales = totalSales;
 		this.recipeNo = recipeNo;
+		this.sendMoney = sendMoney;
 		this.productNo = productNo;
 	}
+
+	@Override
+	public String toString() {
+		return "AdminProduct [recipeTitle=" + recipeTitle + ", productName=" + productName + ", recipeWriter="
+				+ recipeWriter + ", price=" + price + ", sellQuantity=" + sellQuantity + ", totalSales=" + totalSales
+				+ ", recipeNo=" + recipeNo + ", sendMoney=" + sendMoney + ", productNo=" + productNo + "]";
+	}
+	private int sendMoney;
+	public int getSendMoney() {
+		return sendMoney;
+	}
+
+	public void setSendMoney(int sendMoney) {
+		this.sendMoney = sendMoney;
+	}
+
 	private int productNo;
 	public int getRecipeNo() {
 		return recipeNo;

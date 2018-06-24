@@ -99,6 +99,22 @@ public class AdminService {
 		return comAns;
 	}
 
+	public int sendMoney(int productNo, int memberNo, int totalSales) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result1 = new AdminDao().sendMoneyProduct(conn, productNo, totalSales);
+		int result2 = new AdminDao().sendMoneyMember(conn, memberNo, totalSales);
+		if(result1>0&&result2>0)
+		{
+			JDBCTemplate.commit(conn);
+		}
+		else
+		{
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result1*result2;
+	}
+
 
 
 }

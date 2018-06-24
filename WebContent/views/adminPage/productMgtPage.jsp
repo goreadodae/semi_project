@@ -112,6 +112,7 @@
 		}
 	}
 	function sendMoney(productNo, memberNo, totalSales){
+		if(totalSales!=0){
 		$.ajax({
 			url : "/sendMoney",
 			type : "post",
@@ -133,6 +134,10 @@
 				console.log("실패");
 			}
 		});
+		}
+		else{
+			alert("송금 가능한 금액이 없는 상품은 송금할 수 없습니다.");
+		}
 	}
 </script>
 <style>
@@ -201,7 +206,7 @@
 									<th scope="col">레시피 작성자</th>
 									<th scope="col">상품 가격</th>
 									<th scope="col">팔린 개수</th>
-									<th scope="col">총판매 가격</th>
+									<th scope="col">송금가능한 금액</th>
 									<th scope="col">송금한 금액</th>
 									<th scope="col">송금</th>
 								</tr>
@@ -221,7 +226,8 @@
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney}" groupingUsed="true"/></th>
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sendMoney }" groupingUsed="true"/></th>
 										<th><button class="btn btn-primary" onclick="sendMoney(${requestScope.productList[i.count-1].productNo },
-										${requestScope.productList[i.count-1].memberNo },${requestScope.productList[i.count-1].totalSales});">송금</button>
+										${requestScope.productList[i.count-1].memberNo },
+										${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney});">송금</button>
 										</tr>
 									</c:forEach>
 									

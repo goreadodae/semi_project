@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -201,6 +202,7 @@ public class RecipeUpdateServlet extends HttpServlet {
 				
 				
 				pr = new Process();
+				//프로세스no추가
 				if(valueToken[0].equals("*")) {} else {pr.setProcessOrder(Integer.parseInt(valueToken[0]));}
 				if(valueToken[1].equals("*")) {} else {pr.setProcessExplain(valueToken[1]);}
 				if(valueToken[2].equals("*")) {} else {pr.setIngre(valueToken[2]);}
@@ -265,15 +267,17 @@ public class RecipeUpdateServlet extends HttpServlet {
 
 			ir.setRecipePic(fullFileMainPath); //메인사진
 			ir.setCompletePic(fileSucAll); //완성사진
-			int recipeNo=Integer.parseInt(request.getParameter("recipeNo"));
+			int recipeNo=Integer.parseInt(multi.getParameter("recipeNo"));
 			ir.setRecipeNo(recipeNo);
-		  int result =	new RecipeService().updateRecipe(ir,stepValuelist);
+			System.out.println(ir);
+			System.out.println(stepValuelist);
+//		  int result =	new RecipeService().updateRecipe(ir,stepValuelist);
 		  
-		  if(result>0) { //레시피 등록 성공했을때
-			  response.sendRedirect("/recipe?recipeNo="+result);
-		  }else { //레시피 등록 실패하였을때 
-			  
-		  }
+//		  if(result>0) { //레시피 등록 성공했을때
+//			  response.sendRedirect("/recipe?recipeNo="+result);
+//		  }else { //레시피 등록 실패하였을때 
+//			  
+//		  }
 
 		}else {
 				

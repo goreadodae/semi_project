@@ -355,6 +355,7 @@ public class RecipeDao {
 				r.setRecipeTag(rset.getString("RECIPE_TAG"));
 				r.setVideo(rset.getString("VIDEO"));
 				r.setPostedDate(rset.getDate("POSTED_DATE"));
+				r.setSituationNo(rset.getInt("SITUATION_NO"));
 				r.setClassNo(rset.getInt("CLASS_NO"));
 				r.setMethodNo(rset.getInt("METHOD_NO"));
 				r.setIngreNo(rset.getInt("INGRE_NO"));

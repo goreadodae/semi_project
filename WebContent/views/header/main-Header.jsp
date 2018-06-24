@@ -118,7 +118,7 @@
 		<div id="top-message" class="col-md-12" style="display:none;">
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
 				<!-- 로그인 주소 -->
-				<a href="/views/memberPage/membershipPage.html">
+				<a href="/views/memberPage/membershipPage.jsp">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >

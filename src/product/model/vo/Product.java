@@ -10,12 +10,16 @@ public class Product {
 	private String productIntro;
 	private String productInfo;
 	private int recipeNo;
+	private String season;
 	
 	
 	public Product() {}
 
+	
+
+
 	public Product(int productNo, int productQuantity, String productName, int productPrice, String product1stPic,
-			String productSpecPic, String productIntro, String productInfo, int recipeNo) {
+			String productSpecPic, String productIntro, String productInfo, int recipeNo, String season) {
 		super();
 		this.productNo = productNo;
 		this.productQuantity = productQuantity;
@@ -26,7 +30,10 @@ public class Product {
 		this.productIntro = productIntro;
 		this.productInfo = productInfo;
 		this.recipeNo = recipeNo;
+		this.season = season;
 	}
+
+
 
 
 	public int getProductNo() {
@@ -115,6 +122,22 @@ public class Product {
 	public void setRecipeNo(int recipeNo) {
 		this.recipeNo = recipeNo;
 	}
+
+
+
+
+	public String getSeason() {
+		return season;
+	}
+
+
+
+
+	public void setSeason(String season) {
+		this.season = season;
+	}
+	
+	
 	
 	
 

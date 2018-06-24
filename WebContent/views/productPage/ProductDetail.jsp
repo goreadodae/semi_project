@@ -307,10 +307,10 @@ a{
                         <img src="${productInfo.product1stPic}" id="1stImg" width=80%>
                      </center>
                   </div>
-
                   <div class="col-md-6 col-sm-12">
                      <br><br><br><br>
-                     <h2 class="font">${productInfo.productName}</h2>
+                     <!-- ☆ 지현 id 값 추가 -->
+                     <h2 class="font" id="buyProductTitle">${productInfo.productName}</h2>
                      <hr>
                      <div class="col-md-12">
                      
@@ -1169,7 +1169,7 @@ window.onload=function(){
                     <!-- 구매 후기 script 끝☆ -->
 
 
-                  </div>
+                  
 
 
                   <!-- inquiry 네비게이션바 -->
@@ -1186,56 +1186,7 @@ window.onload=function(){
                     <br>
                     <br>
                     <center><h3 id="part" class="font">&nbsp;&nbsp; 전성분표기</h3><br><br><img src="${productInfo.productInfo}" width=60%></center>
-               <%-- <table class="table" >
-                  <tr class="table_title">
-                     <th width=10%><center>번호</center></th>
-                     <th width=65%>문의내용</th>
-                     <th width=15%><center>작성자</center></th>
-                     <th width=10%>작성일</th>
-                  </tr>
-                  <!-- for문 시작 -->
-
-                  <tr class="reply_title">
-                     <td><center>2</center></td>
-                     <td>배송문의</td>
-                     <td><center>ye***</center></td>
-                     <td>18.06.09</td>
-                  </tr>
-                  
-                  <tr class="reply">
-                     <td></td>
-                     <td colspan="2">
-                        <br>
-                        <div class="replyUser">Q. 오늘 시켰는데 언제쯤 도착할까요???</div>
-                        <hr><br>
-                        <div class="replyAdmin">A. 금요일에 일괄 배송되므로 빠르면 다음주 월요일에 받아보실 수 있습니다.<br> 문의주셔서 감사합니다^^</div>
-                        <br>
-                     </td>
-                     <td></td>
-                  </tr>
-
-                  <tr class="reply_title">
-                     <td><center>1</center></td>
-                     <td>유통기한은 언제까지인가요?</td>
-                     <td><center>reu***</center></td>
-                     <td>18.06.09</td>
-                  </tr>
-                  
-                  
-                  <tr class="reply">
-                     <td></td>
-                     <td colspan="2">
-                        <br>
-                        <div class="replyUser">Q. 유통기한은 언제까지 인가요?</div>
-                        <hr><br>
-                        <div class="replyAdmin">A. 답변 대기중</div>
-                        <br>
-                     </td>
-                     <td></td>
-                  </tr>
-
-                  <!-- for문 끝 -->
-                </table> --%>
+               
                 <br><br><br>
               </div>
               <br>

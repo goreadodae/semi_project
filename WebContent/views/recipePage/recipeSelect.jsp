@@ -353,7 +353,7 @@
 								<c:forTokens var="recipeTag"
 									items="${requestScope.recipe.recipeTag }" delims="#">
 									<span style="display: inline-block;"> <a
-										href="searchRecipeList?searchVal=${recipeTag }"
+										href="recipeList?cate1=0&cate2=0&cate3=0&cate4=0&search=${recipeTag }"
 										style="color: #512772; background-color: #f8faff;">#${recipeTag}</a>
 									</span>&nbsp;&nbsp;
 						</c:forTokens>

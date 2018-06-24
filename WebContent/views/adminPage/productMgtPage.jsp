@@ -111,6 +111,29 @@
 			});
 		}
 	}
+	function sendMoney(productNo, memberNo, totalSales){
+		$.ajax({
+			url : "/sendMoney",
+			type : "post",
+			data : {
+				productNo : productNo,
+				memberNo : memberNo,
+				totalSales : totalSales
+			},
+			success : function(data) {
+				if(data>0){
+					alert("송금 성공");
+					window.location.reload();
+				}
+				else{
+					alert("송금 실패");
+				}
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
+	}
 </script>
 <style>
 * {
@@ -179,6 +202,7 @@
 									<th scope="col">상품 가격</th>
 									<th scope="col">팔린 개수</th>
 									<th scope="col">총판매 가격</th>
+									<th scope="col">송금한 금액</th>
 									<th scope="col">송금</th>
 								</tr>
 									<c:forEach begin="0"
@@ -194,8 +218,10 @@
 										<th>${requestScope.productList[i.count-1].recipeWriter }</th>
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].price }" groupingUsed="true"/></th>
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sellQuantity }" groupingUsed="true"/></th>
-										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].totalSales }" groupingUsed="true"/></th>
-										<th><button class="btn btn-primary" onclick="">송금</button>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney}" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sendMoney }" groupingUsed="true"/></th>
+										<th><button class="btn btn-primary" onclick="sendMoney(${requestScope.productList[i.count-1].productNo },
+										${requestScope.productList[i.count-1].memberNo },${requestScope.productList[i.count-1].totalSales});">송금</button>
 										</tr>
 									</c:forEach>
 									

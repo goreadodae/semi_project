@@ -60,7 +60,8 @@ public class RecipeListServlet extends HttpServlet {
 		String cate4 = request.getParameter("cate4");//재료별
 		String order = request.getParameter("order");
 		// 지수
-		String search = request.getParameter("search"); // 메인페이지에서 검색
+		String search = request.getParameter("search"); // 검색
+		
 		
 		System.out.println(search);
 		if(cate1==null||cate2==null||cate3==null||cate4==null) {

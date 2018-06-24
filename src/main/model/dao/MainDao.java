@@ -117,7 +117,6 @@ public class MainDao {
 			prop.load(new FileReader(path + "resources/mainQuery.properties"));
 
 			String query = prop.getProperty("selectMonth");
-			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 
 			rset = pstmt.executeQuery();

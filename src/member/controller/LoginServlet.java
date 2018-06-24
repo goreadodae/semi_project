@@ -1,6 +1,8 @@
 package member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,14 +39,35 @@ public class LoginServlet extends HttpServlet {
 		String loginPwd = request.getParameter("loginPwd");
 		String beforeURI = request.getParameter("beforeURI");
 		
+		boolean banCheck=false;
+		
+		ArrayList<String> banURI = new ArrayList<String>(); 
+		banURI.add("http://localhost/views/memberPage/findPwdPage.jsp"); 
+		banURI.add("http://localhost/views/memberPage/findIdPage.jsp"); 
+		banURI.add("http://localhost/views/memberPage/membershipPage.jsp"); 
+		
 		Member m = new MemberService().login(loginId, loginPwd);
 		
 		if (m == null) {
-			response.sendRedirect("/views/memberPage/errors/loginError.jsp");
+			System.out.println("유저가 없습니다.");
 		} else {
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", m);
-			response.sendRedirect(beforeURI);
+			
+			 for(String bu : banURI){
+				 if(!beforeURI.equals(bu)) {
+					 banCheck=false;
+				 }else {
+					 banCheck=true;
+					 break;
+					}
+		        }
+			 if(banCheck==true) {
+				 response.sendRedirect("/index.jsp");
+			 }else {	
+				 response.sendRedirect(beforeURI);
+			 }
 		}
 	}
 

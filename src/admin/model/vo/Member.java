@@ -9,17 +9,18 @@ public class Member {
 	private String memberName;
 	private Date birthDate;
 	private String phone;
+	private String address;
 	private String gender;
 	private String email;
 	private Date enrollDate;
-	
-	public Member() 
-	{
+	private String profile;
+	private String nickName;
+	public Member() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
-	public Member(int memberNo, String memberId, String memberPwd,String memberName, Date birthDate, String phone, String gender,
-			String email, Date enrollDate) {
+	public Member(int memberNo, String memberId, String memberPwd, String memberName, Date birthDate, String phone,
+			String address, String gender, String email, Date enrollDate, String profile, String nickName) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -27,9 +28,12 @@ public class Member {
 		this.memberName = memberName;
 		this.birthDate = birthDate;
 		this.phone = phone;
+		this.address = address;
 		this.gender = gender;
 		this.email = email;
 		this.enrollDate = enrollDate;
+		this.profile = profile;
+		this.nickName = nickName;
 	}
 	public int getMemberNo() {
 		return memberNo;
@@ -67,6 +71,12 @@ public class Member {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -85,10 +95,18 @@ public class Member {
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-	
-	
-	
-	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	
 	
 

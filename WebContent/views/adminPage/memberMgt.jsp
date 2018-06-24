@@ -59,45 +59,47 @@ text-align:center;
 				<br> <br> <br>
 				<div class="col-md-12" style="height: 800px">
 					<br> <br>
-					<h2>문의사항</h2><br>
+					<h2>회원목록</h2><br>
 					<table class="table" id="qnaTbl"
 						style="border-top: 2px solid #795b8f !important; border-bottom: 2px solid #795b8f !important;">
 						<tr>
-							<th>문의번호</th>
-							<th>문의내용</th>
-							<th>문의시간</th>
 							<th>회원번호</th>
 							<th>회원아이디</th>
-							<th>구매번호</th>
-							<th>답변여부</th>
+							<th>회원이름</th>
+							<th>생년월일</th>
+							<th>전화번호</th>
+							<th>주소</th>
+							<th>성별</th>
+							<th>이메일</th>
+							<th>가입일</th>
+							<th>별명</th>
+							
 						</tr>
-						<c:forEach items="${requestScope.adminQData.dataList}" var="ql">
-							<c:url var="url" value="/answertMgt">
-								<c:param name="queNo" value="${ql.queNo}"></c:param>
-							</c:url>
+						<c:forEach items="${requestScope.mpd.dataList}" var="dl">
+			
 						
 						
 						
 							<tr>
-								<td>${ql.queNo}</td>
-								<td><a href="${url}">${ql.queTitle}</a></td>
-								<td>${ql.queTime}</td>
-								<td>${ql.memberNo}</td>
-								<td>${ql.memberId}</td>
-								<td>${ql.buyingNo}</td>
-								<td>
-								${ql.responseYn}
+								<td>${dl.memberNo}</td>
+								<td>${dl.memberId }</td>
+								<td>${dl.memberName}</td>
+								<td>${dl.birthDate}</td>
+								<td>${dl.phone}</td>
+								<td>${dl.address}</td>
+								<td>${dl.gender}</td>
+								<td>${dl.email}</td>
+								<td>${dl.enrollDate}</td>
+								<td>${dl.nickName}</td>
 								
-								
-								</td>
 							</tr>
 
 
 						</c:forEach>
-						<c:if test="${requestScope.adminQData.dataList eq null }">
+						<c:if test="${requestScope.mpd.dataList eq null }">
 							<tr>
 							<td colspan="7" style="hight:200px">
-									<h1>미답변 문의사항이 없습니다.</h1>
+									<h1>회원목록이없습니다.</h1>
 							</td>
 							
 							
@@ -117,7 +119,7 @@ text-align:center;
 			
 								<nav aria-label="Page navigation example" id="pagination">
 								<ul class="pagination " style="margin-left:auto; margin-right:auto;">
-								${requestScope.adminQData.pageNavi}</ul>
+								${requestScope.mpd.pageNavi}</ul>
 								</nav>
 
 

@@ -29,8 +29,12 @@
 	padding: 0px;
 	margin: 0px;
 }
+#list-group li.on {
+	background-color: #a5dff9;
+	color:black;
+}
 
-.list-group li {
+#list-group li {
 	background-color: #566270;
 	color: white;
 }
@@ -39,6 +43,8 @@
 	color:black;
 	cursor: pointer;
 }
+
+
 </style>
 </head>
 <body>
@@ -49,25 +55,25 @@
 						<div class="col-md-12"
 							style="background-color: #566270; height: 50px"></div>
 						<ul id="list-group" class="list-group" style="text-align: center">
-							<li
+							<li onclick="location.href='/memberMgt'"
 								class="list-group-item d-flex justify-content-between align-items-center">
-								회원관리<span class="badge badge-primary badge-pill">14</span>
+								회원관리
 							</li>
-							<li
+							<li onclick="location.href='/recipeMgt'" 
 								class="list-group-item d-flex justify-content-between align-items-center">
-								게시판관리<span class="badge badge-primary badge-pill">2</span>
+								<a href="/recipeMgt">게시판관리</a>
 							</li>
-							<li
+							<li	onclick="location.href='#'"
 								class="list-group-item d-flex justify-content-between align-items-center">
-								공지사항관리<span class="badge badge-primary badge-pill">1</span>
+								공지사항관리
 							</li>
-							<li
+							<li	onclick="location.href='/productMgt'"
 								class="list-group-item d-flex justify-content-between align-items-center">
-								FAQ관리<span class="badge badge-primary badge-pill">1</span>
+								상품관리
 							</li>
-							<li
+							<li	onclick="location.href='/qnaMgt'"
 								class="list-group-item d-flex justify-content-between align-items-center">
-								<a href="/qnaMgt">문의관리</a> <span class="badge badge-primary badge-pill">1</span>
+								문의관리 
 							</li>
 
 

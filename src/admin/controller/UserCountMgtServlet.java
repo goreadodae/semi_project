@@ -36,6 +36,7 @@ public class UserCountMgtServlet extends HttpServlet {
 		
 		int result [] = new UserCountMgrService().boardCount();
 		
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(result,response.getWriter());

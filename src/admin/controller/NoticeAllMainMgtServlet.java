@@ -1,6 +1,9 @@
 package admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import admin.model.service.UserCountMgrService;
+import notice.model.vo.Notice;
+import notice.model.vo.PageData;
 
 /**
  * Servlet implementation class NoticeAllMainMgtServlet
@@ -33,11 +38,35 @@ public class NoticeAllMainMgtServlet extends HttpServlet {
 		
 	request.setCharacterEncoding("UTF-8");
 		
-		int result [] = new UserCountMgrService().boardCount();
+	int currentPage;
+	if(request.getParameter("currentPage")==null)
+	{
+		currentPage=1;
+	}
+	else
+	{
+		currentPage=Integer.parseInt(request.getParameter("currentPage"));
+	}
+	
+	ArrayList<Notice> list = new UserCountMgrService().noticeBoardMainAll(currentPage);
+	
+	System.out.println(list);
+	
+	
+	if(!list.isEmpty())
+	{		
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		new Gson().toJson(result,response.getWriter());
+		new Gson().toJson(list,response.getWriter());
+		
+	}
+	else
+	{
+		
+	}
+	
+
 		
 	}
 

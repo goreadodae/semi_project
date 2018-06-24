@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%
 	response.setHeader("cache-control","no-store");
 	response.setHeader("expires","0");
@@ -236,7 +237,7 @@
 						</div>
 						<div>
 						<span style="margin-left: 10%; display: inline-block; font-weight: bolder; color: gray">by. ${requestScope.pageData.dataList[i.count-1].video}</span>
-						<img style="margin-left: 45%;" src="/imgs/recipe_img/view_icon.png" class="views-icon">
+						<img style="margin-left: 45%;" src="/imgs/main-img/like.png" class="views-icon" width="17px">
 						<div class="views"><fmt:formatNumber value="${requestScope.pageData.dataList[i.count-1].recipeViews}" groupingUsed="true"/></div>
 						</div>
 					</div>
@@ -246,15 +247,42 @@
 				<div class="row"></div>
 			</c:forEach>
 		</div>
-		<button class="btn btn-primary" onclick="insertRecipe();"
-			style="float: right; background-color: #512772 !important; color: white !important; margin-right: 10%;">레시피 등록</button>
+		
+		<!-- 검색바 지수 -->
+		<fieldset>
+			<div class="col-md-6 input-group mb-3 mx-auto" style="padding-left:120px;">
+				<input type="text" class="form-control" id="material"
+					name="searchVal" placeholder=""
+					aria-label="Recipient's username"
+					aria-describedby="basic-addon2" style="width: 0px; margin-left: 40px;">
+					<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button"
+						onclick="search();">
+						<img src="/imgs/icons/search.svg">
+					</button>
+					</div>
+					<div class="col-md-4">
+						<button class="btn btn-primary" onclick="insertRecipe();"
+						style="background-color: #512772 !important; color: white !important; margin-left: 350px">레시피 등록</button>
+				</div>
+				</div>
+		</fieldset><br>
+		<script>
+			function search() {
+				var searchVal = $('#material').val();
+				location.href = "/recipeList?cate1=0&cate2=0&cate3=0&cate4=0&search="+searchVal;
+			}
+		</script>
+		<!--지수 추가  -->
+		
 		<div class="row">
-			<div style="margin-left: 50%;">
+			<div style="margin-left: 40%;">
 			<ul id="pageNavi" class="pagination">
 				${requestScope.pageData.pageNavi }
 			</ul>
 			</div>
 		</div>
+		<br>			<!-- 추가 지수 -->
 	</div>
 	</div>
 

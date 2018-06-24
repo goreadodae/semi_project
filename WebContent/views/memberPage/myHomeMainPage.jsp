@@ -198,7 +198,7 @@ ol, li {
 		<!-- 컨텐츠 영역 -->
 		<div id="contents"
 			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 0;">
+			style="padding: 0;">
 			<div class="row" id="myPageBottom" style="padding-bottom: 100px;">
 				<div class="col-md-2" id="menu">
 					<h2 id="menu-title">마이 홈</h2>
@@ -229,10 +229,9 @@ ol, li {
 									<div class="col-3" style="padding: 0px;">
 										<div style="height: 35px;"></div>
 										<img class="rounded-circle img-fluid d-block mx-auto"
-											width="150" height="150" style="padding-left: 10px;"
+											style="padding-left: 10px; height:150px; width:150px;"
 											src="<%=m.getProfile()%>" alt="">
-										<h5
-											style="padding-left: 10px; padding-top: 10px; text-align: center;"><%=m.getNickName()%></h5>
+										<h5 style="padding-left: 10px; padding-top: 10px; text-align: center;"><%=m.getNickName()%></h5>
 										<p></p>
 									</div>
 									<!-- 연락처 -->
@@ -272,6 +271,7 @@ ol, li {
 			</div>
 		<!-- 푸터 -->
 		</div>
+			<br>
 			<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding: 10px;">
 			</div>

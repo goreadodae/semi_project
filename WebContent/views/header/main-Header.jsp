@@ -3,11 +3,13 @@
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
 
+
 <%
 	response.setHeader("cache-control","no-store");
 	response.setHeader("expires","0");
 	response.setHeader("pragma","no-cache");
 %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import = "member.model.vo.*"%>
 	
@@ -58,7 +60,6 @@
 		
 		
 		$(window).scroll(function() {
-			
 			if ($(document).scrollTop() >= jbOffset.top) {
 				/* 상단 고정하고 */
 				$('#fixed_layer').addClass('jbFixed');
@@ -118,18 +119,28 @@
 		<div id="top-message" class="col-md-12" style="display:none;">
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
 				<!-- 로그인 주소 -->
-				<a href="/views/memberPage/membershipPage.html">
+				<%if(m==null){%>
+				<a href="/views/memberPage/membershipPage.jsp">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >
 						</p>
 					</div>
 				</a>
+				<%}else{ %>
+				<a href="/index.jsp">
+					<div>
+						<p id="top-message-notice">
+							지금 가입하시면 이벤트 혜택이 2배 >
+						</p>
+					</div>
+				</a>
+				<%} %>
 			</div>
-			<div id="top-message-close" class="col-md-8 col-sm-8 col-8 mx-auto nav justify-content-end">
+			<div id="top-message-close" class="col-md-8 mx-auto nav justify-content-end">
 				<button type="button" class="close" id="top-message-close-btn" aria-label="close" 
-						onclick="closePopupNotToday()">
-					<span aria-hidden="true">&times;</span>
+						onclick="closePopupNotToday()" >
+					<span aria-hidden="true" style="padding-left:20px; position:absolute; top:7px; right:-12px;">&times;</span>
 				</button>
 			</div>
 		</div>
@@ -182,24 +193,6 @@
 			});
 		</script>
 		<!-- 팝업창 쿠키 끝-->
-		
-		<!-- 실시간 검색어  -->
-		<script>
-			$(document).ready(function(){
-				$('#showOneScroll').hover(function(){
-					$('#showAllScroll').css('display','block');
-				});
-				$('#showAllScroll').mouseleave(function(){
-					$('#showAllScroll').css('display','none');
-				});
-				$('#downScroll').mouseleave(function(e){
-					$('#showAllScroll').css('display','none');
-					$('#showAllScroll').mouseover(function(){
-						$('#showAllScroll').css('display','block');
-					});
-				});
-			});
-		</script>
 		<script type="text/javascript">
 	        function textScroll(scroll_el_id) {
 	            this.objElement = document.getElementById(scroll_el_id);
@@ -249,7 +242,6 @@
 	            this.timer = setTimeout(this.name + ".move()", 3000);
 	        }
     	</script>
-		<!-- 실시간 검색어 끝-->
 		
 		<!-- 최상단 -->
 		<div class="col-md-8 mx-auto" id="userMenu" style="padding:0px;">
@@ -314,14 +306,14 @@
 					<div class="col-md-2 col-sm-2 col-4" id="div-receipe">
 						<a class="nav-category" href="/recipeList?cate1=0&cate2=0&cate3=0&cate4=0&search=null">레시피</a>
 					</div>
+					
+					<div class="col-md-2 col-sm-2 col-4">
+						<a class="nav-category" href="/productList">상품</a>
+					</div>
+					
 
 					<div class="col-md-2 col-sm-2 col-4">
 						<a class="nav-category" href="/views/rankingPage/rankingPage.jsp">랭킹</a>
-					</div>
-
-
-					<div class="col-md-2 col-sm-2 col-4">
-						<a class="nav-category" href="/productList">상품</a>
 					</div>
 
 					<div class="col-md-2">
@@ -329,7 +321,7 @@
 					</div>
 					<%if(m!=null){ %>
 					<div class="col-md-2" style="padding:0px; position:absolute; right:0px; bottom:70px; background-color:#f7f5f8;">
-						<div class="col-md-12" style="height:100px; border:1px solid #dadada;">
+						<div class="col-md-12" style="height:100px; border:1px solid #512772;">
 							<div class="row">
 								<div class="col-md-4" style="height:44px; padding:5px;">
 									<img src="<%=m.getProfile()%>" width="90" height="90">
@@ -354,21 +346,8 @@
 						</div>
 					</div>
 					<%} %>
-					<div id="showAllScroll" class="position-absolute col-md-12" style="padding:0px; display: none;">
-						<div style="background-color: white; position: absolute; z-index: 999; border: 1px solid black;	margin-left: 70%; width: 350px; text-align: left;">
-							<span style="margin-left: 3%; margin-top: 3%; font-weight: bolder">실시간 랭킹</span><br>
-							<span style="margin-left: 5%; color:#00ab33;">1. </span><a id="scroll_title2_1" href="#" style="color:black;"></a><br>
-							<span style="margin-left: 5%; color:#00ab33;">2. </span><a id="scroll_title2_2" href="#" style="color:black;"></a><br>
-							<span style="margin-left: 5%; color:#00ab33;">3. </span><a id="scroll_title2_3" href="#" style="color:black;"></a><br>
-							<span style="margin-left: 5%; color:#00ab33;">4. </span><a id="scroll_title2_4" href="#" style="color:black;"></a><br>
-							<span style="margin-left: 5%; color:#00ab33;">5. </span><a id="scroll_title2_5" href="#" style="color:black;"></a><br>
-						</div>
-					</div>
 					<div id="showOneScroll" class="col-md-2 ellip" style="padding:0px;">
 						<ul id="scroll">
-						<span id="downScroll" style="float: right;line-height:50px;">
-						<img src="/imgs/main-img/down-arrow.png"/>
-						</span>
 	        				<li>
 	                			<p style="float:left; line-height:50px; padding-left:5px; color:#00ab33;">1&nbsp;&nbsp;</p>
 	            				<a id="scroll_title_1" href="#" style="color:black;">
@@ -407,7 +386,7 @@
 								var keys = Object.keys(data);
 								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
-									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title.substr(0, 8)+"...");
+									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title.substr(0, 15)+"...");
 									$('#scroll_title_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
 									$('#scroll_title2_' +(i + 1)).append(data[i].recipe_title.substr(0, 20)+"...");
 									$('#scroll_title2_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);

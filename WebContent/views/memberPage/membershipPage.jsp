@@ -1091,9 +1091,10 @@
 								<button class="btn btn-primary" id="next-page" type="submit" style="width:100px;">확인</button>
 						</div>
 					</div>
+					
 						<div class="col-md-12 member-join ghost" id="member-insert" style="padding:0px; height: 1090px;">
 						<h2>회원 정보 입력</h2>
-						<form action="/insertMember" method="post" id="frm">
+						<form action="/insertMember" method="post" id="frm" style="">
 							<div class="box mx-auto" style="height:854px;">
 								<div>
 									<div style="width: 100%; float: left; padding-left:310px;">
@@ -1177,56 +1178,10 @@
 												<button type="button" class="btn btn-default" id="genderF">여자</button>
 											</div>
 										</div>
+										<input type="hidden" id="userImg" name="userProfile" value="/imgs/member_img/boy.png">
+										<input type="hidden" name="userNickName" value="유저"/>
 									</div>
-									<div style="width: 8%; float: left; margin-left: 10px; padding-top: 9px;">
-										<div class="form-group1">
-											<label><h3></h3></label> <label class="jombi" id="check1">
-												<h2 class="ghost" id="ok-1">
-													<span class="glyphicon glyphicon-ok" aria-hidden="true"
-														style="color: #00FF40;"></span>
-												</h2>
-												<h2 class="ghost" id="remove-1">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"
-														style="color: red;"></span>
-												</h2>
-											</label>
-										</div>
-										<div class="form-group1">
-											<label><h3></h3></label> <label class="jombi" id="check2">
-												<h2 class="ghost" id="ok-2">
-													<span class="glyphicon glyphicon-ok" aria-hidden="true"
-														style="color: #00FF40;"></span>
-												</h2>
-												<h2 class="ghost" id="remove-2">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"
-														style="color: red;"></span>
-												</h2>
-											</label>
-										</div>
-										<div class="form-group1">
-											<label><h3></h3></label> <label class="jombi" id="check3">
-												<h2 class="ghost" id="ok-3">
-													<span class="glyphicon glyphicon-ok" aria-hidden="true"
-														style="color: #00FF40;"></span>
-												</h2>
-												<h2 class="ghost" id="remove-3">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"
-														style="color: red;"></span>
-												</h2>
-											</label>
-										</div>
-										<div class="form-group1">
-											<label><h3></h3></label> <label class="jombi" id="check4">
-												<h2 class="ghost" id="ok-4">
-													<span class="glyphicon glyphicon-ok" aria-hidden="true"
-														style="color: #00FF40;"></span>
-												</h2>
-												<h2 class="ghost" id="remove-4">
-													<span class="glyphicon glyphicon-remove" aria-hidden="true"
-														style="color: red;"></span>
-												</h2>
-											</label>
-										</div>
+									<div style="">
 										<div class="form-group1">
 											<label><h3></h3></label> <label class="jombi" id="check5">
 												<h2 class="ghost" id="ok-5">
@@ -1276,10 +1231,12 @@
 						</form>
 					</div>
 				</div>
+			</div>
+			</div>
+		</div>
 				<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 			      style="border: 1px solid black; padding: 10px;"></div>
 			<!-- 푸터 끝 -->
-		</div>
 		
 		<!-- 스크립트 -->
 		<script>
@@ -1760,12 +1717,14 @@
 	        
 	        $('#genderM').click(function(){
 				 $('#hiddenGender').val("M");
+				 $('#userImg').val('/imgs/member_img/boy.png');
 				 $('#genderM').css("background-color","#eeeeee");
 				 $('#genderF').css("background-color","white");
 			});
 	        
 	        $('#genderF').click(function(){
 	        	$('#hiddenGender').val("F");
+	        	$('#userImg').val('/imgs/member_img/girl.png');
 				$('#genderF').css("background-color","#eeeeee");
 				$('#genderM').css("background-color","white");
 			});

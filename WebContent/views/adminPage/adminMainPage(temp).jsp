@@ -32,28 +32,31 @@
 			$('#userCount').append("<h1>"+data[0]+"</h1>");
 			$('#recipeBoard').append("<h1>"+data[1]+"</h1>");
 			$('#buyProduct').append("<h1>"+data[2]+"</h1>");
-			
-			
 		},
-		error:function(){ 
-			
+		error:function(){
+			console.log("실패");
 		}
-		
 		});
 		
-		
-		$.ajax({
-			url : "/noticeAllMain",
+	
+		 $.ajax({
+			url : "/noticeAllMainMgt",
 			type : "get",
-			success :function(data){
-				
-				
+			success :function(data){ 
+				for(var i=0;i<data.length;i++){
+					$('#noticeListAll').append('<tr>'+
+									'<td>'+data[i].noticeNo+'</td>'+
+									'<td style="text-align: left; width: 50%">'+data[i].noticeTitle+'</td>'+
+									'<td>'+data[i].noticeWriter+'</td>'+
+									'<td>'+data[i].reportingDate+'</td>'+
+									'<td>'+data[i].noticeViews+'</td>'+
+									'</tr>');
+				}
 			},
 			error:function(){}
-			});
-		});
+		}); 
 
-
+	});
 </script>
 <style>
 * {
@@ -113,13 +116,29 @@
 							<div class="col-md-6">
 								<div class="col-md-12"
 									style="background-color: white; height: 200px">
-										안녕하세요
+								<table class="table">
+									<thead>
+									<tr>
+									<th scope="col">번호</th>
+									<th scope="col">제목</th>
+									<th scope="col">작성자</th>
+									<th scope="col">작성일</th>
+									<th scope="col">조회</th></tr>
+									</thead>
+									<tbody id="noticeListAll">
+									
+									</tbody>
+								</table>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="col-md-12"
 									style="background-color: white; height: 200px">
-									안녕하세요 ㅋㅋㅋㅋ
+									<table class="table" id="noticeTable">
+									
+									
+									
+									</table>
 									</div>
 							</div>
 						</div>

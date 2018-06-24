@@ -34,10 +34,9 @@ body {
 
 		<!-- 컨텐츠 영역 -->
 		<div id="content-main" class="contents">
-
 			<!-- 메인 이미지  -->
 			<div class="col-md-12 col-sm-12" id="main-img-wrap">
-				<img src="/imgs/main-img/main_img.jpg" width="100%" height="500px">
+				<img src="/imgs/main-img/main2.jpg" width="100%" height="550px">
 				<!-- 레시피 카운트 -->
 				<div class="col-md-8 mx-auto" id="recipe-count">
 					<div class="col-md-3 mx-auto" id="count_wrap">
@@ -88,24 +87,11 @@ body {
 				<!-- ajax 레시피 수 받아오기 끝 -->
 			</div>
 			<!-- 메인이미지 끝  -->
-
-			<!-- 어플리케이션 다운로드  -->
-			<div class="col-md-12" id="application_wrap">
-				<div class="col-md-8 mx-auto" style="padding: 0px;">
-					<!-- google-->
-					<a href="#"> <img class="rounded"
-						src="/imgs/main-img/google.png">
-					</a>
-					<!-- apple -->
-					<a href="#"> <img class="rounded" src="/imgs/main-img/app.png">
-					</a>
-				</div>
-			</div>
-			<!-- 어플리케이션 다운로드 끝  -->
 			<!--  -->
 
 
 			<!-- 인트로 이미지 -->
+			<br><br><br><br>
 			<div class="col-md-12 col-sm-12">
 				<div class="col-md-8 mx-auto text-center" id="intro-wrap">
 					<h3 style="font-family: 'Black Han Sans', sans-serif; font-weight: 200; color:#512772;">
@@ -1366,7 +1352,7 @@ body {
 							<div class="col-md-6 col-sm-6" id="banner1"
 								style="line-height: 260px;">
 								<a> <img class="col-md-12 col-sm-12" class="img-thumbnail"
-									style="padding: 0px;" src="/imgs/main-img/banner.jpg" alt="이미지"
+									style="padding: 0px;" src="/imgs/main-img/카카오톡이벤트.png" alt="이미지"
 									height="180">
 								</a>
 							</div>
@@ -1374,7 +1360,7 @@ body {
 							<div class="col-md-2 col-sm-2" id="banner2"
 								style="line-height: 260px;">
 								<a> <img class="col-md-12 col-sm-12" class="img-thumbnail"
-									style="padding: 0px;" src="/imgs/main-img/banner2.jpg"
+									style="padding: 0px;" src="/imgs/main-img/회원혜택.png"
 									alt="이미지" height="180">
 								</a>
 							</div>
@@ -1382,7 +1368,7 @@ body {
 							<div class="col-md-2 col-sm-2" id="banner3"
 								style="line-height: 260px;">
 								<a> <img class="col-md-12 col-sm-12" class="img-thumbnail"
-									style="padding: 0px;" src="/imgs/main-img/banner3.jpg"
+									style="padding: 0px;" src="/imgs/main-img/무료배송.png"
 									alt="이미지" height="180">
 								</a>
 							</div>
@@ -1390,7 +1376,7 @@ body {
 							<div class="col-md-2 col-sm-2" id="banner3"
 								style="line-height: 260px;">
 								<a> <img class="col-md-12 col-sm-12" class="img-thumbnail"
-									style="padding: 0px;" src="/imgs/main-img/banner3.jpg"
+									style="padding: 0px;" src="/imgs/main-img/가격조정안.png"
 									alt="이미지" height="180">
 								</a>
 							</div>

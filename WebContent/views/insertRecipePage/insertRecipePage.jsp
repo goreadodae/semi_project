@@ -128,7 +128,7 @@
 	
 	/* 재료 삭제 부분 */
 	function materDelete(materNum){
-		alert(materNum);
+		
 		$('#materPlusRow'+materNum).remove();
 
 	}
@@ -651,7 +651,7 @@
 
 /* div {
 	border: 1px solid black;
-}  */
+} */
 
 *{
 	margin:0;
@@ -678,6 +678,13 @@
 }
 
 body{font-family:IropkeBatang;}
+
+#inRecipeTitleAll{background-color:#F8FAFF;}
+#inRecipeMater{background-color:#F8FAFF;}
+#inRecipeOrder{background-color:#F8FAFF;}
+#inRecipeTip{background-color:#F8FAFF;}
+#inRecipeTag{background-color:#F8FAFF;}
+#inRecipeBtn{background-color:#F8FAFF;}
 
 .mybutton1{
    background-color: #795B8F;
@@ -746,7 +753,7 @@ body{font-family:IropkeBatang;}
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
 		<div class="row" id="inRecipe">
 		
-			<div class="col-md-8 mx-auto" id="inRecipeTitle">
+			<div class="col-md-8 mx-auto" id="inRecipeTitle" >
 			
 			<div class="row" id="inRecipeTitle">
 				<div class="col-md-12" id="inRecipeTitleAll">
@@ -918,19 +925,20 @@ body{font-family:IropkeBatang;}
 					</div>			
 					
 			</div>
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			</div><!-- 레시피 기본정보 col값 줌 -->
 			</div><!-- 레시피 기본 정보 넣는곳 -->
 			 
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+		
 			
 
 
 			<div class="row" id="inRecipeMater">
 				<div class="col-md-12">
-				
+				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div class="row"><div class="col-md-12" id="materComent"><h6>재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</h6></div></div>
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div id="materComPlus">
@@ -1006,6 +1014,8 @@ body{font-family:IropkeBatang;}
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			
 			<div class="row" id="inRecipeOrder">
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div class="col-md-12">
 					<div class="row"><div class="col-md-12"><h4>요리순서</h4></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
@@ -1087,11 +1097,11 @@ body{font-family:IropkeBatang;}
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					
-					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
+					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h5>요리완성사진</h5></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12" id="successImgAll">
 					<input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" style="display:none"/>
-					<button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button></div></div></div>
+					<!-- <button type="button" onclick="document.all.fileSucAll.click();">+사진 한번에 넣기</button> --></div></div></div>
 					<div class="col-md-2"><div class="row"><div class="col-md-12" id="successImgOne">
 					<input id="fileSucOne" name="fileSucOne" multiple="multiple" type="file" style="display:none"/>
 					<img src="/imgs/insertRecipe_img/pic_none2-3.jpg" width="130" height="130" id="imgFile_Suc_One" onclick="document.all.fileSucOne.click();">
@@ -1114,14 +1124,16 @@ body{font-family:IropkeBatang;}
 					<input type="hidden" id="sendPicSucFive" name="sendPicSucFive" value=""></div></div></div>
 					</div>
 				</div><!--요리순서 전체 틀 잡음  -->
+				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			</div> <!--요리순서 넣는곳-->
 			
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			
 			<div class="row" id="inRecipeTip">
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-3"><h4>요리팁</h4></div>
@@ -1130,6 +1142,7 @@ body{font-family:IropkeBatang;}
 				</div>	
 				</div>
 				</div><!--요리팁 전체 틀 잡음  -->
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			</div> <!--요리팁 넣는 곳  -->
 			
 			
@@ -1138,30 +1151,34 @@ body{font-family:IropkeBatang;}
 			
 			
 			<div class="row" id="inRecipeTag">
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-3"><h4>태그</h4></div>
 				<div class="col-md-9">
 				<input type="text" class="form-control" name="recipeTag">
 				</div>	
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				</div>
 			</div> <!--태그 전체 틀 잡음  -->
 			</div> <!--태그 넣는 곳  -->
 			
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+			
 			
 			<div class="row" id="inRecipeBtn">
-				<div class="col-md-12">
+			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+			<div class="col-md-12">
 				<div class="row">
 				<div class="col-md-2">　</div>
-				<div class="col-md-4 mx-auto"><input type="submit" value="저장" onclick="return stepList();" class="mybutton1" /><!-- <button type="button" onclick="stepList();">저장</button> --></div>
-				<div class="col-md-4"><button type="button" onclick="back();" class="mybutton1">취소</button></div>
+				<div class="col-md-4"><div class="row"><div class="col-md-8 mx-auto">
+				<input type="submit" value="저장" onclick="return stepList();" class="mybutton1" /></div></div></div>
+				<div class="col-md-4"><div class="row"><div class="col-md-8 mx-auto">
+				<button type="button" onclick="back();" class="mybutton1">취소</button></div></div></div>
 				<div class="col-md-2">　</div>
-				</div>
-				</div>
+				</div></div>
+				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 			</div>
 			
 			<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->

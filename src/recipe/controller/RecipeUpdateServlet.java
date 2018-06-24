@@ -214,7 +214,7 @@ public class RecipeUpdateServlet extends HttpServlet {
 				String stepImgFile= multi.getFilesystemName("stepImgFile"+i);
 				String fullFileStepPath = filePathName+stepImgFile;
 				pr.setProcessPic(fullFileStepPath);
-				
+				pr.setProcessNo(Integer.parseInt(multi.getParameter("processNo"+i)));
 				
 				stepValuelist.add(pr);
 			
@@ -271,13 +271,13 @@ public class RecipeUpdateServlet extends HttpServlet {
 			ir.setRecipeNo(recipeNo);
 			System.out.println(ir);
 			System.out.println(stepValuelist);
-//		  int result =	new RecipeService().updateRecipe(ir,stepValuelist);
+		  int result =	new RecipeService().updateRecipe(ir,stepValuelist);
 		  
-//		  if(result>0) { //레시피 등록 성공했을때
-//			  response.sendRedirect("/recipe?recipeNo="+result);
-//		  }else { //레시피 등록 실패하였을때 
-//			  
-//		  }
+		  if(result>0) { //레시피 등록 성공했을때
+			  response.sendRedirect("/recipe?recipeNo="+recipeNo);
+		  }else { //레시피 등록 실패하였을때 
+			  
+		  }
 
 		}else {
 				

@@ -96,7 +96,7 @@
 						tipPlus(i);
 						$("#textTip"+i).text(data.processList[i].tip);
 					}
-					$("#inRecipe").append("<input type='hidden' id='processNo"+i+"' value='"+data.processList[i].processNo+"'>");
+					$("#inRecipe").append("<input type='hidden' name='processNo"+i+"' value='"+data.processList[i].processNo+"'>");
 				}
 							
 				var comPic = data.recipe.completePic.split('@');
@@ -1043,8 +1043,8 @@ body{font-family:IropkeBatang;}
 
 			<div class="row" id="inRecipeMater">
 				<div class="col-md-12">
-				
-				<div class="row"><div class="col-md-12" id="materComent"><h6>재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</h6></div></div>
+				<div class="row"><div class="col-md-12" id="materComent"><h6>재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</h6>
+				<p style="color: red;">*재료정보는 수정할 수 없습니다.(미구현)</p></div></div>
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				<div id="materComPlus">
 				<div id="materComPlusAllDel0">
@@ -1200,7 +1200,7 @@ body{font-family:IropkeBatang;}
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					
-					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6></div></div>
+					<div class="row"><div class="col-md-2"><div class="row"><div class="col-md-12"><h6>요리완성사진</h6><p style="color: red;">*재료정보는 수정할 수 없습니다.(미구현)</p></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12" id="successImgAll">
 					<input id="fileSucAll" name="fileSucAll" multiple="multiple" type="file" style="display:none"/>

@@ -711,30 +711,29 @@ public class RecipeDao {
 					"set\r\n" + 
 					"RECIPE_TITLE=?,\r\n" + 
 					"RECIPE_INTRO=?,\r\n" + 
-					"RECIPE_PIC=?,\r\n" + 
 					"COOK_SERVING=?,\r\n" + 
 					"COOK_TIME=?,\r\n" + 
 					"COOK_LEVEL=?,\r\n" + 
-					"INGREDIENT=?,\r\n" + 
 					"TIP=?,\r\n" + 
-					"COMPLETE_PIC=?,\r\n" + 
 					"RECIPE_TAG=?,\r\n" + 
-					"VIDEO=?\r\n" + 
-					"where recipe_no=?";
+					"VIDEO=?\r\n";
+			if(!ir.getRecipePic().equals("/uploadfile/null")) {
+				query += ", RECIPE_PIC='"+ir.getRecipePic()+"'\r\n";
+			}
+					
+					
+			query += "where recipe_no="+ir.getRecipeNo();
+			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, ir.getRecipeTitle());
 			pstmt.setString(2, ir.getRecipeIntro());
-			pstmt.setString(3, ir.getRecipePic());
-			pstmt.setString(4, ir.getCookServing());
-			pstmt.setString(5, ir.getCookTime());
-			pstmt.setString(6, ir.getCookLevel());
-			pstmt.setString(7, ir.getIngredient());
-			pstmt.setString(8, ir.getTip());
-			pstmt.setString(9, ir.getCompletePic());
-			pstmt.setString(10, ir.getRecipeTag());
-			pstmt.setString(11, ir.getVideo());
-			pstmt.setInt(12, ir.getRecipeNo());
-			
+			pstmt.setString(3, ir.getCookServing());
+			pstmt.setString(4, ir.getCookTime());
+			pstmt.setString(5, ir.getCookLevel());
+			pstmt.setString(6, ir.getTip());
+			pstmt.setString(7, ir.getRecipeTag());
+			pstmt.setString(8, ir.getVideo());
+
 			result = pstmt.executeUpdate();
 			
 		}  catch (SQLException e) {
@@ -750,28 +749,31 @@ public class RecipeDao {
 
 		PreparedStatement pstmt = null;
 		int result = 0;
-		Properties prop = new Properties();
-		String path = JDBCTemplate.class.getResource("..").getPath();
 		
 		try {
-			prop.load(new FileReader(path+"resources/insertRecipeQuery.properties"));
-			String query = prop.getProperty("insertRecipeProcess");
+			String query = "update process set\r\n" + 
+					"PROCESS_EXPLAIN=?,\r\n" + 
+					"INGRE=?,\r\n" + 
+					"TOOLS=?,\r\n" + 
+					"FIRE_LEVEL=?,\r\n" + 
+					"TIP=?\r\n";
+			if(!pr.getProcessPic().equals("/uploadfile/null")) {
+				query += ", PROCESS_PIC='"+pr.getProcessPic()+"'\r\n";
+			}
+			query += "where process_no=?";
+			System.out.println(query);
 			pstmt = conn.prepareStatement(query);		
-				
-				pstmt.setInt(1, pr.getProcessOrder());
-				pstmt.setString(2, pr.getProcessExplain());
-				pstmt.setString(3, pr.getProcessPic());
-				pstmt.setString(4, pr.getIngre());
-				pstmt.setString(5, pr.getTools());
-				pstmt.setString(6, pr.getFireLevel());
-				pstmt.setString(7, pr.getTip());
-				pstmt.setInt(8, pr.getRecipeNo());
-				
+				pstmt.setString(1, pr.getProcessExplain());
+				pstmt.setString(2, pr.getIngre());
+				pstmt.setString(3, pr.getTools());
+				pstmt.setString(4, pr.getFireLevel());
+				pstmt.setString(5, pr.getTip());
+				pstmt.setInt(6, pr.getProcessNo());
 				
 				result = pstmt.executeUpdate();
 		
 			
-		} catch (IOException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {

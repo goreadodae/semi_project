@@ -42,7 +42,7 @@ public class RecipeServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("/views/recipePage/recipeSelect.jsp");
 			view.forward(request, response);
 		}else {
-			response.sendRedirect("/views/recipePage/recipeError.html");
+			response.sendRedirect("/views/recipePage/recipeEmpty.html");
 		}
 		
 	}

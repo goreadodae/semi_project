@@ -749,7 +749,7 @@ body{font-family:IropkeBatang;}
 </head>
 <body>
 <%if(mem!=null){ %>
-	<div class="container-fluid" id="maindiv"> 
+	<div class="container-fluid" id="maindiv" style="padding:0px;"> 
 		<!--헤더예용! -->	
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<br><br>
@@ -1004,7 +1004,7 @@ body{font-family:IropkeBatang;}
 					<div class="col-md-12">
 					<div class="row"><div class="col-md-8 mx-auto"><h6>※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->				
-					<div class="row"><div class="col-md-2 mx-auto"><button type="button" onclick="materComPlus();" class="mybutton1">+재료/양념 묶음 추가</button></div></div>
+					<div class="row"><div class="col-md-2 mx-auto"><button type="button" onclick="materComPlus();" class="mybutton1">+ 재료/양념 묶음 추가</button></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->	
 					</div>
 				</div>
@@ -1097,7 +1097,7 @@ body{font-family:IropkeBatang;}
 					</div></div><!-- jquery 사용할 div -->
 											
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
-					<div class="row"><div class="col-md-12"><button type="button" onclick="stepPlus();" class="mybutton1">+순서추가</button></div></div>
+					<div class="row"><div class="col-md-12"><button type="button" onclick="stepPlus();" class="mybutton1">+ 순서추가</button></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 					

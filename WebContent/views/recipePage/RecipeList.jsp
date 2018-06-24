@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%
 	response.setHeader("cache-control","no-store");
 	response.setHeader("expires","0");
@@ -236,7 +237,7 @@
 						</div>
 						<div>
 						<span style="margin-left: 10%; display: inline-block; font-weight: bolder; color: gray">by. ${requestScope.pageData.dataList[i.count-1].video}</span>
-						<img style="margin-left: 45%;" src="/imgs/recipe_img/view_icon.png" class="views-icon">
+						<img style="margin-left: 45%;" src="/imgs/main-img/like.png" class="views-icon" width="17px">
 						<div class="views"><fmt:formatNumber value="${requestScope.pageData.dataList[i.count-1].recipeViews}" groupingUsed="true"/></div>
 						</div>
 					</div>

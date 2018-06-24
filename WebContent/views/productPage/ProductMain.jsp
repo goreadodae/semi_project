@@ -20,9 +20,24 @@
 
 <script>
 	$(document).ready(function() {
+
+		var jbOffset = $('#fixed_layer').offset();
+		var jbOffset2 = $('#category_list').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+		
 		/* 해더 불러오는 제이쿼리 */
 		$("#footer").load("/views/footer/main-Footer.jsp");
-		
 		
 		 /* 웹 실행 시 카테고리 숨김 */
 		   $('#category_list').css('display', 'none');
@@ -61,23 +76,6 @@
 		         });
 		      }
 		   });
-		
-
-		var jbOffset = $('#start').offset();
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
-
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
-
 	});
 </script>
 
@@ -166,7 +164,6 @@ font-family: 'Nanum Myeongjo', serif;
 
 		<!-- 전체 컨텐츠 -->
 		<div id="total" class="contents" style="padding: 0px;">
-	
 
 			<br> <br><br>
 			<!-- 내용1. 이달의 쿠킹박스 -->

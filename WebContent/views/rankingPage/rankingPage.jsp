@@ -371,15 +371,63 @@ function resizeIframe(h){
 </div>
 
 	<!-- 아래 알림 바  -->
-	<div class="alert alert-info alert-dismissible" role="alert">
+	<div class="alert alert-info alert-dismissible" role="alert" id="rankingAlert" style="display:none;">
 		<button type="button" class="close" data-dismiss="alert"
-			aria-label="Close">
+			aria-label="Close" onclick="closePopupNotToday()">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<strong>랭킹에 도전하세요!</strong> 오늘의 레시피, 이달의 레시피, 이달의 회원을 뽑아 레시피를 상품화 시켜
-		드립니다!
+		<p style="text-align:center; margin:0px;"><strong>랭킹에 도전하세요!</strong> 오늘의 레시피, 이달의 레시피, 이달의 회원을 뽑아 레시피를 상품화 시켜
+		드립니다!</p>
 	</div>
-
+	
+	<!-- 팝업창 쿠키  -->
+		<script>
+			/* 1. 쿠키 만들기 */
+			function setCookie(name, value, expiredays) {
+				var today = new Date();
+			   	today.setDate(today.getDate() + expiredays);
+			    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+			}
+			
+			/* 2. 쿠키 가져오기 */
+			function getCookie(name) { 
+   				var cName = name + "="; 
+    			var x = 0; 
+    			while (x <= document.cookie.length) { 
+    				
+        			var y = (x+cName.length); 
+        			
+        			if(document.cookie.substring( x, y ) == cName ) 
+        			{ 
+            			if((endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+                			endOfCookie = document.cookie.length;
+            			return unescape( document.cookie.substring( y, endOfCookie )); 
+       			 	} 
+        			
+        			x = document.cookie.indexOf( " ", x ) + 1; 
+        			
+        			if ( x == 0 ) 
+           				break; 
+   					} 
+    			
+    			return ""; 
+			} 
+			
+			/* 3. 오늘하루 그만보기 */
+			function closePopupNotToday(){	             
+				setCookie('notToday','Y', 1);
+				$("#rankingAlert").hide();
+			}
+			
+			/* 4. 띄우기 */
+			$(window).ready(function(){
+				if(getCookie("notToday")!="Y"){
+					$("#rankingAlert").show();
+				} 
+			});
+		</script>
+		<!-- 팝업창 쿠키 끝-->
+	
 	<!-- footer -->
 	<div id="footerWrap">
 	<div id="footer"

@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 <!-- ☆지현 추가 -->
 <%@ page import="product.model.vo.*" import="java.util.*" import="member.model.vo.*"%>
 <% 
-ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
+	ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
 %>
 <% Member m = (Member)session.getAttribute("user"); %>
 
@@ -32,6 +32,22 @@ ArrayList<Review> list =  (ArrayList<Review>)request.getAttribute("comment");
   <script>
    /* 해더 불러오는 제이쿼리 */
    $(document).ready(function() {
+	   
+	   var jbOffset = $('#fixed_layer').offset();
+		var jbOffset2 = $('#category_list').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() >= jbOffset.top) {
+				$('#fixed_layer').addClass('jbFixed');
+
+				if (matchMedia("screen and (max-width: 767px)").matches) {
+					$('#fixed_layer').removeClass('jbFixed');
+				}
+
+			} else {
+				$('#fixed_layer').removeClass('jbFixed');
+			}
+		});
+	   
     $("#footer").load("/views/footer/main-Footer.jsp");
 
     /* 웹 실행 시 카테고리 숨김 */
@@ -275,10 +291,9 @@ a{
                console.log("성공");
             }
             else if(data=="nologin"){   //비로그인 접근시 로그인페이지로 이동
-              
-             alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
-             location.href="/views/memberPage/loginPage.jsp";
-           }
+               alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
+               location.href="/views/memberPage/loginPage.jsp";
+            }
          },
          error:function(){
             console.log("실패");
@@ -289,26 +304,26 @@ a{
 
 </head>
 <body>
- <div class="container-fluid">
 
-  <!-- Header -->
-  <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+ <div class="container-fluid" style="padding:0px;">
 
-  <!-- 전체 컨텐츠 -->
-  <br><br>
+      <!-- Header -->
+      <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
-  <div id="total" class="contents">
-   <div class="col-md-8 mx-auto" style="padding: 0px;">
+      <!-- 전체 컨텐츠 -->
+      <br><br>
 
-    <!-- 상품정보 -->
-    <div id="title" class="col-md-12" style="padding: 0px;">
-     <div class="row">
-      <div class="col-md-6 col-sm-12"  id="title_img">
-       <center>
-        <img src="${productInfo.product1stPic}" id="1stImg" width=80%>
-      </center>
-    </div>
+      <div id="total" class="contents">
+         <div class="col-md-8 mx-auto" style="padding: 0px;">
 
+            <!-- 상품정보 -->
+            <div id="title" class="col-md-12" style="padding: 0px;">
+               <div class="row">
+                  <div class="col-md-6 col-sm-12"  id="title_img">
+                     <center>
+                        <img src="${productInfo.product1stPic}" id="1stImg" width=80%>
+                     </center>
+                  </div>
                   <div class="col-md-6 col-sm-12">
                      <br><br><br><br>
                      <!-- ☆ 지현 id 값 추가 -->

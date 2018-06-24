@@ -84,6 +84,17 @@ body {
 .page-item>.page-link{
    color: #512772 !important;
 }
+#noticeTable a{
+color:black;
+
+}
+.btn.btn-outline-primary{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+	
+}
 </style>
 
 
@@ -121,7 +132,7 @@ body {
 				<div class="col-md-10" id="test-div">
 
 					<!--공지사항 테이블 -->
-					<table class="table" id="noticeTable">
+					<table class="table" id="noticeTable" style="border-top: 2px solid #795b8f !important;">
 						<thead>
 							<tr>
 								<th scope="col">번호</th>

@@ -3,9 +3,11 @@ package qna.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import admin.model.vo.Answer;
 import common.JDBCTemplate;
 import qna.model.dao.QnaDao;
 import qna.model.vo.InquiryOrder;
+import qna.model.vo.Qna;
 import qna.model.vo.Question;
 
 public class QnaService {
@@ -86,6 +88,26 @@ public class QnaService {
 		}
 		return result;
 		
+		
+	}
+
+	public ArrayList<Answer> answerCheck(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Answer>ansList = new QnaDao().answerCheck(conn,memberNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return ansList;
+		
+		
+	}
+
+	public ArrayList<Qna> qnaList(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Qna> qnaList = new QnaDao().qnaList(conn,memberNo);
+		
+		JDBCTemplate.close(conn);
+		return qnaList;
 		
 	}
 

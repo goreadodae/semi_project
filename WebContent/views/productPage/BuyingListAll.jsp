@@ -62,20 +62,20 @@
 		   });
 		
 
-		var jbOffset = $('#start').offset();
+		   var jbOffset = $('#fixed_layer').offset();
+			var jbOffset2 = $('#category_list').offset();
+			$(window).scroll(function() {
+				if ($(document).scrollTop() >= jbOffset.top) {
+					$('#fixed_layer').addClass('jbFixed');
 
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
+					if (matchMedia("screen and (max-width: 767px)").matches) {
+						$('#fixed_layer').removeClass('jbFixed');
+					}
 
-				if (matchMedia("screen and (max-width: 767px)").matches) {
+				} else {
 					$('#fixed_layer').removeClass('jbFixed');
 				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
+			});
 
 	});
 </script>

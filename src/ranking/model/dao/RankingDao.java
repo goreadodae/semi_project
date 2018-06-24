@@ -339,7 +339,7 @@ public class RankingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Ranking> userIdList = new ArrayList<Ranking>();
-		
+		System.out.println("dao 에서 리스트" + userIdList);
 		Properties prop = new Properties();
 		String path = RankingDao.class.getResource("").getPath();
 		

@@ -417,6 +417,7 @@ window.onload = function() {
 						<div id="imgWrap">
 							<img class="card-img rounded"
 							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs1">
 						</div>
 						<div class="container">
@@ -434,7 +435,7 @@ window.onload = function() {
 				<br>
 				<br>
 
-
+ 
 
 				<!-- 2위 -->
 
@@ -461,6 +462,7 @@ window.onload = function() {
 						<div id="imgWrap">
 							<img class="card-img rounded"
 							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs2">
 						</div>
 						<div class="container">
@@ -505,6 +507,7 @@ window.onload = function() {
 						<div id="imgWrap">
 							<img class="card-img rounded"
 							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs3">
 						</div>
 						<div class="container">
@@ -549,6 +552,7 @@ window.onload = function() {
 						<div id="imgWrap">
 							<img class="card-img rounded"
 							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs4">
 						</div>
 						<div class="container">
@@ -593,6 +597,7 @@ window.onload = function() {
 						<div id="imgWrap">
 							<img class="card-img rounded"
 							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs5">
 						</div>
 						<div class="container">

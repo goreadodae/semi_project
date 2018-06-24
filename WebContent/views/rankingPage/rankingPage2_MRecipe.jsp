@@ -81,7 +81,7 @@ var monthClick = $("select[name=monthClickName]").val();
 
 /* 기존 선택하지 않은 상태  */
 $
-.ajax({
+.ajax({ 
  url : "/rankingMonthlyRecipe",
  data : {
   year : yearClick,

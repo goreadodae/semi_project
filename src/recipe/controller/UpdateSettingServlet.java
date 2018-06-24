@@ -1,4 +1,4 @@
-package member.controller;
+package recipe.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,24 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
 
-import main.model.vo.MainRecipe;
-import member.model.service.MemberService;
-import member.model.vo.Member;
+import recipe.model.service.RecipeService;
+import recipe.model.vo.Process;
+import recipe.model.vo.Recipe;
+import recipe.model.vo.RecipeInfo;
 
 /**
- * Servlet implementation class MemberRecipeServlet
+ * Servlet implementation class UpdateSettingServlet
  */
-@WebServlet(name = "MemberRecipe", urlPatterns = { "/memberRecipe" })
-public class MemberRecipeServlet extends HttpServlet {
+@WebServlet(name = "UpdateSetting", urlPatterns = { "/updateSetting" })
+public class UpdateSettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberRecipeServlet() {
+    public UpdateSettingServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +35,17 @@ public class MemberRecipeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
-		
-		ArrayList<Member> list = new MemberService().getMemberInfo();
-		
-		JSONArray resultArray = new JSONArray();
-
-		for (Member m : list) {
-
-			JSONObject result = new JSONObject();
-			
-			result.put("member_no", m.getMemberNo());
-			result.put("nickname", m.getNickName());
-			result.put("profile",m.getProfile());
-
-			resultArray.add(result);
-
+		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
+		Recipe recipe = new RecipeService().recipeSelect(recipeNo);
+		ArrayList <Process> processList = new RecipeService().processSelect(recipeNo);
+		RecipeInfo ri = new RecipeInfo();
+		ri.setProcessList(processList);
+		ri.setRecipe(recipe);
+		if(recipe!=null) {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(ri,response.getWriter());
 		}
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("utf-8");
-		response.getWriter().print(resultArray);
-		response.getWriter().close();
-		
-		
 	}
 
 	/**

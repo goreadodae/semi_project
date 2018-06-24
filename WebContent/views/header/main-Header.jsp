@@ -118,7 +118,7 @@
 		<div id="top-message" class="col-md-12" style="display:none;">
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
 				<!-- 로그인 주소 -->
-				<a href="/views/memberPage/membershipPage.html">
+				<a href="/views/memberPage/membershipPage.jsp">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >
@@ -292,7 +292,7 @@
 					<!-- 브랜드 로고  -->
 					<div class="col-md-8">
 						<a id="brand-logo-link" href="http://localhost/index.jsp">
-							<img src="/imgs/main-img/레시피.png" width="250" height="150" style="margin-top:30px;">
+							<img src="/imgs/main-img/레시피.png" width="230" height="150" style="margin-top:30px;">
 						</a>
 					</div>
 				</div>

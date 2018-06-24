@@ -130,12 +130,12 @@
 			<!-- 회사정보 끝 -->
 			
 			<!-- 브랜드 로고 -->
-			<div></div>
+			<img src="/imgs/main-img/레시피.png" width="250" height="150" style="position:absolute; top:-38px; right:110px;">
 			<!-- 브랜드 로고 끝 -->
-			
 		</div>
 		<!-- 회사정보 끝  -->
 	</div>
+	<br>
 	<!--고객센터 끝  -->
 </body>
 </html>

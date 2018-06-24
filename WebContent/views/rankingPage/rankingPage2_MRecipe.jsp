@@ -170,8 +170,24 @@ $("#monthClick").change(
 }
 </script>
 <style>
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(https://fonts.googleapis.com/css?family=Khula:700);
   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  
+  @font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
 </style>
 </head>
 <body>
@@ -219,7 +235,7 @@ $("#monthClick").change(
       <tbody>
        <tr>
         <th class='row'>
-         <h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
+         <h3 class="pull-left" id="rankNum1" style="margin-left: 20px; font-family: 'Godo', sans-serif;">1위</h3>
 <!--          <div class="float-right" id="viewDiv">
           <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
           id="viewIcon">
@@ -264,7 +280,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
+     <h3 class="pull-left" id="rankNum2" style="margin-left: 20px; font-family: 'Godo', sans-serif;">2위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -308,7 +324,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
+     <h3 class="pull-left" id="rankNum3" style="margin-left: 20px; font-family: 'Godo', sans-serif;">3위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -353,7 +369,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
+     <h3 class="pull-left" id="rankNum4" style="margin-left: 20px; font-family: 'Godo', sans-serif;">4위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -397,7 +413,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
+     <h3 class="pull-left" id="rankNum1" style="margin-left: 20px; font-family: 'Godo', sans-serif;">5위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">

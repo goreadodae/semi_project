@@ -249,7 +249,7 @@ error : function() {
 					<br>
 					<br>
 					<div class="media-image">
-						<a href="#"> <img class="media-object"
+						<a href="javascript:void(0)"> <img class="media-object"
 							src="/imgs/ranking_img/monthChef350x250.png" alt="이달의 회원" id="monthlyUserImage" 
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>

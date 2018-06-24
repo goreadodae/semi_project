@@ -303,10 +303,14 @@ $("#monthClick").change(function() {
 
      for (var i = 0; i < data.length; i++) {
     //  console.log("선택한 달 : "+ i + "번째" + data[i]);
-
+//☆이미지 없을 때 대체 이미지 질문!!
       $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
+      if(data[i].profile !=null){
       $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
+    }else{
+      $('#cardImgs'+(i+1)).attr('stc','/imgs/ranking_img/monthChefO300x300.png');
+    }
       $('#rankingMonthTitle' + (i + 1)).html(data[i].recipeTitle);
       $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
       $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
@@ -326,10 +330,28 @@ $("#monthClick").change(function() {
 
 }
 </script>
+
 <style>
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(https://fonts.googleapis.com/css?family=Khula:700);
   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  
+  @font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
 </style>
+
 </head>
 <body>
 <!-- <style>
@@ -378,7 +400,7 @@ $("#monthClick").change(function() {
 
     <c:forEach var="i" begin="1" end="2"  step="1" varStatus="status">
     <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count}" role="button" aria-expanded="false" aria-controls="userRanking${status.count}">
-      <div class="pull-left"><h3 id="rankNum${status.count}">${status.count}위</h3></div>
+      <div class="pull-left"><h3 id="rankNum${status.count}" style="font-family: 'Godo', sans-serif;">${status.count}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count}">
         <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO300x300.png" alt="" style="width: 300px; height: 300px;" >
       </a>
@@ -391,7 +413,7 @@ $("#monthClick").change(function() {
 <br><br><br>
     <c:forEach var="i" begin="3" end="5"  step="1" varStatus="status">
     <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count+2}" role="button" aria-expanded="false" aria-controls="userRanking${status.count+2}">
-      <div class="pull-left"><h3 id="rankNum${status.count+2}">${status.count+2}위</h3></div>
+      <div class="pull-left"><h3 id="rankNum${status.count+2}" style="font-family: 'Godo', sans-serif;">${status.count+2}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count+2}">
         <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO200x200.png" alt="" style="width: 200px; height: 200px;" >
       </a>

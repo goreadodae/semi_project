@@ -514,6 +514,8 @@
 		 
 		 var result  = videoAddr.substr(-11, 11);
 		 
+		 alert(result);
+		 
 		var videoAddr = "http://img.youtube.com/vi/"+result+"/0.jpg";
 		 
 		$('#videoImg').attr('src',videoAddr);
@@ -615,6 +617,8 @@
 	  
 	//버튼 마우스올렸을때 색상 변화
 
+	$(document).ready(function() { 
+	
       $('.mybutton1').mouseover(function(){
          $(this).addClass('mybutton3');
       });
@@ -634,7 +638,7 @@
       });
       
       
-      
+	});  
       
 
 	 
@@ -725,8 +729,8 @@ body{font-family:IropkeBatang;}
 .mybutton3{
    background-color: #522075;
    color : #F8FAFF;
-   height : 50px;
-   width : 200px;
+   height : 35px;
+   width : 150px;
    border : 0px;
    cursor : pointer;
 }

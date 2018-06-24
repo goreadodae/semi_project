@@ -163,10 +163,10 @@ public class AdminDao {
 	public ArrayList<AdminProduct> getProductList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "select recipe_title, product_name, member.NICKNAME, product_price, sell_quantity, product_price*sell_quantity as total_sales, product_no, recipe_no\r\n"
-				+ "from product join recipe using (recipe_no)\r\n" + "join member using(member_no)\r\n"
-				+ "left join (select product_no, sum(buying_quantity) as sell_quantity\r\n" + "from buying\r\n"
-				+ "group by product_no) using (product_no)";
+		String query ="select recipe_title, product_name, member_no, member.NICKNAME, product_price, sell_quantity, product_price*sell_quantity as total_sales, product_no, recipe_no, send_money\n" + 
+				"from product join recipe using (recipe_no)join member using(member_no)\n" + 
+				"left join (select product_no, sum(buying_quantity) as sell_quantity from buying\n" + 
+				"group by product_no) using (product_no)";
 		ArrayList<AdminProduct> list = new ArrayList<AdminProduct>();
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -181,8 +181,9 @@ public class AdminDao {
 				ap.setTotalSales(rset.getInt("total_sales"));
 				ap.setProductNo(rset.getInt("product_no"));
 				ap.setRecipeNo(rset.getInt("recipe_no"));
+				ap.setSendMoney(rset.getInt("send_money"));
+				ap.setMemberNo(rset.getInt("member_no"));
 				list.add(ap);
-
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -366,6 +367,42 @@ public class AdminDao {
 		}
 		
 		
+		return result;
+	}
+
+	public int sendMoneyProduct(Connection conn, int productNo, int totalSales) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = "update product set send_money=send_money+? where product_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, totalSales);
+			pstmt.setInt(2, productNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int sendMoneyMember(Connection conn, int memberNo, int totalSales) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = "update member set profits=profits+? where member_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, totalSales);
+			pstmt.setInt(2, memberNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
 		return result;
 	}
 

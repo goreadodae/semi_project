@@ -186,7 +186,9 @@ public class RecipeDao {
 				order="posted_date";
 			}
 			
-			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic,member.NICKNAME from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+")  join member using(member_no) where num between ? and ?";
+			query = "select recipe_no,recipe_title,recipe_intro,recipe_views,posted_date,recipe_pic,member.NICKNAME "
+					+ "from (select recipe.*, row_number() over(order by "+order+" desc) as num from recipe "+where+")  "
+							+ "join member using(member_no) where num between ? and ?";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);

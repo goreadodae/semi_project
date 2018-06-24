@@ -291,10 +291,9 @@ a{
                console.log("성공");
             }
             else if(data=="nologin"){   //비로그인 접근시 로그인페이지로 이동
-              
-             alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
-             location.href="/views/memberPage/loginPage.jsp";
-           }
+               alert("장바구니를 이용하려면 로그인을 하셔야합니다.\n로그인을 먼저 해주세요!");
+               location.href="/views/memberPage/loginPage.jsp";
+            }
          },
          error:function(){
             console.log("실패");
@@ -305,26 +304,26 @@ a{
 
 </head>
 <body>
+
  <div class="container-fluid" style="padding:0px;">
 
-  <!-- Header -->
-  <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
+      <!-- Header -->
+      <jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 
-  <!-- 전체 컨텐츠 -->
-  <br><br>
+      <!-- 전체 컨텐츠 -->
+      <br><br>
 
-  <div id="total" class="contents">
-   <div class="col-md-8 mx-auto" style="padding: 0px;">
+      <div id="total" class="contents">
+         <div class="col-md-8 mx-auto" style="padding: 0px;">
 
-    <!-- 상품정보 -->
-    <div id="title" class="col-md-12" style="padding: 0px;">
-     <div class="row">
-      <div class="col-md-6 col-sm-12"  id="title_img">
-       <center>
-        <img src="${productInfo.product1stPic}" id="1stImg" width=80%>
-      </center>
-    </div>
-
+            <!-- 상품정보 -->
+            <div id="title" class="col-md-12" style="padding: 0px;">
+               <div class="row">
+                  <div class="col-md-6 col-sm-12"  id="title_img">
+                     <center>
+                        <img src="${productInfo.product1stPic}" id="1stImg" width=80%>
+                     </center>
+                  </div>
                   <div class="col-md-6 col-sm-12">
                      <br><br><br><br>
                      <!-- ☆ 지현 id 값 추가 -->

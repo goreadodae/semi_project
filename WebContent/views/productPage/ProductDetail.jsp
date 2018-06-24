@@ -910,7 +910,7 @@ a{
 
                   return true;
                 }else{
-                  alert("만족도를 체크하고, 후기는 10자 이장 작성해 주시길 바랍니다.");
+                  alert("만족도를 체크하고, 후기는 10자 이상 작성해 주시길 바랍니다.");
                   return false;
                 }
 
@@ -1024,7 +1024,7 @@ window.onload=function(){
 
                   return true;
                 }else{
-                  alert("만족도를 체크하고, 후기는 10자 이장 작성해 주시길 바랍니다.");
+                  alert("만족도를 체크하고, 후기는 10자 이상 작성해 주시길 바랍니다.");
                   return false;
                 }
 

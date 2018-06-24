@@ -44,7 +44,6 @@ public class MemberDao {
 
 			if (rset.next())
 				result = true;
-			System.out.println(result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +62,6 @@ public class MemberDao {
 
 		final String id = "dna1234a@gmail.com";
 		final String pwd = "dansiback0";
-		System.out.println(id);
 		Properties p = new Properties();
 		p.put("mail.smtp.user", "dna1234a@gmail.com");
 		p.put("mail.smtp.host", "smtp.gmail.com");
@@ -153,8 +151,8 @@ public class MemberDao {
 			pstmt.setString(6, m.getGender());
 			pstmt.setString(7, m.getEmail());
 			pstmt.setString(8, m.getAddress());
-			pstmt.setString(9, "");
-			pstmt.setString(10, "");
+			pstmt.setString(9, m.getProfile());
+			pstmt.setString(10, m.getNickName());
 
 			result = pstmt.executeUpdate();
 			
@@ -186,7 +184,7 @@ public class MemberDao {
 		
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD'), phone, email, address, profile, nickname from member where member_id = ?";
+			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as birth_date, phone, email, address, profile, nickname from member where member_id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, m.getMemberId());
@@ -333,8 +331,6 @@ public class MemberDao {
 
 			result = pstmt.executeUpdate();
 
-			System.out.println(result);
-
 			if (result > 0) {
 				conn.commit();
 
@@ -450,7 +446,6 @@ public class MemberDao {
 				b.setBuying_send_yn(rset.getString("buying_send_yn"));
 
 				product.add(b);
-				System.out.println(b.getProduct_name());
 			}
 
 		} catch (IOException e) {
@@ -653,7 +648,6 @@ public class MemberDao {
 
 			result = new MemberDao().temporaryPwd(conn, uuid, memberNo);
 
-			System.out.println(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -684,7 +678,6 @@ public class MemberDao {
 
 			result = pstmt.executeUpdate();
 
-			System.out.println(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

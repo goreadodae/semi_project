@@ -48,7 +48,6 @@ public class InsertMemberServlet extends HttpServlet {
 		setBirth.insert(5, "/");
 		
 		m.setMemberId(request.getParameter("userId"));
-		m.setNickName("유저");
 		m.setMemberPwd(request.getParameter("userPwd"));
 		m.setMemberName(request.getParameter("userName"));
 		m.setBirthDate(setBirth.toString());
@@ -56,6 +55,8 @@ public class InsertMemberServlet extends HttpServlet {
 		m.setAddress(address);
 		m.setGender(request.getParameter("gender"));
 		m.setEmail(request.getParameter("email"));
+		m.setNickName(request.getParameter("userNickName"));
+		m.setProfile(request.getParameter("userProfile"));
 		
 		Member user = new MemberService().insertMember(m);
 		

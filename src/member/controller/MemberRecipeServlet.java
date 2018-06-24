@@ -40,7 +40,6 @@ public class MemberRecipeServlet extends HttpServlet {
 		
 		ArrayList<Member> list = new MemberService().getMemberInfo();
 		
-		System.out.println(list);
 		JSONArray resultArray = new JSONArray();
 
 		for (Member m : list) {

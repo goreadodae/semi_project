@@ -118,7 +118,7 @@
 		<div id="top-message" class="col-md-12" style="display:none;">
 			<div id="top-message-text" class="col-md-6 col-sm-6 col-4">
 				<!-- 로그인 주소 -->
-				<a href="/views/memberPage/membershipPage.html">
+				<a href="/views/memberPage/membershipPage.jsp">
 					<div>
 						<p id="top-message-notice">
 							지금 가입하시면 이벤트 혜택이 2배 >
@@ -282,18 +282,17 @@
 		</div>
 		<!-- 최상단 끝 -->
 		<!-- 해더 브랜드 이미지-->
-		<div class="col-8 mx-auto">
+		<div class="col-8 mx-auto" style="height:180px;">
 			<div class="text-center" style="background-color: white;">
 				<div class="row">
 					<!-- 애니메이션  -->
-					<div class="col-md-2" style="padding: 0px;">
-						<img id="header-ani" src="https://res.kurly.com/pc/img/1805/delivery_180524_2.gif">
+					<div class="col-md-2" style="padding: 0px; bottom:0;">
+						<img id="header-ani" src="https://res.kurly.com/pc/img/1805/delivery_180524_2.gif" style="padding-top:60px;">
 					</div>
-					
 					<!-- 브랜드 로고  -->
 					<div class="col-md-8">
 						<a id="brand-logo-link" href="http://localhost/index.jsp">
-							<h1 id="brandLogo">수상한레시피</h1>
+							<img src="/imgs/main-img/레시피.png" width="230" height="150" style="margin-top:30px;">
 						</a>
 					</div>
 				</div>
@@ -330,24 +329,24 @@
 					</div>
 					<%if(m!=null){ %>
 					<div class="col-md-2" style="padding:0px; position:absolute; right:0px; bottom:70px; background-color:#f7f5f8;">
-						<div class="col-md-12" style="height:80px; border:1px solid #dadada;">
+						<div class="col-md-12" style="height:100px; border:1px solid #dadada;">
 							<div class="row">
 								<div class="col-md-4" style="height:44px; padding:5px;">
-									<img src="<%=m.getProfile()%>" width="90" height="70">
+									<img src="<%=m.getProfile()%>" width="90" height="90">
 								</div>
-								<div class="col-md-8" style="height:50px; padding:0px; padding-left:20px;">
+								<div class="col-md-8" style="height:70px; padding:0px; padding-left:20px;">
 									<div style="display:inline-block; width: 100%;">
 										<p style="font-size:13px; margin:0px; padding-left:10px; text-align:left;">환영합니다.</p>
 									</div>
-									<div style="display:inline-block; width:100%; float:left; height:25px;">
-										<p style="font-weight:800; width:100%; font-size:15px; margin:0px; padding-left:10px; padding-top:2px; text-align:left; float:left;"><%=m.getNickName()%>님</p>
+									<div style="display:inline-block; width:100%; float:left; height:45px;">
+										<p style="font-weight:800; width:100%; font-size:15px; margin:0px; padding-left:10px; padding-top:12px; text-align:left; float:left;"><%=m.getNickName()%>님</p>
 									</div>
 									<div style="display:block; width:50%; height:25px;">
-										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; left:30px; top:40px;
+										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; left:30px; top:58px;
 										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
 									</div>
 									<div style="display:block; width:50%; height:25px;">
-										<a class="nav-link" href="/basketSelect" style="position:absolute; left:57px; top:32px;
+										<a class="nav-link" href="/basketSelect" style="position:absolute; left:57px; top:50px;
 										   text-decoration:underline; color:#878787; font-size:13px;">장바구니</a>
 									</div>
 								</div>

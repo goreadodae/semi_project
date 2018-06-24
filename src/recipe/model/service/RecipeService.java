@@ -147,7 +147,7 @@ public class RecipeService {
 		
 		
 		for(int i=0; i<stepValuelist.size();i++) {
-			
+			pr.setProcessNo(stepValuelist.get(i).getProcessNo());
 			pr.setProcessOrder(stepValuelist.get(i).getProcessOrder());
 			pr.setProcessExplain(stepValuelist.get(i).getProcessExplain());
 			pr.setProcessPic(stepValuelist.get(i).getProcessPic());
@@ -170,7 +170,7 @@ public class RecipeService {
 		}
 		JDBCTemplate.close(conn);
 		
-		return result;
+		return insertRecipeResult*insertProcessResult;
 	}
 	
 }

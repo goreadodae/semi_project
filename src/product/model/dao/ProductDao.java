@@ -250,10 +250,6 @@ public class ProductDao {
 		return bList;
 	}
 
-
-
-
-
 	//장바구니 추가
 	public int insertBasket(Connection conn, int basketQuantity,int memberNo,int productNo) {
 		PreparedStatement pstmt = null;
@@ -513,7 +509,7 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
-
+ 
 			if(rset.next()) {
 				ordercall = new Ordercall();
 				ordercall.setOrderNo(rset.getInt("order_no"));

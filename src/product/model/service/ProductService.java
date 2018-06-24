@@ -12,7 +12,7 @@ import product.model.vo.Product;
 import product.model.vo.Review;
 
 public class ProductService {
-   //¸ğµç »óÇ° Á¤º¸
+   	// ëª¨ë“  ìƒí’ˆ ì •ë³´
    public ArrayList<Product> getAllProduct(){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Product> list = new ProductDao().getAllProduct(conn);
@@ -20,7 +20,7 @@ public class ProductService {
       return list;
    }
 
-   //»óÇ° »ó¼¼ Á¤º¸
+  // ìƒí’ˆ ìƒì„¸ ì •ë³´
    public Product getProduct(int productNo) {
       Connection conn = JDBCTemplate.getConnection();
       Product productInfo = new ProductDao().getProduct(conn,productNo);
@@ -28,7 +28,7 @@ public class ProductService {
       return productInfo;
    } 
 
-   //ÀÌ´ŞÀÇ ·¹½ÃÇÇ Á¤º¸
+   // ì´ë‹¬ì˜ ë ˆì‹œí”¼ ì •ë³´
    public ArrayList<Product> getThisMonthProduct(){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Product> list = new ProductDao().getThisMonthProduct(conn);
@@ -36,7 +36,7 @@ public class ProductService {
       return list;
    }
 
-   //·Î±×ÀÎ°èÁ¤ÀÇ Àå¹Ù±¸´Ï Á¤º¸
+  // ë¡œê·¸ì¸ê³„ì •ì˜ ì¥ë°”êµ¬ë‹ˆ ì •ë³´
    public ArrayList<Basket> getMyBasket(int memberNo){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Basket> list = new ProductDao().getMyBasket(conn, memberNo);
@@ -45,7 +45,7 @@ public class ProductService {
    }
 
 
-   //¹Ù·Î ±¸¸ÅÇÏ±â ¹öÆ°À» ´©¸¦½ÃÀÇ »óÇ° Á¤º¸(Á¦ÀÏ ¸¶Áö¸·¿¡ ´ã±ä Àå¹Ù±¸´Ï Á¤º¸ °¡Á®¿È)
+  // ë°”ë¡œ êµ¬ë§¤í•˜ê¸° ë²„íŠ¼ì„ ëˆ„ë¥¼ì‹œì˜ ìƒí’ˆ ì •ë³´(ì œì¼ ë§ˆì§€ë§‰ì— ë‹´ê¸´ ì¥ë°”êµ¬ë‹ˆ ì •ë³´ ê°€ì ¸ì˜´)
    public ArrayList<Basket> getLastBasket(int memberNo){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Basket> list = new ProductDao().getLastBasket(conn, memberNo);
@@ -54,7 +54,7 @@ public class ProductService {
    }
 
 
-   //Àå¹Ù±¸´Ï »èÁ¦
+   // ì¥ë°”êµ¬ë‹ˆ ì‚­ì œ
    public int deleteBasket(int basketNo) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().deleteBasket(conn,basketNo);
@@ -67,7 +67,7 @@ public class ProductService {
    }
 
 
-   //Àå¹Ù±¸´Ï Ãß°¡
+   // ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€
    public int insertBasket(int basketQuantity,int memberNo,int productNo) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().insertBasket(conn, basketQuantity, memberNo, productNo);
@@ -79,7 +79,7 @@ public class ProductService {
       return result;
    }
 
-   //Àå¹Ù±¸´Ï ¼ö·® º¯°æ
+   // ì¥ë°”êµ¬ë‹ˆ ìˆ˜ëŸ‰ ë³€ê²½
    public int updateBasket(int basketQuantity, int basketNo) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().updateBasket(conn, basketQuantity, basketNo);
@@ -91,7 +91,7 @@ public class ProductService {
       return result;
    }
 
-   //1.±¸¸Å³»¿ª Å×ÀÌºí Ãß°¡
+   // 1.êµ¬ë§¤ë‚´ì—­ í…Œì´ë¸” ì¶”ê°€
    public int insertBuying(int basketNo, int orderNo) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().insertBuying(conn, basketNo, orderNo);
@@ -104,7 +104,7 @@ public class ProductService {
    }
 
 
-   //3.»óÇ°ÀÇ ³²Àº ¼ö·® °¨¼Ò
+   // 3.ìƒí’ˆì˜ ë‚¨ì€ ìˆ˜ëŸ‰ ê°ì†Œ
    public int updateProduct(int productNo, int basketQuantity) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().updateProduct(conn, productNo, basketQuantity);
@@ -116,7 +116,7 @@ public class ProductService {
       return result;
    }
 
-   //4.¼ö·®ÃÊ°úÀÎ Àå¹Ù±¸´Ï ¸ğµÎ »èÁ¦
+// 4.ìˆ˜ëŸ‰ì´ˆê³¼ì¸ ì¥ë°”êµ¬ë‹ˆ ëª¨ë‘ ì‚­ì œ
    public int deleteBasketOver(int productNo) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().deleteBasketOver(conn, productNo);
@@ -128,7 +128,7 @@ public class ProductService {
       return result;
    }
 
-   //0.ÁÖ¹®³»¿ª Ãß°¡
+   // 0.ì£¼ë¬¸ë‚´ì—­ ì¶”ê°€
    public int insertOrdercall(Ordercall oc) {
       Connection conn = JDBCTemplate.getConnection();
       int result = new ProductDao().insertOrdercall(conn, oc);
@@ -140,7 +140,7 @@ public class ProductService {
       return result;
    }
 
-   //0.5 ÁÖ¹®³»¿ªÀÇ ÁÖ¹®¹øÈ£ ¹Ş¾Æ¿À±â
+// 0.5 ì£¼ë¬¸ë‚´ì—­ì˜ ì£¼ë¬¸ë²ˆí˜¸ ë°›ì•„ì˜¤ê¸°
    public Ordercall getOrderNo(int memberNo) {
       Connection conn = JDBCTemplate.getConnection();
       Ordercall ordercall = new ProductDao().getOrderNo(conn, memberNo);
@@ -149,7 +149,7 @@ public class ProductService {
    }
 
 
-   //¹æ±İ ±¸¸ÅÇÑ ³»¿ª Á¤º¸ º¸±â
+ // ë°©ê¸ˆ êµ¬ë§¤í•œ ë‚´ì—­ ì •ë³´ ë³´ê¸°
    public ArrayList<Buying> selectBuyingRecent(int memberNo, int rowCount){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Buying> list = new ProductDao().selectBuyingRecent(conn, memberNo, rowCount);
@@ -157,7 +157,7 @@ public class ProductService {
       return list;
    }
 
-   //·Î±×ÀÎ °èÁ¤ÀÇ ÀüÃ¼ ±¸¸Å³»¿ª º¸±â
+   // ë¡œê·¸ì¸ ê³„ì •ì˜ ì „ì²´ êµ¬ë§¤ë‚´ì—­ ë³´ê¸°
    public ArrayList<Buying> selectBuyingAll(int memberNo){
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Buying> list = new ProductDao().selectBuyingAll(conn, memberNo);
@@ -165,7 +165,7 @@ public class ProductService {
       return list;
    }
    
-   //ÀüÃ¼ ÁÖ¹®³»¿ª º¸±â
+   // ì „ì²´ ì£¼ë¬¸ë‚´ì—­ ë³´ê¸°
    public ArrayList<Ordercall> selectOrdercallAll(int memberNo) {
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Ordercall> list = new ProductDao().selectOrdercallAll(conn, memberNo);
@@ -173,7 +173,7 @@ public class ProductService {
       return list;
    }
 
-   //¡Ù ÁöÇö Ãß°¡ --> ´ñ±Û
+  // â˜† ì§€í˜„ ì¶”ê°€ --> ëŒ“ê¸€
    public ArrayList<Review> reviewAll(int productNo) {
       Connection conn = JDBCTemplate.getConnection();
       ArrayList<Review> list = new ProductDao().noticeComment(conn,productNo);
@@ -183,5 +183,4 @@ public class ProductService {
       return list;
    }
 
-   
 }

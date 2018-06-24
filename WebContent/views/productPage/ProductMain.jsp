@@ -202,7 +202,29 @@ font-family: 'Nanum Myeongjo', serif;
 											<img class="col-md-12 col-sm-12" style="padding: 0px; opacity:0.5;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
 										</c:when>
 										<c:otherwise>
+											<!-- 라벨 -->
+     										<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
+												<h5 style="color:white; line-height:80px; text-align:center;">계절메뉴</h5>
+											</div>
 											<img class="col-md-12 col-sm-12" style="padding: 0px;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+											<!-- 라벨 -->
+											<c:choose>
+												<c:when test="${p.productQuantity<20}">
+     												<div class="position-absolute" style="top:0px; background-color:#512772; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">매진임박</h5>
+													</div>
+												</c:when>
+												<c:when test="${p.season=='SUMMER'}">
+													<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">계절메뉴</h5>
+													</div>
+												</c:when>
+												<c:when test="${p.productPrice<8000}">
+													<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">초특가</h5>
+													</div>
+												</c:when>
+											</c:choose>
 										</c:otherwise>
 										</c:choose>
 									</div>
@@ -268,10 +290,29 @@ font-family: 'Nanum Myeongjo', serif;
 									<div class="container">
 										<c:choose>
 										<c:when test="${p.productQuantity<1}">
+											<!-- 라벨 -->
 											<img class="col-md-12 col-sm-12" style="padding: 0px; opacity:0.5;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
 										</c:when>
 										<c:otherwise>
 											<img class="col-md-12 col-sm-12" style="padding: 0px;" src="${p.product1stPic}" alt="제품이미지" class="img-thumbnail">
+											<!-- 라벨 -->
+											<c:choose>
+												<c:when test="${p.productQuantity<20}">
+     												<div class="position-absolute" style="top:0px; background-color:#512772; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">매진임박</h5>
+													</div>
+												</c:when>
+												<c:when test="${p.season=='SUMMER'}">
+													<div class="position-absolute" style="top:0px; background-color:#ffcd16; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">계절메뉴</h5>
+													</div>
+												</c:when>
+												<c:when test="${p.productPrice<8000}">
+													<div class="position-absolute" style="top:0px; background-color:#856292; width:80px; height:80px;">
+														<h5 style="color:white; line-height:80px; text-align:center;">초특가</h5>
+													</div>
+												</c:when>
+											</c:choose>
 										</c:otherwise>
 									</c:choose>
 										

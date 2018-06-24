@@ -42,6 +42,7 @@ public class ProductDao {
 				pro.setProductSpecPic(rset.getString("product_spec_pic"));
 				pro.setProductIntro(rset.getString("product_intro"));
 				pro.setProductInfo(rset.getString("product_info"));
+				pro.setSeason(rset.getString("season"));
 				
 				list.add(pro);
 			}
@@ -90,6 +91,7 @@ public class ProductDao {
 				productInfo.setProductIntro(rset.getString("product_intro"));
 				productInfo.setProductInfo(rset.getString("product_info"));
 				productInfo.setRecipeNo(rset.getInt("recipe_no"));
+				
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -133,6 +135,8 @@ public class ProductDao {
 				pro.setProductSpecPic(rset.getString("product_spec_pic"));
 				pro.setProductIntro(rset.getString("product_intro"));
 				pro.setProductInfo(rset.getString("product_info"));
+				pro.setSeason(rset.getString("season"));
+				
 				list.add(pro);
 			}
 		} catch (FileNotFoundException e) {
@@ -353,7 +357,7 @@ public class ProductDao {
 		return result;
 	}
 
-	//구매내역 테이블 추가
+	//1.구매내역 테이블 추가
 	public int insertBuying(Connection conn, int basketNo, int orderNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -389,7 +393,7 @@ public class ProductDao {
 		return result;
 	}
 
-	//상품의 남은 수량 감소
+	//3.상품의 남은 수량 감소
 	public int updateProduct(Connection conn, int productNo, int basketQuantity) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -424,7 +428,7 @@ public class ProductDao {
 		return result;
 	}
 
-	//수량초과인 장바구니 모두 삭제
+	//4.수량초과인 장바구니 모두 삭제
 	public int deleteBasketOver(Connection conn, int productNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -582,7 +586,7 @@ public class ProductDao {
 	}
 
 	
-	//로그인 계정의 전체 주문 내역 보기
+	//전체 주문내역 보기
 	public ArrayList<Ordercall> selectOrdercallAll(Connection conn, int memberNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -679,7 +683,7 @@ public class ProductDao {
 	}
 
 
-	//☆ 지현 추가 --> 댓글 나오기
+	//☆ 지현 추가 --> 댓글
 		public ArrayList<Review> noticeComment(Connection conn, int productNo) {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;

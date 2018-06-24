@@ -65,6 +65,16 @@ hr {
 border-collapse:collapse;
 
 }
+#historyTbl a{
+	color:black;
+}
+.btn.btn-outline-primary{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+	
+}
 </style>
 
 </head>

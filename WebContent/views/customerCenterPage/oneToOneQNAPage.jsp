@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
-	response.setHeader("cache-control","no-store");
-	response.setHeader("expires","0");
-	response.setHeader("pragma","no-cache");
+	response.setHeader("cache-control", "no-store");
+	response.setHeader("expires", "0");
+	response.setHeader("pragma", "no-cache");
 %>
 <%
 	pageContext.setAttribute("newLineChar", "\n");
@@ -53,6 +54,32 @@
 		 }
 	 }
 	 </script>
+<script>
+
+var flag=false;
+function showAns(id)
+{
+	
+	console.log(id);
+	$('#'+id+"_hidingAnswer").toggle('display');
+    if(flag==true)
+    {
+    	flag = false;
+    }
+    else{
+
+    	flag = true;
+    }
+	
+	}
+
+
+	
+
+	 
+	 
+ </script>
+
 
 
 <style>
@@ -70,13 +97,27 @@
 .list-arrow {
 	float: right;
 }
+
 #hidingContens {
 	display: none;
 	text-align: center;
 }
-update
-{
-	vertical-align:middle;
+
+update {
+	vertical-align: middle;
+}
+.btn.btn-outline-success{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+	
+}.btn.btn-success{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+
 }
 
 </style>
@@ -118,67 +159,115 @@ update
 						flush="false" />
 				</div>
 
+
+
 				<div class="col-md-10">
-				
+
 					<table class='table'>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
+						<tr style="text-align: center">
+							<th style="width: 10%">번호</th>
+							<th style="width: 40%">제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
 						</tr>
-						<c:forEach items="${requestScope.qList}" var="qList" varStatus="i">
-						
-							<tr>
-								<td>${i.count}</td>
-								
-								<td id="${i.count}" onclick="showQue(${i.count})" style="cursor:pointer;">
-								${qList.queTitle}
-								</td>
-								<td>${qList.memberId}</td>
-								<td>${qList.queTime}</td>
-							</tr>
-							<tr id="${i.count}_hidingContents" style="display:none">
-								<td colspan="4">
-								<div class="row">
-									<div class="col-md-8" style="padding: 30px">
-										${fn:replace(qList.queContents,newLineChar,"<br>")}
-										</div>
 
-										<div class="col-md-4" style="padding-top:20px;" >
-										<div class="row" style="padding:0">
-											<form action="/views/customerCenterPage/updateQna.jsp" method="post">
-											
-											<div class="col-md-6">
-											<input type="submit" class="btn btn-outline-success" value="수정"/>&nbsp;&nbsp;
+
+						<c:forEach items="${requestScope.qnaList}" var="qnaList"
+							varStatus="i">
+
+
+
+
+							<tr>
+								<td style="text-align: center">${i.count}</td>
+
+
+								<td id="${i.count}" onclick="showQue(${i.count})"
+									style="cursor: pointer; padding-left: 20px">
+
+									${qnaList.queTitle} <c:choose>
+										<c:when test="${qnaList.responseYn eq 'n'}">
+											<span style="color: #007FC8">[0]</span>
+										</c:when>
+										<c:otherwise>
+
+											<span style="color: #007FC8">[1]</span>
+										</c:otherwise>
+									</c:choose>
+
+
+
+
+
+
+
+								</td>
+								<td style="text-align: center">${qnaList.memberId}</td>
+								<td style="text-align: center"><fmt:formatDate
+										value="${qnaList.queTime}" pattern="yyyy-MM-dd" /></td>
+							</tr>
+
+
+							<tr id="${i.count}_hidingContents" style="display: none">
+								<td colspan="4">
+									<div class="row">
+										<div class="col-md-8" style="padding: 30px">
+											${fn:replace(qnaList.queContents,newLineChar,"<br>")}</div>
+
+										<div class="col-md-4" style="padding-top: 20px;">
+											<div class="row" style="padding: 0">
+												<form action="/views/customerCenterPage/updateQna.jsp"
+													method="post">
+
+													<div class="col-md-6">
+														<input type="submit" class="btn btn-outline-success"
+															value="수정" />&nbsp;&nbsp;
+													</div>
+
+													<input type="hidden" name="queTitle"
+														value="${qnaList.queTitle}" /> <input type="hidden"
+														name="queContents" value="${qnaList.queContents}" /> <input
+														type="hidden" name="buyingNo" value="${qnaList.buyingNo}" />
+													<input type="hidden" name="queNo" value="${qnaList.queNo}" />
+												</form>
+												<form action="/deleteQuestion" method="post">
+													<input type="hidden" style="display: inline" name="queNo"
+														value="${qnaList.queNo}" />
+
+													<div class="col-md-6">
+														<button type="submit" style="display: inline"
+															class="btn btn-outline-success"
+															onclick="return deleteCheck();">삭제</button>
+													</div>
+												</form>
 											</div>
-											
-											<input type="hidden" name="queTitle" value="${qList.queTitle}"/>
-											<input type="hidden" name="queContents" value="${qList.queContents}"/>
-											<input type="hidden" name="buyingNo" value="${qList.buyingNo}"/>
-											<input type="hidden" name="queNo" value="${qList.queNo}"/>
-										</form>
-										<form action="/deleteQuestion" method="post">
-											<input type="hidden" style="display:inline" name="queNo" value="${qList.queNo}"/>
-											
-											<div class="col-md-6">
-											<button type="submit" style="display:inline" class="btn btn-outline-success" onclick="return deleteCheck();">삭제</button>
-											</div>
-										</form>
 										</div>
-											</div>
-										</div>
-								
-										
+									</div>
 								</td>
 							</tr>
-						
+							<c:if test="${qnaList.ansContents ne null}">
+								<tr style="padding: 10px">
+
+									<td id="${qnaList.ansNo}" onclick="showAns(${qnaList.ansNo})"
+										colspan="2" style="padding-left: 100px"><img
+										style="height: 10px" src="/imgs/manager-img/enter.png" /><span><span
+											style="color: #007FC8">답변 :</span> 안녕하세요 고객님 수상한레시피입니다.</span></td>
+									<td style="text-align: center">stangeRecipe</td>
+									<td style="text-align: center"><fmt:formatDate
+											value="${qnaList.ansTime}" pattern="yyyy-MM-dd" /></td>
+
+								</tr>
+								<tr>
+									<td colspan="4" id="${qnaList.ansNo}_hidingAnswer"
+										style="display: none">${qnaList.ansContents}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 
 					</table>
-				
+
 					<!-- 사용자가 문의 한 내역이 없을때  -->
-					<c:if test="${empty requestScope.qList}">
+					<c:if test="${empty requestScope.qnaList}">
 						<div class="cols-md-10" style="height: 300px">
 
 							<div id="noHasList">
@@ -190,10 +279,12 @@ update
 					</c:if>
 					<div class="offset-md-11 cols-md-1">
 
-
+						<br> <br> <br> <br>
 						<button type="button" class="btn btn-success"
 							onclick="location.href='/views/customerCenterPage/writeQNAPage.jsp'">작성하기</button>
 					</div>
+					<br> <br> <br> <br> <br> <br> <br>
+					<br> <br>
 				</div>
 			</div>
 		</div>

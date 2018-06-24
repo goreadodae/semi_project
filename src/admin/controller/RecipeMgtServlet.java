@@ -40,7 +40,7 @@ public class RecipeMgtServlet extends HttpServlet {
 		}
 		AdminRecipePageData arpd = new AdminService().recipeAll(page);
 		request.setAttribute("pageData", arpd);
-		RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/recipeMgtPage.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/recipeMgtPage2.jsp");
 		view.forward(request, response);
 	}
 

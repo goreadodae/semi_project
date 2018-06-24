@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import admin.model.service.MemberService;
 import admin.model.vo.Member;
+import admin.model.vo.MemberPageData;
 
 /**
  * Servlet implementation class MemberMgtServlet
@@ -34,21 +35,26 @@ public class MemberMgtServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<Member> memberList =new MemberService().viewAllMember();
 		
-		if(!memberList.isEmpty())
+		int currentPage;
+		if(request.getParameter("currentPage")==null)
 		{
-			request.setAttribute("memberList",memberList);
-			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/memberMgtPage.jsp");
-			view.forward(request, response);
-			
+			currentPage =1;
 		}
 		else
 		{
-			
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		MemberPageData mpd =new MemberService().viewAllMember(currentPage);
 		
+	
 		
+	
+			request.setAttribute("mpd",mpd);
+			RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/memberMgt.jsp");
+			view.forward(request, response);
+			
+	
 		
 		
 		

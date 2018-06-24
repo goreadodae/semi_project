@@ -126,8 +126,8 @@ public class AdminDao {
 		int end = currentPage * recordCountPerPage;
 
 		String query = "select que_no,que_title,que_time,que_contents,member_no,member_id,buying_no,response_yn "
-				+ "from(select question.*,row_number()over(order by que_no desc) as num from question) "
-				+ "left join member using(member_no) where num between ? and ? ";
+				+ "from(select question.*,row_number()over(order by que_no desc) as num from question where response_yn = 'N')"
+				+ " left join member using(member_no) where num between ? and ? ";
 
 		ArrayList<Question> list = new ArrayList<Question>();
 

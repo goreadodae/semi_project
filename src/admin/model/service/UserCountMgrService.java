@@ -19,6 +19,8 @@ public class UserCountMgrService {
 		int recipeCount = new UserCountMgrDao().recipeCount(conn);
 		int todayBuyProductCount = new UserCountMgrDao().todayBuyProductCount(conn);
 		
+		
+		
 		int boardCount [] = new int [3];
 		
 		boardCount[0] = userCount;
@@ -33,27 +35,23 @@ public class UserCountMgrService {
 		
 	}
 	
-	public PageData noticeAll(int currentPage) {
+	
+
+	public ArrayList<Notice> noticeBoardMainAll(int currentPage) {
+		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int recordCountPerPage=10;
-		int naviCountPerPage=5;
+		int recordCountPerPage=3;
+		//int naviCountPerPage=5;
 		
-		ArrayList<Notice> list = new NoticeDao().getCurrentPage(conn,currentPage,recordCountPerPage);
-		String pageNavi = new NoticeDao().getPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
+		ArrayList<Notice> list = new UserCountMgrDao().getCurrentPage(conn,currentPage,recordCountPerPage);
+		//String pageNavi = new NoticeDao().getPageNavi(conn,currentPage,recordCountPerPage,naviCountPerPage);
 		
-		PageData pd = null;
-		if(!list.isEmpty()&&!pageNavi.isEmpty())
-		{
-			pd = new PageData();
-			pd.setNoticeList(list);
-			pd.setPageNavi(pageNavi);
-		}
+		
 		JDBCTemplate.close(conn);
 		
 		
-		return pd;
-		
+		return list;
 		
 	}
 

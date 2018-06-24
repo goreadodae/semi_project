@@ -395,7 +395,7 @@ public class AdminDao {
 		String query = "update member set profits=profits+? where member_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, totalSales);
+			pstmt.setInt(1, (int)(totalSales*0.1));
 			pstmt.setInt(2, memberNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

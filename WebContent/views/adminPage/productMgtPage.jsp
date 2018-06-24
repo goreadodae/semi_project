@@ -223,8 +223,8 @@
 										<th>${requestScope.productList[i.count-1].recipeWriter }</th>
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].price }" groupingUsed="true"/></th>
 										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sellQuantity }" groupingUsed="true"/></th>
-										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney}" groupingUsed="true"/></th>
-										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sendMoney }" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${(requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney)*0.1}" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sendMoney*0.1 }" groupingUsed="true"/></th>
 										<th><button class="btn btn-primary" onclick="sendMoney(${requestScope.productList[i.count-1].productNo },
 										${requestScope.productList[i.count-1].memberNo },
 										${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney});">송금</button>

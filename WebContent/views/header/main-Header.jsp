@@ -393,8 +393,8 @@
 								for (var i = 0; i < keys.length; i++) {
 									$('#scroll_title_' +(i + 1)).append(data[i].recipe_title.substr(0, 15)+"...");
 									$('#scroll_title_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
-									$('#scroll_title2_' +(i + 1)).append(data[i].recipe_title.substr(0, 20)+"...");
-									$('#scroll_title2_' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
+									$('#ranking' +(i + 1)).append((i+1)+"위 "+data[i].recipe_title.substr(0, 20)+"...");
+									$('#ranking' +(i + 1)).attr("href", "/upView?recipe_no=" + data[i].recipe_no);
 								}
 							},
 							error : function() {
@@ -503,14 +503,14 @@
 				</ul>
 				
 				<ul class="colum">
-					<li class="header">
+					<li class="header" id="">
 						<a href="#" id="title-1" class="category-text" style="color:black;">이 달의 랭킹</a><hr>
 					</li>
-					<li class="category-text">1위</li>
-					<li class="category-text">2위</li>
-					<li class="category-text">3위</li>
-					<li class="category-text">4위</li>
-					<li class="category-text">5위</li>
+					<li class="category-text" ><a id="ranking1"></a></li>
+					<li class="category-text" ><a id="ranking2"></a></li>
+					<li class="category-text" ><a id="ranking3"></a></li>
+					<li class="category-text" ><a id="ranking4"></a></li>
+					<li class="category-text" ><a id="ranking5"></a></li>
 				</ul>
 				
 				<ul class="colum">

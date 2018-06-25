@@ -362,7 +362,7 @@ public class MemberDao {
 					m.setAddress(rset.getString("ADDRESS"));
 					m.setProfile(rset.getString("PROFILE"));
 					m.setNickName(rset.getString("NICKNAME"));
-					m.setProfits(rset.getInt("profits"))
+					m.setProfits(rset.getInt("profits"));
 				}
 
 			} else {

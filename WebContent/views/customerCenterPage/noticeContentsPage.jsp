@@ -147,7 +147,7 @@ hr {
 			<!-- 바뀐부분 시작 -->
 			<!--관리자일경우 -->
 
-			<%if (session.getAttribute("user")!=null&& ((Member)session.getAttribute("user")).getMemberId().equals("user28")){ %>
+			<%if (session.getAttribute("user")!=null&& ((Member)session.getAttribute("user")).getMemberId().equals("strangeRecipe")){ %>
 			<div class="row" style="padding: 0;">
 				<div class="col-md-12">
 					<div class="row">

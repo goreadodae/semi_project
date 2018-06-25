@@ -63,7 +63,7 @@
 								class="list-group-item d-flex justify-content-between align-items-center">
 								<a href="/recipeMgt">게시판관리</a>
 							</li>
-							<li	onclick="location.href='#'"
+							<li	onclick="location.href='/noticeList'"
 								class="list-group-item d-flex justify-content-between align-items-center">
 								공지사항관리
 							</li>

@@ -60,14 +60,37 @@
 			});
 		}
 	}
-	/*해당 페이지 표시 스크립트  */
-	$(document).ready(function(){
-		$('#list-group li').eq(2).addClass('on');
+	function sendMoney(productNo, memberNo, totalSales){
+		if(totalSales!=0){
+		$.ajax({
+			url : "/sendMoney",
+			type : "post",
+			data : {
+				productNo : productNo,
+				memberNo : memberNo,
+				totalSales : totalSales
+			},
+			success : function(data) {
+				if(data>0){
+					alert("송금 성공");
+					window.location.reload();
+				}
+				else{
+					alert("송금 실패");
+				}
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
+		}
+		else{
+			alert("송금 가능한 금액이 없는 상품은 송금할 수 없습니다.");
+		}
 		
-	});
-	
-	
+	}
 </script>
+	
 <style>
 * {
 	padding: 0px;
@@ -152,41 +175,39 @@
 					<h2>상품관리</h2>
 					<br>
 					<table class="table table-hover">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">레시피제목</th>
-							<th scope="col">상품제목</th>
-							<th scope="col">레시피 작성자</th>
-							<th scope="col">상품 가격</th>
-							<th scope="col">팔린 개수</th>
-							<th scope="col">총판매 가격</th>
-							<th scope="col">송금</th>
-						</tr>
-						<c:forEach begin="0" items="${requestScope.productList }"
-							var="list" varStatus="i">
-							<tr>
-								<th scope="row">${i.count}</th>
-								<th><a
-									href="/recipe?recipeNo=${requestScope.productList[i.count-1].recipeNo }">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">레시피제목</th>
+									<th scope="col">상품제목</th>
+									<th scope="col">레시피 작성자</th>
+									<th scope="col">상품 가격</th>
+									<th scope="col">팔린 개수</th>
+									<th scope="col">송금가능한 금액</th>
+									<th scope="col">송금한 금액</th>
+									<th scope="col">송금</th>
+								</tr>
+									<c:forEach begin="0"
+										items="${requestScope.productList }" var="list"
+										varStatus="i">
+										<tr >
+										<th scope="row">${i.count}</th>
+										<th>
+										<a href="/recipe?recipeNo=${requestScope.productList[i.count-1].recipeNo }">
 										${requestScope.productList[i.count-1].recipeTitle }</a></th>
-								<th><a
-									href="/productDetail?productNo=${requestScope.productList[i.count-1].productNo }">
+										<th><a href="/productDetail?productNo=${requestScope.productList[i.count-1].productNo }">
 										${requestScope.productList[i.count-1].productName }</a></th>
-								<th>${requestScope.productList[i.count-1].recipeWriter }</th>
-								<th><fmt:formatNumber
-										value="${requestScope.productList[i.count-1].price }"
-										groupingUsed="true" /></th>
-								<th><fmt:formatNumber
-										value="${requestScope.productList[i.count-1].sellQuantity }"
-										groupingUsed="true" /></th>
-								<th><fmt:formatNumber
-										value="${requestScope.productList[i.count-1].totalSales }"
-										groupingUsed="true" /></th>
-								<th><button class="btn btn-primary" onclick="">송금</button>
-							</tr>
-						</c:forEach>
-
-					</table>
+										<th>${requestScope.productList[i.count-1].recipeWriter }</th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].price }" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sellQuantity }" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${(requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney)*0.1}" groupingUsed="true"/></th>
+										<th><fmt:formatNumber value="${requestScope.productList[i.count-1].sendMoney*0.1 }" groupingUsed="true"/></th>
+										<th><button class="btn btn-primary" onclick="sendMoney(${requestScope.productList[i.count-1].productNo },
+										${requestScope.productList[i.count-1].memberNo },
+										${requestScope.productList[i.count-1].totalSales-requestScope.productList[i.count-1].sendMoney});">송금</button>
+										</tr>
+									</c:forEach>
+									
+							</table>
 					<div class="container">
 						<div class="row">
 							<ul id="pageNavi" class="pagination"

@@ -221,8 +221,6 @@ public class InsertRecipeServlet extends HttpServlet {
 			}
 			
 
-			
-
 			//사진정보 받아오는곳
 			//업로드된 파일의 정보를 DB에 기록하여야 함
 			//Enumeration formNames = multi.getFileNames();   //파일이름을 배열로 받아옴

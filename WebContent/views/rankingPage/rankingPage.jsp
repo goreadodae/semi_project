@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>세미_랭킹 페이지</title>
+<title>수상한 레시피</title>
 
 <!-- 스타일시트 초기화 -->
 <link rel="stylesheet" href="/css/reset.css">

@@ -7,11 +7,11 @@ import common.JDBCTemplate;
 import product.model.dao.ProductDao;
 import product.model.vo.Basket;
 import product.model.vo.Buying;
+import product.model.vo.Ordercall;
 import product.model.vo.Product;
 import product.model.vo.Review;
 
 public class ProductService {
-
    //모든 상품 정보
    public ArrayList<Product> getAllProduct(){
       Connection conn = JDBCTemplate.getConnection();
@@ -19,7 +19,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return list;
    }
-
 
    //상품 상세 정보
    public Product getProduct(int productNo) {
@@ -37,7 +36,6 @@ public class ProductService {
       return list;
    }
 
-
    //로그인계정의 장바구니 정보
    public ArrayList<Basket> getMyBasket(int memberNo){
       Connection conn = JDBCTemplate.getConnection();
@@ -47,7 +45,6 @@ public class ProductService {
    }
 
 
-
    //바로 구매하기 버튼을 누를시의 상품 정보(제일 마지막에 담긴 장바구니 정보 가져옴)
    public ArrayList<Basket> getLastBasket(int memberNo){
       Connection conn = JDBCTemplate.getConnection();
@@ -55,7 +52,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return list;
    }
-
 
 
    //장바구니 삭제
@@ -71,7 +67,6 @@ public class ProductService {
    }
 
 
-
    //장바구니 추가
    public int insertBasket(int basketQuantity,int memberNo,int productNo) {
       Connection conn = JDBCTemplate.getConnection();
@@ -84,7 +79,6 @@ public class ProductService {
       return result;
    }
 
-
    //장바구니 수량 변경
    public int updateBasket(int basketQuantity, int basketNo) {
       Connection conn = JDBCTemplate.getConnection();
@@ -96,7 +90,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return result;
    }
-
 
    //1.구매내역 테이블 추가
    public int insertBuying(int basketNo, int orderNo) {
@@ -111,7 +104,6 @@ public class ProductService {
    }
 
 
-
    //3.상품의 남은 수량 감소
    public int updateProduct(int productNo, int basketQuantity) {
       Connection conn = JDBCTemplate.getConnection();
@@ -123,7 +115,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return result;
    }
-
 
    //4.수량초과인 장바구니 모두 삭제
    public int deleteBasketOver(int productNo) {
@@ -137,7 +128,6 @@ public class ProductService {
       return result;
    }
 
-
    //0.주문내역 추가
    public int insertOrdercall(Ordercall oc) {
       Connection conn = JDBCTemplate.getConnection();
@@ -150,7 +140,6 @@ public class ProductService {
       return result;
    }
 
-
    //0.5 주문내역의 주문번호 받아오기
    public Ordercall getOrderNo(int memberNo) {
       Connection conn = JDBCTemplate.getConnection();
@@ -158,7 +147,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return ordercall;
    }
-
 
 
    //방금 구매한 내역 정보 보기
@@ -177,7 +165,6 @@ public class ProductService {
       return list;
    }
    
-
    //전체 주문내역 보기
    public ArrayList<Ordercall> selectOrdercallAll(int memberNo) {
       Connection conn = JDBCTemplate.getConnection();
@@ -185,7 +172,6 @@ public class ProductService {
       JDBCTemplate.close(conn);
       return list;
    }
-
 
    //☆ 지현 추가 --> 댓글
    public ArrayList<Review> reviewAll(int productNo) {
@@ -196,5 +182,6 @@ public class ProductService {
 
       return list;
    }
-}
 
+   
+}

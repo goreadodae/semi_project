@@ -331,14 +331,12 @@ public class MemberDao {
 			pstmt.setString(4, address);
 			pstmt.setString(5, fullFilePath);
 			pstmt.setString(6, nickname);
-			pstmt.setString(7, userId);
-			pstmt.setInt(8, profits);
-
+			pstmt.setInt(7, 0);
+			pstmt.setString(8, userId);
 			result = pstmt.executeUpdate();
 
 			if (result > 0) {
 				conn.commit();
-
 				String query2 = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as BIRTH_DATE, "
 						+ "phone, email, address, profile, nickname, profits from member where member_id = ?";
 
@@ -363,6 +361,7 @@ public class MemberDao {
 					m.setProfile(rset.getString("PROFILE"));
 					m.setNickName(rset.getString("NICKNAME"));
 					m.setProfits(rset.getInt("profits"));
+					
 				}
 
 			} else {

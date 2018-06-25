@@ -171,7 +171,7 @@
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '주문명:결제테스트',
-			    amount : 100,//totalPay,	//결제 가격
+			    amount : totalPay,//totalPay,	//결제 가격
 			    buyer_email : "${member.email}",//'iamport@siot.do',
 			    buyer_name : "${member.memberName}",//'구매자이름',
 			    buyer_tel : "${member.phone}",

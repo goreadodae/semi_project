@@ -650,7 +650,7 @@ public class ProductDao {
 			while(rset.next()) {
 				Buying b = new Buying();
 				b.setBuyingNo(rset.getInt("buying_no"));
-				//				b.setProductNo(rset.getInt("product_no"));
+				b.setProductNo(rset.getInt("product_no"));
 				b.setBuyingQuantity(rset.getInt("buying_quantity"));
 				b.setBuyingDate(rset.getDate("buying_date"));
 				b.setProductName(rset.getString("product_Name"));

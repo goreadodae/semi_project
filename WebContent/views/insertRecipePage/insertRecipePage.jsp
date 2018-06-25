@@ -115,6 +115,7 @@
 	/* 재료 추가 부분  */	
 		 var materDivH = 801;
 		var materDivI = 901;
+		var materNumOne =100;
 	function materPlus(materNum){
 		
 		$('#materPlus'+materNum).append('<div id="materPlusRow'+materNum+'" style="resize: none;"><div class="row"><div class="col-md-5"><input type="text" class="form-control" placeholder="예)돼지고기" id="textMater'+materDivH+'" onchange="materListPlusOne('+materDivH+')">'+
@@ -122,12 +123,14 @@
 		'<div class="col-md-5"><input type="text" class="form-control" placeholder="예)300g" id="textMater'+materDivI+'" onchange="materListPlusTwo('+materDivI+')">'+
 		'<input type="hidden" id="materListId'+materDivI+'" name="materList" value="">'+
 		'</div><div class="col-md-2"><button type="button" onclick="materDelete('+materNum+');" class="mybutton2-1">삭제</button></div></div><div class="row"><div class="col-md-12">　　</div></div></div>');
-		materNum++; materDivH++; materDivI++;
+		materNum++; materDivH++; materDivI++; materNumOne++;
 		
 	}  
 	
 	/* 재료 삭제 부분 */
 	function materDelete(materNum){
+		
+		alert(materNum);
 		
 		$('#materPlusRow'+materNum).remove();
 
@@ -514,8 +517,6 @@
 		 
 		 var result  = videoAddr.substr(-11, 11);
 		 
-		 alert(result);
-		 
 		var videoAddr = "http://img.youtube.com/vi/"+result+"/0.jpg";
 		 
 		$('#videoImg').attr('src',videoAddr);
@@ -620,11 +621,11 @@
 	$(document).ready(function() { 
 	
       $('.mybutton1').mouseover(function(){
-         $(this).addClass('mybutton3');
+         $(this).addClass('mybutton1-1');
       });
       
       $('.mybutton1').mouseout(function(){
-         $(this).removeClass('mybutton3');
+         $(this).removeClass('mybutton1-1');
          $(this).addClass('mybutton1');
       });
       
@@ -636,6 +637,7 @@
          $(this).removeClass('mybutton3');
          $(this).addClass('mybutton2');
       });
+      
       
       
 	});  
@@ -688,7 +690,7 @@ body{font-family:IropkeBatang;}
 #inRecipeOrder{background-color:#F8FAFF;}
 #inRecipeTip{background-color:#F8FAFF;}
 #inRecipeTag{background-color:#F8FAFF;}
-#inRecipeBtn{background-color:#F8FAFF;}
+
 
 .mybutton1{
    background-color: #795B8F;
@@ -696,6 +698,15 @@ body{font-family:IropkeBatang;}
    height : 50px;
    width : 200px;
    border : 1px solid #522075;
+   cursor : pointer;
+}
+
+.mybutton1-1{
+   background-color: #522075;
+   color : #F8FAFF;
+   height : 50px;
+   width : 200px;
+   border : 0px;
    cursor : pointer;
 }
 
@@ -736,6 +747,8 @@ body{font-family:IropkeBatang;}
 }
 
 
+
+
 .problem {
    color: red;
    font-size: 11pt;
@@ -755,15 +768,15 @@ body{font-family:IropkeBatang;}
 		<br><br>
 		<!-- 컨테츠예용! -->
 		<form action="/insertRecipe" method="post" enctype="multipart/form-data">
-		<div class="row" id="inRecipe">
+		<div class="row" id="mainTitle"><div class="col-md-8 mx-auto"><h1>레시피 등록</h1></div></div>
+		<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 		
+		<div class="row" id="inRecipe">
 			<div class="col-md-8 mx-auto" id="inRecipeTitle" >
 			
 			<div class="row" id="inRecipeTitle">
 				<div class="col-md-12" id="inRecipeTitleAll">
-				<div class="row" id="mainTitle"><div class="col-md-12"><h1>레시피 등록</h1></div></div>
-				
-				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
+				<div class="row" id="mainTitle"><div class="col-md-12">　　</div></div>
 				<div class="row"><div class="col-md-12">(*)항목은 필수 입력 항목입니다</div></div><!-- 빈 공란 -->
 				<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->
 				
@@ -1204,7 +1217,7 @@ body{font-family:IropkeBatang;}
 	</div><!--전체  -->
 <%}else{ %>
 <script>
-	/* alert("로그인 후 레시피등록을 이용해주세요."); */
+	alert("로그인 후 레시피등록을 이용해주세요.");
 	location.href="/views/memberPage/loginPage.jsp";
 </script>
 <%} %>

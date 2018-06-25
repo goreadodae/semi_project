@@ -1016,7 +1016,7 @@ body{font-family:IropkeBatang;}
 				<div class="row"><div class="col-md-10 mx-auto">　<hr>　</div></div><!-- 빈 공란 -->
 				<div class="row" >
 					<div class="col-md-12">
-					<div class="row"><div class="col-md-8 mx-auto"><h6>※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.</h6></div></div>
+					<div class="row"><div class="col-md-7 mx-auto"><h6>※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.</h6></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->				
 					<div class="row"><div class="col-md-2 mx-auto"><button type="button" onclick="materComPlus();" class="mybutton1">+ 재료/양념 묶음 추가</button></div></div>
 					<div class="row"><div class="col-md-12">　　</div></div><!-- 빈 공란 -->	

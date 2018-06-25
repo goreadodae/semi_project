@@ -61,7 +61,7 @@ public class ChangeInfoServlet extends HttpServlet {
 		String address = multi.getParameter("postcode") + " | " + multi.getParameter("roadAddress") + " | "
 				+ multi.getParameter("addAddress");
 		String nickname = multi.getParameter("saveNick");
-		
+		int profits = Integer.parseInt(multi.getParameter("savaProfits"));
 		String beforeFileName;
 		String afterFileName;
 		String fullFilePath;
@@ -75,7 +75,7 @@ public class ChangeInfoServlet extends HttpServlet {
 	        fullFilePath = "/imgs/profile_img/"+ afterFileName;
 		}
 		
-		Member m = new MemberService().changInfo(userId, fullFileStepPath, userPwd, Phone, email, address, nickname);
+		Member m = new MemberService().changInfo(userId, fullFileStepPath, userPwd, Phone, email, address, nickname, profits);
 		if (m != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", m);

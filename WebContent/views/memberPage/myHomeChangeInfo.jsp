@@ -326,6 +326,7 @@ ol, li {
                            <td class="memberCols1">별명</td>
                            <td class="memberCols2">
                            <input class="form-control" id="nickname" onchange="nicknameCheck();" type="text" style="width:150px;" maxlength="20" />
+                           <input type="hidden" value="<%=m.getProfits() %>" name="savaProfits">
                            <input type="hidden" id="saveNick" name="saveNick">
                            </td>
                         </tr>
@@ -333,9 +334,9 @@ ol, li {
                   </table>
                </div>
                <div id="btn-bar">
-                  <a type="submit" onclick="changeInfo();" style="background-color: #795b8f; color: #fff;">확인</a> 
-                  <a type="button" style="background-color: #fff; color: #795b8f;">취소</a> 
-                  <a type="button" style="background-color: #fff; color: #795b8f;">탈퇴</a>
+                  <a type="button" onclick="changeInfo();" style="background-color: #795b8f; color: #fff;">확인</a> 
+                  <a type="button" href="/views/memberPage/myHomeMainPage.jsp" style="background-color: #fff; color: #795b8f;">취소</a> 
+                  <a type="button" href="/deleteMember?memberNo=<%=m.getMemberNo()%>" style="background-color: #fff; color: #795b8f;">탈퇴</a>
                </div>
                </form>
             </div>

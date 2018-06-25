@@ -1226,7 +1226,7 @@
 							</div>
 							<div class="col-md-3"></div><br><br><br>
 							<div class="button-bar" id="btnBar1" style="padding-top:5px; padding-left:1190px;">
-								<button class="btn btn-primary" type="submit" onclick="allCheck();" style="width:80px; height:40px;">확인</button>
+								<button class="btn btn-primary" type="button" onclick="allCheck();" style="width:80px; height:40px;">확인</button>
 							</div>
 						</form>
 					</div>
@@ -1245,8 +1245,7 @@
 	    	//var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
 	    	var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
 	    	var regExpSpace = /\s/g; //공백찾기
-	    	var regExpNum = /^[0-9]+$/; // 숫자만
-	    	var regExpKor = /^[가-힣]+$/; // 한글만
+	    	var regExpNum = /^[0-9]+$/{2,}$/; // 한글만
 	    	var SetTime; //인증시간
 	        var regExpEmailFirst = /^[a-zA-Z0-9_]$/; // 이메일 영 대소문자+숫자
 	        var regExpEmailLast = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소

@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
 
 
    window.onload = function() {
-    var preYear = new Date().getFullYear().toString() - 10; /*현재 년도 - 10년*/
+    var preYear = new Date().getFullYear().toString() - 5; /*현재 년도 - 10년*/
     var nowYear = new Date().getFullYear().toString(); /*현재 년도*/
     var preMonth = 1; /*1월*/
     var endMonth = 12; /*12월*/
@@ -96,32 +96,23 @@ document.getElementById("yearClick").innerHTML = strYear;
 document.getElementById("monthClick").innerHTML = strMonth;
 
 /*현재 선택된 셀렉트 값 가져오기*/
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=yearClickName]").val().substr(2, 4));
-console.log("선택하지 않은 상태의 년도 : "
-  + $("select[name=monthClickName]").val());
+//console.log("선택하지 않은 상태의 년도 : "$("select[name=yearClickName]").val().substr(2, 4));
+//console.log("선택하지 않은 상태의 년도 : "$("select[name=monthClickName]").val());
 
 
 /* 선택되어지지 않는 상태 */
 var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
 var monthClick = $("select[name=monthClickName]").val();
 
-
-
 /* 기존 선택하지 않은 상태  */
-
-$
-.ajax({
+$.ajax({
  url : "/rankingMonthlyChef",
- data : {
-  year : yearClick,
-  month : monthClick
-},
-type : "post",
-success : function(data) {
-  console.log("성공");
-  console.log("선택 안한 기본 날 : "+data);
+ data : {year : yearClick, month : monthClick},
+ type : "post",
+ async:false,
+ success : function(data) {
   for (var i = 0; i < data.length; i++) {
+    console.log("기존 선택 안한 상태 : "+data[i].memberId);
    $('#rankingMemberID'+(i+1)).html(data[i].nickname);
    $('#rankNum' + (i + 1)).html((i + 1) + "위");
    $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
@@ -129,145 +120,156 @@ success : function(data) {
    $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
    $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
    $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
+    }
 
-   /* $('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");*/
-
- }
-
-
- /*1위 랭킹 리스트*/
+ /*이중 ajax! memberId에 따른 아이디별 랭킹 리스트 불러오기(1위)*/
  $('#cardImgs1').click(function(){
   var rankingUserId = data[0].memberId;
+  console.log("기존 선택 안한 상태 1위 : "+data[0].memberId);
+
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
-    success : function(data){
-      console.log("리스트 아작스 성공!"+data.length);
+    async:false,
+    success : function(data1){
       $('#RecipeListTbody1').html("");
-      for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
-          );
-        $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
-
+      for (var i = 0; i < data1.length; i++) {
+        //랭킹 테이블 리스트 만들기
+        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data1[i].nickname +"</th>"+
+          "<td>"+data1[i].recipeNo+"</td>"+"<td>"+data1[i].recipeTitle+"</td>"+"<td>"+data1[i].recipeViews+"</td>"+"</a>"+"</tr>");
+        //랭킹 테이블 리스트의 각각의 레시피로 이동
+        $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data1[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("리스트 아작스 실패!");
     }
   });
-})
+});
 
  /*2위 랭킹 리스트*/
  $('#cardImgs2').click(function(){
+  console.log("선택 안한 2위"+data[1].memberId);
   var rankingUserId = data[1].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
-    success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+    async:false,
+    success : function(data2){
+     // console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody2').html("");
-      for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+      for (var i = 0; i < data2.length; i++) {
+        console.log("기존 선택 안한 상태 2위 : "+data2[1].memberId);
+        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data2[i].nickname +"</th>"+
+          "<td>"+data2[i].recipeNo+"</td>"+"<td>"+data2[i].recipeTitle+"</td>"+"<td>"+data2[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
-        $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+        $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data2[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-})
+});
 
  /*3위 랭킹 리스트*/
  $('#cardImgs3').click(function(){
+  console.log("선택 안한 3위"+data[2].memberId);
   var rankingUserId = data[2].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
-    success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+    async:false,
+    success : function(data3){
+  //    console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody3').html("");
-      for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+      for (var i = 0; i < data3.length; i++) {
+        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data3[i].nickname +"</th>"+
+          "<td>"+data3[i].recipeNo+"</td>"+"<td>"+data3[i].recipeTitle+"</td>"+"<td>"+data3[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
-        $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+        $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data3[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-})
+});
 
  /*4위 랭킹 리스트*/
  $('#cardImgs4').click(function(){
+  console.log("선택 안한 4위"+data[3].memberId);
   var rankingUserId = data[3].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
-    success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+    async:false,
+    success : function(data4){
       $('#RecipeListTbody4').html("");
-      for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+      for (var i = 0; i < data4.length; i++) {
+        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data4[i].nickname +"</th>"+
+          "<td>"+data4[i].recipeNo+"</td>"+"<td>"+data4[i].recipeTitle+"</td>"+"<td>"+data4[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
-        $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+        $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data4[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-})
+}); 
 
  /*5위 랭킹 리스트*/
  $('#cardImgs5').click(function(){
+  console.log("선택 안한 5위"+data[4].memberId);
   var rankingUserId = data[4].memberId;
   $.ajax({
     url : "/rankingMonthlyChefRecipeList",
     data : {userId : rankingUserId},
     type : "get",
-    success : function(data){
-      console.log("이주 아작스 성공222!"+data.length);
+    async:false,
+    success : function(data5){
+   //   console.log("이주 아작스 성공222!"+data.length);
       $('#RecipeListTbody5').html("");
-      for (var i = 0; i < data.length; i++) {
-        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data[i].nickname +"</th>"+
-          "<td>"+data[i].recipeNo+"</td>"+"<td>"+data[i].recipeTitle+"</td>"+"<td>"+data[i].recipeViews+"</td>"+"</a>"+"</tr>"
+      for (var i = 0; i < data5.length; i++) {
+        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data5[i].nickname +"</th>"+
+          "<td>"+data5[i].recipeNo+"</td>"+"<td>"+data5[i].recipeTitle+"</td>"+"<td>"+data5[i].recipeViews+"</td>"+"</a>"+"</tr>"
           );
-        $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");
+        $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data5[i].recipeNo+"'");
       }
     },
     error : function(){
       console.log("이주 아작스 실패!");
     }
   });
-})
+});
 
 },
 error : function() {
   console.log("실패");
 }
 });
+}
 
+
+
+
+
+
+
+$(document).ready(function() {
 /*year 클릭시에  값 가져오기*/
 $("#yearClick").change(function() {
   var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
   var monthClick = $("select[name=monthClickName]").val();
   /*alert($(this).children("option:selected").text());*/
 
-  console.log("year에서 선택한 년도 : "
-   + $("select[name=yearClickName]").val()
-   .substr(2, 4));
-  console.log("year에서 선택한 달 : "
-   + $("select[name=monthClickName]").val());
+ // console.log("year에서 선택한 년도 : "$("select[name=yearClickName]").val().substr(2, 4));
+ // console.log("year에서 선택한 달 : "$("select[name=monthClickName]").val());
 
   $.ajax({
     url : "/rankingMonthlyChef",
@@ -276,11 +278,12 @@ $("#yearClick").change(function() {
      month : monthClick
    },
    type : "post",
+   async:false,
    success : function(data) {
-     console.log("성공");
-     console.log(data);
+
      for (var i = 0; i < data.length; i++) {
-      console.log("선택한 년도 : "+ i + "번째" + data[i]);
+     // console.log("year 선택한 상태 : "+data[i].memberId);
+   //   console.log("선택한 년도 : "+ i + "번째" + data[i]);
 
       $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
@@ -291,7 +294,131 @@ $("#yearClick").change(function() {
       $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
       /*$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");*/
     }
+ /*이중 ajax! memberId에 따른 아이디별 랭킹 리스트 불러오기(1위)*/
+ $('#cardImgs1').click(function(){
+  var rankingUserId = data[0].memberId;
+  console.log("year1위 : "+data[0].memberId);
 
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data1){
+      $('#RecipeListTbody1').html("");
+      for (var i = 0; i < data1.length; i++) {
+        //랭킹 테이블 리스트 만들기
+        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data1[i].nickname +"</th>"+
+          "<td>"+data1[i].recipeNo+"</td>"+"<td>"+data1[i].recipeTitle+"</td>"+"<td>"+data1[i].recipeViews+"</td>"+"</a>"+"</tr>");
+        //랭킹 테이블 리스트의 각각의 레시피로 이동
+        $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data1[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("리스트 아작스 실패!");
+    }
+  });
+});
+
+ /*2위 랭킹 리스트*/
+ $('#cardImgs2').click(function(){
+  console.log("year2위"+data[1].memberId);
+  var rankingUserId = data[1].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data2){
+     // console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody2').html("");
+      for (var i = 0; i < data2.length; i++) {
+        console.log("기존 선택 안한 상태 2위 : "+data2[1].memberId);
+        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data2[i].nickname +"</th>"+
+          "<td>"+data2[i].recipeNo+"</td>"+"<td>"+data2[i].recipeTitle+"</td>"+"<td>"+data2[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data2[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
+
+ /*3위 랭킹 리스트*/
+ $('#cardImgs3').click(function(){
+  console.log("year3위"+data[2].memberId);
+  var rankingUserId = data[2].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data3){
+  //    console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody3').html("");
+      for (var i = 0; i < data3.length; i++) {
+        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data3[i].nickname +"</th>"+
+          "<td>"+data3[i].recipeNo+"</td>"+"<td>"+data3[i].recipeTitle+"</td>"+"<td>"+data3[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data3[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
+
+ /*4위 랭킹 리스트*/
+ $('#cardImgs4').click(function(){
+  console.log("year4위"+data[3].memberId);
+  var rankingUserId = data[3].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data4){
+      $('#RecipeListTbody4').html("");
+      for (var i = 0; i < data4.length; i++) {
+        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data4[i].nickname +"</th>"+
+          "<td>"+data4[i].recipeNo+"</td>"+"<td>"+data4[i].recipeTitle+"</td>"+"<td>"+data4[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data4[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+}); 
+
+ /*5위 랭킹 리스트*/
+ $('#cardImgs5').click(function(){
+  console.log("year 5위"+data[4].memberId);
+  var rankingUserId = data[4].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data5){
+   //   console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody5').html("");
+      for (var i = 0; i < data5.length; i++) {
+        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data5[i].nickname +"</th>"+
+          "<td>"+data5[i].recipeNo+"</td>"+"<td>"+data5[i].recipeTitle+"</td>"+"<td>"+data5[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data5[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
   },
   error : function() {
    console.log("실패");
@@ -300,16 +427,12 @@ $("#yearClick").change(function() {
 
 });
 
-$("#monthClick").change(function() {
+$("#monthClick").on('change', function() {
   var yearClick = $("select[name=yearClickName]").val().substr(2, 4);
   var monthClick = $("select[name=monthClickName]").val();
 
-  console.log("month에서 선택한 년도 : "
-   + $("select[name=yearClickName]").val()
-   .substr(2, 4));
-  console.log("month에서 선택한 달 : "
-   + $("select[name=monthClickName]").val());
-
+//  console.log("month에서 선택한 년도 : " $("select[name=yearClickName]").val().substr(2, 4));
+//  console.log("month에서 선택한 달 : "$("select[name=monthClickName]").val());
   $.ajax({
     url : "/rankingMonthlyChef",
     data : {
@@ -317,13 +440,10 @@ $("#monthClick").change(function() {
      month : monthClick
    },
    type : "post",
+   async:false,
    success : function(data) {
-     console.log("성공");
-     console.log(data);
 
      for (var i = 0; i < data.length; i++) {
-      console.log("선택한 달 : "+ i + "번째" + data[i]);
-
       $('#rankingMemberID'+(i+1)).html(data[i].nickname);
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].profile);
@@ -331,8 +451,133 @@ $("#monthClick").change(function() {
       $('#rankingViews' + (i + 1)).html(data[i].recipeViews);
       $('#rankingTag' + (i + 1)).html(data[i].recipeTag);
       $('#rankingContents' + (i + 1)).html(data[i].recipeIntro);
-      /*$('#rankinListIMG'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data[i].recipeNo+"'");*/
     }
+
+ /*이중 ajax! memberId에 따른 아이디별 랭킹 리스트 불러오기(1위)*/
+ $('#cardImgs1').click(function(){
+  var rankingUserId = data[0].memberId;
+  console.log("month1위 : "+data[0].memberId);
+
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data1){
+      $('#RecipeListTbody1').html("");
+      for (var i = 0; i < data1.length; i++) {
+        //랭킹 테이블 리스트 만들기
+        $('#RecipeListTbody1').append("<tr id='recipeLink1st"+(i+1)+"'>"+"<th scope='row'>"+ data1[i].nickname +"</th>"+
+          "<td>"+data1[i].recipeNo+"</td>"+"<td>"+data1[i].recipeTitle+"</td>"+"<td>"+data1[i].recipeViews+"</td>"+"</a>"+"</tr>");
+        //랭킹 테이블 리스트의 각각의 레시피로 이동
+        $('#recipeLink1st'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data1[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("리스트 아작스 실패!");
+    }
+  });
+});
+
+ /*2위 랭킹 리스트*/
+ $('#cardImgs2').click(function(){
+  console.log("month2위"+data[1].memberId);
+  var rankingUserId = data[1].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data2){
+     // console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody2').html("");
+      for (var i = 0; i < data2.length; i++) {
+        console.log("기존 선택 안한 상태 2위 : "+data2[1].memberId);
+        $('#RecipeListTbody2').append("<tr id='recipeLink2nd"+(i+1)+"'>"+"<th scope='row'>"+ data2[i].nickname +"</th>"+
+          "<td>"+data2[i].recipeNo+"</td>"+"<td>"+data2[i].recipeTitle+"</td>"+"<td>"+data2[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink2nd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data2[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
+
+ /*3위 랭킹 리스트*/
+ $('#cardImgs3').click(function(){
+  console.log("month3위"+data[2].memberId);
+  var rankingUserId = data[2].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data3){
+  //    console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody3').html("");
+      for (var i = 0; i < data3.length; i++) {
+        $('#RecipeListTbody3').append("<tr id='recipeLink3rd"+(i+1)+"'>"+"<th scope='row'>"+ data3[i].nickname +"</th>"+
+          "<td>"+data3[i].recipeNo+"</td>"+"<td>"+data3[i].recipeTitle+"</td>"+"<td>"+data3[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink3rd'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data3[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
+
+ /*4위 랭킹 리스트*/
+ $('#cardImgs4').click(function(){
+  console.log("month4위"+data[3].memberId);
+  var rankingUserId = data[3].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data4){
+      $('#RecipeListTbody4').html("");
+      for (var i = 0; i < data4.length; i++) {
+        $('#RecipeListTbody4').append("<tr id='recipeLink4th"+(i+1)+"'>"+"<th scope='row'>"+ data4[i].nickname +"</th>"+
+          "<td>"+data4[i].recipeNo+"</td>"+"<td>"+data4[i].recipeTitle+"</td>"+"<td>"+data4[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink4th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data4[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+}); 
+
+ /*5위 랭킹 리스트*/
+ $('#cardImgs5').click(function(){
+  console.log("month5위"+data[4].memberId);
+  var rankingUserId = data[4].memberId;
+  $.ajax({
+    url : "/rankingMonthlyChefRecipeList",
+    data : {userId : rankingUserId},
+    type : "get",
+    async:false,
+    success : function(data5){
+   //   console.log("이주 아작스 성공222!"+data.length);
+      $('#RecipeListTbody5').html("");
+      for (var i = 0; i < data5.length; i++) {
+        $('#RecipeListTbody5').append("<tr id='recipeLink5th"+(i+1)+"'>"+"<th scope='row'>"+ data5[i].nickname +"</th>"+
+          "<td>"+data5[i].recipeNo+"</td>"+"<td>"+data5[i].recipeTitle+"</td>"+"<td>"+data5[i].recipeViews+"</td>"+"</a>"+"</tr>"
+          );
+        $('#recipeLink5th'+(i+1)).attr('onclick',"window.top.location.href ='/recipe?recipeNo="+data5[i].recipeNo+"'");
+      }
+    },
+    error : function(){
+      console.log("이주 아작스 실패!");
+    }
+  });
+});
 
   },
   error : function() {
@@ -340,16 +585,34 @@ $("#monthClick").change(function() {
  }
 });
 });
+});
 
 
 
 
-}
 </script>
+
 <style>
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(https://fonts.googleapis.com/css?family=Khula:700);
   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  
+  @font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
 </style>
+
 </head>
 <body>
 <!-- <style>
@@ -388,7 +651,7 @@ $("#monthClick").change(function() {
 
 <div id="wholeWrap" class="container">
   <div class="col-lg-12" style="padding-right: 50px;">
-    <h2 class="my-4" style=" font-family:hanna; font-weight: 800;">이달의 쉐프</h2>
+    <h2 class="my-4" style=" font-family:hanna; font-weight: 800; display: inline-block;">이달의 쉐프</h2><labe style=" font-family:hanna; font-weight: 400;">&nbsp;&nbsp; : &nbsp;&nbsp;레시피별 총 VIEWS가 많은 쉐프 선정!</label>
     <hr style="border: 0.5px solid #EAEAEA;">
   </div>
   <!-- Team Members Row -->
@@ -398,9 +661,9 @@ $("#monthClick").change(function() {
 
     <c:forEach var="i" begin="1" end="2"  step="1" varStatus="status">
     <div class="col-lg-6 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count}" role="button" aria-expanded="false" aria-controls="userRanking${status.count}">
-      <div class="pull-left"><h3 id="rankNum${status.count}">${status.count}위</h3></div>
+      <div class="pull-left"><h3 id="rankNum${status.count}" style="font-family: 'Godo', sans-serif;">${status.count}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count}">
-        <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 300px; height: 300px;" >
+        <img id="cardImgs${status.count}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO300x300.png" onerror='this.src="/imgs/ranking_img/monthChefO300x300.png"' alt="" style="width: 300px; height: 300px;" >
       </a>
       <h3 id="rankingMemberID${status.count}">Strange Recipes</h3>
 <!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
@@ -411,9 +674,9 @@ $("#monthClick").change(function() {
 <br><br><br>
     <c:forEach var="i" begin="3" end="5"  step="1" varStatus="status">
     <div class="col-lg-4 col-sm-6 text-center mb-4"  data-toggle="collapse" href="#userRanking${status.count+2}" role="button" aria-expanded="false" aria-controls="userRanking${status.count+2}">
-      <div class="pull-left"><h3 id="rankNum${status.count+2}">${status.count+2}위</h3></div>
+      <div class="pull-left"><h3 id="rankNum${status.count+2}" style="font-family: 'Godo', sans-serif;">${status.count+2}위</h3></div>
       <a href="javascript:void(0)" id="rankinListIMG${status.count+2}">
-        <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/005-chef.png" alt="" style="width: 200px; height: 200px;" >
+        <img id="cardImgs${status.count+2}" class="rounded-circle img-fluid d-block mx-auto" src="/imgs/ranking_img/monthChefO200x200.png"  onerror='this.src="/imgs/ranking_img/monthChefO200x200.png"' alt="" style="width: 200px; height: 200px;" >
       </a>
       <h3 id="rankingMemberID${status.count+2}">Strange Recipes</h3>
 <!--       <img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">

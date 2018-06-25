@@ -551,7 +551,7 @@ a{
                                       </div>
                                       <!-- 상품 타이틀 div -->
                                       <div class="col-md-8" style="text-align: center; padding-right: 10px;">
-                                        <strong><label id="<%=r.getReviewNo() %>_buyProductNameModify" name="buyProductNameModify" style="font-size: 30px; padding-top: 15px; text-align: center; font-family: 'Song Myung', serif; font-weight: bold;"></label></strong>
+                                        <strong><label id="<%=r.getReviewNo() %>_buyProductNameModify" name="buyProductNameModify" style="font-size: 30px; padding-top: 15px; text-align: center; font-family: 'Song Myung', serif; font-weight: bold;">${productInfo.productName}</label></strong>
                                       </div>
                                       <!-- <div class="co-md-1"></div> -->
 
@@ -591,7 +591,7 @@ a{
                                     <span class="byte" id="<%=r.getReviewNo() %>_printModify" style="font-size: 13px; margin-right: 400px;">100</span>
                                     <textarea class="form-control" id="<%=r.getReviewNo() %>_buyingAfterTextModify" name="<%=r.getReviewNo() %>_buyingAfterTextModify" rows="7" cols="30" maxlength="100" style=" resize: none; "></textarea>
                                   </div><br>
-                                  <hr><br>
+                                  <%-- <hr><br> --%>
 
 
                                   <!-- 사진 첨부 -->
@@ -798,7 +798,7 @@ a{
 <br>
 <div class="d-flex justify-content-end" id="reviewButtonDiv">
   <%if(((Member)session.getAttribute("user"))==null){ %>
-  <button type="button" class="btn btn-primary disabled" id="buyingAfterWriterBtnDisabled" >구매 후기 작성</button>
+<!--   <button type="button" class="btn btn-primary disabled" id="buyingAfterWriterBtnDisabled" >구매 후기 작성</button> -->
 
   <%}%>
   <%-- else { %>
@@ -832,7 +832,7 @@ a{
                 </div>
                 <!-- 상품 타이틀 div -->
                 <div class="col-md-8" style="text-align: center; padding-right: 10px;">
-                  <strong><label id="buyProductName" name="buyProductName" style="font-size: 30px; padding-top: 15px; text-align: center;font-family: 'Song Myung', serif; font-weight: bold;"></label></strong>
+                  <strong><label id="buyProductName" name="buyProductName" style="font-size: 30px; padding-top: 15px; text-align: center;font-family: 'Song Myung', serif; font-weight: bold;">${productInfo.productName}</label></strong>
                 </div>
                 <!-- <div class="co-md-1"></div> -->
 
@@ -872,7 +872,7 @@ a{
               <span class="byte" id="print" style="font-size: 13px;">100</span>
               <textarea class="form-control" id="buyingAfterText" name="buyingAfterText" rows="7" cols="30" maxlength="100" style=" resize: none; "></textarea>
             </div><br>
-            <hr><br>
+            <%-- <hr><br> --%>
 
 
             <!-- 사진 첨부 -->
@@ -925,11 +925,11 @@ a{
 
                   return true;
                 }else{
-                  alert("만족도를 체크하고, 후기는 10자 이장 작성해 주시길 바랍니다.");
+                  alert("만족도를 체크하고, 후기는 10자 이상 작성해 주시길 바랍니다.");
                   return false;
                 }
 
-              }
+              } 
 
 
               //구매 후기 버튼 disabled -> 로그인 x
@@ -1039,7 +1039,7 @@ window.onload=function(){
 
                   return true;
                 }else{
-                  alert("만족도를 체크하고, 후기는 10자 이장 작성해 주시길 바랍니다.");
+                  alert("만족도를 체크하고, 후기는 10자 이상 작성해 주시길 바랍니다.");
                   return false;
                 }
 

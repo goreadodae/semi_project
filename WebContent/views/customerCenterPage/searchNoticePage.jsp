@@ -72,13 +72,25 @@ body {
 
 }
 
-.page-item active>.page-link{
+.page-item.active>.page-link{
    background-color: #512772 !important;
    border-color: #512772 !important;
    color: white !important;
 }
 .page-item>.page-link{
    color: #512772 !important;
+}
+
+#searchTable1 a{
+color:black;
+
+}
+.btn.btn-outline-primary{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+	
 }
 </style>
 
@@ -117,7 +129,7 @@ body {
 				<div class="col-md-10" id="test-div">
 
 					<!--공지사항 테이블 -->
-					<table class="table" id="noticeTable">
+					<table class="table" id="searchTable1" >
 						<thead>
 							<tr>
 								<th scope="col">번호</th>
@@ -203,8 +215,6 @@ body {
 										</td>
 
 									</tr>
-
-
 								</table>
 							</form>
 

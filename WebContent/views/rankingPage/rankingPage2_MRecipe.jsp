@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
 
   <script>
    window.onload = function() {
-    var preYear = new Date().getFullYear().toString() - 10; /*현재 년도 - 10년*/
+    var preYear = new Date().getFullYear().toString() - 5; /*현재 년도 - 10년*/
     var nowYear = new Date().getFullYear().toString(); /*현재 년도*/
     var preMonth = 1; /*1월*/
     var endMonth = 12; /*12월*/
@@ -81,7 +81,7 @@ var monthClick = $("select[name=monthClickName]").val();
 
 /* 기존 선택하지 않은 상태  */
 $
-.ajax({
+.ajax({ 
  url : "/rankingMonthlyRecipe",
  data : {
   year : yearClick,
@@ -118,7 +118,7 @@ $("#yearClick").change(function() {
    },
    type : "post",
    success : function(data) {
-     console.log("성공");
+     //console.log("성공");
      for (var i = 0; i < data.length; i++) {
       $('#rankNum' + (i + 1)).html((i + 1) + "위");
       $('#cardImgs' + (i + 1)).attr('src',data[i].recipePic);
@@ -170,8 +170,24 @@ $("#monthClick").change(
 }
 </script>
 <style>
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
+  @import url(https://fonts.googleapis.com/css?family=Khula:700);
   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  
+  @font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 700;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
 </style>
 </head>
 <body>
@@ -219,7 +235,7 @@ $("#monthClick").change(
       <tbody>
        <tr>
         <th class='row'>
-         <h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
+         <h3 class="pull-left" id="rankNum1" style="margin-left: 20px; font-family: 'Godo', sans-serif;">1위</h3>
 <!--          <div class="float-right" id="viewDiv">
           <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
           id="viewIcon">
@@ -237,7 +253,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs1">
  </div>
  <div class="container">
@@ -264,7 +280,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
+     <h3 class="pull-left" id="rankNum2" style="margin-left: 20px; font-family: 'Godo', sans-serif;">2위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -282,7 +298,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs2">
  </div>
  <div class="container">
@@ -308,7 +324,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
+     <h3 class="pull-left" id="rankNum3" style="margin-left: 20px; font-family: 'Godo', sans-serif;">3위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -326,7 +342,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs3">
  </div>
  <div class="container">
@@ -353,7 +369,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
+     <h3 class="pull-left" id="rankNum4" style="margin-left: 20px; font-family: 'Godo', sans-serif;">4위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -371,7 +387,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs4">
  </div>
  <div class="container">
@@ -397,7 +413,7 @@ $("#monthClick").change(
   <tbody>
    <tr>
     <th class='row'>
-     <h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
+     <h3 class="pull-left" id="rankNum1" style="margin-left: 20px; font-family: 'Godo', sans-serif;">5위</h3>
 <!--      <div class="float-right" id="viewDiv">
       <img src="/imgs/recipe_img/view_icon.png" class="views-icon"
       id="viewIcon">
@@ -415,7 +431,7 @@ $("#monthClick").change(
   <!-- 레시피 이미지 -->
   <div id="imgWrap">
    <img class="card-img rounded"
-   src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+   src="/imgs/ranking_img/monthRecipeC905x350.png" alt="Card image"
    id="cardImgs5">
  </div>
  <div class="container">

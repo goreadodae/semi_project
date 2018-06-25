@@ -37,7 +37,7 @@ public class RankingMonthlyChefRecipeListServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		System.out.println(userId);
 		ArrayList<Ranking> userIdList = new RankingService().monthChefRankingRecipeList(userId);
-		System.out.println(userIdList);
+		/*System.out.println("유저리스트"+userIdList);*/
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		new Gson().toJson(userIdList,response.getWriter());

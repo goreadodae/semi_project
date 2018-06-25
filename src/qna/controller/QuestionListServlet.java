@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import admin.model.vo.Answer;
 import member.model.vo.Member;
 import qna.model.service.QnaService;
+import qna.model.vo.Qna;
 import qna.model.vo.Question;
 
 /**
@@ -38,15 +40,24 @@ public class QuestionListServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		int memberNo=0;
 		Member m = (Member)(session.getAttribute("user"));
+		
+		
+		
 	
 		if(m!=null)
 		{
 			
 			memberNo = m.getMemberNo();
-			ArrayList<Question> qList = new QnaService().questionList(memberNo);
+
 			
+			
+			ArrayList<Qna> qnaList = new QnaService().qnaList(memberNo);
+			
+
 			RequestDispatcher view = request.getRequestDispatcher("/views/customerCenterPage/oneToOneQNAPage.jsp");
-			request.setAttribute("qList", qList);		
+			
+			request.setAttribute("qnaList", qnaList);		
+
 			view.forward(request, response);
 		}
 		else

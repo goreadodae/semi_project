@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	response.setHeader("cache-control","no-store");
 	response.setHeader("expires","0");
@@ -10,41 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>adminPage</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/reset.css">
-
-<jsp:include page="/views/main/default_layout.jsp"></jsp:include>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
-
-<style>
-* {
-	padding: 0;
-}
-
-.page-item.active>.page-link {
-	background-color: #512772 !important;
-	border-color: #512772 !important;
-	color: white !important;
-}
-
-.page-item>.page-link {
-	color: #512772 !important;
-}
-
-.btn.btn-primary{
-	background-color: #512772 !important;
-	border-color: #512772 !important;
-	color: white !important;
-	margin: 1px;
-	
-}
-</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <script>
 	var scrollUpDelay = 1;
 	var scrollUpSpeed = 30;
@@ -67,25 +35,6 @@
 		document.body.scrollTop = document.body.scrollTop - scrollUpSpeed;
 		setTimeout('scrollUp()', scrollUpDelay);
 	}
-</script>
-<!-- 페이지 네비게이션 고정 -->
-<script>
-	$(document).ready(function() {
-		var jbOffset = $('#point').offset();
-
-		$(window).scroll(function() {
-			if ($(document).scrollTop() >= jbOffset.top) {
-				$('#fixed_layer').addClass('jbFixed');
-
-				if (matchMedia("screen and (max-width: 767px)").matches) {
-					$('#fixed_layer').removeClass('jbFixed');
-				}
-
-			} else {
-				$('#fixed_layer').removeClass('jbFixed');
-			}
-		});
-	});
 </script>
 <script>
 	function deleteRecipe(recipeNo){
@@ -138,8 +87,10 @@
 		else{
 			alert("송금 가능한 금액이 없는 상품은 송금할 수 없습니다.");
 		}
+		
 	}
 </script>
+	
 <style>
 * {
 	padding: 0px;
@@ -179,26 +130,51 @@
 	background: linear-gradient(-90deg, white 50%, #ef5285 50%);
 }
 </style>
+
+<style>
+* {
+	padding: 0;
+}
+
+.page-item.active>.page-link {
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+}
+
+.page-item>.page-link {
+	color: #512772 !important;
+}
+
+.btn.btn-primary {
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+}
+</style>
+
 </head>
 <body>
-	<div class="container-fluid" style="padding: 0px">
-		<div class="container-fluid" style="padding: 0;">
-			<!-- Header -->
-			<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
-			<!-- 해더 -->
-		</div>
-		<div style="background-color: #f8faff; padding: 0px">
+	<div class="container-fluid">
+		<div class="row" style="padding: 0px">
+			<jsp:include page="/views/adminPage/layoutPageLeft.jsp"></jsp:include>
 
-			<div id="contents"
-				class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-				style="border: 1px solid black; left-padding: 14px;">
-				<div class="row">
-					<div class="col-md-2">
-						<!-- 네이게이터 -->
+			<div class="container" style="padding: 0px">
+				<div class="col-md-12">
+					<div class="col-md-12" style="text-align: center">
+						<br>
+
+
 					</div>
-					<div class="col-md-10">
-						<div class="col-md-12">
-							<table class="table table-hover">
+				</div>
+
+				<br> <br> <br>
+				<div class="col-md-12" style="height: 800px">
+					<br> <br>
+					<h2>상품관리</h2>
+					<br>
+					<table class="table table-hover">
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">레시피제목</th>
@@ -232,34 +208,28 @@
 									</c:forEach>
 									
 							</table>
-						</div>
-						<div class="container">
-							<div class="row">
-								<ul id="pageNavi" class="pagination"
-									style="margin-left: auto; margin-right: auto;">
-									${requestScope.pageData.pageNavi }
-								</ul>
-							</div>
+					<div class="container">
+						<div class="row">
+							<ul id="pageNavi" class="pagination"
+								style="margin-left: auto; margin-right: auto;">
+								${requestScope.pageData.pageNavi }
+							</ul>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 
+
 		</div>
 
-		<div id="footer"
-			class="col-md-8 col-sm-12  mx-auto border-left-0 border-right-0"
-			style="border: 1px solid black; padding: 10px;">
-			<jsp:include page="/views/footer/main-Footer.jsp"></jsp:include>
-		</div>
+
 
 	</div>
 
 
-	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	<script src="/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

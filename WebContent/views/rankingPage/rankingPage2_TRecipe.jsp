@@ -100,7 +100,7 @@ pageEncoding="UTF-8"%>
 				preDayMonth = prevDay1[1]; /*월*/
 				prevDay = prevDay1[2]; /*일*/
 //if(Number(prevDay)<10){prevDay="0"+prevDay;}
-			console.log(prevDay);
+			//console.log(prevDay);
 
 				var prevDay2 = datepicker.split('/');
 				nextDayYear = prevDay1[0];	/*년*/
@@ -149,7 +149,7 @@ pageEncoding="UTF-8"%>
 				
 			/*	yesterday.setDate(yesterday.getDate()-1);*/
 
-					console.log("이전날 버튼 : "+$('#datepicker').val());
+					//console.log("이전날 버튼 : "+$('#datepicker').val());
 				$.ajax({
 					url : "/rankingTodayMove",
 					data : {datepicker : $('#datepicker').val()},
@@ -199,7 +199,7 @@ pageEncoding="UTF-8"%>
 				/*yesterday.setDate(yesterday.getDate()+1);*/
 
 
-				console.log("다음날 버튼 : "+$('#datepicker').val());
+				//console.log("다음날 버튼 : "+$('#datepicker').val());
 
 
 				$.ajax({
@@ -256,7 +256,7 @@ window.onload = function() {
 	prevDay = prevDay1[2];
 
      //입력값
-     console.log("오늘 날짜는 ?"+datepicker);
+     //console.log("오늘 날짜는 ?"+datepicker);
 
      $.ajax({
      	url : "/rankingToday",
@@ -398,7 +398,7 @@ window.onload = function() {
 						<tbody>
 							<tr>
 								<th class='row'>
-									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">1위</h3>
+									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;font-family: 'Godo', sans-serif;">1위</h3>
 <!-- 									<div class="center-block" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
@@ -416,7 +416,8 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs1">
 						</div>
 						<div class="container">
@@ -434,7 +435,7 @@ window.onload = function() {
 				<br>
 				<br>
 
-
+ 
 
 				<!-- 2위 -->
 
@@ -443,7 +444,7 @@ window.onload = function() {
 						<tbody>
 							<tr>
 								<th class='row'>
-									<h3 class="pull-left" id="rankNum2" style="margin-left: 20px;">2위</h3>
+									<h3 class="pull-left" id="rankNum2" style="margin-left: 20px;font-family: 'Godo', sans-serif;">2위</h3>
 <!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon" id="viewIcon">
 										<div id="rankingViews2"></div>
@@ -460,7 +461,8 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs2">
 						</div>
 						<div class="container">
@@ -486,7 +488,7 @@ window.onload = function() {
 						<tbody>
 							<tr>
 								<th class='row'>
-									<h3 class="pull-left" id="rankNum3" style="margin-left: 20px;">3위</h3>
+									<h3 class="pull-left" id="rankNum3" style="margin-left: 20px;font-family: 'Godo', sans-serif;">3위</h3>
 <!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
@@ -504,7 +506,8 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs3">
 						</div>
 						<div class="container">
@@ -530,7 +533,7 @@ window.onload = function() {
 						<tbody>
 							<tr>
 								<th class='row'>
-									<h3 class="pull-left" id="rankNum4" style="margin-left: 20px;">4위</h3>
+									<h3 class="pull-left" id="rankNum4" style="margin-left: 20px;font-family: 'Godo', sans-serif;">4위</h3>
 <!-- 									<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
@@ -548,7 +551,8 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs4">
 						</div>
 						<div class="container">
@@ -574,7 +578,7 @@ window.onload = function() {
 						<tbody>
 							<tr>
 								<th class='row'>
-									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;">5위</h3>
+									<h3 class="pull-left" id="rankNum1" style="margin-left: 20px;font-family: 'Godo', sans-serif;">5위</h3>
 	<!-- 								<div class="float-right" id="viewDiv">
 										<img src="/imgs/recipe_img/view_icon.png" class="views-icon"
 										id="viewIcon">
@@ -592,7 +596,8 @@ window.onload = function() {
 						<!-- 레시피 이미지 -->
 						<div id="imgWrap">
 							<img class="card-img rounded"
-							src="/imgs/ranking_img/ingredient.jpg" alt="Card image"
+							src="/imgs/ranking_img/todayRecipeC905x350.png" alt="Card image"
+							onerror='this.src="/imgs/ranking_img/todayRecipeC905x350.png"'
 							id="cardImgs5">
 						</div>
 						<div class="container">

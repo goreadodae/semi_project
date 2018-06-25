@@ -34,7 +34,7 @@ public class ProductMgtServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<AdminProduct> list = new AdminService().getProductList();
 		request.setAttribute("productList", list);
-		RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/productMgtPage.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/adminPage/productMgtPage2.jsp");
 		view.forward(request, response);
 	}
 

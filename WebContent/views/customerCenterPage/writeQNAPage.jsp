@@ -260,6 +260,15 @@
 #click {
 	cursor: pointer;
 }
+
+
+.btn.btn-success{
+	background-color: #512772 !important;
+	border-color: #512772 !important;
+	color: white !important;
+	margin: 1px;
+
+}
 </style>
 </head>
 <body>
@@ -297,7 +306,7 @@
 
 
 								<td><br> <input type="text" id="qnaTitle" name="qnaTitle"
-									size="100%" /></td>
+									size="100%" required /></td>
 							</tr>
 							<tr height="70px">
 
@@ -305,7 +314,7 @@
 
 								<td><input type="text" name="inquiryNo" style="width: 25%"
 									id="orderNum" readonly />
-									<button type="button" onclick="inquiry();" class="btn btn-info"
+									<button type="button" onclick="inquiry();" class="btn btn-success"
 										id="orderInquiry" style="height: 2em">주문조회</button>
 
 									<div class="col-md-8"
@@ -333,9 +342,9 @@
 									style="font-size: 15px">배송</b><br> -주문 완료 후 배송 방법(택배)은 변경이
 									불가능합니다.<br> -배송일 및 배송시간 지정은 불가능합니다.(예약배송 포함)<br> <br>
 									*주문취소 외 평일 오후 5시(주말 공휴일 12시)까지 접수된 문의는 당일 답변드립니다. 이후 문의는 다음날 오전
-									8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea
-										name="contents" id="contents"
-										style="width: 100%; height: 300px; resize: none;">
+									8시 부터 순차적으로 답변해드립니다. <br> <br> <!-- 1:1문의 내용  --> <textarea 
+										name="contents" id="contents" 
+										style="width: 100%; height: 300px; resize: none;" required>
 						 </textarea>
 								</td>
 							</tr>

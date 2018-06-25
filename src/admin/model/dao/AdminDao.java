@@ -126,8 +126,8 @@ public class AdminDao {
 		int end = currentPage * recordCountPerPage;
 
 		String query = "select que_no,que_title,que_time,que_contents,member_no,member_id,buying_no,response_yn "
-				+ "from(select question.*,row_number()over(order by que_no desc) as num from question) "
-				+ "left join member using(member_no) where num between ? and ? ";
+				+ "from(select question.*,row_number()over(order by que_no desc) as num from question where response_yn = 'N')"
+				+ " left join member using(member_no) where num between ? and ? ";
 
 		ArrayList<Question> list = new ArrayList<Question>();
 
@@ -394,8 +394,9 @@ public class AdminDao {
 
 		String query = "update member set profits=profits+? where member_no=?";
 		try {
+			int profit = (int)(totalSales*0.1);
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, totalSales);
+			pstmt.setInt(1, profit);
 			pstmt.setInt(2, memberNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

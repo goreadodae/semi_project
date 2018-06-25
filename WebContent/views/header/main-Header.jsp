@@ -335,8 +335,13 @@
 										<p style="font-weight:800; width:100%; font-size:15px; margin:0px; padding-left:10px; padding-top:12px; text-align:left; float:left;"><%=m.getNickName()%>님</p>
 									</div>
 									<div style="display:block; width:50%; height:25px;">
+										<%if(m.getMemberName().equals("admin")){ %>
+										<a href="/memberMgt" style="position:absolute; left:30px; top:58px;
+										   text-decoration:underline; color:#878787; font-size:13px;">관리자</a>
+										<%} else { %>
 										<a href="/views/memberPage/myHomeMainPage.jsp" style="position:absolute; left:30px; top:58px;
 										   text-decoration:underline; color:#878787; font-size:13px;">내정보</a>
+										<%} %>
 									</div>
 									<div style="display:block; width:50%; height:25px;">
 										<a class="nav-link" href="/basketSelect" style="position:absolute; left:57px; top:50px;

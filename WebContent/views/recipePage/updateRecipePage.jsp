@@ -851,7 +851,7 @@ body{font-family:IropkeBatang;}
 </head>
 <body>
 <%if(mem!=null){ %>
-	<div class="container-fluid" id="maindiv"> 
+	<div class="container-fluid" id="maindiv" style="padding: 0;"> 
 		<!--헤더예용! -->	
 		<jsp:include page="/views/header/main-Header.jsp"></jsp:include>
 		<br><br>

@@ -104,7 +104,7 @@
    </div>
    <!-- 푸터 끝 -->
 
-   <script>
+<script>
       function findPwd() {
          var userId = $('#userId').val();
          var userName = $('#userName').val();
@@ -115,11 +115,12 @@
                 data: {id:userId ,name:userName, email:email},
                 type: "post",
                 success: function(data) {
-                    console.log("성공");
-                    if(data!=null){
-                   
+                    
+                    if(data>0){
+                    	alert("등록된 이메일로 임시 비밀번호를 발송하였습니다. 개인정보 변경에서 새로 변경해주시기 바랍니다.");
+                    	location.replace("/views/memberPage/loginPage.jsp");
                     }else{
-                         
+                         alert("잘못된 정보입니다.")
                     }
                     
                 },

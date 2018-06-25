@@ -38,6 +38,14 @@ public class FindPwdServlet extends HttpServlet {
       
       int result = new MemberService().findPwd(userId, userName, email, uuid);
       
+      
+      if(result>0) {
+    	  response.getWriter().print(1);
+          response.getWriter().close(); 
+      }else{
+    	  response.getWriter().print(0);
+          response.getWriter().close();
+      }
    }
 
    /**

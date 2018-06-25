@@ -156,15 +156,15 @@ public class MemberDao {
 			pstmt.setInt(11, m.getProfits());
 
 			result = pstmt.executeUpdate();
-			
+
 			if (result > 0) {
 				JDBCTemplate.commit(conn);
-				m2 = insertSession(conn,m);
-				
+				m2 = insertSession(conn, m);
+
 			} else {
 				JDBCTemplate.rollback(conn);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -181,18 +181,18 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Properties prop = new Properties();
-		Member m2=null;
-		
+		Member m2 = null;
+
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as birth_date, phone, email, address, profile, nickname, profits from member where member_id = ?";
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, m.getMemberId());
 
 			rset = pstmt.executeQuery();
 
-			if(rset.next()) {
+			if (rset.next()) {
 				m2 = new Member();
 
 				m2.setMemberNo(rset.getInt("MEMBER_NO"));
@@ -207,21 +207,20 @@ public class MemberDao {
 				m2.setNickName(rset.getString("NICKNAME"));
 				m2.setProfits(rset.getInt("PROFITS"));
 			}
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return m2;
 	}
-
 
 	public Member login(String loginId, String loginPwd, Connection conn) {
 
@@ -257,7 +256,9 @@ public class MemberDao {
 				m.setAddress(rset.getString("ADDRESS"));
 				m.setProfile(rset.getString("PROFILE"));
 				m.setNickName(rset.getString("NICKNAME"));
-				m.setProfits(rset.getInt("profits"));
+
+				m.setProfits(rset.getInt("PROFITS"));
+
 			}
 
 		} catch (IOException e) {
@@ -386,7 +387,6 @@ public class MemberDao {
 
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = prop.getProperty("selectOneMember");
 			pstmt = conn.prepareStatement("select * from member where member_no=?");
 			pstmt.setInt(1, memberNo);
 			rset = pstmt.executeQuery();
@@ -433,7 +433,7 @@ public class MemberDao {
 
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = "select product_1st_pic, product_name, buying_send_yn from product p inner join buying b on p.product_no = b.product_no where p.product_no in (select product_no from member join buying using(member_no) where member_no=?)";
+			String query = "select p.product_no, product_1st_pic, product_name, buying_send_yn from product p inner join buying b on p.product_no = b.product_no where p.product_no in (select product_no from member join buying using(member_no) where member_no=?)";
 
 			pstmt = conn.prepareStatement(query);
 
@@ -443,7 +443,7 @@ public class MemberDao {
 
 			while (rset.next()) {
 				b = new BuyProduct();
-
+				b.setProduct_no(rset.getInt("product_no"));
 				b.setProduct_img(rset.getString("product_1st_pic"));
 				b.setProduct_name(rset.getString("product_name"));
 				b.setBuying_send_yn(rset.getString("buying_send_yn"));
@@ -535,7 +535,7 @@ public class MemberDao {
 			while (rset.next()) {
 				c = new Comments();
 
-				c.setCommentNO(rset.getInt("comment_no"));
+				c.setCommentNo(rset.getInt("comment_no"));
 				c.setRecipeName(rset.getString("recipe_title"));
 				c.setCommentContents(rset.getString("comment_contents"));
 				c.setCommentEnrollDate(rset.getTimestamp("comment_enroll_date"));
@@ -870,6 +870,174 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	// 회원탈퇴 추가
+	public int deleteMember(Connection conn, int memberNo) {
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "delete from member where member_no=?";
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public Member socialLogin(Connection conn, String id, String name, String email, String gender) {
+
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("..").getPath();
+
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		Member m2 = null;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+
+			String query = "insert into member values(member_SEQ.NEXTVAL, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), ?, ?, ?, SYSDATE,?,?,?,?)";
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, id);
+			pstmt.setString(2, "0000");
+			pstmt.setString(3, name);
+			pstmt.setString(4, "");
+			pstmt.setString(5, "010-0000-0000");
+			pstmt.setString(6, gender);
+			pstmt.setString(7, email);
+			pstmt.setString(8, "");
+			pstmt.setString(9, "");
+			pstmt.setString(10, "");
+			pstmt.setInt(11, 0);
+
+			result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				JDBCTemplate.commit(conn);
+				m2 = new MemberDao().insertSession(conn, id);
+
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return m2;
+	}
+
+	public Member insertSession(Connection conn, String id) {
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Properties prop = new Properties();
+		Member m2 = null;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD'), phone, email, address, profile, nickname, profits from member where member_id = ?";
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, id);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				m2 = new Member();
+
+				m2.setMemberNo(rset.getInt("MEMBER_NO"));
+				m2.setMemberId(id);
+				m2.setMemberPwd("0000");
+				m2.setMemberName(rset.getString("MEMBER_NAME"));
+				m2.setBirthDate("000000");
+				m2.setPhone("010-0000-0000");
+				m2.setEmail(rset.getString("EMAIL"));
+				m2.setAddress("00000 | 네이버에서 | 로그인 하셨습니다.");
+				m2.setProfile(rset.getString("PROFILE"));
+				m2.setNickName(rset.getString("NICKNAME"));
+				m2.setProfits(rset.getInt("PROFITS"));
+			}
+
+			System.out.println(m2.getMemberId());
+			System.out.println(m2.getMemberName());
+			System.out.println(m2.getEmail());
+			System.out.println(m2.getGender());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return m2;
+	}
+
+	public boolean socialCheck(Connection conn, String id, String name) {
+		String path = JDBCTemplate.class.getResource("..").getPath();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Properties prop = new Properties();
+		boolean result = false;
+
+		try {
+			prop.load(new FileReader(path + "resources/memberQuery.properties"));
+			String query = "select member_id from member where member_id=? and member_name =?";
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next())
+				result = true;
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 
 		return result;

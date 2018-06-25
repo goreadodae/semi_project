@@ -5,18 +5,30 @@ import java.sql.Timestamp;
 public class Comments {
    
    private int commentNo;
+   private int recipeNo;
    private String recipeName;
    private String commentContents;
    private Timestamp commentEnrollDate;
    
    public Comments() {}
    
+   
+   
+   
    public int getCommentNo() {
-      return commentNo;
+	return commentNo;
+}
+
+public void setCommentNo(int commentNo) {
+	this.commentNo = commentNo;
+}
+
+public int getRecipeNo() {
+      return recipeNo;
    }
 
-   public void setCommentNO(int commentNo) {
-      this.commentNo = commentNo;
+   public void setRecipeNo(int recipeNo) {
+      this.recipeNo = recipeNo;
    }
 
    public String getRecipeName() {

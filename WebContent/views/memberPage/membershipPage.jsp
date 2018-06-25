@@ -1412,6 +1412,7 @@
 	        	if($('#checkBar').val()==emailCheckCode){
 		            $('#emailCheck').slideToggle();
 		            $('.desktop').html("이메일 인증이 완료되었습니다.");
+		            clearInterval(tid); // 타이머 해제
 		            $('.filter').hide();
 		            $('#btnBar2').hide();
 		            $('#hide-button2').show();
@@ -1633,7 +1634,12 @@
 	            	}
 	       		}
 	
+	      //변경 윤달추가
 	        function birthCheck() {
+	        	var year;
+	        	var day;
+	        	
+	        	
 	            $('#check5').css('visibility', 'visible');
 	
 	            if ($('#birth').val().match(regExpSpace)) {
@@ -1653,8 +1659,16 @@
 	                    $('#birthProblem').show();
 	                    $('#remove-5').css("margin-bottom", "20px");
 	                } else {
+	                	if($('#birth').val().substring(0, 2)<10){
+	                		year = $('#birth').val().substring(0, 2)*1+2000;
+	                	}else{
+	                		year = $('#birth').val().substring(0, 2)*1+1900;
+	                	}
+	                	
+	                		
 	                    if ($('#birth').val().substring(2, 4) > 0 && $('#birth').val().substring(2, 4) < 13) {
-	                        if ($('#birth').val().substring(4, 6) > 0 && $('#birth').val().substring(4, 6) < 32) {
+	                    	day = 32 - new Date(year, $('#birth').val().substring(2, 4)-1, 32).getDate();
+	                        if ($('#birth').val().substring(4, 6) > 0 && $('#birth').val().substring(4, 6) < day+1) {
 	                            $('#birth').css('border', '3px solid #00FF40');
 	                            $('#ok-5').show();
 	                            $('#remove-5').hide();
@@ -1663,7 +1677,7 @@
 	                            $('#birth').css('border', '3px solid red');
 	                            $('#remove-5').show();
 	                            $('#ok-5').hide();
-	                            $('#birthProblem').text("31일을 초과하였습니다.");
+	                            $('#birthProblem').text(day+"일을 초과하였습니다.");
 	                            $('#birthProblem').show();
 	                            $('#remove-5').css("margin-bottom", "20px");
 	                        }

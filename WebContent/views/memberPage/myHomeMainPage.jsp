@@ -269,12 +269,12 @@ ol, li {
 				</div>
 			</div>
 		<!-- 푸터 -->
-		</div>
+		</div><br>
+		<!-- 푸터 끝 -->
 			<br>
 			<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
 				style="border: 1px solid black; padding: 10px;">
 			</div>
-		<!-- 푸터 끝 -->
 		</div>
 	<script>
 	    window.onload = function () {

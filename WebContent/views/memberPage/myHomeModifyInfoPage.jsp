@@ -160,7 +160,7 @@
 						<h2>개인 정보 수정</h2>
 					</div>
 					<div id="check-pwd">
-						<form action="/pwdCheck" method="post">
+						<form action="/pwdCheck" method="post" id="frm">
 							<div id="title-message">
 								<img src="/imgs/member_img/check-pwd.JPG">
 							</div>
@@ -169,13 +169,15 @@
 								<span id="txt-id"><%= m.getMemberId() %></span>
 								<input type="hidden" id="hiddenId" name="id" value=<%=m.getMemberId() %> />
 								<div id="userPwd" style="font-size:14px; font-weight:700">비밀번호</div>
+								<input type="hidden" id="hiddenPwd"  value=<%=m.getMemberPwd() %> />
 								<div>
 									<input type="password" id="txt-pwd" name="password" />
 								</div>
+									<p id="problemPwd" style="color: #f00;margin-top:5px; font-size:13px;"></p>
 							</div>
 							<div style="padding-top:20px;" id="ok-btn">
 								<center>
-									<button type="submit">확인</button>
+									<button type="button" onclick="check();">확인</button>
 								</center>
 							</div>
 						</form>
@@ -190,25 +192,18 @@
 	</div>
 	
 	<script type="text/javascript">
-		function check-btn() {
-			var id = $('#txt-id').val();
-			var password = $('#txt-pwd').val();
-			
-			$.ajax({
-	        	url: "/pwdCheck",
-	        	data: {password:password, id : id},
-	         	type: "post",
-	         	success: function() {
-	            	console.log("성공");
-	         	},
-	         	error: function() {
-	            	console.log("실패");
-	         	},
-	         	complete: function() {
-	            	//무조건 실행
-	        	 }
-	     	});
+		function check() {
+	        var password = $('#txt-pwd').val();	
+	        var pwd = $('#hiddenPwd').val();
+	        
+	        if(password==pwd){
+	           $('#frm').submit();
+	        }else{
+	           $('#problemPwd').html("비밀번호가 같지 않습니다.");
+	        }
 		}
+        
+        
 	</script>
 
 	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

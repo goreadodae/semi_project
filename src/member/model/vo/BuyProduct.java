@@ -1,14 +1,29 @@
 package member.model.vo;
 
 public class BuyProduct {
-
+	
+   private int product_no;
    private String product_img;
    private String product_name;
    private String buying_send_yn;
    
    public BuyProduct() {}
+   
+   
+   
+   
+   
+   public int getProduct_no() {
+	return product_no;
+}
 
-   public String getProduct_img() {
+
+public void setProduct_no(int product_no) {
+	this.product_no = product_no;
+}
+
+
+public String getProduct_img() {
       return product_img;
    }
 

@@ -54,7 +54,7 @@ public class MemberService {
 	}
 
 	public Member changInfo(String userId, String fullFilePath, String userPwd, String phone, String email,
-			String address, String nickname) {
+			String address, String nickname, int profits) {
 
 		Connection conn = JDBCTemplate.getConnection();
 		Member m = new MemberDao().changeInfo(conn, userId, fullFilePath, userPwd, phone, email, address, nickname);
@@ -67,7 +67,7 @@ public class MemberService {
 		return m;
 	}
 
-	// 아름 수정 (회원번호에 따른 계정정보 가져오기)
+	// �븘由� �닔�젙 (�쉶�썝踰덊샇�뿉 �뵲瑜� 怨꾩젙�젙蹂� 媛��졇�삤湲�)
 	public Member selectOneMember(int memberNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		Member member = new MemberDao().selectOneMember(conn, memberNo);
@@ -158,5 +158,34 @@ public class MemberService {
 
 		return result;
 	}
+
+	//멤버 탈퇴 추가
+	public int deleteMember(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		int result = new MemberDao().deleteMember(conn, memberNo);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Member socialLogin(String id, String name, String email, String gender) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member m2=null;
+		boolean result = new MemberDao().socialCheck(conn, id, name);
+		if(result==true) {
+			m2 =new MemberDao().insertSession(conn,id);
+			JDBCTemplate.close(conn);
+		}else {
+			m2 = new MemberDao().socialLogin(conn, id, name, email, gender);
+			JDBCTemplate.close(conn);
+		}
+		return m2;
+	}
+
 
 }

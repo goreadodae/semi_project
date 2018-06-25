@@ -573,7 +573,6 @@ body {
 							success : function(data) {
 								var keys = Object.keys(data);
 								
-								// data[키] 형태로 사용해야 함
 								for (var i = 0; i < keys.length; i++) {
 									$('#product_img_' + (i + 1)).attr("src", data[i].product_1st_pic);
 									$('#product_sale_title_' + (i + 1)).html(data[i].product_name);
@@ -597,15 +596,12 @@ body {
 									});
 								})
 								
-								// 장바구니 클릭 시 장바구니 담기기
 								$('[name=sale_btn]').each(function(index) {
 										
 									var index2 = index;
-									
 									$(this).click(function() {
 										<%if(m!=null){%>
 										var productNo = saleProductNoArr[index2];
-										
 										$.ajax({
 											url : "/basketInsert",
 											data : {basketQuantity:basketQuantity,productNo:productNo},
@@ -892,7 +888,7 @@ body {
 											<!-- 제목 -->
 											<p id="week_title_1" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 33px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -931,7 +927,7 @@ body {
 											<br>
 											<p id="week_title_2" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 33px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -969,7 +965,7 @@ body {
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="week_title_3" style="padding: 5px; padding-top: 15px; font-weight:500; text-align:center;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 14px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1009,7 +1005,7 @@ body {
 											<!-- 타이틀 바  -->
 											<p id="week_title_4" style="padding: 5px; padding-top: 15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 14px;">
 												<div class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="week_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1134,7 +1130,7 @@ body {
 											<br>
 											<p id="month_title_1" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top:31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top:33px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_1" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1170,7 +1166,7 @@ body {
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="month_title_2" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 33px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_2" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1210,7 +1206,7 @@ body {
 											<br>
 											<p id="month_title_3" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500;" class="lead my-1"></p>
 											
-											<div class="col-md-12" style="padding: 0px; padding-top: 31px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 33px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_3" style="line-height: 40px; text-align: center; color:#bebebe;"></p>
@@ -1248,7 +1244,7 @@ body {
 										<div class="col-md-12" style="padding: 0px;">
 											<br>
 											<p id="month_title_4" style="padding: 5px; padding-top:15px; text-align:center; font-weight:500; "class="lead my-1"></p>
-											<div class="col-md-12" style="padding: 0px; padding-top: 12px;">
+											<div class="col-md-12" style="padding: 0px; padding-top: 14px;">
 												<div id="month-option" class="row" style="margin: 0px;">
 													<div class="col-md-4" style="height: 40px; border: 1px solid #dadada; padding: 0px;">
 														<p id="month_time_4" style="line-height: 40px; text-align: center; color:#bebebe;"></p>

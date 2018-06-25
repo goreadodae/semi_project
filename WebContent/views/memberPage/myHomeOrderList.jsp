@@ -242,7 +242,7 @@ ol, li {
                            <td><%=count++%></td>
                            <td style="text-align: left;"><img
                               src="<%=bp.getProduct_img()%>" class="product_img"> <a
-                              href="#"><label><%=bp.getProduct_name()%></label></a></td>
+                              href="/productDetail?productNo=<%=bp.getProduct_no() %>"><label><%=bp.getProduct_name()%></label></a></td>
                            <td>
                               <%
                                  if (bp.getBuying_send_yn() == "Y") {
@@ -310,7 +310,7 @@ ol, li {
                var i = 0;
                console.log(pageTotal);
                for (; i < pageTotal; i++) {
-                  $('<a href="#" class="btn btn-defaul"></a>').attr('rel', i).html(i + 1)
+                  $('<a href="#" class="btn btn-defaul" style="width:30px;></a>').attr('rel', i).html(i + 1)
                         .appendTo('#nav');
                }
 

@@ -32,6 +32,7 @@ public class MemberRecipeDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int recipeNo = Integer.parseInt(request.getParameter("recipeNo"));
+		System.out.println(request.getParameter("recipeNo"));
 		int result = new MemberService().deleteRecipe(recipeNo);
 
 		if (result > 0) {

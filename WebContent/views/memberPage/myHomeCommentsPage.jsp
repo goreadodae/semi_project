@@ -222,10 +222,10 @@ width:100%;
                         <tr>
                            <td>
                                  <%=count++%>
-                                 <input type="hidden" id="commentNo" value="<%=cm.getCommentNo() %>" />
+                                 <input type="hiddem" id="commentNo" name="commentNo" value="<%=cm.getCommentNo()%>">
                            </td>
                            <td style="text-align: left;">
-                                 <a href="#">
+                                 <a href="recipe?recipeNo=<%=cm.getRecipeNo()%>">
                                     <label>
                                        <%=cm.getRecipeName()%>
                                     </label>

@@ -57,7 +57,7 @@ public class MemberService {
 			String address, String nickname, int profits) {
 
 		Connection conn = JDBCTemplate.getConnection();
-		Member m = new MemberDao().changeInfo(conn, userId, fullFilePath, userPwd, phone, email, address, nickname);
+		Member m = new MemberDao().changeInfo(conn, userId, fullFilePath, userPwd, phone, email, address, nickname, profits);
 
 		if (m != null) {
 			JDBCTemplate.commit(conn);

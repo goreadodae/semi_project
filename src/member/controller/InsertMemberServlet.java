@@ -57,6 +57,7 @@ public class InsertMemberServlet extends HttpServlet {
 		m.setEmail(request.getParameter("email"));
 		m.setNickName(request.getParameter("userNickName"));
 		m.setProfile(request.getParameter("userProfile"));
+		m.setProfits(0);
 		
 		Member user = new MemberService().insertMember(m);
 		

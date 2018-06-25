@@ -249,10 +249,9 @@ ol, li {
 									<!-- 수익금 -->
 									<div class="col-3" style="padding: 0px; margin: 5px;">
 										<div style="height: 20px;"></div>
-										<p
-											style="padding: 10px; padding-top: 20px; text-align: center;">수익금</p>
+										<p style="padding: 10px; padding-top: 20px; text-align: center;">수익금</p>
 										<hr style="width: 150px;">
-										<p></p>
+										<h1 id="userProfit" style="text-align: center;"><%=m.getProfits() %></h1>
 									</div>
 									<!-- 장바구니 -->
 									<div class="col-2" style="padding: 0px; margin: 5px;">

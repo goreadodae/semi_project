@@ -139,7 +139,7 @@ public class MemberDao {
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 
-			String query = "insert into member values(member_SEQ.NEXTVAL, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), ?, ?, ?, SYSDATE,?,?,?)";
+			String query = "insert into member values(member_SEQ.NEXTVAL, ?, ?, ?, TO_DATE(?,'YY-MM-DD'), ?, ?, ?, SYSDATE,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(query);
 
@@ -153,6 +153,7 @@ public class MemberDao {
 			pstmt.setString(8, m.getAddress());
 			pstmt.setString(9, m.getProfile());
 			pstmt.setString(10, m.getNickName());
+			pstmt.setInt(11, m.getProfits());
 
 			result = pstmt.executeUpdate();
 			
@@ -184,7 +185,7 @@ public class MemberDao {
 		
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as birth_date, phone, email, address, profile, nickname from member where member_id = ?";
+			String query = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as birth_date, phone, email, address, profile, nickname, profits from member where member_id = ?";
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, m.getMemberId());
@@ -204,6 +205,7 @@ public class MemberDao {
 				m2.setAddress(rset.getString("ADDRESS"));
 				m2.setProfile(rset.getString("PROFILE"));
 				m2.setNickName(rset.getString("NICKNAME"));
+				m2.setProfits(rset.getInt("PROFITS"));
 			}
 			
 		} catch (IOException e) {

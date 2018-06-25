@@ -56,7 +56,7 @@
       <br><br>
       <div id="content-main" class="contents" style="background-color: #f7f5f8">
          <div class="container">
-            <div class="col-md-12" id="section">
+            <div class="col-md-12	" id="section">
                <div class="col-md-8 mx-auto">
             	<fieldset>
                      <form action="" method="post" id="frm">

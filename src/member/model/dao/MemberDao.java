@@ -889,7 +889,6 @@ public class MemberDao {
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
 			String query = "delete member where member_no=?";
-
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 

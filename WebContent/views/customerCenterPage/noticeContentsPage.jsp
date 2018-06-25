@@ -169,7 +169,7 @@ border-collapse:collapse;
             </div>
             <div class="col-md-3">
             	<button type="button" onclick="location.href='/views/customerCenterPage/noticeWrite.jsp'"
-                  class="btn btn-outline-primary" id="listBtn">글쓰기(임시)</button>
+                  class="btn btn-outline-primary" id="listBtn">글쓰기</button>
             </div>
             <div class="col-md-3">
                <button type="button" onclick="location.href='/noticeList'"

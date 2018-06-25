@@ -231,10 +231,11 @@ ol, li {
                            
                            <td>
                                  <%=count++%>
-                                 <input type="hidden" id="recipeNo" value="<%=rc.getRecipeNo()%>" />
+                                 <input type="hidden" id="recipeNo" name="recipeNo" value="<%=rc.getRecipeNo() %>">
+
                            </td>
                            <td style="text-align: left;word-break:break-all;">
-                                 <a href="#">
+                                 <a href="recipe?recipeNo=<%=rc.getRecipeNo()%>" style="color:black;">
                                     <label>
                                        <%=rc.getRecipeTitle()%>
                                     </label>
@@ -285,11 +286,11 @@ ol, li {
    function deleteComment(obj){
        var tr = $(obj).parent().parent();
        var recipeNo = tr.find('#recipeNo').val();
-          
+        console.log(recipeNo);
         tr.remove();
 
         $.ajax({
-             url: "/recipeDelete",
+             url: "/memberRecipeDelete", // <- url만 교체
              data: {recipeNo: recipeNo},
              type: "get",
              success: function() {
@@ -331,12 +332,11 @@ ol, li {
                   if(rowTotals>rowPerPage){
                    $products.after('<div id="nav">');
                    }
-
                   var pageTotal = Math.ceil(rowTotals / rowPerPage);
                   var i = 0;
                   console.log(pageTotal);
                   for (; i < pageTotal; i++) {
-                     $('<a href="#" class="btn btn-defaul"></a>').attr('rel', i).html(i + 1)
+                     $('<a href="#" class="btn btn-defaul" style="width:30px; color:black"></a>').attr('rel', i).html(i + 1)
                            .appendTo('#nav');
                   }
 

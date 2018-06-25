@@ -7,6 +7,7 @@
 <meta name="author" content="수상한레시피">
 <meta name="description" content="레시피를 공유해 수익을 얻을 수 있는 사이트입니다.">
 <meta name="keywords" content="레시피, 요리, 수상한레시피, 음식, 재료">
+<link rel="shortcut icon" type="image/x-icon" href="/imgs/main-img/favicon.ico">
 
 <!-- 제이쿼리 -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"

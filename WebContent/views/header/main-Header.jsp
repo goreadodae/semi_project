@@ -2,7 +2,6 @@
 <link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
-<link rel="shortcut icon" href="/imgs/main-img/favicon.ico">
 
 <%
 	response.setHeader("cache-control","no-store");

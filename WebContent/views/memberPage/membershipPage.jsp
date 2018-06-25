@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="member.model.vo.*"%>
 <%
-	response.setHeader("cache-control","no-store");
-	response.setHeader("expires","0");
-	response.setHeader("pragma","no-cache");
+	response.setHeader("cache-control", "no-store");
+	response.setHeader("expires", "0");
+	response.setHeader("pragma", "no-cache");
 %>
 <!DOCTYPE html>
 <%
@@ -44,10 +44,15 @@
 		<!-- 컨텐츠 영역 -->
 		<div id="content-main" class="contents">
 			<div class="col-md-12" style="padding: 0;">
-				<div class="col-md-8 mx-auto member-join" style="margin-top: 20px; padding:0px;">
-					<h2>약관<a href="#" class="ghost" id="hide-button1" style="float: right; color: white;">동의함</a></h2>
+				<div class="col-md-8 mx-auto member-join"
+					style="margin-top: 20px; padding: 0px;">
+					<h2>
+						약관<a href="#" class="ghost" id="hide-button1"
+							style="float: right; color: white;">동의함</a>
+					</h2>
 					<ul class="agreement row">
-						<li class="box" style="margin-left: 15px; border: 1px solid black;">
+						<li class="box"
+							style="margin-left: 15px; border: 1px solid black;">
 							<h3>이용약관</h3>
 							<div>
 								<p style="display: block; padding: 20px 0">
@@ -1031,16 +1036,22 @@
 							</div>
 						</li>
 					</ul>
-					
-					<div class="button-bar" id="btnBar1" style="padding-top:5px; padding-left:1075px;">
-						<button type="button" class="btn btn-primary" style="background-color:black;" onclick="exit();">동의하지 않음</button>
-						<button type="button" class="agree2 btn btn-primary" onclick="nextShow();">동의함</button>
+
+					<div class="button-bar" id="btnBar1"
+						style="padding-top: 5px; padding-left: 1075px;">
+						<button type="button" class="btn btn-primary"
+							style="background-color: black;" onclick="exit();">동의하지
+							않음</button>
+						<button type="button" class="agree2 btn btn-primary"
+							onclick="nextShow();">동의함</button>
 					</div>
-					
+
 					<!-- 이메일 인증 -->
-					<div class="col-md-12 member-join ghost" id="phone-auth" style="padding:0px;">
+					<div class="col-md-12 member-join ghost" id="phone-auth"
+						style="padding: 0px;">
 						<h2>
-							이메일 인증 <a href="#" class="ghost" id="hide-button2" style="float: right; color: white;">확인</a>
+							이메일 인증 <a href="#" class="ghost" id="hide-button2"
+								style="float: right; color: white;">확인</a>
 						</h2>
 						<div class="box" id="emailCheck">
 							<div class="msg only-desktop">
@@ -1050,8 +1061,7 @@
 							<div class="col-md-3"></div>
 							<div class="col-md-6">
 								<ul class="filter">
-									<li class="line mx-auto">
-										<label>이메일</label>
+									<li class="line mx-auto"><label>이메일</label>
 										<div>
 											<input type="text" id="first_email" size="10" />
 											<h5>@</h5>
@@ -1067,50 +1077,50 @@
 											</datalist>
 											<a href="#" style="margin-left: 30px; line-height: 35px;"
 												id="checkBtn" onclick="emailCheck();">인증요청</a>
-										</div>
-									</li>
+										</div></li>
 									<li class="line "><label class="ghost emailCheck">인증번호</label>
 										<div>
 											<input class="ghost emailCheck" id="checkBar" type="text">
-											<h5>
-											</h5>
-											<div id="checkCount" class="ghost" style="padding-top:10px;"></div>
+											<h5></h5>
+											<div id="checkCount" class="ghost" style="padding-top: 10px;"></div>
 											<div id="reCheck" class="ghost">
 												<a href="#" style="margin-left: 30px; line-height: 30px;"
 													id="reCheckBtn" onclick="reEmailCheck();">재요청</a>
 											</div>
-										</div>
-									</li>
+										</div></li>
 								</ul>
 							</div>
 							<div class="col-md-3"></div>
 						</div>
-						
+
 						<!-- 이메일 인증 확인 바 -->
-						<div class="button-bar" id="btnBar2" style="padding-left:1170px;">
-								<button class="btn btn-primary" id="next-page" type="submit" style="width:100px;">확인</button>
+						<div class="button-bar" id="btnBar2" style="padding-left: 1170px;">
+							<button class="btn btn-primary" id="next-page" type="submit"
+								style="width: 100px;">확인</button>
 						</div>
 					</div>
-					
-						<div class="col-md-12 member-join ghost" id="member-insert" style="padding:0px; height: 1090px;">
+
+					<div class="col-md-12 member-join ghost" id="member-insert"
+						style="padding: 0px; height: 1090px;">
 						<h2>회원 정보 입력</h2>
 						<form action="/insertMember" method="post" id="frm" style="">
-							<div class="box mx-auto" style="height:854px;">
+							<div class="box mx-auto" style="height: 854px;">
 								<div>
-									<div style="width: 100%; float: left; padding-left:310px;">
+									<div style="width: 100%; float: left; padding-left: 310px;">
 										<div class="form-group mx-auto">
-											<label for="userId">아이디</label> 
-											<input type="text" class="form-control" id="userId" name="userId"
+											<label for="userId">아이디</label> <input type="text"
+												class="form-control" id="userId" name="userId"
 												onchange="idCheck();" placeholder="띄어 쓰기 없이 영소문자/숫자 6-12자"
-												maxlength="12"> 
-												<label class="problem" id="idProblem"></label>
+												maxlength="12"> <label class="problem"
+												id="idProblem"></label>
 										</div>
 										<div class="form-group mx-auto">
 											<label for="userPwd1">비밀번호</label> <input type="password"
 												class="form-control" id="userPwd1" name="userPwd"
 												onchange="pwdCheck1();"
-												placeholder="띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자 조합" maxlength="20">
-											<label class="problem" id="pwdProblem1"></label>
+												placeholder="띄어 쓰기 없이 10-20자의 영소문자, 숫자 및 특수문자 조합"
+												maxlength="20"> <label class="problem"
+												id="pwdProblem1"></label>
 										</div>
 										<div class="form-group mx-auto">
 											<label for="userPwd2">비밀번호 확인</label> <input type="password"
@@ -1118,7 +1128,7 @@
 												placeholder="위의 비밀번호를 다시 입력해주세요." maxlength="20"> <label
 												class="problem" id="pwdProblem2"></label>
 										</div>
-										<div class="form-group mx-auto" >
+										<div class="form-group mx-auto">
 											<label for="userName">이름</label> <input type="text"
 												class="form-control" id="userName" name="userName"
 												onchange="nameCheck();" placeholder="이름" maxlength="20">
@@ -1134,52 +1144,55 @@
 										<div class="form-group mx-auto">
 											<label for="phone">휴대폰</label><br> <select
 												class="form-control" name="phone1"
-												style="width: 90px; float: left; margin-right:5px;">
+												style="width: 90px; float: left; margin-right: 5px;">
 												<option>010</option>
 												<option>011</option>
 												<option>019</option>
 												<option>017</option>
 												<option>016</option>
-												
+
 											</select> <input type="text" class="form-control" id="phone"
 												name="phone2" onchange="phoneCheck();"
-												placeholder=" ' - ' 없이 휴대폰번호입력" style="width: 333px; margin-left:5px;"
-												maxlength="8"> <label class="problem"
-												id="phoneProblem"></label>
+												placeholder=" ' - ' 없이 휴대폰번호입력"
+												style="width: 333px; margin-left: 5px;" maxlength="8">
+											<label class="problem" id="phoneProblem"></label>
 										</div>
-										
-										<div class="form-group mx-auto" style="height:170px; margin-bottom:0px;">
-											<label for="postcode">주소</label><br> 
-											<input type="text" id="postcode" name="postcode" placeholder="우편번호"
-												class="form-control" style="width: 100px; float: left; margin-right:10px;"
-												readonly />
-											
-											<input type="button" class="btn btn-default" id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
-												style="width: 100px; height: 42px; margin:0; magin-left:5px; padding: 0 5px;" />
-												
+
+										<div class="form-group mx-auto"
+											style="height: 170px; margin-bottom: 0px;">
+											<label for="postcode">주소</label><br> <input type="text"
+												id="postcode" name="postcode" placeholder="우편번호"
+												class="form-control"
+												style="width: 100px; float: left; margin-right: 10px;"
+												readonly /> <input type="button" class="btn btn-default"
+												id="postBtn" onclick="execDaumPostcode();" value="주소 찾기"
+												style="width: 100px; height: 42px; margin: 0; magin-left: 5px; padding: 0 5px;" />
+
 											<input type="text" id="roadAddress" name="roadAddress"
-												placeholder="도로명주소" style="margin-right: 20px; margin-top:10px;"
-												class="form-control" readonly /> 
-												
-											<input type="text" id="addAddress" name="addAddress" 
-											    placeholder="상세주소 입력" class="form-control" style="margin-top:10px;"/> 
-												<span id="guide" style="color: #999"></span> 
-												<label class="problem" id="addressProblem"></label>
+												placeholder="도로명주소"
+												style="margin-right: 20px; margin-top: 10px;"
+												class="form-control" readonly /> <input type="text"
+												id="addAddress" name="addAddress" placeholder="상세주소 입력"
+												class="form-control" style="margin-top: 10px;" /> <span
+												id="guide" style="color: #999"></span> <label
+												class="problem" id="addressProblem"></label>
 										</div>
 										<div class="form-group mx-auto">
-											<label for="userName" style="margin-top:10px;">성별</label> <label class="problem"
-												id="genderProblem"></label> <input type="hidden"
-												id="hiddenGender" name="gender" /> <input type="hidden"
-												id="hiddenEmail" name="email" />
-											<p style="margin-bottom:5px;"></p>
+											<label for="userName" style="margin-top: 10px;">성별</label> <label
+												class="problem" id="genderProblem"></label> <input
+												type="hidden" id="hiddenGender" name="gender" /> <input
+												type="hidden" id="hiddenEmail" name="email" />
+											<p style="margin-bottom: 5px;"></p>
 											<div class="btn-group mx-auto" role="group" aria-label="..."
 												id="gender">
-												<button type="button" class="btn btn-default" id="genderM" style="margin-right:15px;">남자</button>
+												<button type="button" class="btn btn-default" id="genderM"
+													style="margin-right: 15px;">남자</button>
 												<button type="button" class="btn btn-default" id="genderF">여자</button>
 											</div>
 										</div>
-										<input type="hidden" id="userImg" name="userProfile" value="/imgs/member_img/boy.png">
-										<input type="hidden" name="userNickName" value="유저"/>
+										<input type="hidden" id="userImg" name="userProfile"
+											value="/imgs/member_img/boy.png"> <input
+											type="hidden" name="userNickName" value="유저" />
 									</div>
 									<div style="">
 										<div class="form-group1">
@@ -1224,34 +1237,41 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3"></div><br><br><br>
-							<div class="button-bar" id="btnBar1" style="padding-top:5px; padding-left:1190px;">
-								<button class="btn btn-primary" type="button" onclick="allCheck();" style="width:80px; height:40px;">확인</button>
+							<div class="col-md-3"></div>
+							<br>
+							<br>
+							<br>
+							<div class="button-bar" id="btnBar1"
+								style="padding-top: 5px; padding-left: 1190px;">
+								<button class="btn btn-primary" type="button"
+									onclick="allCheck();" style="width: 80px; height: 40px;">확인</button>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			</div>
 		</div>
-				<div id="footer" class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
-			      style="border: 1px solid black; padding: 10px;"></div>
-			<!-- 푸터 끝 -->
-		
-		<!-- 스크립트 -->
-		<script>
-			/* 정규식 표현 */
-	   		var regExpId = /^[a-z0-9_]{6,}$/; // 아이디 영소문자+숫자 6-12
-	    	//var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
-	    	var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
-	    	var regExpSpace = /\s/g; //공백찾기
-	    	var regExpNum = /^[0-9]+$/{2,}$/; // 한글만
-	    	var SetTime; //인증시간
-	        var regExpEmailFirst = /^[a-zA-Z0-9_]$/; // 이메일 영 대소문자+숫자
-	        var regExpEmailLast = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소
-	        var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
-	        var emailCheckCode; // 생성된 인증번호
-	    	var hiddenEmail; //이메일 저장
+	</div>
+	<div id="footer"
+		class="col-md-8 col-sm-12 mx-auto border-left-0 border-right-0"
+		style="border: 1px solid black; padding: 10px;"></div>
+	<!-- 푸터 끝 -->
+
+	<!-- 스크립트 -->
+	<script>
+		 /* 정규식 표현 */
+        var regExpId = /^[a-z0-9_]{6,}$/; // 아이디 영소문자+숫자 6-12
+      //var regExpPwd = /^(?=.*[a-z])(?=.*[!@#$%*+=-])(?=.*[0-9]).{8,20}$/; //비밀번호 영소문자+숫자+특수문자 8-20
+      var regExpPwd = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*=+])[a-z0-9!@#$%^&*=+]{10,20}$/;
+      var regExpSpace = /\s/g; //공백찾기
+      var regExpNum = /^[0-9]+$/; // 숫자만
+      var regExpKor = /^[가-힣]{2,}$/; // 한글만
+      var SetTime; //인증시간
+       var regExpEmailFirst = /^[a-zA-Z0-9_]$/; // 이메일 영 대소문자+숫자
+       var regExpEmailLast = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소
+       var regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //이메일 검사
+       var emailCheckCode; // 생성된 인증번호
+      var hiddenEmail; //이메일 저장
 	    	var surnameList1 = 
 	    		['가', '간', '갈', '감', '강', '견', '경', '계', '고', '곡', '공'
 	    		, '곽', '교', '구', '국', '군', '궉', '권', '근', '금', '기', '길'
@@ -1831,7 +1851,8 @@
 	            }
 	        }
     </script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 
 </html>

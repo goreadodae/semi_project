@@ -38,7 +38,7 @@ public class DeleteMemberServlet extends HttpServlet {
 			session.invalidate();
 			response.sendRedirect("/index.jsp");
 		}else {
-			System.out.println("����");
+			System.out.println("에러");
 		}
 		
 	}

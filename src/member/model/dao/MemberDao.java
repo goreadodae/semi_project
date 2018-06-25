@@ -306,7 +306,7 @@ public class MemberDao {
 
 	@SuppressWarnings("resource")
 	public Member changeInfo(Connection conn, String userId, String fullFilePath, String userPwd, String phone,
-			String email, String address, String nickname) {
+			String email, String address, String nickname, int profits) {
 
 		int result = 0;
 		String path = JDBCTemplate.class.getResource("..").getPath();
@@ -321,7 +321,7 @@ public class MemberDao {
 
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = "update member set member_pwd=?, phone=?, email=?, address=?, profile=?, nickname=? where member_id=?";
+			String query = "update member set member_pwd=?, phone=?, email=?, address=?, profile=?, nickname=?, profits=? where member_id=?";
 
 			pstmt = conn.prepareStatement(query);
 
@@ -332,6 +332,7 @@ public class MemberDao {
 			pstmt.setString(5, fullFilePath);
 			pstmt.setString(6, nickname);
 			pstmt.setString(7, userId);
+			pstmt.setInt(8, profits);
 
 			result = pstmt.executeUpdate();
 
@@ -339,7 +340,7 @@ public class MemberDao {
 				conn.commit();
 
 				String query2 = "select member_no, member_name, TO_CHAR(birth_date,'YYMMDD') as BIRTH_DATE, "
-						+ "phone, email, address, profile, nickname from member where member_id = ?";
+						+ "phone, email, address, profile, nickname, profits from member where member_id = ?";
 
 				pstmt = conn.prepareStatement(query2);
 
@@ -361,6 +362,7 @@ public class MemberDao {
 					m.setAddress(rset.getString("ADDRESS"));
 					m.setProfile(rset.getString("PROFILE"));
 					m.setNickName(rset.getString("NICKNAME"));
+					m.setProfits(rset.getInt("profits"))
 				}
 
 			} else {
@@ -884,10 +886,9 @@ public class MemberDao {
 		String path = JDBCTemplate.class.getResource("..").getPath();
 		PreparedStatement pstmt = null;
 		int result = 0;
-
 		try {
 			prop.load(new FileReader(path + "resources/memberQuery.properties"));
-			String query = "delete from member where member_no=?";
+			String query = "delete member where member_no=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, memberNo);
 

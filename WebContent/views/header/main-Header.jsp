@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>main-Header</title>
+<title>수상한 레시피</title>
 <style>
   	#scroll {
             height: 50px;

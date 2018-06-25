@@ -251,6 +251,7 @@ error : function() {
 					<div class="media-image">
 						<a href="javascript:void(0)"> <img class="media-object"
 							src="/imgs/ranking_img/monthChef350x250.png" alt="이달의 회원" id="monthlyUserImage" 
+							  onerror='this.src="/imgs/ranking_img/monthChef350x250.png"' 
 							style="width: 349px; height: 250px;  border-top-right-radius:5px; border-top-left-radius:5px; ">
 						</a>
 					</div>

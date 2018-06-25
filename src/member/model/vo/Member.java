@@ -13,7 +13,8 @@ public class Member {
 	private String enrollDate;
 	private String profile;
 	private String nickName;
-
+	private int profits;
+	
 	public Member () {}
 
 	public String getMemberId() {
@@ -110,6 +111,14 @@ public class Member {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+	public int getProfits() {
+		return profits;
+	}
+
+	public void setProfits(int profits) {
+		this.profits = profits;
 	}
 
 }
